@@ -7,13 +7,13 @@ Class {
 	#category : #'BlueInk-Enlumineur'
 }
 
-{ #category : #'result/raw - temp with space' }
+{ #category : #'temp with space' }
 BIEnlumineurTest >> aloneTemporaries [
 	| a b c |
 	^ self
 ]
 
-{ #category : #'result/raw - temp with space' }
+{ #category : #'temp with space' }
 BIEnlumineurTest >> aloneTemporariesAndNewLineAfter [
 	| a b c |
 	a := b + c.
@@ -25,7 +25,7 @@ BIEnlumineurTest >> contextClass [
 	^ BIExtendedPrettyPrinterContext
 ]
 
-{ #category : #'result/raw - temp with space' }
+{ #category : #'temp with space' }
 BIEnlumineurTest >> emptyTemporaries [
 	^ self
 ]
@@ -42,7 +42,7 @@ BIEnlumineurTest >> formatterClass [
 	^ BIEnlumineurConfigurableFormatter
 ]
 
-{ #category : #'result - long selectors' }
+{ #category : #'long selectors' }
 BIEnlumineurTest >> methodWithTooMany: aParameter
 	default: aDefaultValue
 	optional: optional
@@ -53,7 +53,7 @@ BIEnlumineurTest >> methodWithTooMany: aParameter
 	^ self printString
 ]
 
-{ #category : #'result - long selectors' }
+{ #category : #'long selectors' }
 BIEnlumineurTest >> methodWithTooManyArguments: aParameter default: aDefaultValue optional: optional andCrazy: aStringOrSymbolOrNil [
 	"A possible variation."
 	"Probably an average comment."
@@ -61,7 +61,7 @@ BIEnlumineurTest >> methodWithTooManyArguments: aParameter default: aDefaultValu
 	^ self printString
 ]
 
-{ #category : #'result - new lines and tabulated' }
+{ #category : #'new lines and tabulated' }
 BIEnlumineurTest >> newLineAfterCommentZoneNoCommentStillHaveANewLine [
 
 	| x |
@@ -70,7 +70,7 @@ BIEnlumineurTest >> newLineAfterCommentZoneNoCommentStillHaveANewLine [
 	^ x
 ]
 
-{ #category : #'result - new lines and tabulated' }
+{ #category : #'new lines and tabulated' }
 BIEnlumineurTest >> newLineAfterCommentZoneSimple [
 	"I'm a rather simple method but already we can check some pretty printing points."
 
@@ -80,7 +80,7 @@ BIEnlumineurTest >> newLineAfterCommentZoneSimple [
 	^ x
 ]
 
-{ #category : #'result - new lines and tabulated' }
+{ #category : #'new lines and tabulated' }
 BIEnlumineurTest >> newLineAfterCommentZoneSimpleNoExtraSpace [
 	"There should be no space at the end of the line and only tab to start with."
 
@@ -90,7 +90,7 @@ BIEnlumineurTest >> newLineAfterCommentZoneSimpleNoExtraSpace [
 	^ x
 ]
 
-{ #category : #'result - new lines and tabulated' }
+{ #category : #'new lines and tabulated' }
 BIEnlumineurTest >> newLineAfterCommentZoneWithTwoSubsequentComments [
 	"first comment"
 	"second comment"
@@ -98,7 +98,7 @@ BIEnlumineurTest >> newLineAfterCommentZoneWithTwoSubsequentComments [
 	^ 'there should only one empty line'
 ]
 
-{ #category : #configurations }
+{ #category : #'new lines and tabulated' }
 BIEnlumineurTest >> newLinesAfterCommentZoneConfiguration [
 	"Here we can control explicitely the configuration we want."
 
@@ -158,12 +158,12 @@ BIEnlumineurTest >> noSpaceForTemporaries [
 
 	^ self contextClass new
 		formatCommentWithStatements: false;
-		newLinesAfterCommentZone: 0. 
+		newLinesAfterCommentZone: 0. .
 	" for the moment there is no possibility to not have space i.e. |a b c| 
 	we only support | a b c |"
 ]
 
-{ #category : #'result - terminating period' }
+{ #category : #'terminating period' }
 BIEnlumineurTest >> noTerminatingPeriod [
 	| a b c |
 	b := 10.
@@ -173,7 +173,7 @@ BIEnlumineurTest >> noTerminatingPeriod [
 	^ a
 ]
 
-{ #category : #configurations }
+{ #category : #'terminating period' }
 BIEnlumineurTest >> noTerminatingPeriodConfiguration [
 	"Here we can control explicitely the configuration we want."
 
@@ -181,7 +181,6 @@ BIEnlumineurTest >> noTerminatingPeriodConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass new
-		formatCommentWithStatements: false;
 		newLinesAfterCommentZone: 0; "no empty line"
 		periodsAtEndOfBlock: false
 ]
@@ -199,24 +198,24 @@ BIEnlumineurTest >> notWorkingReceiverAndMessageInFlowAllMethodsSelect: aBlock [
 	^ aCollection
 ]
 
-{ #category : #'result/raw - temp with space' }
+{ #category : #'temp with space' }
 BIEnlumineurTest >> rawAloneTemporaries [
 	| a b c |
 	^ self
 ]
 
-{ #category : #'result/raw - temp with space' }
+{ #category : #'temp with space' }
 BIEnlumineurTest >> rawAloneTemporariesAndNewLineAfter [
 	| a b c |a := b + c.^ a
 ]
 
-{ #category : #'result/raw - temp with space' }
+{ #category : #'temp with space' }
 BIEnlumineurTest >> rawEmptyTemporaries [
 	| | 
 	^ self
 ]
 
-{ #category : #'source - raw methods' }
+{ #category : #'long selectors' }
 BIEnlumineurTest >> rawMethodWithTooMany: aParameter 
 	default: aDefaultValue 
 	optional: optional 
@@ -227,12 +226,22 @@ BIEnlumineurTest >> rawMethodWithTooMany: aParameter
 	^ self printString
 ]
 
-{ #category : #'source - raw methods' }
+{ #category : #'long selectors' }
 BIEnlumineurTest >> rawMethodWithTooManyArguments: aParameter default: aDefaultValue optional: optional andCrazy: aStringOrSymbolOrNil [
 	"A possible variation."
 	"Probably an average comment."
 
 	^ self printString
+]
+
+{ #category : #'new lines and tabulated' }
+BIEnlumineurTest >> rawNewLineAfterCommentZoneSimpleNoExtraSpace [     
+  "There should be no space at the end of the line and only tab to start with."
+
+  | x |
+  x := 2.  
+     x := x + 1.  
+	^ x  
 ]
 
 { #category : #'source - raw methods' }
@@ -245,16 +254,6 @@ x:=x+1.
 ]
 
 { #category : #'source - raw methods' }
-BIEnlumineurTest >> rawSimpleFunkyExtraSpaces [     
-  "There should be no space at the end of the line and only tab to start with."
-
-  | x |
-  x := 2.  
-     x := x + 1.  
-	^ x  
-]
-
-{ #category : #'source - raw methods' }
 BIEnlumineurTest >> rawSimpleNoComment [
 | x |
 x := 2.
@@ -262,10 +261,11 @@ x := x + 1.
 ^ x
 ]
 
-{ #category : #'result - terminating period' }
+{ #category : #'terminating period' }
 BIEnlumineurTest >> rawTerminatingPeriod [
 	| a b c |
-	b := 10. c:=20.
+	b := 10. 
+	c :=20.
 	a := b + c.
 	a ifNil: [ b:=30. ].
 	^ a.
@@ -292,8 +292,8 @@ BIEnlumineurTest >> receiverOnNextIndentAllMethodsSelect: aBlock [
 	^ aCollection
 ]
 
-{ #category : #configurations }
-BIEnlumineurTest >> selectorsOnMultipleLines [
+{ #category : #'long selectors' }
+BIEnlumineurTest >> selectorsOnMultipleLinesConfiguration [
 	^ self contextClass new
 		formatCommentWithStatements: false;
 		indentString: '	';
@@ -302,8 +302,8 @@ BIEnlumineurTest >> selectorsOnMultipleLines [
 		methodSignatureOnMultipleLines: true
 ]
 
-{ #category : #configurations }
-BIEnlumineurTest >> selectorsOnOneLine [
+{ #category : #'long selectors' }
+BIEnlumineurTest >> selectorsOnOneLineConfiguration [
 	^ self contextClass new
 		formatCommentWithStatements: false;
 		indentString: '	';
@@ -312,8 +312,8 @@ BIEnlumineurTest >> selectorsOnOneLine [
 		methodSignatureOnMultipleLines: false
 ]
 
-{ #category : #configurations }
-BIEnlumineurTest >> spaceAndNewLinesForTemporaries [
+{ #category : #'temp with space' }
+BIEnlumineurTest >> spaceAndNewLinesForTemporariesConfiguration [
 	"for the moment there is no possibility to not have space i.e. |a b c| 
 	we only support | a b c |"
 
@@ -327,7 +327,7 @@ BIEnlumineurTest >> spaceAndNewLinesForTemporaries [
 ]
 
 { #category : #configurations }
-BIEnlumineurTest >> spaceForTemporaries [
+BIEnlumineurTest >> spaceForTemporariesConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -340,7 +340,7 @@ BIEnlumineurTest >> spaceForTemporaries [
 	we only support | a b c |"
 ]
 
-{ #category : #'result - terminating period' }
+{ #category : #'terminating period' }
 BIEnlumineurTest >> terminatingPeriod [
 	| a b c |
 	b := 10. 
@@ -353,7 +353,7 @@ BIEnlumineurTest >> terminatingPeriod [
 { #category : #'tests - temp' }
 BIEnlumineurTest >> testEmptyTemporaries [
 
-	configurationSelector := #spaceAndNewLinesForTemporaries.
+	configurationSelector := #spaceAndNewLinesForTemporariesConfiguration.
 	self 
 		validate: #rawEmptyTemporaries 
 		isFormattedAs: #emptyTemporaries
@@ -387,7 +387,7 @@ BIEnlumineurTest >> testNewLinesAfterCommentZone [
 		validate: #rawSimple 
 		isFormattedAs: #newLineAfterCommentZoneSimple.
 	self 
-		validate: #rawSimpleFunkyExtraSpaces 
+		validate: #rawNewLineAfterCommentZoneSimpleNoExtraSpace 
 		isFormattedAs: #newLineAfterCommentZoneSimpleNoExtraSpace.
 	
 ]
@@ -426,7 +426,7 @@ BIEnlumineurTest >> testNoTerminatingTemporaries [
 { #category : #'tests - long selectors' }
 BIEnlumineurTest >> testSelectorOnMultipleLines [
 
-	configurationSelector := #selectorsOnMultipleLines.
+	configurationSelector := #selectorsOnMultipleLinesConfiguration.
 	self 
 		validate: #rawMethodWithTooManyArguments:default:optional:andCrazy: 
 		isFormattedAs: #methodWithTooMany:default:optional:andCrazy:
@@ -436,7 +436,7 @@ BIEnlumineurTest >> testSelectorOnMultipleLines [
 { #category : #'tests - long selectors' }
 BIEnlumineurTest >> testSelectorOnOneLine [
 
-	configurationSelector := #selectorsOnOneLine.
+	configurationSelector := #selectorsOnOneLineConfiguration.
 	self 
 		validate: #rawMethodWithTooManyArguments:default:optional:andCrazy: 
 		isFormattedAs: #rawMethodWithTooManyArguments:default:optional:andCrazy:
