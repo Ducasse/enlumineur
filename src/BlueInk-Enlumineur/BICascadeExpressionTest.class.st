@@ -4,8 +4,8 @@ Class {
 	#category : #'BlueInk-Enlumineur'
 }
 
-{ #category : #'as yet unclassified' }
-BICascadeExpressionTest >> NewLineAfterCascadeConfiguration [
+{ #category : #configurations }
+BICascadeExpressionTest >> newLineAfterCascadeConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -15,8 +15,8 @@ BICascadeExpressionTest >> NewLineAfterCascadeConfiguration [
 	newLineAfterCascade: true.
 ]
 
-{ #category : #'as yet unclassified' }
-BICascadeExpressionTest >> NewLineBeforeCascadeConfiguration [
+{ #category : #configurations }
+BICascadeExpressionTest >> newLineBeforeCascadeConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -26,8 +26,8 @@ BICascadeExpressionTest >> NewLineBeforeCascadeConfiguration [
 	newLineBeforeFirstCascade: true.
 ]
 
-{ #category : #'as yet unclassified' }
-BICascadeExpressionTest >> NoNewLineAfterCascadeConfiguration [
+{ #category : #configurations }
+BICascadeExpressionTest >> noNewLineAfterCascadeConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -37,8 +37,8 @@ BICascadeExpressionTest >> NoNewLineAfterCascadeConfiguration [
 	newLineAfterCascade: false.
 ]
 
-{ #category : #'as yet unclassified' }
-BICascadeExpressionTest >> NoNewLineBeforeCascadeConfiguration [
+{ #category : #configurations }
+BICascadeExpressionTest >> noNewLineBeforeCascadeConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -52,7 +52,7 @@ BICascadeExpressionTest >> NoNewLineBeforeCascadeConfiguration [
 BICascadeExpressionTest >> testNewLineAfterCascade [
 	| expr source |
 	expr := RBParser parseExpression: 'Foo a;b;c'.
-	configurationSelector := #NewLineAfterCascadeConfiguration.
+	configurationSelector := #newLineAfterCascadeConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: 'Foo
 	a;
@@ -64,7 +64,7 @@ BICascadeExpressionTest >> testNewLineAfterCascade [
 BICascadeExpressionTest >> testNewLineBeforeCascade [
 	| expr source |
 	expr := RBParser parseExpression: 'Foo a;b;c'.
-	configurationSelector := #NewLineBeforeCascadeConfiguration.
+	configurationSelector := #newLineBeforeCascadeConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: 'Foo
 	a;
@@ -76,7 +76,7 @@ BICascadeExpressionTest >> testNewLineBeforeCascade [
 BICascadeExpressionTest >> testNoNewLineAfterCascade [
 	| expr source |
 	expr := RBParser parseExpression: 'Foo a;b;c'.
-	configurationSelector := #NoNewLineAfterCascadeConfiguration.
+	configurationSelector := #noNewLineAfterCascadeConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: 'Foo
 	a; b; c'
@@ -86,7 +86,7 @@ BICascadeExpressionTest >> testNoNewLineAfterCascade [
 BICascadeExpressionTest >> testNoNewLineBeforeCascade [
 	| expr source |
 	expr := RBParser parseExpression: 'Foo a;b;c'.
-	configurationSelector := #NoNewLineBeforeCascadeConfiguration.
+	configurationSelector := #noNewLineBeforeCascadeConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: 'Foo a;
 	b;
