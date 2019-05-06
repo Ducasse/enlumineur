@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #assignments }
-BIAssignmentExpressionTest >> spaceForAssignement [
+BIAssignmentExpressionTest >> spaceForAssignementConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -19,7 +19,7 @@ BIAssignmentExpressionTest >> testAssignment [
 
 	| expr source |
 	expr := RBParser parseExpression: 'a:=1'.
-	configurationSelector := #spaceForAssignement.
+	configurationSelector := #spaceForAssignementConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: 'a := 1'
 ]
@@ -29,7 +29,7 @@ BIAssignmentExpressionTest >> testAssignmentHasNoExtraSpace [
 
 	| expr source |
 	expr := RBParser parseExpression: '   a:=1   '.
-	configurationSelector := #spaceForAssignement.
+	configurationSelector := #spaceForAssignementConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: 'a := 1'
 ]
@@ -39,7 +39,7 @@ BIAssignmentExpressionTest >> testAssignmentHasNoExtraSpaceInside [
 
 	| expr source |
 	expr := RBParser parseExpression: '   a    :=    1   '.
-	configurationSelector := #spaceForAssignement.
+	configurationSelector := #spaceForAssignementConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: 'a := 1'
 ]
@@ -49,7 +49,7 @@ BIAssignmentExpressionTest >> testMultipleAssignmentHasNoExtraSpaceInside [
 
 	| expr source |
 	expr := RBParser parseExpression: '   a    :=    b :=  1   '.
-	configurationSelector := #spaceForAssignement.
+	configurationSelector := #spaceForAssignementConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: 'a := b := 1'
 ]
