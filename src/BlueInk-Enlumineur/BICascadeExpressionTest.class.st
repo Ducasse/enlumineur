@@ -12,7 +12,8 @@ BICascadeExpressionTest >> newLineAfterCascadeConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass new
-	newLineAfterCascade: true.
+		newLineAfterCascade: true;
+		newLineBeforeFirstCascade: false.
 ]
 
 { #category : #configurations }
@@ -23,7 +24,8 @@ BICascadeExpressionTest >> newLineBeforeCascadeConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass new
-	newLineBeforeFirstCascade: true.
+		newLineBeforeFirstCascade: true;
+		newLineAfterCascade: false.
 ]
 
 { #category : #configurations }
@@ -34,7 +36,7 @@ BICascadeExpressionTest >> noNewLineAfterCascadeConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass new
-	newLineAfterCascade: false.
+		newLineAfterCascade: false.
 ]
 
 { #category : #configurations }
@@ -45,7 +47,7 @@ BICascadeExpressionTest >> noNewLineBeforeCascadeConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass new
-	newLineBeforeFirstCascade: false.
+		newLineBeforeFirstCascade: false.
 ]
 
 { #category : #tests }
@@ -54,10 +56,22 @@ BICascadeExpressionTest >> testNewLineAfterCascade [
 	expr := RBParser parseExpression: 'Foo a;b;c'.
 	configurationSelector := #newLineAfterCascadeConfiguration.
 	source := self formatter format: expr.
-	self assert: source equals: 'Foo
-	a;
+	self assert: source equals:
+'Foo a;
 	b;
 	c'
+]
+
+{ #category : #tests }
+BICascadeExpressionTest >> testNewLineAfterCascade2 [
+	| expr source |
+	expr := RBParser parseExpression: 'OrderedCollection new add: #a;add:#b;yourself'.
+	configurationSelector := #newLineAfterCascadeConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals: 
+'OrderedCollection new add: #a;
+	add: #b;
+	yourself'
 ]
 
 { #category : #tests }
@@ -66,10 +80,20 @@ BICascadeExpressionTest >> testNewLineBeforeCascade [
 	expr := RBParser parseExpression: 'Foo a;b;c'.
 	configurationSelector := #newLineBeforeCascadeConfiguration.
 	source := self formatter format: expr.
-	self assert: source equals: 'Foo
-	a;
-	b;
-	c'
+	self assert: source equals: 
+'Foo
+	a; b; c'
+]
+
+{ #category : #tests }
+BICascadeExpressionTest >> testNewLineBeforeCascade2 [
+	| expr source |
+	expr := RBParser parseExpression: 'OrderedCollection new add: #a;add:#b;yourself'.
+	configurationSelector := #newLineBeforeCascadeConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals: 
+'OrderedCollection new
+	add: #a; add: #b; yourself'
 ]
 
 { #category : #tests }
