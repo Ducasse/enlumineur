@@ -1,11 +1,11 @@
 Class {
-	#name : #BIMethodeValueExpressionTest,
+	#name : #BIMessageExpressionTest,
 	#superclass : #BISingleExpressionTest,
 	#category : #'BlueInk-Enlumineur'
 }
 
 { #category : #configuration }
-BIMethodeValueExpressionTest >> oneArgumentPerLineConfiguration [
+BIMessageExpressionTest >> oneArgumentPerLineConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -16,7 +16,7 @@ BIMethodeValueExpressionTest >> oneArgumentPerLineConfiguration [
 ]
 
 { #category : #tests }
-BIMethodeValueExpressionTest >> testNoExtraSpacesAfter [
+BIMessageExpressionTest >> testNoExtraSpacesAfter [
 
 	| expr source |
 	expr := RBParser parseExpression: 'Transcript cr        '.
@@ -27,7 +27,7 @@ BIMethodeValueExpressionTest >> testNoExtraSpacesAfter [
 ]
 
 { #category : #tests }
-BIMethodeValueExpressionTest >> testNoExtraSpacesAfter2 [
+BIMessageExpressionTest >> testNoExtraSpacesAfter2 [
 
 	| expr source |
 	expr := RBParser parseExpression: '1+2          '.
@@ -38,7 +38,7 @@ BIMethodeValueExpressionTest >> testNoExtraSpacesAfter2 [
 ]
 
 { #category : #tests }
-BIMethodeValueExpressionTest >> testNoExtraSpacesAfter3 [
+BIMessageExpressionTest >> testNoExtraSpacesAfter3 [
 
 	| expr source |
 	expr := RBParser parseExpression: '2 between: 1 and: 3          '.
@@ -49,7 +49,7 @@ BIMethodeValueExpressionTest >> testNoExtraSpacesAfter3 [
 ]
 
 { #category : #tests }
-BIMethodeValueExpressionTest >> testNoExtraSpacesBefore [
+BIMessageExpressionTest >> testNoExtraSpacesBefore [
 
 	| expr source |
 	expr := RBParser parseExpression: '   Transcript cr'.
@@ -60,7 +60,7 @@ BIMethodeValueExpressionTest >> testNoExtraSpacesBefore [
 ]
 
 { #category : #tests }
-BIMethodeValueExpressionTest >> testNoExtraSpacesBefore2 [
+BIMessageExpressionTest >> testNoExtraSpacesBefore2 [
 
 	| expr source |
 	expr := RBParser parseExpression: '   1+2'.
@@ -71,7 +71,7 @@ BIMethodeValueExpressionTest >> testNoExtraSpacesBefore2 [
 ]
 
 { #category : #tests }
-BIMethodeValueExpressionTest >> testNoExtraSpacesBefore3 [
+BIMessageExpressionTest >> testNoExtraSpacesBefore3 [
 
 	| expr source |
 	expr := RBParser parseExpression: '   2 between: 1 and: 3'.
@@ -82,7 +82,7 @@ BIMethodeValueExpressionTest >> testNoExtraSpacesBefore3 [
 ]
 
 { #category : #tests }
-BIMethodeValueExpressionTest >> testNoExtraSpacesBetween [
+BIMessageExpressionTest >> testNoExtraSpacesBetween [
 
 	| expr source |
 	expr := RBParser parseExpression: 'Transcript        cr'.
@@ -93,7 +93,7 @@ BIMethodeValueExpressionTest >> testNoExtraSpacesBetween [
 ]
 
 { #category : #tests }
-BIMethodeValueExpressionTest >> testNoExtraSpacesBetween2 [
+BIMessageExpressionTest >> testNoExtraSpacesBetween2 [
 
 	| expr source |
 	expr := RBParser parseExpression: '1     +     2'.
@@ -104,7 +104,7 @@ BIMethodeValueExpressionTest >> testNoExtraSpacesBetween2 [
 ]
 
 { #category : #tests }
-BIMethodeValueExpressionTest >> testNoExtraSpacesBetween3 [
+BIMessageExpressionTest >> testNoExtraSpacesBetween3 [
 
 	| expr source |
 	expr := RBParser parseExpression: '2      between:     1   and:    3'.
@@ -115,7 +115,7 @@ BIMethodeValueExpressionTest >> testNoExtraSpacesBetween3 [
 ]
 
 { #category : #tests }
-BIMethodeValueExpressionTest >> testNoExtraSpacesBetween4 [
+BIMessageExpressionTest >> testNoExtraSpacesBetween4 [
 
 	| expr source |
 	expr := RBParser parseExpression: '2           factorial              factorial'.
@@ -126,7 +126,7 @@ BIMethodeValueExpressionTest >> testNoExtraSpacesBetween4 [
 ]
 
 { #category : #tests }
-BIMethodeValueExpressionTest >> testOneArgumentPerLine [
+BIMessageExpressionTest >> testOneArgumentPerLine [
 
 	| expr source |
 	expr := RBParser parseExpression: '2      between:     1   and:    3'.
