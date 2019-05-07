@@ -31,7 +31,7 @@ BILiteralExpressionTest >> testSpaces [
 
 	| expr source |
 	expr := RBParser parseExpression: '2'.
-	configurationSelector := #noSpaceForTemporariesConfiguration.
+	configurationSelector := #emptyDefaultConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '2'
 	
