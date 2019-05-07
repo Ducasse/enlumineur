@@ -5,27 +5,36 @@ Class {
 }
 
 { #category : #tests }
-BIReturnExpressionTest >> testReturn [
+BIReturnExpressionTest >> testReturnHasNoExtraSpace [
 	| expr source |
-	expr := RBParser parseExpression: '^a'.
+	expr := RBParser parseExpression: '    ^a   '.
 	configurationSelector := #emptyDefaultConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '^ a'
 ]
 
 { #category : #tests }
-BIReturnExpressionTest >> testReturnExtraSpace [
+BIReturnExpressionTest >> testReturnHasNoExtraSpaceInside [
 	| expr source |
-	expr := RBParser parseExpression: ' ^  a   '.
+	expr := RBParser parseExpression: ' ^    a'.
 	configurationSelector := #emptyDefaultConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '^ a'
 ]
 
 { #category : #tests }
-BIReturnExpressionTest >> testReturnPeriod [
+BIReturnExpressionTest >> testReturnHasNoPeriod [
 	| expr source |
 	expr := RBParser parseExpression: '^a.'.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals: '^ a'
+]
+
+{ #category : #tests }
+BIReturnExpressionTest >> testReturnHasSpaceBetween [
+	| expr source |
+	expr := RBParser parseExpression: '^a'.
 	configurationSelector := #emptyDefaultConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '^ a'
