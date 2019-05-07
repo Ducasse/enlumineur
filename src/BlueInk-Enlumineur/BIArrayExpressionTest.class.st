@@ -14,9 +14,18 @@ BIArrayExpressionTest >> testEmptyArray [
 ]
 
 { #category : #'as yet unclassified' }
+BIArrayExpressionTest >> testNoExtraSpaceAroundPeriod [
+	| expr source |
+	expr := RBParser parseExpression: '{1.    2.        3}'.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals: '{1 . 2 . 3}'
+]
+
+{ #category : #'as yet unclassified' }
 BIArrayExpressionTest >> testSpaceAroundPeriod [
 	| expr source |
-	expr := RBParser parseExpression: '{1.   2. 3}'.
+	expr := RBParser parseExpression: '{1. 2. 3}'.
 	configurationSelector := #emptyDefaultConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '{1 . 2 . 3}'
