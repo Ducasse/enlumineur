@@ -4,7 +4,7 @@ Class {
 	#category : #'BlueInk-Enlumineur'
 }
 
-{ #category : #block }
+{ #category : #configurations }
 BIBlockExpressionTest >> lineUpBlockBracketsConfiguration [
 	"Here we can control explicitely the configuration we want."
 
@@ -15,7 +15,7 @@ BIBlockExpressionTest >> lineUpBlockBracketsConfiguration [
 		lineUpBlockBrackets: true
 ]
 
-{ #category : #block }
+{ #category : #configurations }
 BIBlockExpressionTest >> periodAtEndConfiguration [
 	"Here we can control explicitely the configuration we want."
 
@@ -26,7 +26,7 @@ BIBlockExpressionTest >> periodAtEndConfiguration [
 		periodsAtEndOfBlock: true
 ]
 
-{ #category : #block }
+{ #category : #test }
 BIBlockExpressionTest >> testLineUpBlock [
 	| expr source |
 	expr := RBParser parseExpression: '[3. 4]'.
@@ -39,7 +39,7 @@ BIBlockExpressionTest >> testLineUpBlock [
 ]'
 ]
 
-{ #category : #block }
+{ #category : #test }
 BIBlockExpressionTest >> testNoLineUpBlock [
 	| expr source |
 	expr := RBParser parseExpression: '[3. 4]'.
@@ -51,7 +51,7 @@ BIBlockExpressionTest >> testNoLineUpBlock [
 4 ]'
 ]
 
-{ #category : #block }
+{ #category : #test }
 BIBlockExpressionTest >> testNoPeriodAtEndOfBlock [
 	| expr source |
 	expr := RBParser parseExpression: '[2.]'.
@@ -60,7 +60,7 @@ BIBlockExpressionTest >> testNoPeriodAtEndOfBlock [
 	self assert: source equals: '[ 2 ]'
 ]
 
-{ #category : #block }
+{ #category : #test }
 BIBlockExpressionTest >> testPeriodAtEndOfBlock [
 	| expr source |
 	expr := RBParser parseExpression: '[2.]'.
@@ -69,7 +69,7 @@ BIBlockExpressionTest >> testPeriodAtEndOfBlock [
 	self assert: source equals: '[ 2. ]'
 ]
 
-{ #category : #block }
+{ #category : #test }
 BIBlockExpressionTest >> testSpaceBlock [
 	| expr source |
 	expr := RBParser parseExpression: '[2]'.

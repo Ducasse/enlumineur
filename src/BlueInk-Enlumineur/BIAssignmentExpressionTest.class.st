@@ -4,7 +4,7 @@ Class {
 	#category : #'BlueInk-Enlumineur'
 }
 
-{ #category : #assignments }
+{ #category : #configurations }
 BIAssignmentExpressionTest >> spaceForAssignementConfiguration [
 	"Here we can control explicitely the configuration we want."
 
@@ -14,7 +14,7 @@ BIAssignmentExpressionTest >> spaceForAssignementConfiguration [
 	^ self contextClass new
 ]
 
-{ #category : #assignments }
+{ #category : #test }
 BIAssignmentExpressionTest >> testAssignment [
 
 	| expr source |
@@ -24,7 +24,7 @@ BIAssignmentExpressionTest >> testAssignment [
 	self assert: source equals: 'a := 1'
 ]
 
-{ #category : #assignments }
+{ #category : #test }
 BIAssignmentExpressionTest >> testAssignmentHasNoExtraSpace [
 
 	| expr source |
@@ -34,7 +34,7 @@ BIAssignmentExpressionTest >> testAssignmentHasNoExtraSpace [
 	self assert: source equals: 'a := 1'
 ]
 
-{ #category : #assignments }
+{ #category : #test }
 BIAssignmentExpressionTest >> testAssignmentHasNoExtraSpaceInside [
 
 	| expr source |
@@ -44,7 +44,7 @@ BIAssignmentExpressionTest >> testAssignmentHasNoExtraSpaceInside [
 	self assert: source equals: 'a := 1'
 ]
 
-{ #category : #assignments }
+{ #category : #test }
 BIAssignmentExpressionTest >> testMultipleAssignmentHasNoExtraSpaceInside [
 
 	| expr source |

@@ -4,7 +4,7 @@ Class {
 	#category : #'BlueInk-Enlumineur'
 }
 
-{ #category : #tests }
+{ #category : #configurations }
 BITemporariesExpressionTest >> newLinesAfterTemporariesConfiguration [
 	"Here we can control explicitely the configuration we want."
 
@@ -15,7 +15,7 @@ BITemporariesExpressionTest >> newLinesAfterTemporariesConfiguration [
 		newLinesAfterTemporaries: 1.
 ]
 
-{ #category : #tests }
+{ #category : #configurations }
 BITemporariesExpressionTest >> noNewLinesAfterTemporariesConfiguration [
 	"Here we can control explicitely the configuration we want."
 
@@ -26,7 +26,7 @@ BITemporariesExpressionTest >> noNewLinesAfterTemporariesConfiguration [
 		newLinesAfterTemporaries: 0.
 ]
 
-{ #category : #tests }
+{ #category : #configurations }
 BITemporariesExpressionTest >> spaceForTemporariesConfiguration [
 	"Here we can control explicitely the configuration we want."
 

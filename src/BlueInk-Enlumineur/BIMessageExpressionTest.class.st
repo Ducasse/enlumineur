@@ -4,7 +4,7 @@ Class {
 	#category : #'BlueInk-Enlumineur'
 }
 
-{ #category : #configuration }
+{ #category : #configurations }
 BIMessageExpressionTest >> oneArgumentPerLineConfiguration [
 	"Here we can control explicitely the configuration we want."
 
@@ -136,5 +136,16 @@ BIMessageExpressionTest >> testOneArgumentPerLine [
 '2
 	between: 1
 	and: 3'
-	
+]
+
+{ #category : #tests }
+BIMessageExpressionTest >> testOneArgumentPerLine2 [
+
+	| expr source |
+	expr := RBParser parseExpression: '1+2'.
+	configurationSelector := #oneArgumentPerLineConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'1
+	+ 2'
 ]

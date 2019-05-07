@@ -4,7 +4,7 @@ Class {
 	#category : #'BlueInk-Enlumineur'
 }
 
-{ #category : #tests }
+{ #category : #configurations }
 BILiteralValueExpressionTest >> noSpaceForTemporariesConfiguration [
 	"Here we can control explicitely the configuration we want."
 
@@ -15,7 +15,7 @@ BILiteralValueExpressionTest >> noSpaceForTemporariesConfiguration [
 		newLinesAfterTemporaries: 0.
 ]
 
-{ #category : #tests }
+{ #category : #configurations }
 BILiteralValueExpressionTest >> spaceForTemporariesConfiguration [
 	"Here we can control explicitely the configuration we want."
 
