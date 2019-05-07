@@ -1,11 +1,11 @@
 Class {
-	#name : #BILiteralExpressionTest,
+	#name : #BILiteralValueExpressionTest,
 	#superclass : #BISingleExpressionTest,
 	#category : #'BlueInk-Enlumineur'
 }
 
 { #category : #tests }
-BILiteralExpressionTest >> noSpaceForTemporariesConfiguration [
+BILiteralValueExpressionTest >> noSpaceForTemporariesConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -16,7 +16,7 @@ BILiteralExpressionTest >> noSpaceForTemporariesConfiguration [
 ]
 
 { #category : #tests }
-BILiteralExpressionTest >> spaceForTemporariesConfiguration [
+BILiteralValueExpressionTest >> spaceForTemporariesConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -27,7 +27,7 @@ BILiteralExpressionTest >> spaceForTemporariesConfiguration [
 ]
 
 { #category : #tests }
-BILiteralExpressionTest >> testSpaces [
+BILiteralValueExpressionTest >> testSpaces [
 
 	| expr source |
 	expr := RBParser parseExpression: '2'.
