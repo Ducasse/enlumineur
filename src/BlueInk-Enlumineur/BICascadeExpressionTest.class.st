@@ -102,8 +102,20 @@ BICascadeExpressionTest >> testNoNewLineAfterCascade [
 	expr := RBParser parseExpression: 'Foo a;b;c'.
 	configurationSelector := #noNewLineAfterCascadeConfiguration.
 	source := self formatter format: expr.
-	self assert: source equals: 'Foo
+	self assert: source equals:
+'Foo
 	a; b; c'
+]
+
+{ #category : #tests }
+BICascadeExpressionTest >> testNoNewLineAfterCascade2 [
+	| expr source |
+	expr := RBParser parseExpression: 'OrderedCollection new add: #a;add:#b;yourself'.
+	configurationSelector := #noNewLineAfterCascadeConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'OrderedCollection new
+	add: #a; add: #b; yourself'.
 ]
 
 { #category : #tests }
@@ -112,7 +124,20 @@ BICascadeExpressionTest >> testNoNewLineBeforeCascade [
 	expr := RBParser parseExpression: 'Foo a;b;c'.
 	configurationSelector := #noNewLineBeforeCascadeConfiguration.
 	source := self formatter format: expr.
-	self assert: source equals: 'Foo a;
+	self assert: source equals:
+'Foo a;
 	b;
-	c'
+	c'.
+]
+
+{ #category : #tests }
+BICascadeExpressionTest >> testNoNewLineBeforeCascade2 [
+	| expr source |
+	expr := RBParser parseExpression: 'OrderedCollection new add: #a;add:#b;yourself'.
+	configurationSelector := #noNewLineBeforeCascadeConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'OrderedCollection new add: #a;
+	add: #b;
+	yourself'.
 ]
