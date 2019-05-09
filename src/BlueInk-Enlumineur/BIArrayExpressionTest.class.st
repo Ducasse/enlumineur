@@ -14,6 +14,17 @@ BIArrayExpressionTest >> testEmptyArray [
 ]
 
 { #category : #test }
+BIArrayExpressionTest >> testFormatElement [
+	| expr source |
+	expr := RBParser parseExpression: ' { [a]. [b] } '.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'{[ a ].
+[ b ]}'
+]
+
+{ #category : #test }
 BIArrayExpressionTest >> testNoExtraSpaceAroundPeriod [
 	| expr source |
 	expr := RBParser parseExpression: '{1.    2.        3}'.

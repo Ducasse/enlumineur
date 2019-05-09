@@ -15,6 +15,17 @@ BIAssignmentExpressionTest >> testAssignment [
 ]
 
 { #category : #test }
+BIAssignmentExpressionTest >> testAssignmentFormatValue [
+
+	| expr source |
+	expr := RBParser parseExpression: 'a:=[1]'.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals: 'a := [ 1 ]'
+
+]
+
+{ #category : #test }
 BIAssignmentExpressionTest >> testAssignmentHasNoExtraSpace [
 
 	| expr source |

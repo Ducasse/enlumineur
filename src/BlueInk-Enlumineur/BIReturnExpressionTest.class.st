@@ -5,6 +5,15 @@ Class {
 }
 
 { #category : #tests }
+BIReturnExpressionTest >> testReturnFormatValue [
+	| expr source |
+	expr := RBParser parseExpression: '    ^[a]   '.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals: '^ [ a ]'
+]
+
+{ #category : #tests }
 BIReturnExpressionTest >> testReturnHasNoExtraSpace [
 	| expr source |
 	expr := RBParser parseExpression: '    ^a   '.
