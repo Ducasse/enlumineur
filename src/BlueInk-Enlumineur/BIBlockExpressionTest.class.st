@@ -58,6 +58,17 @@ BIBlockExpressionTest >> testEndPeriodInside [
 ]
 
 { #category : #test }
+BIBlockExpressionTest >> testFormatElements [
+	| expr source |
+	expr := RBParser parseExpression: '[ [1]. [ a:=1] ]'.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'[ [ 1 ].
+[ a := 1 ] ]'.
+]
+
+{ #category : #test }
 BIBlockExpressionTest >> testNewLineBeforeEndBrackets [
 	| expr source |
 	expr := RBParser parseExpression: '[3. 4]'.

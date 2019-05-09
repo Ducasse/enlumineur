@@ -40,6 +40,17 @@ BIMessageExpressionTest >> oneIdentsForKeyWordConfiguration [
 ]
 
 { #category : #tests }
+BIMessageExpressionTest >> testBinaryFormatReceiver [
+
+	| expr source |
+	expr := RBParser parseExpression: '[:a|a] value: 2'.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals: '[ :a | a ] value: 2'
+	
+]
+
+{ #category : #tests }
 BIMessageExpressionTest >> testBinaryNoExtraSpacesAfter [
 
 	| expr source |
@@ -85,17 +96,6 @@ BIMessageExpressionTest >> testBinaryOneArgumentPerLine [
 ]
 
 { #category : #tests }
-BIMessageExpressionTest >> testFormatReceiver [
-
-	| expr source |
-	expr := RBParser parseExpression: '[1] value'.
-	configurationSelector := #emptyDefaultConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals: '[ 1 ] value'
-	
-]
-
-{ #category : #tests }
 BIMessageExpressionTest >> testIndentsForKeywords1 [
 
 	| expr source |
@@ -123,6 +123,17 @@ BIMessageExpressionTest >> testIndentsForKeywords2 [
 		k2: 2
 		k3: 3'
 	
+]
+
+{ #category : #tests }
+BIMessageExpressionTest >> testKeyWordFormatReceiver [
+
+	| expr source |
+	expr := RBParser parseExpression: '2 between: 4-2 and: 3     factorial'.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'2 between: 4 - 2 and: 3 factorial'
 ]
 
 { #category : #tests }
@@ -200,6 +211,17 @@ BIMessageExpressionTest >> testTraditionalBinaryPrecedence3 [
 	configurationSelector := #traditionalBinaryPrecedenceConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '((2 + 3) * 4 + 5) * 2'
+]
+
+{ #category : #tests }
+BIMessageExpressionTest >> testUnaryFormatReceiver [
+
+	| expr source |
+	expr := RBParser parseExpression: '[1] value'.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals: '[ 1 ] value'
+	
 ]
 
 { #category : #tests }
