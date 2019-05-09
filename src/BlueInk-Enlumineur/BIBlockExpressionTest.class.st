@@ -58,7 +58,7 @@ BIBlockExpressionTest >> testEndPeriodInside [
 ]
 
 { #category : #test }
-BIBlockExpressionTest >> testNewLineBeforeBrackets [
+BIBlockExpressionTest >> testNewLineBeforeEndBrackets [
 	| expr source |
 	expr := RBParser parseExpression: '[3. 4]'.
 	configurationSelector := #lineUpBlockBracketsConfiguration.
@@ -99,7 +99,7 @@ BIBlockExpressionTest >> testNoExtraSpaceInside [
 ]
 
 { #category : #test }
-BIBlockExpressionTest >> testNoNewLineBeforeBrackets [
+BIBlockExpressionTest >> testNoNewLineBeforeEndBrackets [
 	| expr source |
 	expr := RBParser parseExpression: '[3. 4]'.
 	configurationSelector := #emptyDefaultConfiguration.

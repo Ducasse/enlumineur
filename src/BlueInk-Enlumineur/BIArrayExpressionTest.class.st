@@ -4,7 +4,7 @@ Class {
 	#category : #'BlueInk-Enlumineur'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #test }
 BIArrayExpressionTest >> testEmptyArray [
 	| expr source |
 	expr := RBParser parseExpression: '{}'.
@@ -13,7 +13,7 @@ BIArrayExpressionTest >> testEmptyArray [
 	self assert: source equals: '{}'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #test }
 BIArrayExpressionTest >> testNoExtraSpaceAroundPeriod [
 	| expr source |
 	expr := RBParser parseExpression: '{1.    2.        3}'.
@@ -22,7 +22,7 @@ BIArrayExpressionTest >> testNoExtraSpaceAroundPeriod [
 	self assert: source equals: '{1 . 2 . 3}'.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #test }
 BIArrayExpressionTest >> testNoSpaceAroundBrackets [
 	| expr source |
 	expr := RBParser parseExpression: ' { 1. 2. 3 } '.
@@ -31,7 +31,7 @@ BIArrayExpressionTest >> testNoSpaceAroundBrackets [
 	self assert: source equals: '{1 . 2 . 3}'.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #test }
 BIArrayExpressionTest >> testSpaceAroundPeriod [
 	| expr source |
 	expr := RBParser parseExpression: '{1. 2. 3}'.

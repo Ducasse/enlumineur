@@ -5,6 +5,18 @@ Class {
 }
 
 { #category : #configurations }
+BIMessageExpressionTest >> noIdentsForKeyWordConfiguration [
+	"Here we can control explicitely the configuration we want."
+
+	" String streamContents: [:s |
+			BIPrettyPrinterContext new storeOn: s]"
+
+	^ self contextClass new
+	numberOfArgumentsForMultiLine:1;
+	indentsForKeywords: 0
+]
+
+{ #category : #configurations }
 BIMessageExpressionTest >> oneArgumentPerLineConfiguration [
 	"Here we can control explicitely the configuration we want."
 
@@ -15,19 +27,20 @@ BIMessageExpressionTest >> oneArgumentPerLineConfiguration [
 	numberOfArgumentsForMultiLine:1
 ]
 
-{ #category : #tests }
-BIMessageExpressionTest >> testNoExtraSpacesAfter [
+{ #category : #configurations }
+BIMessageExpressionTest >> oneIdentsForKeyWordConfiguration [
+	"Here we can control explicitely the configuration we want."
 
-	| expr source |
-	expr := RBParser parseExpression: 'Transcript cr        '.
-	configurationSelector := #emptyDefaultConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals: 'Transcript cr'
-	
+	" String streamContents: [:s |
+			BIPrettyPrinterContext new storeOn: s]"
+
+	^ self contextClass new
+	numberOfArgumentsForMultiLine:1;
+	indentsForKeywords: 1
 ]
 
 { #category : #tests }
-BIMessageExpressionTest >> testNoExtraSpacesAfter2 [
+BIMessageExpressionTest >> testBinaryNoExtraSpacesAfter [
 
 	| expr source |
 	expr := RBParser parseExpression: '1+2          '.
@@ -38,29 +51,7 @@ BIMessageExpressionTest >> testNoExtraSpacesAfter2 [
 ]
 
 { #category : #tests }
-BIMessageExpressionTest >> testNoExtraSpacesAfter3 [
-
-	| expr source |
-	expr := RBParser parseExpression: '2 between: 1 and: 3          '.
-	configurationSelector := #emptyDefaultConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals: '2 between: 1 and: 3'
-	
-]
-
-{ #category : #tests }
-BIMessageExpressionTest >> testNoExtraSpacesBefore [
-
-	| expr source |
-	expr := RBParser parseExpression: '   Transcript cr'.
-	configurationSelector := #emptyDefaultConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals: 'Transcript cr'
-	
-]
-
-{ #category : #tests }
-BIMessageExpressionTest >> testNoExtraSpacesBefore2 [
+BIMessageExpressionTest >> testBinaryNoExtraSpacesBefore [
 
 	| expr source |
 	expr := RBParser parseExpression: '   1+2'.
@@ -71,29 +62,7 @@ BIMessageExpressionTest >> testNoExtraSpacesBefore2 [
 ]
 
 { #category : #tests }
-BIMessageExpressionTest >> testNoExtraSpacesBefore3 [
-
-	| expr source |
-	expr := RBParser parseExpression: '   2 between: 1 and: 3'.
-	configurationSelector := #emptyDefaultConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals: '2 between: 1 and: 3'
-	
-]
-
-{ #category : #tests }
-BIMessageExpressionTest >> testNoExtraSpacesBetween [
-
-	| expr source |
-	expr := RBParser parseExpression: 'Transcript        cr'.
-	configurationSelector := #emptyDefaultConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals: 'Transcript cr'
-	
-]
-
-{ #category : #tests }
-BIMessageExpressionTest >> testNoExtraSpacesBetween2 [
+BIMessageExpressionTest >> testBinaryNoExtraSpacesBetween [
 
 	| expr source |
 	expr := RBParser parseExpression: '1     +     2'.
@@ -104,7 +73,82 @@ BIMessageExpressionTest >> testNoExtraSpacesBetween2 [
 ]
 
 { #category : #tests }
-BIMessageExpressionTest >> testNoExtraSpacesBetween3 [
+BIMessageExpressionTest >> testBinaryOneArgumentPerLine [
+
+	| expr source |
+	expr := RBParser parseExpression: '1+2'.
+	configurationSelector := #oneArgumentPerLineConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'1
+	+ 2'
+]
+
+{ #category : #tests }
+BIMessageExpressionTest >> testFormatReceiver [
+
+	| expr source |
+	expr := RBParser parseExpression: '[1] value'.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals: '[ 1 ] value'
+	
+]
+
+{ #category : #tests }
+BIMessageExpressionTest >> testIndentsForKeywords1 [
+
+	| expr source |
+	expr := RBParser parseExpression: 'a k1:1 k2:2 k3:3'.
+	configurationSelector := #oneIdentsForKeyWordConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'a
+	k1: 1
+	k2: 2
+	k3: 3'
+	
+]
+
+{ #category : #tests }
+BIMessageExpressionTest >> testIndentsForKeywords2 [
+
+	| expr source |
+	expr := RBParser parseExpression: 'a k1:1 k2:2 k3:3'.
+	configurationSelector := #twoIdentsForKeyWordConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'a
+		k1: 1
+		k2: 2
+		k3: 3'
+	
+]
+
+{ #category : #tests }
+BIMessageExpressionTest >> testKeywordNoExtraSpacesAfter [
+
+	| expr source |
+	expr := RBParser parseExpression: '2 between: 1 and: 3          '.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals: '2 between: 1 and: 3'
+	
+]
+
+{ #category : #tests }
+BIMessageExpressionTest >> testKeywordNoExtraSpacesBefore [
+
+	| expr source |
+	expr := RBParser parseExpression: '   2 between: 1 and: 3'.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals: '2 between: 1 and: 3'
+	
+]
+
+{ #category : #tests }
+BIMessageExpressionTest >> testKeywordNoExtraSpacesBetween [
 
 	| expr source |
 	expr := RBParser parseExpression: '2      between:     1   and:    3'.
@@ -115,7 +159,84 @@ BIMessageExpressionTest >> testNoExtraSpacesBetween3 [
 ]
 
 { #category : #tests }
-BIMessageExpressionTest >> testNoExtraSpacesBetween4 [
+BIMessageExpressionTest >> testNoIndentsForKeywords [
+
+	| expr source |
+	expr := RBParser parseExpression: 'a k1:1 k2:2 k3:3'.
+	configurationSelector := #noIdentsForKeyWordConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'a
+k1: 1
+k2: 2
+k3: 3'	
+]
+
+{ #category : #tests }
+BIMessageExpressionTest >> testTraditionalBinaryPrecedence [
+
+	| expr source |
+	expr := RBParser parseExpression: '2+3*4'.
+	configurationSelector := #traditionalBinaryPrecedenceConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals: '(2 + 3) * 4'
+]
+
+{ #category : #tests }
+BIMessageExpressionTest >> testTraditionalBinaryPrecedence2 [
+
+	| expr source |
+	expr := RBParser parseExpression: '2*3+4'.
+	configurationSelector := #traditionalBinaryPrecedenceConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals: '2 * 3 + 4'
+]
+
+{ #category : #tests }
+BIMessageExpressionTest >> testTraditionalBinaryPrecedence3 [
+
+	| expr source |
+	expr := RBParser parseExpression: '2+3*4+5 * 2'.
+	configurationSelector := #traditionalBinaryPrecedenceConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals: '((2 + 3) * 4 + 5) * 2'
+]
+
+{ #category : #tests }
+BIMessageExpressionTest >> testUnaryNoExtraSpacesAfter [
+
+	| expr source |
+	expr := RBParser parseExpression: 'Transcript cr        '.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals: 'Transcript cr'
+	
+]
+
+{ #category : #tests }
+BIMessageExpressionTest >> testUnaryNoExtraSpacesBefore [
+
+	| expr source |
+	expr := RBParser parseExpression: '   Transcript cr'.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals: 'Transcript cr'
+	
+]
+
+{ #category : #tests }
+BIMessageExpressionTest >> testUnaryNoExtraSpacesBetween [
+
+	| expr source |
+	expr := RBParser parseExpression: 'Transcript        cr'.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals: 'Transcript cr'
+	
+]
+
+{ #category : #tests }
+BIMessageExpressionTest >> testUnaryNoExtraSpacesBetween2 [
 
 	| expr source |
 	expr := RBParser parseExpression: '2           factorial              factorial'.
@@ -126,7 +247,7 @@ BIMessageExpressionTest >> testNoExtraSpacesBetween4 [
 ]
 
 { #category : #tests }
-BIMessageExpressionTest >> testOneArgumentPerLine [
+BIMessageExpressionTest >> testUnaryOneArgumentPerLine [
 
 	| expr source |
 	expr := RBParser parseExpression: '2      between:     1   and:    3'.
@@ -138,14 +259,25 @@ BIMessageExpressionTest >> testOneArgumentPerLine [
 	and: 3'
 ]
 
-{ #category : #tests }
-BIMessageExpressionTest >> testOneArgumentPerLine2 [
+{ #category : #configurations }
+BIMessageExpressionTest >> traditionalBinaryPrecedenceConfiguration [
+	"Here we can control explicitely the configuration we want."
 
-	| expr source |
-	expr := RBParser parseExpression: '1+2'.
-	configurationSelector := #oneArgumentPerLineConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'1
-	+ 2'
+	" String streamContents: [:s |
+			BIPrettyPrinterContext new storeOn: s]"
+
+	^ self contextClass new
+	traditionalBinaryPrecedenceArray: #(#($| $& $?) #($= $~ $< $>) #($- $+) #($* $/ $% $\) #($@))
+]
+
+{ #category : #configurations }
+BIMessageExpressionTest >> twoIdentsForKeyWordConfiguration [
+	"Here we can control explicitely the configuration we want."
+
+	" String streamContents: [:s |
+			BIPrettyPrinterContext new storeOn: s]"
+
+	^ self contextClass new
+	numberOfArgumentsForMultiLine:1;
+	indentsForKeywords: 2
 ]
