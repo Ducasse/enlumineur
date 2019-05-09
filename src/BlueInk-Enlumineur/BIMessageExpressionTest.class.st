@@ -40,6 +40,17 @@ BIMessageExpressionTest >> oneIdentsForKeyWordConfiguration [
 ]
 
 { #category : #tests }
+BIMessageExpressionTest >> testBinaryFormatParameter [
+
+	| expr source |
+	expr := RBParser parseExpression: '1 + (3     factorial)'.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals: '1 + 3 factorial'
+	
+]
+
+{ #category : #tests }
 BIMessageExpressionTest >> testBinaryFormatReceiver [
 
 	| expr source |
@@ -134,6 +145,17 @@ BIMessageExpressionTest >> testKeyWordFormatReceiver [
 	source := self formatter format: expr.
 	self assert: source equals:
 '2 between: 4 - 2 and: 3 factorial'
+]
+
+{ #category : #tests }
+BIMessageExpressionTest >> testKeywordFormatParameter [
+
+	| expr source |
+	expr := RBParser parseExpression: '3 between:2      factorial and: 4+5'.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals: '3 between: 2 factorial and: 4 + 5'
+	
 ]
 
 { #category : #tests }
