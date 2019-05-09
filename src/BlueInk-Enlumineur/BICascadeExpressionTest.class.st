@@ -51,6 +51,28 @@ BICascadeExpressionTest >> noNewLineBeforeCascadeConfiguration [
 ]
 
 { #category : #tests }
+BICascadeExpressionTest >> testFormatMessage [
+	| expr source |
+	expr := RBParser parseExpression: '1 *4; +1'.
+	configurationSelector := #noNewLineAfterCascadeConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'1
+	* 4; + 1'
+]
+
+{ #category : #tests }
+BICascadeExpressionTest >> testFormatReceiver [
+	| expr source |
+	expr := RBParser parseExpression: '[1]value factorial; +1'.
+	configurationSelector := #noNewLineAfterCascadeConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'[ 1 ] value
+	factorial; + 1'
+]
+
+{ #category : #tests }
 BICascadeExpressionTest >> testNewLineAfterCascade [
 	| expr source |
 	expr := RBParser parseExpression: 'Foo a;b;c'.
