@@ -5,6 +5,17 @@ Class {
 }
 
 { #category : #configurations }
+BITemporariesExpressionTest >> dontRetainBlankLinesBeforeComments [
+	"Here we can control explicitely the configuration we want."
+
+	" String streamContents: [:s |
+			BIPrettyPrinterContext new storeOn: s]"
+
+	^ self contextClass new
+		retainBlankLinesBeforeComments: false
+]
+
+{ #category : #configurations }
 BITemporariesExpressionTest >> newLinesAfterTemporariesConfiguration [
 	"Here we can control explicitely the configuration we want."
 
@@ -27,6 +38,17 @@ BITemporariesExpressionTest >> noNewLinesAfterTemporariesConfiguration [
 ]
 
 { #category : #configurations }
+BITemporariesExpressionTest >> retainBlankLinesBeforeComments [
+	"Here we can control explicitely the configuration we want."
+
+	" String streamContents: [:s |
+			BIPrettyPrinterContext new storeOn: s]"
+
+	^ self contextClass new
+		retainBlankLinesBeforeComments: true
+]
+
+{ #category : #configurations }
 BITemporariesExpressionTest >> spaceForTemporariesConfiguration [
 	"Here we can control explicitely the configuration we want."
 
@@ -35,6 +57,36 @@ BITemporariesExpressionTest >> spaceForTemporariesConfiguration [
 
 	^ self contextClass new
 		newLinesAfterTemporaries: 0.
+]
+
+{ #category : #tests }
+BITemporariesExpressionTest >> testDontRetainBlankLinesBeforeComments [
+
+	| expr source |
+	expr := RBParser parseExpression: ' | d 
+	"comment"e |'.
+	configurationSelector := #dontRetainBlankLinesBeforeComments.
+	source := self formatter format: expr.
+	self assert: source equals:
+'| d	"comment" e |
+'
+	
+]
+
+{ #category : #tests }
+BITemporariesExpressionTest >> testDontRetainBlankLinesBeforeComments2 [
+
+	| expr source |
+	expr := RBParser parseExpression: ' | d 
+	
+	"comment"
+	e |'.
+	configurationSelector := #dontRetainBlankLinesBeforeComments.
+	source := self formatter format: expr.
+	self assert: source equals:
+'| d	"comment" e |
+'
+	
 ]
 
 { #category : #tests }
@@ -63,6 +115,51 @@ BITemporariesExpressionTest >> testNoNewLineAfterTemporaries [
 ]
 
 { #category : #tests }
+BITemporariesExpressionTest >> testRetainBlankLinesBeforeComments [
+
+	| expr source |
+	expr := RBParser parseExpression: ' | d 
+	"comment"e |'.
+	configurationSelector := #retainBlankLinesBeforeComments.
+	source := self formatter format: expr.
+	self assert: source equals:
+'| d
+"comment" e |
+'
+	
+]
+
+{ #category : #tests }
+BITemporariesExpressionTest >> testRetainBlankLinesBeforeComments2 [
+
+	| expr source |
+	expr := RBParser parseExpression: ' | d 
+	
+	"comment"e |'.
+	configurationSelector := #retainBlankLinesBeforeComments.
+	source := self formatter format: expr.
+	self assert: source equals:
+'| d
+
+"comment" e |
+'
+	
+]
+
+{ #category : #tests }
+BITemporariesExpressionTest >> testRetainBlankLinesBeforeComments3 [
+
+	| expr source |
+	expr := RBParser parseExpression: ' | d "comment" e |'.
+	configurationSelector := #retainBlankLinesBeforeComments.
+	source := self formatter format: expr.
+	self assert: source equals:
+'| d	"comment" e |
+'
+	
+]
+
+{ #category : #tests }
 BITemporariesExpressionTest >> testSpaceBetweenTemporaries [
 	| expr source |
 	expr := RBParser parseExpression: '|a|'.
@@ -80,4 +177,17 @@ BITemporariesExpressionTest >> testSpaceBetweenTemporaries2 [
 	source := self formatter format: expr.
 	self assert: source equals:
 '| a b |'
+]
+
+{ #category : #tests }
+BITemporariesExpressionTest >> testTabBetweenVarAndComment [
+
+	| expr source |
+	expr := RBParser parseExpression: ' | d "comment" |'.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'| d	"comment" |
+'
+	
 ]
