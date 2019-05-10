@@ -43,6 +43,18 @@ b := a'
 ]
 
 { #category : #tests }
+BISequenceExpressionTest >> testNewLineAfterEachStatement [
+	| expr source |
+	expr := RBParser parseExpression: '|a b| a:=1. b:=a'.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'| a b |
+a := 1.
+b := a'
+]
+
+{ #category : #tests }
 BISequenceExpressionTest >> testRetainBlankLines [
 	| expr source |
 	expr := RBParser parseExpression: '|a b| 

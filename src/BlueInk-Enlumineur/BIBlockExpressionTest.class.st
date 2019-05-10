@@ -5,17 +5,6 @@ Class {
 }
 
 { #category : #configurations }
-BIBlockExpressionTest >> formatCommentConfiguration [
-	"Here we can control explicitely the configuration we want."
-
-	" String streamContents: [:s |
-			BIPrettyPrinterContext new storeOn: s]"
-
-	^ self contextClass new
-		formatCommentWithStatements: true
-]
-
-{ #category : #configurations }
 BIBlockExpressionTest >> lineUpBlockBracketsConfiguration [
 	"Here we can control explicitely the configuration we want."
 
@@ -129,4 +118,14 @@ BIBlockExpressionTest >> testSpace [
 	configurationSelector := #emptyDefaultConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '[ 2 ]'
+]
+
+{ #category : #test }
+BIBlockExpressionTest >> testformatComment [
+
+	| expr source |
+	expr := RBParser parseExpression: '["  c1   " "   c2 " 2 "c3"]'.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals: '[ "  c1   " "   c2 " 2	"c3" ]'.
 ]
