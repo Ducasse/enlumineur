@@ -5,6 +5,17 @@ Class {
 }
 
 { #category : #configurations }
+BITemporariesExpressionTest >> basicCommentFormatConfiguration [
+	"Here we can control explicitely the configuration we want."
+
+	" String streamContents: [:s |
+			BIPrettyPrinterContext new storeOn: s]"
+
+	^ self contextClass new
+		useBasicCommentFormat: true
+]
+
+{ #category : #configurations }
 BITemporariesExpressionTest >> dontRetainBlankLinesBeforeComments [
 	"Here we can control explicitely the configuration we want."
 
@@ -38,6 +49,17 @@ BITemporariesExpressionTest >> noNewLinesAfterTemporariesConfiguration [
 ]
 
 { #category : #configurations }
+BITemporariesExpressionTest >> notBasicCommentFormatConfiguration [
+	"Here we can control explicitely the configuration we want."
+
+	" String streamContents: [:s |
+			BIPrettyPrinterContext new storeOn: s]"
+
+	^ self contextClass new
+		useBasicCommentFormat: false
+]
+
+{ #category : #configurations }
 BITemporariesExpressionTest >> retainBlankLinesBeforeComments [
 	"Here we can control explicitely the configuration we want."
 
@@ -60,6 +82,20 @@ BITemporariesExpressionTest >> spaceForTemporariesConfiguration [
 ]
 
 { #category : #tests }
+BITemporariesExpressionTest >> testBasicCommentFormat [
+
+	| expr source |
+	expr := RBParser parseExpression: ' | d 
+	"    comment     " e |'.
+	configurationSelector := #basicCommentFormatConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'| d
+"    comment     " e |
+'
+]
+
+{ #category : #tests }
 BITemporariesExpressionTest >> testDontRetainBlankLinesBeforeComments [
 
 	| expr source |
@@ -70,7 +106,6 @@ BITemporariesExpressionTest >> testDontRetainBlankLinesBeforeComments [
 	self assert: source equals:
 '| d	"comment" e |
 '
-	
 ]
 
 { #category : #tests }
@@ -112,6 +147,20 @@ BITemporariesExpressionTest >> testNoNewLineAfterTemporaries [
 	self assert: source equals:
 '| d e |'
 	
+]
+
+{ #category : #tests }
+BITemporariesExpressionTest >> testNotBasicCommentFormat [
+
+	| expr source |
+	expr := RBParser parseExpression: ' | d 
+	"    comment     " e |'.
+	configurationSelector := #notBasicCommentFormatConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'| d
+"comment     " e |
+'
 ]
 
 { #category : #tests }
