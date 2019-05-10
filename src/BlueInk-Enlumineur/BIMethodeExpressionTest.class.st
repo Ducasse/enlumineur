@@ -47,7 +47,8 @@ BIMethodeExpressionTest >> oneNewLinesAfterSignatureConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass new
-	newLinesAfterSignature:1
+	newLinesAfterSignature:1;
+	newLinesAfterCommentZone:0
 ]
 
 { #category : #configurations }
@@ -213,7 +214,6 @@ BIMethodeExpressionTest >> testOneNewLinesAfterSignature [
 	self assert: source equals:
 'aMethode
 
-
 	'
 ]
 
@@ -244,7 +244,7 @@ BIMethodeExpressionTest >> testSignatureOnMultipleLinesConfiguration [
 BIMethodeExpressionTest >> testTwoNewLinesAfterSignature [
 	| expr source |
 	expr := RBParser parseMethod: 'aMethode'.
-	configurationSelector := #oneNewLinesAfterSignatureConfiguration.
+	configurationSelector := #twoNewLinesAfterSignatureConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
 'aMethode
