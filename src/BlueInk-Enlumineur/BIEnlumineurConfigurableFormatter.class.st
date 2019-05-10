@@ -74,7 +74,7 @@ BIEnlumineurConfigurableFormatter >> formatMethodPatternFor: aMethodNode [
 				ifTrue: [ self privateFormatMethodPatternMultiLineFor: aMethodNode ]
 				ifFalse: [ self privateFormatMethodPatternMonoLineFor: aMethodNode ] ].
 	"We position the cursor on a new line being empty or not"
-	self newLine
+	self newLine.
 ]
 
 { #category : #'low operations' }
@@ -164,7 +164,6 @@ BIEnlumineurConfigurableFormatter >> visitMethodNode: aMethodNode [
 			self emitTabs. 
 			self formatMethodCommentFor: aMethodNode
 			"after, cursor is at beginning of line." ].
-	
 	self emitNonTabulatedNewLines: self newLinesAfterCommentZone.
 	self formatMethodBodyFor: aMethodNode
 ]

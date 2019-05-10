@@ -12,7 +12,8 @@ BIMethodeExpressionTest >> noNewLinesAfterSignatureConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass new
-	newLinesAfterSignature:0
+	newLinesAfterSignature:0;
+	newLinesAfterCommentZone:0
 ]
 
 { #category : #configurations }
@@ -24,6 +25,30 @@ BIMethodeExpressionTest >> oneNewLinesAfterSignatureConfiguration [
 
 	^ self contextClass new
 	newLinesAfterSignature:1
+]
+
+{ #category : #configurations }
+BIMethodeExpressionTest >> signatureNotOnMultipleLinesConfiguration [
+	"Here we can control explicitely the configuration we want."
+
+	" String streamContents: [:s |
+			BIPrettyPrinterContext new storeOn: s]"
+
+	^ self contextClass new
+	methodSignatureOnMultipleLines: false;
+	newLinesAfterCommentZone:0
+]
+
+{ #category : #configurations }
+BIMethodeExpressionTest >> signatureOnMultipleLinesConfiguration [
+	"Here we can control explicitely the configuration we want."
+
+	" String streamContents: [:s |
+			BIPrettyPrinterContext new storeOn: s]"
+	^ self contextClass new
+	methodSignatureOnMultipleLines: true;
+	selectorAndArgumentCombinedMaxSize: 2;
+	newLinesAfterCommentZone:0
 ]
 
 { #category : #test }
@@ -73,7 +98,6 @@ BIMethodeExpressionTest >> testNoNewLinesAfterSignature [
 	source := self formatter format: expr.
 	self assert: source equals:
 'aMethode
-
 	'
 ]
 
@@ -87,6 +111,29 @@ BIMethodeExpressionTest >> testOneNewLinesAfterSignature [
 'aMethode
 
 
+	'
+]
+
+{ #category : #test }
+BIMethodeExpressionTest >> testSignatureNotOnMultipleLinesConfiguration [
+	| expr source |
+	expr := RBParser parseMethod: 'aMethode:arg1 foo:arg2'.
+	configurationSelector := #signatureNotOnMultipleLinesConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'aMethode: arg1 foo: arg2
+	'
+]
+
+{ #category : #test }
+BIMethodeExpressionTest >> testSignatureOnMultipleLinesConfiguration [
+	| expr source |
+	expr := RBParser parseMethod: 'aMethode: arg1 foo:arg2'.
+	configurationSelector := #signatureOnMultipleLinesConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'aMethode: arg1
+	foo: arg2
 	'
 ]
 
@@ -111,5 +158,6 @@ BIMethodeExpressionTest >> twoNewLinesAfterSignatureConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass new
-	newLinesAfterSignature:2
+	newLinesAfterSignature:2;
+	newLinesAfterCommentZone:0
 ]
