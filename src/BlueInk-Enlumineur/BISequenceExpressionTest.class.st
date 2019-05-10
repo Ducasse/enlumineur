@@ -27,6 +27,42 @@ BISequenceExpressionTest >> retainBlankLinesBetweenStatementsConfiguration [
 ]
 
 { #category : #tests }
+BISequenceExpressionTest >> testCommentAfterTemporaries [
+	| expr source |
+	expr := RBParser parseExpression: '|a b| "comment"'.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'| a b |
+"comment"
+'
+]
+
+{ #category : #tests }
+BISequenceExpressionTest >> testCommentBetweenStatements [
+	| expr source |
+	expr := RBParser parseExpression: '|a b| a := 1. "comment" b := 2'.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'| a b |
+a := 1.	"comment"
+b := 2'
+]
+
+{ #category : #tests }
+BISequenceExpressionTest >> testCommentBetweenTemporariesAndStatement [
+	| expr source |
+	expr := RBParser parseExpression: '|a b| "comment" a := 1'.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'| a b |
+"comment"
+a := 1'
+]
+
+{ #category : #tests }
 BISequenceExpressionTest >> testDontRetainBlankLines [
 	| expr source |
 	expr := RBParser parseExpression: '|a b| 
