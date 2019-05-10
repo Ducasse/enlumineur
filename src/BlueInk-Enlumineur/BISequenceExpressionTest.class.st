@@ -5,6 +5,17 @@ Class {
 }
 
 { #category : #configurations }
+BISequenceExpressionTest >> dontRetainBlankLinesBeforeCommentsConfiguration [
+	"Here we can control explicitely the configuration we want."
+
+	" String streamContents: [:s |
+			BIPrettyPrinterContext new storeOn: s]"
+
+	^ self contextClass new
+		retainBlankLinesBeforeComments: false
+]
+
+{ #category : #configurations }
 BISequenceExpressionTest >> dontRetainBlankLinesBetweenStatementsConfiguration [
 	"Here we can control explicitely the configuration we want."
 
@@ -12,7 +23,18 @@ BISequenceExpressionTest >> dontRetainBlankLinesBetweenStatementsConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass new
-	retainBlankLinesBetweenStatements: false.
+	retainBlankLinesBetweenStatements: false
+]
+
+{ #category : #configurations }
+BISequenceExpressionTest >> retainBlankLinesBeforeCommentsConfiguration [
+	"Here we can control explicitely the configuration we want."
+
+	" String streamContents: [:s |
+			BIPrettyPrinterContext new storeOn: s]"
+
+	^ self contextClass new
+		retainBlankLinesBeforeComments: true
 ]
 
 { #category : #configurations }
@@ -23,7 +45,7 @@ BISequenceExpressionTest >> retainBlankLinesBetweenStatementsConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass new
-	retainBlankLinesBetweenStatements: true.
+	retainBlankLinesBetweenStatements: true
 ]
 
 { #category : #tests }
@@ -76,6 +98,21 @@ BISequenceExpressionTest >> testDontRetainBlankLines [
 '| a b |
 a := 1.
 b := a'
+]
+
+{ #category : #tests }
+BISequenceExpressionTest >> testDontRetainBlankLinesBeforeComments [
+	| expr source |
+	expr := RBParser parseExpression: '|a b|
+	a :=1.
+	"Comment"
+	b :=2'.
+	configurationSelector := #dontRetainBlankLinesBeforeCommentsConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'| a b |
+a := 1.	"Comment"
+b := 2'
 ]
 
 { #category : #tests }
@@ -140,4 +177,20 @@ BISequenceExpressionTest >> testRetainBlankLines3 [
 '| a b |
 a := 1.
 b := a'
+]
+
+{ #category : #tests }
+BISequenceExpressionTest >> testRetainBlankLinesBeforeComments [
+	| expr source |
+	expr := RBParser parseExpression: '|a b|
+	a :=1.
+	"Comment"
+	b :=2'.
+	configurationSelector := #retainBlankLinesBeforeCommentsConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'| a b |
+a := 1.
+"Comment"
+b := 2'
 ]
