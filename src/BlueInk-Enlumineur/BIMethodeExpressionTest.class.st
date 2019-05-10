@@ -5,6 +5,17 @@ Class {
 }
 
 { #category : #configurations }
+BIMethodeExpressionTest >> basicCommentFormatConfiguration [
+	"Here we can control explicitely the configuration we want."
+
+	" String streamContents: [:s |
+			BIPrettyPrinterContext new storeOn: s]"
+
+	^ self contextClass new
+		useBasicCommentFormat: true
+]
+
+{ #category : #configurations }
 BIMethodeExpressionTest >> noNewLinesAfterCommentConfiguration [
 	"Here we can control explicitely the configuration we want."
 
@@ -12,7 +23,6 @@ BIMethodeExpressionTest >> noNewLinesAfterCommentConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass new
-	newLinesAfterSignature:0;
 	newLinesAfterCommentZone:0
 ]
 
@@ -26,6 +36,17 @@ BIMethodeExpressionTest >> noNewLinesAfterSignatureConfiguration [
 	^ self contextClass new
 	newLinesAfterSignature:0;
 	newLinesAfterCommentZone:0
+]
+
+{ #category : #configurations }
+BIMethodeExpressionTest >> notBasicCommentFormatConfiguration [
+	"Here we can control explicitely the configuration we want."
+
+	" String streamContents: [:s |
+			BIPrettyPrinterContext new storeOn: s]"
+
+	^ self contextClass new
+		useBasicCommentFormat: false
 ]
 
 { #category : #configurations }
@@ -73,6 +94,19 @@ BIMethodeExpressionTest >> signatureOnMultipleLinesConfiguration [
 	methodSignatureOnMultipleLines: true;
 	selectorAndArgumentCombinedMaxSize: 2;
 	newLinesAfterCommentZone:0
+]
+
+{ #category : #test }
+BIMethodeExpressionTest >> testBasicCommentFormat [
+	| expr source |
+	expr := RBParser parseMethod: 'aMethode "             aComment        "'.
+	configurationSelector := #basicCommentFormatConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'aMethode
+	"             aComment        "
+
+	'.
 ]
 
 { #category : #test }
@@ -202,6 +236,19 @@ BIMethodeExpressionTest >> testNoNewLinesAfterSignature [
 	source := self formatter format: expr.
 	self assert: source equals:
 'aMethode
+	'
+]
+
+{ #category : #test }
+BIMethodeExpressionTest >> testNotBasicCommentFormat [
+	| expr source |
+	expr := RBParser parseMethod: 'aMethode "             aComment        "'.
+	configurationSelector := #notBasicCommentFormatConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'aMethode
+	"aComment        "
+
 	'
 ]
 
