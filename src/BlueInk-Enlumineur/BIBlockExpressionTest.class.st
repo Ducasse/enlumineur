@@ -27,6 +27,17 @@ BIBlockExpressionTest >> noFormatCommentConfiguration [
 ]
 
 { #category : #configurations }
+BIBlockExpressionTest >> noLineUpBlockBracketsConfiguration [
+	"Here we can control explicitely the configuration we want."
+
+	" String streamContents: [:s |
+			BIPrettyPrinterContext new storeOn: s]"
+
+	^ self contextClass new
+		lineUpBlockBrackets: false
+]
+
+{ #category : #configurations }
 BIBlockExpressionTest >> periodAtEndConfiguration [
 	"Here we can control explicitely the configuration we want."
 
@@ -35,6 +46,38 @@ BIBlockExpressionTest >> periodAtEndConfiguration [
 
 	^ self contextClass new
 		periodsAtEndOfBlock: true
+]
+
+{ #category : #test }
+BIBlockExpressionTest >> testArgumentIsFormated [
+	| expr source |
+	expr := RBParser parseExpression: '[:i| i ]'.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals: '[ :i | i ]'
+]
+
+{ #category : #test }
+BIBlockExpressionTest >> testArgumentsAreFormated [
+	| expr source |
+	expr := RBParser parseExpression: '[: i : j
+		| i ]'.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'[ :i :j | i ]'
+]
+
+{ #category : #test }
+BIBlockExpressionTest >> testArgumentsComments [
+	| expr source |
+	expr := RBParser parseExpression: '[:i "aComment" :j "anotherComment"| i ]'.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'[ :i"aComment"
+ :j"anotherComment"
+ | i ]'
 ]
 
 { #category : #test }
@@ -55,6 +98,30 @@ BIBlockExpressionTest >> testFormatElements [
 	self assert: source equals:
 '[ [ 1 ].
 [ a := 1 ] ]'.
+]
+
+{ #category : #test }
+BIBlockExpressionTest >> testMultiline [
+	| expr source |
+	expr := RBParser parseExpression: '[: i : j|i.j ]'.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'[ :i :j | 
+i.
+j ]'
+]
+
+{ #category : #test }
+BIBlockExpressionTest >> testNewLineAfterComment [
+	| expr source |
+	expr := RBParser parseExpression: '["aComment"1. 2]'.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'[ "aComment"
+1.
+2 ]'
 ]
 
 { #category : #test }
@@ -102,7 +169,7 @@ BIBlockExpressionTest >> testNoExtraSpaceInside [
 BIBlockExpressionTest >> testNoNewLineBeforeEndBrackets [
 	| expr source |
 	expr := RBParser parseExpression: '[3. 4]'.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #noLineUpBlockBracketsConfiguration.
 	source := self formatter format: expr.
 	self
 		assert: source
@@ -118,6 +185,15 @@ BIBlockExpressionTest >> testSpace [
 	configurationSelector := #emptyDefaultConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '[ 2 ]'
+]
+
+{ #category : #test }
+BIBlockExpressionTest >> testSpaceAfterComment [
+	| expr source |
+	expr := RBParser parseExpression: '["aComment"1]'.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals: '[ "aComment" 1 ]'
 ]
 
 { #category : #test }
