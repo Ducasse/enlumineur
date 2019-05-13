@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #configurations }
-BIArrayExpressionTest >> maxLineLengthIs12Configuration [
+BIArrayExpressionTest >> maxLineLengthConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -67,7 +67,7 @@ BIArrayExpressionTest >> testSpaceAroundPeriod [
 BIArrayExpressionTest >> testToLongNewLine [
 	| expr source |
 	expr := RBParser parseExpression:'{2 factorial. 1}'.
-	configurationSelector := #maxLineLengthIs12Configuration.
+	configurationSelector := #maxLineLengthConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
 '{2 factorial.
@@ -78,7 +78,7 @@ BIArrayExpressionTest >> testToLongNewLine [
 BIArrayExpressionTest >> testToLongNewLine2 [
 	| expr source |
 	expr := RBParser parseExpression:'{1. 2. 3. 4. 5. 6. 7. 1}'.
-	configurationSelector := #maxLineLengthIs12Configuration.
+	configurationSelector := #maxLineLengthConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
 '{1 . 2 . 3 . 4.
