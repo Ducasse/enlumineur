@@ -17,6 +17,18 @@ BICascadeExpressionTest >> newLineAfterCascadeConfiguration [
 ]
 
 { #category : #configurations }
+BICascadeExpressionTest >> newLineBeforeAndAfterCascadeConfiguration [
+	"Here we can control explicitely the configuration we want."
+
+	" String streamContents: [:s |
+			BIPrettyPrinterContext new storeOn: s]"
+
+	^ self contextClass new
+		newLineAfterCascade: true;
+		newLineBeforeFirstCascade: true.
+]
+
+{ #category : #configurations }
 BICascadeExpressionTest >> newLineBeforeCascadeConfiguration [
 	"Here we can control explicitely the configuration we want."
 
@@ -59,6 +71,32 @@ BICascadeExpressionTest >> testFormatMessage [
 	self assert: source equals:
 '1
 	* 4; + 1'
+]
+
+{ #category : #tests }
+BICascadeExpressionTest >> testFormatMessageAndArgument [
+	| expr source |
+	expr := RBParser parseExpression: '1 between:2 and:5; +1'.
+	configurationSelector := #newLineBeforeAndAfterCascadeConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'1
+	between: 2 and: 5;
+	+ 1'
+]
+
+{ #category : #tests }
+BICascadeExpressionTest >> testFormatMultilineMessage [
+	| expr source |
+	expr := RBParser parseExpression: '1 between:2 and:5; to:4 do:[:each| each factorial. each + 1]'.
+	configurationSelector := #newLineBeforeAndAfterCascadeConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'1
+	between: 2 and: 5;
+	to: 4 do: [ :each | 
+			each factorial.
+			each + 1 ]'
 ]
 
 { #category : #tests }
