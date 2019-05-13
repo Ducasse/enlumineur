@@ -116,15 +116,42 @@ b := a'
 ]
 
 { #category : #tests }
-BISequenceExpressionTest >> testNewLineAfterEachStatement [
+BISequenceExpressionTest >> testFormatEachStatement [
 	| expr source |
-	expr := RBParser parseExpression: '|a b| a:=1. b:=a'.
+	expr := RBParser parseExpression:
+'|a b|
+a:=1.
+b:=a'.
 	configurationSelector := #emptyDefaultConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
 '| a b |
 a := 1.
 b := a'
+]
+
+{ #category : #tests }
+BISequenceExpressionTest >> testNewLineAfterEachStatement [
+	| expr source |
+	expr := RBParser parseExpression: '|a b| a := 1. b := a'.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'| a b |
+a := 1.
+b := a'
+]
+
+{ #category : #tests }
+BISequenceExpressionTest >> testNewLineForStatements [
+	| expr source |
+	expr := RBParser parseExpression: '|a b| a:=2.b:=3'.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'| a b |
+a := 2.
+b := 3'
 ]
 
 { #category : #tests }
