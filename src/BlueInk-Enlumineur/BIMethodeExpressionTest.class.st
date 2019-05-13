@@ -265,7 +265,7 @@ BIMethodeExpressionTest >> testOneNewLinesAfterSignature [
 ]
 
 { #category : #test }
-BIMethodeExpressionTest >> testSignatureNotOnMultipleLinesConfiguration [
+BIMethodeExpressionTest >> testSignatureNotOnMultipleLines [
 	| expr source |
 	expr := RBParser parseMethod: 'aMethode:arg1 foo:arg2'.
 	configurationSelector := #signatureNotOnMultipleLinesConfiguration.
@@ -276,7 +276,7 @@ BIMethodeExpressionTest >> testSignatureNotOnMultipleLinesConfiguration [
 ]
 
 { #category : #test }
-BIMethodeExpressionTest >> testSignatureOnMultipleLinesConfiguration [
+BIMethodeExpressionTest >> testSignatureOnMultipleLines [
 	| expr source |
 	expr := RBParser parseMethod: 'aMethode: arg1 foo:arg2'.
 	configurationSelector := #signatureOnMultipleLinesConfiguration.

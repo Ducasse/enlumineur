@@ -192,6 +192,19 @@ BIMessageExpressionTest >> testKeywordNoExtraSpacesBetween [
 ]
 
 { #category : #tests }
+BIMessageExpressionTest >> testKeywordOneArgumentPerLine [
+
+	| expr source |
+	expr := RBParser parseExpression: '2      between:     1   and:    3'.
+	configurationSelector := #oneArgumentPerLineConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'2
+	between: 1
+	and: 3'
+]
+
+{ #category : #tests }
 BIMessageExpressionTest >> testNoIndentsForKeywords [
 
 	| expr source |
@@ -288,19 +301,6 @@ BIMessageExpressionTest >> testUnaryNoExtraSpacesBetween2 [
 	source := self formatter format: expr.
 	self assert: source equals: '2 factorial factorial'
 	
-]
-
-{ #category : #tests }
-BIMessageExpressionTest >> testUnaryOneArgumentPerLine [
-
-	| expr source |
-	expr := RBParser parseExpression: '2      between:     1   and:    3'.
-	configurationSelector := #oneArgumentPerLineConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'2
-	between: 1
-	and: 3'
 ]
 
 { #category : #configurations }

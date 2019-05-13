@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #tests }
-BIPragmaExpressionTest >> testPragmaExtraSpace [
+BIPragmaExpressionTest >> testPragmaNoExtraSpace [
 	| expr source |
 	expr := RBParser parsePragma:'<   Pragma   >'.
 	configurationSelector := #emptyDefaultConfiguration.
@@ -14,7 +14,7 @@ BIPragmaExpressionTest >> testPragmaExtraSpace [
 ]
 
 { #category : #tests }
-BIPragmaExpressionTest >> testPragmaSpaceBetweenMethodeAndArgument [
+BIPragmaExpressionTest >> testPragmaNoExtraSpaceBetweenMethodeAndArgument [
 	| expr source |
 	expr := RBParser parsePragma:'<primitive:    41>'.
 	configurationSelector := #emptyDefaultConfiguration.
