@@ -27,6 +27,17 @@ BILiteralValueExpressionTest >> testNoExtraSpaces [
 ]
 
 { #category : #tests }
+BILiteralValueExpressionTest >> testNotLitteral [
+
+	| expr source |
+	expr := RBLiteralValueNode value: Transcript. 
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals: '''<an unprintable nonliteral value>'''
+	
+]
+
+{ #category : #tests }
 BILiteralValueExpressionTest >> testSpaces [
 
 	| expr source |
