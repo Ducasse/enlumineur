@@ -27,6 +27,18 @@ BISequenceExpressionTest >> dontRetainBlankLinesBetweenStatementsConfiguration [
 ]
 
 { #category : #configurations }
+BISequenceExpressionTest >> periodAsTerminatorConfiguration [
+	"Here we can control explicitely the configuration we want."
+
+	" String streamContents: [:s |
+			BIPrettyPrinterContext new storeOn: s]"
+
+	^ self contextClass new
+	periodsAtEndOfBlock:true;
+	periodsAtEndOfMethod:true
+]
+
+{ #category : #configurations }
 BISequenceExpressionTest >> retainBlankLinesBeforeCommentsConfiguration [
 	"Here we can control explicitely the configuration we want."
 
@@ -152,6 +164,50 @@ BISequenceExpressionTest >> testNewLineForStatements [
 '| a b |
 a := 2.
 b := 3'
+]
+
+{ #category : #tests }
+BISequenceExpressionTest >> testNoPeriodAtEndOfBlock [
+	| expr source |
+	expr := RBParser parseExpression: '|a b| [1.].'.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'| a b |
+[ 1 ]'
+]
+
+{ #category : #tests }
+BISequenceExpressionTest >> testNoPeriodAtEndOfMethode [
+	| expr source |
+	expr := RBParser parseExpression: '|a b| 6 factorial'.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'| a b |
+6 factorial'
+]
+
+{ #category : #tests }
+BISequenceExpressionTest >> testPeriodAtEndOfBlock [
+	| expr source |
+	expr := RBParser parseExpression: '|a b| [1.].'.
+	configurationSelector := #periodAsTerminatorConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'| a b |
+[ 1. ].'
+]
+
+{ #category : #tests }
+BISequenceExpressionTest >> testPeriodAtEndOfMethode [
+	| expr source |
+	expr := RBParser parseExpression: '|a b| 6 factorial'.
+	configurationSelector := #periodAsTerminatorConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'| a b |
+6 factorial.'
 ]
 
 { #category : #tests }

@@ -16,6 +16,18 @@ BIArrayExpressionTest >> maxLineLengthConfiguration [
 	
 ]
 
+{ #category : #configurations }
+BIArrayExpressionTest >> periodAsTerminatorConfiguration [
+	"Here we can control explicitely the configuration we want."
+
+	" String streamContents: [:s |
+			BIPrettyPrinterContext new storeOn: s]"
+
+	^ self contextClass new
+	periodsAtEndOfBlock:true;
+	periodsAtEndOfMethod:true
+]
+
 { #category : #test }
 BIArrayExpressionTest >> testEmptyArray [
 	| expr source |
@@ -52,6 +64,24 @@ BIArrayExpressionTest >> testNoSpaceAroundBrackets [
 	configurationSelector := #emptyDefaultConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '{1 . 2 . 3}'.
+]
+
+{ #category : #test }
+BIArrayExpressionTest >> testPeriodAtEndOfBlock [
+	| expr source |
+	expr := RBParser parseExpression: '{[1]}'.
+	configurationSelector := #periodAsTerminatorConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals: '{[ 1. ].}'
+]
+
+{ #category : #test }
+BIArrayExpressionTest >> testPeriodAtEndOfMethod [
+	| expr source |
+	expr := RBParser parseExpression: '{1 factorial}'.
+	configurationSelector := #periodAsTerminatorConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals: '{1 factorial.}'
 ]
 
 { #category : #test }
