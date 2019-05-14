@@ -63,6 +63,36 @@ BICascadeExpressionTest >> noNewLineBeforeCascadeConfiguration [
 ]
 
 { #category : #tests }
+BICascadeExpressionTest >> testCascadeBeforeComment [
+	| expr source |
+	expr := RBParser parseExpression: 'Transcript show:1; "cr" cr'.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'Transcript
+	show: 1;
+	"cr"
+		cr'
+]
+
+{ #category : #tests }
+BICascadeExpressionTest >> testCascadeCommentAfterMethods [
+	| expr source |
+	expr := RBParser parseExpression: 'Transcript show:1 "firstComment";
+	cr "secondComment";
+	cr "thirdComment"'.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'Transcript
+	show: 1;
+	"secondComment"
+		cr;
+	"thirdComment"
+		cr'
+]
+
+{ #category : #tests }
 BICascadeExpressionTest >> testFormatMessage [
 	| expr source |
 	expr := RBParser parseExpression: '1 *4; +1'.
