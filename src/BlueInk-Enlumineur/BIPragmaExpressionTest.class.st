@@ -14,6 +14,15 @@ BIPragmaExpressionTest >> testPragmaNoExtraSpace [
 ]
 
 { #category : #tests }
+BIPragmaExpressionTest >> testPragmaNoExtraSpace2 [
+	| expr source |
+	expr := RBParser parsePragma:'<func:     ''(3+4)''       res:      7>'.
+	configurationSelector := #emptyDefaultConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals: '<func: ''(3+4)'' res: 7>'
+]
+
+{ #category : #tests }
 BIPragmaExpressionTest >> testPragmaNoExtraSpaceBetweenMethodeAndArgument [
 	| expr source |
 	expr := RBParser parsePragma:'<primitive:    41>'.
