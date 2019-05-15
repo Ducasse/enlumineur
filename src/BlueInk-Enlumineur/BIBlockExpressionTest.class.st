@@ -66,21 +66,21 @@ BIBlockExpressionTest >> testArgumentsComments [
 ]
 
 { #category : #test }
+BIBlockExpressionTest >> testBodyFormat [
+
+	self validate:' [1]. [ a:=1] '
+	isFormattedAs:
+' [ 1 ].
+[ a := 1 ] '.
+]
+
+{ #category : #test }
 BIBlockExpressionTest >> testEndPeriodInside [
 	| expr source |
 	
 	self validate:'2.'
 	isFormattedAs:' 2. '
 	with: #periodAtEndConfiguration
-]
-
-{ #category : #test }
-BIBlockExpressionTest >> testFormatElements [
-
-	self validate:' [1]. [ a:=1] '
-	isFormattedAs:
-' [ 1 ].
-[ a := 1 ] '.
 ]
 
 { #category : #test }

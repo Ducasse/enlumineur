@@ -38,7 +38,40 @@ BIMethodeExpressionTest >> basicConfiguration [
 ]
 
 { #category : #configurations }
+BIMethodeExpressionTest >> newLineAfterSignatureConfiguration [
+	"Here we can control explicitely the configuration we want."
+
+	" String streamContents: [:s |
+			BIPrettyPrinterContext new storeOn: s]"
+
+	^ self contextClass basicNew
+	indentString: '	';
+	newLinesAfterSignature:1;
+	newLinesAfterCommentZone:0;
+	formatCommentWithStatements:false
+]
+
+{ #category : #configurations }
 BIMethodeExpressionTest >> newLineBetweenTopCommentsConfiguration [
+	"Here we can control explicitely the configuration we want."
+
+	" String streamContents: [:s |
+			BIPrettyPrinterContext new storeOn: s]"
+
+	^ self contextClass basicNew
+	indentString: '	';
+	newLinesAfterSignature:0;
+	newLinesAfterCommentZone:0;
+	formatCommentWithStatements:false;
+	useBasicCommentFormat: false;
+	maxLineLength: 50;
+	periodsAtEndOfBlock: false;
+	periodsAtEndOfMethod: false;
+	newLinesBetweenTopComments:1
+]
+
+{ #category : #configurations }
+BIMethodeExpressionTest >> noNewLineBetweenTopCommentsConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -150,13 +183,14 @@ BIMethodeExpressionTest >> signatureOnMultipleLinesConfiguration [
 
 	" String streamContents: [:s |
 			BIPrettyPrinterContext new storeOn: s]"
+
 	^ self contextClass basicNew
 	indentString: '	';
 	newLinesAfterSignature:0;
 	newLinesAfterCommentZone:0;
 	formatCommentWithStatements:false;
 	methodSignatureOnMultipleLines: true;
-	selectorAndArgumentCombinedMaxSize: 2
+selectorAndArgumentCombinedMaxSize: 2
 ]
 
 { #category : #test }
@@ -173,53 +207,52 @@ BIMethodeExpressionTest >> testBasic [
 ]
 
 { #category : #test }
-BIMethodeExpressionTest >> testBasicCommentFormat [
+BIMethodeExpressionTest >> testBasic2 [
 	| expr source |
-	expr := RBParser parseMethod: 'aMethode "             aComment        "'.
+	expr := RBParser parseMethod: 'aMethode <pragma1> <pragma2> "aComment1" "aComment2"  body'.
+	configurationSelector := #newLineBetweenTopCommentsConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'aMethode
+	"aComment1"
+	"aComment2"
+	<pragma1>
+	<pragma2>
+	body'
+]
+
+{ #category : #test }
+BIMethodeExpressionTest >> testBodyFormat [
+	| expr source |
+	expr := RBParser parseMethod: 'aMethode a:=1'.
+	configurationSelector := #basicConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'aMethode
+	a := 1'
+]
+
+{ #category : #test }
+BIMethodeExpressionTest >> testCommentBasicFormat [
+	| expr source |
+	expr := RBParser parseMethod: 'aMethode "   aComment   "'.
 	configurationSelector := #basicCommentFormatConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
 'aMethode
-	"             aComment        "
+	"   aComment   "
 	'.
 ]
 
 { #category : #test }
-BIMethodeExpressionTest >> testFormatElements [
+BIMethodeExpressionTest >> testCommentNotBasicFormat [
 	| expr source |
-	expr := RBParser parseMethod: 'aMethode "aComment" |tmp| tmp:=1. ^tmp'.
-	configurationSelector := #emptyDefaultConfiguration.
+	expr := RBParser parseMethod: 'aMethode "   aComment   "'.
+	configurationSelector := #notBasicCommentFormatConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
 'aMethode
-	"aComment"
-
-	| tmp |
-	tmp := 1.
-	^ tmp'
-]
-
-{ #category : #test }
-BIMethodeExpressionTest >> testMethodePatternWithArgument [
-	| expr source |
-	expr := RBParser parseMethod: 'aMethode:arg'.
-	configurationSelector := #emptyDefaultConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'aMethode: arg
-
-	'
-]
-
-{ #category : #test }
-BIMethodeExpressionTest >> testMethodePatternWithoutArgument [
-	| expr source |
-	expr := RBParser parseMethod: 'aMethode'.
-	configurationSelector := #emptyDefaultConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'aMethode
-
+	"aComment   "
 	'
 ]
 
@@ -263,6 +296,18 @@ BIMethodeExpressionTest >> testNewLinesAfterGluedComment [
 ]
 
 { #category : #test }
+BIMethodeExpressionTest >> testNewLinesAfterSignature [
+	| expr source |
+	expr := RBParser parseMethod: 'aMethode'.
+	configurationSelector := #newLineAfterSignatureConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'aMethode
+
+	'
+]
+
+{ #category : #test }
 BIMethodeExpressionTest >> testNoNewLinesAfterComment [
 	| expr source |
 	expr := RBParser parseMethod: 'aMethode "aComment"'.
@@ -271,19 +316,6 @@ BIMethodeExpressionTest >> testNoNewLinesAfterComment [
 	self assert: source equals:
 'aMethode
 	"aComment"
-	'
-
-]
-
-{ #category : #test }
-BIMethodeExpressionTest >> testNoNewLinesAfterComment2 [
-	| expr source |
-	expr := RBParser parseMethod: 'aMethode "aComment" "anotherComment"'.
-	configurationSelector := #newLineBetweenTopCommentsConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'aMethode
-	"aComment"	"anotherComment"
 	'
 
 ]
@@ -313,15 +345,16 @@ BIMethodeExpressionTest >> testNoNewLinesAfterSignature [
 ]
 
 { #category : #test }
-BIMethodeExpressionTest >> testNotBasicCommentFormat [
+BIMethodeExpressionTest >> testNoNewLinesBetweenTopComments [
 	| expr source |
-	expr := RBParser parseMethod: 'aMethode "             aComment        "'.
-	configurationSelector := #notBasicCommentFormatConfiguration.
+	expr := RBParser parseMethod: 'aMethode "aComment" "anotherComment"'.
+	configurationSelector := #noNewLineBetweenTopCommentsConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
 'aMethode
-	"aComment        "
+	"aComment"	"anotherComment"
 	'
+
 ]
 
 { #category : #test }
@@ -356,6 +389,28 @@ BIMethodeExpressionTest >> testSignatureOnMultipleLines [
 	self assert: source equals:
 'aMethode: arg1
 	foo: arg2
+	'
+]
+
+{ #category : #test }
+BIMethodeExpressionTest >> testSignatureWithArgument [
+	| expr source |
+	expr := RBParser parseMethod: 'aMethode:arg'.
+	configurationSelector := #signatureNotOnMultipleLinesConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'aMethode: arg
+	'
+]
+
+{ #category : #test }
+BIMethodeExpressionTest >> testSignatureWithoutArgument [
+	| expr source |
+	expr := RBParser parseMethod: 'aMethode'.
+	configurationSelector := #basicConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'aMethode
 	'
 ]
 

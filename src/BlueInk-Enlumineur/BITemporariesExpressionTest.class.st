@@ -82,7 +82,7 @@ BITemporariesExpressionTest >> spaceForTemporariesConfiguration [
 ]
 
 { #category : #tests }
-BITemporariesExpressionTest >> testBasicCommentFormat [
+BITemporariesExpressionTest >> testCommentBasicFormat [
 
 	| expr source |
 	expr := RBParser parseExpression: ' | d 
@@ -92,6 +92,20 @@ BITemporariesExpressionTest >> testBasicCommentFormat [
 	self assert: source equals:
 '| d
 "    comment     " e |
+'
+]
+
+{ #category : #tests }
+BITemporariesExpressionTest >> testCommentNotBasicFormat [
+
+	| expr source |
+	expr := RBParser parseExpression: ' | d 
+	"    comment     " e |'.
+	configurationSelector := #notBasicCommentFormatConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'| d
+"comment     " e |
 '
 ]
 
@@ -147,20 +161,6 @@ BITemporariesExpressionTest >> testNoNewLineAfterTemporaries [
 	self assert: source equals:
 '| d e |'
 	
-]
-
-{ #category : #tests }
-BITemporariesExpressionTest >> testNotBasicCommentFormat [
-
-	| expr source |
-	expr := RBParser parseExpression: ' | d 
-	"    comment     " e |'.
-	configurationSelector := #notBasicCommentFormatConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'| d
-"comment     " e |
-'
 ]
 
 { #category : #tests }
