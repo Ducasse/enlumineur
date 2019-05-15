@@ -11,8 +11,42 @@ BIMethodeExpressionTest >> basicCommentFormatConfiguration [
 	" String streamContents: [:s |
 			BIPrettyPrinterContext new storeOn: s]"
 
-	^ self contextClass new
-		useBasicCommentFormat: true
+	^ self contextClass basicNew
+	indentString: '	';
+	newLinesAfterSignature:0;
+	newLinesAfterCommentZone:0;
+	formatCommentWithStatements:false;
+	useBasicCommentFormat: true
+]
+
+{ #category : #configurations }
+BIMethodeExpressionTest >> basicConfiguration [
+	"Here we can control explicitely the configuration we want."
+
+	" String streamContents: [:s |
+			BIPrettyPrinterContext new storeOn: s]"
+
+	^ self contextClass basicNew
+	indentString: '	';
+	newLinesAfterSignature:0;
+	newLinesAfterCommentZone:0;
+	formatCommentWithStatements:false
+]
+
+{ #category : #configurations }
+BIMethodeExpressionTest >> newLineBetweenTopCommentsConfiguration [
+	"Here we can control explicitely the configuration we want."
+
+	" String streamContents: [:s |
+			BIPrettyPrinterContext new storeOn: s]"
+
+	^ self contextClass basicNew
+	indentString: '	';
+	newLinesAfterSignature:0;
+	newLinesAfterCommentZone:0;
+	formatCommentWithStatements:false;
+	useBasicCommentFormat: true;
+	newLinesBetweenTopComments:0
 ]
 
 { #category : #configurations }
@@ -22,20 +56,12 @@ BIMethodeExpressionTest >> noNewLinesAfterCommentConfiguration [
 	" String streamContents: [:s |
 			BIPrettyPrinterContext new storeOn: s]"
 
-	^ self contextClass new
-	newLinesAfterCommentZone:0
-]
-
-{ #category : #configurations }
-BIMethodeExpressionTest >> noNewLinesAfterSignatureConfiguration [
-	"Here we can control explicitely the configuration we want."
-
-	" String streamContents: [:s |
-			BIPrettyPrinterContext new storeOn: s]"
-
-	^ self contextClass new
+	^ self contextClass basicNew
+	indentString: '	';
 	newLinesAfterSignature:0;
-	newLinesAfterCommentZone:0
+	newLinesAfterCommentZone:0;
+	formatCommentWithStatements:false;
+	useBasicCommentFormat: true
 ]
 
 { #category : #configurations }
@@ -45,19 +71,30 @@ BIMethodeExpressionTest >> notBasicCommentFormatConfiguration [
 	" String streamContents: [:s |
 			BIPrettyPrinterContext new storeOn: s]"
 
-	^ self contextClass new
-		useBasicCommentFormat: false
+	^ self contextClass basicNew
+	indentString: '	';
+	newLinesAfterSignature:0;
+	newLinesAfterCommentZone:0;
+	formatCommentWithStatements:false;
+	useBasicCommentFormat: false;
+	maxLineLength: 50
 ]
 
 { #category : #configurations }
-BIMethodeExpressionTest >> oneNewLinesAfterCommentConfiguration [
+BIMethodeExpressionTest >> oneNewLineAfterCommentConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
 			BIPrettyPrinterContext new storeOn: s]"
 
-	^ self contextClass new
-	newLinesAfterCommentZone:1
+	^ self contextClass basicNew
+	indentString: '	';
+	newLinesAfterSignature:0;
+	newLinesAfterCommentZone:1;
+	formatCommentWithStatements:false;
+	useBasicCommentFormat:false;
+	maxLineLength:50;
+	newLinesBetweenTopComments:0
 ]
 
 { #category : #configurations }
@@ -67,9 +104,11 @@ BIMethodeExpressionTest >> oneNewLinesAfterSignatureConfiguration [
 	" String streamContents: [:s |
 			BIPrettyPrinterContext new storeOn: s]"
 
-	^ self contextClass new
+	^ self contextClass basicNew
+	indentString: '	';
 	newLinesAfterSignature:1;
-	newLinesAfterCommentZone:0
+	newLinesAfterCommentZone:0;
+	formatCommentWithStatements:false
 ]
 
 { #category : #configurations }
@@ -79,9 +118,12 @@ BIMethodeExpressionTest >> signatureNotOnMultipleLinesConfiguration [
 	" String streamContents: [:s |
 			BIPrettyPrinterContext new storeOn: s]"
 
-	^ self contextClass new
-	methodSignatureOnMultipleLines: false;
-	newLinesAfterCommentZone:0
+	^ self contextClass basicNew
+	indentString: '	';
+	newLinesAfterSignature:0;
+	newLinesAfterCommentZone:0;
+	formatCommentWithStatements:false;
+	methodSignatureOnMultipleLines: false
 ]
 
 { #category : #configurations }
@@ -90,10 +132,13 @@ BIMethodeExpressionTest >> signatureOnMultipleLinesConfiguration [
 
 	" String streamContents: [:s |
 			BIPrettyPrinterContext new storeOn: s]"
-	^ self contextClass new
+	^ self contextClass basicNew
+	indentString: '	';
+	newLinesAfterSignature:0;
+	newLinesAfterCommentZone:0;
+	formatCommentWithStatements:false;
 	methodSignatureOnMultipleLines: true;
-	selectorAndArgumentCombinedMaxSize: 2;
-	newLinesAfterCommentZone:0
+	selectorAndArgumentCombinedMaxSize: 2
 ]
 
 { #category : #test }
@@ -105,7 +150,6 @@ BIMethodeExpressionTest >> testBasicCommentFormat [
 	self assert: source equals:
 'aMethode
 	"             aComment        "
-
 	'.
 ]
 
@@ -152,7 +196,7 @@ BIMethodeExpressionTest >> testMethodePatternWithoutArgument [
 BIMethodeExpressionTest >> testNewLinesAfterComment [
 	| expr source |
 	expr := RBParser parseMethod: 'aMethode "aComment"'.
-	configurationSelector := #oneNewLinesAfterCommentConfiguration.
+	configurationSelector := #oneNewLineAfterCommentConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
 'aMethode
@@ -165,12 +209,11 @@ BIMethodeExpressionTest >> testNewLinesAfterComment [
 BIMethodeExpressionTest >> testNewLinesAfterComment2 [
 	| expr source |
 	expr := RBParser parseMethod: 'aMethode "aComment" "anotherComment"'.
-	configurationSelector := #oneNewLinesAfterCommentConfiguration.
+	configurationSelector := #oneNewLineAfterCommentConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
 'aMethode
-	"aComment"
-	"anotherComment"
+	"aComment"	"anotherComment"
 
 	'
 ]
@@ -179,7 +222,7 @@ BIMethodeExpressionTest >> testNewLinesAfterComment2 [
 BIMethodeExpressionTest >> testNewLinesAfterGluedComment [
 	| expr source |
 	expr := RBParser parseMethod: 'aMethode"aComment""anotherComment"'.
-	configurationSelector := #oneNewLinesAfterCommentConfiguration.
+	configurationSelector := #oneNewLineAfterCommentConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
 'aMethode
@@ -192,7 +235,7 @@ BIMethodeExpressionTest >> testNewLinesAfterGluedComment [
 BIMethodeExpressionTest >> testNoNewLinesAfterComment [
 	| expr source |
 	expr := RBParser parseMethod: 'aMethode "aComment"'.
-	configurationSelector := #noNewLinesAfterCommentConfiguration.
+	configurationSelector := #basicCommentFormatConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
 'aMethode
@@ -205,12 +248,11 @@ BIMethodeExpressionTest >> testNoNewLinesAfterComment [
 BIMethodeExpressionTest >> testNoNewLinesAfterComment2 [
 	| expr source |
 	expr := RBParser parseMethod: 'aMethode "aComment" "anotherComment"'.
-	configurationSelector := #noNewLinesAfterCommentConfiguration.
+	configurationSelector := #newLineBetweenTopCommentsConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
 'aMethode
-	"aComment"
-	"anotherComment"
+	"aComment"	"anotherComment"
 	'
 
 ]
@@ -232,7 +274,7 @@ BIMethodeExpressionTest >> testNoNewLinesAfterGluedComment [
 BIMethodeExpressionTest >> testNoNewLinesAfterSignature [
 	| expr source |
 	expr := RBParser parseMethod: 'aMethode'.
-	configurationSelector := #noNewLinesAfterSignatureConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
 'aMethode
@@ -248,7 +290,6 @@ BIMethodeExpressionTest >> testNotBasicCommentFormat [
 	self assert: source equals:
 'aMethode
 	"aComment        "
-
 	'
 ]
 
@@ -256,7 +297,7 @@ BIMethodeExpressionTest >> testNotBasicCommentFormat [
 BIMethodeExpressionTest >> testOneNewLinesAfterSignature [
 	| expr source |
 	expr := RBParser parseMethod: 'aMethode'.
-	configurationSelector := #oneNewLinesAfterSignatureConfiguration.
+	configurationSelector := #oneNewLineAfterCommentConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
 'aMethode
