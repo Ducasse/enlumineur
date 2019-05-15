@@ -4,7 +4,7 @@ Class {
 	#category : #'BlueInk-Enlumineur'
 }
 
-{ #category : #acccessing }
+{ #category : #hooks }
 BIBlockExpressionTest >> closeBracket [
 	^']'
 ]
@@ -20,12 +20,12 @@ BIBlockExpressionTest >> lineUpBlockBracketsConfiguration [
 		lineUpBlockBrackets: true
 ]
 
-{ #category : #acccessing }
+{ #category : #hooks }
 BIBlockExpressionTest >> openBracket [
 	^ '['
 ]
 
-{ #category : #acccessing }
+{ #category : #hooks }
 BIBlockExpressionTest >> parser [
 	^ RBParser
 ]

@@ -5,34 +5,76 @@ Class {
 }
 
 { #category : #configurations }
+BIArrayExpressionTest >> basicConfiguration [
+
+	^ self contextClass basicNew
+	formatCommentWithStatements:false;
+	maxLineLength:50
+]
+
+{ #category : #configurations }
 BIArrayExpressionTest >> maxLineLengthConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
 			BIPrettyPrinterContext new storeOn: s]"
 
-	^ self contextClass new
-	maxLineLength:12
-	
+	^ self contextClass basicNew
+	formatCommentWithStatements:false;
+	maxLineLength:12;
+	retainBlankLinesBetweenStatements:false;
+	minimumNewLinesBetweenStatements: 1;
+	indentString: '	';
+	periodsAtEndOfBlock:false;
+	periodsAtEndOfMethod:false
 ]
 
 { #category : #configurations }
-BIArrayExpressionTest >> periodAsTerminatorConfiguration [
+BIArrayExpressionTest >> periodAsTerminatorBlockConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
 			BIPrettyPrinterContext new storeOn: s]"
 
-	^ self contextClass new
+	^ self contextClass basicNew
+	formatCommentWithStatements:false;
+	maxLineLength:12;
+	retainBlankLinesBetweenStatements:false;
+	minimumNewLinesBetweenStatements: 1;
+	indentString: '	';
 	periodsAtEndOfBlock:true;
-	periodsAtEndOfMethod:true
+	periodsAtEndOfMethod:true;
+	stringInsideBlocks:'';
+	lineUpBlockBrackets:false
+]
+
+{ #category : #configurations }
+BIArrayExpressionTest >> periodAsTerminatorMessageConfiguration2 [
+	"Here we can control explicitely the configuration we want."
+
+	" String streamContents: [:s |
+			BIPrettyPrinterContext new storeOn: s]"
+
+	^ self contextClass basicNew
+	formatCommentWithStatements:false;
+	maxLineLength:12;
+	retainBlankLinesBetweenStatements:false;
+	minimumNewLinesBetweenStatements: 1;
+	indentString: '	';
+	periodsAtEndOfBlock:true;
+	periodsAtEndOfMethod:true;
+	
+	multiLineMessages:Array new;
+	oneLineMessages:Array new;
+	numberOfArgumentsForMultiLine:2;
+	newLineBeforeFirstKeyword:false
 ]
 
 { #category : #test }
 BIArrayExpressionTest >> testEmptyArray [
 	| expr source |
 	expr := RBParser parseExpression: '{}'.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '{}'
 ]
@@ -46,13 +88,14 @@ BIArrayExpressionTest >> testFormatElement [
 	self assert: source equals:
 '{[ a ].
 [ b ]}'
+
 ]
 
 { #category : #test }
 BIArrayExpressionTest >> testNoExtraSpaceAroundPeriod [
 	| expr source |
 	expr := RBParser parseExpression: '{1.    2.        3}'.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '{1 . 2 . 3}'.
 ]
@@ -61,7 +104,7 @@ BIArrayExpressionTest >> testNoExtraSpaceAroundPeriod [
 BIArrayExpressionTest >> testNoSpaceAroundBrackets [
 	| expr source |
 	expr := RBParser parseExpression: ' { 1. 2. 3 } '.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '{1 . 2 . 3}'.
 ]
@@ -70,16 +113,16 @@ BIArrayExpressionTest >> testNoSpaceAroundBrackets [
 BIArrayExpressionTest >> testPeriodAtEndOfBlock [
 	| expr source |
 	expr := RBParser parseExpression: '{[1]}'.
-	configurationSelector := #periodAsTerminatorConfiguration.
+	configurationSelector := #periodAsTerminatorBlockConfiguration.
 	source := self formatter format: expr.
-	self assert: source equals: '{[ 1. ].}'
+	self assert: source equals: '{[1.].}'
 ]
 
 { #category : #test }
 BIArrayExpressionTest >> testPeriodAtEndOfMethod [
 	| expr source |
 	expr := RBParser parseExpression: '{1 factorial}'.
-	configurationSelector := #periodAsTerminatorConfiguration.
+	configurationSelector := #periodAsTerminatorMessageConfiguration2.
 	source := self formatter format: expr.
 	self assert: source equals: '{1 factorial.}'
 ]
@@ -88,7 +131,7 @@ BIArrayExpressionTest >> testPeriodAtEndOfMethod [
 BIArrayExpressionTest >> testSpaceAroundPeriod [
 	| expr source |
 	expr := RBParser parseExpression: '{1. 2. 3}'.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '{1 . 2 . 3}'
 ]
@@ -96,11 +139,11 @@ BIArrayExpressionTest >> testSpaceAroundPeriod [
 { #category : #test }
 BIArrayExpressionTest >> testToLongNewLine [
 	| expr source |
-	expr := RBParser parseExpression:'{2 factorial. 1}'.
+	expr := RBParser parseExpression:'{VeryLongExpression. 1}'.
 	configurationSelector := #maxLineLengthConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
-'{2 factorial.
+'{VeryLongExpression.
 1}'
 ]
 

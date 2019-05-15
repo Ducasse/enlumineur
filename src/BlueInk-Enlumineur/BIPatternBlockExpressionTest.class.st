@@ -4,17 +4,17 @@ Class {
 	#category : #'BlueInk-Enlumineur'
 }
 
-{ #category : #accesing }
+{ #category : #hooks }
 BIPatternBlockExpressionTest >> closeBracket [
 	^'}'
 ]
 
-{ #category : #accesing }
+{ #category : #hooks }
 BIPatternBlockExpressionTest >> openBracket [
 	^'`{'
 ]
 
-{ #category : #accesing }
+{ #category : #hooks }
 BIPatternBlockExpressionTest >> parser [
 	^ RBPatternParser
 ]

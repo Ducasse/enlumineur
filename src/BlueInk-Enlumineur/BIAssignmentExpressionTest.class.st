@@ -4,12 +4,19 @@ Class {
 	#category : #'BlueInk-Enlumineur'
 }
 
+{ #category : #configurations }
+BIAssignmentExpressionTest >> basicConfiguration [
+
+	^ self contextClass basicNew
+	formatCommentWithStatements:false
+]
+
 { #category : #test }
 BIAssignmentExpressionTest >> testAssignment [
 
 	| expr source |
 	expr := RBParser parseExpression: 'a:=1'.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: 'a := 1'
 ]
@@ -18,10 +25,10 @@ BIAssignmentExpressionTest >> testAssignment [
 BIAssignmentExpressionTest >> testAssignmentFormatValue [
 
 	| expr source |
-	expr := RBParser parseExpression: 'a:=[1]'.
-	configurationSelector := #emptyDefaultConfiguration.
+	expr := RBParser parseExpression: 'a:= b:=1'.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
-	self assert: source equals: 'a := [ 1 ]'
+	self assert: source equals: 'a := b := 1'
 
 ]
 
@@ -30,7 +37,7 @@ BIAssignmentExpressionTest >> testAssignmentFormatVariable [
 
 	| expr source |
 	expr := RBParser parseExpression: ' a   := 1'.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: 'a := 1'
 
@@ -41,7 +48,7 @@ BIAssignmentExpressionTest >> testAssignmentHasNoExtraSpace [
 
 	| expr source |
 	expr := RBParser parseExpression: '   a:=1   '.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: 'a := 1'
 ]
@@ -51,7 +58,7 @@ BIAssignmentExpressionTest >> testAssignmentHasNoExtraSpaceInside [
 
 	| expr source |
 	expr := RBParser parseExpression: '   a    :=    1   '.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: 'a := 1'
 ]
@@ -61,7 +68,7 @@ BIAssignmentExpressionTest >> testMultipleAssignmentHasNoExtraSpaceInside [
 
 	| expr source |
 	expr := RBParser parseExpression: '   a    :=    b :=  1   '.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: 'a := b := 1'
 ]

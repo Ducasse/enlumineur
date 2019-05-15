@@ -27,7 +27,7 @@ BISequenceExpressionTest >> dontRetainBlankLinesBetweenStatementsConfiguration [
 ]
 
 { #category : #configurations }
-BISequenceExpressionTest >> periodAsTerminatorConfiguration [
+BISequenceExpressionTest >> periodAsTerminatorBlockConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -192,7 +192,7 @@ BISequenceExpressionTest >> testNoPeriodAtEndOfMethode [
 BISequenceExpressionTest >> testPeriodAtEndOfBlock [
 	| expr source |
 	expr := RBParser parseExpression: '|a b| [1.].'.
-	configurationSelector := #periodAsTerminatorConfiguration.
+	configurationSelector := #periodAsTerminatorBlockConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
 '| a b |
@@ -203,7 +203,7 @@ BISequenceExpressionTest >> testPeriodAtEndOfBlock [
 BISequenceExpressionTest >> testPeriodAtEndOfMethode [
 	| expr source |
 	expr := RBParser parseExpression: '|a b| 6 factorial'.
-	configurationSelector := #periodAsTerminatorConfiguration.
+	configurationSelector := #periodAsTerminatorBlockConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
 '| a b |
