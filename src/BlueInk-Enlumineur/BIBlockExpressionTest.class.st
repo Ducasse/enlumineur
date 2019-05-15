@@ -4,6 +4,11 @@ Class {
 	#category : #'BlueInk-Enlumineur'
 }
 
+{ #category : #acccessing }
+BIBlockExpressionTest >> closeBracket [
+	^']'
+]
+
 { #category : #configurations }
 BIBlockExpressionTest >> lineUpBlockBracketsConfiguration [
 	"Here we can control explicitely the configuration we want."
@@ -15,26 +20,14 @@ BIBlockExpressionTest >> lineUpBlockBracketsConfiguration [
 		lineUpBlockBrackets: true
 ]
 
-{ #category : #configurations }
-BIBlockExpressionTest >> noFormatCommentConfiguration [
-	"Here we can control explicitely the configuration we want."
-
-	" String streamContents: [:s |
-			BIPrettyPrinterContext new storeOn: s]"
-
-	^ self contextClass new
-		formatCommentWithStatements: false
+{ #category : #acccessing }
+BIBlockExpressionTest >> openBracket [
+	^ '['
 ]
 
-{ #category : #configurations }
-BIBlockExpressionTest >> noLineUpBlockBracketsConfiguration [
-	"Here we can control explicitely the configuration we want."
-
-	" String streamContents: [:s |
-			BIPrettyPrinterContext new storeOn: s]"
-
-	^ self contextClass new
-		lineUpBlockBrackets: false
+{ #category : #acccessing }
+BIBlockExpressionTest >> parser [
+	^ RBParser
 ]
 
 { #category : #configurations }
@@ -50,158 +43,121 @@ BIBlockExpressionTest >> periodAtEndConfiguration [
 
 { #category : #test }
 BIBlockExpressionTest >> testArgumentIsFormated [
-	| expr source |
-	expr := RBParser parseExpression: '[:i| i ]'.
-	configurationSelector := #emptyDefaultConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals: '[ :i | i ]'
+	self validate: ':i|i' isFormattedAs: ' :i | i ' 
 ]
 
 { #category : #test }
 BIBlockExpressionTest >> testArgumentsAreFormated [
 	| expr source |
-	expr := RBParser parseExpression: '[: i : j
-		| i ]'.
-	configurationSelector := #emptyDefaultConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'[ :i :j | i ]'
+	
+	self validate:':i :j| i '
+	isFormattedAs:' :i :j | i '.
 ]
 
 { #category : #test }
 BIBlockExpressionTest >> testArgumentsComments [
 	| expr source |
-	expr := RBParser parseExpression: '[:i "aComment" :j "anotherComment"| i ]'.
-	configurationSelector := #emptyDefaultConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'[ :i"aComment"
+	
+	self validate:':i "aComment" :j "anotherComment"| i '
+	isFormattedAs:
+' :i"aComment"
  :j"anotherComment"
- | i ]'
+ | i '
 ]
 
 { #category : #test }
 BIBlockExpressionTest >> testEndPeriodInside [
 	| expr source |
-	expr := RBParser parseExpression: '[2.]'.
-	configurationSelector := #periodAtEndConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals: '[ 2. ]'
+	
+	self validate:'2.'
+	isFormattedAs:' 2. '
+	with: #periodAtEndConfiguration
 ]
 
 { #category : #test }
 BIBlockExpressionTest >> testFormatElements [
-	| expr source |
-	expr := RBParser parseExpression: '[ [1]. [ a:=1] ]'.
-	configurationSelector := #emptyDefaultConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'[ [ 1 ].
-[ a := 1 ] ]'.
+
+	self validate:' [1]. [ a:=1] '
+	isFormattedAs:
+' [ 1 ].
+[ a := 1 ] '.
 ]
 
 { #category : #test }
 BIBlockExpressionTest >> testMultiline [
-	| expr source |
-	expr := RBParser parseExpression: '[: i : j|i.j ]'.
-	configurationSelector := #emptyDefaultConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'[ :i :j | 
-i.
-j ]'
+
+	self validate: '1+3. 6 factorial '
+	isFormattedAs: 
+' 1 + 3.
+6 factorial '
 ]
 
 { #category : #test }
 BIBlockExpressionTest >> testNewLineAfterComment [
-	| expr source |
-	expr := RBParser parseExpression: '["aComment"1. 2]'.
-	configurationSelector := #emptyDefaultConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'[ "aComment"
+	
+	self validate: '"aComment"1. 2'
+	isFormattedAs: 
+' "aComment"
 1.
-2 ]'
+2 '
 ]
 
 { #category : #test }
 BIBlockExpressionTest >> testNewLineBeforeEndBrackets [
-	| expr source |
-	expr := RBParser parseExpression: '[3. 4]'.
-	configurationSelector := #lineUpBlockBracketsConfiguration.
-	source := self formatter format: expr.
-	self
-		assert: source
-		equals:
-'[ 3.
+
+	self validate:'3. 4'  
+	isFormattedAs:
+' 3.
 4
-]'
+'  with: #lineUpBlockBracketsConfiguration.
 ]
 
 { #category : #test }
 BIBlockExpressionTest >> testNoEndPeriodInside [
-	| expr source |
-	expr := RBParser parseExpression: '[2.]'.
-	configurationSelector := #emptyDefaultConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals: '[ 2 ]'
+	self validate: '2.' isFormattedAs: ' 2 '
 ]
 
 { #category : #test }
 BIBlockExpressionTest >> testNoExtraSpaceAroundBlock [
+
 	| expr source |
-	expr := RBParser parseExpression: '   [2]   '.
+	expr := self parser parseExpression: '   ',self openBracket ,'2',self closeBracket,'   '.
 	configurationSelector := #emptyDefaultConfiguration.
 	source := self formatter format: expr.
-	self assert: source equals: '[ 2 ]'
+	self assert: source equals: self openBracket,' 2 ',self closeBracket
 ]
 
 { #category : #test }
 BIBlockExpressionTest >> testNoExtraSpaceInside [
-	| expr source |
-	expr := RBParser parseExpression: '[    2     ]'.
-	configurationSelector := #emptyDefaultConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals: '[ 2 ]'
+
+	self validate: '    2     ' isFormattedAs: ' 2 '
 ]
 
 { #category : #test }
 BIBlockExpressionTest >> testNoNewLineBeforeEndBrackets [
-	| expr source |
-	expr := RBParser parseExpression: '[3. 4]'.
-	configurationSelector := #noLineUpBlockBracketsConfiguration.
-	source := self formatter format: expr.
-	self
-		assert: source
-		equals:
-'[ 3.
-4 ]'
+
+	self validate: '3. 4'
+	isFormattedAs:
+' 3.
+4 '
 ]
 
 { #category : #test }
 BIBlockExpressionTest >> testSpace [
-	| expr source |
-	expr := RBParser parseExpression: '[2]'.
-	configurationSelector := #emptyDefaultConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals: '[ 2 ]'
+
+	self validate: '2' isFormattedAs: ' 2 '
 ]
 
 { #category : #test }
-BIBlockExpressionTest >> testSpaceAfterComment [
-	| expr source |
-	expr := RBParser parseExpression: '["aComment"1]'.
-	configurationSelector := #emptyDefaultConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals: '[ "aComment" 1 ]'
+BIBlockExpressionTest >> validate: stringInsideBlock isFormattedAs: ExpectedStringInsideBlock [
+	self validate: stringInsideBlock isFormattedAs: ExpectedStringInsideBlock with: #emptyDefaultConfiguration
 ]
 
 { #category : #test }
-BIBlockExpressionTest >> testformatComment [
-
+BIBlockExpressionTest >> validate: stringInsideBlock isFormattedAs: ExpectedStringInsideBlock with: aConfiguration [
 	| expr source |
-	expr := RBParser parseExpression: '["  c1   " "   c2 " 2 "c3"]'.
-	configurationSelector := #emptyDefaultConfiguration.
+	expr := self parser parseExpression: self openBracket ,stringInsideBlock,self closeBracket.
+	configurationSelector := aConfiguration.
 	source := self formatter format: expr.
-	self assert: source equals: '[ "  c1   " "   c2 " 2	"c3" ]'.
+	self assert: source equals: self openBracket,ExpectedStringInsideBlock,self closeBracket
 ]
