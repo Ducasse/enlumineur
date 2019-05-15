@@ -30,7 +30,11 @@ BIMethodeExpressionTest >> basicConfiguration [
 	indentString: '	';
 	newLinesAfterSignature:0;
 	newLinesAfterCommentZone:0;
-	formatCommentWithStatements:false
+	formatCommentWithStatements:false;
+	useBasicCommentFormat: false;
+	maxLineLength: 50;
+	periodsAtEndOfBlock: false;
+	periodsAtEndOfMethod: false
 ]
 
 { #category : #configurations }
@@ -112,6 +116,20 @@ BIMethodeExpressionTest >> oneNewLinesAfterSignatureConfiguration [
 ]
 
 { #category : #configurations }
+BIMethodeExpressionTest >> signatureConfiguration [
+	"Here we can control explicitely the configuration we want."
+
+	" String streamContents: [:s |
+			BIPrettyPrinterContext new storeOn: s]"
+
+	^ self contextClass basicNew
+	indentString: '	';
+	newLinesAfterSignature:0;
+	newLinesAfterCommentZone:0;
+	formatCommentWithStatements:false
+]
+
+{ #category : #configurations }
 BIMethodeExpressionTest >> signatureNotOnMultipleLinesConfiguration [
 	"Here we can control explicitely the configuration we want."
 
@@ -139,6 +157,19 @@ BIMethodeExpressionTest >> signatureOnMultipleLinesConfiguration [
 	formatCommentWithStatements:false;
 	methodSignatureOnMultipleLines: true;
 	selectorAndArgumentCombinedMaxSize: 2
+]
+
+{ #category : #test }
+BIMethodeExpressionTest >> testBasic [
+	| expr source |
+	expr := RBParser parseMethod: 'aMethode <pragma> "aComment" body'.
+	configurationSelector := #basicConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'aMethode
+	"aComment"
+	<pragma>
+	body'
 ]
 
 { #category : #test }
@@ -274,7 +305,7 @@ BIMethodeExpressionTest >> testNoNewLinesAfterGluedComment [
 BIMethodeExpressionTest >> testNoNewLinesAfterSignature [
 	| expr source |
 	expr := RBParser parseMethod: 'aMethode'.
-	configurationSelector := #basicConfiguration.
+	configurationSelector := #signatureConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
 'aMethode
@@ -348,7 +379,9 @@ BIMethodeExpressionTest >> twoNewLinesAfterSignatureConfiguration [
 	" String streamContents: [:s |
 			BIPrettyPrinterContext new storeOn: s]"
 
-	^ self contextClass new
+	^ self contextClass basicNew
+	indentString: '	';
 	newLinesAfterSignature:2;
-	newLinesAfterCommentZone:0
+	newLinesAfterCommentZone:0;
+	formatCommentWithStatements:false
 ]
