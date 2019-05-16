@@ -4,12 +4,23 @@ Class {
 	#category : #'BlueInk-Enlumineur'
 }
 
+{ #category : #configuration }
+BIParseErrorExpressionTest >> basicConfiguration [
+
+	^ self contextClass basicNew
+	formatCommentWithStatements:false;
+	retainBlankLinesBetweenStatements: false;
+	minimumNewLinesBetweenStatements:0;
+	periodsAtEndOfBlock:false;
+	periodsAtEndOfMethod:false
+]
+
 { #category : #tests }
 BIParseErrorExpressionTest >> testParseError [
 
 	| expr source |
 	expr := RBParser parseFaultyExpression: '#(1 3 4'.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: ''
 ]
@@ -19,9 +30,8 @@ BIParseErrorExpressionTest >> testParseError2 [
 
 	| expr source |
 	expr := RBParser parseFaultyExpression: '1 := '.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
-'1.
-:= '
+'1. := '
 ]
