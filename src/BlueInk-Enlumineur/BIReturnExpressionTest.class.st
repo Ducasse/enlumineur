@@ -4,20 +4,28 @@ Class {
 	#category : #'BlueInk-Enlumineur'
 }
 
+{ #category : #configuration }
+BIReturnExpressionTest >> basicConfiguration [
+
+	^ self contextClass basicNew
+	formatCommentWithStatements:false;
+	stringFollowingReturn: ' '
+]
+
 { #category : #tests }
 BIReturnExpressionTest >> testReturnFormatValue [
 	| expr source |
-	expr := RBParser parseExpression: '    ^[a]   '.
-	configurationSelector := #emptyDefaultConfiguration.
+	expr := RBParser parseExpression: '    ^a:=1   '.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
-	self assert: source equals: '^ [ a ]'
+	self assert: source equals: '^ a := 1'
 ]
 
 { #category : #tests }
 BIReturnExpressionTest >> testReturnHasNoExtraSpace [
 	| expr source |
 	expr := RBParser parseExpression: '    ^a   '.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '^ a'
 ]
@@ -26,7 +34,7 @@ BIReturnExpressionTest >> testReturnHasNoExtraSpace [
 BIReturnExpressionTest >> testReturnHasNoExtraSpaceInside [
 	| expr source |
 	expr := RBParser parseExpression: ' ^    a'.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '^ a'
 ]
@@ -35,7 +43,7 @@ BIReturnExpressionTest >> testReturnHasNoExtraSpaceInside [
 BIReturnExpressionTest >> testReturnHasNoPeriod [
 	| expr source |
 	expr := RBParser parseExpression: '^a.'.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '^ a'
 ]
@@ -44,7 +52,7 @@ BIReturnExpressionTest >> testReturnHasNoPeriod [
 BIReturnExpressionTest >> testReturnHasSpaceBetween [
 	| expr source |
 	expr := RBParser parseExpression: '^a'.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '^ a'
 ]
