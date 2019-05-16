@@ -5,14 +5,10 @@ Class {
 }
 
 { #category : #configurations }
-BILiteralValueExpressionTest >> spaceForTemporariesConfiguration [
-	"Here we can control explicitely the configuration we want."
+BILiteralValueExpressionTest >> basicConfiguration [
 
-	" String streamContents: [:s |
-			BIPrettyPrinterContext new storeOn: s]"
-
-	^ self contextClass new
-		newLinesAfterTemporaries: 0.
+	^ self contextClass basicNew
+	formatCommentWithStatements:false
 ]
 
 { #category : #tests }
@@ -20,7 +16,7 @@ BILiteralValueExpressionTest >> testNoExtraSpaces [
 
 	| expr source |
 	expr := RBParser parseExpression: '    2     '.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '2'
 	
@@ -31,7 +27,7 @@ BILiteralValueExpressionTest >> testNotLitteral [
 
 	| expr source |
 	expr := RBLiteralValueNode value: Transcript. 
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '''<an unprintable nonliteral value>'''
 	
@@ -42,7 +38,7 @@ BILiteralValueExpressionTest >> testSpaces [
 
 	| expr source |
 	expr := RBParser parseExpression: '2'.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '2'
 	

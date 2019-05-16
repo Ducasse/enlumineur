@@ -5,6 +5,21 @@ Class {
 }
 
 { #category : #configurations }
+BIMessageExpressionTest >> basicConfiguration [
+
+	^ self contextClass basicNew
+	indentString: '	';
+	formatCommentWithStatements:false;
+	multiLineMessages:Array new;
+	oneLineMessages:Array new;
+	numberOfArgumentsForMultiLine:10;
+	indentsForKeywords: 0;
+	maxLineLength: 50;
+	newLineBeforeFirstKeyword:false;
+	keepBlockInMessage:false
+]
+
+{ #category : #configurations }
 BIMessageExpressionTest >> noIdentsForKeyWordConfiguration [
 	"Here we can control explicitely the configuration we want."
 
@@ -44,7 +59,7 @@ BIMessageExpressionTest >> testBinaryFormatParameter [
 
 	| expr source |
 	expr := RBParser parseExpression: '1 + (3     factorial)'.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '1 + 3 factorial'
 	
@@ -54,10 +69,10 @@ BIMessageExpressionTest >> testBinaryFormatParameter [
 BIMessageExpressionTest >> testBinaryFormatReceiver [
 
 	| expr source |
-	expr := RBParser parseExpression: '[:a|a] value: 2'.
+	expr := RBParser parseExpression: '[1] value: 2'.
 	configurationSelector := #emptyDefaultConfiguration.
 	source := self formatter format: expr.
-	self assert: source equals: '[ :a | a ] value: 2'
+	self assert: source equals: '[ 1 ] value: 2'
 	
 ]
 
@@ -66,7 +81,7 @@ BIMessageExpressionTest >> testBinaryNoExtraSpacesAfter [
 
 	| expr source |
 	expr := RBParser parseExpression: '1+2          '.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '1 + 2'
 	
@@ -77,7 +92,7 @@ BIMessageExpressionTest >> testBinaryNoExtraSpacesBefore [
 
 	| expr source |
 	expr := RBParser parseExpression: '   1+2'.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '1 + 2'
 	
@@ -88,7 +103,7 @@ BIMessageExpressionTest >> testBinaryNoExtraSpacesBetween [
 
 	| expr source |
 	expr := RBParser parseExpression: '1     +     2'.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '1 + 2'
 	
@@ -141,7 +156,7 @@ BIMessageExpressionTest >> testKeyWordFormatReceiver [
 
 	| expr source |
 	expr := RBParser parseExpression: '2 between: 4-2 and: 3     factorial'.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
 '2 between: 4 - 2 and: 3 factorial'
@@ -152,7 +167,7 @@ BIMessageExpressionTest >> testKeywordFormatParameter [
 
 	| expr source |
 	expr := RBParser parseExpression: '3 between:2      factorial and: 4+5'.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '3 between: 2 factorial and: 4 + 5'
 	
@@ -163,7 +178,7 @@ BIMessageExpressionTest >> testKeywordNoExtraSpacesAfter [
 
 	| expr source |
 	expr := RBParser parseExpression: '2 between: 1 and: 3          '.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '2 between: 1 and: 3'
 	
@@ -174,7 +189,7 @@ BIMessageExpressionTest >> testKeywordNoExtraSpacesBefore [
 
 	| expr source |
 	expr := RBParser parseExpression: '   2 between: 1 and: 3'.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '2 between: 1 and: 3'
 	
@@ -185,7 +200,7 @@ BIMessageExpressionTest >> testKeywordNoExtraSpacesBetween [
 
 	| expr source |
 	expr := RBParser parseExpression: '2      between:     1   and:    3'.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '2 between: 1 and: 3'
 	
@@ -252,7 +267,7 @@ BIMessageExpressionTest >> testTraditionalBinaryPrecedence3 [
 BIMessageExpressionTest >> testUnaryFormatReceiver [
 
 	| expr source |
-	expr := RBParser parseExpression: '[1] value'.
+	expr := RBParser parseExpression: '	[1] value'.
 	configurationSelector := #emptyDefaultConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '[ 1 ] value'
@@ -264,7 +279,7 @@ BIMessageExpressionTest >> testUnaryNoExtraSpacesAfter [
 
 	| expr source |
 	expr := RBParser parseExpression: 'Transcript cr        '.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: 'Transcript cr'
 	
@@ -275,7 +290,7 @@ BIMessageExpressionTest >> testUnaryNoExtraSpacesBefore [
 
 	| expr source |
 	expr := RBParser parseExpression: '   Transcript cr'.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: 'Transcript cr'
 	
@@ -286,7 +301,7 @@ BIMessageExpressionTest >> testUnaryNoExtraSpacesBetween [
 
 	| expr source |
 	expr := RBParser parseExpression: 'Transcript        cr'.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: 'Transcript cr'
 	
@@ -297,7 +312,7 @@ BIMessageExpressionTest >> testUnaryNoExtraSpacesBetween2 [
 
 	| expr source |
 	expr := RBParser parseExpression: '2           factorial              factorial'.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '2 factorial factorial'
 	

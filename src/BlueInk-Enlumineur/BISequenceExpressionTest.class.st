@@ -5,14 +5,41 @@ Class {
 }
 
 { #category : #configurations }
+BISequenceExpressionTest >> basicConfiguration [ 
+
+	^ self contextClass basicNew
+	formatCommentWithStatements:true;
+	indentString: '	';
+	newLinesAfterTemporaries:0;
+	retainBlankLinesBeforeComments:false;
+	useBasicCommentFormat:false;
+	maxLineLength:50;
+	retainBlankLinesBetweenStatements:false;
+	minimumNewLinesBetweenStatements:0;
+	periodsAtEndOfBlock:false;
+	periodsAtEndOfMethod:false
+]
+
+{ #category : #configurations }
 BISequenceExpressionTest >> dontRetainBlankLinesBeforeCommentsConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
 			BIPrettyPrinterContext new storeOn: s]"
 
-	^ self contextClass new
-		retainBlankLinesBeforeComments: false
+
+		
+	^ self contextClass basicNew
+	retainBlankLinesBeforeComments:false;
+	formatCommentWithStatements:true;
+	indentString: '	';
+	newLinesAfterTemporaries:0;
+	useBasicCommentFormat:false;
+	maxLineLength:50;
+	retainBlankLinesBetweenStatements:false;
+	minimumNewLinesBetweenStatements:0;
+	periodsAtEndOfBlock:false;
+	periodsAtEndOfMethod:false
 ]
 
 { #category : #configurations }
@@ -22,20 +49,90 @@ BISequenceExpressionTest >> dontRetainBlankLinesBetweenStatementsConfiguration [
 	" String streamContents: [:s |
 			BIPrettyPrinterContext new storeOn: s]"
 
-	^ self contextClass new
-	retainBlankLinesBetweenStatements: false
+	^ self contextClass basicNew
+	retainBlankLinesBetweenStatements: false;
+	retainBlankLinesBeforeComments:false;
+	formatCommentWithStatements:true;
+	indentString: '	';
+	newLinesAfterTemporaries:0;
+	useBasicCommentFormat:false;
+	maxLineLength:50;
+	minimumNewLinesBetweenStatements:0;
+	periodsAtEndOfBlock:false;
+	periodsAtEndOfMethod:false
 ]
 
 { #category : #configurations }
-BISequenceExpressionTest >> periodAsTerminatorBlockConfiguration [
+BISequenceExpressionTest >> newLineAfterStatementConfiguration [
+
+	^ self contextClass basicNew
+	minimumNewLinesBetweenStatements:1;
+	formatCommentWithStatements:true;
+	indentString: '	';
+	newLinesAfterTemporaries:0;
+	retainBlankLinesBeforeComments:false;
+	useBasicCommentFormat:false;
+	maxLineLength:50;
+	retainBlankLinesBetweenStatements:false;
+	periodsAtEndOfBlock:false;
+	periodsAtEndOfMethod:false
+]
+
+{ #category : #configurations }
+BISequenceExpressionTest >> newLineAfterTemporariesConfiguration [
+
+	^ self contextClass basicNew
+	formatCommentWithStatements:true;
+	indentString: '	';
+	newLinesAfterTemporaries:1
+]
+
+{ #category : #configurations }
+BISequenceExpressionTest >> periodAsTerminatorConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
 			BIPrettyPrinterContext new storeOn: s]"
 
-	^ self contextClass new
+	^ self contextClass basicNew
 	periodsAtEndOfBlock:true;
-	periodsAtEndOfMethod:true
+	periodsAtEndOfMethod:true;
+	formatCommentWithStatements:true;
+	indentString: '	';
+	newLinesAfterTemporaries:0;
+	retainBlankLinesBeforeComments:false;
+	useBasicCommentFormat:false;
+	maxLineLength:50;
+	retainBlankLinesBetweenStatements:false;
+	minimumNewLinesBetweenStatements:0;
+	stringInsideBlocks: ' ';
+	lineUpBlockBrackets: true;
+	multiLineMessages:Array new;
+	oneLineMessages:Array new;
+	numberOfArgumentsForMultiLine:2;
+	newLineBeforeFirstKeyword:false
+]
+
+{ #category : #configurations }
+BISequenceExpressionTest >> periodNotAsTerminatorConfiguration [ 
+
+	^ self contextClass basicNew
+	periodsAtEndOfBlock:false;
+	periodsAtEndOfMethod:false;
+	formatCommentWithStatements:true;
+	indentString: '	';
+	newLinesAfterTemporaries:0;
+	retainBlankLinesBeforeComments:false;
+	useBasicCommentFormat:false;
+	maxLineLength:50;
+	retainBlankLinesBetweenStatements:false;
+	minimumNewLinesBetweenStatements:0;
+	stringInsideBlocks: ' ';
+	lineUpBlockBrackets: true;
+	multiLineMessages:Array new;
+	oneLineMessages:Array new;
+	numberOfArgumentsForMultiLine:2;
+	newLineBeforeFirstKeyword:false
 ]
 
 { #category : #configurations }
@@ -45,8 +142,17 @@ BISequenceExpressionTest >> retainBlankLinesBeforeCommentsConfiguration [
 	" String streamContents: [:s |
 			BIPrettyPrinterContext new storeOn: s]"
 
-	^ self contextClass new
-		retainBlankLinesBeforeComments: true
+	^ self contextClass basicNew
+	retainBlankLinesBeforeComments:true;
+	formatCommentWithStatements:true;
+	indentString: '	';
+	newLinesAfterTemporaries:0;
+	useBasicCommentFormat:false;
+	maxLineLength:50;
+	retainBlankLinesBetweenStatements:false;
+	minimumNewLinesBetweenStatements:0;
+	periodsAtEndOfBlock:false;
+	periodsAtEndOfMethod:false
 ]
 
 { #category : #configurations }
@@ -56,43 +162,37 @@ BISequenceExpressionTest >> retainBlankLinesBetweenStatementsConfiguration [
 	" String streamContents: [:s |
 			BIPrettyPrinterContext new storeOn: s]"
 
-	^ self contextClass new
-	retainBlankLinesBetweenStatements: true
-]
-
-{ #category : #tests }
-BISequenceExpressionTest >> testCommentAfterTemporaries [
-	| expr source |
-	expr := RBParser parseExpression: '|a b| "comment"'.
-	configurationSelector := #emptyDefaultConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'| a b |
-"comment"
-'
+	^ self contextClass basicNew
+	retainBlankLinesBetweenStatements: true;
+	retainBlankLinesBeforeComments:false;
+	formatCommentWithStatements:true;
+	indentString: '	';
+	newLinesAfterTemporaries:0;
+	useBasicCommentFormat:false;
+	maxLineLength:50;
+	minimumNewLinesBetweenStatements:0;
+	periodsAtEndOfBlock:false;
+	periodsAtEndOfMethod:false
 ]
 
 { #category : #tests }
 BISequenceExpressionTest >> testCommentBetweenStatements [
 	| expr source |
-	expr := RBParser parseExpression: '|a b| a := 1. "comment" b := 2'.
-	configurationSelector := #emptyDefaultConfiguration.
+	expr := RBParser parseExpression: '|a b| a := 1."comment"b := 2'.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
-'| a b |
-a := 1.	"comment"
-b := 2'
+'| a b |a := 1.	"comment" b := 2'
 ]
 
 { #category : #tests }
 BISequenceExpressionTest >> testCommentBetweenTemporariesAndStatement [
 	| expr source |
 	expr := RBParser parseExpression: '|a b| "comment" a := 1'.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
-'| a b |
-"comment"
+'| a b |"comment"
 a := 1'
 ]
 
@@ -101,14 +201,11 @@ BISequenceExpressionTest >> testDontRetainBlankLinesBeforeComments [
 	| expr source |
 	expr := RBParser parseExpression: '|a b|
 	a :=1.
-	"Comment"
-	b :=2'.
+	"Comment" b :=2'.
 	configurationSelector := #dontRetainBlankLinesBeforeCommentsConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
-'| a b |
-a := 1.	"Comment"
-b := 2'
+'| a b |a := 1.	"Comment" b := 2'
 ]
 
 { #category : #tests }
@@ -122,92 +219,80 @@ BISequenceExpressionTest >> testDontRetainBlankLinesBetweenStatements [
 	configurationSelector := #dontRetainBlankLinesBetweenStatementsConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
-'| a b |
-a := 1.
-b := a'
+'| a b |a := 1. b := a'
 ]
 
 { #category : #tests }
 BISequenceExpressionTest >> testFormatEachStatement [
 	| expr source |
-	expr := RBParser parseExpression:
-'|a b|
-a:=1.
-b:=a'.
-	configurationSelector := #emptyDefaultConfiguration.
+	expr := RBParser parseExpression:'|a b|a:=1.b:=a'.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
-'| a b |
-a := 1.
-b := a'
+'| a b |a := 1. b := a'
 ]
 
 { #category : #tests }
-BISequenceExpressionTest >> testNewLineAfterEachStatement [
+BISequenceExpressionTest >> testLineBetweenTemporariesAndComment [
+	| expr source |
+	expr := RBParser parseExpression: '|a b| "comment"'.
+	configurationSelector := #newLineAfterTemporariesConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'| a b |
+"comment"
+'
+]
+
+{ #category : #tests }
+BISequenceExpressionTest >> testNewLineBetweenStatement [
 	| expr source |
 	expr := RBParser parseExpression: '|a b| a := 1. b := a'.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #newLineAfterStatementConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
-'| a b |
-a := 1.
+'| a b |a := 1.
 b := a'
-]
-
-{ #category : #tests }
-BISequenceExpressionTest >> testNewLineForStatements [
-	| expr source |
-	expr := RBParser parseExpression: '|a b| a:=2.b:=3'.
-	configurationSelector := #emptyDefaultConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'| a b |
-a := 2.
-b := 3'
 ]
 
 { #category : #tests }
 BISequenceExpressionTest >> testNoPeriodAtEndOfBlock [
 	| expr source |
 	expr := RBParser parseExpression: '|a b| [1.].'.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #periodNotAsTerminatorConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
-'| a b |
-[ 1 ]'
+'| a b |[ 1 ]'
 ]
 
 { #category : #tests }
 BISequenceExpressionTest >> testNoPeriodAtEndOfMethode [
 	| expr source |
 	expr := RBParser parseExpression: '|a b| 6 factorial'.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #periodNotAsTerminatorConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
-'| a b |
-6 factorial'
+'| a b |6 factorial'
 ]
 
 { #category : #tests }
 BISequenceExpressionTest >> testPeriodAtEndOfBlock [
 	| expr source |
 	expr := RBParser parseExpression: '|a b| [1.].'.
-	configurationSelector := #periodAsTerminatorBlockConfiguration.
+	configurationSelector := #periodAsTerminatorConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
-'| a b |
-[ 1. ].'
+'| a b |[ 1. ].'
 ]
 
 { #category : #tests }
 BISequenceExpressionTest >> testPeriodAtEndOfMethode [
 	| expr source |
 	expr := RBParser parseExpression: '|a b| 6 factorial'.
-	configurationSelector := #periodAsTerminatorBlockConfiguration.
+	configurationSelector := #periodAsTerminatorConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
-'| a b |
-6 factorial.'
+'| a b |6 factorial.'
 ]
 
 { #category : #tests }
@@ -220,10 +305,8 @@ BISequenceExpressionTest >> testRetainBlankLinesBeforeComments [
 	configurationSelector := #retainBlankLinesBeforeCommentsConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
-'| a b |
-a := 1.
-"Comment"
-b := 2'
+'| a b |a := 1.
+"Comment" b := 2'
 ]
 
 { #category : #tests }
@@ -238,8 +321,7 @@ BISequenceExpressionTest >> testRetainBlankLinesBetweenStatements [
 	configurationSelector := #retainBlankLinesBetweenStatementsConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
-'| a b |
-a := 1.
+'| a b |a := 1.
 
 b := a'
 ]
@@ -256,8 +338,7 @@ BISequenceExpressionTest >> testRetainBlankLinesBetweenStatements2 [
 	configurationSelector := #retainBlankLinesBetweenStatementsConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
-'| a b |
-a := 1.
+'| a b |a := 1.
 
 
 b := a'
@@ -273,7 +354,6 @@ BISequenceExpressionTest >> testRetainBlankLinesBetweenStatements3 [
 	configurationSelector := #retainBlankLinesBetweenStatementsConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
-'| a b |
-a := 1.
+'| a b |a := 1.
 b := a'
 ]

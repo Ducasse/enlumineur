@@ -30,7 +30,7 @@ BIArrayExpressionTest >> maxLineLengthConfiguration [
 ]
 
 { #category : #configurations }
-BIArrayExpressionTest >> periodAsTerminatorBlockConfiguration [
+BIArrayExpressionTest >> periodAsTerminatorConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -113,7 +113,7 @@ BIArrayExpressionTest >> testNoSpaceAroundBrackets [
 BIArrayExpressionTest >> testPeriodAtEndOfBlock [
 	| expr source |
 	expr := RBParser parseExpression: '{[1]}'.
-	configurationSelector := #periodAsTerminatorBlockConfiguration.
+	configurationSelector := #periodAsTerminatorConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '{[1.].}'
 ]

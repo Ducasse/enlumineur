@@ -4,12 +4,19 @@ Class {
 	#category : #'BlueInk-Enlumineur'
 }
 
+{ #category : #configurations }
+BILiteralArrayExpressionTest >> basicConfiguration [
+
+	^ self contextClass basicNew
+	formatCommentWithStatements:false
+]
+
 { #category : #tests }
 BILiteralArrayExpressionTest >> testByteArrayParenthesis [
 
 	| expr source |
 	expr := RBParser parseExpression: '#[1 2 3]'.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '#[1 2 3]'
 ]
@@ -19,7 +26,7 @@ BILiteralArrayExpressionTest >> testNoExtraSpaceArroundParenthesis [
 
 	| expr source |
 	expr := RBParser parseExpression: '#(  1 2 3    )  '.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '#(1 2 3)'
 ]
@@ -29,7 +36,7 @@ BILiteralArrayExpressionTest >> testNoExtraSpaceArroundParenthesis2 [
 
 	| expr source |
 	expr := RBParser parseExpression: '#[  1 2 3    ]  '.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '#[1 2 3]'
 ]
@@ -39,7 +46,7 @@ BILiteralArrayExpressionTest >> testNoExtraSpaceBetweenValue [
 
 	| expr source |
 	expr := RBParser parseExpression: '#(1     2       3)'.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '#(1 2 3)'
 ]
@@ -49,7 +56,7 @@ BILiteralArrayExpressionTest >> testNoExtraSpaceBetweenValue2 [
 
 	| expr source |
 	expr := RBParser parseExpression: '#[1     2       3]'.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '#[1 2 3]'
 ]

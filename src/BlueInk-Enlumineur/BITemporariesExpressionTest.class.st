@@ -11,8 +11,24 @@ BITemporariesExpressionTest >> basicCommentFormatConfiguration [
 	" String streamContents: [:s |
 			BIPrettyPrinterContext new storeOn: s]"
 
-	^ self contextClass new
-		useBasicCommentFormat: true
+	^ self contextClass basicNew
+	useBasicCommentFormat: true;
+	formatCommentWithStatements:true;
+	indentString: '	';
+	newLinesAfterTemporaries:0;
+	retainBlankLinesBeforeComments:false
+]
+
+{ #category : #configurations }
+BITemporariesExpressionTest >> commentWithStatementsConfiguration [
+
+	^ self contextClass basicNew
+	formatCommentWithStatements:true;
+	indentString: '	';
+	newLinesAfterTemporaries:0;
+	retainBlankLinesBeforeComments:false;
+	useBasicCommentFormat:false;
+	maxLineLength:50
 ]
 
 { #category : #configurations }
@@ -22,8 +38,13 @@ BITemporariesExpressionTest >> dontRetainBlankLinesBeforeComments [
 	" String streamContents: [:s |
 			BIPrettyPrinterContext new storeOn: s]"
 
-	^ self contextClass new
-		retainBlankLinesBeforeComments: false
+	^ self contextClass basicNew
+		retainBlankLinesBeforeComments: false;
+		useBasicCommentFormat: false;
+		formatCommentWithStatements:false;
+		indentString: '	';
+		newLinesAfterTemporaries:0;
+		retainBlankLinesBeforeComments:false
 ]
 
 { #category : #configurations }
@@ -32,9 +53,13 @@ BITemporariesExpressionTest >> newLinesAfterTemporariesConfiguration [
 
 	" String streamContents: [:s |
 			BIPrettyPrinterContext new storeOn: s]"
-
-	^ self contextClass new
-		newLinesAfterTemporaries: 1.
+		
+	^ self contextClass basicNew
+		newLinesAfterTemporaries: 1;
+		useBasicCommentFormat: false;
+		formatCommentWithStatements:false;
+		indentString: '	';
+		retainBlankLinesBeforeComments:false
 ]
 
 { #category : #configurations }
@@ -44,8 +69,12 @@ BITemporariesExpressionTest >> noNewLinesAfterTemporariesConfiguration [
 	" String streamContents: [:s |
 			BIPrettyPrinterContext new storeOn: s]"
 
-	^ self contextClass new
-		newLinesAfterTemporaries: 0.
+	^ self contextClass basicNew
+		newLinesAfterTemporaries: 0;
+		useBasicCommentFormat: false;
+		formatCommentWithStatements:false;
+		indentString: '	';
+		retainBlankLinesBeforeComments:false
 ]
 
 { #category : #configurations }
@@ -55,8 +84,13 @@ BITemporariesExpressionTest >> notBasicCommentFormatConfiguration [
 	" String streamContents: [:s |
 			BIPrettyPrinterContext new storeOn: s]"
 
-	^ self contextClass new
-		useBasicCommentFormat: false
+	^ self contextClass basicNew
+	useBasicCommentFormat: false;
+	formatCommentWithStatements:true;
+	indentString: '	';
+	newLinesAfterTemporaries:0;
+	retainBlankLinesBeforeComments:false;
+	maxLineLength: 50
 ]
 
 { #category : #configurations }
@@ -65,9 +99,13 @@ BITemporariesExpressionTest >> retainBlankLinesBeforeComments [
 
 	" String streamContents: [:s |
 			BIPrettyPrinterContext new storeOn: s]"
-
-	^ self contextClass new
-		retainBlankLinesBeforeComments: true
+	^ self contextClass basicNew
+		newLinesAfterTemporaries: 1;
+		useBasicCommentFormat: false;
+		formatCommentWithStatements:true;
+		maxLineLength:50;
+		indentString: '	';
+		retainBlankLinesBeforeComments:true
 ]
 
 { #category : #configurations }
@@ -77,36 +115,36 @@ BITemporariesExpressionTest >> spaceForTemporariesConfiguration [
 	" String streamContents: [:s |
 			BIPrettyPrinterContext new storeOn: s]"
 
-	^ self contextClass new
-		newLinesAfterTemporaries: 0.
+	^ self contextClass basicNew
+		newLinesAfterTemporaries: 0;
+		useBasicCommentFormat: false;
+		formatCommentWithStatements:true;
+		maxLineLength:50;
+		indentString: '	';
+		retainBlankLinesBeforeComments:true
 ]
 
 { #category : #tests }
 BITemporariesExpressionTest >> testCommentBasicFormat [
 
 	| expr source |
-	expr := RBParser parseExpression: ' | d 
-	"    comment     " e |'.
+	expr := RBParser parseExpression: ' | d "    comment     " e |'.
 	configurationSelector := #basicCommentFormatConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
-'| d
-"    comment     " e |
-'
+'| d	"    comment     " e |'
 ]
 
 { #category : #tests }
 BITemporariesExpressionTest >> testCommentNotBasicFormat [
 
 	| expr source |
-	expr := RBParser parseExpression: ' | d 
-	"    comment     " e |'.
+	expr := RBParser parseExpression: ' | d "    comment     " e |'.
 	configurationSelector := #notBasicCommentFormatConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
-'| d
-"comment     " e |
-'
+'| d	"comment     
+" e |'
 ]
 
 { #category : #tests }
@@ -118,8 +156,8 @@ BITemporariesExpressionTest >> testDontRetainBlankLinesBeforeComments [
 	configurationSelector := #dontRetainBlankLinesBeforeComments.
 	source := self formatter format: expr.
 	self assert: source equals:
-'| d	"comment" e |
-'
+'| d"comment"
+ e |'
 ]
 
 { #category : #tests }
@@ -133,9 +171,8 @@ BITemporariesExpressionTest >> testDontRetainBlankLinesBeforeComments2 [
 	configurationSelector := #dontRetainBlankLinesBeforeComments.
 	source := self formatter format: expr.
 	self assert: source equals:
-'| d	"comment" e |
-'
-	
+'| d"comment"
+ e |'
 ]
 
 { #category : #tests }
@@ -233,10 +270,8 @@ BITemporariesExpressionTest >> testTabBetweenVarAndComment [
 
 	| expr source |
 	expr := RBParser parseExpression: ' | d "comment" |'.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #commentWithStatementsConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
-'| d	"comment" |
-'
-	
+'| d	"comment" |'
 ]
