@@ -8,15 +8,15 @@ Class {
 BIMessageExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
-	indentString: '	';
-	formatCommentWithStatements:false;
-	multiLineMessages:Array new;
-	oneLineMessages:Array new;
-	numberOfArgumentsForMultiLine:10;
-	indentsForKeywords: 0;
-	maxLineLength: 50;
-	newLineBeforeFirstKeyword:false;
-	keepBlockInMessage:false
+		indentString: '	';
+		formatCommentWithStatements:false;
+		multiLineMessages:Array new;
+		oneLineMessages:Array new;
+		numberOfArgumentsForMultiLine:10;
+		indentsForKeywords: 0;
+		maxLineLength: 50;
+		newLineBeforeFirstKeyword:false;
+		keepBlockInMessage:false
 ]
 
 { #category : #configurations }
@@ -27,15 +27,15 @@ BIMessageExpressionTest >> noIdentsForKeyWordConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 	
 	^ self contextClass basicNew
-	indentString: '	';
-	formatCommentWithStatements:false;
-	multiLineMessages:Array new;
-	oneLineMessages:Array new;
-	maxLineLength: 50;
-	newLineBeforeFirstKeyword:false;
-	keepBlockInMessage:false;
-	numberOfArgumentsForMultiLine:1;
-	indentsForKeywords: 0
+		indentString: '	';
+		formatCommentWithStatements:false;
+		multiLineMessages:Array new;
+		oneLineMessages:Array new;
+		maxLineLength: 50;
+		newLineBeforeFirstKeyword:false;
+		keepBlockInMessage:false;
+		numberOfArgumentsForMultiLine:1;
+		indentsForKeywords: 0
 ]
 
 { #category : #configurations }
@@ -46,15 +46,15 @@ BIMessageExpressionTest >> oneArgumentPerLineConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 	
 	^ self contextClass basicNew
-	indentString: '	';
-	formatCommentWithStatements:false;
-	multiLineMessages:Array new;
-	oneLineMessages:Array new;
-	numberOfArgumentsForMultiLine:1;
-	indentsForKeywords: 0;
-	maxLineLength: 50;
-	newLineBeforeFirstKeyword:false;
-	keepBlockInMessage:false
+		indentString: '	';
+		formatCommentWithStatements:false;
+		multiLineMessages:Array new;
+		oneLineMessages:Array new;
+		numberOfArgumentsForMultiLine:1;
+		indentsForKeywords: 0;
+		maxLineLength: 50;
+		newLineBeforeFirstKeyword:false;
+		keepBlockInMessage:false
 ]
 
 { #category : #configurations }
@@ -65,8 +65,8 @@ BIMessageExpressionTest >> oneIdentsForKeyWordConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass new
-	numberOfArgumentsForMultiLine:1;
-	indentsForKeywords: 1
+		numberOfArgumentsForMultiLine:1;
+		indentsForKeywords: 1
 ]
 
 { #category : #tests }

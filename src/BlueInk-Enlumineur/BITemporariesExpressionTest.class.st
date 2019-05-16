@@ -23,12 +23,12 @@ BITemporariesExpressionTest >> basicCommentFormatConfiguration [
 BITemporariesExpressionTest >> commentWithStatementsConfiguration [
 
 	^ self contextClass basicNew
-	formatCommentWithStatements:true;
-	indentString: '	';
-	newLinesAfterTemporaries:0;
-	retainBlankLinesBeforeComments:false;
-	useBasicCommentFormat:false;
-	maxLineLength:50
+		formatCommentWithStatements:true;
+		indentString: '	';
+		newLinesAfterTemporaries:0;
+		retainBlankLinesBeforeComments:false;
+		useBasicCommentFormat:false;
+		maxLineLength:50
 ]
 
 { #category : #configurations }
@@ -85,12 +85,12 @@ BITemporariesExpressionTest >> notBasicCommentFormatConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-	useBasicCommentFormat: false;
-	formatCommentWithStatements:true;
-	indentString: '	';
-	newLinesAfterTemporaries:0;
-	retainBlankLinesBeforeComments:false;
-	maxLineLength: 50
+		useBasicCommentFormat: false;
+		formatCommentWithStatements:true;
+		indentString: '	';
+		newLinesAfterTemporaries:0;
+		retainBlankLinesBeforeComments:false;
+		maxLineLength: 50
 ]
 
 { #category : #configurations }

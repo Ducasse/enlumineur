@@ -8,16 +8,16 @@ Class {
 BISequenceExpressionTest >> basicConfiguration [ 
 
 	^ self contextClass basicNew
-	formatCommentWithStatements:true;
-	indentString: '	';
-	newLinesAfterTemporaries:0;
-	retainBlankLinesBeforeComments:false;
-	useBasicCommentFormat:false;
-	maxLineLength:50;
-	retainBlankLinesBetweenStatements:false;
-	minimumNewLinesBetweenStatements:0;
-	periodsAtEndOfBlock:false;
-	periodsAtEndOfMethod:false
+		formatCommentWithStatements:true;
+		indentString: '	';
+		newLinesAfterTemporaries:0;
+		retainBlankLinesBeforeComments:false;
+		useBasicCommentFormat:false;
+		maxLineLength:50;
+		retainBlankLinesBetweenStatements:false;
+		minimumNewLinesBetweenStatements:0;
+		periodsAtEndOfBlock:false;
+		periodsAtEndOfMethod:false
 ]
 
 { #category : #configurations }
@@ -30,16 +30,16 @@ BISequenceExpressionTest >> dontRetainBlankLinesBeforeCommentsConfiguration [
 
 		
 	^ self contextClass basicNew
-	retainBlankLinesBeforeComments:false;
-	formatCommentWithStatements:true;
-	indentString: '	';
-	newLinesAfterTemporaries:0;
-	useBasicCommentFormat:false;
-	maxLineLength:50;
-	retainBlankLinesBetweenStatements:false;
-	minimumNewLinesBetweenStatements:0;
-	periodsAtEndOfBlock:false;
-	periodsAtEndOfMethod:false
+		retainBlankLinesBeforeComments:false;
+		formatCommentWithStatements:true;
+		indentString: '	';
+		newLinesAfterTemporaries:0;
+		useBasicCommentFormat:false;
+		maxLineLength:50;
+		retainBlankLinesBetweenStatements:false;
+		minimumNewLinesBetweenStatements:0;
+		periodsAtEndOfBlock:false;
+		periodsAtEndOfMethod:false
 ]
 
 { #category : #configurations }
@@ -50,41 +50,41 @@ BISequenceExpressionTest >> dontRetainBlankLinesBetweenStatementsConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-	retainBlankLinesBetweenStatements: false;
-	retainBlankLinesBeforeComments:false;
-	formatCommentWithStatements:true;
-	indentString: '	';
-	newLinesAfterTemporaries:0;
-	useBasicCommentFormat:false;
-	maxLineLength:50;
-	minimumNewLinesBetweenStatements:0;
-	periodsAtEndOfBlock:false;
-	periodsAtEndOfMethod:false
+		retainBlankLinesBetweenStatements: false;
+		retainBlankLinesBeforeComments:false;
+		formatCommentWithStatements:true;
+		indentString: '	';
+		newLinesAfterTemporaries:0;
+		useBasicCommentFormat:false;
+		maxLineLength:50;
+		minimumNewLinesBetweenStatements:0;
+		periodsAtEndOfBlock:false;
+		periodsAtEndOfMethod:false
 ]
 
 { #category : #configurations }
 BISequenceExpressionTest >> newLineAfterStatementConfiguration [
 
 	^ self contextClass basicNew
-	minimumNewLinesBetweenStatements:1;
-	formatCommentWithStatements:true;
-	indentString: '	';
-	newLinesAfterTemporaries:0;
-	retainBlankLinesBeforeComments:false;
-	useBasicCommentFormat:false;
-	maxLineLength:50;
-	retainBlankLinesBetweenStatements:false;
-	periodsAtEndOfBlock:false;
-	periodsAtEndOfMethod:false
+		minimumNewLinesBetweenStatements:1;
+		formatCommentWithStatements:true;
+		indentString: '	';
+		newLinesAfterTemporaries:0;
+		retainBlankLinesBeforeComments:false;
+		useBasicCommentFormat:false;
+		maxLineLength:50;
+		retainBlankLinesBetweenStatements:false;
+		periodsAtEndOfBlock:false;
+		periodsAtEndOfMethod:false
 ]
 
 { #category : #configurations }
 BISequenceExpressionTest >> newLineAfterTemporariesConfiguration [
 
 	^ self contextClass basicNew
-	formatCommentWithStatements:true;
-	indentString: '	';
-	newLinesAfterTemporaries:1
+		formatCommentWithStatements:true;
+		indentString: '	';
+		newLinesAfterTemporaries:1
 ]
 
 { #category : #configurations }
@@ -95,44 +95,44 @@ BISequenceExpressionTest >> periodAsTerminatorConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-	periodsAtEndOfBlock:true;
-	periodsAtEndOfMethod:true;
-	formatCommentWithStatements:true;
-	indentString: '	';
-	newLinesAfterTemporaries:0;
-	retainBlankLinesBeforeComments:false;
-	useBasicCommentFormat:false;
-	maxLineLength:50;
-	retainBlankLinesBetweenStatements:false;
-	minimumNewLinesBetweenStatements:0;
-	stringInsideBlocks: ' ';
-	lineUpBlockBrackets: true;
-	multiLineMessages:Array new;
-	oneLineMessages:Array new;
-	numberOfArgumentsForMultiLine:2;
-	newLineBeforeFirstKeyword:false
+		periodsAtEndOfBlock:true;
+		periodsAtEndOfMethod:true;
+		formatCommentWithStatements:true;
+		indentString: '	';
+		newLinesAfterTemporaries:0;
+		retainBlankLinesBeforeComments:false;
+		useBasicCommentFormat:false;
+		maxLineLength:50;
+		retainBlankLinesBetweenStatements:false;
+		minimumNewLinesBetweenStatements:0;
+		stringInsideBlocks: ' ';
+		lineUpBlockBrackets: true;
+		multiLineMessages:Array new;
+		oneLineMessages:Array new;
+		numberOfArgumentsForMultiLine:2;
+		newLineBeforeFirstKeyword:false
 ]
 
 { #category : #configurations }
 BISequenceExpressionTest >> periodNotAsTerminatorConfiguration [ 
 
 	^ self contextClass basicNew
-	periodsAtEndOfBlock:false;
-	periodsAtEndOfMethod:false;
-	formatCommentWithStatements:true;
-	indentString: '	';
-	newLinesAfterTemporaries:0;
-	retainBlankLinesBeforeComments:false;
-	useBasicCommentFormat:false;
-	maxLineLength:50;
-	retainBlankLinesBetweenStatements:false;
-	minimumNewLinesBetweenStatements:0;
-	stringInsideBlocks: ' ';
-	lineUpBlockBrackets: true;
-	multiLineMessages:Array new;
-	oneLineMessages:Array new;
-	numberOfArgumentsForMultiLine:2;
-	newLineBeforeFirstKeyword:false
+		periodsAtEndOfBlock:false;
+		periodsAtEndOfMethod:false;
+		formatCommentWithStatements:true;
+		indentString: '	';
+		newLinesAfterTemporaries:0;
+		retainBlankLinesBeforeComments:false;
+		useBasicCommentFormat:false;
+		maxLineLength:50;
+		retainBlankLinesBetweenStatements:false;
+		minimumNewLinesBetweenStatements:0;
+		stringInsideBlocks: ' ';
+		lineUpBlockBrackets: true;
+		multiLineMessages:Array new;
+		oneLineMessages:Array new;
+		numberOfArgumentsForMultiLine:2;
+		newLineBeforeFirstKeyword:false
 ]
 
 { #category : #configurations }
@@ -143,16 +143,16 @@ BISequenceExpressionTest >> retainBlankLinesBeforeCommentsConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-	retainBlankLinesBeforeComments:true;
-	formatCommentWithStatements:true;
-	indentString: '	';
-	newLinesAfterTemporaries:0;
-	useBasicCommentFormat:false;
-	maxLineLength:50;
-	retainBlankLinesBetweenStatements:false;
-	minimumNewLinesBetweenStatements:0;
-	periodsAtEndOfBlock:false;
-	periodsAtEndOfMethod:false
+		retainBlankLinesBeforeComments:true;
+		formatCommentWithStatements:true;
+		indentString: '	';
+		newLinesAfterTemporaries:0;
+		useBasicCommentFormat:false;
+		maxLineLength:50;
+		retainBlankLinesBetweenStatements:false;
+		minimumNewLinesBetweenStatements:0;
+		periodsAtEndOfBlock:false;
+		periodsAtEndOfMethod:false
 ]
 
 { #category : #configurations }
@@ -163,16 +163,16 @@ BISequenceExpressionTest >> retainBlankLinesBetweenStatementsConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-	retainBlankLinesBetweenStatements: true;
-	retainBlankLinesBeforeComments:false;
-	formatCommentWithStatements:true;
-	indentString: '	';
-	newLinesAfterTemporaries:0;
-	useBasicCommentFormat:false;
-	maxLineLength:50;
-	minimumNewLinesBetweenStatements:0;
-	periodsAtEndOfBlock:false;
-	periodsAtEndOfMethod:false
+		retainBlankLinesBetweenStatements: true;
+		retainBlankLinesBeforeComments:false;
+		formatCommentWithStatements:true;
+		indentString: '	';
+		newLinesAfterTemporaries:0;
+		useBasicCommentFormat:false;
+		maxLineLength:50;
+		minimumNewLinesBetweenStatements:0;
+		periodsAtEndOfBlock:false;
+		periodsAtEndOfMethod:false
 ]
 
 { #category : #tests }

@@ -8,8 +8,8 @@ Class {
 BIReturnExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
-	formatCommentWithStatements:false;
-	stringFollowingReturn: ' '
+		formatCommentWithStatements:false;
+		stringFollowingReturn: ' '
 ]
 
 { #category : #tests }

@@ -12,11 +12,11 @@ BIMethodeExpressionTest >> basicCommentFormatConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-	indentString: '	';
-	newLinesAfterSignature:0;
-	newLinesAfterCommentZone:0;
-	formatCommentWithStatements:false;
-	useBasicCommentFormat: true
+		indentString: '	';
+		newLinesAfterSignature:0;
+		newLinesAfterCommentZone:0;
+		formatCommentWithStatements:false;
+		useBasicCommentFormat: true
 ]
 
 { #category : #configurations }
@@ -27,14 +27,14 @@ BIMethodeExpressionTest >> basicConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-	indentString: '	';
-	newLinesAfterSignature:0;
-	newLinesAfterCommentZone:0;
-	formatCommentWithStatements:false;
-	useBasicCommentFormat: false;
-	maxLineLength: 50;
-	periodsAtEndOfBlock: false;
-	periodsAtEndOfMethod: false
+		indentString: '	';
+		newLinesAfterSignature:0;
+		newLinesAfterCommentZone:0;
+		formatCommentWithStatements:false;
+		useBasicCommentFormat: false;
+		maxLineLength: 50;
+		periodsAtEndOfBlock: false;
+		periodsAtEndOfMethod: false
 ]
 
 { #category : #configurations }
@@ -45,10 +45,10 @@ BIMethodeExpressionTest >> newLineAfterSignatureConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-	indentString: '	';
-	newLinesAfterSignature:1;
-	newLinesAfterCommentZone:0;
-	formatCommentWithStatements:false
+		indentString: '	';
+		newLinesAfterSignature:1;
+		newLinesAfterCommentZone:0;
+		formatCommentWithStatements:false
 ]
 
 { #category : #configurations }
@@ -59,15 +59,15 @@ BIMethodeExpressionTest >> newLineBetweenTopCommentsConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-	indentString: '	';
-	newLinesAfterSignature:0;
-	newLinesAfterCommentZone:0;
-	formatCommentWithStatements:false;
-	useBasicCommentFormat: false;
-	maxLineLength: 50;
-	periodsAtEndOfBlock: false;
-	periodsAtEndOfMethod: false;
-	newLinesBetweenTopComments:1
+		indentString: '	';
+		newLinesAfterSignature:0;
+		newLinesAfterCommentZone:0;
+		formatCommentWithStatements:false;
+		useBasicCommentFormat: false;
+		maxLineLength: 50;
+		periodsAtEndOfBlock: false;
+		periodsAtEndOfMethod: false;
+		newLinesBetweenTopComments:1
 ]
 
 { #category : #configurations }
@@ -78,12 +78,12 @@ BIMethodeExpressionTest >> noNewLineBetweenTopCommentsConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-	indentString: '	';
-	newLinesAfterSignature:0;
-	newLinesAfterCommentZone:0;
-	formatCommentWithStatements:false;
-	useBasicCommentFormat: true;
-	newLinesBetweenTopComments:0
+		indentString: '	';
+		newLinesAfterSignature:0;
+		newLinesAfterCommentZone:0;
+		formatCommentWithStatements:false;
+		useBasicCommentFormat: true;
+		newLinesBetweenTopComments:0
 ]
 
 { #category : #configurations }
@@ -94,11 +94,11 @@ BIMethodeExpressionTest >> noNewLinesAfterCommentConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-	indentString: '	';
-	newLinesAfterSignature:0;
-	newLinesAfterCommentZone:0;
-	formatCommentWithStatements:false;
-	useBasicCommentFormat: true
+		indentString: '	';
+		newLinesAfterSignature:0;
+		newLinesAfterCommentZone:0;
+		formatCommentWithStatements:false;
+		useBasicCommentFormat: true
 ]
 
 { #category : #configurations }
@@ -109,12 +109,12 @@ BIMethodeExpressionTest >> notBasicCommentFormatConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-	indentString: '	';
-	newLinesAfterSignature:0;
-	newLinesAfterCommentZone:0;
-	formatCommentWithStatements:false;
-	useBasicCommentFormat: false;
-	maxLineLength: 50
+		indentString: '	';
+		newLinesAfterSignature:0;
+		newLinesAfterCommentZone:0;
+		formatCommentWithStatements:false;
+		useBasicCommentFormat: false;
+		maxLineLength: 50
 ]
 
 { #category : #configurations }
@@ -125,13 +125,13 @@ BIMethodeExpressionTest >> oneNewLineAfterCommentConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-	indentString: '	';
-	newLinesAfterSignature:0;
-	newLinesAfterCommentZone:1;
-	formatCommentWithStatements:false;
-	useBasicCommentFormat:false;
-	maxLineLength:50;
-	newLinesBetweenTopComments:0
+		indentString: '	';
+		newLinesAfterSignature:0;
+		newLinesAfterCommentZone:1;
+		formatCommentWithStatements:false;
+		useBasicCommentFormat:false;
+		maxLineLength:50;
+		newLinesBetweenTopComments:0
 ]
 
 { #category : #configurations }
@@ -142,10 +142,10 @@ BIMethodeExpressionTest >> oneNewLinesAfterSignatureConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-	indentString: '	';
-	newLinesAfterSignature:1;
-	newLinesAfterCommentZone:0;
-	formatCommentWithStatements:false
+		indentString: '	';
+		newLinesAfterSignature:1;
+		newLinesAfterCommentZone:0;
+		formatCommentWithStatements:false
 ]
 
 { #category : #configurations }
@@ -156,10 +156,10 @@ BIMethodeExpressionTest >> signatureConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-	indentString: '	';
-	newLinesAfterSignature:0;
-	newLinesAfterCommentZone:0;
-	formatCommentWithStatements:false
+		indentString: '	';
+		newLinesAfterSignature:0;
+		newLinesAfterCommentZone:0;
+		formatCommentWithStatements:false
 ]
 
 { #category : #configurations }
@@ -170,11 +170,11 @@ BIMethodeExpressionTest >> signatureNotOnMultipleLinesConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-	indentString: '	';
-	newLinesAfterSignature:0;
-	newLinesAfterCommentZone:0;
-	formatCommentWithStatements:false;
-	methodSignatureOnMultipleLines: false
+		indentString: '	';
+		newLinesAfterSignature:0;
+		newLinesAfterCommentZone:0;
+		formatCommentWithStatements:false;
+		methodSignatureOnMultipleLines: false
 ]
 
 { #category : #configurations }
@@ -185,12 +185,12 @@ BIMethodeExpressionTest >> signatureOnMultipleLinesConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-	indentString: '	';
-	newLinesAfterSignature:0;
-	newLinesAfterCommentZone:0;
-	formatCommentWithStatements:false;
-	methodSignatureOnMultipleLines: true;
-selectorAndArgumentCombinedMaxSize: 2
+		indentString: '	';
+		newLinesAfterSignature:0;
+		newLinesAfterCommentZone:0;
+		formatCommentWithStatements:false;
+		methodSignatureOnMultipleLines: true;
+		selectorAndArgumentCombinedMaxSize: 2
 ]
 
 { #category : #test }

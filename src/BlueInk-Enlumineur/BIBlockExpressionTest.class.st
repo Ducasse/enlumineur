@@ -8,21 +8,21 @@ Class {
 BIBlockExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
-	stringInsideBlocks:' ';
-	periodsAtEndOfBlock:false;
-	periodsAtEndOfMethod: false;
-	lineUpBlockBrackets:false;
-	indentString: '	';
-	keepBlockInMessage:false;
-	retainBlankLinesBetweenStatements:false;
-	minimumNewLinesBetweenStatements:1;
-	multiLineMessages: Array new;
-	oneLineMessages: Array new;
-	numberOfArgumentsForMultiLine:5;
-	indentsForKeywords:1;
-	newLineBeforeFirstKeyword:false;
-	formatCommentWithStatements:true;
-	maxLineLength:50
+		stringInsideBlocks:' ';
+		periodsAtEndOfBlock:false;
+		periodsAtEndOfMethod: false;
+		lineUpBlockBrackets:false;
+		indentString: '	';
+		keepBlockInMessage:false;
+		retainBlankLinesBetweenStatements:false;
+		minimumNewLinesBetweenStatements:1;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine:5;
+		indentsForKeywords:1;
+		newLineBeforeFirstKeyword:false;
+		formatCommentWithStatements:true;
+		maxLineLength:50
 ]
 
 { #category : #hooks }
@@ -36,22 +36,23 @@ BIBlockExpressionTest >> lineUpBlockBracketsConfiguration [
 
 	" String streamContents: [:s |
 			BIPrettyPrinterContext new storeOn: s]"
+
 	^ self contextClass basicNew
-	stringInsideBlocks:' ';
-	periodsAtEndOfBlock:false;
-	periodsAtEndOfMethod: false;
-	lineUpBlockBrackets:true;
-	indentString: '	';
-	keepBlockInMessage:false;
-	retainBlankLinesBetweenStatements:false;
-	minimumNewLinesBetweenStatements:1;
-	multiLineMessages: Array new;
-	oneLineMessages: Array new;
-	numberOfArgumentsForMultiLine:5;
-	indentsForKeywords:1;
-	newLineBeforeFirstKeyword:false;
-	formatCommentWithStatements:true;
-	maxLineLength:50
+		stringInsideBlocks: ' ';
+		periodsAtEndOfBlock: false;
+		periodsAtEndOfMethod: false;
+		lineUpBlockBrackets: true;
+		indentString: '	';
+		keepBlockInMessage: false;
+		retainBlankLinesBetweenStatements: false;
+		minimumNewLinesBetweenStatements: 1;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine: 5;
+		indentsForKeywords: 1;
+		newLineBeforeFirstKeyword: false;
+		formatCommentWithStatements: true;
+		maxLineLength: 50
 ]
 
 { #category : #hooks }
@@ -72,21 +73,21 @@ BIBlockExpressionTest >> periodAtEndConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-	stringInsideBlocks:' ';
-	periodsAtEndOfBlock:true;
-	periodsAtEndOfMethod: false;
-	lineUpBlockBrackets:false;
-	indentString: '	';
-	keepBlockInMessage:false;
-	retainBlankLinesBetweenStatements:false;
-	minimumNewLinesBetweenStatements:1;
-	multiLineMessages: Array new;
-	oneLineMessages: Array new;
-	numberOfArgumentsForMultiLine:5;
-	indentsForKeywords:1;
-	newLineBeforeFirstKeyword:false;
-	formatCommentWithStatements:true;
-	maxLineLength:50
+		stringInsideBlocks:' ';
+		periodsAtEndOfBlock:true;
+		periodsAtEndOfMethod: false;
+		lineUpBlockBrackets:false;
+		indentString: '	';
+		keepBlockInMessage:false;
+		retainBlankLinesBetweenStatements:false;
+		minimumNewLinesBetweenStatements:1;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine:5;
+		indentsForKeywords:1;
+		newLineBeforeFirstKeyword:false;
+		formatCommentWithStatements:true;
+		maxLineLength:50
 ]
 
 { #category : #test }
@@ -170,7 +171,7 @@ BIBlockExpressionTest >> testNoExtraSpaceAroundBlock [
 
 	| expr source |
 	expr := self parser parseExpression: '   ',self openBracket ,'2',self closeBracket,'   '.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: self openBracket,' 2 ',self closeBracket
 ]

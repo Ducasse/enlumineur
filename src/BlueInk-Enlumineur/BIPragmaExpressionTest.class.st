@@ -8,9 +8,9 @@ Class {
 BIPragmaExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
-	formatCommentWithStatements:false;
-	maxLineLength: 50;
-	keepBlockInMessage: true
+		formatCommentWithStatements:false;
+		maxLineLength: 50;
+		keepBlockInMessage: true
 ]
 
 { #category : #tests }

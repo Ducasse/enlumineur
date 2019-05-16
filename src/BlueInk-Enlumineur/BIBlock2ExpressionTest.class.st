@@ -8,21 +8,23 @@ Class {
 BIBlock2ExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
-	stringInsideBlocks:' ';
-	periodsAtEndOfBlock:false;
-	periodsAtEndOfMethod: false;
-	lineUpBlockBrackets:false;
-	indentString: '	';
-	keepBlockInMessage:false;
-	retainBlankLinesBetweenStatements:false;
-	minimumNewLinesBetweenStatements:1;
-	multiLineMessages: Array new;
-	oneLineMessages: Array new;
-	numberOfArgumentsForMultiLine:5;
-	indentsForKeywords:1;
-	newLineBeforeFirstKeyword:false;
-	formatCommentWithStatements:true;
-	maxLineLength:50
+		stringInsideBlocks:' ';
+		periodsAtEndOfBlock:false;
+		periodsAtEndOfMethod: false;
+		lineUpBlockBrackets:false;
+		indentString: '	';
+		keepBlockInMessage:false;
+		retainBlankLinesBetweenStatements:false;
+		retainBlankLinesBeforeComments:false;
+		minimumNewLinesBetweenStatements:1;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine:5;
+		indentsForKeywords:1;
+		newLineBeforeFirstKeyword:false;
+		formatCommentWithStatements:true;
+		maxLineLength:50;
+		useBasicCommentFormat:false
 ]
 
 { #category : #test }
@@ -39,7 +41,7 @@ BIBlock2ExpressionTest >> testformatComment [
 
 	| expr source |
 	expr := RBParser parseExpression: '["  c1   " "   c2 " 2 "c3"]'.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '[ "  c1   " "   c2 " 2	"c3" ]'.
 ]

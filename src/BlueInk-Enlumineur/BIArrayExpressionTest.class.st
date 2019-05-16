@@ -8,8 +8,14 @@ Class {
 BIArrayExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
-	formatCommentWithStatements:false;
-	maxLineLength:50
+		formatCommentWithStatements:false;
+		maxLineLength:50;
+		stringInsideParentheses:'';
+		retainBlankLinesBetweenStatements:false;
+		minimumNewLinesBetweenStatements:1;
+		indentString:'	';
+		periodsAtEndOfBlock:false;
+		periodsAtEndOfMethod:false
 ]
 
 { #category : #configurations }
@@ -20,13 +26,13 @@ BIArrayExpressionTest >> maxLineLengthConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-	formatCommentWithStatements:false;
-	maxLineLength:12;
-	retainBlankLinesBetweenStatements:false;
-	minimumNewLinesBetweenStatements: 1;
-	indentString: '	';
-	periodsAtEndOfBlock:false;
-	periodsAtEndOfMethod:false
+		formatCommentWithStatements:false;
+		maxLineLength:12;
+		retainBlankLinesBetweenStatements:false;
+		minimumNewLinesBetweenStatements: 1;
+		indentString: '	';
+		periodsAtEndOfBlock:false;
+		periodsAtEndOfMethod:false
 ]
 
 { #category : #configurations }
@@ -37,15 +43,15 @@ BIArrayExpressionTest >> periodAsTerminatorConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-	formatCommentWithStatements:false;
-	maxLineLength:12;
-	retainBlankLinesBetweenStatements:false;
-	minimumNewLinesBetweenStatements: 1;
-	indentString: '	';
-	periodsAtEndOfBlock:true;
-	periodsAtEndOfMethod:true;
-	stringInsideBlocks:'';
-	lineUpBlockBrackets:false
+		formatCommentWithStatements:false;
+		maxLineLength:12;
+		retainBlankLinesBetweenStatements:false;
+		minimumNewLinesBetweenStatements: 1;
+		indentString: '	';
+		periodsAtEndOfBlock:true;
+		periodsAtEndOfMethod:true;
+		stringInsideBlocks:'';
+		lineUpBlockBrackets:false
 ]
 
 { #category : #configurations }
@@ -56,18 +62,17 @@ BIArrayExpressionTest >> periodAsTerminatorMessageConfiguration2 [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-	formatCommentWithStatements:false;
-	maxLineLength:12;
-	retainBlankLinesBetweenStatements:false;
-	minimumNewLinesBetweenStatements: 1;
-	indentString: '	';
-	periodsAtEndOfBlock:true;
-	periodsAtEndOfMethod:true;
-	
-	multiLineMessages:Array new;
-	oneLineMessages:Array new;
-	numberOfArgumentsForMultiLine:2;
-	newLineBeforeFirstKeyword:false
+		formatCommentWithStatements:false;
+		maxLineLength:12;
+		retainBlankLinesBetweenStatements:false;
+		minimumNewLinesBetweenStatements: 1;
+		indentString: '	';
+		periodsAtEndOfBlock:true;
+		periodsAtEndOfMethod:true;
+		multiLineMessages:Array new;
+		oneLineMessages:Array new;
+		numberOfArgumentsForMultiLine:2;
+		newLineBeforeFirstKeyword:false
 ]
 
 { #category : #test }
@@ -83,7 +88,7 @@ BIArrayExpressionTest >> testEmptyArray [
 BIArrayExpressionTest >> testFormatElement [
 	| expr source |
 	expr := RBParser parseExpression: ' { a:=1. b:=2 } '.
-	configurationSelector := #emptyDefaultConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
 '{(a := 1).

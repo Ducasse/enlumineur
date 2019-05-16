@@ -8,11 +8,11 @@ Class {
 BIParseErrorExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
-	formatCommentWithStatements:false;
-	retainBlankLinesBetweenStatements: false;
-	minimumNewLinesBetweenStatements:0;
-	periodsAtEndOfBlock:false;
-	periodsAtEndOfMethod:false
+		formatCommentWithStatements:false;
+		retainBlankLinesBetweenStatements: false;
+		minimumNewLinesBetweenStatements:0;
+		periodsAtEndOfBlock:false;
+		periodsAtEndOfMethod:false
 ]
 
 { #category : #tests }
