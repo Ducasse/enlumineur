@@ -25,8 +25,15 @@ BIMessageExpressionTest >> noIdentsForKeyWordConfiguration [
 
 	" String streamContents: [:s |
 			BIPrettyPrinterContext new storeOn: s]"
-
-	^ self contextClass new
+	
+	^ self contextClass basicNew
+	indentString: '	';
+	formatCommentWithStatements:false;
+	multiLineMessages:Array new;
+	oneLineMessages:Array new;
+	maxLineLength: 50;
+	newLineBeforeFirstKeyword:false;
+	keepBlockInMessage:false;
 	numberOfArgumentsForMultiLine:1;
 	indentsForKeywords: 0
 ]
@@ -37,9 +44,17 @@ BIMessageExpressionTest >> oneArgumentPerLineConfiguration [
 
 	" String streamContents: [:s |
 			BIPrettyPrinterContext new storeOn: s]"
-
-	^ self contextClass new
-	numberOfArgumentsForMultiLine:1
+	
+	^ self contextClass basicNew
+	indentString: '	';
+	formatCommentWithStatements:false;
+	multiLineMessages:Array new;
+	oneLineMessages:Array new;
+	numberOfArgumentsForMultiLine:1;
+	indentsForKeywords: 0;
+	maxLineLength: 50;
+	newLineBeforeFirstKeyword:false;
+	keepBlockInMessage:false
 ]
 
 { #category : #configurations }
@@ -69,10 +84,10 @@ BIMessageExpressionTest >> testBinaryFormatParameter [
 BIMessageExpressionTest >> testBinaryFormatReceiver [
 
 	| expr source |
-	expr := RBParser parseExpression: '[1] value: 2'.
-	configurationSelector := #emptyDefaultConfiguration.
+	expr := RBParser parseExpression: 'a:=''abc'' at: 2'.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
-	self assert: source equals: '[ 1 ] value: 2'
+	self assert: source equals: 'a := ''abc'' at: 2'
 	
 ]
 
@@ -118,7 +133,7 @@ BIMessageExpressionTest >> testBinaryOneArgumentPerLine [
 	source := self formatter format: expr.
 	self assert: source equals:
 '1
-	+ 2'
++ 2'
 ]
 
 { #category : #tests }
@@ -215,8 +230,8 @@ BIMessageExpressionTest >> testKeywordOneArgumentPerLine [
 	source := self formatter format: expr.
 	self assert: source equals:
 '2
-	between: 1
-	and: 3'
+between: 1
+and: 3'
 ]
 
 { #category : #tests }
@@ -267,10 +282,10 @@ BIMessageExpressionTest >> testTraditionalBinaryPrecedence3 [
 BIMessageExpressionTest >> testUnaryFormatReceiver [
 
 	| expr source |
-	expr := RBParser parseExpression: '	[1] value'.
-	configurationSelector := #emptyDefaultConfiguration.
+	expr := RBParser parseExpression: 'a:=1 factorial'.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
-	self assert: source equals: '[ 1 ] value'
+	self assert: source equals: 'a := 1 factorial'
 	
 ]
 
@@ -325,8 +340,19 @@ BIMessageExpressionTest >> traditionalBinaryPrecedenceConfiguration [
 	" String streamContents: [:s |
 			BIPrettyPrinterContext new storeOn: s]"
 
-	^ self contextClass new
-	traditionalBinaryPrecedenceArray: #(#($| $& $?) #($= $~ $< $>) #($- $+) #($* $/ $% $\) #($@))
+	^ self contextClass basicNew
+	indentString: '	';
+	formatCommentWithStatements:false;
+	multiLineMessages:Array new;
+	oneLineMessages:Array new;
+	numberOfArgumentsForMultiLine:10;
+	indentsForKeywords: 0;
+	maxLineLength: 50;
+	newLineBeforeFirstKeyword:false;
+	keepBlockInMessage:false;
+	useTraditionalBinaryPrecedenceForParentheses:true;
+	traditionalBinaryPrecedenceArray: #(#($| $& $?) #($= $~ $< $>) #($- $+) #($* $/ $% $\) #($@));
+	stringInsideParentheses: ''
 ]
 
 { #category : #configurations }
@@ -336,7 +362,14 @@ BIMessageExpressionTest >> twoIdentsForKeyWordConfiguration [
 	" String streamContents: [:s |
 			BIPrettyPrinterContext new storeOn: s]"
 
-	^ self contextClass new
+	^ self contextClass basicNew
+	indentString: '	';
+	formatCommentWithStatements:false;
+	multiLineMessages:Array new;
+	oneLineMessages:Array new;
 	numberOfArgumentsForMultiLine:1;
-	indentsForKeywords: 2
+	indentsForKeywords: 2;
+	maxLineLength: 50;
+	newLineBeforeFirstKeyword:false;
+	keepBlockInMessage:false
 ]

@@ -82,13 +82,12 @@ BIArrayExpressionTest >> testEmptyArray [
 { #category : #test }
 BIArrayExpressionTest >> testFormatElement [
 	| expr source |
-	expr := RBParser parseExpression: ' { [a]. [b] } '.
+	expr := RBParser parseExpression: ' { a:=1. b:=2 } '.
 	configurationSelector := #emptyDefaultConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
-'{[ a ].
-[ b ]}'
-
+'{(a := 1).
+(b := 2)}'
 ]
 
 { #category : #test }
