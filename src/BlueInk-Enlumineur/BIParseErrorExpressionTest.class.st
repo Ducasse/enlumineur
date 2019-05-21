@@ -22,7 +22,7 @@ BIParseErrorExpressionTest >> testParseError [
 	expr := RBParser parseFaultyExpression: '#(1 3 4'.
 	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
-	self assert: source equals: ''
+	self assert: source equals: '(1 3 4'
 ]
 
 { #category : #tests }
