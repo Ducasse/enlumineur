@@ -191,12 +191,10 @@ BICascadeExpressionTest >> testFormatMessage [
 BICascadeExpressionTest >> testFormatMessageAndArgument [
 	| expr source |
 	expr := RBParser parseExpression: '1 between:2 and:5; +1'.
-	configurationSelector := #newLineBeforeAndAfterCascadeConfiguration.
+	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
-'1
-	between: 2 and: 5;
-	+ 1'
+'1 between: 2 and: 5; + 1'
 ]
 
 { #category : #tests }
@@ -245,6 +243,19 @@ BICascadeExpressionTest >> testNewLineAfterCascade2 [
 'OrderedCollection new add: #a;
 	add: #b;
 	yourself'
+]
+
+{ #category : #tests }
+BICascadeExpressionTest >> testNewLineBeforeAndAfterCascade [
+	| expr source |
+	expr := RBParser parseExpression: 'Transcript cr;cr;cr'.
+	configurationSelector := #newLineBeforeAndAfterCascadeConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'Transcript
+	cr;
+	cr;
+	cr'
 ]
 
 { #category : #tests }
