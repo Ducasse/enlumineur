@@ -31,7 +31,7 @@ BIBlockExpressionTest >> closeBracket [
 ]
 
 { #category : #configurations }
-BIBlockExpressionTest >> lineUpBlockBracketsConfiguration [
+BIBlockExpressionTest >> newLineBeforeEndBracketConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -42,6 +42,31 @@ BIBlockExpressionTest >> lineUpBlockBracketsConfiguration [
 		periodsAtEndOfBlock: false;
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets: true;
+		indentString: '	';
+		keepBlockInMessage: false;
+		retainBlankLinesBetweenStatements: false;
+		minimumNewLinesBetweenStatements: 1;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine: 5;
+		indentsForKeywords: 1;
+		newLineBeforeFirstKeyword: false;
+		formatCommentWithStatements: true;
+		maxLineLength: 50
+]
+
+{ #category : #configurations }
+BIBlockExpressionTest >> noNewLineBeforeEndBracketConfiguration [
+	"Here we can control explicitely the configuration we want."
+
+	" String streamContents: [:s |
+			BIPrettyPrinterContext new storeOn: s]"
+
+	^ self contextClass basicNew
+		stringInsideBlocks: ' ';
+		periodsAtEndOfBlock: false;
+		periodsAtEndOfMethod: false;
+		lineUpBlockBrackets: false;
 		indentString: '	';
 		keepBlockInMessage: false;
 		retainBlankLinesBetweenStatements: false;
@@ -158,7 +183,7 @@ BIBlockExpressionTest >> testNewLineBeforeEndBrackets [
 	isFormattedAs:
 ' 3.
 4
-'  with: #lineUpBlockBracketsConfiguration.
+'  with: #newLineBeforeEndBracketConfiguration.
 ]
 
 { #category : #test }
@@ -185,10 +210,10 @@ BIBlockExpressionTest >> testNoExtraSpaceInside [
 { #category : #test }
 BIBlockExpressionTest >> testNoNewLineBeforeEndBrackets [
 
-	self validate: '3. 4'
+	self validate:'3. 4'  
 	isFormattedAs:
 ' 3.
-4 '
+4 '  with: #noNewLineBeforeEndBracketConfiguration.
 ]
 
 { #category : #test }
