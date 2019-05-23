@@ -20,6 +20,21 @@ BIMessageExpressionTest >> basicConfiguration [
 ]
 
 { #category : #configurations }
+BIMessageExpressionTest >> multiLineMessageConfiguration [
+
+	^ self contextClass basicNew
+		indentString: '	';
+		formatCommentWithStatements:false;
+		multiLineMessages:#(#multi:line:);
+		oneLineMessages:Array new;
+		numberOfArgumentsForMultiLine:10;
+		indentsForKeywords: 0;
+		maxLineLength: 50;
+		newLineBeforeFirstKeyword:false;
+		keepBlockInMessage:false
+]
+
+{ #category : #configurations }
 BIMessageExpressionTest >> noIdentsForKeyWordConfiguration [
 	"Here we can control explicitely the configuration we want."
 
@@ -67,6 +82,21 @@ BIMessageExpressionTest >> oneIdentsForKeyWordConfiguration [
 	^ self contextClass new
 		numberOfArgumentsForMultiLine:1;
 		indentsForKeywords: 1
+]
+
+{ #category : #configurations }
+BIMessageExpressionTest >> oneLineMessageConfiguration [
+
+	^ self contextClass basicNew
+		indentString: '	';
+		formatCommentWithStatements:false;
+		multiLineMessages:Array new;
+		oneLineMessages:#(#one:line:message:);
+		numberOfArgumentsForMultiLine:10;
+		indentsForKeywords: 0;
+		maxLineLength: 50;
+		newLineBeforeFirstKeyword:false;
+		keepBlockInMessage:false
 ]
 
 { #category : #tests }
@@ -235,6 +265,19 @@ and: 3'
 ]
 
 { #category : #tests }
+BIMessageExpressionTest >> testMultiLineMessage [
+
+	| expr source |
+	expr := RBParser parseExpression: 'foo multi:1 line:2 '.
+	configurationSelector := #multiLineMessageConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'foo
+multi: 1
+line: 2'
+]
+
+{ #category : #tests }
 BIMessageExpressionTest >> testNoIndentsForKeywords [
 
 	| expr source |
@@ -246,6 +289,17 @@ BIMessageExpressionTest >> testNoIndentsForKeywords [
 k1: 1
 k2: 2
 k3: 3'	
+]
+
+{ #category : #tests }
+BIMessageExpressionTest >> testOneLineMessage [
+
+	| expr source |
+	expr := RBParser parseExpression: 'foo one:1 line:2 message:3'.
+	configurationSelector := #oneLineMessageConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals: 'foo one: 1 line: 2 message: 3'
+	
 ]
 
 { #category : #tests }
