@@ -59,7 +59,7 @@ BIMethodeExpressionTest >> cascadeConfiguration [
 		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine:10;
 		keepBlockInMessage:true;
-		retainBlankLinesBetweenStatements:true;
+		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:1
 ]
 

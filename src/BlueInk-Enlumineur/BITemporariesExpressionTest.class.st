@@ -43,8 +43,7 @@ BITemporariesExpressionTest >> dontRetainBlankLinesBeforeComments [
 		useBasicCommentFormat: false;
 		formatCommentWithStatements:false;
 		indentString: '	';
-		newLinesAfterTemporaries:0;
-		retainBlankLinesBeforeComments:false
+		newLinesAfterTemporaries:0
 ]
 
 { #category : #configurations }
@@ -101,22 +100,6 @@ BITemporariesExpressionTest >> retainBlankLinesBeforeComments [
 			BIPrettyPrinterContext new storeOn: s]"
 	^ self contextClass basicNew
 		newLinesAfterTemporaries: 1;
-		useBasicCommentFormat: false;
-		formatCommentWithStatements:true;
-		maxLineLength:50;
-		indentString: '	';
-		retainBlankLinesBeforeComments:true
-]
-
-{ #category : #configurations }
-BITemporariesExpressionTest >> spaceForTemporariesConfiguration [
-	"Here we can control explicitely the configuration we want."
-
-	" String streamContents: [:s |
-			BIPrettyPrinterContext new storeOn: s]"
-
-	^ self contextClass basicNew
-		newLinesAfterTemporaries: 0;
 		useBasicCommentFormat: false;
 		formatCommentWithStatements:true;
 		maxLineLength:50;
