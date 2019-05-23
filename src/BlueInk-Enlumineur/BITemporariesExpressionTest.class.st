@@ -275,3 +275,32 @@ BITemporariesExpressionTest >> testTabBetweenVarAndComment [
 	self assert: source equals:
 '| d	"comment" |'
 ]
+
+{ #category : #tests }
+BITemporariesExpressionTest >> testTwoLinesAfterTemporaries [
+
+	| expr source |
+	expr := RBParser parseExpression: ' |d e|'.
+	configurationSelector := #twoLinesAfterTemporariesConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'| d e |
+
+'
+	
+]
+
+{ #category : #configurations }
+BITemporariesExpressionTest >> twoLinesAfterTemporariesConfiguration [
+	"Here we can control explicitely the configuration we want."
+
+	" String streamContents: [:s |
+			BIPrettyPrinterContext new storeOn: s]"
+		
+	^ self contextClass basicNew
+		newLinesAfterTemporaries: 2;
+		useBasicCommentFormat: false;
+		formatCommentWithStatements:false;
+		indentString: '	';
+		retainBlankLinesBeforeComments:false
+]

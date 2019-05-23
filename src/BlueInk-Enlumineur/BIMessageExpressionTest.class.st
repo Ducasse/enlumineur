@@ -35,6 +35,21 @@ BIMessageExpressionTest >> multiLineMessageConfiguration [
 ]
 
 { #category : #configurations }
+BIMessageExpressionTest >> newLineBeforeFirstKeywordConfiguration [
+
+	^ self contextClass basicNew
+		indentString: '	';
+		formatCommentWithStatements:false;
+		multiLineMessages:Array new;
+		oneLineMessages:Array new;
+		numberOfArgumentsForMultiLine:10;
+		indentsForKeywords: 0;
+		maxLineLength: 50;
+		newLineBeforeFirstKeyword:true;
+		keepBlockInMessage:false
+]
+
+{ #category : #configurations }
 BIMessageExpressionTest >> noIdentsForKeyWordConfiguration [
 	"Here we can control explicitely the configuration we want."
 
@@ -275,6 +290,18 @@ BIMessageExpressionTest >> testMultiLineMessage [
 'foo
 multi: 1
 line: 2'
+]
+
+{ #category : #tests }
+BIMessageExpressionTest >> testNewLineBeforeFirstKeyword [
+
+	| expr source |
+	expr := RBParser parseExpression: '2 between: 1 and: 3'.
+	configurationSelector := #newLineBeforeFirstKeywordConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals: 
+'2
+between: 1 and: 3'
 ]
 
 { #category : #tests }
