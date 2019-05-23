@@ -20,6 +20,28 @@ BIMessageExpressionTest >> basicConfiguration [
 ]
 
 { #category : #configurations }
+BIMessageExpressionTest >> keepBlockInMessageConfiguration [
+
+	^ self contextClass basicNew
+		indentString: '	';
+		formatCommentWithStatements:false;
+		multiLineMessages:Array new;
+		oneLineMessages:Array new;
+		numberOfArgumentsForMultiLine:10;
+		indentsForKeywords: 0;
+		maxLineLength: 20;
+		newLineBeforeFirstKeyword:false;
+		keepBlockInMessage: true;
+		stringInsideBlocks: '';
+		stringFollowingReturn: '';
+		periodsAtEndOfBlock: false;
+		periodsAtEndOfMethod: false;
+		lineUpBlockBrackets: false;
+		retainBlankLinesBetweenStatements: false;
+		minimumNewLinesBetweenStatements: 0
+]
+
+{ #category : #configurations }
 BIMessageExpressionTest >> multiLineMessageConfiguration [
 
 	^ self contextClass basicNew
@@ -212,6 +234,61 @@ BIMessageExpressionTest >> testIndentsForKeywords2 [
 ]
 
 { #category : #tests }
+BIMessageExpressionTest >> testKeepBlockInMessageMutlilineNewLine [
+
+	| expr source |
+	expr := RBParser parseExpression: 'aBoolean  ifTrue:[ Transcript cr. Transcript cr. Transcript cr]'.
+	configurationSelector := #keepBlockInMessageConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'aBoolean
+ifTrue:
+	[Transcript cr. Transcript
+	cr. Transcript cr]'
+	
+]
+
+{ #category : #tests }
+BIMessageExpressionTest >> testKeepBlockInMessageMutlilineSpace [
+
+	| expr source |
+	expr := RBParser parseExpression: 'aBoolean ifTrue:[ 12 factorial. 12 factorial. 3
+	factorial]'.
+	configurationSelector := #keepBlockInMessageConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'aBoolean
+ifTrue: [12 factorial. 12
+	factorial. 3
+	factorial]'
+]
+
+{ #category : #tests }
+BIMessageExpressionTest >> testKeepBlockInMessageNotMultilineSpace [
+
+	| expr source |
+	expr := RBParser parseExpression: 'aBoolean ifTrue:[^1]'.
+	configurationSelector := #keepBlockInMessageConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'aBoolean
+ifTrue: [^1]'
+]
+
+{ #category : #tests }
+BIMessageExpressionTest >> testKeepBlockInMessageNotMutlilineNewLine [
+
+	| expr source |
+	expr := RBParser parseExpression: 'aBoolean ifTrue:[LongLongLongExpression]'.
+	configurationSelector := #keepBlockInMessageConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'aBoolean
+ifTrue:
+	[LongLongLongExpression]'
+]
+
+{ #category : #tests }
 BIMessageExpressionTest >> testKeyWordFormatReceiver [
 
 	| expr source |
@@ -330,6 +407,19 @@ BIMessageExpressionTest >> testOneLineMessage [
 ]
 
 { #category : #tests }
+BIMessageExpressionTest >> testTooLongArgument [ 
+
+	| expr source |
+	expr := RBParser parseExpression: 'foo message: TooLongArgument'.
+	configurationSelector := #tooLongArgumentConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'foo
+message:
+	TooLongArgument'
+]
+
+{ #category : #tests }
 BIMessageExpressionTest >> testTraditionalBinaryPrecedence [
 
 	| expr source |
@@ -412,6 +502,21 @@ BIMessageExpressionTest >> testUnaryNoExtraSpacesBetween2 [
 	source := self formatter format: expr.
 	self assert: source equals: '2 factorial factorial'
 	
+]
+
+{ #category : #configurations }
+BIMessageExpressionTest >> tooLongArgumentConfiguration [
+
+	^ self contextClass basicNew
+		indentString: '	';
+		formatCommentWithStatements:false;
+		multiLineMessages:Array new;
+		oneLineMessages:Array new;
+		numberOfArgumentsForMultiLine:10;
+		indentsForKeywords: 0;
+		maxLineLength: 10;
+		newLineBeforeFirstKeyword:false;
+		keepBlockInMessage:false
 ]
 
 { #category : #configurations }

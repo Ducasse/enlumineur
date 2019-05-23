@@ -319,3 +319,29 @@ BICascadeExpressionTest >> testNoNewLineBeforeCascade2 [
 	self assert: source equals:
 'OrderedCollection new add: #a; add: #b; yourself'.
 ]
+
+{ #category : #tests }
+BICascadeExpressionTest >> testTooLongArgument [
+	| expr source |
+	expr := RBParser parseExpression: 'foo a;b: toLongArgument'.
+	configurationSelector := #tooLongArgumentConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'foo a; b:
+		toLongArgument'
+]
+
+{ #category : #configurations }
+BICascadeExpressionTest >> tooLongArgumentConfiguration [
+
+	^ self contextClass basicNew
+		formatCommentWithStatements:true;
+		newLineBeforeFirstCascade: false;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine:3;
+		maxLineLength:10;
+		keepBlockInMessage:false;
+		newLineAfterCascade:false;
+		indentString: '	'
+]
