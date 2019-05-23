@@ -38,6 +38,32 @@ BIMethodeExpressionTest >> basicConfiguration [
 ]
 
 { #category : #configurations }
+BIMethodeExpressionTest >> cascadeConfiguration [
+	"Here we can control explicitely the configuration we want."
+
+	" String streamContents: [:s |
+			BIPrettyPrinterContext new storeOn: s]"
+
+	^ self contextClass basicNew
+		indentString: '	';
+		newLinesAfterSignature:0;
+		newLinesAfterCommentZone:0;
+		formatCommentWithStatements:false;
+		useBasicCommentFormat: false;
+		maxLineLength: 50;
+		periodsAtEndOfBlock: false;
+		periodsAtEndOfMethod: false;
+		newLineBeforeFirstCascade:true;
+		newLineAfterCascade:true;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine:10;
+		keepBlockInMessage:true;
+		retainBlankLinesBetweenStatements:true;
+		minimumNewLinesBetweenStatements:1
+]
+
+{ #category : #configurations }
 BIMethodeExpressionTest >> newLineAfterSignatureConfiguration [
 	"Here we can control explicitely the configuration we want."
 
@@ -254,6 +280,23 @@ BIMethodeExpressionTest >> testFormatBody [
 	self assert: source equals:
 'aMethode
 	a := 1'
+]
+
+{ #category : #test }
+BIMethodeExpressionTest >> testIndentCascade [
+	| expr source |
+	expr := RBParser parseMethod: 'aMethode	Transcript cr; show: ''foo'';	cr. Transcript cr;cr'.
+	configurationSelector := #cascadeConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'aMethode
+	Transcript
+		cr;
+		show: ''foo'';
+		cr.
+	Transcript
+		cr;
+		cr'
 ]
 
 { #category : #test }
