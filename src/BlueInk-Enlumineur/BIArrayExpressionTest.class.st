@@ -1,7 +1,7 @@
 Class {
 	#name : #BIArrayExpressionTest,
 	#superclass : #BISingleExpressionTest,
-	#category : #'BlueInk-Enlumineur'
+	#category : #'BlueInk-Enlumineur-ToIntegrateToPharo'
 }
 
 { #category : #configurations }
@@ -78,8 +78,8 @@ BIArrayExpressionTest >> periodAsTerminatorMessageConfiguration2 [
 { #category : #test }
 BIArrayExpressionTest >> testEmptyArray [
 	| expr source |
-	expr := RBParser parseExpression: '{}'.
 	configurationSelector := #basicConfiguration.
+	expr := self parseExpression: '{}'.
 	source := self formatter format: expr.
 	self assert: source equals: '{}'
 ]
@@ -87,9 +87,8 @@ BIArrayExpressionTest >> testEmptyArray [
 { #category : #test }
 BIArrayExpressionTest >> testFormatElement [
 	| expr source |
-	expr := RBParser parseExpression: ' { a:=1. b:=2 } '.
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
+	source := self formatExpression: ' { a:=1. b:=2 } '.
 	self assert: source equals:
 '{(a := 1).
 (b := 2)}'
@@ -98,7 +97,7 @@ BIArrayExpressionTest >> testFormatElement [
 { #category : #test }
 BIArrayExpressionTest >> testNoExtraSpaceAroundPeriod [
 	| expr source |
-	expr := RBParser parseExpression: '{1.    2.        3}'.
+	expr := self parseExpression: '{1.    2.        3}'.
 	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '{1 . 2 . 3}'.
@@ -107,7 +106,7 @@ BIArrayExpressionTest >> testNoExtraSpaceAroundPeriod [
 { #category : #test }
 BIArrayExpressionTest >> testNoSpaceAroundBrackets [
 	| expr source |
-	expr := RBParser parseExpression: ' { 1. 2. 3 } '.
+	expr := self parseExpression: ' { 1. 2. 3 } '.
 	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '{1 . 2 . 3}'.
@@ -116,7 +115,7 @@ BIArrayExpressionTest >> testNoSpaceAroundBrackets [
 { #category : #test }
 BIArrayExpressionTest >> testPeriodAtEndOfBlock [
 	| expr source |
-	expr := RBParser parseExpression: '{[1]}'.
+	expr := self parseExpression: '{[1]}'.
 	configurationSelector := #periodAsTerminatorConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '{[1.].}'
@@ -125,7 +124,7 @@ BIArrayExpressionTest >> testPeriodAtEndOfBlock [
 { #category : #test }
 BIArrayExpressionTest >> testPeriodAtEndOfMethod [
 	| expr source |
-	expr := RBParser parseExpression: '{1 factorial}'.
+	expr := self parseExpression: '{1 factorial}'.
 	configurationSelector := #periodAsTerminatorMessageConfiguration2.
 	source := self formatter format: expr.
 	self assert: source equals: '{1 factorial.}'
@@ -134,7 +133,7 @@ BIArrayExpressionTest >> testPeriodAtEndOfMethod [
 { #category : #test }
 BIArrayExpressionTest >> testSpaceAroundPeriod [
 	| expr source |
-	expr := RBParser parseExpression: '{1. 2. 3}'.
+	expr := self parseExpression: '{1. 2. 3}'.
 	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: '{1 . 2 . 3}'
@@ -143,7 +142,7 @@ BIArrayExpressionTest >> testSpaceAroundPeriod [
 { #category : #test }
 BIArrayExpressionTest >> testToLongNewLine [
 	| expr source |
-	expr := RBParser parseExpression:'{VeryLongExpression. 1}'.
+	expr := self parseExpression:'{VeryLongExpression. 1}'.
 	configurationSelector := #maxLineLengthConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
@@ -154,7 +153,7 @@ BIArrayExpressionTest >> testToLongNewLine [
 { #category : #test }
 BIArrayExpressionTest >> testToLongNewLine2 [
 	| expr source |
-	expr := RBParser parseExpression:'{1. 2. 3. 4. 5. 6. 7. 1}'.
+	expr := self parseExpression:'{1. 2. 3. 4. 5. 6. 7. 1}'.
 	configurationSelector := #maxLineLengthConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
