@@ -77,10 +77,9 @@ BIArrayExpressionTest >> periodAsTerminatorMessageConfiguration2 [
 
 { #category : #test }
 BIArrayExpressionTest >> testEmptyArray [
-	| expr source |
+	| source |
 	configurationSelector := #basicConfiguration.
-	expr := self parseExpression: '{}'.
-	source := self formatter format: expr.
+	source := self formatExpression: '{}'.
 	self assert: source equals: '{}'
 ]
 
