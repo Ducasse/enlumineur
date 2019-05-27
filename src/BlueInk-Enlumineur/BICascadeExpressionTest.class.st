@@ -27,10 +27,10 @@ BICascadeExpressionTest >> multilineMessageConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-		newLineAfterCascade: false;
-		newLineBeforeFirstCascade: false;
+		newLineAfterCascade: true;
+		newLineBeforeFirstCascade: true;
 		formatCommentWithStatements:false;
-		multiLineMessages: Array new;
+		multiLineMessages:#(#multi:line:);
 		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine:3;
 		maxLineLength:50;
@@ -204,11 +204,26 @@ BICascadeExpressionTest >> testFormatMultilineMessage [
 	configurationSelector := #multilineMessageConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
-'1 between: 2 and: 5; to: 4
+'1
+	between: 2 and: 5;
+	to: 4
 		do:
 		[ :each | 
 		each factorial.
 		each + 1 ]'
+]
+
+{ #category : #tests }
+BICascadeExpressionTest >> testFormatMultilineMessage2 [
+	| expr source |
+	expr := RBParser parseExpression: '1 factorial; multi:1 line:2'.
+	configurationSelector := #multilineMessageConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'1
+	factorial;
+	multi: 1
+		line: 2'
 ]
 
 { #category : #tests }

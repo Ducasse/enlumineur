@@ -50,7 +50,7 @@ BIMessageExpressionTest >> multiLineMessageConfiguration [
 		multiLineMessages:#(#multi:line:);
 		oneLineMessages:Array new;
 		numberOfArgumentsForMultiLine:10;
-		indentsForKeywords: 0;
+		indentsForKeywords: 1;
 		maxLineLength: 50;
 		newLineBeforeFirstKeyword:false;
 		keepBlockInMessage:false
@@ -365,8 +365,8 @@ BIMessageExpressionTest >> testMultiLineMessage [
 	source := self formatter format: expr.
 	self assert: source equals:
 'foo
-multi: 1
-line: 2'
+	multi: 1
+	line: 2'
 ]
 
 { #category : #tests }

@@ -38,6 +38,38 @@ BIMethodeExpressionTest >> basicConfiguration [
 ]
 
 { #category : #configurations }
+BIMethodeExpressionTest >> bigMethodeConfiguration [
+	"Here we can control explicitely the configuration we want."
+
+	" String streamContents: [:s |
+			BIPrettyPrinterContext new storeOn: s]"
+
+	^ self contextClass basicNew
+		indentString: '	';
+		newLinesAfterSignature:0;
+		newLinesAfterCommentZone:0;
+		formatCommentWithStatements:false;
+		useBasicCommentFormat: false;
+		maxLineLength: 50;
+		periodsAtEndOfBlock: false;
+		periodsAtEndOfMethod: false;
+		newLinesBetweenTopComments: 1;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		indentsForKeywords: 1;
+		keepBlockInMessage:true;
+		retainBlankLinesBetweenStatements:false;
+		retainBlankLinesBetweenStatements: false;
+		minimumNewLinesBetweenStatements:1;
+		newLineBeforeFirstCascade:true;
+		newLineAfterCascade:true;
+		numberOfArgumentsForMultiLine:4;
+		newLinesAfterTemporaries:1;
+		stringInsideBlocks: '';
+		lineUpBlockBrackets: true
+]
+
+{ #category : #configurations }
 BIMethodeExpressionTest >> cascadeConfiguration [
 	"Here we can control explicitely the configuration we want."
 
@@ -245,6 +277,37 @@ BIMethodeExpressionTest >> testBasic2 [
 	<pragma1>
 	<pragma2>
 	body'
+]
+
+{ #category : #test }
+BIMethodeExpressionTest >> testBigMethode [
+	| expr source |
+	expr := RBParser parseMethod: 
+	'aMethode
+	"aComment"
+	"anotherComment"
+	<pragma>
+	| tmp |
+	tmp := 1.
+	tmp to: 10 do: [:i | Transcript show:i ; cr ;cr]
+	'.
+	configurationSelector := #bigMethodeConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'aMethode
+	"aComment"
+	"anotherComment"
+	<pragma>
+	| tmp |
+	tmp := 1.
+	tmp
+		to: 10
+		do: [:i | 
+			Transcript
+				show: i;
+				cr;
+				cr
+			]'
 ]
 
 { #category : #test }
