@@ -7,13 +7,19 @@ Class {
 { #category : #'as yet unclassified' }
 MyRewriter >> rewrite [ 
 	"self new rewrite"
-	| rewriter ast ok |
+	| rewriter ok method |
 	rewriter := RBParseTreeRewriter new.
 	rewriter replaceMethod: self searchPattern with: self targetPattern.
-	ast := (BIArrayExpressionTest>>#testNoExtraSpaceAroundPeriod) parseTree.
-	ok := rewriter executeTree: ast.
-	^ ok ifFalse: [ 'did not work' ]
-		ifTrue: [ ast formattedCode ]
+	method := (BIArrayExpressionTest>>#testNoExtraSpaceAroundPeriod).
+	ok := rewriter executeTree: method parseTree.
+	ok ifFalse: [ ^ 'did not work' ].
+	Author 
+		useAuthor: 'Refactoring'
+		during: [  
+			self halt.
+			method origin 
+				compile: rewriter tree formattedCode 
+				classified: method protocol ]
 ]
 
 { #category : #'as yet unclassified' }
@@ -34,6 +40,5 @@ MyRewriter >> targetPattern [
 | source |
 configurationSelector := `#configuration.
 source := self formatExpression:  `#input.
-`@.st1.
 self assert: source equals: `#output'
 ]
