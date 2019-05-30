@@ -6,7 +6,7 @@ Class {
 		'newLinesBetweenTopComments',
 		'newLinesAfterSignature'
 	],
-	#category : #'BlueInk-Enlumineur'
+	#category : #'BlueInk-Enlumineur-ToThrowAway'
 }
 
 { #category : #accessing }

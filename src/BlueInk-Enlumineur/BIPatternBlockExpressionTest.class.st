@@ -1,7 +1,7 @@
 Class {
 	#name : #BIPatternBlockExpressionTest,
 	#superclass : #BIBlockExpressionTest,
-	#category : #'BlueInk-Enlumineur'
+	#category : #'BlueInk-Enlumineur-ToIntegrateToPharo'
 }
 
 { #category : #hooks }

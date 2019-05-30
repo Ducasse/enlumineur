@@ -16,7 +16,7 @@ Class {
 		'newLinesAfterSignature',
 		'newLinesAfterCommentZone'
 	],
-	#category : #'BlueInk-Enlumineur'
+	#category : #'BlueInk-Enlumineur-ToThrowAway'
 }
 
 { #category : #'private-formatting' }

@@ -1,7 +1,7 @@
 Class {
 	#name : #BIPragmaExpressionTest,
 	#superclass : #BISingleExpressionTest,
-	#category : #'BlueInk-Enlumineur'
+	#category : #'BlueInk-Enlumineur-ToIntegrateToPharo'
 }
 
 { #category : #configuration }

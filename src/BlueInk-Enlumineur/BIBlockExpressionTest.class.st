@@ -1,7 +1,7 @@
 Class {
 	#name : #BIBlockExpressionTest,
 	#superclass : #BISingleExpressionTest,
-	#category : #'BlueInk-Enlumineur'
+	#category : #'BlueInk-Enlumineur-ToIntegrateToPharo'
 }
 
 { #category : #configurations }
@@ -98,21 +98,21 @@ BIBlockExpressionTest >> periodAtEndConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-		stringInsideBlocks:' ';
-		periodsAtEndOfBlock:true;
+		stringInsideBlocks: ' ';
+		periodsAtEndOfBlock: true;
 		periodsAtEndOfMethod: false;
-		lineUpBlockBrackets:false;
+		lineUpBlockBrackets: false;
 		indentString: '	';
-		keepBlockInMessage:false;
-		retainBlankLinesBetweenStatements:false;
-		minimumNewLinesBetweenStatements:1;
+		keepBlockInMessage: false;
+		retainBlankLinesBetweenStatements: false;
+		minimumNewLinesBetweenStatements: 1;
 		multiLineMessages: Array new;
 		oneLineMessages: Array new;
-		numberOfArgumentsForMultiLine:5;
-		indentsForKeywords:1;
-		newLineBeforeFirstKeyword:false;
-		formatCommentWithStatements:true;
-		maxLineLength:50
+		numberOfArgumentsForMultiLine: 5;
+		indentsForKeywords: 1;
+		newLineBeforeFirstKeyword: false;
+		formatCommentWithStatements: true;
+		maxLineLength: 50
 ]
 
 { #category : #test }
@@ -122,18 +122,18 @@ BIBlockExpressionTest >> testArgumentIsFormated [
 
 { #category : #test }
 BIBlockExpressionTest >> testArgumentsAreFormated [
-	| expr source |
 	
-	self validate:':i :j| i '
-	isFormattedAs:' :i :j | i '.
+	self 
+		validate:':i :j| i '
+		isFormattedAs:' :i :j | i '.
 ]
 
 { #category : #test }
 BIBlockExpressionTest >> testArgumentsComments [
-	| expr source |
 	
-	self validate:':i "aComment" :j "anotherComment"| i '
-	isFormattedAs:
+	self 
+		validate:':i "aComment" :j "anotherComment"| i '
+		isFormattedAs:
 ' :i"aComment"
  :j"anotherComment"
  | i '
@@ -141,18 +141,19 @@ BIBlockExpressionTest >> testArgumentsComments [
 
 { #category : #test }
 BIBlockExpressionTest >> testEndPeriodInside [
-	| expr source |
 	
-	self validate:'2.'
-	isFormattedAs:' 2. '
-	with: #periodAtEndConfiguration
+	self 
+		validate:'2.'
+		isFormattedAs:' 2. '
+		with: #periodAtEndConfiguration
 ]
 
 { #category : #test }
 BIBlockExpressionTest >> testFormatBody [
 
-	self validate:' [1]. [ a:=1] '
-	isFormattedAs:
+	self 
+		validate:' [1]. [ a:=1] '
+		isFormattedAs:
 ' [ 1 ].
 [ a := 1 ] '.
 ]
@@ -160,8 +161,9 @@ BIBlockExpressionTest >> testFormatBody [
 { #category : #test }
 BIBlockExpressionTest >> testMultiline [
 
-	self validate: '1+3. 6 factorial '
-	isFormattedAs: 
+	self 
+		validate: '1+3. 6 factorial '
+		isFormattedAs: 
 ' 1 + 3.
 6 factorial '
 ]
@@ -169,8 +171,9 @@ BIBlockExpressionTest >> testMultiline [
 { #category : #test }
 BIBlockExpressionTest >> testNewLineAfterComment [
 	
-	self validate: '"aComment"1. 2'
-	isFormattedAs: 
+	self 
+		validate: '"aComment"1. 2'
+		isFormattedAs: 
 ' "aComment"
 1.
 2 '
@@ -179,15 +182,17 @@ BIBlockExpressionTest >> testNewLineAfterComment [
 { #category : #test }
 BIBlockExpressionTest >> testNewLineBeforeEndBrackets [
 
-	self validate:'3. 4'  
-	isFormattedAs:
+	self 
+		validate:'3. 4'  
+		isFormattedAs:
 ' 3.
 4
-'  with: #newLineBeforeEndBracketConfiguration.
+'  		with: #newLineBeforeEndBracketConfiguration.
 ]
 
 { #category : #test }
 BIBlockExpressionTest >> testNoEndPeriodInside [
+
 	self validate: '2.' isFormattedAs: ' 2 '
 ]
 
@@ -195,10 +200,10 @@ BIBlockExpressionTest >> testNoEndPeriodInside [
 BIBlockExpressionTest >> testNoExtraSpaceAroundBlock [
 
 	| expr source |
-	expr := self parser parseExpression: '   ',self openBracket ,'2',self closeBracket,'   '.
+	expr := self parser parseExpression: '   ', self openBracket, '2', self closeBracket, '   '.
 	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
-	self assert: source equals: self openBracket,' 2 ',self closeBracket
+	self assert: source equals: self openBracket, ' 2 ', self closeBracket
 ]
 
 { #category : #test }
@@ -210,8 +215,9 @@ BIBlockExpressionTest >> testNoExtraSpaceInside [
 { #category : #test }
 BIBlockExpressionTest >> testNoNewLineBeforeEndBrackets [
 
-	self validate:'3. 4'  
-	isFormattedAs:
+	self 
+		validate: '3. 4'  
+		isFormattedAs:
 ' 3.
 4 '  with: #noNewLineBeforeEndBracketConfiguration.
 ]
