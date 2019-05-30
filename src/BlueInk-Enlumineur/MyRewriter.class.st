@@ -26,7 +26,7 @@ MyRewriter >> rewrite: aCompiledMethod [
 	"self new rewrite"
 	| rewriter ok |
 	rewriter := RBParseTreeRewriter new.
-	rewriter replaceMethod: self searchPattern with: self targetPattern..
+	rewriter replaceMethod: self searchPattern with: self targetPattern.
 	ok := rewriter executeTree: aCompiledMethod parseTree.
 	ok ifFalse: [ ^ 'did not work' ].
 	Author 
@@ -35,6 +35,13 @@ MyRewriter >> rewrite: aCompiledMethod [
 			aCompiledMethod origin 
 				compile: rewriter tree formattedCode 
 				classified: aCompiledMethod protocol ]
+]
+
+{ #category : #'as yet unclassified' }
+MyRewriter >> rewriteAllCodeOfSubclassOf: aRoot [
+	"self new rewriteAllCodeOfSubclassOf: BISingleExpressionTest"
+	
+	aRoot withAllSubclassesDo: [ :cl | self rewriteAllTestsMethodOf: cl ]
 ]
 
 { #category : #'as yet unclassified' }
