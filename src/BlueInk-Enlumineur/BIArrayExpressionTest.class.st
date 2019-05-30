@@ -95,67 +95,64 @@ BIArrayExpressionTest >> testFormatElement [
 
 { #category : #test }
 BIArrayExpressionTest >> testNoExtraSpaceAroundPeriod [
-	| expr source |
-	expr := self parseExpression: '{1.    2.        3}'.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals: '{1 . 2 . 3}'.
+	source := self formatExpression: '{1.    2.        3}'.
+	self assert: source equals: '{1 . 2 . 3}'
 ]
 
 { #category : #test }
 BIArrayExpressionTest >> testNoSpaceAroundBrackets [
-	| expr source |
-	expr := self parseExpression: ' { 1. 2. 3 } '.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals: '{1 . 2 . 3}'.
+	source := self formatExpression: ' { 1. 2. 3 } '.
+	self assert: source equals: '{1 . 2 . 3}'
 ]
 
 { #category : #test }
 BIArrayExpressionTest >> testPeriodAtEndOfBlock [
-	| expr source |
-	expr := self parseExpression: '{[1]}'.
+	| source |
 	configurationSelector := #periodAsTerminatorConfiguration.
-	source := self formatter format: expr.
+	source := self formatExpression: '{[1]}'.
 	self assert: source equals: '{[1.].}'
 ]
 
 { #category : #test }
 BIArrayExpressionTest >> testPeriodAtEndOfMethod [
-	| expr source |
-	expr := self parseExpression: '{1 factorial}'.
+	| source |
 	configurationSelector := #periodAsTerminatorMessageConfiguration2.
-	source := self formatter format: expr.
+	source := self formatExpression: '{1 factorial}'.
 	self assert: source equals: '{1 factorial.}'
 ]
 
 { #category : #test }
 BIArrayExpressionTest >> testSpaceAroundPeriod [
-	| expr source |
-	expr := self parseExpression: '{1. 2. 3}'.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
+	source := self formatExpression: '{1. 2. 3}'.
 	self assert: source equals: '{1 . 2 . 3}'
 ]
 
 { #category : #test }
 BIArrayExpressionTest >> testToLongNewLine [
-	| expr source |
-	expr := self parseExpression:'{VeryLongExpression. 1}'.
+	| source |
 	configurationSelector := #maxLineLengthConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'{VeryLongExpression.
+	source := self formatExpression: '{VeryLongExpression. 1}'.
+	self
+		assert: source
+		equals:
+			'{VeryLongExpression.
 1}'
 ]
 
 { #category : #test }
 BIArrayExpressionTest >> testToLongNewLine2 [
-	| expr source |
-	expr := self parseExpression:'{1. 2. 3. 4. 5. 6. 7. 1}'.
+	| source |
 	configurationSelector := #maxLineLengthConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'{1 . 2 . 3 . 4.
+	source := self formatExpression: '{1. 2. 3. 4. 5. 6. 7. 1}'.
+	self
+		assert: source
+		equals:
+			'{1 . 2 . 3 . 4.
 5 . 6 . 7 . 1}'
 ]

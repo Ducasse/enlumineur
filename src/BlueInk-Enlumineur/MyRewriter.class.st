@@ -16,10 +16,34 @@ MyRewriter >> rewrite [
 	Author 
 		useAuthor: 'Refactoring'
 		during: [  
-			self halt.
 			method origin 
 				compile: rewriter tree formattedCode 
 				classified: method protocol ]
+]
+
+{ #category : #'as yet unclassified' }
+MyRewriter >> rewrite: aCompiledMethod [
+	"self new rewrite"
+	| rewriter ok |
+	rewriter := RBParseTreeRewriter new.
+	rewriter replaceMethod: self searchPattern with: self targetPattern..
+	ok := rewriter executeTree: aCompiledMethod parseTree.
+	ok ifFalse: [ ^ 'did not work' ].
+	Author 
+		useAuthor: 'Refactoring'
+		during: [  
+			aCompiledMethod origin 
+				compile: rewriter tree formattedCode 
+				classified: aCompiledMethod protocol ]
+]
+
+{ #category : #'as yet unclassified' }
+MyRewriter >> rewriteAllTestsMethodOf: aClass [
+	"self new rewriteAllTestsMethodOf: BIArrayExpressionTest"
+	
+	| testSelectors |
+	testSelectors := aClass selectors select: [ :each | 'test*' match: each  ].
+	testSelectors do: [ :s | self rewrite: aClass >> s ]
 ]
 
 { #category : #'as yet unclassified' }
