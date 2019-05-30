@@ -39,7 +39,7 @@ MyRewriter >> rewrite: aCompiledMethod [
 
 { #category : #'as yet unclassified' }
 MyRewriter >> rewriteAllTestsMethodOf: aClass [
-	"self new rewriteAllTestsMethodOf: BIArrayExpressionTest"
+	"self new rewriteAllTestsMethodOf: BIAssignmentExpressionTest"
 	
 	| testSelectors |
 	testSelectors := aClass selectors select: [ :each | 'test*' match: each  ].
