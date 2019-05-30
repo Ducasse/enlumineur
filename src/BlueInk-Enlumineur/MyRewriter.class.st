@@ -58,7 +58,7 @@ MyRewriter >> searchPattern [
 
 	^ '`selector
 | expr source |
-expr := self parseExpression:  `#input.
+expr := RBParser parseExpression:  `#input.
 configurationSelector := `#configuration.
 `@.st1.
 self assert: source equals: `#output'
