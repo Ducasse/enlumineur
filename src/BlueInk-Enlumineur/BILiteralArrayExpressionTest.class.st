@@ -13,50 +13,40 @@ BILiteralArrayExpressionTest >> basicConfiguration [
 
 { #category : #tests }
 BILiteralArrayExpressionTest >> testByteArrayParenthesis [
-
-	| expr source |
-	expr := RBParser parseExpression: '#[1 2 3]'.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
+	source := self formatExpression: '#[1 2 3]'.
 	self assert: source equals: '#[1 2 3]'
 ]
 
 { #category : #tests }
 BILiteralArrayExpressionTest >> testNoExtraSpaceArroundParenthesis [
-
-	| expr source |
-	expr := RBParser parseExpression: '#(  1 2 3    )  '.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
+	source := self formatExpression: '#(  1 2 3    )  '.
 	self assert: source equals: '#(1 2 3)'
 ]
 
 { #category : #tests }
 BILiteralArrayExpressionTest >> testNoExtraSpaceArroundParenthesis2 [
-
-	| expr source |
-	expr := RBParser parseExpression: '#[  1 2 3    ]  '.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
+	source := self formatExpression: '#[  1 2 3    ]  '.
 	self assert: source equals: '#[1 2 3]'
 ]
 
 { #category : #tests }
 BILiteralArrayExpressionTest >> testNoExtraSpaceBetweenValue [
-
-	| expr source |
-	expr := RBParser parseExpression: '#(1     2       3)'.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
+	source := self formatExpression: '#(1     2       3)'.
 	self assert: source equals: '#(1 2 3)'
 ]
 
 { #category : #tests }
 BILiteralArrayExpressionTest >> testNoExtraSpaceBetweenValue2 [
-
-	| expr source |
-	expr := RBParser parseExpression: '#[1     2       3]'.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
+	source := self formatExpression: '#[1     2       3]'.
 	self assert: source equals: '#[1 2 3]'
 ]

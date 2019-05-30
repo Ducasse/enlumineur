@@ -29,19 +29,16 @@ BIBlock2ExpressionTest >> basicConfiguration [
 
 { #category : #test }
 BIBlock2ExpressionTest >> testSpaceAfterComment [
-	| expr source |
-	expr := RBParser parseExpression: '["aComment"1]'.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
+	source := self formatExpression: '["aComment"1]'.
 	self assert: source equals: '[ "aComment" 1 ]'
 ]
 
 { #category : #test }
 BIBlock2ExpressionTest >> testformatComment [
-
-	| expr source |
-	expr := RBParser parseExpression: '["  c1   " "   c2 " 2 "c3"]'.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals: '[ "  c1   " "   c2 " 2	"c3" ]'.
+	source := self formatExpression: '["  c1   " "   c2 " 2 "c3"]'.
+	self assert: source equals: '[ "  c1   " "   c2 " 2	"c3" ]'
 ]

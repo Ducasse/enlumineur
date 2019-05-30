@@ -13,21 +13,16 @@ BIVariableExpressionTest >> basicConfiguration [
 
 { #category : #tests }
 BIVariableExpressionTest >> testNoExtraSpaces [
-
-	| expr source |
-	expr := RBParser parseExpression: '    a     '.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
+	source := self formatExpression: '    a     '.
 	self assert: source equals: 'a'
 ]
 
 { #category : #tests }
 BIVariableExpressionTest >> testSpaces [
-
-	| expr source |
-	expr := RBParser parseExpression: 'a'.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
+	source := self formatExpression: 'a'.
 	self assert: source equals: 'a'
-	
 ]

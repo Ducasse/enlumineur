@@ -13,13 +13,10 @@ BILiteralValueExpressionTest >> basicConfiguration [
 
 { #category : #tests }
 BILiteralValueExpressionTest >> testNoExtraSpaces [
-
-	| expr source |
-	expr := RBParser parseExpression: '    2     '.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
+	source := self formatExpression: '    2     '.
 	self assert: source equals: '2'
-	
 ]
 
 { #category : #tests }
@@ -35,11 +32,8 @@ BILiteralValueExpressionTest >> testNotLitteral [
 
 { #category : #tests }
 BILiteralValueExpressionTest >> testSpaces [
-
-	| expr source |
-	expr := RBParser parseExpression: '2'.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
+	source := self formatExpression: '2'.
 	self assert: source equals: '2'
-	
 ]

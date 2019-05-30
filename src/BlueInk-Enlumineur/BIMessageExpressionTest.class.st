@@ -138,126 +138,111 @@ BIMessageExpressionTest >> oneLineMessageConfiguration [
 
 { #category : #tests }
 BIMessageExpressionTest >> testBinaryFormatParameter [
-
-	| expr source |
-	expr := RBParser parseExpression: '1 + (3     factorial)'.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
+	source := self formatExpression: '1 + (3     factorial)'.
 	self assert: source equals: '1 + 3 factorial'
-	
 ]
 
 { #category : #tests }
 BIMessageExpressionTest >> testBinaryFormatReceiver [
-
-	| expr source |
-	expr := RBParser parseExpression: 'a:=''abc'' at: 2'.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
+	source := self formatExpression: 'a:=''abc'' at: 2'.
 	self assert: source equals: 'a := ''abc'' at: 2'
-	
 ]
 
 { #category : #tests }
 BIMessageExpressionTest >> testBinaryNoExtraSpacesAfter [
-
-	| expr source |
-	expr := RBParser parseExpression: '1+2          '.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
+	source := self formatExpression: '1+2          '.
 	self assert: source equals: '1 + 2'
-	
 ]
 
 { #category : #tests }
 BIMessageExpressionTest >> testBinaryNoExtraSpacesBefore [
-
-	| expr source |
-	expr := RBParser parseExpression: '   1+2'.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
+	source := self formatExpression: '   1+2'.
 	self assert: source equals: '1 + 2'
-	
 ]
 
 { #category : #tests }
 BIMessageExpressionTest >> testBinaryNoExtraSpacesBetween [
-
-	| expr source |
-	expr := RBParser parseExpression: '1     +     2'.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
+	source := self formatExpression: '1     +     2'.
 	self assert: source equals: '1 + 2'
-	
 ]
 
 { #category : #tests }
 BIMessageExpressionTest >> testBinaryOneArgumentPerLine [
-
-	| expr source |
-	expr := RBParser parseExpression: '1+2'.
+	| source |
 	configurationSelector := #oneArgumentPerLineConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'1
+	source := self formatExpression: '1+2'.
+	self
+		assert: source
+		equals:
+			'1
 + 2'
 ]
 
 { #category : #tests }
 BIMessageExpressionTest >> testIndentsForKeywords1 [
-
-	| expr source |
-	expr := RBParser parseExpression: 'a k1:1 k2:2 k3:3'.
+	| source |
 	configurationSelector := #oneIdentsForKeyWordConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'a
+	source := self formatExpression: 'a k1:1 k2:2 k3:3'.
+	self
+		assert: source
+		equals:
+			'a
 	k1: 1
 	k2: 2
 	k3: 3'
-	
 ]
 
 { #category : #tests }
 BIMessageExpressionTest >> testIndentsForKeywords2 [
-
-	| expr source |
-	expr := RBParser parseExpression: 'a k1:1 k2:2 k3:3'.
+	| source |
 	configurationSelector := #twoIdentsForKeyWordConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'a
+	source := self formatExpression: 'a k1:1 k2:2 k3:3'.
+	self
+		assert: source
+		equals:
+			'a
 		k1: 1
 		k2: 2
 		k3: 3'
-	
 ]
 
 { #category : #tests }
 BIMessageExpressionTest >> testKeepBlockInMessageMutlilineNewLine [
-
-	| expr source |
-	expr := RBParser parseExpression: 'aBoolean  ifTrue:[ Transcript cr. Transcript cr. Transcript cr]'.
+	| source |
 	configurationSelector := #keepBlockInMessageConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'aBoolean
+	source := self
+		formatExpression: 'aBoolean  ifTrue:[ Transcript cr. Transcript cr. Transcript cr]'.
+	self
+		assert: source
+		equals:
+			'aBoolean
 ifTrue:
 	[Transcript cr. Transcript
 	cr. Transcript cr]'
-	
 ]
 
 { #category : #tests }
 BIMessageExpressionTest >> testKeepBlockInMessageMutlilineSpace [
-
-	| expr source |
-	expr := RBParser parseExpression: 'aBoolean ifTrue:[ 12 factorial. 12 factorial. 3
-	factorial]'.
+	| source |
 	configurationSelector := #keepBlockInMessageConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'aBoolean
+	source := self
+		formatExpression:
+			'aBoolean ifTrue:[ 12 factorial. 12 factorial. 3
+	factorial]'.
+	self
+		assert: source
+		equals:
+			'aBoolean
 ifTrue: [12 factorial. 12
 	factorial. 3
 	factorial]'
@@ -265,243 +250,208 @@ ifTrue: [12 factorial. 12
 
 { #category : #tests }
 BIMessageExpressionTest >> testKeepBlockInMessageNotMultilineSpace [
-
-	| expr source |
-	expr := RBParser parseExpression: 'aBoolean ifTrue:[^1]'.
+	| source |
 	configurationSelector := #keepBlockInMessageConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'aBoolean
+	source := self formatExpression: 'aBoolean ifTrue:[^1]'.
+	self
+		assert: source
+		equals:
+			'aBoolean
 ifTrue: [^1]'
 ]
 
 { #category : #tests }
 BIMessageExpressionTest >> testKeepBlockInMessageNotMutlilineNewLine [
-
-	| expr source |
-	expr := RBParser parseExpression: 'aBoolean ifTrue:[LongLongLongExpression]'.
+	| source |
 	configurationSelector := #keepBlockInMessageConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'aBoolean
+	source := self
+		formatExpression: 'aBoolean ifTrue:[LongLongLongExpression]'.
+	self
+		assert: source
+		equals:
+			'aBoolean
 ifTrue:
 	[LongLongLongExpression]'
 ]
 
 { #category : #tests }
 BIMessageExpressionTest >> testKeyWordFormatReceiver [
-
-	| expr source |
-	expr := RBParser parseExpression: '2 between: 4-2 and: 3     factorial'.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'2 between: 4 - 2 and: 3 factorial'
+	source := self
+		formatExpression: '2 between: 4-2 and: 3     factorial'.
+	self assert: source equals: '2 between: 4 - 2 and: 3 factorial'
 ]
 
 { #category : #tests }
 BIMessageExpressionTest >> testKeywordFormatParameter [
-
-	| expr source |
-	expr := RBParser parseExpression: '3 between:2      factorial and: 4+5'.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
+	source := self
+		formatExpression: '3 between:2      factorial and: 4+5'.
 	self assert: source equals: '3 between: 2 factorial and: 4 + 5'
-	
 ]
 
 { #category : #tests }
 BIMessageExpressionTest >> testKeywordNoExtraSpacesAfter [
-
-	| expr source |
-	expr := RBParser parseExpression: '2 between: 1 and: 3          '.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
+	source := self formatExpression: '2 between: 1 and: 3          '.
 	self assert: source equals: '2 between: 1 and: 3'
-	
 ]
 
 { #category : #tests }
 BIMessageExpressionTest >> testKeywordNoExtraSpacesBefore [
-
-	| expr source |
-	expr := RBParser parseExpression: '   2 between: 1 and: 3'.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
+	source := self formatExpression: '   2 between: 1 and: 3'.
 	self assert: source equals: '2 between: 1 and: 3'
-	
 ]
 
 { #category : #tests }
 BIMessageExpressionTest >> testKeywordNoExtraSpacesBetween [
-
-	| expr source |
-	expr := RBParser parseExpression: '2      between:     1   and:    3'.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
+	source := self formatExpression: '2      between:     1   and:    3'.
 	self assert: source equals: '2 between: 1 and: 3'
-	
 ]
 
 { #category : #tests }
 BIMessageExpressionTest >> testKeywordOneArgumentPerLine [
-
-	| expr source |
-	expr := RBParser parseExpression: '2      between:     1   and:    3'.
+	| source |
 	configurationSelector := #oneArgumentPerLineConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'2
+	source := self formatExpression: '2      between:     1   and:    3'.
+	self
+		assert: source
+		equals:
+			'2
 between: 1
 and: 3'
 ]
 
 { #category : #tests }
 BIMessageExpressionTest >> testMultiLineMessage [
-
-	| expr source |
-	expr := RBParser parseExpression: 'foo multi:1 line:2 '.
+	| source |
 	configurationSelector := #multiLineMessageConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'foo
+	source := self formatExpression: 'foo multi:1 line:2 '.
+	self
+		assert: source
+		equals:
+			'foo
 	multi: 1
 	line: 2'
 ]
 
 { #category : #tests }
 BIMessageExpressionTest >> testNewLineBeforeFirstKeyword [
-
-	| expr source |
-	expr := RBParser parseExpression: '2 between: 1 and: 3'.
+	| source |
 	configurationSelector := #newLineBeforeFirstKeywordConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals: 
-'2
+	source := self formatExpression: '2 between: 1 and: 3'.
+	self
+		assert: source
+		equals:
+			'2
 between: 1 and: 3'
 ]
 
 { #category : #tests }
 BIMessageExpressionTest >> testNoIndentsForKeywords [
-
-	| expr source |
-	expr := RBParser parseExpression: 'a k1:1 k2:2 k3:3'.
+	| source |
 	configurationSelector := #noIdentsForKeyWordConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'a
+	source := self formatExpression: 'a k1:1 k2:2 k3:3'.
+	self
+		assert: source
+		equals:
+			'a
 k1: 1
 k2: 2
-k3: 3'	
+k3: 3'
 ]
 
 { #category : #tests }
 BIMessageExpressionTest >> testOneLineMessage [
-
-	| expr source |
-	expr := RBParser parseExpression: 'foo one:1 line:2 message:3'.
+	| source |
 	configurationSelector := #oneLineMessageConfiguration.
-	source := self formatter format: expr.
+	source := self formatExpression: 'foo one:1 line:2 message:3'.
 	self assert: source equals: 'foo one: 1 line: 2 message: 3'
-	
 ]
 
 { #category : #tests }
-BIMessageExpressionTest >> testTooLongArgument [ 
-
-	| expr source |
-	expr := RBParser parseExpression: 'foo message: TooLongArgument'.
+BIMessageExpressionTest >> testTooLongArgument [
+	| source |
 	configurationSelector := #tooLongArgumentConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'foo
+	source := self formatExpression: 'foo message: TooLongArgument'.
+	self
+		assert: source
+		equals:
+			'foo
 message:
 	TooLongArgument'
 ]
 
 { #category : #tests }
 BIMessageExpressionTest >> testTraditionalBinaryPrecedence [
-
-	| expr source |
-	expr := RBParser parseExpression: '2+3*4'.
+	| source |
 	configurationSelector := #traditionalBinaryPrecedenceConfiguration.
-	source := self formatter format: expr.
+	source := self formatExpression: '2+3*4'.
 	self assert: source equals: '(2 + 3) * 4'
 ]
 
 { #category : #tests }
 BIMessageExpressionTest >> testTraditionalBinaryPrecedence2 [
-
-	| expr source |
-	expr := RBParser parseExpression: '2*3+4'.
+	| source |
 	configurationSelector := #traditionalBinaryPrecedenceConfiguration.
-	source := self formatter format: expr.
+	source := self formatExpression: '2*3+4'.
 	self assert: source equals: '2 * 3 + 4'
 ]
 
 { #category : #tests }
 BIMessageExpressionTest >> testTraditionalBinaryPrecedence3 [
-
-	| expr source |
-	expr := RBParser parseExpression: '2+3*4+5 * 2'.
+	| source |
 	configurationSelector := #traditionalBinaryPrecedenceConfiguration.
-	source := self formatter format: expr.
+	source := self formatExpression: '2+3*4+5 * 2'.
 	self assert: source equals: '((2 + 3) * 4 + 5) * 2'
 ]
 
 { #category : #tests }
 BIMessageExpressionTest >> testUnaryFormatReceiver [
-
-	| expr source |
-	expr := RBParser parseExpression: 'a:=1 factorial'.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
+	source := self formatExpression: 'a:=1 factorial'.
 	self assert: source equals: 'a := 1 factorial'
-	
 ]
 
 { #category : #tests }
 BIMessageExpressionTest >> testUnaryNoExtraSpacesAfter [
-
-	| expr source |
-	expr := RBParser parseExpression: 'Transcript cr        '.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
+	source := self formatExpression: 'Transcript cr        '.
 	self assert: source equals: 'Transcript cr'
-	
 ]
 
 { #category : #tests }
 BIMessageExpressionTest >> testUnaryNoExtraSpacesBefore [
-
-	| expr source |
-	expr := RBParser parseExpression: '   Transcript cr'.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
+	source := self formatExpression: '   Transcript cr'.
 	self assert: source equals: 'Transcript cr'
-	
 ]
 
 { #category : #tests }
 BIMessageExpressionTest >> testUnaryNoExtraSpacesBetween [
-
-	| expr source |
-	expr := RBParser parseExpression: 'Transcript        cr'.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
+	source := self formatExpression: 'Transcript        cr'.
 	self assert: source equals: 'Transcript cr'
-	
 ]
 
 { #category : #tests }
 BIMessageExpressionTest >> testUnaryNoExtraSpacesBetween2 [
-
-	| expr source |
-	expr := RBParser parseExpression: '2           factorial              factorial'.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
+	source := self
+		formatExpression: '2           factorial              factorial'.
 	self assert: source equals: '2 factorial factorial'
-	
 ]
 
 { #category : #configurations }

@@ -154,57 +154,59 @@ BICascadeExpressionTest >> noNewLineBeforeCascadeConfiguration [
 
 { #category : #tests }
 BICascadeExpressionTest >> testCommentAfterMessages [
-	| expr source |
-	expr := RBParser parseExpression: 'Transcript show:1 "firstComment";
+	| source |
+	configurationSelector := #basicConfiguration.
+	source := self
+		formatExpression:
+			'Transcript show:1 "firstComment";
 	cr "secondComment";
 	cr "thirdComment"'.
-	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'Transcript show: 1; "secondComment"
+	self
+		assert: source
+		equals:
+			'Transcript show: 1; "secondComment"
 		cr; "thirdComment"
 		cr'
 ]
 
 { #category : #tests }
 BICascadeExpressionTest >> testCommentBeforeMessage [
-	| expr source |
-	expr := RBParser parseExpression: 'Transcript show:1; "cr" cr'.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'Transcript show: 1; "cr"
+	source := self formatExpression: 'Transcript show:1; "cr" cr'.
+	self
+		assert: source
+		equals:
+			'Transcript show: 1; "cr"
 		cr'
 ]
 
 { #category : #tests }
 BICascadeExpressionTest >> testFormatMessage [
-	| expr source |
-	expr := RBParser parseExpression: '1 *4; +1'.
+	| source |
 	configurationSelector := #noNewLineAfterCascadeConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'1 * 4; + 1'
+	source := self formatExpression: '1 *4; +1'.
+	self assert: source equals: '1 * 4; + 1'
 ]
 
 { #category : #tests }
 BICascadeExpressionTest >> testFormatMessageAndArgument [
-	| expr source |
-	expr := RBParser parseExpression: '1 between:2 and:5; +1'.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'1 between: 2 and: 5; + 1'
+	source := self formatExpression: '1 between:2 and:5; +1'.
+	self assert: source equals: '1 between: 2 and: 5; + 1'
 ]
 
 { #category : #tests }
 BICascadeExpressionTest >> testFormatMultilineMessage [
-	| expr source |
-	expr := RBParser parseExpression: '1 between:2 and:5; to:4 do:[:each| each factorial. each + 1]'.
+	| source |
 	configurationSelector := #multilineMessageConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'1
+	source := self
+		formatExpression: '1 between:2 and:5; to:4 do:[:each| each factorial. each + 1]'.
+	self
+		assert: source
+		equals:
+			'1
 	between: 2 and: 5;
 	to: 4
 		do:
@@ -215,12 +217,13 @@ BICascadeExpressionTest >> testFormatMultilineMessage [
 
 { #category : #tests }
 BICascadeExpressionTest >> testFormatMultilineMessage2 [
-	| expr source |
-	expr := RBParser parseExpression: '1 factorial; multi:1 line:2'.
+	| source |
 	configurationSelector := #multilineMessageConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'1
+	source := self formatExpression: '1 factorial; multi:1 line:2'.
+	self
+		assert: source
+		equals:
+			'1
 	factorial;
 	multi: 1
 		line: 2'
@@ -228,46 +231,48 @@ BICascadeExpressionTest >> testFormatMultilineMessage2 [
 
 { #category : #tests }
 BICascadeExpressionTest >> testFormatReceiver [
-	| expr source |
-	expr := RBParser parseExpression: 'a:=1 factorial; +1'.
+	| source |
 	configurationSelector := #noNewLineAfterCascadeConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'a := 1 factorial; + 1'
+	source := self formatExpression: 'a:=1 factorial; +1'.
+	self assert: source equals: 'a := 1 factorial; + 1'
 ]
 
 { #category : #tests }
 BICascadeExpressionTest >> testNewLineAfterCascade [
-	| expr source |
-	expr := RBParser parseExpression: 'Foo a;b;c'.
+	| source |
 	configurationSelector := #newLineAfterCascadeConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'Foo a;
+	source := self formatExpression: 'Foo a;b;c'.
+	self
+		assert: source
+		equals:
+			'Foo a;
 	b;
 	c'
 ]
 
 { #category : #tests }
 BICascadeExpressionTest >> testNewLineAfterCascade2 [
-	| expr source |
-	expr := RBParser parseExpression: 'OrderedCollection new add: #a;add:#b;yourself'.
+	| source |
 	configurationSelector := #newLineAfterCascadeConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals: 
-'OrderedCollection new add: #a;
+	source := self
+		formatExpression: 'OrderedCollection new add: #a;add:#b;yourself'.
+	self
+		assert: source
+		equals:
+			'OrderedCollection new add: #a;
 	add: #b;
 	yourself'
 ]
 
 { #category : #tests }
 BICascadeExpressionTest >> testNewLineBeforeAndAfterCascade [
-	| expr source |
-	expr := RBParser parseExpression: 'Transcript cr;cr;cr'.
+	| source |
 	configurationSelector := #newLineBeforeAndAfterCascadeConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'Transcript
+	source := self formatExpression: 'Transcript cr;cr;cr'.
+	self
+		assert: source
+		equals:
+			'Transcript
 	cr;
 	cr;
 	cr'
@@ -275,74 +280,76 @@ BICascadeExpressionTest >> testNewLineBeforeAndAfterCascade [
 
 { #category : #tests }
 BICascadeExpressionTest >> testNewLineBeforeCascade [
-	| expr source |
-	expr := RBParser parseExpression: 'Foo a;b;c'.
+	| source |
 	configurationSelector := #newLineBeforeCascadeConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals: 
-'Foo
+	source := self formatExpression: 'Foo a;b;c'.
+	self
+		assert: source
+		equals:
+			'Foo
 	a; b; c'
 ]
 
 { #category : #tests }
 BICascadeExpressionTest >> testNewLineBeforeCascade2 [
-	| expr source |
-	expr := RBParser parseExpression: 'OrderedCollection new add: #a;add:#b;yourself'.
+	| source |
 	configurationSelector := #newLineBeforeCascadeConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals: 
-'OrderedCollection new
+	source := self
+		formatExpression: 'OrderedCollection new add: #a;add:#b;yourself'.
+	self
+		assert: source
+		equals:
+			'OrderedCollection new
 	add: #a; add: #b; yourself'
 ]
 
 { #category : #tests }
 BICascadeExpressionTest >> testNoNewLineAfterCascade [
-	| expr source |
-	expr := RBParser parseExpression: 'Foo a;b;c'.
+	| source |
 	configurationSelector := #noNewLineAfterCascadeConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'Foo a; b; c'
+	source := self formatExpression: 'Foo a;b;c'.
+	self assert: source equals: 'Foo a; b; c'
 ]
 
 { #category : #tests }
 BICascadeExpressionTest >> testNoNewLineAfterCascade2 [
-	| expr source |
-	expr := RBParser parseExpression: 'OrderedCollection new add: #a;add:#b;yourself'.
+	| source |
 	configurationSelector := #noNewLineAfterCascadeConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'OrderedCollection new add: #a; add: #b; yourself'.
+	source := self
+		formatExpression: 'OrderedCollection new add: #a;add:#b;yourself'.
+	self
+		assert: source
+		equals: 'OrderedCollection new add: #a; add: #b; yourself'
 ]
 
 { #category : #tests }
 BICascadeExpressionTest >> testNoNewLineBeforeCascade [
-	| expr source |
-	expr := RBParser parseExpression: 'Foo a;b;c'.
+	| source |
 	configurationSelector := #noNewLineBeforeCascadeConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'Foo a; b; c'.
+	source := self formatExpression: 'Foo a;b;c'.
+	self assert: source equals: 'Foo a; b; c'
 ]
 
 { #category : #tests }
 BICascadeExpressionTest >> testNoNewLineBeforeCascade2 [
-	| expr source |
-	expr := RBParser parseExpression: 'OrderedCollection new add: #a;add:#b;yourself'.
+	| source |
 	configurationSelector := #noNewLineBeforeCascadeConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'OrderedCollection new add: #a; add: #b; yourself'.
+	source := self
+		formatExpression: 'OrderedCollection new add: #a;add:#b;yourself'.
+	self
+		assert: source
+		equals: 'OrderedCollection new add: #a; add: #b; yourself'
 ]
 
 { #category : #tests }
 BICascadeExpressionTest >> testTooLongArgument [
-	| expr source |
-	expr := RBParser parseExpression: 'foo a;b: toLongArgument'.
+	| source |
 	configurationSelector := #tooLongArgumentConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'foo a; b:
+	source := self formatExpression: 'foo a;b: toLongArgument'.
+	self
+		assert: source
+		equals:
+			'foo a; b:
 		toLongArgument'
 ]
 

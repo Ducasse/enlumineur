@@ -177,168 +177,167 @@ BISequenceExpressionTest >> retainBlankLinesBetweenStatementsConfiguration [
 
 { #category : #tests }
 BISequenceExpressionTest >> testCommentBetweenStatements [
-	| expr source |
-	expr := RBParser parseExpression: '|a b| a := 1."comment"b := 2'.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'| a b |a := 1.	"comment" b := 2'
+	source := self formatExpression: '|a b| a := 1."comment"b := 2'.
+	self assert: source equals: '| a b |a := 1.	"comment" b := 2'
 ]
 
 { #category : #tests }
 BISequenceExpressionTest >> testCommentBetweenTemporariesAndStatement [
-	| expr source |
-	expr := RBParser parseExpression: '|a b| "comment" a := 1'.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'| a b |"comment"
+	source := self formatExpression: '|a b| "comment" a := 1'.
+	self
+		assert: source
+		equals:
+			'| a b |"comment"
 a := 1'
 ]
 
 { #category : #tests }
 BISequenceExpressionTest >> testDontRetainBlankLinesBeforeComments [
-	| expr source |
-	expr := RBParser parseExpression: '|a b|
+	| source |
+	configurationSelector := #dontRetainBlankLinesBeforeCommentsConfiguration.
+	source := self
+		formatExpression:
+			'|a b|
 	a :=1.
 	"Comment" b :=2'.
-	configurationSelector := #dontRetainBlankLinesBeforeCommentsConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'| a b |a := 1.	"Comment" b := 2'
+	self assert: source equals: '| a b |a := 1.	"Comment" b := 2'
 ]
 
 { #category : #tests }
 BISequenceExpressionTest >> testDontRetainBlankLinesBetweenStatements [
-	| expr source |
-	expr := RBParser parseExpression: '|a b| 
+	| source |
+	configurationSelector := #dontRetainBlankLinesBetweenStatementsConfiguration.
+	source := self
+		formatExpression:
+			'|a b| 
 	
 	a:=1.
 	
 	b:=a'.
-	configurationSelector := #dontRetainBlankLinesBetweenStatementsConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'| a b |a := 1. b := a'
+	self assert: source equals: '| a b |a := 1. b := a'
 ]
 
 { #category : #tests }
 BISequenceExpressionTest >> testFormatEachStatement [
-	| expr source |
-	expr := RBParser parseExpression:'|a b|a:=1.b:=a'.
+	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'| a b |a := 1. b := a'
+	source := self formatExpression: '|a b|a:=1.b:=a'.
+	self assert: source equals: '| a b |a := 1. b := a'
 ]
 
 { #category : #tests }
 BISequenceExpressionTest >> testLineBetweenTemporariesAndComment [
-	| expr source |
-	expr := RBParser parseExpression: '|a b| "comment"'.
+	| source |
 	configurationSelector := #newLineAfterTemporariesConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'| a b |
+	source := self formatExpression: '|a b| "comment"'.
+	self
+		assert: source
+		equals:
+			'| a b |
 "comment"
 '
 ]
 
 { #category : #tests }
 BISequenceExpressionTest >> testNewLineBetweenStatement [
-	| expr source |
-	expr := RBParser parseExpression: '|a b| a := 1. b := a'.
+	| source |
 	configurationSelector := #newLineAfterStatementConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'| a b |a := 1.
+	source := self formatExpression: '|a b| a := 1. b := a'.
+	self
+		assert: source
+		equals:
+			'| a b |a := 1.
 b := a'
 ]
 
 { #category : #tests }
 BISequenceExpressionTest >> testNoPeriodAtEndOfBlock [
-	| expr source |
-	expr := RBParser parseExpression: '|a b| [1.].'.
+	| source |
 	configurationSelector := #periodNotAsTerminatorConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'| a b |[ 1 ]'
+	source := self formatExpression: '|a b| [1.].'.
+	self assert: source equals: '| a b |[ 1 ]'
 ]
 
 { #category : #tests }
 BISequenceExpressionTest >> testNoPeriodAtEndOfMethode [
-	| expr source |
-	expr := RBParser parseExpression: '|a b| 6 factorial'.
+	| source |
 	configurationSelector := #periodNotAsTerminatorConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'| a b |6 factorial'
+	source := self formatExpression: '|a b| 6 factorial'.
+	self assert: source equals: '| a b |6 factorial'
 ]
 
 { #category : #tests }
 BISequenceExpressionTest >> testPeriodAtEndOfBlock [
-	| expr source |
-	expr := RBParser parseExpression: '|a b| [1.].'.
+	| source |
 	configurationSelector := #periodAsTerminatorConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'| a b |[ 1. ].'
+	source := self formatExpression: '|a b| [1.].'.
+	self assert: source equals: '| a b |[ 1. ].'
 ]
 
 { #category : #tests }
 BISequenceExpressionTest >> testPeriodAtEndOfMethode [
-	| expr source |
-	expr := RBParser parseExpression: '|a b| 6 factorial'.
+	| source |
 	configurationSelector := #periodAsTerminatorConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'| a b |6 factorial.'
+	source := self formatExpression: '|a b| 6 factorial'.
+	self assert: source equals: '| a b |6 factorial.'
 ]
 
 { #category : #tests }
 BISequenceExpressionTest >> testRetainBlankLinesBeforeComments [
-	| expr source |
-	expr := RBParser parseExpression: '|a b|
+	| source |
+	configurationSelector := #retainBlankLinesBeforeCommentsConfiguration.
+	source := self
+		formatExpression:
+			'|a b|
 	a :=1.
 	"Comment"
 	b :=2'.
-	configurationSelector := #retainBlankLinesBeforeCommentsConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'| a b |a := 1.
+	self
+		assert: source
+		equals:
+			'| a b |a := 1.
 "Comment" b := 2'
 ]
 
 { #category : #tests }
 BISequenceExpressionTest >> testRetainBlankLinesBetweenStatements [
-	| expr source |
-	expr := RBParser parseExpression: '|a b| 
+	| source |
+	configurationSelector := #retainBlankLinesBetweenStatementsConfiguration.
+	source := self
+		formatExpression:
+			'|a b| 
 	
 	a:=1.
 	
 	b:=a'.
-	
-	configurationSelector := #retainBlankLinesBetweenStatementsConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'| a b |a := 1.
+	self
+		assert: source
+		equals:
+			'| a b |a := 1.
 
 b := a'
 ]
 
 { #category : #tests }
 BISequenceExpressionTest >> testRetainBlankLinesBetweenStatements2 [
-	| expr source |
-	expr := RBParser parseExpression: '|a b| 
+	| source |
+	configurationSelector := #retainBlankLinesBetweenStatementsConfiguration.
+	source := self
+		formatExpression:
+			'|a b| 
 	
 	a:=1.
 	
 	
 	b:=a'.
-	configurationSelector := #retainBlankLinesBetweenStatementsConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'| a b |a := 1.
+	self
+		assert: source
+		equals:
+			'| a b |a := 1.
 
 
 b := a'
@@ -346,14 +345,17 @@ b := a'
 
 { #category : #tests }
 BISequenceExpressionTest >> testRetainBlankLinesBetweenStatements3 [
-	| expr source |
-	expr := RBParser parseExpression: '|a b| 
+	| source |
+	configurationSelector := #retainBlankLinesBetweenStatementsConfiguration.
+	source := self
+		formatExpression:
+			'|a b| 
 	
 	a:=1.
 	b:=a'.
-	configurationSelector := #retainBlankLinesBetweenStatementsConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'| a b |a := 1.
+	self
+		assert: source
+		equals:
+			'| a b |a := 1.
 b := a'
 ]
