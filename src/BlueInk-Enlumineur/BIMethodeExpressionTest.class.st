@@ -13,10 +13,10 @@ BIMethodeExpressionTest >> basicCommentFormatConfiguration [
 
 	^ self contextClass basicNew
 		indentString: '	';
-		newLinesAfterSignature:0;
-		newLinesAfterCommentZone:0;
 		formatCommentWithStatements:false;
-		useBasicCommentFormat: true
+		useBasicCommentFormat: true;
+		newLinesAfterMethodPattern: 1;
+		newLinesAfterMethodComment: 1
 ]
 
 { #category : #configurations }
@@ -28,13 +28,13 @@ BIMethodeExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
 		indentString: '	';
-		newLinesAfterSignature:0;
-		newLinesAfterCommentZone:0;
 		formatCommentWithStatements:false;
 		useBasicCommentFormat: false;
 		maxLineLength: 50;
 		periodsAtEndOfBlock: false;
-		periodsAtEndOfMethod: false
+		periodsAtEndOfMethod: false;
+		newLinesAfterMethodPattern: 1;
+		newLinesAfterMethodComment: 1
 ]
 
 { #category : #configurations }
@@ -46,14 +46,11 @@ BIMethodeExpressionTest >> bigMethodeConfiguration [
 
 	^ self contextClass basicNew
 		indentString: '	';
-		newLinesAfterSignature:0;
-		newLinesAfterCommentZone:0;
 		formatCommentWithStatements:false;
 		useBasicCommentFormat: false;
 		maxLineLength: 50;
 		periodsAtEndOfBlock: false;
 		periodsAtEndOfMethod: false;
-		newLinesBetweenTopComments: 1;
 		multiLineMessages: Array new;
 		oneLineMessages: Array new;
 		indentsForKeywords: 1;
@@ -66,7 +63,9 @@ BIMethodeExpressionTest >> bigMethodeConfiguration [
 		numberOfArgumentsForMultiLine:4;
 		newLinesAfterTemporaries:1;
 		stringInsideBlocks: '';
-		lineUpBlockBrackets: true
+		lineUpBlockBrackets: true;
+		newLinesAfterMethodPattern: 1;
+		newLinesAfterMethodComment: 1
 ]
 
 { #category : #configurations }
@@ -78,8 +77,6 @@ BIMethodeExpressionTest >> cascadeConfiguration [
 
 	^ self contextClass basicNew
 		indentString: '	';
-		newLinesAfterSignature:0;
-		newLinesAfterCommentZone:0;
 		formatCommentWithStatements:false;
 		useBasicCommentFormat: false;
 		maxLineLength: 50;
@@ -92,7 +89,8 @@ BIMethodeExpressionTest >> cascadeConfiguration [
 		numberOfArgumentsForMultiLine:10;
 		keepBlockInMessage:true;
 		retainBlankLinesBetweenStatements:false;
-		minimumNewLinesBetweenStatements:1
+		newLinesAfterMethodPattern:1;
+		minimumNewLinesBetweenStatements: 1
 ]
 
 { #category : #configurations }
@@ -104,9 +102,8 @@ BIMethodeExpressionTest >> newLineAfterSignatureConfiguration [
 
 	^ self contextClass basicNew
 		indentString: '	';
-		newLinesAfterSignature:1;
-		newLinesAfterCommentZone:0;
-		formatCommentWithStatements:false
+		formatCommentWithStatements:false;
+		newLinesAfterMethodPattern: 1
 ]
 
 { #category : #configurations }
@@ -118,14 +115,13 @@ BIMethodeExpressionTest >> newLineBetweenTopCommentsConfiguration [
 
 	^ self contextClass basicNew
 		indentString: '	';
-		newLinesAfterSignature:0;
-		newLinesAfterCommentZone:0;
 		formatCommentWithStatements:false;
 		useBasicCommentFormat: false;
 		maxLineLength: 50;
 		periodsAtEndOfBlock: false;
 		periodsAtEndOfMethod: false;
-		newLinesBetweenTopComments:1
+		newLinesAfterMethodPattern: 1;
+		newLinesAfterMethodComment: 1
 ]
 
 { #category : #configurations }
@@ -137,11 +133,10 @@ BIMethodeExpressionTest >> noNewLineBetweenTopCommentsConfiguration [
 
 	^ self contextClass basicNew
 		indentString: '	';
-		newLinesAfterSignature:0;
-		newLinesAfterCommentZone:0;
 		formatCommentWithStatements:false;
 		useBasicCommentFormat: true;
-		newLinesBetweenTopComments:0
+		newLinesAfterMethodPattern: 1;
+		newLinesAfterMethodComment: 0
 ]
 
 { #category : #configurations }
@@ -153,10 +148,10 @@ BIMethodeExpressionTest >> noNewLinesAfterCommentConfiguration [
 
 	^ self contextClass basicNew
 		indentString: '	';
-		newLinesAfterSignature:0;
-		newLinesAfterCommentZone:0;
 		formatCommentWithStatements:false;
-		useBasicCommentFormat: true
+		useBasicCommentFormat: true;
+		newLinesAfterMethodPattern: 1;
+		newLinesAfterMethodComment: 1
 ]
 
 { #category : #configurations }
@@ -168,11 +163,11 @@ BIMethodeExpressionTest >> notBasicCommentFormatConfiguration [
 
 	^ self contextClass basicNew
 		indentString: '	';
-		newLinesAfterSignature:0;
-		newLinesAfterCommentZone:0;
 		formatCommentWithStatements:false;
 		useBasicCommentFormat: false;
-		maxLineLength: 50
+		maxLineLength: 50;	
+		newLinesAfterMethodPattern: 1;
+		newLinesAfterMethodComment: 1
 ]
 
 { #category : #configurations }
@@ -184,12 +179,11 @@ BIMethodeExpressionTest >> oneNewLineAfterCommentConfiguration [
 
 	^ self contextClass basicNew
 		indentString: '	';
-		newLinesAfterSignature:0;
-		newLinesAfterCommentZone:1;
 		formatCommentWithStatements:false;
 		useBasicCommentFormat:false;
 		maxLineLength:50;
-		newLinesBetweenTopComments:0
+		newLinesAfterMethodPattern: 1;
+		newLinesAfterMethodComment: 2
 ]
 
 { #category : #configurations }
@@ -201,8 +195,6 @@ BIMethodeExpressionTest >> oneNewLinesAfterSignatureConfiguration [
 
 	^ self contextClass basicNew
 		indentString: '	';
-		newLinesAfterSignature:1;
-		newLinesAfterCommentZone:0;
 		formatCommentWithStatements:false
 ]
 
@@ -215,9 +207,8 @@ BIMethodeExpressionTest >> signatureConfiguration [
 
 	^ self contextClass basicNew
 		indentString: '	';
-		newLinesAfterSignature:0;
-		newLinesAfterCommentZone:0;
-		formatCommentWithStatements:false
+		formatCommentWithStatements:false;
+		newLinesAfterMethodPattern: 1
 ]
 
 { #category : #configurations }
@@ -229,10 +220,9 @@ BIMethodeExpressionTest >> signatureNotOnMultipleLinesConfiguration [
 
 	^ self contextClass basicNew
 		indentString: '	';
-		newLinesAfterSignature:0;
-		newLinesAfterCommentZone:0;
 		formatCommentWithStatements:false;
-		methodSignatureOnMultipleLines: false
+		methodSignatureOnMultipleLines: false;
+		newLinesAfterMethodPattern: 1
 ]
 
 { #category : #configurations }
@@ -244,11 +234,10 @@ BIMethodeExpressionTest >> signatureOnMultipleLinesConfiguration [
 
 	^ self contextClass basicNew
 		indentString: '	';
-		newLinesAfterSignature:0;
-		newLinesAfterCommentZone:0;
 		formatCommentWithStatements:false;
 		methodSignatureOnMultipleLines: true;
-		selectorAndArgumentCombinedMaxSize: 2
+		selectorAndArgumentCombinedMaxSize: 2;
+		newLinesAfterMethodPattern: 0
 ]
 
 { #category : #test }
@@ -383,7 +372,9 @@ BIMethodeExpressionTest >> testNewLinesAfterComment2 [
 	source := self formatter format: expr.
 	self assert: source equals:
 'aMethode
-	"aComment"	"anotherComment"
+	"aComment"
+
+	"anotherComment"
 
 	'
 ]
@@ -409,7 +400,6 @@ BIMethodeExpressionTest >> testNewLinesAfterSignature [
 	source := self formatter format: expr.
 	self assert: source equals:
 'aMethode
-
 	'
 ]
 
@@ -471,8 +461,7 @@ BIMethodeExpressionTest >> testNoNewLinesBetweenTopComments [
 	source := self formatter format: expr.
 	self assert: source equals:
 'aMethode
-	"aComment"	"anotherComment"
-	'
+	"aComment"	"anotherComment"	'
 
 ]
 
@@ -484,7 +473,6 @@ BIMethodeExpressionTest >> testOneNewLinesAfterSignature [
 	source := self formatter format: expr.
 	self assert: source equals:
 'aMethode
-
 	'
 ]
 
@@ -566,8 +554,7 @@ BIMethodeExpressionTest >> twoNewLinesAfterSignatureConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-	indentString: '	';
-	newLinesAfterSignature:2;
-	newLinesAfterCommentZone:0;
-	formatCommentWithStatements:false
+		indentString: '	';
+		formatCommentWithStatements:false;
+		newLinesAfterMethodPattern: 3
 ]

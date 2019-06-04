@@ -10,7 +10,7 @@ Class {
 { #category : #hooks }
 BISingleExpressionTest >> contextClass [
 	self flag: #todo. "change to have BIPrettyPrinterContext"
-	^ BIExtendedPrettyPrinterContext
+	^ BIPrettyPrinterContext
 ]
 
 { #category : #hooks }
@@ -32,7 +32,7 @@ BISingleExpressionTest >> formatter [
 { #category : #hooks }
 BISingleExpressionTest >> formatterClass [
 	self flag: #todo. "change to have BIConfigurableFormatter"
-	^ BIEnlumineurConfigurableFormatter
+	^ BIConfigurableFormatter
 ]
 
 { #category : #hooks }
