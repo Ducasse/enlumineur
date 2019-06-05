@@ -3,7 +3,8 @@ Class {
 	#superclass : #ParametrizedTestCase,
 	#instVars : [
 		'configurationSelector',
-		'formatterClass'
+		'formatterClass',
+		'contextClass'
 	],
 	#category : #'BlueInk-Enlumineur-ToIntegrateToPharo'
 }
@@ -12,14 +13,19 @@ Class {
 BISingleExpressionTest class >> testParameters [
 
 	^ ParametrizedTestMatrix new
-		forSelector: #formatterClass addOptions: {BIConfigurableFormatter};
+			addCase: { #formatterClass -> BIConfigurableFormatter . #contextClass -> BIPrettyPrinterContext };
+			addCase: { #formatterClass -> BIEnlumineur. #contextClass -> BIEnlumineurContext };
 		yourself.
 ]
 
 { #category : #hooks }
 BISingleExpressionTest >> contextClass [
-	self flag: #todo. "change to have BIPrettyPrinterContext"
-	^ BIPrettyPrinterContext
+	^ contextClass
+]
+
+{ #category : #hooks }
+BISingleExpressionTest >> contextClass: aContextClass [
+	contextClass := aContextClass
 ]
 
 { #category : #hooks }
