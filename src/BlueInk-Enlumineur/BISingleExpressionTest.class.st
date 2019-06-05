@@ -1,11 +1,20 @@
 Class {
 	#name : #BISingleExpressionTest,
-	#superclass : #TestCase,
+	#superclass : #ParametrizedTestCase,
 	#instVars : [
-		'configurationSelector'
+		'configurationSelector',
+		'formatterClass'
 	],
 	#category : #'BlueInk-Enlumineur-ToIntegrateToPharo'
 }
+
+{ #category : #'building suites' }
+BISingleExpressionTest class >> testParameters [
+
+	^ ParametrizedTestMatrix new
+		forSelector: #formatterClass addOptions: {BIConfigurableFormatter};
+		yourself.
+]
 
 { #category : #hooks }
 BISingleExpressionTest >> contextClass [
@@ -32,7 +41,12 @@ BISingleExpressionTest >> formatter [
 { #category : #hooks }
 BISingleExpressionTest >> formatterClass [
 	self flag: #todo. "change to have BIConfigurableFormatter"
-	^ BIConfigurableFormatter
+	^ formatterClass
+]
+
+{ #category : #hooks }
+BISingleExpressionTest >> formatterClass: aFormatterClass [
+	formatterClass := aFormatterClass
 ]
 
 { #category : #hooks }
