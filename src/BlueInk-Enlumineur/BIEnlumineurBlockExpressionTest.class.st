@@ -31,6 +31,52 @@ BIEnlumineurBlockExpressionTest >> closeBracket [
 ]
 
 { #category : #configurations }
+BIEnlumineurBlockExpressionTest >> dontFormatCommentWithStatementConfiguration [
+
+	^ self contextClass basicNew
+		stringInsideBlocks:' ';
+		periodsAtEndOfBlock:false;
+		periodsAtEndOfMethod: false;
+		lineUpBlockBrackets:false;
+		indentString: '	';
+		keepBlockInMessage:false;
+		retainBlankLinesBetweenStatements:false;
+		minimumNewLinesBetweenStatements:1;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine:5;
+		indentsForKeywords:1;
+		newLineBeforeFirstKeyword:false;
+		formatCommentWithStatements:false;
+		maxLineLength:50;
+		retainBlankLinesBeforeComments: false;
+		useBasicCommentFormat: false
+]
+
+{ #category : #configurations }
+BIEnlumineurBlockExpressionTest >> formatCommentWithStatementConfiguration [
+
+	^ self contextClass basicNew
+		stringInsideBlocks:' ';
+		periodsAtEndOfBlock:false;
+		periodsAtEndOfMethod: false;
+		lineUpBlockBrackets:false;
+		indentString: '	';
+		keepBlockInMessage:false;
+		retainBlankLinesBetweenStatements:false;
+		minimumNewLinesBetweenStatements:1;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine:5;
+		indentsForKeywords:1;
+		newLineBeforeFirstKeyword:false;
+		formatCommentWithStatements:true;
+		maxLineLength:50;
+		retainBlankLinesBeforeComments: false;
+		useBasicCommentFormat: false
+]
+
+{ #category : #configurations }
 BIEnlumineurBlockExpressionTest >> newLineBeforeEndBracketConfiguration [
 	"Here we can control explicitely the configuration we want."
 
@@ -134,9 +180,30 @@ BIEnlumineurBlockExpressionTest >> testArgumentsComments [
 	self 
 		validate:':i "aComment" :j "anotherComment"| i '
 		isFormattedAs:
-' :i"aComment"
- :j"anotherComment"
+' :i "aComment"
+ :j "anotherComment"
  | i '
+]
+
+{ #category : #test }
+BIEnlumineurBlockExpressionTest >> testDontFormatCommentWithStatement [
+self flag: 'remove the cr before the dot'.
+	self validate: '1 factorial. "aComment" 2 factorial'
+	isFormattedAs: 
+' 1 factorial "aComment"
+.
+2 factorial '
+	with: #dontFormatCommentWithStatementConfiguration
+]
+
+{ #category : #test }
+BIEnlumineurBlockExpressionTest >> testDontFormatCommentWithStatement2 [
+	self validate: ' "aComment" 1 factorial.  2 factorial'
+	isFormattedAs: 
+' "aComment"
+1 factorial.
+2 factorial '
+	with: #dontFormatCommentWithStatementConfiguration
 ]
 
 { #category : #test }
@@ -156,6 +223,15 @@ BIEnlumineurBlockExpressionTest >> testFormatBody [
 		isFormattedAs:
 ' [ 1 ].
 [ a := 1 ] '.
+]
+
+{ #category : #test }
+BIEnlumineurBlockExpressionTest >> testFormatCommentWithStatement [
+	self validate: '1 factorial. "aComment" 2 factorial'
+	isFormattedAs: 
+' 1 factorial.	"aComment"
+2 factorial '
+	with: #formatCommentWithStatementConfiguration
 ]
 
 { #category : #test }

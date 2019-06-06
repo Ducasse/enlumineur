@@ -525,11 +525,12 @@ BIEnlumineur >> formatBlockArgumentsFor: aBlockNode [
 	aBlockNode arguments isEmpty
 		ifTrue: [ ^ self ].
 	aBlockNode arguments
-		do:
-			[ :each | codeStream nextPut: $:.
+		do: [ :each | 
+			codeStream nextPut: $:.
 			self visitNode: each.
 			self formatCommentWithStatements
-				ifTrue: [ self formatCommentsFor: each ].
+				ifTrue:
+					[ self spaceAndFormatComments: each ].
 			self space ].
 	codeStream nextPutAll: '| '.
 	(self willBeMultiline: aBlockNode body)
@@ -1306,6 +1307,12 @@ BIEnlumineur >> space [
 	codeStream space
 ]
 
+{ #category : #'private-formatting' }
+BIEnlumineur >> spaceAndFormatComments: aNode [
+	aNode comments ifNotEmpty: [ self space ].
+	self formatCommentsFor: aNode
+]
+
 { #category : #accessing }
 BIEnlumineur >> stringFollowingReturn [
 	^ context stringFollowingReturn
@@ -1446,7 +1453,7 @@ BIEnlumineur >> visitLiteralVariableNode: aLiteralVariableNode [
 ]
 
 { #category : #visiting }
-BIEnlumineur >> visitMessageNode: aMessageNode [ 
+BIEnlumineur >> visitMessageNode: aMessageNode [
 	self visitNode: aMessageNode receiver.
 	self formatSelectorAndArguments: aMessageNode
 ]
@@ -1472,8 +1479,8 @@ BIEnlumineur >> visitNode: aNode [
 			needsParenthesis
 				ifTrue: [ codeStream nextPutAll: self stringInsideParentheses ].
 			super visitNode: aNode.
-			(self formatCommentWithStatements or: [ aNode isMethod or: [ aNode isSequence ] ])
-				ifFalse: [ self formatCommentsFor: aNode ].
+			(self formatCommentWithStatements or: [ aNode isMethod or: [ aNode isSequence or:[aNode isBlock] ] ])
+				ifFalse: [  self spaceAndFormatComments: aNode. ].
 			needsParenthesis
 				ifTrue: [ codeStream nextPutAll: self stringInsideParentheses ] ]
 ]

@@ -138,7 +138,7 @@ BIEnlumineurTemporariesExpressionTest >> testDontRetainBlankLinesBeforeComments 
 	self
 		assert: source
 		equals:
-			'| d"comment"
+			'| d "comment"
  e |'
 ]
 
@@ -155,7 +155,7 @@ BIEnlumineurTemporariesExpressionTest >> testDontRetainBlankLinesBeforeComments2
 	self
 		assert: source
 		equals:
-			'| d"comment"
+			'| d "comment"
  e |'
 ]
 
