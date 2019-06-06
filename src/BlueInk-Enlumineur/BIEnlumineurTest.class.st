@@ -1,34 +1,34 @@
 Class {
-	#name : #BISingleExpressionTest,
+	#name : #BIEnlumineurTest,
 	#superclass : #ParametrizedTestCase,
 	#instVars : [
 		'configurationSelector',
 		'formatterClass',
 		'contextClass'
 	],
-	#category : #'BlueInk-Enlumineur-ToIntegrateToPharo'
+	#category : #'BlueInk-Enlumineur'
 }
 
 { #category : #'building suites' }
-BISingleExpressionTest class >> testParameters [
+BIEnlumineurTest class >> testParameters [
 
 	^ ParametrizedTestMatrix new
-			addCase: { #formatterClass -> BIConfigurableFormatter . #contextClass -> BIPrettyPrinterContext };
+			addCase: { #formatterClass -> BIEnlumineur. #contextClass -> BIEnlumineurContext };
 		yourself.
 ]
 
 { #category : #hooks }
-BISingleExpressionTest >> contextClass [
+BIEnlumineurTest >> contextClass [
 	^ contextClass
 ]
 
 { #category : #hooks }
-BISingleExpressionTest >> contextClass: aContextClass [
+BIEnlumineurTest >> contextClass: aContextClass [
 	contextClass := aContextClass
 ]
 
 { #category : #hooks }
-BISingleExpressionTest >> formatExpression: anExpression [
+BIEnlumineurTest >> formatExpression: anExpression [
 
 	| expr |
 	expr := self parseExpression: anExpression.
@@ -37,25 +37,25 @@ BISingleExpressionTest >> formatExpression: anExpression [
 ]
 
 { #category : #hooks }
-BISingleExpressionTest >> formatter [
+BIEnlumineurTest >> formatter [
 	^ self formatterClass new
 		installNewContext: (self perform: configurationSelector)
 		yourself
 ]
 
 { #category : #hooks }
-BISingleExpressionTest >> formatterClass [
+BIEnlumineurTest >> formatterClass [
 	self flag: #todo. "change to have BIConfigurableFormatter"
 	^ formatterClass
 ]
 
 { #category : #hooks }
-BISingleExpressionTest >> formatterClass: aFormatterClass [
+BIEnlumineurTest >> formatterClass: aFormatterClass [
 	formatterClass := aFormatterClass
 ]
 
 { #category : #hooks }
-BISingleExpressionTest >> parseExpression: anExpression [
+BIEnlumineurTest >> parseExpression: anExpression [
 
 	^ RBParser parseExpression: anExpression
 ]
