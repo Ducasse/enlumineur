@@ -39,6 +39,6 @@ BIEnlumineurBlock2ExpressionTest >> testSpaceAfterComment [
 BIEnlumineurBlock2ExpressionTest >> testformatComment [
 	| source |
 	configurationSelector := #basicConfiguration.
-	source := self formatExpression: '["  c1   " "   c2 " 2 "c3"]'.
-	self assert: source equals: '[ "  c1   " "   c2 " 2	"c3" ]'
+	source := self formatExpression: '["  c1   " "   c2 " 2 factorial "c3"]'.
+	self assert: source equals: '[ "  c1   " "   c2 " 2 factorial	"c3" ]'
 ]

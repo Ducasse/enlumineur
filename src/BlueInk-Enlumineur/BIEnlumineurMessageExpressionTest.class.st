@@ -20,6 +20,21 @@ BIEnlumineurMessageExpressionTest >> basicConfiguration [
 ]
 
 { #category : #configurations }
+BIEnlumineurMessageExpressionTest >> formatStatementsWithCommentsConfiguration [
+
+	^ self contextClass basicNew
+		indentString: '	';
+		formatCommentWithStatements:true;
+		multiLineMessages:Array new;
+		oneLineMessages:Array new;
+		numberOfArgumentsForMultiLine:10;
+		indentsForKeywords: 0;
+		maxLineLength: 50;
+		newLineBeforeFirstKeyword:false;
+		keepBlockInMessage:false
+]
+
+{ #category : #configurations }
 BIEnlumineurMessageExpressionTest >> keepBlockInMessageConfiguration [
 
 	^ self contextClass basicNew
@@ -153,6 +168,22 @@ BIEnlumineurMessageExpressionTest >> testBinaryFormatReceiver [
 ]
 
 { #category : #tests }
+BIEnlumineurMessageExpressionTest >> testBinaryMessageComments [
+	| source |
+	configurationSelector := #basicConfiguration.
+	source := self formatExpression: '1 + 1 "aComment"'.
+	self assert: source equals: '1 + 1 "aComment"'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testBinaryMessageFormatCommentsWithStatement [
+	| source |
+	configurationSelector := #formatStatementsWithCommentsConfiguration.
+	source := self formatExpression: '1 + 1 "aComment"'.
+	self assert: source equals: '1 + 1'
+]
+
+{ #category : #tests }
 BIEnlumineurMessageExpressionTest >> testBinaryNoExtraSpacesAfter [
 	| source |
 	configurationSelector := #basicConfiguration.
@@ -280,6 +311,22 @@ BIEnlumineurMessageExpressionTest >> testKeyWordFormatReceiver [
 	source := self
 		formatExpression: '2 between: 4-2 and: 3     factorial'.
 	self assert: source equals: '2 between: 4 - 2 and: 3 factorial'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testKeywordComments [
+	| source |
+	configurationSelector := #basicConfiguration.
+	source := self formatExpression: '1 between: 2"firstComment" and: 3 "secondComment"'.
+	self assert: source equals: '1 between: 2 "firstComment" and: 3 "secondComment"'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testKeywordCommentsFormatCommentsWithStatement [
+	| source |
+	configurationSelector := #formatStatementsWithCommentsConfiguration.
+	source := self formatExpression: '1 between: 2"firstComment" and: 3 "secondComment"'.
+	self assert: source equals: '1 between: 2 and: 3'
 ]
 
 { #category : #tests }
@@ -428,6 +475,22 @@ BIEnlumineurMessageExpressionTest >> testUnaryFormatReceiver [
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: 'a:=1 factorial'.
 	self assert: source equals: 'a := 1 factorial'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testUnaryMessageComments [
+	| source |
+	configurationSelector := #basicConfiguration.
+	source := self formatExpression: '1 factorial "aComment"'.
+	self assert: source equals: '1 factorial "aComment"'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testUnaryMessageFormatCommentsWithStatement [
+	| source |
+	configurationSelector := #formatStatementsWithCommentsConfiguration.
+	source := self formatExpression: '1 factorial "aComment"'.
+	self assert: source equals: '1 factorial'
 ]
 
 { #category : #tests }
