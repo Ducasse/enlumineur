@@ -57,5 +57,10 @@ BIEnlumineurTest >> formatterClass: aFormatterClass [
 { #category : #hooks }
 BIEnlumineurTest >> parseExpression: anExpression [
 
-	^ RBParser parseExpression: anExpression
+	^ self parser parseExpression: anExpression
+]
+
+{ #category : #hooks }
+BIEnlumineurTest >> parser [
+	^ RBParser
 ]

@@ -180,9 +180,7 @@ BIEnlumineurBlockExpressionTest >> testArgumentsComments [
 	self 
 		validate:':i "aComment" :j "anotherComment"| i '
 		isFormattedAs:
-' :i "aComment"
- :j "anotherComment"
- | i '
+' :i "aComment" :j "anotherComment" | i '
 ]
 
 { #category : #test }
@@ -190,8 +188,7 @@ BIEnlumineurBlockExpressionTest >> testDontFormatCommentWithStatement [
 self flag: 'remove the cr before the dot'.
 	self validate: '1 factorial. "aComment" 2 factorial'
 	isFormattedAs: 
-' 1 factorial "aComment"
-.
+' 1 factorial "aComment".
 2 factorial '
 	with: #dontFormatCommentWithStatementConfiguration
 ]

@@ -569,7 +569,7 @@ BIEnlumineur >> formatCommentsFor: aNode [
 		do:
 			[ :each | 
 			self basicFormatCommentFor: each.
-			self newLine ]
+			"self newLine" ]
 ]
 
 { #category : #private }
@@ -642,7 +642,10 @@ BIEnlumineur >> formatSelectorAndArguments: aMessageNode [
 			self
 				formatSelectorAndArguments: aMessageNode
 				firstSeparator:
-					((newLineBetweenArguments or: [ self newLineBeforeFirstKeyword ])
+					(( aMessageNode isKeyword
+					and:[
+						newLineBetweenArguments or: [ self newLineBeforeFirstKeyword ]
+						]  )
 						ifTrue: [ [ self newLine ] ]
 						ifFalse: [ [ self space ] ])
 				restSeparator:

@@ -184,8 +184,7 @@ BIEnlumineurMessageExpressionTest >> testBinaryOneArgumentPerLine [
 	self
 		assert: source
 		equals:
-			'1
-+ 2'
+			'1 + 2'
 ]
 
 { #category : #tests }
@@ -352,6 +351,16 @@ BIEnlumineurMessageExpressionTest >> testNewLineBeforeFirstKeyword [
 		equals:
 			'2
 between: 1 and: 3'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testNewLineBeforeFirstKeyword2 [
+	| source |
+	configurationSelector := #newLineBeforeFirstKeywordConfiguration.
+	source := self formatExpression: '1+1'.
+	self
+		assert: source
+		equals:'1 + 1'
 ]
 
 { #category : #tests }

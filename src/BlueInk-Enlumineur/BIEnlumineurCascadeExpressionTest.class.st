@@ -164,8 +164,7 @@ BIEnlumineurCascadeExpressionTest >> testCommentAfterMessages [
 	self
 		assert: source
 		equals:
-			'Transcript show: 1; "secondComment"
-		cr; "thirdComment"
+'Transcript show: 1; "secondComment"cr; "thirdComment"
 		cr'
 ]
 
@@ -177,8 +176,7 @@ BIEnlumineurCascadeExpressionTest >> testCommentBeforeMessage [
 	self
 		assert: source
 		equals:
-			'Transcript show: 1; "cr"
-		cr'
+			'Transcript show: 1; "cr"cr'
 ]
 
 { #category : #tests }
