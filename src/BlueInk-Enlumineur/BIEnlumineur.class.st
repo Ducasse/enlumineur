@@ -354,13 +354,22 @@ BIEnlumineur class >> settingsOn: aBuilder [
 				label: 'Retain blank lines between statements'.
 			(aBuilder setting: #selectorAndArgumentCombinedMaxSize)
 				label: 'Selector and argument combined in method signature max size'.
-			(aBuilder setting: #stringFollowingReturn) label: 'String following return'.
+			self settingsSpacesAfterCaretSymbolInReturn: aBuilder.
 			(aBuilder setting: #stringInsideBlocks) label: 'String inside blocks'.
 			(aBuilder setting: #stringInsideParentheses) label: 'String inside parentheses'.
 			(aBuilder setting: #traditionalBinaryPrecedenceArray) label: 'Traditional binary precedence'.
 			(aBuilder setting: #useBasicCommentFormat) label: 'Use basic comment format'.
 			(aBuilder setting: #useTraditionalBinaryPrecedenceForParentheses)
 				label: 'Use traditional binary precedence for parentheses' ]
+]
+
+{ #category : #settings }
+BIEnlumineur class >> settingsSpacesAfterCaretSymbolInReturn: aBuilder [ 
+	
+	(aBuilder setting: #stringFollowingReturn)
+		label: 'String following return';
+		description: 'Number of spaces expressed as a string that is put just after the caret (^) of a return expression. 
+For example: ^   self is the result for 3 spaces'.
 ]
 
 { #category : #accessing }
