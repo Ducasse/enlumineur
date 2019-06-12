@@ -478,7 +478,7 @@ is the result if the setting is set to false'.
 
 { #category : #settings }
 BIEnlumineur class >> settingsNewLinesAfterMethodComment: aBuilder [
-	(aBuilder setting: #newLineAfterMethodComment)
+	(aBuilder setting: #newLinesAfterMethodComment)
 		label: 'new line after method comment';
 		description: 'number of new lines after the comment of the method
 Example:
@@ -491,7 +491,7 @@ is the result for 2 new lines'
 
 { #category : #settings }
 BIEnlumineur class >> settingsNewLinesAfterMethodSignature: aBuilder [
-	(aBuilder setting: #newLineAfterMethodPattern)
+	(aBuilder setting: #newLinesAfterMethodPattern)
 		label: 'new line after method signature';
 		description: 'number of new lines after the method signature
 Example:
