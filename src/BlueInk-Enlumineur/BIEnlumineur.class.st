@@ -307,6 +307,228 @@ BIEnlumineur class >> selectorAndArgumentCombinedMaxSize: anInteger [
 ]
 
 { #category : #settings }
+BIEnlumineur class >> settingsAlignBlockBrackets: aBuilder [
+self flag:'rename and change label'.
+	(aBuilder setting: #lineUpBlockBrackets)
+		label: 'align block brackets';
+		description: 'pass a newLine before closing a multiline block. 
+For example:
+
+1 to: 4 do: [ Transcript
+		show: i;
+		cr
+	]
+is the result when true
+
+1 to: 4 do: [ Transcript
+		show: i;
+		cr]
+	is the result when false
+'.
+]
+
+{ #category : #settings }
+BIEnlumineur class >> settingsFormatCommentWithStatements: aBuilder [
+	self flag:'rename the methodName, the setting and the label'.
+	(aBuilder setting: #formatCommentWithStatements)
+		label: 'format comment with expression';
+		description: 'if set to true: put the comment after the separator '.' in an expression
+		else put it before 
+For example if set to true: 1+1."We do an addition" 2+2
+For example if set to false: 1+1"We do an addition". 2+2'.
+]
+
+{ #category : #settings }
+BIEnlumineur class >> settingsIndentString:aBuilder [
+	self flag: 'to remove'.
+	(aBuilder setting: #indentString)
+		label: '';
+		description: ''.
+]
+
+{ #category : #settings }
+BIEnlumineur class >> settingsIndentsForKeywords: aBuilder [ 
+	
+	(aBuilder setting: #stringFollowingReturn)
+		label: 'indents for keywords';
+		description: 'Number of indentations before each keywords of a multiline message . 
+For example:
+aBoolean:
+		ifTrue:[^1]
+		ifFalse:[^0]
+is the result the result for 2 indents'.
+]
+
+{ #category : #settings }
+BIEnlumineur class >> settingsKeepBlockInMessage: aBuilder [ 
+	
+	(aBuilder setting: #keepBlockInMessage)
+		label: 'Keep block in message';
+		description: 'keep the begining of the block on the line of the message
+Example:
+1 to: 4 do: [ :i | 
+		Transcript
+			show: i;cr]
+		is the result for true
+		
+1 to: 4 do:
+	[ :i | 
+	Transcript
+		show: i;
+		cr ]
+		is the result for false'.
+]
+
+{ #category : #settings }
+BIEnlumineur class >> settingsLineUpBlockBrackets: aBuilder [ 
+	
+	(aBuilder setting: #lineUpBlockBrackets)
+		label: 'align block brackets';
+		description: 'Number of spaces expressed as a string that is put just after the caret (^) of a return expression. 
+For example: ^   self is the result for 3 spaces'.
+]
+
+{ #category : #settings }
+BIEnlumineur class >> settingsMethodSignatureOnMultipleLines: aBuilder [ 
+	self flag:'complete exemple'.
+	(aBuilder setting: #lineUpBlockBrackets)
+		label: 'align block brackets';
+		description: 'Write a multilines method signature on multiple lines only if set to true,
+		(a method signature is multilines, depends of the setting selectorAndArgumentCombinedMaxSize).
+For example:
+myMethod:arg
+	foo:bar
+is the result if True and if selectorAndArgumentCombinedMaxSize is 6'.
+]
+
+{ #category : #settings }
+BIEnlumineur class >> settingsMinimumNewLinesBetweenStatements: aBuilder [
+	(aBuilder setting: #minimumNewLinesBetweenStatements)
+		label: 'Minimum new lines between statements';
+		description: 'the number of new lines between each statement
+for example:
+	1+1.
+	
+	2+2.
+	
+	3+3
+is the result if the setting is set to 2'.
+]
+
+{ #category : #settings }
+BIEnlumineur class >> settingsMultiLineMessages: aBuilder [
+	self flag:'add exemple'.
+	(aBuilder setting: #multiLineMessages)
+		label: 'Multi line messages';
+		description: 'An array containing all the messages that should be written on multiple line'.
+]
+
+{ #category : #settings }
+BIEnlumineur class >> settingsNewLineAfterCascade: aBuilder [
+	(aBuilder setting: #newLineAfterCascade)
+		label: 'New line after cascade';
+		description: 'pass a new line after each messages in a cascade
+Examples:
+
+OrderedCollection new
+	add: 1; add: 2; add: 3
+	is the result of the setting is set to false
+
+OrderedCollection new
+	add: 1;
+	add: 2;
+	add: 3
+	is the result of the setting is set to true
+'.
+]
+
+{ #category : #settings }
+BIEnlumineur class >> settingsNewLineBeforeCascade: aBuilder [
+	(aBuilder setting: #newLineAfterCascade)
+		label: 'New line after cascade';
+		description: 'pass a new line before the messages in a cascade
+Examples:
+
+OrderedCollection new add: 1;
+	add: 2;
+	add: 3
+	is the result of the setting is set to false
+
+OrderedCollection new
+	add: 1;
+	add: 2;
+	add: 3
+	is the result of the setting is set to true'.
+]
+
+{ #category : #settings }
+BIEnlumineur class >> settingsNewLineBeforeFirstKeyword: aBuilder [
+	(aBuilder setting: #newLineBeforeFirstKeyword)
+		label: 'new line before first keyword';
+		description: 'pass a new line before the first keyword parameter of a message
+Examples:
+
+1
+between: 0 and: 4
+is the result if the setting is set to true
+	
+1 between: 0 and: 4
+is the result if the setting is set to false'.
+]
+
+{ #category : #settings }
+BIEnlumineur class >> settingsNewLinesAfterMethodComment: aBuilder [
+	(aBuilder setting: #newLineAfterMethodComment)
+		label: 'new line after method comment';
+		description: 'number of new lines after the comment of the method
+Example:
+myMethode
+	"myComment"
+
+	^ true
+is the result for 2 new lines'
+]
+
+{ #category : #settings }
+BIEnlumineur class >> settingsNewLinesAfterMethodSignature: aBuilder [
+	(aBuilder setting: #newLineAfterMethodPattern)
+		label: 'new line after method signature';
+		description: 'number of new lines after the method signature
+Example:
+myMethode: arg
+
+	^ true
+is the result for 2 new lines'
+]
+
+{ #category : #settings }
+BIEnlumineur class >> settingsNewLinesAfterTemporaries: aBuilder [
+	(aBuilder setting: #newLinesAfterTemporaries)
+		label: 'new lines after temporaries';
+		description: 'number of new lines after the temporaries declaration
+Example:
+myMethode
+	| a |
+
+	a := 1
+is the result for 2 new lines'
+]
+
+{ #category : #settings }
+BIEnlumineur class >> settingsNumberOfArgumentsForMultiLine: aBuilder [ 
+	
+	(aBuilder setting: #numberOfArgumentsForMultiLine)
+		label: 'Number of arguments for multiLine';
+		description: 'Number of argument a message must have to be considered multiline. 
+For example:
+1
+	between: 0
+	and: 5
+	
+ is the result if the setting is set to 2'.
+]
+
+{ #category : #settings }
 BIEnlumineur class >> settingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder group: #blueInkFormatter)
@@ -315,52 +537,59 @@ BIEnlumineur class >> settingsOn: aBuilder [
 		label: 'BlueInk Pretty Printing';
 		description: 'Settings related to the formatter';
 		with:
-				[ 
-			(aBuilder setting: #formatCommentWithStatements) label: 'Format comment with statements'.
-			(aBuilder setting: #indentString) label: 'Indent string'.
-			(aBuilder setting: #indentsForKeywords) label: 'Indents for keywords'.
-			(aBuilder setting: #keepBlockInMessage)
-				label: 'Keep block in message';
-				description: (BIFormatSettingsExample >> #keepBlockInMessageExample) sourceCode.
-			(aBuilder setting: #lineUpBlockBrackets)
-				label: 'Line up block brackets';
-				description: (BIFormatSettingsExample >> #lineUpBlockBracketsExample) sourceCode.
-			(aBuilder setting: #methodSignatureOnMultipleLines)
-				label: 'Method signature on multiple lines'.
-			(aBuilder setting: #oneLineMessages) label: 'One line messages'.
-			(aBuilder setting: #multiLineMessages) label: 'Multi line messages'.
-			(aBuilder setting: #minimumNewLinesBetweenStatements)
-				label: 'Minimum new lines between statements'.
-			(aBuilder setting: #newLineAfterCascade)
-				label: 'New line after cascade';
-				description: (BIFormatSettingsExample >> #newLineAfterCascadeExample) sourceCode.
-			(aBuilder setting: #newLineBeforeFirstCascade)
-				label: 'New line before first cascade';
-				description: (BIFormatSettingsExample >> #newLineBeforeFirstCascadeExample) sourceCode.
-			(aBuilder setting: #newLineBeforeFirstKeyword)
-				label: 'New line before first keyword';
-				description: (BIFormatSettingsExample >> #newLineBeforeFirstKeywordExample) sourceCode.
-			(aBuilder setting: #newLinesAfterMethodComment) label: 'New lines after method comment'.
-			(aBuilder setting: #newLinesAfterMethodPattern) label: 'New lines after method pattern'.
-			(aBuilder setting: #newLinesAfterTemporaries) label: 'New lines after temporaries'.
-			(aBuilder setting: #numberOfArgumentsForMultiLine)
-				label: 'Number of arguments for multi line'.
-			(aBuilder setting: #periodsAsTerminators) label: 'Periods as terminators'.
+				[
+			self settingsFormatCommentWithStatements: aBuilder.
+			self settingsIndentString:aBuilder.
+			self settingsIndentsForKeywords: aBuilder.
+			self settingsKeepBlockInMessage: aBuilder.
+			self settingsLineUpBlockBrackets: aBuilder.
+			self settingsMethodSignatureOnMultipleLines: aBuilder.
+			self settingsOneLineMessages: aBuilder.
+			self settingsMultiLineMessages: aBuilder.
+			self settingsMinimumNewLinesBetweenStatements: aBuilder.
+			self settingsNewLineAfterCascade: aBuilder.
+			self settingsNewLineBeforeCascade: aBuilder.
+			self settingsNewLineBeforeFirstKeyword: aBuilder.
+			self settingsNewLinesAfterMethodComment: aBuilder.
+			self settingsNewLinesAfterMethodSignature: aBuilder.
+			self settingsNewLinesAfterTemporaries: aBuilder.
+			self settingsNumberOfArgumentsForMultiLine: aBuilder.
+
+			
+			"(aBuilder setting: #periodsAsTerminators) label: 'Periods as terminators'."
+
 			(aBuilder setting: #periodsAtEndOfBlock) label: 'Periods at end of block'.
+
 			(aBuilder setting: #periodsAtEndOfMethod) label: 'Periods at end of method'.
+
 			(aBuilder setting: #retainBlankLinesBeforeComments)
 				label: 'Retain blank lines before comments'.
+
 			(aBuilder setting: #retainBlankLinesBetweenStatements)
 				label: 'Retain blank lines between statements'.
+
 			(aBuilder setting: #selectorAndArgumentCombinedMaxSize)
 				label: 'Selector and argument combined in method signature max size'.
 			self settingsSpacesAfterCaretSymbolInReturn: aBuilder.
+
 			(aBuilder setting: #stringInsideBlocks) label: 'String inside blocks'.
+
 			(aBuilder setting: #stringInsideParentheses) label: 'String inside parentheses'.
+
 			(aBuilder setting: #traditionalBinaryPrecedenceArray) label: 'Traditional binary precedence'.
+
 			(aBuilder setting: #useBasicCommentFormat) label: 'Use basic comment format'.
+
 			(aBuilder setting: #useTraditionalBinaryPrecedenceForParentheses)
 				label: 'Use traditional binary precedence for parentheses' ]
+]
+
+{ #category : #settings }
+BIEnlumineur class >> settingsOneLineMessages: aBuilder [
+	self flag:'add exemple'.
+	(aBuilder setting: #oneLineMessages)
+		label: 'One line messages';
+		description: 'An array containing all the messages that should be written on one line'.
 ]
 
 { #category : #settings }
