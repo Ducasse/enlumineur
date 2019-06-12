@@ -310,7 +310,7 @@ BIEnlumineur class >> selectorAndArgumentCombinedMaxSize: anInteger [
 BIEnlumineur class >> settingsAlignBlockBrackets: aBuilder [
 self flag:'rename and change label'.
 	(aBuilder setting: #lineUpBlockBrackets)
-		label: 'align block brackets';
+		label: 'Align block brackets';
 		description: 'pass a newLine before closing a multiline block. 
 For example:
 
@@ -328,10 +328,10 @@ is the result when true
 ]
 
 { #category : #settings }
-BIEnlumineur class >> settingsFormatCommentWithStatements: aBuilder [
+BIEnlumineur class >> settingsFormatCommentWithExpression: aBuilder [
 	self flag:'rename the methodName, the setting and the label'.
 	(aBuilder setting: #formatCommentWithStatements)
-		label: 'format comment with expression';
+		label: 'Format comment with expression';
 		description: 'if set to true: put the comment after the separator '.' in an expression
 		else put it before 
 For example if set to true: 1+1."We do an addition" 2+2
@@ -340,7 +340,7 @@ For example if set to false: 1+1"We do an addition". 2+2'.
 
 { #category : #settings }
 BIEnlumineur class >> settingsIndentString:aBuilder [
-	self flag: 'to remove'.
+	self flag: 'Should not be modified'.
 	(aBuilder setting: #indentString)
 		label: '';
 		description: ''.
@@ -349,14 +349,14 @@ BIEnlumineur class >> settingsIndentString:aBuilder [
 { #category : #settings }
 BIEnlumineur class >> settingsIndentsForKeywords: aBuilder [ 
 	
-	(aBuilder setting: #stringFollowingReturn)
-		label: 'indents for keywords';
+	(aBuilder setting: #indentsForKeywords)
+		label: 'Indents for keywords';
 		description: 'Number of indentations before each keywords of a multiline message . 
 For example:
 aBoolean:
 		ifTrue:[^1]
 		ifFalse:[^0]
-is the result the result for 2 indents'.
+is the result for 2 indents'.
 ]
 
 { #category : #settings }
@@ -380,19 +380,10 @@ Example:
 ]
 
 { #category : #settings }
-BIEnlumineur class >> settingsLineUpBlockBrackets: aBuilder [ 
-	
-	(aBuilder setting: #lineUpBlockBrackets)
-		label: 'align block brackets';
-		description: 'Number of spaces expressed as a string that is put just after the caret (^) of a return expression. 
-For example: ^   self is the result for 3 spaces'.
-]
-
-{ #category : #settings }
 BIEnlumineur class >> settingsMethodSignatureOnMultipleLines: aBuilder [ 
 	self flag:'complete exemple'.
-	(aBuilder setting: #lineUpBlockBrackets)
-		label: 'align block brackets';
+	(aBuilder setting: #methodSignatureOnMultipleLines)
+		label: 'method signature on multiple lines';
 		description: 'Write a multilines method signature on multiple lines only if set to true,
 		(a method signature is multilines, depends of the setting selectorAndArgumentCombinedMaxSize).
 For example:
@@ -444,8 +435,8 @@ OrderedCollection new
 
 { #category : #settings }
 BIEnlumineur class >> settingsNewLineBeforeCascade: aBuilder [
-	(aBuilder setting: #newLineAfterCascade)
-		label: 'New line after cascade';
+	(aBuilder setting: #newLineBeforeCascade)
+		label: 'New line before cascade';
 		description: 'pass a new line before the messages in a cascade
 Examples:
 
@@ -479,7 +470,7 @@ is the result if the setting is set to false'.
 { #category : #settings }
 BIEnlumineur class >> settingsNewLinesAfterMethodComment: aBuilder [
 	(aBuilder setting: #newLinesAfterMethodComment)
-		label: 'new line after method comment';
+		label: 'new lines after method comment';
 		description: 'number of new lines after the comment of the method
 Example:
 myMethode
@@ -492,7 +483,7 @@ is the result for 2 new lines'
 { #category : #settings }
 BIEnlumineur class >> settingsNewLinesAfterMethodSignature: aBuilder [
 	(aBuilder setting: #newLinesAfterMethodPattern)
-		label: 'new line after method signature';
+		label: 'New line after method signature';
 		description: 'number of new lines after the method signature
 Example:
 myMethode: arg
@@ -504,7 +495,7 @@ is the result for 2 new lines'
 { #category : #settings }
 BIEnlumineur class >> settingsNewLinesAfterTemporaries: aBuilder [
 	(aBuilder setting: #newLinesAfterTemporaries)
-		label: 'new lines after temporaries';
+		label: 'New lines after temporaries';
 		description: 'number of new lines after the temporaries declaration
 Example:
 myMethode
@@ -538,11 +529,11 @@ BIEnlumineur class >> settingsOn: aBuilder [
 		description: 'Settings related to the formatter';
 		with:
 				[
-			self settingsFormatCommentWithStatements: aBuilder.
+			self settingsFormatCommentWithExpression: aBuilder.
 			self settingsIndentString:aBuilder.
 			self settingsIndentsForKeywords: aBuilder.
 			self settingsKeepBlockInMessage: aBuilder.
-			self settingsLineUpBlockBrackets: aBuilder.
+			self settingsAlignBlockBrackets: aBuilder.
 			self settingsMethodSignatureOnMultipleLines: aBuilder.
 			self settingsOneLineMessages: aBuilder.
 			self settingsMultiLineMessages: aBuilder.
@@ -554,32 +545,20 @@ BIEnlumineur class >> settingsOn: aBuilder [
 			self settingsNewLinesAfterMethodSignature: aBuilder.
 			self settingsNewLinesAfterTemporaries: aBuilder.
 			self settingsNumberOfArgumentsForMultiLine: aBuilder.
-
-			
 			"(aBuilder setting: #periodsAsTerminators) label: 'Periods as terminators'."
-
-			(aBuilder setting: #periodsAtEndOfBlock) label: 'Periods at end of block'.
-
-			(aBuilder setting: #periodsAtEndOfMethod) label: 'Periods at end of method'.
-
-			(aBuilder setting: #retainBlankLinesBeforeComments)
-				label: 'Retain blank lines before comments'.
-
-			(aBuilder setting: #retainBlankLinesBetweenStatements)
-				label: 'Retain blank lines between statements'.
-
-			(aBuilder setting: #selectorAndArgumentCombinedMaxSize)
-				label: 'Selector and argument combined in method signature max size'.
+			self settingsPeriodsAtEndOfBlock: aBuilder.
+			self settingsPeriodsAtEndOfMethod: aBuilder.
+			self settingsRetainBlankLinesBeforeComments: aBuilder.
+			self settingsRetainBlankLinesBetweenStatements: aBuilder.
+			self settingsSelectorAndArgumentCombinedMaxSize: aBuilder.
 			self settingsSpacesAfterCaretSymbolInReturn: aBuilder.
-
-			(aBuilder setting: #stringInsideBlocks) label: 'String inside blocks'.
-
-			(aBuilder setting: #stringInsideParentheses) label: 'String inside parentheses'.
-
-			(aBuilder setting: #traditionalBinaryPrecedenceArray) label: 'Traditional binary precedence'.
-
-			(aBuilder setting: #useBasicCommentFormat) label: 'Use basic comment format'.
-
+			self settingsSpacesInsideBlocks: aBuilder.
+			self settingsSpacesInsideParentheses: aBuilder.
+			
+			self settingsTraditionalBinaryPrecedenceArray: aBuilder.
+			self settingsUseBasicCommentFormat: aBuilder.			
+			
+			self settingsUseTraditionalBinaryPrecedenceForParentheses: aBuilder.
 			(aBuilder setting: #useTraditionalBinaryPrecedenceForParentheses)
 				label: 'Use traditional binary precedence for parentheses' ]
 ]
@@ -593,12 +572,100 @@ BIEnlumineur class >> settingsOneLineMessages: aBuilder [
 ]
 
 { #category : #settings }
+BIEnlumineur class >> settingsPeriodsAtEndOfBlock: aBuilder [
+	(aBuilder setting: #periodsAtEndOfBlock)
+		label: 'Period at end of block';
+		description: 'put a period after the last expression of a block
+for example:
+	1 to:10 do: [:i | i+1.]
+	is the result if the setting is set to true
+'.
+]
+
+{ #category : #settings }
+BIEnlumineur class >> settingsPeriodsAtEndOfMethod: aBuilder [.
+	(aBuilder setting: #periodsAtEndOfMethod)
+		label: 'Period at end of method';
+		description: 'put a period after the last expression of a method
+for example:
+myMethode
+	^ true.
+	is the result if the setting is set to true
+'.
+]
+
+{ #category : #settings }
+BIEnlumineur class >> settingsRetainBlankLinesBeforeComments: aBuilder [.
+	(aBuilder setting: #retainBlankLinesBeforeComments)
+		label: 'Retain blank lines before comments';
+		description: 'keep the blank lines which are before the comments 
+for example:
+	|a b|
+	a :=1.
+	
+	"Comment"
+	b :=2
+	will not be modified if the setting is set to true'.
+]
+
+{ #category : #settings }
+BIEnlumineur class >> settingsRetainBlankLinesBetweenStatements: aBuilder [.
+	(aBuilder setting: #retainBlankLinesBetweenStatements)
+		label: 'Retain blank lines between statements';
+		description: 'Keep the blank lines which are between the statements
+for example:
+| a b c |
+a := 1.
+
+
+b := 2.
+
+c := a + b
+will not change if the setting is set to true'.
+]
+
+{ #category : #settings }
+BIEnlumineur class >> settingsSelectorAndArgumentCombinedMaxSize: aBuilder [.
+	(aBuilder setting: #selectorAndArgumentCombinedMaxSize)
+		label: 'Selector and argument combined in method signature max size';
+		description: 'the maximum size a selector and his argument can do before the message is considered multiline
+		(depend of the setting methodSignatureOnMultipleLines 
+		which will write the message on multiple lines only if is set to true)
+Example:
+myMethod: argument1
+	and: argument2
+	is the result if the max size settings is 12 or less
+	and methodSignatureOnMultipleLines is set to true'
+]
+
+{ #category : #settings }
 BIEnlumineur class >> settingsSpacesAfterCaretSymbolInReturn: aBuilder [ 
 	
 	(aBuilder setting: #stringFollowingReturn)
 		label: 'String following return';
 		description: 'Number of spaces expressed as a string that is put just after the caret (^) of a return expression. 
 For example: ^   self is the result for 3 spaces'.
+]
+
+{ #category : #settings }
+BIEnlumineur class >> settingsSpacesInsideBlocks: aBuilder [.
+	self flag:'change the string to Integer' .
+	(aBuilder setting: #stringInsideBlocks)
+		label: 'Spaces inside blocks';
+		description: 'number of spaces after the opening bracket and before the closing bracket
+for example:
+[   :i | Transcript show:i   ]
+	is the result of 3 spaces
+'.
+]
+
+{ #category : #settings }
+BIEnlumineur class >> settingsSpacesInsideParentheses: aBuilder [.
+	self flag:'change the string to Integer' .
+	(aBuilder setting: #stringInsideParentheses)
+		label: 'String inside parentheses';
+		description: 'number of spaces after the opening parenthese and before the closing parenthese
+for example: (   1 + 2   ) is the result for 3 spaces'
 ]
 
 { #category : #accessing }
