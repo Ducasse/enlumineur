@@ -1409,16 +1409,13 @@ BIEnlumineur >> visitCascadeNode: aCascadeNode [
 				do: [ :each | 
 					self
 						indentAround: [ 
-							self "formatCommentsFor: each;"
+							self formatCommentsFor: each;
 								formatSelectorAndArguments: each
 								firstSeparator: [  ]
 								restSeparator:
 									((self isMultiLineMessage: each)
 										ifTrue: [ [ self newLine ] ]
-										ifFalse: [ [ self space ] ]);
-								spaceAndFormatComments:  each
-						]
-					 ]
+										ifFalse: [ [ self space ] ])]]
 				separatedBy: [ 
 					codeStream nextPut: $;.
 					self newLineAfterCascade
