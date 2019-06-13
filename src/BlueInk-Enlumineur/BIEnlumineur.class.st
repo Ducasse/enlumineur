@@ -434,8 +434,8 @@ OrderedCollection new
 ]
 
 { #category : #settings }
-BIEnlumineur class >> settingsNewLineBeforeCascade: aBuilder [
-	(aBuilder setting: #newLineBeforeCascade)
+BIEnlumineur class >> settingsNewLineBeforeFirstCascade: aBuilder [
+	(aBuilder setting: #newLineBeforeFirstCascade)
 		label: 'New line before cascade';
 		description: 'pass a new line before the messages in a cascade
 Examples:
@@ -539,7 +539,7 @@ BIEnlumineur class >> settingsOn: aBuilder [
 			self settingsMultiLineMessages: aBuilder.
 			self settingsMinimumNewLinesBetweenStatements: aBuilder.
 			self settingsNewLineAfterCascade: aBuilder.
-			self settingsNewLineBeforeCascade: aBuilder.
+			self settingsNewLineBeforeFirstCascade: aBuilder.
 			self settingsNewLineBeforeFirstKeyword: aBuilder.
 			self settingsNewLinesAfterMethodComment: aBuilder.
 			self settingsNewLinesAfterMethodSignature: aBuilder.
@@ -666,6 +666,30 @@ BIEnlumineur class >> settingsSpacesInsideParentheses: aBuilder [.
 		label: 'String inside parentheses';
 		description: 'number of spaces after the opening parenthese and before the closing parenthese
 for example: (   1 + 2   ) is the result for 3 spaces'
+]
+
+{ #category : #settings }
+BIEnlumineur class >> settingsTraditionalBinaryPrecedenceArray: aBuilder [.
+	self flag:'toComplete'.
+	(aBuilder setting: #traditionalBinaryPrecedenceArray)
+		label: 'Traditional binary precedence';
+		description: 'An 2 dimension array containing messages according to the priority
+Example: #( #($- $+) #($*) )'.
+]
+
+{ #category : #settings }
+BIEnlumineur class >> settingsUseBasicCommentFormat: aBuilder [.
+self flag:''.
+	(aBuilder setting: #useBasicCommentFormat)
+		label: 'Use basic comment format'.
+]
+
+{ #category : #settings }
+BIEnlumineur class >> settingsUseTraditionalBinaryPrecedenceForParentheses: aBuilder [.
+	(aBuilder setting: #useTraditionalBinaryPrecedenceForParentheses)
+		label: 'Use traditional binary precedence for parentheses';
+		description:'add parentheses in order to comply with the precedence
+for example 1 + 2 * 3 will be formated: (1 + 2) * 3'
 ]
 
 { #category : #accessing }
