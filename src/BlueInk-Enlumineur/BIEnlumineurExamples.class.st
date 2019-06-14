@@ -16,32 +16,32 @@ BIEnlumineurExamples class >> initializeSettingsTable [
 
 	settingsTable := {
 		#formatCommentWithStatements -> #formatCommentWithExpressionExample.
-		#indentString.
-		#indentsForKeywords -> #indentsForKeywordsExample.
+		#indentString -> #indentExample.
+		#indentsForKeywords -> #messageWithALotOfParameters.
 		#keepBlockInMessage -> #keepBlockInMessageExample.
 		#lineUpBlockBrackets -> #alignBlockBracketsExample.
-		#maxLineLength.
-		#methodSignatureOnMultipleLines.
-		#minimumNewLinesBetweenStatements.
+		#maxLineLength -> #maxLineLengthExample.
+		#methodSignatureOnMultipleLines -> #method:with:A:lot:of:parameters:.
+		#minimumNewLinesBetweenStatements-> #minimumNewLinesBetweenStatementsExample.
 		#multiLineMessages.
-		#newLineAfterCascade.
-		#newLineBeforeFirstCascade.
-		#newLineBeforeFirstKeyword.
-		#newLinesAfterMethodComment.
-		#newLinesAfterMethodPattern.
-		#newLinesAfterTemporaries.
-		#numberOfArgumentsForMultiLine.
+		#newLineAfterCascade -> #cascadeExample.
+		#newLineBeforeFirstCascade -> #cascadeExample.
+		#newLineBeforeFirstKeyword -> #messageWithALotOfParameters.
+		#newLinesAfterMethodComment -> #newLinesAfterMethodCommentExample.
+		#newLinesAfterMethodPattern -> #newLinesAfterMethodPatternExample.
+		#newLinesAfterTemporaries -> #newLinesAfterTemporariesExample.
+		#numberOfArgumentsForMultiLine -> #messageWithALotOfParameters.
 		#oneLineMessages.
-		#periodsAtEndOfBlock.
-		#periodsAtEndOfMethod.
-		#retainBlankLinesBetweenStatements.
-		#retainBlankLinesBeforeComments.
+		#periodsAtEndOfBlock -> #blockExample.
+		#periodsAtEndOfMethod -> #periodsAtEndOfMethodExample.
+		#retainBlankLinesBetweenStatements -> #retainBlankLinesExample.
+		#retainBlankLinesBeforeComments -> #retainBlankLinesExample.
 		#stringFollowingReturn -> #spacesAfterCaretSymbolInReturnExample.
-		#stringInsideBlocks.
-		#stringInsideParentheses.
-		#useTraditionalBinaryPrecedenceForParentheses.
-		#selectorAndArgumentCombinedMaxSize.
-		#useBasicCommentFormat.
+		#stringInsideBlocks -> #blockExample.
+		#stringInsideParentheses -> #parenthesesExample.
+		#useTraditionalBinaryPrecedenceForParentheses -> #traditionalBinaryPrecedenceForParenthesesExample.
+		#selectorAndArgumentCombinedMaxSize -> #messageWithALotOfParameters.
+		#useBasicCommentFormat -> #useBasicCommentFormatExample.
 		#traditionalBinaryPrecedenceArray.
 	}
 ]
@@ -56,6 +56,16 @@ BIEnlumineurExamples >> alignBlockBracketsExample [
 ]
 
 { #category : #examples }
+BIEnlumineurExamples >> blockExample [
+	^ [ :n | 1+ n ]
+]
+
+{ #category : #examples }
+BIEnlumineurExamples >> cascadeExample [
+	Transcript cr;cr;cr
+]
+
+{ #category : #examples }
 BIEnlumineurExamples >> formatCommentWithExpressionExample [
 
 	1 + 1.	"We do an addition"
@@ -63,10 +73,14 @@ BIEnlumineurExamples >> formatCommentWithExpressionExample [
 ]
 
 { #category : #examples }
-BIEnlumineurExamples >> indentsForKeywordsExample [
-self flag:'name of settings might change'.
-"depend of the setting numberOfArgumentsForMultiLine"
-	self method:1 With:2 A:3 Lot:4 Of:5 Parameters:6
+BIEnlumineurExamples >> indentExample [
+1 to: 4 do: [ :i | 
+		i to: 4 do: [ :j |
+		Transcript
+			show: i;
+			show: j;
+			cr;
+			cr] ]
 ]
 
 { #category : #examples }
@@ -79,11 +93,94 @@ BIEnlumineurExamples >> keepBlockInMessageExample [
 			cr ]
 ]
 
-{ #category : #'as yet unclassified' }
-BIEnlumineurExamples >> method:a With:b A:c Lot:d Of:e Parameters:f [
+{ #category : #examples }
+BIEnlumineurExamples >> maxLineLengthExample [
+	^ 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11 + 12 + 13 + 14 + 15 + 16 + 17 + 18 + 19 + 20
+]
+
+{ #category : #examples }
+BIEnlumineurExamples >> messageWithALotOfParameters [
+	^ self method:1 with:2 a:3 lot:4 of:5 parameters:6
+]
+
+{ #category : #examples }
+BIEnlumineurExamples >> method:a with:b a:c lot:d of:e parameters:f [
+]
+
+{ #category : #examples }
+BIEnlumineurExamples >> methodSignature:a OnMultipleLinesExample:b [
+
+	
+]
+
+{ #category : #examples }
+BIEnlumineurExamples >> minimumNewLinesBetweenStatementsExample [
+	1 + 1.
+	2 + 2.
+	3 + 3
+]
+
+{ #category : #examples }
+BIEnlumineurExamples >> newLinesAfterMethodCommentExample [
+	"myComment"
+
+	^ true
+]
+
+{ #category : #examples }
+BIEnlumineurExamples >> newLinesAfterMethodPatternExample [
+
+	^ true
+]
+
+{ #category : #examples }
+BIEnlumineurExamples >> newLinesAfterTemporariesExample [
+	| tmp |
+	tmp:= 1.
+	^ tmp
+]
+
+{ #category : #examples }
+BIEnlumineurExamples >> parenthesesExample [
+	1 + ( 2 * 3 )
+]
+
+{ #category : #examples }
+BIEnlumineurExamples >> periodsAtEndOfMethodExample [
+	
+	^ 1 factorial
+]
+
+{ #category : #examples }
+BIEnlumineurExamples >> retainBlankLinesExample [
+"methodComment"	
+
+	| a b c|
+	
+	a:=1.
+
+
+	"aComment"	
+
+	b:=2.
+	
+	c:=3
 ]
 
 { #category : #examples }
 BIEnlumineurExamples >> spacesAfterCaretSymbolInReturnExample [
 	^ 1
+]
+
+{ #category : #examples }
+BIEnlumineurExamples >> traditionalBinaryPrecedenceForParenthesesExample [
+
+	1 + 2 * 3.
+	true | false = true & true
+	
+]
+
+{ #category : #examples }
+BIEnlumineurExamples >> useBasicCommentFormatExample [
+"	  aComment    "
 ]

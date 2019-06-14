@@ -380,6 +380,17 @@ Example:
 ]
 
 { #category : #settings }
+BIEnlumineur class >> settingsMaxLineLength: aBuilder [
+	(aBuilder setting: #maxLineLength)
+		label: 'Max line length';
+		description: 'the maximum possible length of a line
+For example:
+1 + 2 + 3 + 4
+	+ 5 + 6
+is the result for 14'.
+]
+
+{ #category : #settings }
 BIEnlumineur class >> settingsMethodSignatureOnMultipleLines: aBuilder [ 
 	self flag:'complete exemple'.
 	(aBuilder setting: #methodSignatureOnMultipleLines)
@@ -522,6 +533,7 @@ For example:
 { #category : #settings }
 BIEnlumineur class >> settingsOn: aBuilder [
 	<systemsettings>
+	self flag:'maxLineLength isNotHere'.
 	(aBuilder group: #blueInkFormatter)
 		target: self;
 		parent: #codeBrowsing;
