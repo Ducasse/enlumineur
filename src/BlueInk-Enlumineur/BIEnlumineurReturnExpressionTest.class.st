@@ -9,7 +9,7 @@ BIEnlumineurReturnExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
 		formatCommentWithStatements:false;
-		stringFollowingReturn: ' '
+		numberOfSpacesAfterCaretSymbolInReturn: 1
 ]
 
 { #category : #tests }
