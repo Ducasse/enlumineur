@@ -433,6 +433,14 @@ BIEnlumineurMessageExpressionTest >> testOneLineMessage [
 ]
 
 { #category : #tests }
+BIEnlumineurMessageExpressionTest >> testSpacesInsideParentheses [
+	| source |
+	configurationSelector := #twoSpacesInsideParenthesesConfiguration.
+	source := self formatExpression: '1+(2*3)'.
+	self assert: source equals: '1 + (  2 * 3  )'
+]
+
+{ #category : #tests }
 BIEnlumineurMessageExpressionTest >> testTooLongArgument [
 	| source |
 	configurationSelector := #tooLongArgumentConfiguration.
@@ -580,4 +588,20 @@ BIEnlumineurMessageExpressionTest >> twoIdentsForKeyWordConfiguration [
 	maxLineLength: 50;
 	newLineBeforeFirstKeyword:false;
 	keepBlockInMessage:false
+]
+
+{ #category : #configurations }
+BIEnlumineurMessageExpressionTest >> twoSpacesInsideParenthesesConfiguration [
+
+	^ self contextClass basicNew
+		numberOfSpacesInsideParentheses: 2;
+		indentString: '	';
+		formatCommentWithStatements:false;
+		multiLineMessages:Array new;
+		oneLineMessages:Array new;
+		numberOfArgumentsForMultiLine:10;
+		indentsForKeywords: 0;
+		maxLineLength: 50;
+		newLineBeforeFirstKeyword:false;
+		keepBlockInMessage:false
 ]
