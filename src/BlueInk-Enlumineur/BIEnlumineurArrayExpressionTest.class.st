@@ -10,7 +10,7 @@ BIEnlumineurArrayExpressionTest >> basicConfiguration [
 	^ self contextClass basicNew
 		formatCommentWithStatements:false;
 		maxLineLength:50;
-		stringInsideParentheses:'';
+		numberOfSpacesInsideParentheses: 0;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:1;
 		indentString:'	';

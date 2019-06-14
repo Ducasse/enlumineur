@@ -245,13 +245,23 @@ BIEnlumineurContext >> numberOfArgumentsForMultiLine: anObject [
 ]
 
 { #category : #accessing }
+BIEnlumineurContext >> numberOfSpaces: aNumber [
+	^ (1 to: aNumber) collect: [ :index | Character space ] as: String
+]
+
+{ #category : #accessing }
 BIEnlumineurContext >> numberOfSpacesAfterCaretSymbolInReturn: aNumber [
-	self stringFollowingReturn:((1 to: aNumber) collect: [ :index | Character space ] as: String)
+	self stringFollowingReturn:(self numberOfSpaces: aNumber)
 ]
 
 { #category : #accessing }
 BIEnlumineurContext >> numberOfSpacesInsideBlock: aNumber [
-	self stringInsideBlocks: ((1 to: aNumber) collect: [ :index | Character space ] as: String)
+	self stringInsideBlocks: (self numberOfSpaces: aNumber)
+]
+
+{ #category : #accessing }
+BIEnlumineurContext >> numberOfSpacesInsideParentheses: aNumber [
+	self stringInsideParentheses: (self numberOfSpaces: aNumber)
 ]
 
 { #category : #accessing }

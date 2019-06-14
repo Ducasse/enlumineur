@@ -560,7 +560,7 @@ BIEnlumineurMessageExpressionTest >> traditionalBinaryPrecedenceConfiguration [
 	keepBlockInMessage:false;
 	useTraditionalBinaryPrecedenceForParentheses:true;
 	traditionalBinaryPrecedenceArray: #(#($| $& $?) #($= $~ $< $>) #($- $+) #($* $/ $% $\) #($@));
-	stringInsideParentheses: ''
+	numberOfSpacesInsideParentheses: 0
 ]
 
 { #category : #configurations }
