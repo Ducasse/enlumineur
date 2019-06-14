@@ -8,7 +8,7 @@ Class {
 BIEnlumineurBlockExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
-		stringInsideBlocks:' ';
+		numberOfSpacesInsideBlock: 1;
 		periodsAtEndOfBlock:false;
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets:false;
@@ -28,6 +28,27 @@ BIEnlumineurBlockExpressionTest >> basicConfiguration [
 { #category : #hooks }
 BIEnlumineurBlockExpressionTest >> closeBracket [
 	^']'
+]
+
+{ #category : #configurations }
+BIEnlumineurBlockExpressionTest >> configurationWithThreeSpaces [
+
+	^ self contextClass basicNew
+		numberOfSpacesInsideBlock: 3;
+		periodsAtEndOfBlock:false;
+		periodsAtEndOfMethod: false;
+		lineUpBlockBrackets:false;
+		indentString: '	';
+		keepBlockInMessage:false;
+		retainBlankLinesBetweenStatements:false;
+		minimumNewLinesBetweenStatements:1;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine:5;
+		indentsForKeywords:1;
+		newLineBeforeFirstKeyword:false;
+		formatCommentWithStatements:true;
+		maxLineLength:50
 ]
 
 { #category : #configurations }
@@ -185,7 +206,6 @@ BIEnlumineurBlockExpressionTest >> testArgumentsComments [
 
 { #category : #test }
 BIEnlumineurBlockExpressionTest >> testDontFormatCommentWithStatement [
-self flag: 'remove the cr before the dot'.
 	self validate: '1 factorial. "aComment" 2 factorial'
 	isFormattedAs: 
 ' 1 factorial "aComment".
@@ -293,6 +313,12 @@ BIEnlumineurBlockExpressionTest >> testNoNewLineBeforeEndBrackets [
 		isFormattedAs:
 ' 3.
 4 '  with: #noNewLineBeforeEndBracketConfiguration.
+]
+
+{ #category : #test }
+BIEnlumineurBlockExpressionTest >> testNumberOfSpaces [
+
+	self validate: '2' isFormattedAs: '   2   ' with: #configurationWithThreeSpaces
 ]
 
 { #category : #test }

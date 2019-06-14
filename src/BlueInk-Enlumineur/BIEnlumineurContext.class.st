@@ -245,6 +245,11 @@ BIEnlumineurContext >> numberOfArgumentsForMultiLine: anObject [
 ]
 
 { #category : #accessing }
+BIEnlumineurContext >> numberOfSpacesInsideBlock: aNumber [
+	self stringInsideBlocks: ((1 to: aNumber) collect: [ :index | Character space ] as: String)
+]
+
+{ #category : #accessing }
 BIEnlumineurContext >> oneLineMessages [
 	^ oneLineMessages
 ]
