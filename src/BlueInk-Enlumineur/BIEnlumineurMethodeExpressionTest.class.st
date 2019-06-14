@@ -62,7 +62,7 @@ BIEnlumineurMethodeExpressionTest >> bigMethodeConfiguration [
 		newLineAfterCascade:true;
 		numberOfArgumentsForMultiLine:4;
 		newLinesAfterTemporaries:1;
-		stringInsideBlocks: '';
+		numberOfSpacesInsideBlock:0;
 		lineUpBlockBrackets: true;
 		newLinesAfterMethodPattern: 1;
 		newLinesAfterMethodComment: 1

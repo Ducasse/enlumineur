@@ -33,7 +33,7 @@ BIMessageExpressionTest >> keepBlockInMessageConfiguration [
 		newLineBeforeFirstKeyword:false;
 		keepBlockInMessage: true;
 		stringInsideBlocks: '';
-		numberOfSpacesAfterCaretSymbolInReturn: 0;
+		stringFollowingReturn: '';
 		periodsAtEndOfBlock: false;
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets: false;

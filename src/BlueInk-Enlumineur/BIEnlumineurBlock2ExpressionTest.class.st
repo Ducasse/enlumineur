@@ -8,7 +8,7 @@ Class {
 BIEnlumineurBlock2ExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
-		stringInsideBlocks:' ';
+		numberOfSpacesInsideBlock:1;
 		periodsAtEndOfBlock:false;
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets:false;

@@ -47,7 +47,7 @@ BIEnlumineurMessageExpressionTest >> keepBlockInMessageConfiguration [
 		maxLineLength: 20;
 		newLineBeforeFirstKeyword:false;
 		keepBlockInMessage: true;
-		stringInsideBlocks: '';
+		numberOfSpacesInsideBlock:0;
 		numberOfSpacesAfterCaretSymbolInReturn: 0;
 		periodsAtEndOfBlock: false;
 		periodsAtEndOfMethod: false;

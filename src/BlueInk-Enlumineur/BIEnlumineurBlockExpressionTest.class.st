@@ -55,7 +55,7 @@ BIEnlumineurBlockExpressionTest >> configurationWithThreeSpaces [
 BIEnlumineurBlockExpressionTest >> dontFormatCommentWithStatementConfiguration [
 
 	^ self contextClass basicNew
-		stringInsideBlocks:' ';
+		numberOfSpacesInsideBlock:1;
 		periodsAtEndOfBlock:false;
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets:false;
@@ -78,7 +78,7 @@ BIEnlumineurBlockExpressionTest >> dontFormatCommentWithStatementConfiguration [
 BIEnlumineurBlockExpressionTest >> formatCommentWithStatementConfiguration [
 
 	^ self contextClass basicNew
-		stringInsideBlocks:' ';
+		numberOfSpacesInsideBlock:1;
 		periodsAtEndOfBlock:false;
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets:false;
@@ -105,7 +105,7 @@ BIEnlumineurBlockExpressionTest >> newLineBeforeEndBracketConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-		stringInsideBlocks: ' ';
+		numberOfSpacesInsideBlock:1;
 		periodsAtEndOfBlock: false;
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets: true;
@@ -130,7 +130,7 @@ BIEnlumineurBlockExpressionTest >> noNewLineBeforeEndBracketConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-		stringInsideBlocks: ' ';
+		numberOfSpacesInsideBlock:1;
 		periodsAtEndOfBlock: false;
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets: false;
@@ -165,7 +165,7 @@ BIEnlumineurBlockExpressionTest >> periodAtEndConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-		stringInsideBlocks: ' ';
+		numberOfSpacesInsideBlock:1;
 		periodsAtEndOfBlock: true;
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets: false;

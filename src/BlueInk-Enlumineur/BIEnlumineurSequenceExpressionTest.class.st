@@ -149,7 +149,7 @@ BIEnlumineurSequenceExpressionTest >> periodAsTerminatorConfiguration [
 		maxLineLength:50;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:0;
-		stringInsideBlocks: ' ';
+		numberOfSpacesInsideBlock:1;
 		lineUpBlockBrackets: true;
 		multiLineMessages:Array new;
 		oneLineMessages:Array new;
@@ -171,7 +171,7 @@ BIEnlumineurSequenceExpressionTest >> periodNotAsTerminatorConfiguration [
 		maxLineLength:50;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:0;
-		stringInsideBlocks: ' ';
+		numberOfSpacesInsideBlock:1;
 		lineUpBlockBrackets: true;
 		multiLineMessages:Array new;
 		oneLineMessages:Array new;

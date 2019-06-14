@@ -50,7 +50,7 @@ BIEnlumineurArrayExpressionTest >> periodAsTerminatorConfiguration [
 		indentString: '	';
 		periodsAtEndOfBlock:true;
 		periodsAtEndOfMethod:true;
-		stringInsideBlocks:'';
+		numberOfSpacesInsideBlock:0;
 		lineUpBlockBrackets:false
 ]
 

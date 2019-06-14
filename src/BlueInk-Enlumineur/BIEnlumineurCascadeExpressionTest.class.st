@@ -37,7 +37,7 @@ BIEnlumineurCascadeExpressionTest >> multilineMessageConfiguration [
 		keepBlockInMessage:false;
 		indentString: '	';
 		newLineBeforeFirstKeyword:false;
-		stringInsideBlocks: ' ';
+		numberOfSpacesInsideBlock:1;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:1;
 		indentsForKeywords:0;
