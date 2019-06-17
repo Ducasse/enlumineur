@@ -229,6 +229,17 @@ BIEnlumineur class >> numberOfArgumentsForMultiLine: anInteger [
 ]
 
 { #category : #accessing }
+BIEnlumineur class >> numberOfSpacesAfterCaretSymbolInReturn [
+	^ DefaultPrettyPrintContext numberOfSpacesAfterCaretSymbolInReturn
+]
+
+{ #category : #accessing }
+BIEnlumineur class >> numberOfSpacesAfterCaretSymbolInReturn: anInteger [
+	DefaultPrettyPrintContext numberOfSpacesAfterCaretSymbolInReturn: anInteger.
+	self numberOfSpacesAfterCaretSymbolInReturn
+]
+
+{ #category : #accessing }
 BIEnlumineur class >> numberOfSpacesInsideBlock [
 	^ DefaultPrettyPrintContext numberOfSpacesInsideBlock
 ]
@@ -236,6 +247,17 @@ BIEnlumineur class >> numberOfSpacesInsideBlock [
 { #category : #accessing }
 BIEnlumineur class >> numberOfSpacesInsideBlock: anInteger [
 	DefaultPrettyPrintContext numberOfSpacesInsideBlock: anInteger.
+	self announceASettingChange
+]
+
+{ #category : #accessing }
+BIEnlumineur class >> numberOfSpacesInsideParentheses [
+	^ DefaultPrettyPrintContext numberOfSpacesInsideParentheses
+]
+
+{ #category : #accessing }
+BIEnlumineur class >> numberOfSpacesInsideParentheses: anInteger [
+	DefaultPrettyPrintContext numberOfSpacesInsideParentheses: anInteger.
 	self announceASettingChange
 ]
 
@@ -1483,6 +1505,16 @@ BIEnlumineur >> numberOfArgumentsForMultiLine: anInteger [
 ]
 
 { #category : #accessing }
+BIEnlumineur >> numberOfSpacesAfterCaretSymbolInReturn [
+	^ context numberOfSpacesAfterCaretSymbolInReturn
+]
+
+{ #category : #accessing }
+BIEnlumineur >> numberOfSpacesAfterCaretSymbolInReturn: anInteger [
+	context numberOfSpacesAfterCaretSymbolInReturn: anInteger
+]
+
+{ #category : #accessing }
 BIEnlumineur >> numberOfSpacesInsideBlock [
 	^ context numberOfSpacesInsideBlock
 ]
@@ -1490,6 +1522,16 @@ BIEnlumineur >> numberOfSpacesInsideBlock [
 { #category : #accessing }
 BIEnlumineur >> numberOfSpacesInsideBlock: anInteger [
 	context numberOfSpacesInsideBlock: anInteger
+]
+
+{ #category : #accessing }
+BIEnlumineur >> numberOfSpacesInsideParentheses [
+	^ context numberOfSpacesInsideParentheses
+]
+
+{ #category : #accessing }
+BIEnlumineur >> numberOfSpacesInsideParentheses: anInteger [
+	context numberOfSpacesInsideParentheses: anInteger
 ]
 
 { #category : #accessing }

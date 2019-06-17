@@ -30,7 +30,9 @@ Class {
 		'useBasicCommentFormat',
 		'traditionalBinaryPrecedenceArray',
 		'numberOfSpacesInsideBlock',
-		'stringInsideBlocks'
+		'stringInsideBlocks',
+		'numberOfSpacesInsideParentheses',
+		'numberOfSpacesAfterCaretSymbolInReturn'
 	],
 	#category : #'BlueInk-Enlumineur'
 }
@@ -252,8 +254,14 @@ BIEnlumineurContext >> numberOfSpaces: aNumber [
 ]
 
 { #category : #accessing }
+BIEnlumineurContext >> numberOfSpacesAfterCaretSymbolInReturn [
+	^ numberOfSpacesAfterCaretSymbolInReturn
+]
+
+{ #category : #accessing }
 BIEnlumineurContext >> numberOfSpacesAfterCaretSymbolInReturn: aNumber [
-	self stringFollowingReturn:(self numberOfSpaces: aNumber)
+	self stringFollowingReturn:(self numberOfSpaces: aNumber).
+	numberOfSpacesAfterCaretSymbolInReturn := aNumber
 ]
 
 { #category : #accessing }
@@ -268,8 +276,14 @@ BIEnlumineurContext >> numberOfSpacesInsideBlock: aNumber [
 ]
 
 { #category : #accessing }
+BIEnlumineurContext >> numberOfSpacesInsideParentheses [
+	^ numberOfSpacesInsideParentheses
+]
+
+{ #category : #accessing }
 BIEnlumineurContext >> numberOfSpacesInsideParentheses: aNumber [
-	self stringInsideParentheses: (self numberOfSpaces: aNumber)
+	self stringInsideParentheses: (self numberOfSpaces: aNumber).
+	numberOfSpacesInsideParentheses := aNumber
 ]
 
 { #category : #accessing }
