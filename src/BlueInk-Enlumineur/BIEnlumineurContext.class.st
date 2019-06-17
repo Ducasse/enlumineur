@@ -24,12 +24,13 @@ Class {
 		'retainBlankLinesBetweenStatements',
 		'retainBlankLinesBeforeComments',
 		'stringFollowingReturn',
-		'stringInsideBlocks',
 		'stringInsideParentheses',
 		'useTraditionalBinaryPrecedenceForParentheses',
 		'selectorAndArgumentCombinedMaxSize',
 		'useBasicCommentFormat',
-		'traditionalBinaryPrecedenceArray'
+		'traditionalBinaryPrecedenceArray',
+		'numberOfSpacesInsideBlock',
+		'stringInsideBlocks'
 	],
 	#category : #'BlueInk-Enlumineur'
 }
@@ -93,7 +94,8 @@ BIEnlumineurContext >> initialize [
 	stringInsideBlocks := ' '.
 	stringInsideParentheses := ''.
 	traditionalBinaryPrecedenceArray := #(#($| $& $?) #($= $~ $< $>) #($- $+) #($* $/ $% $\) #($@)).
-	useTraditionalBinaryPrecedenceForParentheses := true
+	useTraditionalBinaryPrecedenceForParentheses := true.
+	numberOfSpacesInsideBlock:= 1
 ]
 
 { #category : #accessing }
@@ -255,8 +257,14 @@ BIEnlumineurContext >> numberOfSpacesAfterCaretSymbolInReturn: aNumber [
 ]
 
 { #category : #accessing }
+BIEnlumineurContext >> numberOfSpacesInsideBlock [
+	^ numberOfSpacesInsideBlock
+]
+
+{ #category : #accessing }
 BIEnlumineurContext >> numberOfSpacesInsideBlock: aNumber [
-	self stringInsideBlocks: (self numberOfSpaces: aNumber)
+	self stringInsideBlocks: (self numberOfSpaces: aNumber).
+	numberOfSpacesInsideBlock := aNumber
 ]
 
 { #category : #accessing }

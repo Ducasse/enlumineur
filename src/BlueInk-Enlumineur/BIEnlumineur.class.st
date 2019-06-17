@@ -229,6 +229,17 @@ BIEnlumineur class >> numberOfArgumentsForMultiLine: anInteger [
 ]
 
 { #category : #accessing }
+BIEnlumineur class >> numberOfSpacesInsideBlock [
+	^ DefaultPrettyPrintContext numberOfSpacesInsideBlock
+]
+
+{ #category : #accessing }
+BIEnlumineur class >> numberOfSpacesInsideBlock: anInteger [
+	DefaultPrettyPrintContext numberOfSpacesInsideBlock: anInteger.
+	self announceASettingChange
+]
+
+{ #category : #accessing }
 BIEnlumineur class >> oneLineMessages [
 	^ DefaultPrettyPrintContext oneLineMessages printString
 ]
@@ -540,8 +551,7 @@ BIEnlumineur class >> settingsOn: aBuilder [
 		parent: #codeBrowsing;
 		label: 'BlueInk Pretty Printing';
 		description: 'Settings related to the formatter';
-		with:
-				[
+		with: [
 			self settingsFormatCommentWithExpression: aBuilder.
 			self settingsIndentString:aBuilder.
 			self settingsIndentsForKeywords: aBuilder.
@@ -660,7 +670,7 @@ For example: ^   self is the result for 3 spaces'.
 { #category : #settings }
 BIEnlumineur class >> settingsSpacesInsideBlocks: aBuilder [.
 	self flag:'change the string to Integer' .
-	(aBuilder setting: #stringInsideBlocks)
+	(aBuilder setting: #numberOfSpacesInsideBlock)
 		label: 'Spaces inside blocks';
 		description: 'number of spaces after the opening bracket and before the closing bracket
 for example:
@@ -1470,6 +1480,16 @@ BIEnlumineur >> numberOfArgumentsForMultiLine [
 { #category : #accessing }
 BIEnlumineur >> numberOfArgumentsForMultiLine: anInteger [
 	context numberOfArgumentsForMultiLine: anInteger
+]
+
+{ #category : #accessing }
+BIEnlumineur >> numberOfSpacesInsideBlock [
+	^ context numberOfSpacesInsideBlock
+]
+
+{ #category : #accessing }
+BIEnlumineur >> numberOfSpacesInsideBlock: anInteger [
+	context numberOfSpacesInsideBlock: anInteger
 ]
 
 { #category : #accessing }
