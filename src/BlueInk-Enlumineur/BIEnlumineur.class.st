@@ -378,7 +378,7 @@ For example if set to false: 1+1"We do an addition". 2+2'.
 BIEnlumineur class >> settingsIndentString:aBuilder [
 	self flag: 'replace to a Number'.
 	(aBuilder setting: #indentString)
-		label: '';
+		label: 'indentString';
 		description: ''.
 ]
 
@@ -576,7 +576,7 @@ BIEnlumineur class >> settingsOn: aBuilder [
 	(aBuilder group: #blueInkEnlumineur)
 		target: self;
 		parent: #codeBrowsing;
-		label: 'BlueInk Pretty Printing';
+		label: 'BlueInk Enlumineur Pretty Printing';
 		description: 'Settings related to the formatter';
 		with: [
 			self settingsFormatCommentWithExpression: aBuilder.
@@ -689,7 +689,7 @@ myMethod: argument1
 { #category : #settings }
 BIEnlumineur class >> settingsSpacesAfterCaretSymbolInReturn: aBuilder [ 
 	(aBuilder setting: #numberOfSpacesAfterCaretSymbolInReturn)
-		label: 'spaces following caret symbol in return';
+		label: 'Spaces following caret symbol in return';
 		description: 'Number of spaces expressed as a string that is put just after the caret (^) of a return expression. 
 For example: ^   self is the result for 3 spaces'.
 ]
@@ -708,7 +708,7 @@ for example:
 { #category : #settings }
 BIEnlumineur class >> settingsSpacesInsideParentheses: aBuilder [.
 	(aBuilder setting: #numberOfSpacesInsideParentheses)
-		label: 'String inside parentheses';
+		label: 'Spaces inside parentheses';
 		description: 'number of spaces after the opening parenthese and before the closing parenthese
 for example: (   1 + 2   ) is the result for 3 spaces'
 ]
