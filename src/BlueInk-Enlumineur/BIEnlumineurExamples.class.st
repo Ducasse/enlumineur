@@ -173,6 +173,23 @@ BIEnlumineurExamples >> spacesAfterCaretSymbolInReturnExample [
 ]
 
 { #category : #examples }
+BIEnlumineurExamples >> sumFrom: a to: b [
+	"MethodComment"
+	| tmp i j |
+	tmp := 0.
+
+
+
+	(a < b)
+		ifTrue: [ i := a. j := b ]
+		ifFalse: [ i := b.	j := a ].
+	
+	"Comment"
+	i to: j do: [:k | tmp := tmp + k].
+	^ tmp
+]
+
+{ #category : #examples }
 BIEnlumineurExamples >> traditionalBinaryPrecedenceForParenthesesExample [
 
 	1 + 2 * 3.
