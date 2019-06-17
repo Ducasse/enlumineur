@@ -308,7 +308,6 @@ BIEnlumineur class >> selectorAndArgumentCombinedMaxSize: anInteger [
 
 { #category : #settings }
 BIEnlumineur class >> settingsAlignBlockBrackets: aBuilder [
-self flag:'rename and change label'.
 	(aBuilder setting: #lineUpBlockBrackets)
 		label: 'Align block brackets';
 		description: 'pass a newLine before closing a multiline block. 
@@ -329,7 +328,6 @@ is the result when true
 
 { #category : #settings }
 BIEnlumineur class >> settingsFormatCommentWithExpression: aBuilder [
-	self flag:'rename the methodName, the setting and the label'.
 	(aBuilder setting: #formatCommentWithStatements)
 		label: 'Format comment with expression';
 		description: 'if set to true: put the comment after the separator '.' in an expression
@@ -340,7 +338,7 @@ For example if set to false: 1+1"We do an addition". 2+2'.
 
 { #category : #settings }
 BIEnlumineur class >> settingsIndentString:aBuilder [
-	self flag: 'Should not be modified'.
+	self flag: 'replace to a Number'.
 	(aBuilder setting: #indentString)
 		label: '';
 		description: ''.
@@ -392,7 +390,6 @@ is the result for 14'.
 
 { #category : #settings }
 BIEnlumineur class >> settingsMethodSignatureOnMultipleLines: aBuilder [ 
-	self flag:'complete exemple'.
 	(aBuilder setting: #methodSignatureOnMultipleLines)
 		label: 'method signature on multiple lines';
 		description: 'Write a multilines method signature on multiple lines only if set to true,
@@ -419,10 +416,14 @@ is the result if the setting is set to 2'.
 
 { #category : #settings }
 BIEnlumineur class >> settingsMultiLineMessages: aBuilder [
-	self flag:'add exemple'.
 	(aBuilder setting: #multiLineMessages)
 		label: 'Multi line messages';
-		description: 'An array containing all the messages that should be written on multiple line'.
+		description: 'An array containing all the messages that should be written on multiple line
+Example:
+aBoolean
+	ifTrue: [ ^ 1 ]
+	ifFalse: [ ^ 0 ]
+is the result if #ifTrue:ifFalse is in the array'.
 ]
 
 { #category : #settings }
@@ -566,21 +567,19 @@ BIEnlumineur class >> settingsOn: aBuilder [
 			self settingsSpacesAfterCaretSymbolInReturn: aBuilder.
 			self settingsSpacesInsideBlocks: aBuilder.
 			self settingsSpacesInsideParentheses: aBuilder.
-			
 			self settingsTraditionalBinaryPrecedenceArray: aBuilder.
-			self settingsUseBasicCommentFormat: aBuilder.			
-			
+			self settingsUseBasicCommentFormat: aBuilder.						
 			self settingsUseTraditionalBinaryPrecedenceForParentheses: aBuilder.
-			(aBuilder setting: #useTraditionalBinaryPrecedenceForParentheses)
-				label: 'Use traditional binary precedence for parentheses' ]
+]
 ]
 
 { #category : #settings }
 BIEnlumineur class >> settingsOneLineMessages: aBuilder [
-	self flag:'add exemple'.
 	(aBuilder setting: #oneLineMessages)
 		label: 'One line messages';
-		description: 'An array containing all the messages that should be written on one line'.
+		description: 'An array containing all the messages that should be written on one line
+Example:
+1 to: 4 do: [ :i | Transcript show: i ] is the result if #to:do: is in the array'.
 ]
 
 { #category : #settings }
@@ -652,7 +651,6 @@ myMethod: argument1
 
 { #category : #settings }
 BIEnlumineur class >> settingsSpacesAfterCaretSymbolInReturn: aBuilder [ 
-	
 	(aBuilder setting: #stringFollowingReturn)
 		label: 'String following return';
 		description: 'Number of spaces expressed as a string that is put just after the caret (^) of a return expression. 
@@ -682,7 +680,6 @@ for example: (   1 + 2   ) is the result for 3 spaces'
 
 { #category : #settings }
 BIEnlumineur class >> settingsTraditionalBinaryPrecedenceArray: aBuilder [.
-	self flag:'toComplete'.
 	(aBuilder setting: #traditionalBinaryPrecedenceArray)
 		label: 'Traditional binary precedence';
 		description: 'An 2 dimension array containing messages according to the priority
