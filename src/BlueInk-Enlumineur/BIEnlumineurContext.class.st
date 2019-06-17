@@ -92,13 +92,11 @@ BIEnlumineurContext >> initialize [
 	retainBlankLinesBetweenStatements := false.
 	retainBlankLinesBeforeComments := true.
 	selectorAndArgumentCombinedMaxSize := 40.
-	stringFollowingReturn := ' '.
-	stringInsideBlocks := ' '.
-	stringInsideParentheses := ''.
 	traditionalBinaryPrecedenceArray := #(#($| $& $?) #($= $~ $< $>) #($- $+) #($* $/ $% $\) #($@)).
 	useTraditionalBinaryPrecedenceForParentheses := true.
-	numberOfSpacesInsideBlock:= 1.
-	numberOfSpacesInsideParentheses := 1
+	self numberOfSpacesInsideBlock: 1.
+	self numberOfSpacesInsideParentheses: 1.
+	self numberOfSpacesAfterCaretSymbolInReturn: 1
 ]
 
 { #category : #accessing }

@@ -688,8 +688,8 @@ myMethod: argument1
 
 { #category : #settings }
 BIEnlumineur class >> settingsSpacesAfterCaretSymbolInReturn: aBuilder [ 
-	(aBuilder setting: #stringFollowingReturn)
-		label: 'String following return';
+	(aBuilder setting: #numberOfSpacesAfterCaretSymbolInReturn)
+		label: 'spaces following caret symbol in return';
 		description: 'Number of spaces expressed as a string that is put just after the caret (^) of a return expression. 
 For example: ^   self is the result for 3 spaces'.
 ]
