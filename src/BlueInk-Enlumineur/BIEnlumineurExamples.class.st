@@ -18,8 +18,8 @@ BIEnlumineurExamples class >> initializeSettingsTable [
 		#formatCommentWithStatements -> #formatCommentWithExpressionExample.
 		#indentString -> #indentExample.
 		#indentsForKeywords -> #messageWithALotOfParameters.
-		#keepBlockInMessage -> #keepBlockInMessageExample.
-		#lineUpBlockBrackets -> #alignBlockBracketsExample.
+		#keepBlockInMessage -> #blockExample.
+		#lineUpBlockBrackets -> #blockExample.
 		#maxLineLength -> #maxLineLengthExample.
 		#methodSignatureOnMultipleLines -> #method:with:A:lot:of:parameters:.
 		#minimumNewLinesBetweenStatements-> #minimumNewLinesBetweenStatementsExample.
@@ -47,17 +47,12 @@ BIEnlumineurExamples class >> initializeSettingsTable [
 ]
 
 { #category : #examples }
-BIEnlumineurExamples >> alignBlockBracketsExample [
+BIEnlumineurExamples >> blockExample [
 	1 to: 4 do: [ :i | 
 		Transcript
 			show: i;
 			cr;
 			cr]
-]
-
-{ #category : #examples }
-BIEnlumineurExamples >> blockExample [
-	^ [ :n | 1+ n ]
 ]
 
 { #category : #examples }
@@ -81,16 +76,6 @@ BIEnlumineurExamples >> indentExample [
 			show: j;
 			cr;
 			cr] ]
-]
-
-{ #category : #examples }
-BIEnlumineurExamples >> keepBlockInMessageExample [
-
-	1 to: 4 do: [ :i | 
-		Transcript
-			show: i;
-			cr;
-			cr ]
 ]
 
 { #category : #examples }
