@@ -22,6 +22,11 @@ BIEnlumineur class >> announceASettingChange [
 	SystemAnnouncer uniqueInstance announce: BISettingsChanged 
 ]
 
+{ #category : #settings }
+BIEnlumineur class >> defaultPrettyPrintContext [
+	^ DefaultPrettyPrintContext
+]
+
 { #category : #public }
 BIEnlumineur class >> format: aParseTree [ 
 	^self format: aParseTree withIndents: 0
@@ -568,7 +573,7 @@ For example:
 BIEnlumineur class >> settingsOn: aBuilder [
 	<systemsettings>
 	self flag:'maxLineLength isNotHere'.
-	(aBuilder group: #blueInkFormatter)
+	(aBuilder group: #blueInkEnlumineur)
 		target: self;
 		parent: #codeBrowsing;
 		label: 'BlueInk Pretty Printing';
