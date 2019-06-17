@@ -670,7 +670,7 @@ For example: ^   self is the result for 3 spaces'.
 { #category : #settings }
 BIEnlumineur class >> settingsSpacesInsideBlocks: aBuilder [.
 	self flag:'change the string to Integer' .
-	(aBuilder setting: #numberOfSpacesInsideBlock)
+	(aBuilder setting: #stringInsideBlocks)
 		label: 'Spaces inside blocks';
 		description: 'number of spaces after the opening bracket and before the closing bracket
 for example:
