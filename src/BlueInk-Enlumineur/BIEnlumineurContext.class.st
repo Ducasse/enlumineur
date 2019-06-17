@@ -97,7 +97,8 @@ BIEnlumineurContext >> initialize [
 	stringInsideParentheses := ''.
 	traditionalBinaryPrecedenceArray := #(#($| $& $?) #($= $~ $< $>) #($- $+) #($* $/ $% $\) #($@)).
 	useTraditionalBinaryPrecedenceForParentheses := true.
-	numberOfSpacesInsideBlock:= 1
+	numberOfSpacesInsideBlock:= 1.
+	numberOfSpacesInsideParentheses := 1
 ]
 
 { #category : #accessing }
