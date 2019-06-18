@@ -367,6 +367,11 @@ BIEnlumineur class >> selectorAndArgumentCombinedMaxSize: anInteger [
 ]
 
 { #category : #settings }
+BIEnlumineur class >> settingGroup [
+	^ #blueInkEnlumineur
+]
+
+{ #category : #settings }
 BIEnlumineur class >> settingsAlignBlockBrackets: aBuilder [
 	(aBuilder setting: #lineUpBlockBrackets)
 		label: 'Align block brackets';
@@ -603,14 +608,13 @@ self flag:'exemple'.
 { #category : #settings }
 BIEnlumineur class >> settingsOn: aBuilder [
 	<systemsettings>
-	self flag:'maxLineLength isNotHere'.
-	(aBuilder group: #blueInkEnlumineur)
+	self flag: 'maxLineLength isNotHere'.
+	(aBuilder group: self settingGroup)
 		target: self;
 		parent: #codeBrowsing;
 		label: 'BlueInk Enlumineur Pretty Printing';
 		description: 'Settings related to the formatter';
-		with: [ 
-			self settingsFormatCommentWithExpression: aBuilder.
+		with: [ self settingsFormatCommentWithExpression: aBuilder.
 			self settingsIndentCharacter: aBuilder.
 			self settingsNumberOfSpacesInIndent: aBuilder.
 			self settingsIndentsForKeywords: aBuilder.
@@ -637,9 +641,8 @@ BIEnlumineur class >> settingsOn: aBuilder [
 			self settingsSpacesInsideBlocks: aBuilder.
 			self settingsSpacesInsideParentheses: aBuilder.
 			self settingsTraditionalBinaryPrecedenceArray: aBuilder.
-			self settingsUseBasicCommentFormat: aBuilder.						
-			self settingsUseTraditionalBinaryPrecedenceForParentheses: aBuilder.
-]
+			self settingsUseBasicCommentFormat: aBuilder.
+			self settingsUseTraditionalBinaryPrecedenceForParentheses: aBuilder ]
 ]
 
 { #category : #settings }
