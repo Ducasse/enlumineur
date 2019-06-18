@@ -406,14 +406,6 @@ self flag:'exemple'.
 ]
 
 { #category : #settings }
-BIEnlumineur class >> settingsIndentString:aBuilder [
-	self flag: 'replace to a Number'.
-	(aBuilder setting: #indentString)
-		label: 'indentString';
-		description: ''.
-]
-
-{ #category : #settings }
 BIEnlumineur class >> settingsIndentsForKeywords: aBuilder [ 
 	
 	(aBuilder setting: #indentsForKeywords)
@@ -619,7 +611,6 @@ BIEnlumineur class >> settingsOn: aBuilder [
 		description: 'Settings related to the formatter';
 		with: [ 
 			self settingsFormatCommentWithExpression: aBuilder.
-			"self settingsIndentString:aBuilder."
 			self settingsIndentCharacter: aBuilder.
 			self settingsNumberOfSpacesInIndent: aBuilder.
 			self settingsIndentsForKeywords: aBuilder.
