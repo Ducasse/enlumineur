@@ -98,6 +98,30 @@ BIEnlumineurBlockExpressionTest >> formatCommentWithStatementConfiguration [
 ]
 
 { #category : #configurations }
+BIEnlumineurBlockExpressionTest >> fourSpaceIndentConfiguration [
+
+	^ self contextClass basicNew
+		numberOfSpacesInsideBlock: 1;
+		periodsAtEndOfBlock:false;
+		periodsAtEndOfMethod: false;
+		lineUpBlockBrackets:false;
+		keepBlockInMessage:true;
+		retainBlankLinesBetweenStatements:false;
+		minimumNewLinesBetweenStatements:1;
+		multiLineMessages: Array new;
+		oneLineMessages:#(#to:do:);
+		numberOfArgumentsForMultiLine:5;
+		indentsForKeywords:1;
+		newLineBeforeFirstKeyword:false;
+		formatCommentWithStatements:true;
+		maxLineLength:50;
+		newLineAfterCascade:true;
+		newLineBeforeFirstCascade: true;
+		numberOfSpacesInIndent: 4;
+		indentCharacter: #space
+]
+
+{ #category : #configurations }
 BIEnlumineurBlockExpressionTest >> newLineBeforeEndBracketConfiguration [
 	"Here we can control explicitely the configuration we want."
 
@@ -147,6 +171,55 @@ BIEnlumineurBlockExpressionTest >> noNewLineBeforeEndBracketConfiguration [
 		maxLineLength: 50
 ]
 
+{ #category : #configurations }
+BIEnlumineurBlockExpressionTest >> numberOfSpaceChangedAfterIndentCharacterConfiguration [
+
+	^ self contextClass basicNew
+		numberOfSpacesInsideBlock: 1;
+		periodsAtEndOfBlock:false;
+		periodsAtEndOfMethod: false;
+		lineUpBlockBrackets:false;
+		keepBlockInMessage:true;
+		retainBlankLinesBetweenStatements:false;
+		minimumNewLinesBetweenStatements:1;
+		multiLineMessages: Array new;
+		oneLineMessages:#(#to:do:);
+		numberOfArgumentsForMultiLine:5;
+		indentsForKeywords:1;
+		newLineBeforeFirstKeyword:false;
+		formatCommentWithStatements:true;
+		maxLineLength:50;
+		newLineAfterCascade:true;
+		newLineBeforeFirstCascade: true;
+		numberOfSpacesInIndent: 1;
+		indentCharacter: #space;
+		numberOfSpacesInIndent: 2
+]
+
+{ #category : #configurations }
+BIEnlumineurBlockExpressionTest >> oneSpaceIndentConfiguration [
+
+	^ self contextClass basicNew
+		numberOfSpacesInsideBlock: 1;
+		periodsAtEndOfBlock:false;
+		periodsAtEndOfMethod: false;
+		lineUpBlockBrackets:false;
+		keepBlockInMessage:true;
+		retainBlankLinesBetweenStatements:false;
+		minimumNewLinesBetweenStatements:1;
+		multiLineMessages: Array new;
+		oneLineMessages:#(#to:do:);
+		numberOfArgumentsForMultiLine:5;
+		indentsForKeywords:1;
+		newLineBeforeFirstKeyword:false;
+		formatCommentWithStatements:true;
+		maxLineLength:50;
+		newLineAfterCascade:true;
+		newLineBeforeFirstCascade: true;
+		numberOfSpacesInIndent: 1;
+		indentCharacter: #space
+]
+
 { #category : #hooks }
 BIEnlumineurBlockExpressionTest >> openBracket [
 	^ '['
@@ -180,6 +253,77 @@ BIEnlumineurBlockExpressionTest >> periodAtEndConfiguration [
 		newLineBeforeFirstKeyword: false;
 		formatCommentWithStatements: true;
 		maxLineLength: 50
+]
+
+{ #category : #configurations }
+BIEnlumineurBlockExpressionTest >> tabIndentConfiguration [
+
+	^ self contextClass basicNew
+		numberOfSpacesInsideBlock: 1;
+		periodsAtEndOfBlock:false;
+		periodsAtEndOfMethod: false;
+		lineUpBlockBrackets:false;
+		keepBlockInMessage:true;
+		retainBlankLinesBetweenStatements:false;
+		minimumNewLinesBetweenStatements:1;
+		multiLineMessages: Array new;
+		oneLineMessages:#(#to:do:);
+		numberOfArgumentsForMultiLine:5;
+		indentsForKeywords:1;
+		newLineBeforeFirstKeyword:false;
+		formatCommentWithStatements:true;
+		maxLineLength:50;
+		newLineAfterCascade:true;
+		newLineBeforeFirstCascade: true;
+		indentCharacter: #tab
+]
+
+{ #category : #configurations }
+BIEnlumineurBlockExpressionTest >> tabIndentIsnotAffectedConfiguration [
+
+	^ self contextClass basicNew
+		numberOfSpacesInsideBlock: 1;
+		periodsAtEndOfBlock:false;
+		periodsAtEndOfMethod: false;
+		lineUpBlockBrackets:false;
+		keepBlockInMessage:true;
+		retainBlankLinesBetweenStatements:false;
+		minimumNewLinesBetweenStatements:1;
+		multiLineMessages: Array new;
+		oneLineMessages:#(#to:do:);
+		numberOfArgumentsForMultiLine:5;
+		indentsForKeywords:1;
+		newLineBeforeFirstKeyword:false;
+		formatCommentWithStatements:true;
+		maxLineLength:50;
+		newLineAfterCascade:true;
+		newLineBeforeFirstCascade: true;
+		indentCharacter: #tab;
+		numberOfSpacesInIndent: 37
+]
+
+{ #category : #configurations }
+BIEnlumineurBlockExpressionTest >> tabIndentIsnotAffectedConfiguration2 [
+
+	^ self contextClass basicNew
+		numberOfSpacesInsideBlock: 1;
+		periodsAtEndOfBlock:false;
+		periodsAtEndOfMethod: false;
+		lineUpBlockBrackets:false;
+		keepBlockInMessage:true;
+		retainBlankLinesBetweenStatements:false;
+		minimumNewLinesBetweenStatements:1;
+		multiLineMessages: Array new;
+		oneLineMessages:#(#to:do:);
+		numberOfArgumentsForMultiLine:5;
+		indentsForKeywords:1;
+		newLineBeforeFirstKeyword:false;
+		formatCommentWithStatements:true;
+		maxLineLength:50;
+		newLineAfterCascade:true;
+		newLineBeforeFirstCascade: true;
+		numberOfSpacesInIndent: 37;
+		indentCharacter: #tab
 ]
 
 { #category : #test }
@@ -249,6 +393,23 @@ BIEnlumineurBlockExpressionTest >> testFormatCommentWithStatement [
 ' 1 factorial.	"aComment"
 2 factorial '
 	with: #formatCommentWithStatementConfiguration
+]
+
+{ #category : #test }
+BIEnlumineurBlockExpressionTest >> testFourSpaceIndent [
+	| source |
+	configurationSelector := #fourSpaceIndentConfiguration.
+	source := self
+		formatExpression:
+			'1 to:10 do: [:i | i to: 10 do: [:j | Transcript show:i; show: j]]'.
+	self
+		assert: source
+		equals:
+'1 to: 10 do: [ :i | 
+    i to: 10 do: [ :j | 
+        Transcript
+            show: i;
+            show: j ] ]'
 ]
 
 { #category : #test }
@@ -322,9 +483,94 @@ BIEnlumineurBlockExpressionTest >> testNumberOfSpaces [
 ]
 
 { #category : #test }
+BIEnlumineurBlockExpressionTest >> testOneSpaceIndent [
+	| source |
+	configurationSelector := #oneSpaceIndentConfiguration.
+	source := self
+		formatExpression:
+			'1 to:10 do: [:i | i to: 10 do: [:j | Transcript show:i; show: j]]'.
+	self
+		assert: source
+		equals:
+'1 to: 10 do: [ :i | 
+ i to: 10 do: [ :j | 
+  Transcript
+   show: i;
+   show: j ] ]'
+]
+
+{ #category : #test }
 BIEnlumineurBlockExpressionTest >> testSpace [
 
 	self validate: '2' isFormattedAs: ' 2 '
+]
+
+{ #category : #test }
+BIEnlumineurBlockExpressionTest >> testTabIndent [
+	| source |
+	configurationSelector := #tabIndentConfiguration.
+	source := self
+		formatExpression:
+			'1 to:10 do: [:i | i to: 10 do: [:j | Transcript show:i; show: j]]'.
+	self
+		assert: source
+		equals:
+'1 to: 10 do: [ :i | 
+	i to: 10 do: [ :j | 
+		Transcript
+			show: i;
+			show: j ] ]'
+]
+
+{ #category : #test }
+BIEnlumineurBlockExpressionTest >> testTabIndentIsNotAffectedByNumberOfSpace [
+	| source |
+	configurationSelector := #tabIndentIsnotAffectedConfiguration.
+	source := self
+		formatExpression:
+			'1 to:10 do: [:i | i to: 10 do: [:j | Transcript show:i; show: j]]'.
+	self
+		assert: source
+		equals:
+'1 to: 10 do: [ :i | 
+	i to: 10 do: [ :j | 
+		Transcript
+			show: i;
+			show: j ] ]'
+]
+
+{ #category : #test }
+BIEnlumineurBlockExpressionTest >> testTabIndentIsNotAffectedByNumberOfSpace2 [
+	| source |
+	configurationSelector := #tabIndentIsnotAffectedConfiguration2.
+	source := self
+		formatExpression:
+			'1 to:10 do: [:i | i to: 10 do: [:j | Transcript show:i; show: j]]'.
+	self
+		assert: source
+		equals:
+'1 to: 10 do: [ :i | 
+	i to: 10 do: [ :j | 
+		Transcript
+			show: i;
+			show: j ] ]'
+]
+
+{ #category : #test }
+BIEnlumineurBlockExpressionTest >> testnumberOfSpaceChangedAfterIndentCharacter [
+	| source |
+	configurationSelector := #numberOfSpaceChangedAfterIndentCharacterConfiguration.
+	source := self
+		formatExpression:
+			'1 to:10 do: [:i | i to: 10 do: [:j | Transcript show:i; show: j]]'.
+	self
+		assert: source
+		equals:
+'1 to: 10 do: [ :i | 
+  i to: 10 do: [ :j | 
+    Transcript
+      show: i;
+      show: j ] ]'
 ]
 
 { #category : #test }

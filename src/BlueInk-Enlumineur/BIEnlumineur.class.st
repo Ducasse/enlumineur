@@ -61,6 +61,17 @@ BIEnlumineur class >> formatCommentWithStatements: aBoolean [
 ]
 
 { #category : #accessing }
+BIEnlumineur class >> indentCharacter [
+	^ DefaultPrettyPrintContext indentCharacter
+]
+
+{ #category : #accessing }
+BIEnlumineur class >> indentCharacter: aSymbole [
+	DefaultPrettyPrintContext indentCharacter: aSymbole.
+	self announceASettingChange
+]
+
+{ #category : #accessing }
 BIEnlumineur class >> indentString [
 	^ DefaultPrettyPrintContext indentString
 ]
@@ -241,7 +252,18 @@ BIEnlumineur class >> numberOfSpacesAfterCaretSymbolInReturn [
 { #category : #accessing }
 BIEnlumineur class >> numberOfSpacesAfterCaretSymbolInReturn: anInteger [
 	DefaultPrettyPrintContext numberOfSpacesAfterCaretSymbolInReturn: anInteger.
-	self numberOfSpacesAfterCaretSymbolInReturn
+	self announceASettingChange
+]
+
+{ #category : #accessing }
+BIEnlumineur class >> numberOfSpacesInIndent [
+	^ DefaultPrettyPrintContext numberOfSpacesInIndent
+]
+
+{ #category : #accessing }
+BIEnlumineur class >> numberOfSpacesInIndent: anInteger [
+	DefaultPrettyPrintContext numberOfSpacesInIndent: anInteger.
+	self announceASettingChange
 ]
 
 { #category : #accessing }
@@ -372,6 +394,15 @@ BIEnlumineur class >> settingsFormatCommentWithExpression: aBuilder [
 		else put it before 
 For example if set to true: 1+1."We do an addition" 2+2
 For example if set to false: 1+1"We do an addition". 2+2'.
+]
+
+{ #category : #settings }
+BIEnlumineur class >> settingsIndentCharacter:aBuilder [
+self flag:'exemple'.
+	(aBuilder pickOne: #indentCharacter)
+		label: 'indent character';
+		domainValues:#(#tabulation #space);
+		description: 'the character representing an indentation it can be a space or a tabulation'.
 ]
 
 { #category : #settings }
@@ -570,6 +601,14 @@ For example:
 ]
 
 { #category : #settings }
+BIEnlumineur class >> settingsNumberOfSpacesInIndent:aBuilder [
+self flag:'exemple'.
+	(aBuilder setting: #numberOfSpacesInIndent)
+		label: 'number of spaces in indent';
+		description: 'the number of spaces representing an indentation if setting number is #Space'.
+]
+
+{ #category : #settings }
 BIEnlumineur class >> settingsOn: aBuilder [
 	<systemsettings>
 	self flag:'maxLineLength isNotHere'.
@@ -578,9 +617,11 @@ BIEnlumineur class >> settingsOn: aBuilder [
 		parent: #codeBrowsing;
 		label: 'BlueInk Enlumineur Pretty Printing';
 		description: 'Settings related to the formatter';
-		with: [
+		with: [ 
 			self settingsFormatCommentWithExpression: aBuilder.
-			self settingsIndentString:aBuilder.
+			"self settingsIndentString:aBuilder."
+			self settingsIndentCharacter: aBuilder.
+			self settingsNumberOfSpacesInIndent: aBuilder.
 			self settingsIndentsForKeywords: aBuilder.
 			self settingsKeepBlockInMessage: aBuilder.
 			self settingsAlignBlockBrackets: aBuilder.
@@ -1183,6 +1224,16 @@ BIEnlumineur >> indentAround: aBlock [
 ]
 
 { #category : #accessing }
+BIEnlumineur >> indentCharacter [
+	^ context indentCharacter
+]
+
+{ #category : #accessing }
+BIEnlumineur >> indentCharacter: aSymbole [
+	context indentCharacter: aSymbole
+]
+
+{ #category : #accessing }
 BIEnlumineur >> indentString [
 	^ context indentString
 ]
@@ -1515,6 +1566,16 @@ BIEnlumineur >> numberOfSpacesAfterCaretSymbolInReturn [
 { #category : #accessing }
 BIEnlumineur >> numberOfSpacesAfterCaretSymbolInReturn: anInteger [
 	context numberOfSpacesAfterCaretSymbolInReturn: anInteger
+]
+
+{ #category : #accessing }
+BIEnlumineur >> numberOfSpacesInIndent [
+	^ context numberOfSpacesInIndent
+]
+
+{ #category : #accessing }
+BIEnlumineur >> numberOfSpacesInIndent: anInteger [
+	context numberOfSpacesInIndent: anInteger
 ]
 
 { #category : #accessing }

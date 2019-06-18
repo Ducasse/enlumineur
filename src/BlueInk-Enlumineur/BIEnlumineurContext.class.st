@@ -32,7 +32,9 @@ Class {
 		'numberOfSpacesInsideBlock',
 		'stringInsideBlocks',
 		'numberOfSpacesInsideParentheses',
-		'numberOfSpacesAfterCaretSymbolInReturn'
+		'numberOfSpacesAfterCaretSymbolInReturn',
+		'indentCharacter',
+		'numberOfSpacesInIndent'
 	],
 	#category : #'BlueInk-Enlumineur'
 }
@@ -45,6 +47,18 @@ BIEnlumineurContext >> formatCommentWithStatements [
 { #category : #accessing }
 BIEnlumineurContext >> formatCommentWithStatements: anObject [
 	formatCommentWithStatements := anObject
+]
+
+{ #category : #accessing }
+BIEnlumineurContext >> indentCharacter [
+	^ indentCharacter
+]
+
+{ #category : #accessing }
+BIEnlumineurContext >> indentCharacter: aSymbole [
+	indentCharacter:= aSymbole.
+	(aSymbole = #space) ifTrue: [indentString := (self numberOfSpaces: numberOfSpacesInIndent)]
+	ifFalse:[indentString := '	']
 ]
 
 { #category : #accessing }
@@ -96,7 +110,9 @@ BIEnlumineurContext >> initialize [
 	useTraditionalBinaryPrecedenceForParentheses := true.
 	self numberOfSpacesInsideBlock: 1.
 	self numberOfSpacesInsideParentheses: 1.
-	self numberOfSpacesAfterCaretSymbolInReturn: 1
+	self numberOfSpacesAfterCaretSymbolInReturn: 1.
+	self indentCharacter: #tabulation.
+	self numberOfSpacesInIndent: 3.
 ]
 
 { #category : #accessing }
@@ -261,6 +277,17 @@ BIEnlumineurContext >> numberOfSpacesAfterCaretSymbolInReturn [
 BIEnlumineurContext >> numberOfSpacesAfterCaretSymbolInReturn: aNumber [
 	self stringFollowingReturn:(self numberOfSpaces: aNumber).
 	numberOfSpacesAfterCaretSymbolInReturn := aNumber
+]
+
+{ #category : #accessing }
+BIEnlumineurContext >> numberOfSpacesInIndent [
+	^ numberOfSpacesInIndent
+]
+
+{ #category : #accessing }
+BIEnlumineurContext >> numberOfSpacesInIndent: anInteger [
+	numberOfSpacesInIndent:= anInteger.
+	(indentCharacter= #space) ifTrue: [indentString := (self numberOfSpaces: anInteger)]
 ]
 
 { #category : #accessing }
