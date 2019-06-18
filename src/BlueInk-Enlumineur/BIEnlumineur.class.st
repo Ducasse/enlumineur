@@ -759,9 +759,13 @@ Example: #( #($- $+) #($*) )'.
 
 { #category : #settings }
 BIEnlumineur class >> settingsUseBasicCommentFormat: aBuilder [.
-self flag:'description to do'.
+self flag:'to modify'.
 	(aBuilder setting: #useBasicCommentFormat)
-		label: 'Use basic comment format'.
+		label: 'Use basic comment format';
+		description:'leave the comment unchanged
+Exemple:
+"   anAddition   " is the result for true
+'
 ]
 
 { #category : #settings }

@@ -7,6 +7,83 @@ Class {
 	#category : #'BlueInk-Enlumineur'
 }
 
+{ #category : #settings }
+BIEnlumineurExamples class >> defaultConfiguration [
+	^ 'BIEnlumineurContext {
+	#formatCommentWithStatements : true,
+	#indentString : ''\t'',
+	#indentsForKeywords : 1,
+	#keepBlockInMessage : true,
+	#lineUpBlockBrackets : true,
+	#maxLineLength : 70,
+	#methodSignatureOnMultipleLines : false,
+	#minimumNewLinesBetweenStatements : 1,
+	#multiLineMessages : [
+		#''ifTrue:ifFalse:'',
+		#''ifFalse:ifTrue:'',
+		#''ifTrue:'',
+		#''ifFalse:'',
+		#''on:do:'',
+		#''ensure:'',
+		#''ifCurtailed:''
+	],
+	#newLineAfterCascade : true,
+	#newLineBeforeFirstCascade : true,
+	#newLineBeforeFirstKeyword : false,
+	#newLinesAfterMethodComment : 2,
+	#newLinesAfterMethodPattern : 1,
+	#newLinesAfterTemporaries : 1,
+	#numberOfArgumentsForMultiLine : 4,
+	#oneLineMessages : [
+		#''to:'',
+		#''to:do:'',
+		#''to:by:'',
+		#''to:by:do:''
+	],
+	#periodsAtEndOfBlock : false,
+	#periodsAtEndOfMethod : false,
+	#retainBlankLinesBetweenStatements : false,
+	#retainBlankLinesBeforeComments : true,
+	#stringFollowingReturn : '' '',
+	#stringInsideParentheses : '' '',
+	#useTraditionalBinaryPrecedenceForParentheses : true,
+	#selectorAndArgumentCombinedMaxSize : 40,
+	#useBasicCommentFormat : true,
+	#traditionalBinaryPrecedenceArray : [
+		[
+			Character [ ''|'' ],
+			Character [ ''&'' ],
+			Character [ ''?'' ]
+		],
+		[
+			Character [ ''='' ],
+			Character [ ''~'' ],
+			Character [ ''<'' ],
+			Character [ ''>'' ]
+		],
+		[
+			Character [ ''-'' ],
+			Character [ ''+'' ]
+		],
+		[
+			Character [ ''*'' ],
+			Character [ ''/'' ],
+			Character [ ''%'' ],
+			Character [ ''\\'' ]
+		],
+		[
+			Character [ ''@'' ]
+		]
+	],
+	#numberOfSpacesInsideBlock : 1,
+	#stringInsideBlocks : '' '',
+	#numberOfSpacesInsideParentheses : 1,
+	#numberOfSpacesAfterCaretSymbolInReturn : 1,
+	#indentCharacter : #tabulation,
+	#numberOfSpacesInIndent : 3
+}'
+]
+
 { #category : #'class initialization' }
 BIEnlumineurExamples class >> initialize [
 ]
@@ -46,7 +123,7 @@ BIEnlumineurExamples class >> initializeSettingsTable [
 	}
 ]
 
-{ #category : #examples }
+{ #category : #methods }
 BIEnlumineurExamples >> blockExample [
 	1 to: 4 do: [ :i | 
 		Transcript
@@ -55,19 +132,19 @@ BIEnlumineurExamples >> blockExample [
 			cr]
 ]
 
-{ #category : #examples }
+{ #category : #methods }
 BIEnlumineurExamples >> cascadeExample [
 	Transcript cr;cr;cr
 ]
 
-{ #category : #examples }
+{ #category : #methods }
 BIEnlumineurExamples >> formatCommentWithExpressionExample [
 
 	1 + 1.	"We do an addition"
 	2 + 2
 ]
 
-{ #category : #examples }
+{ #category : #methods }
 BIEnlumineurExamples >> indentExample [
 1 to: 4 do: [ :i | 
 		i to: 4 do: [ :j |
@@ -78,65 +155,65 @@ BIEnlumineurExamples >> indentExample [
 			cr] ]
 ]
 
-{ #category : #examples }
+{ #category : #methods }
 BIEnlumineurExamples >> maxLineLengthExample [
 	^ 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11 + 12 + 13 + 14 + 15 + 16 + 17 + 18 + 19 + 20
 ]
 
-{ #category : #examples }
+{ #category : #methods }
 BIEnlumineurExamples >> messageWithALotOfParameters [
 	^ self method:1 with:2 a:3 lot:4 of:5 parameters:6
 ]
 
-{ #category : #examples }
+{ #category : #methods }
 BIEnlumineurExamples >> method:a with:b a:c lot:d of:e parameters:f [
 ]
 
-{ #category : #examples }
+{ #category : #methods }
 BIEnlumineurExamples >> methodSignature:a OnMultipleLinesExample:b [
 
 	
 ]
 
-{ #category : #examples }
+{ #category : #methods }
 BIEnlumineurExamples >> minimumNewLinesBetweenStatementsExample [
 	1 + 1.
 	2 + 2.
 	3 + 3
 ]
 
-{ #category : #examples }
+{ #category : #methods }
 BIEnlumineurExamples >> newLinesAfterMethodCommentExample [
 	"myComment"
 
 	^ true
 ]
 
-{ #category : #examples }
+{ #category : #methods }
 BIEnlumineurExamples >> newLinesAfterMethodPatternExample [
 
 	^ true
 ]
 
-{ #category : #examples }
+{ #category : #methods }
 BIEnlumineurExamples >> newLinesAfterTemporariesExample [
 	| tmp |
 	tmp:= 1.
 	^ tmp
 ]
 
-{ #category : #examples }
+{ #category : #methods }
 BIEnlumineurExamples >> parenthesesExample [
 	1 + ( 2 * 3 )
 ]
 
-{ #category : #examples }
+{ #category : #methods }
 BIEnlumineurExamples >> periodsAtEndOfMethodExample [
 	
 	^ 1 factorial
 ]
 
-{ #category : #examples }
+{ #category : #methods }
 BIEnlumineurExamples >> retainBlankLinesExample [
 "methodComment"	
 
@@ -152,12 +229,12 @@ BIEnlumineurExamples >> retainBlankLinesExample [
 	c:=3
 ]
 
-{ #category : #examples }
+{ #category : #methods }
 BIEnlumineurExamples >> spacesAfterCaretSymbolInReturnExample [
 	^ 1
 ]
 
-{ #category : #examples }
+{ #category : #methods }
 BIEnlumineurExamples >> sumFrom: a to: b [
 	"MethodComment"
 	| tmp i j |
@@ -174,7 +251,7 @@ BIEnlumineurExamples >> sumFrom: a to: b [
 	^ tmp
 ]
 
-{ #category : #examples }
+{ #category : #methods }
 BIEnlumineurExamples >> traditionalBinaryPrecedenceForParenthesesExample [
 
 	1 + 2 * 3.
@@ -182,7 +259,7 @@ BIEnlumineurExamples >> traditionalBinaryPrecedenceForParenthesesExample [
 	
 ]
 
-{ #category : #examples }
+{ #category : #methods }
 BIEnlumineurExamples >> useBasicCommentFormatExample [
 "	  aComment    "
 ]
