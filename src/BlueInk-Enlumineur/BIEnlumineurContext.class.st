@@ -67,11 +67,6 @@ BIEnlumineurContext >> indentString [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> indentString: aString [
-	indentString := aString 
-]
-
-{ #category : #accessing }
 BIEnlumineurContext >> indentsForKeywords [
 	^ indentsForKeywords
 ]
@@ -275,7 +270,7 @@ BIEnlumineurContext >> numberOfSpacesAfterCaretSymbolInReturn [
 
 { #category : #accessing }
 BIEnlumineurContext >> numberOfSpacesAfterCaretSymbolInReturn: aNumber [
-	self stringFollowingReturn:(self numberOfSpaces: aNumber).
+	stringFollowingReturn := (self numberOfSpaces: aNumber).
 	numberOfSpacesAfterCaretSymbolInReturn := aNumber
 ]
 
@@ -297,7 +292,7 @@ BIEnlumineurContext >> numberOfSpacesInsideBlock [
 
 { #category : #accessing }
 BIEnlumineurContext >> numberOfSpacesInsideBlock: aNumber [
-	self stringInsideBlocks: (self numberOfSpaces: aNumber).
+	stringInsideBlocks := (self numberOfSpaces: aNumber).
 	numberOfSpacesInsideBlock := aNumber
 ]
 
@@ -308,7 +303,7 @@ BIEnlumineurContext >> numberOfSpacesInsideParentheses [
 
 { #category : #accessing }
 BIEnlumineurContext >> numberOfSpacesInsideParentheses: aNumber [
-	self stringInsideParentheses: (self numberOfSpaces: aNumber).
+	stringInsideParentheses :=  (self numberOfSpaces: aNumber).
 	numberOfSpacesInsideParentheses := aNumber
 ]
 
@@ -392,28 +387,13 @@ BIEnlumineurContext >> stringFollowingReturn [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> stringFollowingReturn: anObject [
-	stringFollowingReturn := anObject
-]
-
-{ #category : #accessing }
 BIEnlumineurContext >> stringInsideBlocks [
 	^ stringInsideBlocks
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> stringInsideBlocks: anObject [
-	stringInsideBlocks := anObject
-]
-
-{ #category : #accessing }
 BIEnlumineurContext >> stringInsideParentheses [
 	^ stringInsideParentheses
-]
-
-{ #category : #accessing }
-BIEnlumineurContext >> stringInsideParentheses: anObject [
-	stringInsideParentheses := anObject
 ]
 
 { #category : #accessing }
