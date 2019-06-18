@@ -12,7 +12,7 @@ BIEnlumineurBlock2ExpressionTest >> basicConfiguration [
 		periodsAtEndOfBlock:false;
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets:false;
-		indentString: '	';
+		indentCharacter: #tabulation;
 		keepBlockInMessage:false;
 		retainBlankLinesBetweenStatements:false;
 		retainBlankLinesBeforeComments:false;

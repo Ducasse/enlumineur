@@ -8,7 +8,7 @@ Class {
 BIEnlumineurMessageExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
-		indentString: '	';
+		indentCharacter: #tabulation;
 		formatCommentWithStatements:false;
 		multiLineMessages:Array new;
 		oneLineMessages:Array new;
@@ -23,7 +23,7 @@ BIEnlumineurMessageExpressionTest >> basicConfiguration [
 BIEnlumineurMessageExpressionTest >> formatStatementsWithCommentsConfiguration [
 
 	^ self contextClass basicNew
-		indentString: '	';
+		indentCharacter: #tabulation;
 		formatCommentWithStatements:true;
 		multiLineMessages:Array new;
 		oneLineMessages:Array new;
@@ -38,7 +38,7 @@ BIEnlumineurMessageExpressionTest >> formatStatementsWithCommentsConfiguration [
 BIEnlumineurMessageExpressionTest >> keepBlockInMessageConfiguration [
 
 	^ self contextClass basicNew
-		indentString: '	';
+		indentCharacter: #tabulation;
 		formatCommentWithStatements:false;
 		multiLineMessages:Array new;
 		oneLineMessages:Array new;
@@ -60,7 +60,7 @@ BIEnlumineurMessageExpressionTest >> keepBlockInMessageConfiguration [
 BIEnlumineurMessageExpressionTest >> multiLineMessageConfiguration [
 
 	^ self contextClass basicNew
-		indentString: '	';
+		indentCharacter: #tabulation;
 		formatCommentWithStatements:false;
 		multiLineMessages:#(#multi:line:);
 		oneLineMessages:Array new;
@@ -75,7 +75,7 @@ BIEnlumineurMessageExpressionTest >> multiLineMessageConfiguration [
 BIEnlumineurMessageExpressionTest >> newLineBeforeFirstKeywordConfiguration [
 
 	^ self contextClass basicNew
-		indentString: '	';
+		indentCharacter: #tabulation;
 		formatCommentWithStatements:false;
 		multiLineMessages:Array new;
 		oneLineMessages:Array new;
@@ -94,7 +94,7 @@ BIEnlumineurMessageExpressionTest >> noIdentsForKeyWordConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 	
 	^ self contextClass basicNew
-		indentString: '	';
+		indentCharacter: #tabulation;
 		formatCommentWithStatements:false;
 		multiLineMessages:Array new;
 		oneLineMessages:Array new;
@@ -113,7 +113,7 @@ BIEnlumineurMessageExpressionTest >> oneArgumentPerLineConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 	
 	^ self contextClass basicNew
-		indentString: '	';
+		indentCharacter: #tabulation;
 		formatCommentWithStatements:false;
 		multiLineMessages:Array new;
 		oneLineMessages:Array new;
@@ -140,7 +140,7 @@ BIEnlumineurMessageExpressionTest >> oneIdentsForKeyWordConfiguration [
 BIEnlumineurMessageExpressionTest >> oneLineMessageConfiguration [
 
 	^ self contextClass basicNew
-		indentString: '	';
+		indentCharacter: #tabulation;
 		formatCommentWithStatements:false;
 		multiLineMessages:Array new;
 		oneLineMessages:#(#one:line:message:);
@@ -538,7 +538,7 @@ BIEnlumineurMessageExpressionTest >> testUnaryNoExtraSpacesBetween2 [
 BIEnlumineurMessageExpressionTest >> tooLongArgumentConfiguration [
 
 	^ self contextClass basicNew
-		indentString: '	';
+		indentCharacter: #tabulation;
 		formatCommentWithStatements:false;
 		multiLineMessages:Array new;
 		oneLineMessages:Array new;
@@ -557,7 +557,7 @@ BIEnlumineurMessageExpressionTest >> traditionalBinaryPrecedenceConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-	indentString: '	';
+	indentCharacter: #tabulation;
 	formatCommentWithStatements:false;
 	multiLineMessages:Array new;
 	oneLineMessages:Array new;
@@ -579,7 +579,7 @@ BIEnlumineurMessageExpressionTest >> twoIdentsForKeyWordConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-	indentString: '	';
+	indentCharacter: #tabulation;
 	formatCommentWithStatements:false;
 	multiLineMessages:Array new;
 	oneLineMessages:Array new;
@@ -595,7 +595,7 @@ BIEnlumineurMessageExpressionTest >> twoSpacesInsideParenthesesConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideParentheses: 2;
-		indentString: '	';
+		indentCharacter: #tabulation;
 		formatCommentWithStatements:false;
 		multiLineMessages:Array new;
 		oneLineMessages:Array new;

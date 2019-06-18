@@ -9,7 +9,7 @@ BIEnlumineurSequenceExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
 		formatCommentWithStatements:true;
-		indentString: '	';
+		indentCharacter: #tabulation;
 		newLinesAfterTemporaries:0;
 		retainBlankLinesBeforeComments:false;
 		useBasicCommentFormat:false;
@@ -25,7 +25,7 @@ BIEnlumineurSequenceExpressionTest >> dontFormatCommentWithStatementConfiguratio
 
 	^ self contextClass basicNew
 		formatCommentWithStatements:false;
-		indentString: '	';
+		indentCharacter: #tabulation;
 		newLinesAfterTemporaries:0;
 		retainBlankLinesBeforeComments:false;
 		useBasicCommentFormat:false;
@@ -54,7 +54,7 @@ BIEnlumineurSequenceExpressionTest >> dontRetainBlankLinesBeforeCommentsConfigur
 	^ self contextClass basicNew
 		retainBlankLinesBeforeComments:false;
 		formatCommentWithStatements:true;
-		indentString: '	';
+		indentCharacter: #tabulation;
 		newLinesAfterTemporaries:0;
 		useBasicCommentFormat:false;
 		maxLineLength:50;
@@ -75,7 +75,7 @@ BIEnlumineurSequenceExpressionTest >> dontRetainBlankLinesBetweenStatementsConfi
 		retainBlankLinesBetweenStatements: false;
 		retainBlankLinesBeforeComments:false;
 		formatCommentWithStatements:true;
-		indentString: '	';
+		indentCharacter: #tabulation;
 		newLinesAfterTemporaries:0;
 		useBasicCommentFormat:false;
 		maxLineLength:50;
@@ -89,7 +89,7 @@ BIEnlumineurSequenceExpressionTest >> formatCommentWithStatementConfiguration [
 
 	^ self contextClass basicNew
 		formatCommentWithStatements:true;
-		indentString: '	';
+		indentCharacter: #tabulation;
 		newLinesAfterTemporaries:0;
 		retainBlankLinesBeforeComments:false;
 		useBasicCommentFormat:false;
@@ -112,7 +112,7 @@ BIEnlumineurSequenceExpressionTest >> newLineAfterStatementConfiguration [
 	^ self contextClass basicNew
 		minimumNewLinesBetweenStatements:1;
 		formatCommentWithStatements:true;
-		indentString: '	';
+		indentCharacter: #tabulation;
 		newLinesAfterTemporaries:0;
 		retainBlankLinesBeforeComments:false;
 		useBasicCommentFormat:false;
@@ -127,7 +127,7 @@ BIEnlumineurSequenceExpressionTest >> newLineAfterTemporariesConfiguration [
 
 	^ self contextClass basicNew
 		formatCommentWithStatements:true;
-		indentString: '	';
+		indentCharacter: #tabulation;
 		newLinesAfterTemporaries:1
 ]
 
@@ -142,7 +142,7 @@ BIEnlumineurSequenceExpressionTest >> periodAsTerminatorConfiguration [
 		periodsAtEndOfBlock:true;
 		periodsAtEndOfMethod:true;
 		formatCommentWithStatements:true;
-		indentString: '	';
+		indentCharacter: #tabulation;
 		newLinesAfterTemporaries:0;
 		retainBlankLinesBeforeComments:false;
 		useBasicCommentFormat:false;
@@ -164,7 +164,7 @@ BIEnlumineurSequenceExpressionTest >> periodNotAsTerminatorConfiguration [
 		periodsAtEndOfBlock:false;
 		periodsAtEndOfMethod:false;
 		formatCommentWithStatements:true;
-		indentString: '	';
+		indentCharacter: #tabulation;
 		newLinesAfterTemporaries:0;
 		retainBlankLinesBeforeComments:false;
 		useBasicCommentFormat:false;
@@ -189,7 +189,7 @@ BIEnlumineurSequenceExpressionTest >> retainBlankLinesBeforeCommentsConfiguratio
 	^ self contextClass basicNew
 		retainBlankLinesBeforeComments:true;
 		formatCommentWithStatements:true;
-		indentString: '	';
+		indentCharacter: #tabulation;
 		newLinesAfterTemporaries:0;
 		useBasicCommentFormat:false;
 		maxLineLength:50;
@@ -210,7 +210,7 @@ BIEnlumineurSequenceExpressionTest >> retainBlankLinesBetweenStatementsConfigura
 		retainBlankLinesBetweenStatements: true;
 		retainBlankLinesBeforeComments:false;
 		formatCommentWithStatements:true;
-		indentString: '	';
+		indentCharacter: #tabulation;
 		newLinesAfterTemporaries:0;
 		useBasicCommentFormat:false;
 		maxLineLength:50;

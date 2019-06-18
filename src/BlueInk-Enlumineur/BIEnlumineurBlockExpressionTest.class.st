@@ -12,7 +12,7 @@ BIEnlumineurBlockExpressionTest >> basicConfiguration [
 		periodsAtEndOfBlock:false;
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets:false;
-		indentString: '	';
+		indentCharacter: #tabulation;
 		keepBlockInMessage:false;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:1;
@@ -38,7 +38,7 @@ BIEnlumineurBlockExpressionTest >> configurationWithThreeSpaces [
 		periodsAtEndOfBlock:false;
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets:false;
-		indentString: '	';
+		indentCharacter: #tabulation;
 		keepBlockInMessage:false;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:1;
@@ -59,7 +59,7 @@ BIEnlumineurBlockExpressionTest >> dontFormatCommentWithStatementConfiguration [
 		periodsAtEndOfBlock:false;
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets:false;
-		indentString: '	';
+		indentCharacter: #tabulation;
 		keepBlockInMessage:false;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:1;
@@ -82,7 +82,7 @@ BIEnlumineurBlockExpressionTest >> formatCommentWithStatementConfiguration [
 		periodsAtEndOfBlock:false;
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets:false;
-		indentString: '	';
+		indentCharacter: #tabulation;
 		keepBlockInMessage:false;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:1;
@@ -133,7 +133,7 @@ BIEnlumineurBlockExpressionTest >> newLineBeforeEndBracketConfiguration [
 		periodsAtEndOfBlock: false;
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets: true;
-		indentString: '	';
+		indentCharacter: #tabulation;
 		keepBlockInMessage: false;
 		retainBlankLinesBetweenStatements: false;
 		minimumNewLinesBetweenStatements: 1;
@@ -158,7 +158,7 @@ BIEnlumineurBlockExpressionTest >> noNewLineBeforeEndBracketConfiguration [
 		periodsAtEndOfBlock: false;
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets: false;
-		indentString: '	';
+		indentCharacter: #tabulation;
 		keepBlockInMessage: false;
 		retainBlankLinesBetweenStatements: false;
 		minimumNewLinesBetweenStatements: 1;
@@ -242,7 +242,7 @@ BIEnlumineurBlockExpressionTest >> periodAtEndConfiguration [
 		periodsAtEndOfBlock: true;
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets: false;
-		indentString: '	';
+		indentCharacter: #tabulation;
 		keepBlockInMessage: false;
 		retainBlankLinesBetweenStatements: false;
 		minimumNewLinesBetweenStatements: 1;

@@ -13,7 +13,7 @@ BIEnlumineurArrayExpressionTest >> basicConfiguration [
 		numberOfSpacesInsideParentheses: 0;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:1;
-		indentString:'	';
+		indentCharacter: #tabulation;
 		periodsAtEndOfBlock:false;
 		periodsAtEndOfMethod:false
 ]
@@ -30,7 +30,7 @@ BIEnlumineurArrayExpressionTest >> maxLineLengthConfiguration [
 		maxLineLength:12;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements: 1;
-		indentString: '	';
+		indentCharacter: #tabulation;
 		periodsAtEndOfBlock:false;
 		periodsAtEndOfMethod:false
 ]
@@ -47,7 +47,7 @@ BIEnlumineurArrayExpressionTest >> periodAsTerminatorConfiguration [
 		maxLineLength:12;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements: 1;
-		indentString: '	';
+		indentCharacter: #tabulation;
 		periodsAtEndOfBlock:true;
 		periodsAtEndOfMethod:true;
 		numberOfSpacesInsideBlock:0;
@@ -66,7 +66,7 @@ BIEnlumineurArrayExpressionTest >> periodAsTerminatorMessageConfiguration2 [
 		maxLineLength:12;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements: 1;
-		indentString: '	';
+		indentCharacter: #tabulation;
 		periodsAtEndOfBlock:true;
 		periodsAtEndOfMethod:true;
 		multiLineMessages:Array new;

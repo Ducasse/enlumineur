@@ -5,6 +5,22 @@ Class {
 }
 
 { #category : #configurations }
+BIEnlumineurCascadeExpressionTest >> SpaceIndentConfiguration [
+
+	^ self contextClass basicNew
+		formatCommentWithStatements:false;
+		newLineAfterCascade:true;
+		newLineBeforeFirstCascade: true;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine:3;
+		maxLineLength:50;
+		keepBlockInMessage:false;
+		numberOfSpacesInIndent: 1;
+		indentCharacter: #space
+]
+
+{ #category : #configurations }
 BIEnlumineurCascadeExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
@@ -16,7 +32,7 @@ BIEnlumineurCascadeExpressionTest >> basicConfiguration [
 		maxLineLength:50;
 		keepBlockInMessage:false;
 		newLineAfterCascade:false;
-		indentString: '	'
+		indentCharacter: #tabulation
 ]
 
 { #category : #configurations }
@@ -35,7 +51,7 @@ BIEnlumineurCascadeExpressionTest >> multilineMessageConfiguration [
 		numberOfArgumentsForMultiLine:3;
 		maxLineLength:50;
 		keepBlockInMessage:false;
-		indentString: '	';
+		indentCharacter: #tabulation;
 		newLineBeforeFirstKeyword:false;
 		numberOfSpacesInsideBlock:1;
 		retainBlankLinesBetweenStatements:false;
@@ -66,7 +82,7 @@ BIEnlumineurCascadeExpressionTest >> newLineAfterCascadeConfiguration [
 		numberOfArgumentsForMultiLine:3;
 		maxLineLength:50;
 		keepBlockInMessage:false;
-		indentString: '	';
+		indentCharacter: #tabulation;
 		newLineBeforeFirstKeyword:false
 ]
 
@@ -86,7 +102,7 @@ BIEnlumineurCascadeExpressionTest >> newLineBeforeAndAfterCascadeConfiguration [
 		numberOfArgumentsForMultiLine:3;
 		maxLineLength:50;
 		keepBlockInMessage:false;
-		indentString: '	';
+		indentCharacter: #tabulation;
 		newLineBeforeFirstKeyword:false
 ]
 
@@ -106,7 +122,7 @@ BIEnlumineurCascadeExpressionTest >> newLineBeforeCascadeConfiguration [
 		numberOfArgumentsForMultiLine:3;
 		maxLineLength:50;
 		keepBlockInMessage:false;
-		indentString: '	';
+		indentCharacter: #tabulation;
 		newLineBeforeFirstKeyword:false
 
 ]
@@ -127,7 +143,7 @@ BIEnlumineurCascadeExpressionTest >> noNewLineAfterCascadeConfiguration [
 		numberOfArgumentsForMultiLine:3;
 		maxLineLength:50;
 		keepBlockInMessage:false;
-		indentString: '	';
+		indentCharacter: #tabulation;
 		newLineBeforeFirstKeyword:false
 ]
 
@@ -147,7 +163,7 @@ BIEnlumineurCascadeExpressionTest >> noNewLineBeforeCascadeConfiguration [
 		numberOfArgumentsForMultiLine:3;
 		maxLineLength:50;
 		keepBlockInMessage:false;
-		indentString: '	';
+		indentCharacter: #tabulation;
 		newLineBeforeFirstKeyword:false
 
 ]
@@ -340,6 +356,24 @@ BIEnlumineurCascadeExpressionTest >> testNoNewLineBeforeCascade2 [
 ]
 
 { #category : #tests }
+BIEnlumineurCascadeExpressionTest >> testOneSpaceIndent [
+	| source |
+	configurationSelector := #SpaceIndentConfiguration.
+	source := self
+		formatExpression:
+			'Transcript show:1 "firstComment";
+	cr "secondComment";
+	cr "thirdComment"'.
+	self
+		assert: source
+		equals:
+'Transcript
+ show: 1 "firstComment";
+ "secondComment"cr;
+ "thirdComment"cr'
+]
+
+{ #category : #tests }
 BIEnlumineurCascadeExpressionTest >> testTooLongArgument [
 	| source |
 	configurationSelector := #tooLongArgumentConfiguration.
@@ -363,5 +397,5 @@ BIEnlumineurCascadeExpressionTest >> tooLongArgumentConfiguration [
 		maxLineLength:10;
 		keepBlockInMessage:false;
 		newLineAfterCascade:false;
-		indentString: '	'
+		indentCharacter: #tabulation
 ]
