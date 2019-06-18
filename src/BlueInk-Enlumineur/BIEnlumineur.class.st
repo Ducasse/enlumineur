@@ -397,11 +397,14 @@ For example if set to false: 1+1"We do an addition". 2+2'.
 
 { #category : #settings }
 BIEnlumineur class >> settingsIndentCharacter:aBuilder [
-self flag:'exemple'.
 	(aBuilder pickOne: #indentCharacter)
 		label: 'indent character';
 		domainValues:#(#tabulation #space);
-		description: 'the character representing an indentation it can be a space or a tabulation'.
+		description: 'the character representing an indentation it can be a space or a tabulation
+Exemple:
+aBoolean
+	ifTrue:[^1]
+	ifFalse:[^0] is the result for tabulation.'.
 ]
 
 { #category : #settings }
@@ -593,10 +596,14 @@ For example:
 
 { #category : #settings }
 BIEnlumineur class >> settingsNumberOfSpacesInIndent:aBuilder [
-self flag:'exemple'.
 	(aBuilder setting: #numberOfSpacesInIndent)
 		label: 'number of spaces in indent';
-		description: 'the number of spaces representing an indentation if setting number is #Space'.
+		description: 'the number of spaces representing an indentation if settingCharacter is set to space
+Exemple:
+aBoolean
+     ifTrue:[^1]
+     ifFalse:[^0]
+is the result for 5'.
 ]
 
 { #category : #settings }
@@ -752,7 +759,7 @@ Example: #( #($- $+) #($*) )'.
 
 { #category : #settings }
 BIEnlumineur class >> settingsUseBasicCommentFormat: aBuilder [.
-self flag:''.
+self flag:'description to do'.
 	(aBuilder setting: #useBasicCommentFormat)
 		label: 'Use basic comment format'.
 ]
