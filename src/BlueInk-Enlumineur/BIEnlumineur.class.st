@@ -77,12 +77,6 @@ BIEnlumineur class >> indentString [
 ]
 
 { #category : #accessing }
-BIEnlumineur class >> indentString: aString [
-	DefaultPrettyPrintContext indentString: aString.
-	self announceASettingChange
-]
-
-{ #category : #accessing }
 BIEnlumineur class >> indentsForKeywords [
 	^ DefaultPrettyPrintContext indentsForKeywords
 ]
@@ -777,31 +771,13 @@ BIEnlumineur class >> stringFollowingReturn [
 ]
 
 { #category : #accessing }
-BIEnlumineur class >> stringFollowingReturn: aString [
-	DefaultPrettyPrintContext stringFollowingReturn: aString.
-	self announceASettingChange
-]
-
-{ #category : #accessing }
 BIEnlumineur class >> stringInsideBlocks [
 	^ DefaultPrettyPrintContext stringInsideBlocks
 ]
 
 { #category : #accessing }
-BIEnlumineur class >> stringInsideBlocks: aString [
-	DefaultPrettyPrintContext stringInsideBlocks: aString.
-	self announceASettingChange
-]
-
-{ #category : #accessing }
 BIEnlumineur class >> stringInsideParentheses [
 	^ DefaultPrettyPrintContext stringInsideParentheses
-]
-
-{ #category : #accessing }
-BIEnlumineur class >> stringInsideParentheses: aString [
-	DefaultPrettyPrintContext stringInsideParentheses: aString.
-	self announceASettingChange
 ]
 
 { #category : #accessing }
@@ -1230,11 +1206,6 @@ BIEnlumineur >> indentCharacter: aSymbole [
 { #category : #accessing }
 BIEnlumineur >> indentString [
 	^ context indentString
-]
-
-{ #category : #accessing }
-BIEnlumineur >> indentString: aString [
-	context indentString: aString
 ]
 
 { #category : #accessing }
@@ -1780,28 +1751,13 @@ BIEnlumineur >> stringFollowingReturn [
 ]
 
 { #category : #accessing }
-BIEnlumineur >> stringFollowingReturn: aString [
-	context stringFollowingReturn: aString
-]
-
-{ #category : #accessing }
 BIEnlumineur >> stringInsideBlocks [
 	^ context stringInsideBlocks
 ]
 
 { #category : #accessing }
-BIEnlumineur >> stringInsideBlocks: aString [
-	context stringInsideBlocks: aString
-]
-
-{ #category : #accessing }
 BIEnlumineur >> stringInsideParentheses [
 	^ context stringInsideParentheses
-]
-
-{ #category : #accessing }
-BIEnlumineur >> stringInsideParentheses: aString [
-	context stringInsideParentheses: aString
 ]
 
 { #category : #accessing }
