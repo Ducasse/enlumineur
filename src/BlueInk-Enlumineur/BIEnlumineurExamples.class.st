@@ -14,7 +14,7 @@ BIEnlumineurExamples class >> defaultConfiguration [
 	#indentString : ''\t'',
 	#indentsForKeywords : 1,
 	#keepBlockInMessage : true,
-	#lineUpBlockBrackets : true,
+	#lineUpBlockBrackets : false,
 	#maxLineLength : 70,
 	#methodSignatureOnMultipleLines : false,
 	#minimumNewLinesBetweenStatements : 1,

@@ -80,7 +80,6 @@ BIEnlumineurContext >> indentsForKeywords: anObject [
 BIEnlumineurContext >> initialize [
 	useBasicCommentFormat := true.
 	formatCommentWithStatements := true.
-	indentString := String with: Character tab.
 	indentsForKeywords := 1.
 	keepBlockInMessage := true.
 	lineUpBlockBrackets := false.
