@@ -398,7 +398,7 @@ For example if set to false: 1+1"We do an addition". 2+2'.
 { #category : #settings }
 BIEnlumineur class >> settingsIndentCharacter:aBuilder [
 	(aBuilder pickOne: #indentCharacter)
-		label: 'indent character';
+		label: 'Indent character';
 		domainValues:#(#tabulation #space);
 		description: 'the character representing an indentation it can be a space or a tabulation
 Exemple:
@@ -454,7 +454,7 @@ is the result for 14'.
 { #category : #settings }
 BIEnlumineur class >> settingsMethodSignatureOnMultipleLines: aBuilder [ 
 	(aBuilder setting: #methodSignatureOnMultipleLines)
-		label: 'method signature on multiple lines';
+		label: 'Method signature on multiple lines';
 		description: 'Write a multilines method signature on multiple lines only if set to true,
 		(a method signature is multilines, depends of the setting selectorAndArgumentCombinedMaxSize).
 For example:
@@ -530,7 +530,7 @@ OrderedCollection new
 { #category : #settings }
 BIEnlumineur class >> settingsNewLineBeforeFirstKeyword: aBuilder [
 	(aBuilder setting: #newLineBeforeFirstKeyword)
-		label: 'new line before first keyword';
+		label: 'New line before first keyword';
 		description: 'pass a new line before the first keyword parameter of a message
 Examples:
 
@@ -545,7 +545,7 @@ is the result if the setting is set to false'.
 { #category : #settings }
 BIEnlumineur class >> settingsNewLinesAfterMethodComment: aBuilder [
 	(aBuilder setting: #newLinesAfterMethodComment)
-		label: 'new lines after method comment';
+		label: 'New lines after method comment';
 		description: 'number of new lines after the comment of the method
 Example:
 myMethode
@@ -558,7 +558,7 @@ is the result for 2 new lines'
 { #category : #settings }
 BIEnlumineur class >> settingsNewLinesAfterMethodSignature: aBuilder [
 	(aBuilder setting: #newLinesAfterMethodPattern)
-		label: 'New line after method signature';
+		label: 'New lines after method signature';
 		description: 'number of new lines after the method signature
 Example:
 myMethode: arg
@@ -597,7 +597,7 @@ For example:
 { #category : #settings }
 BIEnlumineur class >> settingsNumberOfSpacesInIndent:aBuilder [
 	(aBuilder setting: #numberOfSpacesInIndent)
-		label: 'number of spaces in indent';
+		label: 'Number of spaces in indent';
 		description: 'the number of spaces representing an indentation if settingCharacter is set to space
 Exemple:
 aBoolean
