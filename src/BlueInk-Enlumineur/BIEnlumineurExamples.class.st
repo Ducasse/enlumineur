@@ -165,7 +165,7 @@ BIEnlumineurExamples >> messageWithALotOfParameters [
 	^ self method:1 with:2 a:3 lot:4 of:5 parameters:6
 ]
 
-{ #category : #methods }
+{ #category : #util }
 BIEnlumineurExamples >> method:a with:b a:c lot:d of:e parameters:f [
 ]
 
