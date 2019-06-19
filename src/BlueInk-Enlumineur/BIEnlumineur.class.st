@@ -389,7 +389,7 @@ is the result when true
 BIEnlumineur class >> settingsFormatCommentWithExpression: aBuilder [
 	(aBuilder setting: #formatCommentWithStatements)
 		label: 'Format comment with expression';
-		description: 'if set to true: put the comment after the separator '.' in an expression
+		description: 'if set to true: put the comment after the dot in an expression
 		else put it before 
 For example if set to true: 1+1."We do an addition" 2+2
 For example if set to false: 1+1"We do an addition". 2+2'.
@@ -400,7 +400,8 @@ BIEnlumineur class >> settingsIndentCharacter:aBuilder [
 	(aBuilder pickOne: #indentCharacter)
 		label: 'Indent character';
 		domainValues:#(#tabulation #space);
-		description: 'the character representing an indentation it can be a space or a tabulation
+		description: 'the character representing an indentation,
+		it can be a space or a tabulation
 Exemple:
 aBoolean
 	ifTrue:[^1]
@@ -614,8 +615,9 @@ BIEnlumineur class >> settingsOn: aBuilder [
 		target: self;
 		parent: #codeBrowsing;
 		label: 'BlueInk Enlumineur Pretty Printing';
-		description: 'Settings related to the formatter';
-		with: [ self settingsFormatCommentWithExpression: aBuilder.
+		description: 'Settings related to BIEnlumineur';
+		with: [ 
+			self settingsFormatCommentWithExpression: aBuilder.
 			self settingsIndentCharacter: aBuilder.
 			self settingsNumberOfSpacesInIndent: aBuilder.
 			self settingsIndentsForKeywords: aBuilder.
@@ -712,7 +714,7 @@ will not change if the setting is set to true'.
 BIEnlumineur class >> settingsSelectorAndArgumentCombinedMaxSize: aBuilder [.
 	(aBuilder setting: #selectorAndArgumentCombinedMaxSize)
 		label: 'Selector and argument combined in method signature max size';
-		description: 'the maximum size a selector and his argument can do before the message is considered multiline
+		description: 'the maximum length a selector and his argument can be before the message is considered multiline
 		(depend of the setting methodSignatureOnMultipleLines 
 		which will write the message on multiple lines only if is set to true)
 Example:
