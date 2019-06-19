@@ -104,9 +104,9 @@ BIEnlumineurExamples class >> initializeSettingsTable [
 		#newLineAfterCascade -> #cascadeExample.
 		#newLineBeforeFirstCascade -> #cascadeExample.
 		#newLineBeforeFirstKeyword -> #messageWithALotOfParameters.
-		#newLinesAfterMethodComment -> #newLinesAfterMethodCommentExample.
-		#newLinesAfterMethodPattern -> #newLinesAfterMethodPatternExample.
-		#newLinesAfterTemporaries -> #newLinesAfterTemporariesExample.
+		#newLinesAfterMethodComment -> #newLinesExample.
+		#newLinesAfterMethodPattern -> #newLinesExample.
+		#newLinesAfterTemporaries -> #newLinesExample.
 		#numberOfArgumentsForMultiLine -> #messageWithALotOfParameters.
 		#oneLineMessages.
 		#periodsAtEndOfBlock -> #blockExample.
@@ -183,20 +183,8 @@ BIEnlumineurExamples >> minimumNewLinesBetweenStatementsExample [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> newLinesAfterMethodCommentExample [
+BIEnlumineurExamples >> newLinesExample [
 	"myComment"
-
-	^ true
-]
-
-{ #category : #methods }
-BIEnlumineurExamples >> newLinesAfterMethodPatternExample [
-
-	^ true
-]
-
-{ #category : #methods }
-BIEnlumineurExamples >> newLinesAfterTemporariesExample [
 	| tmp |
 	tmp:= 1.
 	^ tmp
