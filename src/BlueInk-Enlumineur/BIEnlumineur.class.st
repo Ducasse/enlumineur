@@ -880,7 +880,7 @@ BIEnlumineur >> currentLineLength [
 
 { #category : #'public interface' }
 BIEnlumineur >> format: aParseTree [
-	codeStream := self initializeCodeStream . 
+	codeStream := self initializeCodeStream.
 	originalSource := aParseTree source.
 	self visitNode: aParseTree.
 	^ codeStream contents
@@ -1235,7 +1235,7 @@ BIEnlumineur >> initialize [
 	lineStart := 0.
 	self indent: 0.
 	self isInCascadeNode: false.
-	lookaheadCode := IdentityDictionary new.
+	lookaheadCode := self initializeLookAheadCode.
 	codeStream := self initializeCodeStream.
 	context := DefaultPrettyPrintContext
 ]
@@ -1245,10 +1245,16 @@ BIEnlumineur >> initializeCodeStream [
 	^ WriteStream on: (String new: 256)
 ]
 
+{ #category : #initialization }
+BIEnlumineur >> initializeLookAheadCode [
+	^ IdentityDictionary new
+]
+
 { #category : #'public interface' }
 BIEnlumineur >> installNewContext: aContext [
 
-	context := aContext
+	context := aContext.
+	lookaheadCode := self initializeLookAheadCode
 ]
 
 { #category : #'public interface' }

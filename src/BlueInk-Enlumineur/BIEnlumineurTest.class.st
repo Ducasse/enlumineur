@@ -64,3 +64,22 @@ BIEnlumineurTest >> parseExpression: anExpression [
 BIEnlumineurTest >> parser [
 	^ RBParser
 ]
+
+{ #category : #test }
+BIEnlumineurTest >> testLookAheadCodeIsResetWhenChangingConfiguration [
+	| prettyPrinterInstance context1 context2 astNode res1 res2 |
+	context1 := BIEnlumineurContext new.
+	context2 := BIEnlumineurContext new lineUpBlockBrackets: true.
+	prettyPrinterInstance := BIEnlumineur new installNewContext: context1.
+	astNode := RBParser parseExpression: 
+	'1 to: 4 do: [ :i | 
+		Transcript
+			show: i;
+			cr;
+			cr]'.
+	
+	res1 := prettyPrinterInstance format: astNode.
+	res2 := (prettyPrinterInstance installNewContext: context2) format: astNode.
+	
+	self deny: res1 equals: res2
+]
