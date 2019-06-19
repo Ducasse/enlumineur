@@ -240,8 +240,6 @@ BIEnlumineurExamples >> sumFrom: a to: b [
 	| tmp i j |
 	tmp := 0.
 
-
-
 	(a < b)
 		ifTrue: [ i := a. j := b ]
 		ifFalse: [ i := b.	j := a ].
