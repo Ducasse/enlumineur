@@ -22,7 +22,7 @@ BIEnlumineur class >> announceASettingChange [
 	SystemAnnouncer uniqueInstance announce: BISettingsChanged 
 ]
 
-{ #category : #settings }
+{ #category : #accessing }
 BIEnlumineur class >> defaultPrettyPrintContext [
 	^ DefaultPrettyPrintContext
 ]
@@ -360,7 +360,7 @@ BIEnlumineur class >> selectorAndArgumentCombinedMaxSize: anInteger [
 	self announceASettingChange
 ]
 
-{ #category : #settings }
+{ #category : #accessing }
 BIEnlumineur class >> settingGroup [
 	^ #blueInkEnlumineur
 ]
