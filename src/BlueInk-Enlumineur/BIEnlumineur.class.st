@@ -61,19 +61,19 @@ BIEnlumineur class >> formatCommentWithStatements: aBoolean [
 ]
 
 { #category : #accessing }
-BIEnlumineur class >> indentCharacter [
-	^ DefaultPrettyPrintContext indentCharacter
-]
-
-{ #category : #accessing }
-BIEnlumineur class >> indentCharacter: aSymbole [
-	DefaultPrettyPrintContext indentCharacter: aSymbole.
-	self announceASettingChange
-]
-
-{ #category : #accessing }
 BIEnlumineur class >> indentString [
 	^ DefaultPrettyPrintContext indentString
+]
+
+{ #category : #accessing }
+BIEnlumineur class >> indentStyle [
+	^ DefaultPrettyPrintContext indentStyle
+]
+
+{ #category : #accessing }
+BIEnlumineur class >> indentStyle: aSymbole [
+	DefaultPrettyPrintContext indentStyle: aSymbole.
+	self announceASettingChange
 ]
 
 { #category : #accessing }
@@ -396,12 +396,12 @@ For example if set to false: 1+1"We do an addition". 2+2'.
 ]
 
 { #category : #settings }
-BIEnlumineur class >> settingsIndentCharacter:aBuilder [
-	(aBuilder pickOne: #indentCharacter)
-		label: 'Indent character';
+BIEnlumineur class >> settingsIndentStyle:aBuilder [
+	(aBuilder pickOne: #indentStyle)
+		label: 'Indent Style';
 		domainValues:#(#tabulation #space);
-		description: 'the character representing an indentation,
-		it can be a space or a tabulation
+		description: 'the represention of an indentation,
+		it can be space or tabulation
 Exemple:
 aBoolean
 	ifTrue:[^1]
@@ -618,7 +618,7 @@ BIEnlumineur class >> settingsOn: aBuilder [
 		description: 'Settings related to BIEnlumineur';
 		with: [ 
 			self settingsFormatCommentWithExpression: aBuilder.
-			self settingsIndentCharacter: aBuilder.
+			self settingsIndentStyle: aBuilder.
 			self settingsNumberOfSpacesInIndent: aBuilder.
 			self settingsIndentsForKeywords: aBuilder.
 			self settingsKeepBlockInMessage: aBuilder.
@@ -779,18 +779,18 @@ for example 1 + 2 * 3 will be formated: (1 + 2) * 3'
 ]
 
 { #category : #accessing }
-BIEnlumineur class >> stringFollowingReturn [
-	^ DefaultPrettyPrintContext stringFollowingReturn
+BIEnlumineur class >> spacesAfterCaretSymbolInReturn [
+	^ DefaultPrettyPrintContext spacesAfterCaretSymbolInReturn
 ]
 
 { #category : #accessing }
-BIEnlumineur class >> stringInsideBlocks [
-	^ DefaultPrettyPrintContext stringInsideBlocks
+BIEnlumineur class >> spacesInsideBlocks [
+	^ DefaultPrettyPrintContext spacesInsideBlocks
 ]
 
 { #category : #accessing }
-BIEnlumineur class >> stringInsideParentheses [
-	^ DefaultPrettyPrintContext stringInsideParentheses
+BIEnlumineur class >> spacesInsideParentheses [
+	^ DefaultPrettyPrintContext spacesInsideParentheses
 ]
 
 { #category : #accessing }
@@ -908,13 +908,13 @@ BIEnlumineur >> formatArray: anArrayNode [
 
 { #category : #'private-formatting' }
 BIEnlumineur >> formatBlock: aBlockNode [
-	codeStream nextPutAll: self stringInsideBlocks.
+	codeStream nextPutAll: self spacesInsideBlocks.
 	self formatBlockArgumentsFor: aBlockNode.
 	self formatBlockCommentFor: aBlockNode.
 	self visitNode: aBlockNode body.
 	(self lineUpBlockBrackets and: [ self willBeMultiline: aBlockNode body ])
 		ifTrue: [ self newLine ]
-		ifFalse: [ codeStream nextPutAll: self stringInsideBlocks ]
+		ifFalse: [ codeStream nextPutAll: self spacesInsideBlocks ]
 ]
 
 { #category : #'private-formatting' }
@@ -1207,18 +1207,18 @@ BIEnlumineur >> indentAround: aBlock [
 ]
 
 { #category : #accessing }
-BIEnlumineur >> indentCharacter [
-	^ context indentCharacter
-]
-
-{ #category : #accessing }
-BIEnlumineur >> indentCharacter: aSymbole [
-	context indentCharacter: aSymbole
-]
-
-{ #category : #accessing }
 BIEnlumineur >> indentString [
 	^ context indentString
+]
+
+{ #category : #accessing }
+BIEnlumineur >> indentStyle [
+	^ context indentStyle
+]
+
+{ #category : #accessing }
+BIEnlumineur >> indentStyle: aSymbole [
+	context indentStyle: aSymbole
 ]
 
 { #category : #accessing }
@@ -1765,18 +1765,18 @@ BIEnlumineur >> spaceAndFormatComments: aNode [
 ]
 
 { #category : #accessing }
-BIEnlumineur >> stringFollowingReturn [
-	^ context stringFollowingReturn
+BIEnlumineur >> spacesAfterCaretSymbolInReturn [
+	^ context spacesAfterCaretSymbolInReturn
 ]
 
 { #category : #accessing }
-BIEnlumineur >> stringInsideBlocks [
-	^ context stringInsideBlocks
+BIEnlumineur >> spacesInsideBlocks [
+	^ context spacesInsideBlocks
 ]
 
 { #category : #accessing }
-BIEnlumineur >> stringInsideParentheses [
-	^ context stringInsideParentheses
+BIEnlumineur >> spacesInsideParentheses [
+	^ context spacesInsideParentheses
 ]
 
 { #category : #accessing }
@@ -1913,12 +1913,12 @@ BIEnlumineur >> visitNode: aNode [
 				ifFalse: [ '' ])
 		around: [ 
 			needsParenthesis
-				ifTrue: [ codeStream nextPutAll: self stringInsideParentheses ].
+				ifTrue: [ codeStream nextPutAll: self spacesInsideParentheses ].
 			super visitNode: aNode.
 			(self formatCommentWithStatements or: [ aNode isMethod or: [ aNode isSequence or:[aNode isBlock] ] ])
 				ifFalse: [  self spaceAndFormatComments: aNode. ].
 			needsParenthesis
-				ifTrue: [ codeStream nextPutAll: self stringInsideParentheses ] ]
+				ifTrue: [ codeStream nextPutAll: self spacesInsideParentheses ] ]
 ]
 
 { #category : #visiting }
@@ -1960,7 +1960,7 @@ BIEnlumineur >> visitPragmaNode: aPragmaNode [
 BIEnlumineur >> visitReturnNode: aReturnNode [ 
 	codeStream
 		nextPut: $^;
-		nextPutAll: self stringFollowingReturn.
+		nextPutAll: self spacesAfterCaretSymbolInReturn.
 	self visitNode: aReturnNode value
 ]
 

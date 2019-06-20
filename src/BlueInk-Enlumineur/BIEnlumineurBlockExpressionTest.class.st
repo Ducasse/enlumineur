@@ -12,7 +12,7 @@ BIEnlumineurBlockExpressionTest >> basicConfiguration [
 		periodsAtEndOfBlock:false;
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets:false;
-		indentCharacter: #tabulation;
+		indentStyle: #tabulation;
 		keepBlockInMessage:false;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:1;
@@ -38,7 +38,7 @@ BIEnlumineurBlockExpressionTest >> configurationWithThreeSpaces [
 		periodsAtEndOfBlock:false;
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets:false;
-		indentCharacter: #tabulation;
+		indentStyle: #tabulation;
 		keepBlockInMessage:false;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:1;
@@ -59,7 +59,7 @@ BIEnlumineurBlockExpressionTest >> dontFormatCommentWithStatementConfiguration [
 		periodsAtEndOfBlock:false;
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets:false;
-		indentCharacter: #tabulation;
+		indentStyle: #tabulation;
 		keepBlockInMessage:false;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:1;
@@ -82,7 +82,7 @@ BIEnlumineurBlockExpressionTest >> formatCommentWithStatementConfiguration [
 		periodsAtEndOfBlock:false;
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets:false;
-		indentCharacter: #tabulation;
+		indentStyle: #tabulation;
 		keepBlockInMessage:false;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:1;
@@ -118,7 +118,7 @@ BIEnlumineurBlockExpressionTest >> fourSpaceIndentConfiguration [
 		newLineAfterCascade:true;
 		newLineBeforeFirstCascade: true;
 		numberOfSpacesInIndent: 4;
-		indentCharacter: #space
+		indentStyle: #space
 ]
 
 { #category : #configurations }
@@ -133,7 +133,7 @@ BIEnlumineurBlockExpressionTest >> newLineBeforeEndBracketConfiguration [
 		periodsAtEndOfBlock: false;
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets: true;
-		indentCharacter: #tabulation;
+		indentStyle: #tabulation;
 		keepBlockInMessage: false;
 		retainBlankLinesBetweenStatements: false;
 		minimumNewLinesBetweenStatements: 1;
@@ -158,7 +158,7 @@ BIEnlumineurBlockExpressionTest >> noNewLineBeforeEndBracketConfiguration [
 		periodsAtEndOfBlock: false;
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets: false;
-		indentCharacter: #tabulation;
+		indentStyle: #tabulation;
 		keepBlockInMessage: false;
 		retainBlankLinesBetweenStatements: false;
 		minimumNewLinesBetweenStatements: 1;
@@ -192,7 +192,7 @@ BIEnlumineurBlockExpressionTest >> numberOfSpaceChangedAfterIndentCharacterConfi
 		newLineAfterCascade:true;
 		newLineBeforeFirstCascade: true;
 		numberOfSpacesInIndent: 1;
-		indentCharacter: #space;
+		indentStyle: #space;
 		numberOfSpacesInIndent: 2
 ]
 
@@ -217,7 +217,7 @@ BIEnlumineurBlockExpressionTest >> oneSpaceIndentConfiguration [
 		newLineAfterCascade:true;
 		newLineBeforeFirstCascade: true;
 		numberOfSpacesInIndent: 1;
-		indentCharacter: #space
+		indentStyle: #space
 ]
 
 { #category : #hooks }
@@ -242,7 +242,7 @@ BIEnlumineurBlockExpressionTest >> periodAtEndConfiguration [
 		periodsAtEndOfBlock: true;
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets: false;
-		indentCharacter: #tabulation;
+		indentStyle: #tabulation;
 		keepBlockInMessage: false;
 		retainBlankLinesBetweenStatements: false;
 		minimumNewLinesBetweenStatements: 1;
@@ -275,7 +275,7 @@ BIEnlumineurBlockExpressionTest >> tabIndentConfiguration [
 		maxLineLength:50;
 		newLineAfterCascade:true;
 		newLineBeforeFirstCascade: true;
-		indentCharacter: #tab
+		indentStyle: #tab
 ]
 
 { #category : #configurations }
@@ -298,7 +298,7 @@ BIEnlumineurBlockExpressionTest >> tabIndentIsnotAffectedConfiguration [
 		maxLineLength:50;
 		newLineAfterCascade:true;
 		newLineBeforeFirstCascade: true;
-		indentCharacter: #tab;
+		indentStyle: #tab;
 		numberOfSpacesInIndent: 37
 ]
 
@@ -323,7 +323,7 @@ BIEnlumineurBlockExpressionTest >> tabIndentIsnotAffectedConfiguration2 [
 		newLineAfterCascade:true;
 		newLineBeforeFirstCascade: true;
 		numberOfSpacesInIndent: 37;
-		indentCharacter: #tab
+		indentStyle: #tab
 ]
 
 { #category : #test }

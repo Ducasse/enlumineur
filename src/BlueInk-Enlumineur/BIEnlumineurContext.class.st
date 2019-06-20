@@ -3,7 +3,6 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'formatCommentWithStatements',
-		'indentString',
 		'indentsForKeywords',
 		'keepBlockInMessage',
 		'lineUpBlockBrackets',
@@ -23,18 +22,19 @@ Class {
 		'periodsAtEndOfMethod',
 		'retainBlankLinesBetweenStatements',
 		'retainBlankLinesBeforeComments',
-		'stringFollowingReturn',
-		'stringInsideParentheses',
 		'useTraditionalBinaryPrecedenceForParentheses',
 		'selectorAndArgumentCombinedMaxSize',
 		'useBasicCommentFormat',
 		'traditionalBinaryPrecedenceArray',
 		'numberOfSpacesInsideBlock',
-		'stringInsideBlocks',
 		'numberOfSpacesInsideParentheses',
 		'numberOfSpacesAfterCaretSymbolInReturn',
-		'indentCharacter',
-		'numberOfSpacesInIndent'
+		'numberOfSpacesInIndent',
+		'spacesAfterCaretSymbolInReturn',
+		'spacesInsideBlocks',
+		'indentStyle',
+		'indentString',
+		'spacesInsideParentheses'
 	],
 	#category : #'BlueInk-Enlumineur'
 }
@@ -50,20 +50,20 @@ BIEnlumineurContext >> formatCommentWithStatements: anObject [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> indentCharacter [
-	^ indentCharacter
-]
-
-{ #category : #accessing }
-BIEnlumineurContext >> indentCharacter: aSymbole [
-	indentCharacter:= aSymbole.
-	(aSymbole = #space) ifTrue: [indentString := (self numberOfSpaces: numberOfSpacesInIndent)]
-	ifFalse:[indentString := '	']
-]
-
-{ #category : #accessing }
 BIEnlumineurContext >> indentString [
 	^ indentString
+]
+
+{ #category : #accessing }
+BIEnlumineurContext >> indentStyle [
+	^ indentStyle
+]
+
+{ #category : #accessing }
+BIEnlumineurContext >> indentStyle: aSymbole [
+	indentStyle:= aSymbole.
+	(aSymbole = #space) ifTrue: [indentString := (self numberOfSpaces: numberOfSpacesInIndent)]
+	ifFalse:[indentString := '	']
 ]
 
 { #category : #accessing }
@@ -105,7 +105,7 @@ BIEnlumineurContext >> initialize [
 	self numberOfSpacesInsideBlock: 1.
 	self numberOfSpacesInsideParentheses: 1.
 	self numberOfSpacesAfterCaretSymbolInReturn: 1.
-	self indentCharacter: #tabulation.
+	self indentStyle: #tabulation.
 	self numberOfSpacesInIndent: 3.
 ]
 
@@ -269,7 +269,7 @@ BIEnlumineurContext >> numberOfSpacesAfterCaretSymbolInReturn [
 
 { #category : #accessing }
 BIEnlumineurContext >> numberOfSpacesAfterCaretSymbolInReturn: aNumber [
-	stringFollowingReturn := (self numberOfSpaces: aNumber).
+	spacesAfterCaretSymbolInReturn := (self numberOfSpaces: aNumber).
 	numberOfSpacesAfterCaretSymbolInReturn := aNumber
 ]
 
@@ -281,7 +281,7 @@ BIEnlumineurContext >> numberOfSpacesInIndent [
 { #category : #accessing }
 BIEnlumineurContext >> numberOfSpacesInIndent: anInteger [
 	numberOfSpacesInIndent:= anInteger.
-	(indentCharacter= #space) ifTrue: [indentString := (self numberOfSpaces: anInteger)]
+	(indentStyle= #space) ifTrue: [indentString := (self numberOfSpaces: anInteger)]
 ]
 
 { #category : #accessing }
@@ -291,7 +291,7 @@ BIEnlumineurContext >> numberOfSpacesInsideBlock [
 
 { #category : #accessing }
 BIEnlumineurContext >> numberOfSpacesInsideBlock: aNumber [
-	stringInsideBlocks := (self numberOfSpaces: aNumber).
+	spacesInsideBlocks := (self numberOfSpaces: aNumber).
 	numberOfSpacesInsideBlock := aNumber
 ]
 
@@ -302,7 +302,7 @@ BIEnlumineurContext >> numberOfSpacesInsideParentheses [
 
 { #category : #accessing }
 BIEnlumineurContext >> numberOfSpacesInsideParentheses: aNumber [
-	stringInsideParentheses :=  (self numberOfSpaces: aNumber).
+	spacesInsideParentheses :=  (self numberOfSpaces: aNumber).
 	numberOfSpacesInsideParentheses := aNumber
 ]
 
@@ -366,6 +366,21 @@ BIEnlumineurContext >> selectorAndArgumentCombinedMaxSize: anInteger [
 	selectorAndArgumentCombinedMaxSize := anInteger
 ]
 
+{ #category : #accessing }
+BIEnlumineurContext >> spacesAfterCaretSymbolInReturn [
+	^ spacesAfterCaretSymbolInReturn
+]
+
+{ #category : #accessing }
+BIEnlumineurContext >> spacesInsideBlocks [
+	^ spacesInsideBlocks
+]
+
+{ #category : #accessing }
+BIEnlumineurContext >> spacesInsideParentheses [
+	^ spacesInsideParentheses
+]
+
 { #category : #'as yet unclassified' }
 BIEnlumineurContext >> storeOn: aStream [
 
@@ -378,21 +393,6 @@ BIEnlumineurContext >> storeOn: aStream [
 					aStream nextPutAll: each, ': '.
 					aStream print: (self instVarNamed: each asSymbol) ]
 		separatedBy: [ aStream nextPutAll: ';'; cr. ]
-]
-
-{ #category : #accessing }
-BIEnlumineurContext >> stringFollowingReturn [
-	^ stringFollowingReturn
-]
-
-{ #category : #accessing }
-BIEnlumineurContext >> stringInsideBlocks [
-	^ stringInsideBlocks
-]
-
-{ #category : #accessing }
-BIEnlumineurContext >> stringInsideParentheses [
-	^ stringInsideParentheses
 ]
 
 { #category : #accessing }

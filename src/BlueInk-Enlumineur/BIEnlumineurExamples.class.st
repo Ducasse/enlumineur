@@ -44,8 +44,8 @@ BIEnlumineurExamples class >> defaultConfiguration [
 	#periodsAtEndOfMethod : false,
 	#retainBlankLinesBetweenStatements : false,
 	#retainBlankLinesBeforeComments : true,
-	#stringFollowingReturn : '' '',
-	#stringInsideParentheses : '' '',
+	#spacesAfterCaretSymbolInReturn : '' '',
+	#spacesInsideParentheses : '' '',
 	#useTraditionalBinaryPrecedenceForParentheses : true,
 	#selectorAndArgumentCombinedMaxSize : 40,
 	#useBasicCommentFormat : true,
@@ -76,10 +76,10 @@ BIEnlumineurExamples class >> defaultConfiguration [
 		]
 	],
 	#numberOfSpacesInsideBlock : 1,
-	#stringInsideBlocks : '' '',
+	#spacesInsideBlocks : '' '',
 	#numberOfSpacesInsideParentheses : 1,
 	#numberOfSpacesAfterCaretSymbolInReturn : 1,
-	#indentCharacter : #tabulation,
+	#indentStyle : #tabulation,
 	#numberOfSpacesInIndent : 3
 }'
 ]
@@ -113,9 +113,9 @@ BIEnlumineurExamples class >> initializeSettingsTable [
 		#periodsAtEndOfMethod -> #periodsAtEndOfMethodExample.
 		#retainBlankLinesBetweenStatements -> #retainBlankLinesExample.
 		#retainBlankLinesBeforeComments -> #retainBlankLinesExample.
-		#stringFollowingReturn -> #spacesAfterCaretSymbolInReturnExample.
-		#stringInsideBlocks -> #blockExample.
-		#stringInsideParentheses -> #parenthesesExample.
+		#spacesAfterCaretSymbolInReturn -> #spacesAfterCaretSymbolInReturnExample.
+		#spacesInsideBlocks -> #blockExample.
+		#spacesInsideParentheses -> #parenthesesExample.
 		#useTraditionalBinaryPrecedenceForParentheses -> #traditionalBinaryPrecedenceForParenthesesExample.
 		#selectorAndArgumentCombinedMaxSize -> #messageWithALotOfParameters.
 		#useBasicCommentFormat -> #useBasicCommentFormatExample.

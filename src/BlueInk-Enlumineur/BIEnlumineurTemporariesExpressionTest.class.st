@@ -14,7 +14,7 @@ BIEnlumineurTemporariesExpressionTest >> basicCommentFormatConfiguration [
 	^ self contextClass basicNew
 	useBasicCommentFormat: true;
 	formatCommentWithStatements:true;
-	indentCharacter: #tabulation;
+	indentStyle: #tabulation;
 	newLinesAfterTemporaries:0;
 	retainBlankLinesBeforeComments:false
 ]
@@ -24,7 +24,7 @@ BIEnlumineurTemporariesExpressionTest >> commentWithStatementsConfiguration [
 
 	^ self contextClass basicNew
 		formatCommentWithStatements:true;
-		indentCharacter: #tabulation;
+		indentStyle: #tabulation;
 		newLinesAfterTemporaries:0;
 		retainBlankLinesBeforeComments:false;
 		useBasicCommentFormat:false;
@@ -42,7 +42,7 @@ BIEnlumineurTemporariesExpressionTest >> dontRetainBlankLinesBeforeComments [
 		retainBlankLinesBeforeComments: false;
 		useBasicCommentFormat: false;
 		formatCommentWithStatements:false;
-		indentCharacter: #tabulation;
+		indentStyle: #tabulation;
 		newLinesAfterTemporaries:0
 ]
 
@@ -57,7 +57,7 @@ BIEnlumineurTemporariesExpressionTest >> newLinesAfterTemporariesConfiguration [
 		newLinesAfterTemporaries: 1;
 		useBasicCommentFormat: false;
 		formatCommentWithStatements:false;
-		indentCharacter: #tabulation;
+		indentStyle: #tabulation;
 		retainBlankLinesBeforeComments:false
 ]
 
@@ -72,7 +72,7 @@ BIEnlumineurTemporariesExpressionTest >> noNewLinesAfterTemporariesConfiguration
 		newLinesAfterTemporaries: 0;
 		useBasicCommentFormat: false;
 		formatCommentWithStatements:false;
-		indentCharacter: #tabulation;
+		indentStyle: #tabulation;
 		retainBlankLinesBeforeComments:false
 ]
 
@@ -86,7 +86,7 @@ BIEnlumineurTemporariesExpressionTest >> notBasicCommentFormatConfiguration [
 	^ self contextClass basicNew
 		useBasicCommentFormat: false;
 		formatCommentWithStatements:true;
-		indentCharacter: #tabulation;
+		indentStyle: #tabulation;
 		newLinesAfterTemporaries:0;
 		retainBlankLinesBeforeComments:false;
 		maxLineLength: 50
@@ -103,7 +103,7 @@ BIEnlumineurTemporariesExpressionTest >> retainBlankLinesBeforeComments [
 		useBasicCommentFormat: false;
 		formatCommentWithStatements:true;
 		maxLineLength:50;
-		indentCharacter: #tabulation;
+		indentStyle: #tabulation;
 		retainBlankLinesBeforeComments:true
 ]
 
@@ -271,6 +271,6 @@ BIEnlumineurTemporariesExpressionTest >> twoLinesAfterTemporariesConfiguration [
 		newLinesAfterTemporaries: 2;
 		useBasicCommentFormat: false;
 		formatCommentWithStatements:false;
-		indentCharacter: #tabulation;
+		indentStyle: #tabulation;
 		retainBlankLinesBeforeComments:false
 ]

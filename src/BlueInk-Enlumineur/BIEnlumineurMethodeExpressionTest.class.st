@@ -12,7 +12,7 @@ BIEnlumineurMethodeExpressionTest >> basicCommentFormatConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-		indentCharacter: #tabulation;
+		indentStyle: #tabulation;
 		formatCommentWithStatements:false;
 		useBasicCommentFormat: true;
 		newLinesAfterMethodPattern: 1;
@@ -27,7 +27,7 @@ BIEnlumineurMethodeExpressionTest >> basicConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-		indentCharacter: #tabulation;
+		indentStyle: #tabulation;
 		formatCommentWithStatements:false;
 		useBasicCommentFormat: false;
 		maxLineLength: 50;
@@ -45,7 +45,7 @@ BIEnlumineurMethodeExpressionTest >> bigMethodeConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-		indentCharacter: #tabulation;
+		indentStyle: #tabulation;
 		formatCommentWithStatements:false;
 		useBasicCommentFormat: false;
 		maxLineLength: 50;
@@ -76,7 +76,7 @@ BIEnlumineurMethodeExpressionTest >> cascadeConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-		indentCharacter: #tabulation;
+		indentStyle: #tabulation;
 		formatCommentWithStatements:false;
 		useBasicCommentFormat: false;
 		maxLineLength: 50;
@@ -101,7 +101,7 @@ BIEnlumineurMethodeExpressionTest >> newLineAfterSignatureConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-		indentCharacter: #tabulation;
+		indentStyle: #tabulation;
 		formatCommentWithStatements:false;
 		newLinesAfterMethodPattern: 1
 ]
@@ -114,7 +114,7 @@ BIEnlumineurMethodeExpressionTest >> newLineBetweenTopCommentsConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-		indentCharacter: #tabulation;
+		indentStyle: #tabulation;
 		formatCommentWithStatements:false;
 		useBasicCommentFormat: false;
 		maxLineLength: 50;
@@ -132,7 +132,7 @@ BIEnlumineurMethodeExpressionTest >> noNewLineBetweenTopCommentsConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-		indentCharacter: #tabulation;
+		indentStyle: #tabulation;
 		formatCommentWithStatements:false;
 		useBasicCommentFormat: true;
 		newLinesAfterMethodPattern: 1;
@@ -147,7 +147,7 @@ BIEnlumineurMethodeExpressionTest >> noNewLinesAfterCommentConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-		indentCharacter: #tabulation;
+		indentStyle: #tabulation;
 		formatCommentWithStatements:false;
 		useBasicCommentFormat: true;
 		newLinesAfterMethodPattern: 1;
@@ -162,7 +162,7 @@ BIEnlumineurMethodeExpressionTest >> notBasicCommentFormatConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-		indentCharacter: #tabulation;
+		indentStyle: #tabulation;
 		formatCommentWithStatements:false;
 		useBasicCommentFormat: false;
 		maxLineLength: 50;	
@@ -178,7 +178,7 @@ BIEnlumineurMethodeExpressionTest >> oneNewLineAfterCommentConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-		indentCharacter: #tabulation;
+		indentStyle: #tabulation;
 		formatCommentWithStatements:false;
 		useBasicCommentFormat:false;
 		maxLineLength:50;
@@ -194,7 +194,7 @@ BIEnlumineurMethodeExpressionTest >> oneNewLinesAfterSignatureConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-		indentCharacter: #tabulation;
+		indentStyle: #tabulation;
 		formatCommentWithStatements:false
 ]
 
@@ -206,7 +206,7 @@ BIEnlumineurMethodeExpressionTest >> signatureConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-		indentCharacter: #tabulation;
+		indentStyle: #tabulation;
 		formatCommentWithStatements:false;
 		newLinesAfterMethodPattern: 1
 ]
@@ -219,7 +219,7 @@ BIEnlumineurMethodeExpressionTest >> signatureNotOnMultipleLinesConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-		indentCharacter: #tabulation;
+		indentStyle: #tabulation;
 		formatCommentWithStatements:false;
 		methodSignatureOnMultipleLines: false;
 		newLinesAfterMethodPattern: 1
@@ -233,7 +233,7 @@ BIEnlumineurMethodeExpressionTest >> signatureOnMultipleLinesConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-		indentCharacter: #tabulation;
+		indentStyle: #tabulation;
 		formatCommentWithStatements:false;
 		methodSignatureOnMultipleLines: true;
 		selectorAndArgumentCombinedMaxSize: 2;
@@ -554,7 +554,7 @@ BIEnlumineurMethodeExpressionTest >> twoNewLinesAfterSignatureConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-		indentCharacter: #tabulation;
+		indentStyle: #tabulation;
 		formatCommentWithStatements:false;
 		newLinesAfterMethodPattern: 3
 ]
