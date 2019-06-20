@@ -63,7 +63,7 @@ BIEnlumineurContext >> indentStyle [
 BIEnlumineurContext >> indentStyle: aSymbole [
 	indentStyle:= aSymbole.
 	(aSymbole = #space) ifTrue: [indentString := (self numberOfSpaces: numberOfSpacesInIndent)]
-	ifFalse:[indentString := '	']
+	ifFalse:[indentString := String tab]
 ]
 
 { #category : #accessing }
