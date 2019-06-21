@@ -121,6 +121,26 @@ BIEnlumineurExamples class >> initializeSettingsTable [
 ]
 
 { #category : #methods }
+BIEnlumineurExamples >> bearingToPoint: anotherPoint [
+	"Return the bearing, in degrees, from the receiver to anotherPoint."
+	"questions: 
+		are nested ifT indented enough?
+		last - is clearly not well indented.
+	"
+	| deltaX deltaY |
+	deltaX := anotherPoint x - self x.
+	deltaY := anotherPoint y - self y.
+	deltaX abs < 0.001
+		ifTrue: [ ^ deltaY > 0
+				ifTrue: [ 180 ]
+				ifFalse: [ 0 ] ].
+	^ ((deltaX >= 0
+		ifTrue: [ 90 ]
+		ifFalse: [ 270 ])
+		- (deltaY / deltaX) arcTan negated radiansToDegrees) rounded
+]
+
+{ #category : #methods }
 BIEnlumineurExamples >> bigMethod: argumentOne example: argumentTwo [
 "   methode comment   "
 |tmp|
@@ -144,8 +164,79 @@ BIEnlumineurExamples >> blockExample [
 ]
 
 { #category : #methods }
+BIEnlumineurExamples >> bonk: glyphForm with: bonkForm [
+	"Bonking means to run through the glyphs clearing out black pixels
+	between characters to prevent them from straying into an adjacent
+	character as a result of, eg, bolding or italicizing"
+
+	"Uses the bonkForm to erase at every character boundary in glyphs."
+
+	| bb offset x |
+	offset := bonkForm offset x.
+	bb := BitBlt toForm: glyphForm.
+	bb
+		sourceForm: bonkForm;
+		sourceRect: bonkForm boundingBox;
+		combinationRule: Form erase;
+		destY: 0.
+	x := self xTable.
+	(x isMemberOf: SparseLargeTable)
+		ifTrue: [ x base to: x size - 1 do: [ :i | 
+				bb
+					destX: (x at: i) + offset;
+					copyBits ] ]
+		ifFalse: [ 
+			1 
+				to: x size - 1 
+				do: [ :i | 
+						bb
+					destX: (x at: i) + offset;
+					copyBits ] ]
+]
+
+{ #category : #methods }
 BIEnlumineurExamples >> cascadeExample [
 	Transcript cr;cr;cr
+]
+
+{ #category : #methods }
+BIEnlumineurExamples >> degreesHacked [
+	"Answer the angle the receiver makes with origin in degrees. right is 0; down is 90."
+	
+	"Questions the tan := y in the ifFalse: is not really nice it would be better to start to have it on the next line."
+	
+	
+	| tan theta x y |
+	^ x = 0
+		ifTrue: [ tan := y asFloat / x asFloat ]
+		ifFalse: [ tan := y asFloat / x asFloat.
+			theta := tan arcTan.
+			theta := tan arcSin.
+			theta := tan arcCos ]
+]
+
+{ #category : #methods }
+BIEnlumineurExamples >> eightNeighbors [
+	"why not having 
+		^ {
+			(self + (1 @ 0)).
+			(self + (1 @ 1)).
+			(self + (0 @ 1)).
+			(self + (-1 @ 1)).
+			(self + (-1 @ 0)).
+			(self + (-1 @ -1)).
+			(self + (0 @ -1)).
+			(self + (1 @ -1))}
+	
+	"
+	^ {(self + (1 @ 0)).
+	(self + (1 @ 1)).
+	(self + (0 @ 1)).
+	(self + (-1 @ 1)).
+	(self + (-1 @ 0)).
+	(self + (-1 @ -1)).
+	(self + (0 @ -1)).
+	(self + (1 @ -1))}
 ]
 
 { #category : #methods }
@@ -153,6 +244,35 @@ BIEnlumineurExamples >> formatCommentWithExpressionExample [
 
 	1 + 1.	"We do an addition"
 	2 + 2
+]
+
+{ #category : #methods }
+BIEnlumineurExamples >> fourDirections [
+	"Return vertices for a square centered at 0 asPoint with the receiver as first corner.
+	Returns the four rotation of the reciever in counter clockwise order with the receiver appearing last."
+	
+	"Points to take into consideration: 
+	When we force a space fter the ^ there is only one character left in the tab length for the with: shifting. 
+	May be we should increase the tab of one to stress the difference. 
+	
+	"
+	^ Array
+		with: self leftRotated
+		with: self negated
+		with: self rightRotated
+		with: self
+]
+
+{ #category : #methods }
+BIEnlumineurExamples >> fourDirectionsWorkingWell [
+	"Return vertices for a square centered at 0 asPoint with the receiver as first corner.
+	Returns the four rotation of the reciever in counter clockwise order with the receiver appearing last."
+
+	^ Array
+		with: self leftRotated
+		with: self negated
+		with: self rightRotated
+		with: self
 ]
 
 { #category : #methods }
@@ -164,6 +284,32 @@ BIEnlumineurExamples >> indentExample [
 			show: j;
 			cr;
 			cr] ]
+]
+
+{ #category : #methods }
+BIEnlumineurExamples >> insideTriangle: p1 with: p2 with: p3 [
+	"Return true if the receiver is within the triangle defined by the three coordinates.
+	Note: This method computes the barycentric coordinates for the receiver and tests those coordinates."
+
+	| p0 b0 b1 b2 b3 |
+	p0 := self.
+	b0 := (p2 x - p1 x) * (p3 y - p1 y) - ((p3 x - p1 x) * (p2 y - p1 y)).
+	b0 isZero
+		ifTrue: [ ^ false ].	"degenerate"
+	b0 := 1.0 / b0.
+	b1 := ((p2 x - p0 x) * (p3 y - p0 y)
+		- ((p3 x - p0 x) * (p2 y - p0 y))) * b0.
+	b2 := ((p3 x - p0 x) * (p1 y - p0 y)
+		- ((p1 x - p0 x) * (p3 y - p0 y))) * b0.
+	b3 := ((p1 x - p0 x) * (p2 y - p0 y)
+		- ((p2 x - p0 x) * (p1 y - p0 y))) * b0.
+	b1 < 0.0
+		ifTrue: [ ^ false ].
+	b2 < 0.0
+		ifTrue: [ ^ false ].
+	b3 < 0.0
+		ifTrue: [ ^ false ].
+	^ true
 ]
 
 { #category : #methods }
@@ -219,6 +365,30 @@ BIEnlumineurExamples >> newLinesExample [
 { #category : #methods }
 BIEnlumineurExamples >> parenthesesExample [
 	1 + ( 2 * 3 )
+]
+
+{ #category : #methods }
+BIEnlumineurExamples >> parenthesizedExpresssionWithCascade: aBuilder [
+
+
+	(aBuilder setting: #newLinesAfterMethodPattern)
+		label: 'New lines after method signature';
+		description:
+			'number of new lines after the method signature
+Example:
+myMethode: arg
+
+	^ true
+is the result for 2 new lines'.
+	(aBuilder setting: #newLinesAfterMethodPattern)
+		label: 'New lines after method signature';
+		description:
+			'number of new lines after the method signature
+Example:
+myMethode: arg
+
+	^ true
+is the result for 2 new lines'
 ]
 
 { #category : #methods }
@@ -303,4 +473,26 @@ BIEnlumineurExamples >> traditionalBinaryPrecedenceForParenthesesExample [
 { #category : #methods }
 BIEnlumineurExamples >> useBasicCommentFormatExample [
 "	  aComment    "
+]
+
+{ #category : #methods }
+BIEnlumineurExamples >> useRule41 [
+	| x aBitBlt foreColorVal foreColorAlpha gammaTable gammaInverseTable |
+	"x ifTrue: [ 
+		aBitBlt
+			copyBitsColor: foreColorVal
+			alpha: foreColorAlpha
+			gammaTable: gammaTable
+			ungammaTable: gammaInverseTable ]	
+		
+"
+	
+	
+	x
+		ifTrue: [ 
+			aBitBlt
+				copyBitsColor: foreColorVal
+				alpha: foreColorAlpha
+				gammaTable: gammaTable
+				ungammaTable: gammaInverseTable ]
 ]
