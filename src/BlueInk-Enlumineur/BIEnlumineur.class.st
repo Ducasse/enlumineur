@@ -610,13 +610,13 @@ is the result for 5'.
 { #category : #settings }
 BIEnlumineur class >> settingsOn: aBuilder [
 	<systemsettings>
-	self flag: 'maxLineLength isNotHere'.
 	(aBuilder group: self settingGroup)
 		target: self;
 		parent: #codeBrowsing;
 		label: 'BlueInk Enlumineur Pretty Printing';
 		description: 'Settings related to BIEnlumineur';
 		with: [ 
+			self settingsMaxLineLength: aBuilder.
 			self settingsFormatCommentWithExpression: aBuilder.
 			self settingsIndentStyle: aBuilder.
 			self settingsNumberOfSpacesInIndent: aBuilder.
