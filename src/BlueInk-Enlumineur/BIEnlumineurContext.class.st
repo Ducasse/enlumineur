@@ -176,16 +176,6 @@ BIEnlumineurContext >> multiLineMessages: anArray [
 	multiLineMessages := (self class compiler evaluate: anArray asString)
 ]
 
-{ #category : #'as yet unclassified' }
-BIEnlumineurContext >> newEmptyLineAfterMethodCommentZone [
-
-	self newLinesAfterMethodComment: 2
-	"
-	We do two line return: one for the empty line and one for the method body start.
-	After the comments (even empty) we let one empty line
-	"
-]
-
 { #category : #accessing }
 BIEnlumineurContext >> newLineAfterCascade [
 	^ newLineAfterCascade
@@ -244,14 +234,6 @@ BIEnlumineurContext >> newLinesAfterTemporaries [
 { #category : #accessing }
 BIEnlumineurContext >> newLinesAfterTemporaries: anObject [
 	newLinesAfterTemporaries := anObject
-]
-
-{ #category : #'as yet unclassified' }
-BIEnlumineurContext >> noNewEmptyLineAfterMethodCommentZone [
-
-	self newLinesAfterMethodComment: 1
-	"After the comments (even empty) we don't let one empty line.
-	We just issue one new line for the method body"
 ]
 
 { #category : #accessing }
@@ -388,7 +370,7 @@ BIEnlumineurContext >> spacesInsideParentheses [
 	^ spacesInsideParentheses
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #printing }
 BIEnlumineurContext >> storeOn: aStream [
 
 	aStream 

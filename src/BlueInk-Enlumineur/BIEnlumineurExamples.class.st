@@ -85,12 +85,9 @@ BIEnlumineurExamples class >> defaultConfiguration [
 ]
 
 { #category : #'class initialization' }
-BIEnlumineurExamples class >> initialize [
-]
-
-{ #category : #'class initialization' }
 BIEnlumineurExamples class >> initializeSettingsTable [
-
+	"self initializeSettingsTable"
+	
 	settingsTable := {
 		#formatCommentWithStatements -> #formatCommentWithExpressionExample.
 		#indentString -> #indentExample.
@@ -124,7 +121,7 @@ BIEnlumineurExamples class >> initializeSettingsTable [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> bigMethode: argumentOne Example: argumentTwo [
+BIEnlumineurExamples >> bigMethod: argumentOne example: argumentTwo [
 "   methode comment   "
 |tmp|
 tmp := 3.
@@ -176,6 +173,9 @@ BIEnlumineurExamples >> maxLineLengthExample [
 
 { #category : #methods }
 BIEnlumineurExamples >> messageExample: a to: b [
+
+	| i j tmp |
+	tmp := 20.
 	a < b
 		ifTrue: [ i := a. j := b ]
 		ifFalse: [ i := b.	j := a ].
@@ -196,7 +196,7 @@ BIEnlumineurExamples >> method:a with:b a:c lot:d of:e parameters:f [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> methodSignature:a OnMultipleLinesExample:b [
+BIEnlumineurExamples >> methodSignature:a onMultipleLinesExample:b [
 
 	
 ]
