@@ -1,7 +1,7 @@
 Class {
 	#name : #BIEnlumineurCascadeExpressionTest,
 	#superclass : #BIEnlumineurTest,
-	#category : #'BlueInk-Enlumineur'
+	#category : #'BlueInk-Enlumineur-Tests'
 }
 
 { #category : #configurations }

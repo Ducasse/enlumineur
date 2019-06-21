@@ -24,7 +24,7 @@ Class {
 		'DefaultPrettyPrintContext',
 		'FormatAsYouReadPolicy'
 	],
-	#category : #'BlueInk-Enlumineur'
+	#category : #'BlueInk-Enlumineur-Core'
 }
 
 { #category : #private }
@@ -32,7 +32,7 @@ BIEnlumineurPrettyPrinter class >> announceASettingChange [
 	SystemAnnouncer uniqueInstance announce: BISettingsChanged 
 ]
 
-{ #category : #accessing }
+{ #category : #private }
 BIEnlumineurPrettyPrinter class >> defaultPrettyPrintContext [
 	^ DefaultPrettyPrintContext
 ]
@@ -49,12 +49,12 @@ BIEnlumineurPrettyPrinter class >> format: aParseTree withIndents: anInteger [
 		format: aParseTree
 ]
 
-{ #category : #accessing }
+{ #category : #formatAsYouRead }
 BIEnlumineurPrettyPrinter class >> formatAsYouReadPolicy [
 	^ FormatAsYouReadPolicy
 ]
 
-{ #category : #accessing }
+{ #category : #formatAsYouRead }
 BIEnlumineurPrettyPrinter class >> formatAsYouReadPolicy: anObject [
 	FormatAsYouReadPolicy := anObject
 ]
@@ -237,6 +237,20 @@ BIEnlumineurPrettyPrinter class >> newLinesAfterTemporaries: anInteger [
 	self announceASettingChange
 ]
 
+{ #category : #settings }
+BIEnlumineurPrettyPrinter class >> notInstalledCandidateForRemoval [
+	"this method is for sync with guille and stef and we will remove it when ok"
+	
+	"(aBuilder setting: #periodsAsTerminators)
+				label: 'Periods as terminators'.
+	for the moment the UI does not work at ALL when selecting as terminators:
+	It does not automatically select end of method and end of block.
+	Probably the settings UI does not manage dependencies between settings so we will simply remove it."			
+			
+	
+			
+]
+
 { #category : #accessing }
 BIEnlumineurPrettyPrinter class >> numberOfArgumentsForMultiLine [
 	^ DefaultPrettyPrintContext numberOfArgumentsForMultiLine
@@ -303,13 +317,20 @@ BIEnlumineurPrettyPrinter class >> oneLineMessages: aString [
 	self announceASettingChange
 ]
 
-{ #category : #accessing }
+{ #category : #'candidate to removal' }
 BIEnlumineurPrettyPrinter class >> periodsAsTerminators [
-	^ DefaultPrettyPrintContext periodsAtEndOfBlock and: [ DefaultPrettyPrintContext periodsAtEndOfMethod ]
+"for the moment the UI does not work at ALL when selecting as terminators:
+	It does not automatically select end of method and end of block.
+	Probably the settings UI does not manage dependencies between settings so we will simply remove it."
+	^ DefaultPrettyPrintContext periodsAtEndOfBlock
+		and: [ DefaultPrettyPrintContext periodsAtEndOfMethod ]
 ]
 
-{ #category : #accessing }
+{ #category : #'candidate to removal' }
 BIEnlumineurPrettyPrinter class >> periodsAsTerminators: aBoolean [
+	"for the moment the UI does not work at ALL when selecting as terminators:
+	It does not automatically select end of method and end of block.
+	Probably the settings UI does not manage dependencies between settings so we will simply remove it."
 	DefaultPrettyPrintContext periodsAtEndOfBlock: aBoolean.
 	DefaultPrettyPrintContext periodsAtEndOfMethod: aBoolean.
 	self announceASettingChange
@@ -625,8 +646,7 @@ BIEnlumineurPrettyPrinter class >> settingsOn: aBuilder [
 		parent: #codeBrowsing;
 		label: 'BlueInk Enlumineur Pretty Printing';
 		description: 'Settings related to BIEnlumineur';
-		with: [ 
-			self settingsMaxLineLength: aBuilder.
+		with: [ self settingsMaxLineLength: aBuilder.
 			self settingsFormatCommentWithExpression: aBuilder.
 			self settingsIndentStyle: aBuilder.
 			self settingsNumberOfSpacesInIndent: aBuilder.
@@ -644,7 +664,8 @@ BIEnlumineurPrettyPrinter class >> settingsOn: aBuilder [
 			self settingsNewLinesAfterMethodSignature: aBuilder.
 			self settingsNewLinesAfterTemporaries: aBuilder.
 			self settingsNumberOfArgumentsForMultiLine: aBuilder.
-			"(aBuilder setting: #periodsAsTerminators) label: 'Periods as terminators'."
+			self notInstalledCandidateForRemoval.
+	
 			self settingsPeriodsAtEndOfBlock: aBuilder.
 			self settingsPeriodsAtEndOfMethod: aBuilder.
 			self settingsRetainBlankLinesBeforeComments: aBuilder.
@@ -771,7 +792,7 @@ Example: #( #($- $+) #($*) )'.
 
 { #category : #settings }
 BIEnlumineurPrettyPrinter class >> settingsUseBasicCommentFormat: aBuilder [.
-self flag:'to modify'.
+	self flag:'to modify'.
 	(aBuilder setting: #useBasicCommentFormat)
 		label: 'Use basic comment format';
 		description:'leave the comment unchanged

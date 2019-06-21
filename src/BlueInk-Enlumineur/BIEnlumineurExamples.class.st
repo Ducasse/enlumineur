@@ -4,7 +4,7 @@ Class {
 	#classVars : [
 		'settingsTable'
 	],
-	#category : #'BlueInk-Enlumineur'
+	#category : #'BlueInk-Enlumineur-Example to work'
 }
 
 { #category : #settings }
@@ -246,6 +246,35 @@ BIEnlumineurExamples >> retainBlankLinesExample [
 { #category : #methods }
 BIEnlumineurExamples >> spacesAfterCaretSymbolInReturnExample [
 	^ 1
+]
+
+{ #category : #methods }
+BIEnlumineurExamples >> strangeFormattingWithAssignment [
+	"look at this ugly parseMethod that is badly indented"
+	| tree |
+	tree := self
+		parseMethod:
+			'foo: abd bar: cde  
+^ abd + cde'.
+	self assert: tree conceptualSelectorSize equals: 'foo:bar:' size.
+	self assert: tree conceptualArgumentSize equals: 'abdcde' size.
+	self
+		assert: tree conceptualSignatureSize
+		equals: 'abdcde' size + 'foo:bar:' size + 3
+	
+]
+
+{ #category : #methods }
+BIEnlumineurExamples >> strangeFormattingWithAssignment2 [
+	"as you see this is the length and the width of the argument that is pushing th parseMerthod on the second line"
+
+	| tree |
+	tree := self parseMethod: '1234567'.
+	tree := self parseMethod: 	'a
+b'.
+	self
+		assert: tree conceptualSignatureSize
+		equals: 'abdcde' size + 'foo:bar:' size + 3
 ]
 
 { #category : #methods }

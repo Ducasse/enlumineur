@@ -1,7 +1,7 @@
 Class {
 	#name : #BIEnlumineurMessageExpressionTest,
 	#superclass : #BIEnlumineurTest,
-	#category : #'BlueInk-Enlumineur'
+	#category : #'BlueInk-Enlumineur-Tests'
 }
 
 { #category : #configurations }

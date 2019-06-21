@@ -6,7 +6,7 @@ Class {
 		'formatterClass',
 		'contextClass'
 	],
-	#category : #'BlueInk-Enlumineur'
+	#category : #'BlueInk-Enlumineur-Tests'
 }
 
 { #category : #'building suites' }

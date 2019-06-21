@@ -43,7 +43,7 @@ Class {
 		'indentString',
 		'spacesInsideParentheses'
 	],
-	#category : #'BlueInk-Enlumineur'
+	#category : #'BlueInk-Enlumineur-Core'
 }
 
 { #category : #accessing }
