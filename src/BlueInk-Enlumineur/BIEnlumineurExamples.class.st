@@ -124,6 +124,20 @@ BIEnlumineurExamples class >> initializeSettingsTable [
 ]
 
 { #category : #methods }
+BIEnlumineurExamples >> bigMethode: argumentOne Example: argumentTwo [
+"   methode comment   "
+|tmp|
+tmp := 3.
+
+tmp := tmp factorial.
+tmp := tmp + 1.
+
+"   Comment   "
+
+^1
+]
+
+{ #category : #methods }
 BIEnlumineurExamples >> blockExample [
 	1 to: 4 do: [ :i | 
 		Transcript
@@ -161,12 +175,24 @@ BIEnlumineurExamples >> maxLineLengthExample [
 ]
 
 { #category : #methods }
+BIEnlumineurExamples >> messageExample: a to: b [
+	a < b
+		ifTrue: [ i := a. j := b ]
+		ifFalse: [ i := b.	j := a ].
+	i to: j do: [:k | tmp := tmp + k].
+	self method:1 with:2 a:3 lot:4 of:5 parameters:6.
+	^ tmp
+]
+
+{ #category : #methods }
 BIEnlumineurExamples >> messageWithALotOfParameters [
 	^ self method:1 with:2 a:3 lot:4 of:5 parameters:6
 ]
 
-{ #category : #util }
+{ #category : #methods }
 BIEnlumineurExamples >> method:a with:b a:c lot:d of:e parameters:f [
+
+^1
 ]
 
 { #category : #methods }
