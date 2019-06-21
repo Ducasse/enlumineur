@@ -15,7 +15,7 @@ BIEnlumineurPatternBlockExpressionTest >> openBracket [
 ]
 
 { #category : #hooks }
-BIEnlumineurPatternBlockExpressionTest >> parser [
+BIEnlumineurPatternBlockExpressionTest >> parserClass [
 	^ RBPatternParser
 ]
 

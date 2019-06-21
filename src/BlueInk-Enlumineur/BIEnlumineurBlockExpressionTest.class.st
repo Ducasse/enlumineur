@@ -226,7 +226,7 @@ BIEnlumineurBlockExpressionTest >> openBracket [
 ]
 
 { #category : #hooks }
-BIEnlumineurBlockExpressionTest >> parser [
+BIEnlumineurBlockExpressionTest >> parserClass [
 	^ RBParser
 ]
 
@@ -454,7 +454,7 @@ BIEnlumineurBlockExpressionTest >> testNoEndPeriodInside [
 BIEnlumineurBlockExpressionTest >> testNoExtraSpaceAroundBlock [
 
 	| expr source |
-	expr := self parser parseExpression: '   ', self openBracket, '2', self closeBracket, '   '.
+	expr := self parserClass parseExpression: '   ', self openBracket, '2', self closeBracket, '   '.
 	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: self openBracket, ' 2 ', self closeBracket
@@ -581,7 +581,7 @@ BIEnlumineurBlockExpressionTest >> validate: stringInsideBlock isFormattedAs: Ex
 { #category : #test }
 BIEnlumineurBlockExpressionTest >> validate: stringInsideBlock isFormattedAs: ExpectedStringInsideBlock with: aConfiguration [
 	| expr source |
-	expr := self parser parseExpression: self openBracket ,stringInsideBlock,self closeBracket.
+	expr := self parserClass parseExpression: self openBracket ,stringInsideBlock,self closeBracket.
 	configurationSelector := aConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals: self openBracket,ExpectedStringInsideBlock,self closeBracket

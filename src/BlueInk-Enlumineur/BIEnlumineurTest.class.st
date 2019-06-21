@@ -13,7 +13,7 @@ Class {
 BIEnlumineurTest class >> testParameters [
 
 	^ ParametrizedTestMatrix new
-			addCase: { #formatterClass -> BIEnlumineur. #contextClass -> BIEnlumineurContext };
+			addCase: { #formatterClass -> BIEnlumineurPrettyPrinter. #contextClass -> BIEnlumineurContext };
 		yourself.
 ]
 
@@ -45,7 +45,7 @@ BIEnlumineurTest >> formatter [
 
 { #category : #hooks }
 BIEnlumineurTest >> formatterClass [
-	self flag: #todo. "change to have BIConfigurableFormatter"
+
 	^ formatterClass
 ]
 
@@ -57,20 +57,22 @@ BIEnlumineurTest >> formatterClass: aFormatterClass [
 { #category : #hooks }
 BIEnlumineurTest >> parseExpression: anExpression [
 
-	^ self parser parseExpression: anExpression
+	^ self parserClass parseExpression: anExpression
 ]
 
 { #category : #hooks }
-BIEnlumineurTest >> parser [
+BIEnlumineurTest >> parserClass [
 	^ RBParser
 ]
 
 { #category : #test }
 BIEnlumineurTest >> testLookAheadCodeIsResetWhenChangingConfiguration [
+	"This is a test to show that the formatter got a problem with a cache. When we execute two formatting passes one after the other and changed the context. Some nodes are not formatted with the new context but with the old. This is due to a cache used by the formatter."
+	
 	| prettyPrinterInstance context1 context2 astNode res1 res2 |
 	context1 := BIEnlumineurContext new.
 	context2 := BIEnlumineurContext new lineUpBlockBrackets: true.
-	prettyPrinterInstance := BIEnlumineur new installNewContext: context1.
+	prettyPrinterInstance := BIEnlumineurPrettyPrinter new installNewContext: context1.
 	astNode := RBParser parseExpression: 
 	'1 to: 4 do: [ :i | 
 		Transcript
