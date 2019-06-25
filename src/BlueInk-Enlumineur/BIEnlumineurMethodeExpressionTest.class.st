@@ -46,7 +46,7 @@ BIEnlumineurMethodeExpressionTest >> bigMethodeConfiguration [
 
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
-		formatCommentWithStatements:false;
+		formatCommentWithStatements: false;
 		useBasicCommentFormat: false;
 		maxLineLength: 50;
 		periodsAtEndOfBlock: false;
@@ -54,18 +54,19 @@ BIEnlumineurMethodeExpressionTest >> bigMethodeConfiguration [
 		multiLineMessages: Array new;
 		oneLineMessages: Array new;
 		indentsForKeywords: 1;
-		keepBlockInMessage:true;
-		retainBlankLinesBetweenStatements:false;
+		keepBlockInMessage: true;
 		retainBlankLinesBetweenStatements: false;
-		minimumNewLinesBetweenStatements:1;
-		newLineBeforeFirstCascade:true;
-		newLineAfterCascade:true;
-		numberOfArgumentsForMultiLine:4;
-		newLinesAfterTemporaries:1;
-		numberOfSpacesInsideBlock:0;
+		retainBlankLinesBetweenStatements: false;
+		minimumNewLinesBetweenStatements: 1;
+		newLineBeforeFirstCascade: true;
+		newLineAfterCascade: true;
+		numberOfArgumentsForMultiLine: 4;
+		newLinesAfterTemporaries: 1;
+		numberOfSpacesInsideBlock: 0;
 		lineUpBlockBrackets: true;
 		newLinesAfterMethodPattern: 1;
-		newLinesAfterMethodComment: 1
+		newLinesAfterMethodComment: 1;
+		newLineBeforeFirstKeyword:true
 ]
 
 { #category : #configurations }

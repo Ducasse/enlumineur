@@ -5,6 +5,30 @@ Class {
 }
 
 { #category : #configurations }
+BIEnlumineurBlockExpressionTest >> BlockWithTemporariesConfiguration [
+
+	^ self contextClass basicNew
+		numberOfSpacesInsideBlock: 1;
+		periodsAtEndOfBlock:false;
+		periodsAtEndOfMethod: false;
+		lineUpBlockBrackets:false;
+		keepBlockInMessage:true;
+		retainBlankLinesBetweenStatements:false;
+		minimumNewLinesBetweenStatements:1;
+		multiLineMessages: Array new;
+		oneLineMessages:#(#to:do:);
+		numberOfArgumentsForMultiLine:5;
+		indentsForKeywords:1;
+		newLineBeforeFirstKeyword:false;
+		formatCommentWithStatements:true;
+		maxLineLength:50;
+		newLineAfterCascade:true;
+		newLineBeforeFirstCascade: true;
+		indentStyle: #tab;
+		newLinesAfterTemporaries: 1
+]
+
+{ #category : #configurations }
 BIEnlumineurBlockExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
@@ -350,21 +374,24 @@ BIEnlumineurBlockExpressionTest >> testArgumentsComments [
 
 { #category : #test }
 BIEnlumineurBlockExpressionTest >> testDontFormatCommentWithStatement [
-	self validate: '1 factorial. "aComment" 2 factorial'
-	isFormattedAs: 
-' 1 factorial "aComment".
+	self
+		validate: '1 factorial. "aComment" 2 factorial'
+		isFormattedAs:
+			' 
+1 factorial "aComment".
 2 factorial '
-	with: #dontFormatCommentWithStatementConfiguration
+		with: #dontFormatCommentWithStatementConfiguration
 ]
 
 { #category : #test }
 BIEnlumineurBlockExpressionTest >> testDontFormatCommentWithStatement2 [
-	self validate: ' "aComment" 1 factorial.  2 factorial'
-	isFormattedAs: 
-' "aComment"
+	self
+		validate: ' "aComment" 1 factorial.  2 factorial'
+		isFormattedAs:
+			' "aComment"
 1 factorial.
 2 factorial '
-	with: #dontFormatCommentWithStatementConfiguration
+		with: #dontFormatCommentWithStatementConfiguration
 ]
 
 { #category : #test }
@@ -378,21 +405,23 @@ BIEnlumineurBlockExpressionTest >> testEndPeriodInside [
 
 { #category : #test }
 BIEnlumineurBlockExpressionTest >> testFormatBody [
-
-	self 
-		validate:' [1]. [ a:=1] '
+	self
+		validate: ' [1]. [ a:=1] '
 		isFormattedAs:
-' [ 1 ].
-[ a := 1 ] '.
+			' 
+[ 1 ].
+[ a := 1 ] '
 ]
 
 { #category : #test }
 BIEnlumineurBlockExpressionTest >> testFormatCommentWithStatement [
-	self validate: '1 factorial. "aComment" 2 factorial'
-	isFormattedAs: 
-' 1 factorial.	"aComment"
+	self
+		validate: '1 factorial. "aComment" 2 factorial'
+		isFormattedAs:
+			' 
+1 factorial.	"aComment"
 2 factorial '
-	with: #formatCommentWithStatementConfiguration
+		with: #formatCommentWithStatementConfiguration
 ]
 
 { #category : #test }
@@ -400,8 +429,7 @@ BIEnlumineurBlockExpressionTest >> testFourSpaceIndent [
 	| source |
 	configurationSelector := #fourSpaceIndentConfiguration.
 	source := self
-		formatExpression:
-			'1 to:10 do: [:i | i to: 10 do: [:j | Transcript show:i; show: j]]'.
+		formatExpression: '1 to:10 do: [:i | i to: 10 do: [:j | Transcript show:i; show: j]]'.
 	self
 		assert: source
 		equals:
@@ -418,7 +446,8 @@ BIEnlumineurBlockExpressionTest >> testMultiline [
 	self 
 		validate: '1+3. 6 factorial '
 		isFormattedAs: 
-' 1 + 3.
+' 
+1 + 3.
 6 factorial '
 ]
 
@@ -434,12 +463,65 @@ BIEnlumineurBlockExpressionTest >> testNewLineAfterComment [
 ]
 
 { #category : #test }
+BIEnlumineurBlockExpressionTest >> testNewLineAfterFirstBracketWhenMultiline [
+	| source |
+	configurationSelector := #tabIndentConfiguration.
+	source := self
+		formatExpression:
+			'[
+	tan := y asFloat / x asFloat.
+	theta := tan arcCos ]'.
+	self
+		assert: source
+		equals:
+'[ 
+tan := y asFloat / x asFloat.
+theta := tan arcCos ]'.
+]
+
+{ #category : #test }
+BIEnlumineurBlockExpressionTest >> testNewLineAfterFirstBracketWhenMultilineWithArguments [
+	| source |
+	configurationSelector := #tabIndentConfiguration.
+	source := self
+		formatExpression:
+			'[ :tan :theta |
+	tan := y asFloat / x asFloat.
+	theta := tan arcCos ]'.
+	self
+		assert: source
+		equals:
+'[ :tan :theta | 
+tan := y asFloat / x asFloat.
+theta := tan arcCos ]'.
+]
+
+{ #category : #test }
+BIEnlumineurBlockExpressionTest >> testNewLineAfterFirstBracketWhenMultilineWithTemporaries [
+	| source |
+	configurationSelector := #BlockWithTemporariesConfiguration.
+	source := self
+		formatExpression:
+			'[ | tan theta |
+	tan := y asFloat / x asFloat.
+	theta := tan arcCos ]'.
+	self
+		assert: source
+		equals:
+'[ 
+| tan theta |
+tan := y asFloat / x asFloat.
+theta := tan arcCos ]'.
+]
+
+{ #category : #test }
 BIEnlumineurBlockExpressionTest >> testNewLineBeforeEndBrackets [
 
 	self 
 		validate:'3. 4'  
 		isFormattedAs:
-' 3.
+' 
+3.
 4
 '  		with: #newLineBeforeEndBracketConfiguration.
 ]
@@ -472,7 +554,8 @@ BIEnlumineurBlockExpressionTest >> testNoNewLineBeforeEndBrackets [
 	self 
 		validate: '3. 4'  
 		isFormattedAs:
-' 3.
+' 
+3.
 4 '  with: #noNewLineBeforeEndBracketConfiguration.
 ]
 

@@ -25,7 +25,8 @@ BIEnlumineurPatternBlockExpressionTest >> testDontFormatCommentWithStatement2 [
 	self flag: 'does PatternBlock can have comments'.
 	configurationSelector := #dontFormatCommentWithStatementConfiguration.
 	source := self formatExpression:'"aComment"`{ ""1 factorial. 2 factorial }'.
-	self assert: source equals:'`{ "aComment"""1 factorial.
+	self assert: source equals:'`{ 
+"aComment"""1 factorial.
 2 factorial }'
 ]
 
@@ -36,6 +37,7 @@ BIEnlumineurPatternBlockExpressionTest >> testNewLineAfterComment [
 	self flag: 'does PatternBlock can have comments'.
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression:'"aComment"`{ 1 . 2  }'.
-	self assert: source equals:'`{ "aComment"1.
+	self assert: source equals:'`{ 
+"aComment"1.
 2 }'
 ]

@@ -172,7 +172,7 @@ BIEnlumineurSequenceExpressionTest >> periodNotAsTerminatorConfiguration [
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:0;
 		numberOfSpacesInsideBlock:1;
-		lineUpBlockBrackets: true;
+		lineUpBlockBrackets: false;
 		multiLineMessages:Array new;
 		oneLineMessages:Array new;
 		numberOfArgumentsForMultiLine:2;

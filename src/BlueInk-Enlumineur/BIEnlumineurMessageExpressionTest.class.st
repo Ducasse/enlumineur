@@ -36,39 +36,37 @@ BIEnlumineurMessageExpressionTest >> formatStatementsWithCommentsConfiguration [
 
 { #category : #configurations }
 BIEnlumineurMessageExpressionTest >> keepBlockInMessageConfiguration [
-
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
-		formatCommentWithStatements:false;
-		multiLineMessages:Array new;
-		oneLineMessages:Array new;
-		numberOfArgumentsForMultiLine:10;
+		formatCommentWithStatements: false;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine: 10;
 		indentsForKeywords: 0;
 		maxLineLength: 20;
-		newLineBeforeFirstKeyword:false;
+		newLineBeforeFirstKeyword: true;
 		keepBlockInMessage: true;
-		numberOfSpacesInsideBlock:0;
+		numberOfSpacesInsideBlock: 1;
 		numberOfSpacesAfterCaretSymbolInReturn: 0;
 		periodsAtEndOfBlock: false;
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets: false;
 		retainBlankLinesBetweenStatements: false;
-		minimumNewLinesBetweenStatements: 0
+		minimumNewLinesBetweenStatements: 1
 ]
 
 { #category : #configurations }
 BIEnlumineurMessageExpressionTest >> multiLineMessageConfiguration [
-
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
-		formatCommentWithStatements:false;
-		multiLineMessages:#(#multi:line:);
-		oneLineMessages:Array new;
-		numberOfArgumentsForMultiLine:10;
+		formatCommentWithStatements: false;
+		multiLineMessages: #(#multi:line:);
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine: 10;
 		indentsForKeywords: 1;
 		maxLineLength: 50;
-		newLineBeforeFirstKeyword:false;
-		keepBlockInMessage:false
+		newLineBeforeFirstKeyword: true;
+		keepBlockInMessage: false
 ]
 
 { #category : #configurations }
@@ -92,16 +90,16 @@ BIEnlumineurMessageExpressionTest >> noIdentsForKeyWordConfiguration [
 
 	" String streamContents: [:s |
 			BIPrettyPrinterContext new storeOn: s]"
-	
+
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
-		formatCommentWithStatements:false;
-		multiLineMessages:Array new;
-		oneLineMessages:Array new;
+		formatCommentWithStatements: false;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
 		maxLineLength: 50;
-		newLineBeforeFirstKeyword:false;
-		keepBlockInMessage:false;
-		numberOfArgumentsForMultiLine:1;
+		newLineBeforeFirstKeyword: true;
+		keepBlockInMessage: false;
+		numberOfArgumentsForMultiLine: 1;
 		indentsForKeywords: 0
 ]
 
@@ -111,17 +109,17 @@ BIEnlumineurMessageExpressionTest >> oneArgumentPerLineConfiguration [
 
 	" String streamContents: [:s |
 			BIPrettyPrinterContext new storeOn: s]"
-	
+
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
-		formatCommentWithStatements:false;
-		multiLineMessages:Array new;
-		oneLineMessages:Array new;
-		numberOfArgumentsForMultiLine:1;
+		formatCommentWithStatements: false;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine: 1;
 		indentsForKeywords: 0;
 		maxLineLength: 50;
-		newLineBeforeFirstKeyword:false;
-		keepBlockInMessage:false
+		newLineBeforeFirstKeyword: true;
+		keepBlockInMessage: false
 ]
 
 { #category : #configurations }
@@ -132,7 +130,8 @@ BIEnlumineurMessageExpressionTest >> oneIdentsForKeyWordConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass new
-		numberOfArgumentsForMultiLine:1;
+		newLineBeforeFirstKeyword: true;
+		numberOfArgumentsForMultiLine: 1;
 		indentsForKeywords: 1
 ]
 
@@ -255,10 +254,10 @@ BIEnlumineurMessageExpressionTest >> testKeepBlockInMessageMutlilineNewLine [
 	self
 		assert: source
 		equals:
-			'aBoolean
-ifTrue:
-	[Transcript cr. Transcript
-	cr. Transcript cr]'
+			'aBoolean ifTrue: [ 
+	Transcript cr.
+	Transcript cr.
+	Transcript cr ]'
 ]
 
 { #category : #tests }
@@ -272,10 +271,10 @@ BIEnlumineurMessageExpressionTest >> testKeepBlockInMessageMutlilineSpace [
 	self
 		assert: source
 		equals:
-			'aBoolean
-ifTrue: [12 factorial. 12
-	factorial. 3
-	factorial]'
+			'aBoolean ifTrue: [ 
+	12 factorial.
+	12 factorial.
+	3 factorial ]'
 ]
 
 { #category : #tests }
@@ -286,8 +285,7 @@ BIEnlumineurMessageExpressionTest >> testKeepBlockInMessageNotMultilineSpace [
 	self
 		assert: source
 		equals:
-			'aBoolean
-ifTrue: [^1]'
+			'aBoolean ifTrue: [ ^1 ]'
 ]
 
 { #category : #tests }
@@ -299,9 +297,8 @@ BIEnlumineurMessageExpressionTest >> testKeepBlockInMessageNotMutlilineNewLine [
 	self
 		assert: source
 		equals:
-			'aBoolean
-ifTrue:
-	[LongLongLongExpression]'
+			'aBoolean ifTrue: [ 
+	LongLongLongExpression ]'
 ]
 
 { #category : #tests }
@@ -386,6 +383,22 @@ BIEnlumineurMessageExpressionTest >> testMultiLineMessage [
 			'foo
 	multi: 1
 	line: 2'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testNewLineAfterOpeningBlockBraketWhenMultilineBlock [
+	| source |
+	configurationSelector := #keepBlockInMessageConfiguration.
+	source := self
+		formatExpression:
+			'x = 0 ifFalse: [ tan := y asFloat / x asFloat.
+	theta := tan arcCos ]'.
+	self
+		assert: source
+		equals:
+			'x = 0 ifFalse: [ 
+	tan := y asFloat / x asFloat.
+	theta := tan arcCos ]'
 ]
 
 { #category : #tests }
@@ -579,15 +592,15 @@ BIEnlumineurMessageExpressionTest >> twoIdentsForKeyWordConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-	indentStyle: #tabulation;
-	formatCommentWithStatements:false;
-	multiLineMessages:Array new;
-	oneLineMessages:Array new;
-	numberOfArgumentsForMultiLine:1;
-	indentsForKeywords: 2;
-	maxLineLength: 50;
-	newLineBeforeFirstKeyword:false;
-	keepBlockInMessage:false
+		indentStyle: #tabulation;
+		formatCommentWithStatements: false;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine: 1;
+		indentsForKeywords: 2;
+		maxLineLength: 50;
+		newLineBeforeFirstKeyword: true;
+		keepBlockInMessage: false
 ]
 
 { #category : #configurations }

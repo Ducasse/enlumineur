@@ -18,7 +18,8 @@ Class {
 		'originalSource',
 		'lineStart',
 		'context',
-		'isInCascadeNode'
+		'isInCascadeNode',
+		'isInMethodNode'
 	],
 	#classVars : [
 		'DefaultPrettyPrintContext',
@@ -939,13 +940,17 @@ BIEnlumineurPrettyPrinter >> formatArray: anArrayNode [
 
 { #category : #'private-formatting' }
 BIEnlumineurPrettyPrinter >> formatBlock: aBlockNode [
+	| isMultiline |
+	isMultiline := self willBeMultiline: aBlockNode body.
 	codeStream nextPutAll: self spacesInsideBlocks.
 	self formatBlockArgumentsFor: aBlockNode.
 	self formatBlockCommentFor: aBlockNode.
-	self visitNode: aBlockNode body.
-	(self lineUpBlockBrackets and: [ self willBeMultiline: aBlockNode body ])
+	(isMultiline or: [self isTooLong: aBlockNode body.])
+		ifTrue: [ self newLine ].
+	self visitSequenceNode: aBlockNode body.
+	(self lineUpBlockBrackets and:[isMultiline])
 		ifTrue: [ self newLine ]
-		ifFalse: [ codeStream nextPutAll: self spacesInsideBlocks ]
+		ifFalse: [ codeStream nextPutAll: self spacesInsideBlocks ].
 ]
 
 { #category : #'private-formatting' }
@@ -961,8 +966,6 @@ BIEnlumineurPrettyPrinter >> formatBlockArgumentsFor: aBlockNode [
 					[ self spaceAndFormatComments: each ].
 			self space ].
 	codeStream nextPutAll: '| '.
-	(self willBeMultiline: aBlockNode body)
-		ifTrue: [ self newLine ]
 ]
 
 { #category : #'private-formatting' }
@@ -974,9 +977,7 @@ BIEnlumineurPrettyPrinter >> formatBlockCommentFor: aBlockNode [
 			
 			self basicFormatCommentFor: each.
 			(self isNonEmptySingleLineBlock: aBlockNode)
-				ifTrue: [  self space ].
-			(self willBeMultiline: aBlockNode body)
-				ifTrue: [  self newLine ] ]
+				ifTrue: [  self space ]]
 ]
 
 { #category : #accessing }
@@ -1061,19 +1062,17 @@ BIEnlumineurPrettyPrinter >> formatPragmasFor: aMethodNode [
 BIEnlumineurPrettyPrinter >> formatSelectorAndArguments: aMessageNode [
 	| newLineBetweenArguments |
 	newLineBetweenArguments := self isMultiLineMessage: aMessageNode.
-	self
+	self 
 		indent:
 			(newLineBetweenArguments
 				ifTrue: [ self indentsForKeywords ]
 				ifFalse: [ 0 ])
-		around: [ 
-			self
+		around: [ self
 				formatSelectorAndArguments: aMessageNode
 				firstSeparator:
-					(( aMessageNode isKeyword
-					and:[
-						newLineBetweenArguments or: [ self newLineBeforeFirstKeyword ]
-						]  )
+					((aMessageNode isKeyword
+						and: [ aMessageNode arguments size > 1
+								and: [ self newLineBeforeFirstKeyword ] ])
 						ifTrue: [ [ self newLine ] ]
 						ifFalse: [ [ self space ] ])
 				restSeparator:
@@ -1122,7 +1121,7 @@ BIEnlumineurPrettyPrinter >> formatSequenceNodeStatementsFor: aSequenceNode [
 			ifTrue: [ codeStream nextPut: $. ].
 		self formatStatementCommentsFor: (statements at: i).
 		i < statements size
-			ifTrue: [ self
+			ifTrue: [ self 
 					addNewLinesBeforeStatementStartingAt: (statements at: i + 1) start ] ]
 ]
 
@@ -1179,13 +1178,7 @@ BIEnlumineurPrettyPrinter >> formattedSourceFor: aNode [
 { #category : #private }
 BIEnlumineurPrettyPrinter >> handleLineForArgument: anArgument [
 	(self keepBlockInMessage and: [ anArgument isBlock ])
-		ifTrue: [ (self willBeMultiline: anArgument)
-				ifTrue: [ (self formattedSourceFor: anArgument) lines first size > self maxLineLength
-						ifTrue: [ self newLine ]
-						ifFalse: [ self space ] ]
-				ifFalse: [ anArgument sourceInterval size > self maxLineLength
-						ifTrue: [ self newLine ]
-						ifFalse: [ self space ] ] ]
+		ifTrue: [ self space ]
 		ifFalse: [ ((self willBeMultiline: anArgument)
 				or: [ anArgument sourceInterval size > self maxLineLength ])
 				ifTrue: [ self isInCascadeNode
@@ -1333,6 +1326,12 @@ BIEnlumineurPrettyPrinter >> isMultiLineMessage: aMessageNode [
 { #category : #private }
 BIEnlumineurPrettyPrinter >> isNonEmptySingleLineBlock: aBlockNode [
 	^ ((self willBeMultiline: aBlockNode body) or: [ aBlockNode body statements isEmpty ]) not
+]
+
+{ #category : #private }
+BIEnlumineurPrettyPrinter >> isTooLong:aNode [
+self flag: 'maybe find a better way'.
+^ (self formattedSourceFor: aNode) lines first size > self maxLineLength
 ]
 
 { #category : #accessing }
