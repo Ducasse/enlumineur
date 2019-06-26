@@ -935,7 +935,13 @@ BIEnlumineurPrettyPrinter >> formatArray: anArrayNode [
 							codeStream nextPut: $..
 							self newLine ]
 						ifFalse: [ codeStream nextPutAll: ' . ' ] ] ]
-		ifNotEmpty: [ self formatSequenceNodeStatementsFor: anArrayNode ]
+		ifNotEmpty: [ 
+			(anArrayNode statements size > 1)
+				 ifTrue: [ 
+						self  indentAround: [
+							self newLine ;
+							 formatSequenceNodeStatementsFor: anArrayNode]  ]
+			ifFalse: [self formatSequenceNodeStatementsFor: anArrayNode ]]
 ]
 
 { #category : #'private-formatting' }

@@ -36,6 +36,26 @@ BIEnlumineurArrayExpressionTest >> maxLineLengthConfiguration [
 ]
 
 { #category : #configurations }
+BIEnlumineurArrayExpressionTest >> multiLineConfiguration [
+
+	^ self contextClass basicNew
+		formatCommentWithStatements:false;
+		maxLineLength:50;
+		numberOfSpacesInsideParentheses: 0;
+		retainBlankLinesBetweenStatements:false;
+		minimumNewLinesBetweenStatements:1;
+		indentStyle: #tabulation;
+		periodsAtEndOfBlock:false;
+		periodsAtEndOfMethod:false;
+		numberOfSpacesInsideParentheses: 1;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine: 4;
+		indentsForKeywords: 1;
+		keepBlockInMessage: true
+]
+
+{ #category : #configurations }
 BIEnlumineurArrayExpressionTest >> periodAsTerminatorConfiguration [
 	"Here we can control explicitely the configuration we want."
 
@@ -89,8 +109,35 @@ BIEnlumineurArrayExpressionTest >> testFormatElement [
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: ' { a:=1. b:=2 } '.
 	self assert: source equals:
-'{(a := 1).
-(b := 2)}'
+'{
+	(a := 1).
+	(b := 2)}'
+]
+
+{ #category : #test }
+BIEnlumineurArrayExpressionTest >> testNewLineAfterBracesWhenTooMultiline [
+	| source |
+	configurationSelector := #multiLineConfiguration.
+	source := self formatExpression: '{(self + (1 @ 0)).
+	(self + (1 @ 1)).
+	(self + (0 @ 1)).
+	(self + (-1 @ 1)).
+	(self + (-1 @ 0)).
+	(self + (-1 @ -1)).
+	(self + (0 @ -1)).
+	(self + (1 @ -1))}'.
+	self
+		assert: source
+		equals:
+'{
+	( self + ( 1 @ 0 ) ).
+	( self + ( 1 @ 1 ) ).
+	( self + ( 0 @ 1 ) ).
+	( self + ( -1 @ 1 ) ).
+	( self + ( -1 @ 0 ) ).
+	( self + ( -1 @ -1 ) ).
+	( self + ( 0 @ -1 ) ).
+	( self + ( 1 @ -1 ) )}'.
 ]
 
 { #category : #test }
@@ -141,8 +188,9 @@ BIEnlumineurArrayExpressionTest >> testToLongNewLine [
 	self
 		assert: source
 		equals:
-			'{VeryLongExpression.
-1}'
+'{
+	VeryLongExpression.
+	1}'
 ]
 
 { #category : #test }
