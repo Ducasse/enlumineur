@@ -52,7 +52,8 @@ BIEnlumineurMessageExpressionTest >> keepBlockInMessageConfiguration [
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets: false;
 		retainBlankLinesBetweenStatements: false;
-		minimumNewLinesBetweenStatements: 1
+		minimumNewLinesBetweenStatements: 1;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -66,7 +67,8 @@ BIEnlumineurMessageExpressionTest >> multiLineMessageConfiguration [
 		indentsForKeywords: 1;
 		maxLineLength: 50;
 		newLineBeforeFirstKeyword: true;
-		keepBlockInMessage: false
+		keepBlockInMessage: false;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -81,7 +83,8 @@ BIEnlumineurMessageExpressionTest >> newLineBeforeFirstKeywordConfiguration [
 		indentsForKeywords: 0;
 		maxLineLength: 50;
 		newLineBeforeFirstKeyword:true;
-		keepBlockInMessage:false
+		keepBlockInMessage:false;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -100,7 +103,8 @@ BIEnlumineurMessageExpressionTest >> noIdentsForKeyWordConfiguration [
 		newLineBeforeFirstKeyword: true;
 		keepBlockInMessage: false;
 		numberOfArgumentsForMultiLine: 1;
-		indentsForKeywords: 0
+		indentsForKeywords: 0;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -119,7 +123,8 @@ BIEnlumineurMessageExpressionTest >> oneArgumentPerLineConfiguration [
 		indentsForKeywords: 0;
 		maxLineLength: 50;
 		newLineBeforeFirstKeyword: true;
-		keepBlockInMessage: false
+		keepBlockInMessage: false;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -559,7 +564,8 @@ BIEnlumineurMessageExpressionTest >> tooLongArgumentConfiguration [
 		indentsForKeywords: 0;
 		maxLineLength: 10;
 		newLineBeforeFirstKeyword:false;
-		keepBlockInMessage:false
+		keepBlockInMessage:false;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -600,7 +606,8 @@ BIEnlumineurMessageExpressionTest >> twoIdentsForKeyWordConfiguration [
 		indentsForKeywords: 2;
 		maxLineLength: 50;
 		newLineBeforeFirstKeyword: true;
-		keepBlockInMessage: false
+		keepBlockInMessage: false;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }

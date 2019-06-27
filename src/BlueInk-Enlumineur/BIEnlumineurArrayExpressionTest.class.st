@@ -14,6 +14,7 @@ BIEnlumineurArrayExpressionTest >> basicConfiguration [
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:1;
 		indentStyle: #tabulation;
+		indentExtraSpaces: 0;
 		periodsAtEndOfBlock:false;
 		periodsAtEndOfMethod:false
 ]
@@ -32,7 +33,8 @@ BIEnlumineurArrayExpressionTest >> maxLineLengthConfiguration [
 		minimumNewLinesBetweenStatements: 1;
 		indentStyle: #tabulation;
 		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod:false
+		periodsAtEndOfMethod:false;
+		indentExtraSpaces: 0
 ]
 
 { #category : #configurations }
@@ -52,7 +54,8 @@ BIEnlumineurArrayExpressionTest >> multiLineConfiguration [
 		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine: 4;
 		indentsForKeywords: 1;
-		keepBlockInMessage: true
+		keepBlockInMessage: true;
+		indentExtraSpaces: 0
 ]
 
 { #category : #configurations }
@@ -71,7 +74,8 @@ BIEnlumineurArrayExpressionTest >> periodAsTerminatorConfiguration [
 		periodsAtEndOfBlock:true;
 		periodsAtEndOfMethod:true;
 		numberOfSpacesInsideBlock:0;
-		lineUpBlockBrackets:false
+		lineUpBlockBrackets:false;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }

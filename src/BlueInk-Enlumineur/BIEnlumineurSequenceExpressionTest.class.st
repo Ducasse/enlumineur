@@ -17,7 +17,8 @@ BIEnlumineurSequenceExpressionTest >> basicConfiguration [
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:0;
 		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod:false
+		periodsAtEndOfMethod:false;
+		indentExtraSpaces:0
 ]
 
 { #category : #tests }
@@ -39,7 +40,8 @@ BIEnlumineurSequenceExpressionTest >> dontFormatCommentWithStatementConfiguratio
 		numberOfArgumentsForMultiLine: 5;
 		indentsForKeywords: 0;
 		keepBlockInMessage: false;
-		newLineBeforeFirstKeyword:false
+		newLineBeforeFirstKeyword:false;
+		indentExtraSpaces: 0
 ]
 
 { #category : #configurations }
@@ -61,7 +63,8 @@ BIEnlumineurSequenceExpressionTest >> dontRetainBlankLinesBeforeCommentsConfigur
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:0;
 		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod:false
+		periodsAtEndOfMethod:false;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -81,7 +84,8 @@ BIEnlumineurSequenceExpressionTest >> dontRetainBlankLinesBetweenStatementsConfi
 		maxLineLength:50;
 		minimumNewLinesBetweenStatements:0;
 		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod:false
+		periodsAtEndOfMethod:false;
+		indentExtraSpaces:0
 ]
 
 { #category : #tests }
@@ -119,7 +123,8 @@ BIEnlumineurSequenceExpressionTest >> newLineAfterStatementConfiguration [
 		maxLineLength:50;
 		retainBlankLinesBetweenStatements:false;
 		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod:false
+		periodsAtEndOfMethod:false;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -128,7 +133,8 @@ BIEnlumineurSequenceExpressionTest >> newLineAfterTemporariesConfiguration [
 	^ self contextClass basicNew
 		formatCommentWithStatements:true;
 		indentStyle: #tabulation;
-		newLinesAfterTemporaries:1
+		newLinesAfterTemporaries:1;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -154,7 +160,8 @@ BIEnlumineurSequenceExpressionTest >> periodAsTerminatorConfiguration [
 		multiLineMessages:Array new;
 		oneLineMessages:Array new;
 		numberOfArgumentsForMultiLine:2;
-		newLineBeforeFirstKeyword:false
+		newLineBeforeFirstKeyword:false;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -176,7 +183,8 @@ BIEnlumineurSequenceExpressionTest >> periodNotAsTerminatorConfiguration [
 		multiLineMessages:Array new;
 		oneLineMessages:Array new;
 		numberOfArgumentsForMultiLine:2;
-		newLineBeforeFirstKeyword:false
+		newLineBeforeFirstKeyword:false;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -196,7 +204,8 @@ BIEnlumineurSequenceExpressionTest >> retainBlankLinesBeforeCommentsConfiguratio
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:0;
 		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod:false
+		periodsAtEndOfMethod:false;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -216,7 +225,8 @@ BIEnlumineurSequenceExpressionTest >> retainBlankLinesBetweenStatementsConfigura
 		maxLineLength:50;
 		minimumNewLinesBetweenStatements:0;
 		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod:false
+		periodsAtEndOfMethod:false;
+		indentExtraSpaces:0
 ]
 
 { #category : #tests }

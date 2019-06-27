@@ -1189,7 +1189,7 @@ BIEnlumineurPrettyPrinter >> handleLineForArgument: anArgument [
 				or: [ anArgument sourceInterval size > self maxLineLength ])
 				ifTrue: [ self isInCascadeNode
 						ifTrue: [ codeStream nextPut: Character cr.
-							self indent - 1 timesRepeat: [ codeStream nextPutAll: self indentString ] ]
+							self indentTimesRepeat: self indent - 1]
 						ifFalse: [ self newLine ] ]
 				ifFalse: [ self space ] ].
 	self visitNode: anArgument
@@ -1237,6 +1237,16 @@ BIEnlumineurPrettyPrinter >> indentAround: aBlock [
 ]
 
 { #category : #accessing }
+BIEnlumineurPrettyPrinter >> indentExtraSpaces [
+	^ context indentExtraSpaces
+]
+
+{ #category : #accessing }
+BIEnlumineurPrettyPrinter >> indentExtraSpaces: anInteger [
+	context indentExtraSpaces: anInteger 
+]
+
+{ #category : #accessing }
 BIEnlumineurPrettyPrinter >> indentString [
 	^ context indentString
 ]
@@ -1249,6 +1259,14 @@ BIEnlumineurPrettyPrinter >> indentStyle [
 { #category : #accessing }
 BIEnlumineurPrettyPrinter >> indentStyle: aSymbole [
 	context indentStyle: aSymbole
+]
+
+{ #category : #accessing }
+BIEnlumineurPrettyPrinter >> indentTimesRepeat: anInteger [
+	
+	anInteger timesRepeat: 
+			[ codeStream nextPutAll: self indentString ].
+	codeStream nextPutAll: self indentExtraSpaces
 ]
 
 { #category : #accessing }
@@ -1510,9 +1528,7 @@ BIEnlumineurPrettyPrinter >> newLines: anInteger [
 			[ codeStream cr ].
 	lineStart := codeStream position.
 	self
-		indent
-		timesRepeat: 
-			[ codeStream nextPutAll: self indentString ]
+		indentTimesRepeat: self indent
 ]
 
 { #category : #accessing }
@@ -1756,7 +1772,7 @@ BIEnlumineurPrettyPrinter >> resizeStringDependingOnWindowSizeFor: aComment [
 	1 to: resizedComment size do: [ :i | 
 		codeStream nextPut: (resizedComment at: i).
 		(resizedComment at: i) = Character cr
-			ifTrue: [ self indent timesRepeat: [ codeStream nextPutAll: self indentString ] ] ]
+			ifTrue: [ self indentTimesRepeat: self indent  ] ]
 ]
 
 { #category : #accessing }
@@ -1851,10 +1867,17 @@ BIEnlumineurPrettyPrinter >> visitArrayNode: anArrayNode [
 ]
 
 { #category : #visiting }
-BIEnlumineurPrettyPrinter >> visitAssignmentNode: anAssignmentNode [ 
+BIEnlumineurPrettyPrinter >> visitAssignmentNode: anAssignmentNode [
+	| nodeAsString |
+	nodeAsString := anAssignmentNode asString.
 	self visitNode: anAssignmentNode variable.
-	codeStream space; nextPutAll: anAssignmentNode assignmentOperator; space.
-	self visitNode: anAssignmentNode value
+	codeStream space; 	nextPutAll: anAssignmentNode assignmentOperator; space.
+	((nodeAsString includes: Character cr)
+		or: [ self isLineTooLong: nodeAsString ])
+		ifTrue: [ self
+					 indentExtraSpaces: anAssignmentNode variable name size
+					 around: [ self visitNode: anAssignmentNode value ] ]
+		ifFalse: [ self visitNode: anAssignmentNode value ]
 ]
 
 { #category : #visiting }

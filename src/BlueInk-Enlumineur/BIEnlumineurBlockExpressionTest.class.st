@@ -25,7 +25,8 @@ BIEnlumineurBlockExpressionTest >> BlockWithTemporariesConfiguration [
 		newLineAfterCascade:true;
 		newLineBeforeFirstCascade: true;
 		indentStyle: #tab;
-		newLinesAfterTemporaries: 1
+		newLinesAfterTemporaries: 1;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -46,7 +47,8 @@ BIEnlumineurBlockExpressionTest >> basicConfiguration [
 		indentsForKeywords:1;
 		newLineBeforeFirstKeyword:false;
 		formatCommentWithStatements:true;
-		maxLineLength:50
+		maxLineLength:50;
+		indentExtraSpaces: 0
 ]
 
 { #category : #hooks }
@@ -95,7 +97,8 @@ BIEnlumineurBlockExpressionTest >> dontFormatCommentWithStatementConfiguration [
 		formatCommentWithStatements:false;
 		maxLineLength:50;
 		retainBlankLinesBeforeComments: false;
-		useBasicCommentFormat: false
+		useBasicCommentFormat: false;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -118,7 +121,8 @@ BIEnlumineurBlockExpressionTest >> formatCommentWithStatementConfiguration [
 		formatCommentWithStatements:true;
 		maxLineLength:50;
 		retainBlankLinesBeforeComments: false;
-		useBasicCommentFormat: false
+		useBasicCommentFormat: false;
+		indentExtraSpaces: 0
 ]
 
 { #category : #configurations }
@@ -142,7 +146,8 @@ BIEnlumineurBlockExpressionTest >> fourSpaceIndentConfiguration [
 		newLineAfterCascade:true;
 		newLineBeforeFirstCascade: true;
 		numberOfSpacesInIndent: 4;
-		indentStyle: #space
+		indentStyle: #space;
+		indentExtraSpaces: 0
 ]
 
 { #category : #configurations }
@@ -167,7 +172,8 @@ BIEnlumineurBlockExpressionTest >> newLineBeforeEndBracketConfiguration [
 		indentsForKeywords: 1;
 		newLineBeforeFirstKeyword: false;
 		formatCommentWithStatements: true;
-		maxLineLength: 50
+		maxLineLength: 50;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -192,7 +198,8 @@ BIEnlumineurBlockExpressionTest >> noNewLineBeforeEndBracketConfiguration [
 		indentsForKeywords: 1;
 		newLineBeforeFirstKeyword: false;
 		formatCommentWithStatements: true;
-		maxLineLength: 50
+		maxLineLength: 50;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -217,7 +224,8 @@ BIEnlumineurBlockExpressionTest >> numberOfSpaceChangedAfterIndentCharacterConfi
 		newLineBeforeFirstCascade: true;
 		numberOfSpacesInIndent: 1;
 		indentStyle: #space;
-		numberOfSpacesInIndent: 2
+		numberOfSpacesInIndent: 2;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -241,7 +249,8 @@ BIEnlumineurBlockExpressionTest >> oneSpaceIndentConfiguration [
 		newLineAfterCascade:true;
 		newLineBeforeFirstCascade: true;
 		numberOfSpacesInIndent: 1;
-		indentStyle: #space
+		indentStyle: #space;
+		indentExtraSpaces:0
 ]
 
 { #category : #hooks }
@@ -299,7 +308,8 @@ BIEnlumineurBlockExpressionTest >> tabIndentConfiguration [
 		maxLineLength:50;
 		newLineAfterCascade:true;
 		newLineBeforeFirstCascade: true;
-		indentStyle: #tab
+		indentStyle: #tab;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -323,7 +333,8 @@ BIEnlumineurBlockExpressionTest >> tabIndentIsnotAffectedConfiguration [
 		newLineAfterCascade:true;
 		newLineBeforeFirstCascade: true;
 		indentStyle: #tab;
-		numberOfSpacesInIndent: 37
+		numberOfSpacesInIndent: 37;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -347,7 +358,8 @@ BIEnlumineurBlockExpressionTest >> tabIndentIsnotAffectedConfiguration2 [
 		newLineAfterCascade:true;
 		newLineBeforeFirstCascade: true;
 		numberOfSpacesInIndent: 37;
-		indentStyle: #tab
+		indentStyle: #tab;
+		indentExtraSpaces:0
 ]
 
 { #category : #test }

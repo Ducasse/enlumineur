@@ -41,7 +41,8 @@ Class {
 		'spacesInsideBlocks',
 		'indentStyle',
 		'indentString',
-		'spacesInsideParentheses'
+		'spacesInsideParentheses',
+		'indentExtraSpaces'
 	],
 	#category : #'BlueInk-Enlumineur-Core'
 }
@@ -54,6 +55,16 @@ BIEnlumineurContext >> formatCommentWithStatements [
 { #category : #accessing }
 BIEnlumineurContext >> formatCommentWithStatements: anObject [
 	formatCommentWithStatements := anObject
+]
+
+{ #category : #accessing }
+BIEnlumineurContext >> indentExtraSpaces [
+	^ indentExtraSpaces
+]
+
+{ #category : #accessing }
+BIEnlumineurContext >> indentExtraSpaces: anInteger [
+	indentExtraSpaces := (self numberOfSpaces: anInteger)
 ]
 
 { #category : #accessing }
@@ -114,6 +125,7 @@ BIEnlumineurContext >> initialize [
 	self numberOfSpacesAfterCaretSymbolInReturn: 1.
 	self indentStyle: #tabulation.
 	self numberOfSpacesInIndent: 3.
+	self indentExtraSpaces: 0
 ]
 
 { #category : #accessing }

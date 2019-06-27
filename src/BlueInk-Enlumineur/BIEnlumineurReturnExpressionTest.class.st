@@ -6,10 +6,10 @@ Class {
 
 { #category : #configuration }
 BIEnlumineurReturnExpressionTest >> basicConfiguration [
-
 	^ self contextClass basicNew
-		formatCommentWithStatements:false;
-		numberOfSpacesAfterCaretSymbolInReturn: 1
+		formatCommentWithStatements: false;
+		numberOfSpacesAfterCaretSymbolInReturn: 1;
+		maxLineLength: 70
 ]
 
 { #category : #tests }

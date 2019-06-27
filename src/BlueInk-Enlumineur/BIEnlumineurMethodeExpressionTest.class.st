@@ -16,7 +16,8 @@ BIEnlumineurMethodeExpressionTest >> basicCommentFormatConfiguration [
 		formatCommentWithStatements:false;
 		useBasicCommentFormat: true;
 		newLinesAfterMethodPattern: 1;
-		newLinesAfterMethodComment: 1
+		newLinesAfterMethodComment: 1;
+		indentExtraSpaces: 0
 ]
 
 { #category : #configurations }
@@ -34,7 +35,8 @@ BIEnlumineurMethodeExpressionTest >> basicConfiguration [
 		periodsAtEndOfBlock: false;
 		periodsAtEndOfMethod: false;
 		newLinesAfterMethodPattern: 1;
-		newLinesAfterMethodComment: 1
+		newLinesAfterMethodComment: 1;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -66,7 +68,8 @@ BIEnlumineurMethodeExpressionTest >> bigMethodeConfiguration [
 		lineUpBlockBrackets: true;
 		newLinesAfterMethodPattern: 1;
 		newLinesAfterMethodComment: 1;
-		newLineBeforeFirstKeyword:true
+		newLineBeforeFirstKeyword:true;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -91,7 +94,8 @@ BIEnlumineurMethodeExpressionTest >> cascadeConfiguration [
 		keepBlockInMessage:true;
 		retainBlankLinesBetweenStatements:false;
 		newLinesAfterMethodPattern:1;
-		minimumNewLinesBetweenStatements: 1
+		minimumNewLinesBetweenStatements: 1;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -104,7 +108,8 @@ BIEnlumineurMethodeExpressionTest >> newLineAfterSignatureConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentWithStatements:false;
-		newLinesAfterMethodPattern: 1
+		newLinesAfterMethodPattern: 1;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -122,7 +127,8 @@ BIEnlumineurMethodeExpressionTest >> newLineBetweenTopCommentsConfiguration [
 		periodsAtEndOfBlock: false;
 		periodsAtEndOfMethod: false;
 		newLinesAfterMethodPattern: 1;
-		newLinesAfterMethodComment: 1
+		newLinesAfterMethodComment: 1;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -137,7 +143,8 @@ BIEnlumineurMethodeExpressionTest >> noNewLineBetweenTopCommentsConfiguration [
 		formatCommentWithStatements:false;
 		useBasicCommentFormat: true;
 		newLinesAfterMethodPattern: 1;
-		newLinesAfterMethodComment: 0
+		newLinesAfterMethodComment: 0;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -152,7 +159,8 @@ BIEnlumineurMethodeExpressionTest >> noNewLinesAfterCommentConfiguration [
 		formatCommentWithStatements:false;
 		useBasicCommentFormat: true;
 		newLinesAfterMethodPattern: 1;
-		newLinesAfterMethodComment: 1
+		newLinesAfterMethodComment: 1;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -168,7 +176,8 @@ BIEnlumineurMethodeExpressionTest >> notBasicCommentFormatConfiguration [
 		useBasicCommentFormat: false;
 		maxLineLength: 50;	
 		newLinesAfterMethodPattern: 1;
-		newLinesAfterMethodComment: 1
+		newLinesAfterMethodComment: 1;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -184,7 +193,8 @@ BIEnlumineurMethodeExpressionTest >> oneNewLineAfterCommentConfiguration [
 		useBasicCommentFormat:false;
 		maxLineLength:50;
 		newLinesAfterMethodPattern: 1;
-		newLinesAfterMethodComment: 2
+		newLinesAfterMethodComment: 2;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -209,7 +219,8 @@ BIEnlumineurMethodeExpressionTest >> signatureConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentWithStatements:false;
-		newLinesAfterMethodPattern: 1
+		newLinesAfterMethodPattern: 1;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -223,7 +234,8 @@ BIEnlumineurMethodeExpressionTest >> signatureNotOnMultipleLinesConfiguration [
 		indentStyle: #tabulation;
 		formatCommentWithStatements:false;
 		methodSignatureOnMultipleLines: false;
-		newLinesAfterMethodPattern: 1
+		newLinesAfterMethodPattern: 1;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -238,7 +250,8 @@ BIEnlumineurMethodeExpressionTest >> signatureOnMultipleLinesConfiguration [
 		formatCommentWithStatements:false;
 		methodSignatureOnMultipleLines: true;
 		selectorAndArgumentCombinedMaxSize: 2;
-		newLinesAfterMethodPattern: 0
+		newLinesAfterMethodPattern: 0;
+		indentExtraSpaces:0
 ]
 
 { #category : #test }
@@ -557,5 +570,6 @@ BIEnlumineurMethodeExpressionTest >> twoNewLinesAfterSignatureConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentWithStatements:false;
-		newLinesAfterMethodPattern: 3
+		newLinesAfterMethodPattern: 3;
+		indentExtraSpaces:0
 ]

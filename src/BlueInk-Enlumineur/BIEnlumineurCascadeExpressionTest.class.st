@@ -17,7 +17,8 @@ BIEnlumineurCascadeExpressionTest >> SpaceIndentConfiguration [
 		maxLineLength:50;
 		keepBlockInMessage:false;
 		numberOfSpacesInIndent: 1;
-		indentStyle: #space
+		indentStyle: #space;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -32,7 +33,8 @@ BIEnlumineurCascadeExpressionTest >> basicConfiguration [
 		maxLineLength:50;
 		keepBlockInMessage:false;
 		newLineAfterCascade:false;
-		indentStyle: #tabulation
+		indentStyle: #tabulation;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -59,7 +61,8 @@ BIEnlumineurCascadeExpressionTest >> multilineMessageConfiguration [
 		indentsForKeywords:0;
 		periodsAtEndOfBlock:false;
 		periodsAtEndOfMethod: false;
-		lineUpBlockBrackets:false
+		lineUpBlockBrackets:false;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -83,7 +86,8 @@ BIEnlumineurCascadeExpressionTest >> newLineAfterCascadeConfiguration [
 		maxLineLength:50;
 		keepBlockInMessage:false;
 		indentStyle: #tabulation;
-		newLineBeforeFirstKeyword:false
+		newLineBeforeFirstKeyword:false;
+		indentExtraSpaces: 0
 ]
 
 { #category : #configurations }
@@ -103,7 +107,8 @@ BIEnlumineurCascadeExpressionTest >> newLineBeforeAndAfterCascadeConfiguration [
 		maxLineLength:50;
 		keepBlockInMessage:false;
 		indentStyle: #tabulation;
-		newLineBeforeFirstKeyword:false
+		newLineBeforeFirstKeyword:false;
+		indentExtraSpaces:0
 ]
 
 { #category : #configurations }
@@ -123,7 +128,8 @@ BIEnlumineurCascadeExpressionTest >> newLineBeforeCascadeConfiguration [
 		maxLineLength:50;
 		keepBlockInMessage:false;
 		indentStyle: #tabulation;
-		newLineBeforeFirstKeyword:false
+		newLineBeforeFirstKeyword:false;
+		indentExtraSpaces:0
 
 ]
 
@@ -397,5 +403,6 @@ BIEnlumineurCascadeExpressionTest >> tooLongArgumentConfiguration [
 		maxLineLength:10;
 		keepBlockInMessage:false;
 		newLineAfterCascade:false;
-		indentStyle: #tabulation
+		indentStyle: #tabulation;
+		indentExtraSpaces:0
 ]

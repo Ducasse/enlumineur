@@ -24,7 +24,8 @@ BIEnlumineurBlock2ExpressionTest >> basicConfiguration [
 		newLineBeforeFirstKeyword:false;
 		formatCommentWithStatements:true;
 		maxLineLength:50;
-		useBasicCommentFormat:false
+		useBasicCommentFormat:false;
+		indentExtraSpaces:0
 ]
 
 { #category : #test }
