@@ -2023,11 +2023,13 @@ BIEnlumineurPrettyPrinter >> visitPragmaNode: aPragmaNode [
 ]
 
 { #category : #visiting }
-BIEnlumineurPrettyPrinter >> visitReturnNode: aReturnNode [ 
+BIEnlumineurPrettyPrinter >> visitReturnNode: aReturnNode [
 	codeStream
 		nextPut: $^;
 		nextPutAll: self spacesAfterCaretSymbolInReturn.
-	self visitNode: aReturnNode value
+	self
+		indentExtraSpaces: 2
+		around: [ self visitNode: aReturnNode value ]
 ]
 
 { #category : #visiting }

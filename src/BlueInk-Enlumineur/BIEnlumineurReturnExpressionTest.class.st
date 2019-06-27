@@ -12,6 +12,34 @@ BIEnlumineurReturnExpressionTest >> basicConfiguration [
 		maxLineLength: 70
 ]
 
+{ #category : #configuration }
+BIEnlumineurReturnExpressionTest >> multilineConfiguration [
+	^ self contextClass basicNew
+		formatCommentWithStatements: false;
+		numberOfSpacesAfterCaretSymbolInReturn: 1;
+		maxLineLength: 70;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine: 4;
+		indentStyle: #tabulation;
+		indentsForKeywords: 1;
+		newLineBeforeFirstKeyword: true;
+		keepBlockInMessage: true
+]
+
+{ #category : #tests }
+BIEnlumineurReturnExpressionTest >> testReturnExtraSpacesInIndentWhenMultilne [
+	| source |
+	configurationSelector := #multilineConfiguration.
+	source := self formatExpression: '^ Array with: self leftRotated with: self negated with: self rightRotated with: self'.
+	self assert: source equals:
+'^ Array
+	  with: self leftRotated
+	  with: self negated
+	  with: self rightRotated
+	  with: self'
+]
+
 { #category : #tests }
 BIEnlumineurReturnExpressionTest >> testReturnFormatValue [
 	| source |
