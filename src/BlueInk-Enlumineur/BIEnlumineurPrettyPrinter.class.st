@@ -1246,6 +1246,13 @@ BIEnlumineurPrettyPrinter >> indentExtraSpaces: anInteger [
 	context indentExtraSpaces: anInteger 
 ]
 
+{ #category : #private }
+BIEnlumineurPrettyPrinter >> indentExtraSpaces: anInteger around: aBlock [
+	self indentExtraSpaces: anInteger.
+	aBlock
+		ensure: [ self indentExtraSpaces: 0 ]
+]
+
 { #category : #accessing }
 BIEnlumineurPrettyPrinter >> indentString [
 	^ context indentString
