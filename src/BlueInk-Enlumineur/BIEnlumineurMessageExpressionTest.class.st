@@ -16,7 +16,8 @@ BIEnlumineurMessageExpressionTest >> basicConfiguration [
 		indentsForKeywords: 0;
 		maxLineLength: 50;
 		newLineBeforeFirstKeyword:false;
-		keepBlockInMessage:false
+		keepBlockInMessage:false;
+		indentExtraSpaces: 0
 ]
 
 { #category : #configurations }
@@ -36,6 +37,28 @@ BIEnlumineurMessageExpressionTest >> formatStatementsWithCommentsConfiguration [
 
 { #category : #configurations }
 BIEnlumineurMessageExpressionTest >> keepBlockInMessageConfiguration [
+	^ self contextClass basicNew
+		indentStyle: #tabulation;
+		formatCommentWithStatements: false;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine: 10;
+		indentsForKeywords: 0;
+		maxLineLength: 70;
+		newLineBeforeFirstKeyword: true;
+		keepBlockInMessage: true;
+		numberOfSpacesInsideBlock: 1;
+		numberOfSpacesAfterCaretSymbolInReturn: 0;
+		periodsAtEndOfBlock: false;
+		periodsAtEndOfMethod: false;
+		lineUpBlockBrackets: false;
+		retainBlankLinesBetweenStatements: false;
+		minimumNewLinesBetweenStatements: 1;
+		indentExtraSpaces:0
+]
+
+{ #category : #configurations }
+BIEnlumineurMessageExpressionTest >> littleMaxLineLengthConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentWithStatements: false;
@@ -260,9 +283,9 @@ BIEnlumineurMessageExpressionTest >> testKeepBlockInMessageMutlilineNewLine [
 		assert: source
 		equals:
 			'aBoolean ifTrue: [ 
-	Transcript cr.
-	Transcript cr.
-	Transcript cr ]'
+	  Transcript cr.
+	  Transcript cr.
+	  Transcript cr ]'
 ]
 
 { #category : #tests }
@@ -277,9 +300,9 @@ BIEnlumineurMessageExpressionTest >> testKeepBlockInMessageMutlilineSpace [
 		assert: source
 		equals:
 			'aBoolean ifTrue: [ 
-	12 factorial.
-	12 factorial.
-	3 factorial ]'
+	  12 factorial.
+	  12 factorial.
+	  3 factorial ]'
 ]
 
 { #category : #tests }
@@ -296,14 +319,14 @@ BIEnlumineurMessageExpressionTest >> testKeepBlockInMessageNotMultilineSpace [
 { #category : #tests }
 BIEnlumineurMessageExpressionTest >> testKeepBlockInMessageNotMutlilineNewLine [
 	| source |
-	configurationSelector := #keepBlockInMessageConfiguration.
+	configurationSelector := #littleMaxLineLengthConfiguration.
 	source := self
 		formatExpression: 'aBoolean ifTrue:[LongLongLongExpression]'.
 	self
 		assert: source
 		equals:
 			'aBoolean ifTrue: [ 
-	LongLongLongExpression ]'
+	  LongLongLongExpression ]'
 ]
 
 { #category : #tests }
@@ -402,8 +425,8 @@ BIEnlumineurMessageExpressionTest >> testNewLineAfterOpeningBlockBraketWhenMulti
 		assert: source
 		equals:
 			'x = 0 ifFalse: [ 
-	tan := y asFloat / x asFloat.
-	theta := tan arcCos ]'
+	  tan := y asFloat / x asFloat.
+	  theta := tan arcCos ]'
 ]
 
 { #category : #tests }

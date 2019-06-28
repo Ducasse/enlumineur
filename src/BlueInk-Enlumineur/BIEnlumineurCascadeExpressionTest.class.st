@@ -150,7 +150,8 @@ BIEnlumineurCascadeExpressionTest >> noNewLineAfterCascadeConfiguration [
 		maxLineLength:50;
 		keepBlockInMessage:false;
 		indentStyle: #tabulation;
-		newLineBeforeFirstKeyword:false
+		newLineBeforeFirstKeyword:false;
+		indentExtraSpaces: 0
 ]
 
 { #category : #configurations }
@@ -226,13 +227,13 @@ BIEnlumineurCascadeExpressionTest >> testFormatMultilineMessage [
 	self
 		assert: source
 		equals:
-			'1
+'1
 	between: 2 and: 5;
 	to: 4
 		do:
 		[ :each | 
-		each factorial.
-		each + 1 ]'
+		  each factorial.
+		  each + 1 ]'
 ]
 
 { #category : #tests }

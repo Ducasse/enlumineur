@@ -9,7 +9,8 @@ BIEnlumineurReturnExpressionTest >> basicConfiguration [
 	^ self contextClass basicNew
 		formatCommentWithStatements: false;
 		numberOfSpacesAfterCaretSymbolInReturn: 1;
-		maxLineLength: 70
+		maxLineLength: 70;
+		indentExtraSpaces: 0
 ]
 
 { #category : #configuration }
@@ -24,7 +25,8 @@ BIEnlumineurReturnExpressionTest >> multilineConfiguration [
 		indentStyle: #tabulation;
 		indentsForKeywords: 1;
 		newLineBeforeFirstKeyword: true;
-		keepBlockInMessage: true
+		keepBlockInMessage: true;
+		indentExtraSpaces: 0
 ]
 
 { #category : #tests }
