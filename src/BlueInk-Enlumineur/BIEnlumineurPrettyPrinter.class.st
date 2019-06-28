@@ -1878,13 +1878,10 @@ BIEnlumineurPrettyPrinter >> visitAssignmentNode: anAssignmentNode [
 	| nodeAsString |
 	nodeAsString := anAssignmentNode asString.
 	self visitNode: anAssignmentNode variable.
-	codeStream space; 	nextPutAll: anAssignmentNode assignmentOperator; space.
-	((nodeAsString includes: Character cr)
-		or: [ self isLineTooLong: nodeAsString ])
-		ifTrue: [ self
-					 indentExtraSpaces: anAssignmentNode variable name size
-					 around: [ self visitNode: anAssignmentNode value ] ]
-		ifFalse: [ self visitNode: anAssignmentNode value ]
+	codeStream space; nextPutAll: anAssignmentNode assignmentOperator; space.
+	self
+		indentExtraSpaces: anAssignmentNode variable name size + 1
+		around: [ self visitNode: anAssignmentNode value ]
 ]
 
 { #category : #visiting }
