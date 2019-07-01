@@ -1080,8 +1080,9 @@ BIEnlumineurPrettyPrinter >> formatSelectorAndArguments: aMessageNode [
 				formatSelectorAndArguments: aMessageNode
 				firstSeparator:
 					((aMessageNode isKeyword
-						and: [ aMessageNode arguments size > 1
-								and: [ self newLineBeforeFirstKeyword ] ])
+						ifTrue: [ aMessageNode arguments size > 1
+								and: [ self newLineBeforeFirstKeyword ] ]
+						ifFalse:[newLineBetweenArguments ])
 						ifTrue: [ [ self newLine ] ]
 						ifFalse: [ [ self space ] ])
 				restSeparator:

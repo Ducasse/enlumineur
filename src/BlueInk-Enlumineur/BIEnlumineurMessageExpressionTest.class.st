@@ -242,7 +242,8 @@ BIEnlumineurMessageExpressionTest >> testBinaryOneArgumentPerLine [
 	self
 		assert: source
 		equals:
-			'1 + 2'
+'1
++ 2'
 ]
 
 { #category : #tests }
