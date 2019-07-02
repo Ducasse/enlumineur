@@ -496,3 +496,18 @@ BIEnlumineurExamples >> useRule41 [
 				gammaTable: gammaTable
 				ungammaTable: gammaInverseTable ]
 ]
+
+{ #category : #methods }
+BIEnlumineurExamples >> visitSequenceNode: aSequenceNode [
+"how do we want to indent the cascade  
+					self
+					 formatCommentsFor: aSequenceNode;
+					 newLine"
+
+	self formatTemporariesFor: aSequenceNode.
+	aSequenceNode comments
+		ifNotEmpty: [ self
+						formatCommentsFor: aSequenceNode;
+						newLine ].
+	self formatSequenceNodeStatementsFor: aSequenceNode
+]
