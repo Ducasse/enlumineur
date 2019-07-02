@@ -89,6 +89,31 @@ BIEnlumineurSequenceExpressionTest >> dontRetainBlankLinesBetweenStatementsConfi
 ]
 
 { #category : #tests }
+BIEnlumineurSequenceExpressionTest >> formatBlockConfiguration [
+
+	^ self contextClass basicNew
+		formatCommentWithStatements:false;
+		indentStyle: #tabulation;
+		newLinesAfterTemporaries:1;
+		retainBlankLinesBeforeComments:false;
+		useBasicCommentFormat:false;
+		maxLineLength:50;
+		retainBlankLinesBetweenStatements:false;
+		minimumNewLinesBetweenStatements:0;
+		periodsAtEndOfBlock:false;
+		periodsAtEndOfMethod:false;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine: 5;
+		indentsForKeywords: 1;
+		keepBlockInMessage: true;
+		newLineBeforeFirstKeyword:true;
+		indentExtraSpaces: 0;
+		numberOfSpacesInsideBlock: 1;
+		lineUpBlockBrackets: false
+]
+
+{ #category : #tests }
 BIEnlumineurSequenceExpressionTest >> formatCommentWithStatementConfiguration [
 
 	^ self contextClass basicNew
@@ -245,7 +270,8 @@ BIEnlumineurSequenceExpressionTest >> testCommentBetweenTemporariesAndStatement 
 	self
 		assert: source
 		equals:
-			'| a b |"comment"a := 1'
+'| a b |"comment"
+a := 1'
 ]
 
 { #category : #tests }
@@ -310,7 +336,8 @@ BIEnlumineurSequenceExpressionTest >> testLineBetweenTemporariesAndComment [
 		assert: source
 		equals:
 			'| a b |
-"comment"'
+"comment"
+'
 ]
 
 { #category : #tests }
@@ -323,6 +350,42 @@ BIEnlumineurSequenceExpressionTest >> testNewLineBetweenStatement [
 		equals:
 			'| a b |a := 1.
 b := a'
+]
+
+{ #category : #tests }
+BIEnlumineurSequenceExpressionTest >> testNoNewLineBetweenVariableAndIfTrue [
+	| source |
+	configurationSelector := #formatBlockConfiguration.
+	source := self formatExpression: 
+'| x aBitBlt foreColorVal foreColorAlpha gammaTable gammaInverseTable |
+	"x ifTrue: [ 
+		aBitBlt
+			copyBitsColor: foreColorVal
+			alpha: foreColorAlpha
+			gammaTable: gammaTable
+			ungammaTable: gammaInverseTable ]		
+"
+	x ifTrue: [ 
+			aBitBlt
+				copyBitsColor: foreColorVal
+				alpha: foreColorAlpha
+				gammaTable: gammaTable
+				ungammaTable: gammaInverseTable ]'.
+	self assert: source equals: 
+'| x aBitBlt foreColorVal foreColorAlpha gammaTable gammaInverseTable |
+"x ifTrue: [ 
+		aBitBlt
+			copyBitsColor: foreColorVal
+			alpha: foreColorAlpha
+			gammaTable: gammaTable
+			ungammaTable: gammaInverseTable ]		
+"
+x ifTrue: [ 
+		  aBitBlt
+			  copyBitsColor: foreColorVal
+			  alpha: foreColorAlpha
+			  gammaTable: gammaTable
+			  ungammaTable: gammaInverseTable ]'
 ]
 
 { #category : #tests }

@@ -21,6 +21,28 @@ BIEnlumineurMessageExpressionTest >> basicConfiguration [
 ]
 
 { #category : #configurations }
+BIEnlumineurMessageExpressionTest >> blockInMessageConfiguration [
+	^ self contextClass basicNew
+		indentStyle: #tabulation;
+		formatCommentWithStatements: false;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine: 10;
+		indentsForKeywords: 0;
+		maxLineLength: 70;
+		newLineBeforeFirstKeyword: true;
+		keepBlockInMessage: true;
+		numberOfSpacesInsideBlock: 1;
+		numberOfSpacesAfterCaretSymbolInReturn: 0;
+		periodsAtEndOfBlock: false;
+		periodsAtEndOfMethod: false;
+		lineUpBlockBrackets: false;
+		retainBlankLinesBetweenStatements: false;
+		minimumNewLinesBetweenStatements: 1;
+		indentExtraSpaces:0
+]
+
+{ #category : #configurations }
 BIEnlumineurMessageExpressionTest >> formatStatementsWithCommentsConfiguration [
 
 	^ self contextClass basicNew
@@ -464,6 +486,25 @@ BIEnlumineurMessageExpressionTest >> testNoIndentsForKeywords [
 k1: 1
 k2: 2
 k3: 3'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testNoNewLineBetweenVariableAndIfTrue [
+	| source |
+	configurationSelector := #blockInMessageConfiguration.
+	source := self formatExpression: 'x
+		ifTrue: [ 
+			  aBitBlt copyBitsColor: foreColorVal
+				  alpha: foreColorAlpha
+				  gammaTable: gammaTable
+				  ungammaTable: gammaInverseTable ]'.
+	self assert: source equals: 
+'x ifTrue: [ 
+	  aBitBlt
+	  copyBitsColor: foreColorVal
+	  alpha: foreColorAlpha
+	  gammaTable: gammaTable
+	  ungammaTable: gammaInverseTable ]'
 ]
 
 { #category : #tests }

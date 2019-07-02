@@ -1007,7 +1007,7 @@ BIEnlumineurPrettyPrinter >> formatCommentsFor: aNode [
 		do:
 			[ :each | 
 			self basicFormatCommentFor: each.
-			"self newLine" ]
+			]
 ]
 
 { #category : #private }
@@ -2038,7 +2038,9 @@ BIEnlumineurPrettyPrinter >> visitReturnNode: aReturnNode [
 { #category : #visiting }
 BIEnlumineurPrettyPrinter >> visitSequenceNode: aSequenceNode [
 	self formatTemporariesFor: aSequenceNode.
-	self formatCommentsFor: aSequenceNode.
+	aSequenceNode comments
+		ifNotEmpty: [ self formatCommentsFor: aSequenceNode;
+						newLine ].
 	self formatSequenceNodeStatementsFor: aSequenceNode
 ]
 
