@@ -78,7 +78,7 @@ BIEnlumineurAssignmentExpressionTest >> testAssignmentHasNoExtraSpaceInside [
 
 { #category : #test }
 BIEnlumineurAssignmentExpressionTest >> testExtraIndentationWhenMultiline [
-	| source a |
+	| source |
 	configurationSelector := #multilineConfiguration.
 	source := self
 		formatExpression:
@@ -93,7 +93,7 @@ BIEnlumineurAssignmentExpressionTest >> testExtraIndentationWhenMultiline [
 
 { #category : #test }
 BIEnlumineurAssignmentExpressionTest >> testExtraIndentationWhenMultiline2 [
-	| source a |
+	| source |
 	configurationSelector := #multilineConfiguration.
 	source := self
 		formatExpression:

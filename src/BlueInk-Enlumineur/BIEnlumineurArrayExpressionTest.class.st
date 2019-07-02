@@ -109,7 +109,7 @@ BIEnlumineurArrayExpressionTest >> testEmptyArray [
 
 { #category : #test }
 BIEnlumineurArrayExpressionTest >> testFormatElement [
-	| expr source |
+	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: ' { a:=1. b:=2 } '.
 	self assert: source equals:

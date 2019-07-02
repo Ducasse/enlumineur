@@ -676,10 +676,10 @@ BIEnlumineurBlockExpressionTest >> validate: stringInsideBlock isFormattedAs: Ex
 ]
 
 { #category : #test }
-BIEnlumineurBlockExpressionTest >> validate: stringInsideBlock isFormattedAs: ExpectedStringInsideBlock with: aConfiguration [
+BIEnlumineurBlockExpressionTest >> validate: stringInsideBlock isFormattedAs: expectedStringInsideBlock with: aConfiguration [
 	| expr source |
 	expr := self parserClass parseExpression: self openBracket ,stringInsideBlock,self closeBracket.
 	configurationSelector := aConfiguration.
 	source := self formatter format: expr.
-	self assert: source equals: self openBracket,ExpectedStringInsideBlock,self closeBracket
+	self assert: source equals: self openBracket,expectedStringInsideBlock,self closeBracket
 ]

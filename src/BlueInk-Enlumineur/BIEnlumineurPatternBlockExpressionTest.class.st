@@ -21,7 +21,7 @@ BIEnlumineurPatternBlockExpressionTest >> parserClass [
 
 { #category : #test }
 BIEnlumineurPatternBlockExpressionTest >> testDontFormatCommentWithStatement2 [
-	| expr source |
+	| source |
 	self flag: 'does PatternBlock can have comments'.
 	configurationSelector := #dontFormatCommentWithStatementConfiguration.
 	source := self formatExpression:'"aComment"`{ ""1 factorial. 2 factorial }'.
@@ -34,7 +34,7 @@ BIEnlumineurPatternBlockExpressionTest >> testDontFormatCommentWithStatement2 [
 { #category : #test }
 BIEnlumineurPatternBlockExpressionTest >> testNewLineAfterComment [
 	
-	| expr source |
+	| source |
 	self flag: 'does PatternBlock can have comments'.
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression:'"aComment"`{ 1 . 2  }'.
