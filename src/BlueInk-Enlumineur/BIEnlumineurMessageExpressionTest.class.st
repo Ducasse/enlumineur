@@ -21,6 +21,31 @@ BIEnlumineurMessageExpressionTest >> basicConfiguration [
 ]
 
 { #category : #configurations }
+BIEnlumineurMessageExpressionTest >> blockAndParenthesesInMessageConfiguration [
+	^ self contextClass basicNew
+		indentStyle: #tabulation;
+		formatCommentWithStatements: false;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine: 10;
+		indentsForKeywords: 0;
+		maxLineLength: 70;
+		newLineBeforeFirstKeyword: false;
+		keepBlockInMessage: true;
+		numberOfSpacesInsideBlock: 1;
+		numberOfSpacesAfterCaretSymbolInReturn: 0;
+		periodsAtEndOfBlock: false;
+		periodsAtEndOfMethod: false;
+		lineUpBlockBrackets: false;
+		retainBlankLinesBetweenStatements: false;
+		minimumNewLinesBetweenStatements: 1;
+		indentExtraSpaces:0;
+		newLineBeforeFirstCascade: true;
+		numberOfSpacesInsideParentheses: 1 ;
+		newLineAfterCascade: true
+]
+
+{ #category : #configurations }
 BIEnlumineurMessageExpressionTest >> blockInMessageConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
@@ -266,6 +291,24 @@ BIEnlumineurMessageExpressionTest >> testBinaryOneArgumentPerLine [
 		equals:
 '1
 + 2'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testExtraIndentInParentheses [
+	| source |
+	configurationSelector := #blockAndParenthesesInMessageConfiguration.
+	source := self formatExpression: '	1 to:
+		( [ :i | 
+		i
+			factorial; +3 ] value: 15 )
+	  do: [ :j | j ]'.
+	self assert: source equals:
+'1 to:
+	( [ :i | 
+	    i
+		    factorial;
+		    + 3 ] value: 15 )
+do: [ :j | j ]'
 ]
 
 { #category : #tests }
@@ -652,7 +695,8 @@ BIEnlumineurMessageExpressionTest >> traditionalBinaryPrecedenceConfiguration [
 	keepBlockInMessage:false;
 	useTraditionalBinaryPrecedenceForParentheses:true;
 	traditionalBinaryPrecedenceArray: #(#($| $& $?) #($= $~ $< $>) #($- $+) #($* $/ $% $\) #($@));
-	numberOfSpacesInsideParentheses: 0
+	numberOfSpacesInsideParentheses: 0;
+	indentExtraSpaces: 0
 ]
 
 { #category : #configurations }
@@ -688,5 +732,6 @@ BIEnlumineurMessageExpressionTest >> twoSpacesInsideParenthesesConfiguration [
 		indentsForKeywords: 0;
 		maxLineLength: 50;
 		newLineBeforeFirstKeyword:false;
-		keepBlockInMessage:false
+		keepBlockInMessage:false;
+		indentExtraSpaces: 0
 ]

@@ -891,6 +891,15 @@ BIEnlumineurPrettyPrinter >> bracketWith: bracketString around: aBlock [
 ]
 
 { #category : #private }
+BIEnlumineurPrettyPrinter >> bracketWith: bracketString around: aBlock indentExtraSpaces: anInteger [
+	bracketString isEmpty
+		ifTrue: [ ^ aBlock value ].
+	codeStream nextPut: bracketString first.
+	^ [self indentExtraSpaces: anInteger  around:  aBlock]
+		ensure: [ codeStream nextPut: bracketString last ] 
+]
+
+{ #category : #private }
 BIEnlumineurPrettyPrinter >> characterSeparatorMethodSignatureFor: aMethodNode [
 	^ (self needsMethodSignatureOnMultipleLinesFor: aMethodNode)
 			ifTrue: [ self newLine ]
@@ -1988,6 +1997,7 @@ BIEnlumineurPrettyPrinter >> visitNode: aNode [
 				ifFalse: [  self spaceAndFormatComments: aNode. ].
 			needsParenthesis
 				ifTrue: [ codeStream nextPutAll: self spacesInsideParentheses ] ]
+		indentExtraSpaces: (needsParenthesis ifTrue: [ 1 + self numberOfSpacesInsideParentheses] ifFalse:[0])
 ]
 
 { #category : #visiting }
