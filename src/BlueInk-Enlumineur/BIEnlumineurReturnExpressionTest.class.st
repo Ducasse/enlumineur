@@ -29,6 +29,22 @@ BIEnlumineurReturnExpressionTest >> multilineConfiguration [
 		indentExtraSpaces: 0
 ]
 
+{ #category : #configuration }
+BIEnlumineurReturnExpressionTest >> multilineWithThreeSpacesAfterCaretSymbolConfiguration [
+	^ self contextClass basicNew
+		formatCommentWithStatements: false;
+		numberOfSpacesAfterCaretSymbolInReturn: 3;
+		maxLineLength: 70;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine: 4;
+		indentStyle: #tabulation;
+		indentsForKeywords: 1;
+		newLineBeforeFirstKeyword: true;
+		keepBlockInMessage: true;
+		indentExtraSpaces: 0
+]
+
 { #category : #tests }
 BIEnlumineurReturnExpressionTest >> testReturnExtraSpacesInIndentWhenMultilne [
 	| source |
@@ -40,6 +56,19 @@ BIEnlumineurReturnExpressionTest >> testReturnExtraSpacesInIndentWhenMultilne [
 	  with: self negated
 	  with: self rightRotated
 	  with: self'
+]
+
+{ #category : #tests }
+BIEnlumineurReturnExpressionTest >> testReturnExtraSpacesInIndentWhenMultilneWithThreeSpacesAfterCaretSymbol [
+	| source |
+	configurationSelector := #multilineWithThreeSpacesAfterCaretSymbolConfiguration.
+	source := self formatExpression: '^ Array with: self leftRotated with: self negated with: self rightRotated with: self'.
+	self assert: source equals:
+'^   Array
+	    with: self leftRotated
+	    with: self negated
+	    with: self rightRotated
+	    with: self'
 ]
 
 { #category : #tests }

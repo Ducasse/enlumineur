@@ -2041,7 +2041,7 @@ BIEnlumineurPrettyPrinter >> visitReturnNode: aReturnNode [
 		nextPut: $^;
 		nextPutAll: self spacesAfterCaretSymbolInReturn.
 	self
-		indentExtraSpaces: 2
+		indentExtraSpaces: 1 + self numberOfSpacesAfterCaretSymbolInReturn
 		around: [ self visitNode: aReturnNode value ]
 ]
 
