@@ -121,6 +121,11 @@ BIEnlumineurExamples class >> initializeSettingsTable [
 ]
 
 { #category : #methods }
+BIEnlumineurExamples >> BigArray [
+^ #(#(#expr0 #expr1 #expr2 #expr3 #expr4 #expr5 #expr6 #expr7 #expr8 #expr9 #expr10 #expr11 #expr12 #expr13 #expr14 #expr15 #expr16 #expr17 #expr18 #expr19 #expr20 #expr21 #expr22 #expr23 #expr24) #(#expr25 #expr26 #expr27 #expr28 #expr29 #expr30 #expr31 #expr32 #expr33 #expr34 #expr35 #expr36 #expr37 #expr38 #expr39 #expr40 #expr41 #expr42 #expr43 #expr44 #expr45 #expr46 #expr47 #expr48 #expr49))
+]
+
+{ #category : #methods }
 BIEnlumineurExamples >> bearingToPoint: anotherPoint [
 	"Return the bearing, in degrees, from the receiver to anotherPoint."
 	"questions: 
@@ -284,6 +289,42 @@ BIEnlumineurExamples >> indentExample [
 			show: j;
 			cr;
 			cr] ]
+]
+
+{ #category : #methods }
+BIEnlumineurExamples >> initializeSettingsTable [
+	"self initializeSettingsTable"
+	
+	settingsTable := {
+		#formatCommentWithStatements -> #formatCommentWithExpressionExample.
+		#indentString -> #indentExample.
+		#indentsForKeywords -> #messageWithALotOfParameters.
+		#keepBlockInMessage -> #blockExample.
+		#lineUpBlockBrackets -> #blockExample.
+		#maxLineLength -> #maxLineLengthExample.
+		#methodSignatureOnMultipleLines -> #method:with:A:lot:of:parameters:.
+		#minimumNewLinesBetweenStatements-> #minimumNewLinesBetweenStatementsExample.
+		#multiLineMessages.
+		#newLineAfterCascade -> #cascadeExample.
+		#newLineBeforeFirstCascade -> #cascadeExample.
+		#newLineBeforeFirstKeyword -> #messageWithALotOfParameters.
+		#newLinesAfterMethodComment -> #newLinesExample.
+		#newLinesAfterMethodPattern -> #newLinesExample.
+		#newLinesAfterTemporaries -> #newLinesExample.
+		#numberOfArgumentsForMultiLine -> #messageWithALotOfParameters.
+		#oneLineMessages.
+		#periodsAtEndOfBlock -> #blockExample.
+		#periodsAtEndOfMethod -> #periodsAtEndOfMethodExample.
+		#retainBlankLinesBetweenStatements -> #retainBlankLinesExample.
+		#retainBlankLinesBeforeComments -> #retainBlankLinesExample.
+		#spacesAfterCaretSymbolInReturn -> #spacesAfterCaretSymbolInReturnExample.
+		#spacesInsideBlocks -> #blockExample.
+		#spacesInsideParentheses -> #parenthesesExample.
+		#useTraditionalBinaryPrecedenceForParentheses -> #traditionalBinaryPrecedenceForParenthesesExample.
+		#selectorAndArgumentCombinedMaxSize -> #messageWithALotOfParameters.
+		#useBasicCommentFormat -> #useBasicCommentFormatExample.
+		#traditionalBinaryPrecedenceArray.
+	}
 ]
 
 { #category : #methods }
