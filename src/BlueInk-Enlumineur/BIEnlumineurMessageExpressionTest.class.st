@@ -68,6 +68,31 @@ BIEnlumineurMessageExpressionTest >> blockInMessageConfiguration [
 ]
 
 { #category : #configurations }
+BIEnlumineurMessageExpressionTest >> extraIndentWithThreeSpacesInsideParenthesesConfiguration [
+	^ self contextClass basicNew
+		indentStyle: #tabulation;
+		formatCommentWithStatements: false;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine: 10;
+		indentsForKeywords: 0;
+		maxLineLength: 70;
+		newLineBeforeFirstKeyword: false;
+		keepBlockInMessage: true;
+		numberOfSpacesInsideBlock: 1;
+		numberOfSpacesAfterCaretSymbolInReturn: 0;
+		periodsAtEndOfBlock: false;
+		periodsAtEndOfMethod: false;
+		lineUpBlockBrackets: false;
+		retainBlankLinesBetweenStatements: false;
+		minimumNewLinesBetweenStatements: 1;
+		indentExtraSpaces:0;
+		newLineBeforeFirstCascade: true;
+		numberOfSpacesInsideParentheses: 3 ;
+		newLineAfterCascade: true
+]
+
+{ #category : #configurations }
 BIEnlumineurMessageExpressionTest >> formatStatementsWithCommentsConfiguration [
 
 	^ self contextClass basicNew
@@ -308,6 +333,24 @@ BIEnlumineurMessageExpressionTest >> testExtraIndentInParentheses [
 	    i
 		    factorial;
 		    + 3 ] value: 15 )
+do: [ :j | j ]'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testExtraIndentInParenthesesWhenThreeSpacesInsideParentheses [
+	| source |
+	configurationSelector := #extraIndentWithThreeSpacesInsideParenthesesConfiguration.
+	source := self formatExpression: '	1 to:
+		( [ :i | 
+		i
+			factorial; +3 ] value: 15 )
+	  do: [ :j | j ]'.
+	self assert: source equals:
+'1 to:
+	(   [ :i | 
+	      i
+		      factorial;
+		      + 3 ] value: 15   )
 do: [ :j | j ]'
 ]
 
