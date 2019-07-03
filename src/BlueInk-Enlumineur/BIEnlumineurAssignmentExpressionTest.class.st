@@ -77,6 +77,23 @@ BIEnlumineurAssignmentExpressionTest >> testAssignmentHasNoExtraSpaceInside [
 ]
 
 { #category : #test }
+BIEnlumineurAssignmentExpressionTest >> testExtraIndentationWhenKeywordMessageIsMultiline [
+	| source |
+	configurationSelector := #multilineConfiguration.
+	source := self
+		formatExpression:
+	'abcdefghijklmnop:= aBoolean
+				ifTrue: [ self indentsForKeywords ]
+				ifFalse: [ 0 ]'.
+	self
+		assert: source
+		equals:
+'abcdefghijklmnop := aBoolean
+	                    ifTrue: [ self indentsForKeywords ]
+	                    ifFalse: [ 0 ]'
+]
+
+{ #category : #test }
 BIEnlumineurAssignmentExpressionTest >> testExtraIndentationWhenMultiline [
 	| source |
 	configurationSelector := #multilineConfiguration.
