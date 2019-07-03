@@ -956,16 +956,17 @@ BIEnlumineurPrettyPrinter >> formatArray: anArrayNode [
 { #category : #'private-formatting' }
 BIEnlumineurPrettyPrinter >> formatBlock: aBlockNode [
 	| isMultiline |
-	self indentExtraSpaces: 1+ self numberOfSpacesInsideBlock 
-	around:  [ 
-	isMultiline := self willBeMultiline: aBlockNode body.
-	codeStream nextPutAll: self spacesInsideBlocks.
-	self formatBlockArgumentsFor: aBlockNode.
-	self formatBlockCommentFor: aBlockNode.
-	(isMultiline or: [self isTooLong: aBlockNode body.])
-		ifTrue: [ self newLine ].
-	self visitSequenceNode: aBlockNode body
-	].
+	self 
+		indentExtraSpaces: 1+ self numberOfSpacesInsideBlock 
+		around:  [ 
+			isMultiline := self willBeMultiline: aBlockNode body.
+			codeStream nextPutAll: self spacesInsideBlocks.
+			self formatBlockArgumentsFor: aBlockNode.
+			self formatBlockCommentFor: aBlockNode.
+			(isMultiline or: [self isTooLong: aBlockNode body.])
+				ifTrue: [ self newLine ].
+			self visitSequenceNode: aBlockNode body
+		].
 	(self lineUpBlockBrackets and:[isMultiline])
 		ifTrue: [ self newLine ]
 		ifFalse: [ codeStream nextPutAll: self spacesInsideBlocks ].
