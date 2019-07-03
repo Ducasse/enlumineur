@@ -281,6 +281,23 @@ BIEnlumineurExamples >> fourDirectionsWorkingWell [
 ]
 
 { #category : #methods }
+BIEnlumineurExamples >> framePolyline: vertices on: aCanvas [ 
+	"Frame the given rectangle on aCanvas"
+
+	| prev next |
+	prev := vertices first.
+	2 to: vertices size
+		do: 
+			[:i | 
+			next := vertices at: i.
+			self 
+				drawLineFrom: prev
+				to: next
+				on: aCanvas.
+			prev := next]
+]
+
+{ #category : #methods }
 BIEnlumineurExamples >> indentExample [
 1 to: 4 do: [ :i | 
 		i to: 4 do: [ :j |
