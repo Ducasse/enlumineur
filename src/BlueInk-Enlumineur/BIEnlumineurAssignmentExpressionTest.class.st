@@ -88,7 +88,7 @@ BIEnlumineurAssignmentExpressionTest >> testExtraIndentationWhenMultiline [
 		assert: source
 		equals:
 'abcdefghijklmnop := p2 - x - p0 - x * ( p3 - y - p0 - y )
-	                 - ( p3 - x - p0 - x * ( p2 - y - p0 - y ) ) * b0'
+                    - ( p3 - x - p0 - x * ( p2 - y - p0 - y ) ) * b0'
 ]
 
 { #category : #test }
@@ -106,7 +106,7 @@ BIEnlumineurAssignmentExpressionTest >> testExtraIndentationWhenMultiline2 [
 	to: 4
 	do: [ 
 		  a := p2 - x - p0 - x * ( p3 - y - p0 - y )
-			    - ( p3 - x - p0 - x * ( p2 - y - p0 - y ) ) * b0
+		       - ( p3 - x - p0 - x * ( p2 - y - p0 - y ) ) * b0
 		]'
 ]
 
@@ -117,7 +117,7 @@ BIEnlumineurAssignmentExpressionTest >> testExtraIndentationWhenMultilineResetTh
 	source := self formatExpression: 'a := p2-x - p0-x * ( p3-y - p0-y ) - ( p3-x - p0-x * ( p2-y - p0-y ) ) * b0. a:=1'.
 	self assert: source equals:
 'a := p2 - x - p0 - x * ( p3 - y - p0 - y )
-	  - ( p3 - x - p0 - x * ( p2 - y - p0 - y ) ) * b0.
+     - ( p3 - x - p0 - x * ( p2 - y - p0 - y ) ) * b0.
 a := 1'
 ]
 

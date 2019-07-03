@@ -1083,7 +1083,7 @@ BIEnlumineurPrettyPrinter >> formatSelectorAndArguments: aMessageNode [
 	newLineBetweenArguments := self isMultiLineMessage: aMessageNode.
 	self 
 		indent:
-			(newLineBetweenArguments
+			((newLineBetweenArguments and: [ aMessageNode isKeyword ])
 				ifTrue: [ self indentsForKeywords ]
 				ifFalse: [ 0 ])
 		around: [ self
@@ -1896,7 +1896,7 @@ BIEnlumineurPrettyPrinter >> visitAssignmentNode: anAssignmentNode [
 	self visitNode: anAssignmentNode variable.
 	codeStream space; nextPutAll: anAssignmentNode assignmentOperator; space.
 	self
-		indentExtraSpaces: anAssignmentNode variable name size + 1
+		indentExtraSpaces: anAssignmentNode variable name size + ' := ' size
 		around: [ self visitNode: anAssignmentNode value ]
 ]
 
