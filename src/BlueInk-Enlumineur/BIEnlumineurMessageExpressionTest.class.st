@@ -28,7 +28,7 @@ BIEnlumineurMessageExpressionTest >> blockAndParenthesesInMessageConfiguration [
 		multiLineMessages: Array new;
 		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine: 10;
-		indentsForKeywords: 0;
+		indentsForKeywords: 1;
 		maxLineLength: 70;
 		newLineBeforeFirstKeyword: false;
 		keepBlockInMessage: true;
@@ -329,11 +329,11 @@ BIEnlumineurMessageExpressionTest >> testExtraIndentInParentheses [
 	  do: [ :j | j ]'.
 	self assert: source equals:
 '1 to:
-	( [ :i | 
-	    i
-		    factorial;
-		    + 3 ] value: 15 )
-do: [ :j | j ]'
+		( [ :i | 
+		    i
+			    factorial;
+			    + 3 ] value: 15 )
+	do: [ :j | j ]'
 ]
 
 { #category : #tests }
