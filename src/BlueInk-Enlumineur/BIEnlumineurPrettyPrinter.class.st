@@ -921,6 +921,28 @@ BIEnlumineurPrettyPrinter >> currentLineLength [
 	^ codeStream position - lineStart
 ]
 
+{ #category : #'private-formatting' }
+BIEnlumineurPrettyPrinter >> firstSeparatorShouldNotPassLine: aMessageNode [
+"predicat that tell if the keyWord should be forced te be on the sameLine
+for now force it for the variables and the litterals
+Might not be great, might be changed or removed
+
+Example:
+
+aBoolean ifTrue:[]
+	ifFalse:[]
+
+(myClass doSomething: arg1 with: arg2)
+	ifTrue:[]
+	ifFalse
+"
+	^ aMessageNode isKeyword
+		and: [ (aMessageNode receiver isLiteralNode
+				or: [ aMessageNode receiver isVariable ])
+				and: [ aMessageNode arguments size <= 1
+						or: [ self newLineBeforeFirstKeyword not ] ] ]
+]
+
 { #category : #'public interface' }
 BIEnlumineurPrettyPrinter >> format: aParseTree [
 	codeStream := self initializeCodeStream.
@@ -1081,7 +1103,7 @@ BIEnlumineurPrettyPrinter >> formatPragmasFor: aMethodNode [
 BIEnlumineurPrettyPrinter >> formatSelectorAndArguments: aMessageNode [
 	| newLineBetweenArguments |
 	newLineBetweenArguments := self isMultiLineMessage: aMessageNode.
-	self 
+	self
 		indent:
 			((newLineBetweenArguments and: [ aMessageNode isKeyword ])
 				ifTrue: [ self indentsForKeywords ]
@@ -1089,12 +1111,11 @@ BIEnlumineurPrettyPrinter >> formatSelectorAndArguments: aMessageNode [
 		around: [ self
 				formatSelectorAndArguments: aMessageNode
 				firstSeparator:
-					((aMessageNode isKeyword
-						ifTrue: [ aMessageNode arguments size > 1
-								and: [ self newLineBeforeFirstKeyword ] ]
-						ifFalse:[newLineBetweenArguments ])
-						ifTrue: [ [ self newLine ] ]
-						ifFalse: [ [ self space ] ])
+					((self firstSeparatorShouldNotPassLine: aMessageNode)
+						ifTrue: [ self space ]
+						ifFalse: [ newLineBetweenArguments
+								ifTrue: [ [ self newLine ] ]
+								ifFalse: [ [ self space ] ] ])
 				restSeparator:
 					(newLineBetweenArguments
 						ifTrue: [ [ self newLine ] ]

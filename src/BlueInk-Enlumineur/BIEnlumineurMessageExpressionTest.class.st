@@ -115,7 +115,7 @@ BIEnlumineurMessageExpressionTest >> keepBlockInMessageConfiguration [
 		multiLineMessages: Array new;
 		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine: 10;
-		indentsForKeywords: 0;
+		indentsForKeywords: 1;
 		maxLineLength: 70;
 		newLineBeforeFirstKeyword: true;
 		keepBlockInMessage: true;
@@ -391,10 +391,10 @@ BIEnlumineurMessageExpressionTest >> testKeepBlockInMessageMutlilineNewLine [
 	self
 		assert: source
 		equals:
-			'aBoolean ifTrue: [ 
-	  Transcript cr.
-	  Transcript cr.
-	  Transcript cr ]'
+'aBoolean ifTrue: [ 
+		  Transcript cr.
+		  Transcript cr.
+		  Transcript cr ]'
 ]
 
 { #category : #tests }
@@ -408,10 +408,10 @@ BIEnlumineurMessageExpressionTest >> testKeepBlockInMessageMutlilineSpace [
 	self
 		assert: source
 		equals:
-			'aBoolean ifTrue: [ 
-	  12 factorial.
-	  12 factorial.
-	  3 factorial ]'
+'aBoolean ifTrue: [ 
+		  12 factorial.
+		  12 factorial.
+		  3 factorial ]'
 ]
 
 { #category : #tests }
@@ -533,9 +533,10 @@ BIEnlumineurMessageExpressionTest >> testNewLineAfterOpeningBlockBraketWhenMulti
 	self
 		assert: source
 		equals:
-			'x = 0 ifFalse: [ 
-	  tan := y asFloat / x asFloat.
-	  theta := tan arcCos ]'
+			'x = 0
+	ifFalse: [ 
+		  tan := y asFloat / x asFloat.
+		  theta := tan arcCos ]'
 ]
 
 { #category : #tests }
@@ -546,8 +547,7 @@ BIEnlumineurMessageExpressionTest >> testNewLineBeforeFirstKeyword [
 	self
 		assert: source
 		equals:
-			'2
-between: 1 and: 3'
+			'2 between: 1 and: 3'
 ]
 
 { #category : #tests }
@@ -558,6 +558,20 @@ BIEnlumineurMessageExpressionTest >> testNewLineBeforeFirstKeyword2 [
 	self
 		assert: source
 		equals:'1 + 1'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testNewLineWhenSelectorAndBeginingOfParametersWillBeTooLong [
+	| source |
+	configurationSelector := #blockAndParenthesesInMessageConfiguration.
+	source := self formatExpression:
+'(newLineBetweenArguments and: [ aMessageNode isKeyword ]) ifTrue: [ self
+	indentsForKeywords ]
+	ifFalse: [ 0 ]'.
+	self assert: source equals:
+'( newLineBetweenArguments and: [ aMessageNode isKeyword ] )
+	ifTrue: [ self indentsForKeywords ]
+	ifFalse: [ 0 ]'.
 ]
 
 { #category : #tests }
@@ -617,7 +631,7 @@ BIEnlumineurMessageExpressionTest >> testTooLongArgument [
 	self
 		assert: source
 		equals:
-			'foo
+			'foo 
 message:
 	TooLongArgument'
 ]
