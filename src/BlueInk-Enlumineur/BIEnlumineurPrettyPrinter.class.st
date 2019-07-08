@@ -1976,19 +1976,25 @@ BIEnlumineurPrettyPrinter >> visitCascadeNode: aCascadeNode [
 ]
 
 { #category : #visiting }
-BIEnlumineurPrettyPrinter >> visitLiteralArrayNode: aRBArrayLiteralNode [ 
-	| brackets |
+BIEnlumineurPrettyPrinter >> visitLiteralArrayNode: aRBArrayLiteralNode [
+	| brackets current |
 	codeStream nextPut: $#.
-	brackets := aRBArrayLiteralNode isForByteArray 
-				ifTrue: ['[]']
-				ifFalse: ['()'].
-	self bracketWith: brackets
-		around: 
-			[
-			codeStream nextPutAll: self spacesInsideArray.
-			aRBArrayLiteralNode contents do: [:each | self visitNode: each]
-				separatedBy: [self space].
-			codeStream nextPutAll: self spacesInsideArray]
+	brackets := aRBArrayLiteralNode isForByteArray
+		ifTrue: [ '[]' ]
+		ifFalse: [ '()' ].
+	self
+		bracketWith: brackets
+		around: [ self
+				indentExtraSpaces: '#(' size + self numberOfSpacesInsideArray
+				around: [ codeStream nextPutAll: self spacesInsideArray.
+					aRBArrayLiteralNode contents
+						do: [ :each | 
+							current := each.
+							self visitNode: each ]
+						separatedBy: [ (self isLineTooLong: current value asString)
+								ifTrue: [ self newLine ]
+								ifFalse: [ self space ] ].
+					codeStream nextPutAll: self spacesInsideArray ] ]
 ]
 
 { #category : #visiting }
