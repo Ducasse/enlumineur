@@ -954,6 +954,7 @@ BIEnlumineurPrettyPrinter >> format: aParseTree [
 { #category : #'private-formatting' }
 BIEnlumineurPrettyPrinter >> formatArray: anArrayNode [
 	| current | 
+	codeStream nextPutAll: self spacesInsideArray.
 	(anArrayNode statements reject: [ :each | each className = 'RBLiteralValueNode' ])
 		ifEmpty: [ 
 			anArrayNode statements
@@ -972,7 +973,8 @@ BIEnlumineurPrettyPrinter >> formatArray: anArrayNode [
 						self  indentAround: [
 							self newLine ;
 							 formatSequenceNodeStatementsFor: anArrayNode]  ]
-			ifFalse: [self formatSequenceNodeStatementsFor: anArrayNode ]]
+			ifFalse: [self formatSequenceNodeStatementsFor: anArrayNode ]].
+	codeStream nextPutAll: self spacesInsideArray.
 ]
 
 { #category : #'private-formatting' }

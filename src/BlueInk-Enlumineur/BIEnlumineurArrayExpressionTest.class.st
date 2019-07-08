@@ -16,7 +16,8 @@ BIEnlumineurArrayExpressionTest >> basicConfiguration [
 		indentStyle: #tabulation;
 		indentExtraSpaces: 0;
 		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod:false
+		periodsAtEndOfMethod:false;
+		numberOfSpacesInsideArray: 0
 ]
 
 { #category : #configurations }
@@ -34,7 +35,8 @@ BIEnlumineurArrayExpressionTest >> maxLineLengthConfiguration [
 		indentStyle: #tabulation;
 		periodsAtEndOfBlock:false;
 		periodsAtEndOfMethod:false;
-		indentExtraSpaces: 0
+		indentExtraSpaces: 0;
+		numberOfSpacesInsideArray: 0
 ]
 
 { #category : #configurations }
@@ -55,7 +57,24 @@ BIEnlumineurArrayExpressionTest >> multiLineConfiguration [
 		numberOfArgumentsForMultiLine: 4;
 		indentsForKeywords: 1;
 		keepBlockInMessage: true;
-		indentExtraSpaces: 0
+		indentExtraSpaces: 0;
+		numberOfSpacesInsideArray: 0
+]
+
+{ #category : #configurations }
+BIEnlumineurArrayExpressionTest >> oneSpaceInsideArrayConfiguration [
+
+	^ self contextClass basicNew
+		formatCommentWithStatements:false;
+		maxLineLength:50;
+		numberOfSpacesInsideParentheses: 0;
+		retainBlankLinesBetweenStatements:false;
+		minimumNewLinesBetweenStatements:1;
+		indentStyle: #tabulation;
+		indentExtraSpaces: 0;
+		periodsAtEndOfBlock:false;
+		periodsAtEndOfMethod:false;
+		numberOfSpacesInsideArray: 1
 ]
 
 { #category : #configurations }
@@ -75,7 +94,8 @@ BIEnlumineurArrayExpressionTest >> periodAsTerminatorConfiguration [
 		periodsAtEndOfMethod:true;
 		numberOfSpacesInsideBlock:0;
 		lineUpBlockBrackets:false;
-		indentExtraSpaces:0
+		indentExtraSpaces:0;
+		numberOfSpacesInsideArray: 0
 ]
 
 { #category : #configurations }
@@ -96,7 +116,8 @@ BIEnlumineurArrayExpressionTest >> periodAsTerminatorMessageConfiguration2 [
 		multiLineMessages:Array new;
 		oneLineMessages:Array new;
 		numberOfArgumentsForMultiLine:2;
-		newLineBeforeFirstKeyword:false
+		newLineBeforeFirstKeyword:false;
+		numberOfSpacesInsideArray: 0
 ]
 
 { #category : #test }
@@ -161,6 +182,14 @@ BIEnlumineurArrayExpressionTest >> testNoSpaceAroundBrackets [
 ]
 
 { #category : #test }
+BIEnlumineurArrayExpressionTest >> testOneSpaceAroundBrackets [
+	| source |
+	configurationSelector := #oneSpaceInsideArrayConfiguration.
+	source := self formatExpression: ' { 1. 2. 3 } '.
+	self assert: source equals: '{ 1 . 2 . 3 }'
+]
+
+{ #category : #test }
 BIEnlumineurArrayExpressionTest >> testPeriodAtEndOfBlock [
 	| source |
 	configurationSelector := #periodAsTerminatorConfiguration.
@@ -207,4 +236,28 @@ BIEnlumineurArrayExpressionTest >> testToLongNewLine2 [
 		equals:
 			'{1 . 2 . 3 . 4.
 5 . 6 . 7 . 1}'
+]
+
+{ #category : #test }
+BIEnlumineurArrayExpressionTest >> testTwoSpaceAroundBrackets [
+	| source |
+	configurationSelector := #twoSpacesInsideArrayConfiguration.
+	source := self formatExpression: ' { 1. 2. 3 } '.
+	self assert: source equals: '{  1 . 2 . 3  }'
+]
+
+{ #category : #configurations }
+BIEnlumineurArrayExpressionTest >> twoSpacesInsideArrayConfiguration [
+
+	^ self contextClass basicNew
+		formatCommentWithStatements:false;
+		maxLineLength:50;
+		numberOfSpacesInsideParentheses: 0;
+		retainBlankLinesBetweenStatements:false;
+		minimumNewLinesBetweenStatements:1;
+		indentStyle: #tabulation;
+		indentExtraSpaces: 0;
+		periodsAtEndOfBlock:false;
+		periodsAtEndOfMethod:false;
+		numberOfSpacesInsideArray: 2
 ]
