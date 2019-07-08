@@ -1659,6 +1659,16 @@ BIEnlumineurPrettyPrinter >> numberOfSpacesInIndent: anInteger [
 ]
 
 { #category : #accessing }
+BIEnlumineurPrettyPrinter >> numberOfSpacesInsideArray [
+	^ context numberOfSpacesInsideArray
+]
+
+{ #category : #accessing }
+BIEnlumineurPrettyPrinter >> numberOfSpacesInsideArray: anInteger [
+	context numberOfSpacesInsideArray: anInteger
+]
+
+{ #category : #accessing }
 BIEnlumineurPrettyPrinter >> numberOfSpacesInsideBlock [
 	^ context numberOfSpacesInsideBlock
 ]
@@ -1866,6 +1876,11 @@ BIEnlumineurPrettyPrinter >> spacesAfterCaretSymbolInReturn [
 ]
 
 { #category : #accessing }
+BIEnlumineurPrettyPrinter >> spacesInsideArray [
+	^ context spacesInsideArray
+]
+
+{ #category : #accessing }
 BIEnlumineurPrettyPrinter >> spacesInsideBlocks [
 	^ context spacesInsideBlocks
 ]
@@ -1967,8 +1982,11 @@ BIEnlumineurPrettyPrinter >> visitLiteralArrayNode: aRBArrayLiteralNode [
 				ifFalse: ['()'].
 	self bracketWith: brackets
 		around: 
-			[aRBArrayLiteralNode contents do: [:each | self visitNode: each]
-				separatedBy: [self space]]
+			[
+			codeStream nextPutAll: self spacesInsideArray.
+			aRBArrayLiteralNode contents do: [:each | self visitNode: each]
+				separatedBy: [self space].
+			codeStream nextPutAll: self spacesInsideArray]
 ]
 
 { #category : #visiting }

@@ -42,7 +42,9 @@ Class {
 		'indentStyle',
 		'indentString',
 		'spacesInsideParentheses',
-		'indentExtraSpaces'
+		'indentExtraSpaces',
+		'spacesInsideArray',
+		'numberOfSpacesInsideArray'
 	],
 	#category : #'BlueInk-Enlumineur-Core'
 }
@@ -125,7 +127,8 @@ BIEnlumineurContext >> initialize [
 	self numberOfSpacesAfterCaretSymbolInReturn: 1.
 	self indentStyle: #tabulation.
 	self numberOfSpacesInIndent: 3.
-	self indentExtraSpaces: 0
+	self indentExtraSpaces: 0.
+	self numberOfSpacesInsideArray: 1
 ]
 
 { #category : #accessing }
@@ -286,6 +289,17 @@ BIEnlumineurContext >> numberOfSpacesInIndent: anInteger [
 ]
 
 { #category : #accessing }
+BIEnlumineurContext >> numberOfSpacesInsideArray [
+	^ numberOfSpacesInsideArray
+]
+
+{ #category : #accessing }
+BIEnlumineurContext >> numberOfSpacesInsideArray: anInteger [
+	spacesInsideArray := (self numberOfSpaces: anInteger).
+	numberOfSpacesInsideArray:= anInteger.
+]
+
+{ #category : #accessing }
 BIEnlumineurContext >> numberOfSpacesInsideBlock [
 	^ numberOfSpacesInsideBlock
 ]
@@ -370,6 +384,11 @@ BIEnlumineurContext >> selectorAndArgumentCombinedMaxSize: anInteger [
 { #category : #accessing }
 BIEnlumineurContext >> spacesAfterCaretSymbolInReturn [
 	^ spacesAfterCaretSymbolInReturn
+]
+
+{ #category : #accessing }
+BIEnlumineurContext >> spacesInsideArray [
+	^ spacesInsideArray
 ]
 
 { #category : #accessing }

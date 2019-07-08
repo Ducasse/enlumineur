@@ -8,7 +8,16 @@ Class {
 BIEnlumineurLiteralArrayExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
-		formatCommentWithStatements:false
+		formatCommentWithStatements:false;
+		numberOfSpacesInsideArray: 0
+]
+
+{ #category : #configurations }
+BIEnlumineurLiteralArrayExpressionTest >> oneSpaceConfiguration [
+
+	^ self contextClass basicNew
+		formatCommentWithStatements:false;
+		numberOfSpacesInsideArray: 1
 ]
 
 { #category : #tests }
@@ -49,4 +58,28 @@ BIEnlumineurLiteralArrayExpressionTest >> testNoExtraSpaceBetweenValue2 [
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '#[1     2       3]'.
 	self assert: source equals: '#[1 2 3]'
+]
+
+{ #category : #tests }
+BIEnlumineurLiteralArrayExpressionTest >> testOneSpaceInsideArray [
+	| source |
+	configurationSelector := #oneSpaceConfiguration.
+	source := self formatExpression: '#(1 2 3)'.
+	self assert: source equals: '#( 1 2 3 )'
+]
+
+{ #category : #tests }
+BIEnlumineurLiteralArrayExpressionTest >> testTwoSpacesInsideArray [
+	| source |
+	configurationSelector := #twoSpacesConfiguration.
+	source := self formatExpression: '#(1 2 3)'.
+	self assert: source equals: '#(  1 2 3  )'
+]
+
+{ #category : #configurations }
+BIEnlumineurLiteralArrayExpressionTest >> twoSpacesConfiguration [
+
+	^ self contextClass basicNew
+		formatCommentWithStatements:false;
+		numberOfSpacesInsideArray: 2
 ]
