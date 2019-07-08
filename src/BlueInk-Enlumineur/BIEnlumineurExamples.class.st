@@ -85,6 +85,73 @@ BIEnlumineurExamples class >> defaultConfiguration [
 ]
 
 { #category : #settings }
+BIEnlumineurExamples class >> empty [
+	^ 'BIEnlumineurContext {
+	#formatCommentWithStatements : true,
+	#indentsForKeywords : 1,
+	#keepBlockInMessage : true,
+	#lineUpBlockBrackets : false,
+	#maxLineLength : 70,
+	#methodSignatureOnMultipleLines : false,
+	#minimumNewLinesBetweenStatements : 1,
+	#multiLineMessages : [ ],
+	#newLineAfterCascade : true,
+	#newLineBeforeFirstCascade : true,
+	#newLineBeforeFirstKeyword : true,
+	#newLinesAfterMethodComment : 2,
+	#newLinesAfterMethodPattern : 1,
+	#newLinesAfterTemporaries : 1,
+	#numberOfArgumentsForMultiLine : 4,
+	#oneLineMessages : [ ],
+	#periodsAtEndOfBlock : false,
+	#periodsAtEndOfMethod : false,
+	#retainBlankLinesBetweenStatements : false,
+	#retainBlankLinesBeforeComments : true,
+	#useTraditionalBinaryPrecedenceForParentheses : true,
+	#selectorAndArgumentCombinedMaxSize : 40,
+	#useBasicCommentFormat : true,
+	#traditionalBinaryPrecedenceArray : [
+		[
+			Character [ ''|'' ],
+			Character [ ''&'' ],
+			Character [ ''?'' ]
+		],
+		[
+			Character [ ''='' ],
+			Character [ ''~'' ],
+			Character [ ''<'' ],
+			Character [ ''>'' ]
+		],
+		[
+			Character [ ''-'' ],
+			Character [ ''+'' ]
+		],
+		[
+			Character [ ''*'' ],
+			Character [ ''/'' ],
+			Character [ ''%'' ],
+			Character [ ''\\'' ]
+		],
+		[
+			Character [ ''@'' ]
+		]
+	],
+	#numberOfSpacesInsideBlock : 1,
+	#numberOfSpacesInsideParentheses : 0,
+	#numberOfSpacesAfterCaretSymbolInReturn : 1,
+	#numberOfSpacesInIndent : 3,
+	#spacesAfterCaretSymbolInReturn : '' '',
+	#spacesInsideBlocks : '' '',
+	#indentStyle : #tabulation,
+	#indentString : ''\t'',
+	#spacesInsideParentheses : '''',
+	#indentExtraSpaces : '''',
+	#spacesInsideArray : '' '',
+	#numberOfSpacesInsideArray : 1
+}'
+]
+
+{ #category : #settings }
 BIEnlumineurExamples class >> emptyOneLineMessages [
 	^ 'BIEnlumineurContext {
 	#formatCommentWithStatements : true,
@@ -159,6 +226,86 @@ BIEnlumineurExamples class >> emptyOneLineMessages [
 }'
 ]
 
+{ #category : #settings }
+BIEnlumineurExamples class >> guille [
+	^ 'BIEnlumineurContext {
+	#formatCommentWithStatements : true,
+	#indentsForKeywords : 1,
+	#keepBlockInMessage : true,
+	#lineUpBlockBrackets : false,
+	#maxLineLength : 70,
+	#methodSignatureOnMultipleLines : false,
+	#minimumNewLinesBetweenStatements : 1,
+	#multiLineMessages : [
+		#''ifTrue:ifFalse:'',
+		#''ifFalse:ifTrue:'',
+		#''ifTrue:'',
+		#''ifFalse:'',
+		#''on:do:'',
+		#''ensure:'',
+		#''ifCurtailed:''
+	],
+	#newLineAfterCascade : true,
+	#newLineBeforeFirstCascade : true,
+	#newLineBeforeFirstKeyword : true,
+	#newLinesAfterMethodComment : 2,
+	#newLinesAfterMethodPattern : 1,
+	#newLinesAfterTemporaries : 1,
+	#numberOfArgumentsForMultiLine : 4,
+	#oneLineMessages : [
+		#''to:'',
+		#''to:do:'',
+		#''to:by:'',
+		#''to:by:do:''
+	],
+	#periodsAtEndOfBlock : false,
+	#periodsAtEndOfMethod : false,
+	#retainBlankLinesBetweenStatements : false,
+	#retainBlankLinesBeforeComments : true,
+	#useTraditionalBinaryPrecedenceForParentheses : true,
+	#selectorAndArgumentCombinedMaxSize : 40,
+	#useBasicCommentFormat : true,
+	#traditionalBinaryPrecedenceArray : [
+		[
+			Character [ ''|'' ],
+			Character [ ''&'' ],
+			Character [ ''?'' ]
+		],
+		[
+			Character [ ''='' ],
+			Character [ ''~'' ],
+			Character [ ''<'' ],
+			Character [ ''>'' ]
+		],
+		[
+			Character [ ''-'' ],
+			Character [ ''+'' ]
+		],
+		[
+			Character [ ''*'' ],
+			Character [ ''/'' ],
+			Character [ ''%'' ],
+			Character [ ''\\'' ]
+		],
+		[
+			Character [ ''@'' ]
+		]
+	],
+	#numberOfSpacesInsideBlock : 1,
+	#numberOfSpacesInsideParentheses : 0,
+	#numberOfSpacesAfterCaretSymbolInReturn : 1,
+	#numberOfSpacesInIndent : 3,
+	#spacesAfterCaretSymbolInReturn : '' '',
+	#spacesInsideBlocks : '' '',
+	#indentStyle : #tabulation,
+	#indentString : ''\t'',
+	#spacesInsideParentheses : '''',
+	#indentExtraSpaces : '''',
+	#spacesInsideArray : '' '',
+	#numberOfSpacesInsideArray : 1
+}'
+]
+
 { #category : #'class initialization' }
 BIEnlumineurExamples class >> initializeSettingsTable [
 	"self initializeSettingsTable"
@@ -195,9 +342,109 @@ BIEnlumineurExamples class >> initializeSettingsTable [
 	}
 ]
 
+{ #category : #settings }
+BIEnlumineurExamples class >> newConfig [
+	^ 'BIEnlumineurContext {
+	#formatCommentWithStatements : true,
+	#indentsForKeywords : 1,
+	#keepBlockInMessage : true,
+	#lineUpBlockBrackets : false,
+	#maxLineLength : 70,
+	#methodSignatureOnMultipleLines : false,
+	#minimumNewLinesBetweenStatements : 1,
+	#multiLineMessages : [
+		#''ifTrue:ifFalse:'',
+		#''ifFalse:ifTrue:'',
+		#''ifTrue:'',
+		#''ifFalse:'',
+		#''on:do:'',
+		#''ensure:'',
+		#''ifCurtailed:''
+	],
+	#newLineAfterCascade : true,
+	#newLineBeforeFirstCascade : true,
+	#newLineBeforeFirstKeyword : false,
+	#newLinesAfterMethodComment : 2,
+	#newLinesAfterMethodPattern : 1,
+	#newLinesAfterTemporaries : 1,
+	#numberOfArgumentsForMultiLine : 4,
+	#oneLineMessages : [
+		#''to:'',
+		#''to:do:'',
+		#''to:by:'',
+		#''to:by:do:''
+	],
+	#periodsAtEndOfBlock : false,
+	#periodsAtEndOfMethod : false,
+	#retainBlankLinesBetweenStatements : false,
+	#retainBlankLinesBeforeComments : true,
+	#useTraditionalBinaryPrecedenceForParentheses : true,
+	#selectorAndArgumentCombinedMaxSize : 40,
+	#useBasicCommentFormat : true,
+	#traditionalBinaryPrecedenceArray : [
+		[
+			Character [ ''|'' ],
+			Character [ ''&'' ],
+			Character [ ''?'' ]
+		],
+		[
+			Character [ ''='' ],
+			Character [ ''~'' ],
+			Character [ ''<'' ],
+			Character [ ''>'' ]
+		],
+		[
+			Character [ ''-'' ],
+			Character [ ''+'' ]
+		],
+		[
+			Character [ ''*'' ],
+			Character [ ''/'' ],
+			Character [ ''%'' ],
+			Character [ ''\\'' ]
+		],
+		[
+			Character [ ''@'' ]
+		]
+	],
+	#numberOfSpacesInsideBlock : 1,
+	#numberOfSpacesInsideParentheses : 0,
+	#numberOfSpacesAfterCaretSymbolInReturn : 1,
+	#numberOfSpacesInIndent : 3,
+	#spacesAfterCaretSymbolInReturn : '' '',
+	#spacesInsideBlocks : '' '',
+	#indentStyle : #tabulation,
+	#indentString : ''\t'',
+	#spacesInsideParentheses : '''',
+	#indentExtraSpaces : '''',
+	#spacesInsideArray : '' '',
+	#numberOfSpacesInsideArray : 1
+}'
+]
+
 { #category : #methods }
 BIEnlumineurExamples >> BigArray [
 ^ #(#(#expr0 #expr1 #expr2 #expr3 #expr4 #expr5 #expr6 #expr7 #expr8 #expr9 #expr10 #expr11 #expr12 #expr13 #expr14 #expr15 #expr16 #expr17 #expr18 #expr19 #expr20 #expr21 #expr22 #expr23 #expr24) #(#expr25 #expr26 #expr27 #expr28 #expr29 #expr30 #expr31 #expr32 #expr33 #expr34 #expr35 #expr36 #expr37 #expr38 #expr39 #expr40 #expr41 #expr42 #expr43 #expr44 #expr45 #expr46 #expr47 #expr48 #expr49))
+]
+
+{ #category : #methods }
+BIEnlumineurExamples >> bearingToPoint2: anotherPoint [
+	"Return the bearing, in degrees, from the receiver to anotherPoint."
+	"questions: 
+		are nested ifT indented enough?
+		last - is clearly not well indented.
+	"
+	| deltaX deltaY |
+	deltaX := anotherPoint x - self x.
+	deltaY := anotherPoint y - self y.
+	deltaX abs < 0.001
+		ifTrue: [ ^ deltaY > 0
+				ifTrue: [ 180 ]
+				ifFalse: [ 0 ] ].
+	^ ((deltaX >= 0
+		ifTrue: [ 90 ]
+		ifFalse: [ 270 ])
+		- (deltaY / deltaX) arcTan negated radiansToDegrees) rounded
 ]
 
 { #category : #methods }
@@ -212,8 +459,8 @@ BIEnlumineurExamples >> bearingToPoint: anotherPoint [
 	deltaY := anotherPoint y - self y.
 	deltaX abs < 0.001
 		ifTrue: [ ^ deltaY > 0
-				ifTrue: [ 180 ]
-				ifFalse: [ 0 ] ].
+				ifTrue: [ 180 = 22222222222222222222 ]
+				ifFalse: [ 000000000000000000000 ] ].
 	^ ((deltaX >= 0
 		ifTrue: [ 90 ]
 		ifFalse: [ 270 ])
@@ -277,6 +524,19 @@ BIEnlumineurExamples >> bonk: glyphForm with: bonkForm [
 { #category : #methods }
 BIEnlumineurExamples >> cascadeExample [
 	Transcript cr;cr;cr
+]
+
+{ #category : #methods }
+BIEnlumineurExamples >> criticNameOn: aStream [
+	"This behavior may be folded later by changing the name of this method or using another one."
+	
+	aStream 
+		<< self methodClass name 
+		<< '>>#' 
+		<< self selector  
+		<< ' (' 
+		<< self methodClass instanceSide category 
+		<< ')'
 ]
 
 { #category : #methods }
@@ -544,6 +804,42 @@ BIEnlumineurExamples >> periodsAtEndOfMethodExample [
 ]
 
 { #category : #methods }
+BIEnlumineurExamples >> printOn2: stream [
+	super printOn: stream.
+	stream nextPut: $(.
+	self isEmpty
+		ifTrue: [ 
+			stream << ' empty' ]
+		ifFalse: [ 
+			iterations printWithCommasOn: stream.
+			stream space; << ('iteration' asPluralBasedOn: iterations).
+			stream << ' in '.
+			elapsedTime printHumanReadableOn: stream.
+			stream << '. '.
+			self printFrequenceOn: stream ].
+	stream nextPut: $)
+]
+
+{ #category : #methods }
+BIEnlumineurExamples >> printOn3: s [
+	[ super printOn: s ] on: Error do: [ :ex | s << '![' << ex messageText << ']!' ]
+]
+
+{ #category : #methods }
+BIEnlumineurExamples >> printOn: aStream [
+	aStream nextPutAll: 'Path'.
+	self isRoot
+		ifTrue: [aStream nextPutAll: ' root']
+		ifFalse:
+			[1 to: self size do:
+				[:i |
+				aStream 
+					nextPutAll: ' / ''';
+				 	nextPutAll: (self at: i);
+					nextPut: $']]
+]
+
+{ #category : #methods }
 BIEnlumineurExamples >> retainBlankLinesExample [
 "methodComment"	
 
@@ -609,6 +905,16 @@ BIEnlumineurExamples >> sumFrom: a to: b [
 ]
 
 { #category : #methods }
+BIEnlumineurExamples >> toLongExpressionDo [
+	1 to:
+			([ :i | 
+			    i
+				    factorial;
+				    + 3 ] value: 15) do: [ :j | j ]
+
+]
+
+{ #category : #methods }
 BIEnlumineurExamples >> traditionalBinaryPrecedenceForParenthesesExample [
 
 	1 + 2 * 3.
@@ -641,6 +947,20 @@ BIEnlumineurExamples >> useRule41 [
 				alpha: foreColorAlpha
 				gammaTable: gammaTable
 				ungammaTable: gammaInverseTable ]
+]
+
+{ #category : #methods }
+BIEnlumineurExamples >> valueWithInterval: aDelay [
+	"Executes the block every x milliseconds specified in arguments. Answers the process, so you can terminate it"
+	
+	^ [ [ self value. aDelay wait. ] repeat ] 
+		forkAt: Processor userBackgroundPriority 
+		named: (String streamContents: [ :s |
+				s 
+					<< 'every ';
+					print: aDelay;
+					<<' do: ';
+					print: self ] )
 ]
 
 { #category : #methods }
