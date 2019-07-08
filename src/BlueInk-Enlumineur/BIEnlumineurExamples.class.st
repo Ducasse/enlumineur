@@ -422,6 +422,11 @@ BIEnlumineurExamples >> newLinesExample [
 
 { #category : #methods }
 BIEnlumineurExamples >> openSettingPreviewerWithEnlumineur [
+"how should it be formated ?
+if the first keyWord and his parameter are on the same line we have a line longer than the maxLineLenght value
+Should we pass a line between the first keyWord and his argument 
+or before the first keyword ?
+"
 
 BISettingPreviewer2 openFormaterWithAnInstanceOfFormater: 
 BIEnlumineurPrettyPrinter new
