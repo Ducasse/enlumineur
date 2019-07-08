@@ -84,6 +84,81 @@ BIEnlumineurExamples class >> defaultConfiguration [
 }'
 ]
 
+{ #category : #settings }
+BIEnlumineurExamples class >> emptyOneLineMessages [
+	^ 'BIEnlumineurContext {
+	#formatCommentWithStatements : true,
+	#indentsForKeywords : 1,
+	#keepBlockInMessage : true,
+	#lineUpBlockBrackets : false,
+	#maxLineLength : 70,
+	#methodSignatureOnMultipleLines : false,
+	#minimumNewLinesBetweenStatements : 1,
+	#multiLineMessages : [
+		#''ifTrue:ifFalse:'',
+		#''ifFalse:ifTrue:'',
+		#''ifTrue:'',
+		#''ifFalse:'',
+		#''on:do:'',
+		#''ensure:'',
+		#''ifCurtailed:''
+	],
+	#newLineAfterCascade : true,
+	#newLineBeforeFirstCascade : true,
+	#newLineBeforeFirstKeyword : false,
+	#newLinesAfterMethodComment : 2,
+	#newLinesAfterMethodPattern : 1,
+	#newLinesAfterTemporaries : 1,
+	#numberOfArgumentsForMultiLine : 4,
+	#oneLineMessages : [ ],
+	#periodsAtEndOfBlock : false,
+	#periodsAtEndOfMethod : false,
+	#retainBlankLinesBetweenStatements : false,
+	#retainBlankLinesBeforeComments : true,
+	#useTraditionalBinaryPrecedenceForParentheses : true,
+	#selectorAndArgumentCombinedMaxSize : 40,
+	#useBasicCommentFormat : true,
+	#traditionalBinaryPrecedenceArray : [
+		[
+			Character [ ''|'' ],
+			Character [ ''&'' ],
+			Character [ ''?'' ]
+		],
+		[
+			Character [ ''='' ],
+			Character [ ''~'' ],
+			Character [ ''<'' ],
+			Character [ ''>'' ]
+		],
+		[
+			Character [ ''-'' ],
+			Character [ ''+'' ]
+		],
+		[
+			Character [ ''*'' ],
+			Character [ ''/'' ],
+			Character [ ''%'' ],
+			Character [ ''\\'' ]
+		],
+		[
+			Character [ ''@'' ]
+		]
+	],
+	#numberOfSpacesInsideBlock : 1,
+	#numberOfSpacesInsideParentheses : 1,
+	#numberOfSpacesAfterCaretSymbolInReturn : 1,
+	#numberOfSpacesInIndent : 3,
+	#spacesAfterCaretSymbolInReturn : '' '',
+	#spacesInsideBlocks : '' '',
+	#indentStyle : #tabulation,
+	#indentString : ''\t'',
+	#spacesInsideParentheses : '' '',
+	#indentExtraSpaces : '''',
+	#spacesInsideArray : '' '',
+	#numberOfSpacesInsideArray : 1
+}'
+]
+
 { #category : #'class initialization' }
 BIEnlumineurExamples class >> initializeSettingsTable [
 	"self initializeSettingsTable"

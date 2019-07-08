@@ -14,7 +14,7 @@ BIEnlumineurMessageExpressionTest >> basicConfiguration [
 		oneLineMessages:Array new;
 		numberOfArgumentsForMultiLine:10;
 		indentsForKeywords: 0;
-		maxLineLength: 50;
+		maxLineLength: 70;
 		newLineBeforeFirstKeyword:false;
 		keepBlockInMessage:false;
 		indentExtraSpaces: 0
@@ -328,8 +328,7 @@ BIEnlumineurMessageExpressionTest >> testExtraIndentInParentheses [
 			factorial; +3 ] value: 15 )
 	  do: [ :j | j ]'.
 	self assert: source equals:
-'1 to:
-		( [ :i | 
+'1 to: ( [ :i | 
 		    i
 			    factorial;
 			    + 3 ] value: 15 )
@@ -340,14 +339,13 @@ BIEnlumineurMessageExpressionTest >> testExtraIndentInParentheses [
 BIEnlumineurMessageExpressionTest >> testExtraIndentInParenthesesWhenThreeSpacesInsideParentheses [
 	| source |
 	configurationSelector := #extraIndentWithThreeSpacesInsideParenthesesConfiguration.
-	source := self formatExpression: '	1 to:
-		( [ :i | 
+	source := self formatExpression:'1 to:
+	( [ :i | 
 		i
 			factorial; +3 ] value: 15 )
 	  do: [ :j | j ]'.
 	self assert: source equals:
-'1 to:
-	(   [ :i | 
+'1 to: (   [ :i | 
 	      i
 		      factorial;
 		      + 3 ] value: 15   )
@@ -605,6 +603,31 @@ BIEnlumineurMessageExpressionTest >> testNoNewLineBetweenVariableAndIfTrue [
 	  alpha: foreColorAlpha
 	  gammaTable: gammaTable
 	  ungammaTable: gammaInverseTable ]'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testNoNewLineForBeginingOfATooLongArgument [
+	| source |
+	configurationSelector := #basicConfiguration.
+	source := self
+		formatExpression: 'self parseMethod: 	''a
+b'''.
+	self assert: source equals: 'self parseMethod: ''a
+b'''
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testNoNewLineForBeginingOfATooLongArgument2 [
+	| source |
+	configurationSelector := #basicConfiguration.
+	source := self
+		formatExpression: 'self
+		parseMethod:
+			''foo: abd bar: cde  
+^ abd + cde'''.
+	self assert: source equals:
+'self parseMethod: ''foo: abd bar: cde  
+^ abd + cde'''
 ]
 
 { #category : #tests }

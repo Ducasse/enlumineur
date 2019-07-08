@@ -230,8 +230,7 @@ BIEnlumineurCascadeExpressionTest >> testFormatMultilineMessage [
 '1
 	between: 2 and: 5;
 	to: 4
-		do:
-		[ :each | 
+		do: [ :each | 
 		  each factorial.
 		  each + 1 ]'
 ]
