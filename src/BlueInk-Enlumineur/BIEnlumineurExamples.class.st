@@ -421,6 +421,14 @@ BIEnlumineurExamples >> newLinesExample [
 ]
 
 { #category : #methods }
+BIEnlumineurExamples >> openSettingPreviewerWithEnlumineur [
+
+BISettingPreviewer2 openFormaterWithAnInstanceOfFormater: 
+BIEnlumineurPrettyPrinter new
+onClass: BIEnlumineurExamples
+]
+
+{ #category : #methods }
 BIEnlumineurExamples >> parenthesesExample [
 	1 + ( 2 * 3 )
 ]
