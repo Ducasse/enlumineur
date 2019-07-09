@@ -109,7 +109,7 @@ BIEnlumineurContext >> initialize [
 	multiLineMessages := #(#ifTrue:ifFalse: #ifFalse:ifTrue: #ifTrue: #ifFalse: #on:do: #ensure: #ifCurtailed:).
 	newLineAfterCascade := true.
 	newLineBeforeFirstCascade := true.
-	newLineBeforeFirstKeyword := false.
+	newLineBeforeFirstKeyword := true.
 	newLinesAfterMethodComment := 2.
 	newLinesAfterMethodPattern := 1.
 	newLinesAfterTemporaries := 1.
@@ -123,7 +123,7 @@ BIEnlumineurContext >> initialize [
 	traditionalBinaryPrecedenceArray := #(#($| $& $?) #($= $~ $< $>) #($- $+) #($* $/ $% $\) #($@)).
 	useTraditionalBinaryPrecedenceForParentheses := true.
 	self numberOfSpacesInsideBlock: 1.
-	self numberOfSpacesInsideParentheses: 1.
+	self numberOfSpacesInsideParentheses: 0.
 	self numberOfSpacesAfterCaretSymbolInReturn: 1.
 	self indentStyle: #tabulation.
 	self numberOfSpacesInIndent: 3.
