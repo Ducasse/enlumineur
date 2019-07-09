@@ -26,9 +26,9 @@ BIEnlumineurPatternBlockExpressionTest >> testDontFormatCommentWithStatement2 [
 	configurationSelector := #dontFormatCommentWithStatementConfiguration.
 	source := self formatExpression:'"aComment"`{ ""1 factorial. 2 factorial }'.
 	self assert: source equals:'`{ 
-  "aComment"""
-  1 factorial.
-  2 factorial }'
+"aComment"""
+1 factorial.
+2 factorial }'
 ]
 
 { #category : #test }
@@ -39,7 +39,7 @@ BIEnlumineurPatternBlockExpressionTest >> testNewLineAfterComment [
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression:'"aComment"`{ 1 . 2  }'.
 	self assert: source equals:'`{ 
-  "aComment"
-  1.
-  2 }'
+"aComment"
+1.
+2 }'
 ]

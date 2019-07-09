@@ -339,31 +339,6 @@ BIEnlumineurBlockExpressionTest >> tabIndentIsnotAffectedConfiguration [
 		indentExtraSpaces:0
 ]
 
-{ #category : #configurations }
-BIEnlumineurBlockExpressionTest >> tabIndentIsnotAffectedConfiguration2 [
-
-	^ self contextClass basicNew
-		numberOfSpacesInsideBlock: 1;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod: false;
-		lineUpBlockBrackets:false;
-		keepBlockInMessage:true;
-		retainBlankLinesBetweenStatements:false;
-		minimumNewLinesBetweenStatements:1;
-		multiLineMessages: Array new;
-		oneLineMessages:#(#to:do:);
-		numberOfArgumentsForMultiLine:5;
-		indentsForKeywords:1;
-		newLineBeforeFirstKeyword:false;
-		formatCommentWithStatements:true;
-		maxLineLength:50;
-		newLineAfterCascade:true;
-		newLineBeforeFirstCascade: true;
-		numberOfSpacesInIndent: 37;
-		indentStyle: #tab;
-		indentExtraSpaces:0
-]
-
 { #category : #test }
 BIEnlumineurBlockExpressionTest >> testArgumentIsFormated [
 	self validate: ':i|i' isFormattedAs: ' :i | i ' 
@@ -392,8 +367,8 @@ BIEnlumineurBlockExpressionTest >> testDontFormatCommentWithStatement [
 		validate: '1 factorial. "aComment" 2 factorial'
 		isFormattedAs:
 			' 
-  1 factorial "aComment".
-  2 factorial '
+1 factorial "aComment".
+2 factorial '
 		with: #dontFormatCommentWithStatementConfiguration
 ]
 
@@ -403,8 +378,8 @@ BIEnlumineurBlockExpressionTest >> testDontFormatCommentWithStatement2 [
 		validate: ' "aComment" 1 factorial.  2 factorial'
 		isFormattedAs:
 			' "aComment"
-  1 factorial.
-  2 factorial '
+1 factorial.
+2 factorial '
 		with: #dontFormatCommentWithStatementConfiguration
 ]
 
@@ -423,8 +398,8 @@ BIEnlumineurBlockExpressionTest >> testFormatBody [
 		validate: ' [1]. [ a:=1] '
 		isFormattedAs:
 			' 
-  [ 1 ].
-  [ a := 1 ] '
+[ 1 ].
+[ a := 1 ] '
 ]
 
 { #category : #test }
@@ -433,8 +408,8 @@ BIEnlumineurBlockExpressionTest >> testFormatCommentWithStatement [
 		validate: '1 factorial. "aComment" 2 factorial'
 		isFormattedAs:
 			' 
-  1 factorial.	"aComment"
-  2 factorial '
+1 factorial.	"aComment"
+2 factorial '
 		with: #formatCommentWithStatementConfiguration
 ]
 
@@ -448,10 +423,10 @@ BIEnlumineurBlockExpressionTest >> testFourSpaceIndent [
 		assert: source
 		equals:
 '1 to: 10 do: [ :i | 
-      i to: 10 do: [ :j | 
-            Transcript
-                show: i;
-                show: j ] ]'
+    i to: 10 do: [ :j | 
+        Transcript
+            show: i;
+            show: j ] ]'
 ]
 
 { #category : #test }
@@ -461,8 +436,8 @@ BIEnlumineurBlockExpressionTest >> testMultiline [
 		validate: '1+3. 6 factorial '
 		isFormattedAs: 
 ' 
-  1 + 3.
-  6 factorial '
+1 + 3.
+6 factorial '
 ]
 
 { #category : #test }
@@ -472,8 +447,8 @@ BIEnlumineurBlockExpressionTest >> testNewLineAfterComment [
 		validate: '"aComment"1. 2'
 		isFormattedAs: 
 ' "aComment"
-  1.
-  2 '
+1.
+2 '
 ]
 
 { #category : #test }
@@ -489,8 +464,8 @@ BIEnlumineurBlockExpressionTest >> testNewLineAfterFirstBracketWhenMultiline [
 		assert: source
 		equals:
 '[ 
-  tan := y asFloat / x asFloat.
-  theta := tan arcCos ]'.
+tan := y asFloat / x asFloat.
+theta := tan arcCos ]'.
 ]
 
 { #category : #test }
@@ -506,8 +481,8 @@ BIEnlumineurBlockExpressionTest >> testNewLineAfterFirstBracketWhenMultilineWith
 		assert: source
 		equals:
 '[ :tan :theta | 
-  tan := y asFloat / x asFloat.
-  theta := tan arcCos ]'.
+tan := y asFloat / x asFloat.
+theta := tan arcCos ]'.
 ]
 
 { #category : #test }
@@ -523,9 +498,9 @@ BIEnlumineurBlockExpressionTest >> testNewLineAfterFirstBracketWhenMultilineWith
 		assert: source
 		equals:
 '[ 
-  | tan theta |
-  tan := y asFloat / x asFloat.
-  theta := tan arcCos ]'.
+| tan theta |
+tan := y asFloat / x asFloat.
+theta := tan arcCos ]'.
 ]
 
 { #category : #test }
@@ -535,8 +510,8 @@ BIEnlumineurBlockExpressionTest >> testNewLineBeforeEndBrackets [
 		validate:'3. 4'  
 		isFormattedAs:
 ' 
-  3.
-  4
+3.
+4
 '  		with: #newLineBeforeEndBracketConfiguration.
 ]
 
@@ -569,8 +544,8 @@ BIEnlumineurBlockExpressionTest >> testNoNewLineBeforeEndBrackets [
 		validate: '3. 4'  
 		isFormattedAs:
 ' 
-  3.
-  4 '  with: #noNewLineBeforeEndBracketConfiguration.
+3.
+4 '  with: #noNewLineBeforeEndBracketConfiguration.
 ]
 
 { #category : #test }
@@ -590,10 +565,10 @@ BIEnlumineurBlockExpressionTest >> testOneSpaceIndent [
 		assert: source
 		equals:
 '1 to: 10 do: [ :i | 
-   i to: 10 do: [ :j | 
-      Transcript
-       show: i;
-       show: j ] ]'
+ i to: 10 do: [ :j | 
+  Transcript
+   show: i;
+   show: j ] ]'
 ]
 
 { #category : #test }
@@ -613,10 +588,10 @@ BIEnlumineurBlockExpressionTest >> testTabIndent [
 		assert: source
 		equals:
 '1 to: 10 do: [ :i | 
-	  i to: 10 do: [ :j | 
-		    Transcript
-			    show: i;
-			    show: j ] ]'
+	i to: 10 do: [ :j | 
+		Transcript
+			show: i;
+			show: j ] ]'
 ]
 
 { #category : #test }
@@ -630,27 +605,10 @@ BIEnlumineurBlockExpressionTest >> testTabIndentIsNotAffectedByNumberOfSpace [
 		assert: source
 		equals:
 '1 to: 10 do: [ :i | 
-	  i to: 10 do: [ :j | 
-		    Transcript
-			    show: i;
-			    show: j ] ]'
-]
-
-{ #category : #test }
-BIEnlumineurBlockExpressionTest >> testTabIndentIsNotAffectedByNumberOfSpace2 [
-	| source |
-	configurationSelector := #tabIndentIsnotAffectedConfiguration2.
-	source := self
-		formatExpression:
-			'1 to:10 do: [:i | i to: 10 do: [:j | Transcript show:i; show: j]]'.
-	self
-		assert: source
-		equals:
-'1 to: 10 do: [ :i | 
-	  i to: 10 do: [ :j | 
-		    Transcript
-			    show: i;
-			    show: j ] ]'
+	i to: 10 do: [ :j | 
+		Transcript
+			show: i;
+			show: j ] ]'
 ]
 
 { #category : #test }
@@ -664,10 +622,10 @@ BIEnlumineurBlockExpressionTest >> testnumberOfSpaceChangedAfterIndentCharacter 
 		assert: source
 		equals:
 '1 to: 10 do: [ :i | 
-    i to: 10 do: [ :j | 
-        Transcript
-          show: i;
-          show: j ] ]'
+  i to: 10 do: [ :j | 
+    Transcript
+      show: i;
+      show: j ] ]'
 ]
 
 { #category : #test }

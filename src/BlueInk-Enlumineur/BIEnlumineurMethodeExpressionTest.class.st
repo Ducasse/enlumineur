@@ -306,10 +306,10 @@ BIEnlumineurMethodeExpressionTest >> testBigMethode [
 	tmp
 		to: 10
 		do: [:i | 
-			 Transcript
-				 show: i;
-				 cr;
-				 cr
+			Transcript
+				show: i;
+				cr;
+				cr
 			]'
 ]
 

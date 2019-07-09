@@ -329,9 +329,9 @@ BIEnlumineurMessageExpressionTest >> testExtraIndentInParentheses [
 	  do: [ :j | j ]'.
 	self assert: source equals:
 '1 to: ( [ :i | 
-		    i
-			    factorial;
-			    + 3 ] value: 15 )
+		  i
+			  factorial;
+			  + 3 ] value: 15 )
 	do: [ :j | j ]'
 ]
 
@@ -346,9 +346,9 @@ BIEnlumineurMessageExpressionTest >> testExtraIndentInParenthesesWhenThreeSpaces
 	  do: [ :j | j ]'.
 	self assert: source equals:
 '1 to: (   [ :i | 
-	      i
-		      factorial;
-		      + 3 ] value: 15   )
+	    i
+		    factorial;
+		    + 3 ] value: 15   )
 do: [ :j | j ]'
 ]
 
@@ -390,9 +390,9 @@ BIEnlumineurMessageExpressionTest >> testKeepBlockInMessageMutlilineNewLine [
 		assert: source
 		equals:
 'aBoolean ifTrue: [ 
-		  Transcript cr.
-		  Transcript cr.
-		  Transcript cr ]'
+		Transcript cr.
+		Transcript cr.
+		Transcript cr ]'
 ]
 
 { #category : #tests }
@@ -407,9 +407,9 @@ BIEnlumineurMessageExpressionTest >> testKeepBlockInMessageMutlilineSpace [
 		assert: source
 		equals:
 'aBoolean ifTrue: [ 
-		  12 factorial.
-		  12 factorial.
-		  3 factorial ]'
+		12 factorial.
+		12 factorial.
+		3 factorial ]'
 ]
 
 { #category : #tests }
@@ -433,7 +433,7 @@ BIEnlumineurMessageExpressionTest >> testKeepBlockInMessageNotMutlilineNewLine [
 		assert: source
 		equals:
 			'aBoolean ifTrue: [ 
-	  LongLongLongExpression ]'
+	LongLongLongExpression ]'
 ]
 
 { #category : #tests }
@@ -533,8 +533,8 @@ BIEnlumineurMessageExpressionTest >> testNewLineAfterOpeningBlockBraketWhenMulti
 		equals:
 			'x = 0
 	ifFalse: [ 
-		  tan := y asFloat / x asFloat.
-		  theta := tan arcCos ]'
+		tan := y asFloat / x asFloat.
+		theta := tan arcCos ]'
 ]
 
 { #category : #tests }
@@ -598,11 +598,11 @@ BIEnlumineurMessageExpressionTest >> testNoNewLineBetweenVariableAndIfTrue [
 				  ungammaTable: gammaInverseTable ]'.
 	self assert: source equals: 
 'x ifTrue: [ 
-	  aBitBlt
-	  copyBitsColor: foreColorVal
-	  alpha: foreColorAlpha
-	  gammaTable: gammaTable
-	  ungammaTable: gammaInverseTable ]'
+	aBitBlt
+	copyBitsColor: foreColorVal
+	alpha: foreColorAlpha
+	gammaTable: gammaTable
+	ungammaTable: gammaInverseTable ]'
 ]
 
 { #category : #tests }

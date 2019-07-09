@@ -89,9 +89,9 @@ BIEnlumineurBlock2ExpressionTest >> testExtraSpaceInIndentWhenMultiline [
 		assert: source
 		equals:
 '[ :i | 
-  Transcript
-	  show: i;
-	  cr ]'
+Transcript
+	show: i;
+	cr ]'
 ]
 
 { #category : #test }
@@ -103,9 +103,9 @@ BIEnlumineurBlock2ExpressionTest >> testExtraSpaceInIndentWhenMultilineWithTreeS
 		assert: source
 		equals:
 '[   :i | 
-    Transcript
-	    show: i;
-	    cr   ]'
+Transcript
+	show: i;
+	cr   ]'
 ]
 
 { #category : #test }
