@@ -21,6 +21,31 @@ BIEnlumineurMessageExpressionTest >> basicConfiguration [
 ]
 
 { #category : #configurations }
+BIEnlumineurMessageExpressionTest >> blockAndCascadeInMessageConfiguration [
+	^ self contextClass basicNew
+		indentStyle: #tabulation;
+		formatCommentWithStatements: false;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine: 10;
+		indentsForKeywords: 1;
+		maxLineLength: 70;
+		newLineBeforeFirstKeyword: false;
+		keepBlockInMessage: true;
+		numberOfSpacesInsideBlock: 1;
+		numberOfSpacesAfterCaretSymbolInReturn: 0;
+		periodsAtEndOfBlock: false;
+		periodsAtEndOfMethod: false;
+		lineUpBlockBrackets: false;
+		retainBlankLinesBetweenStatements: false;
+		minimumNewLinesBetweenStatements: 1;
+		indentExtraSpaces:0;
+		newLineBeforeFirstCascade: true;
+		numberOfSpacesInsideParentheses: 1 ;
+		newLineAfterCascade: true
+]
+
+{ #category : #configurations }
 BIEnlumineurMessageExpressionTest >> blockAndParenthesesInMessageConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
@@ -247,7 +272,8 @@ BIEnlumineurMessageExpressionTest >> oneLineMessageConfiguration [
 		indentsForKeywords: 0;
 		maxLineLength: 50;
 		newLineBeforeFirstKeyword:false;
-		keepBlockInMessage:false
+		keepBlockInMessage:false;
+		indentExtraSpaces: 0
 ]
 
 { #category : #tests }
@@ -322,34 +348,24 @@ BIEnlumineurMessageExpressionTest >> testBinaryOneArgumentPerLine [
 BIEnlumineurMessageExpressionTest >> testExtraIndentInParentheses [
 	| source |
 	configurationSelector := #blockAndParenthesesInMessageConfiguration.
-	source := self formatExpression: '	1 to:
-		( [ :i | 
-		i
-			factorial; +3 ] value: 15 )
-	  do: [ :j | j ]'.
+	source := self formatExpression: '( [ :i | 	i factorial; +3 ] value: 15 )*3'.
 	self assert: source equals:
-'1 to: ( [ :i | 
-		  i
-			  factorial;
-			  + 3 ] value: 15 )
-	do: [ :j | j ]'
+'( [ :i | 
+  i
+	  factorial;
+	  + 3 ] value: 15 ) * 3'
 ]
 
 { #category : #tests }
 BIEnlumineurMessageExpressionTest >> testExtraIndentInParenthesesWhenThreeSpacesInsideParentheses [
 	| source |
 	configurationSelector := #extraIndentWithThreeSpacesInsideParenthesesConfiguration.
-	source := self formatExpression:'1 to:
-	( [ :i | 
-		i
-			factorial; +3 ] value: 15 )
-	  do: [ :j | j ]'.
+	source := self formatExpression:'( [ :i | 	i factorial; +3 ] value: 15 )*3'.
 	self assert: source equals:
-'1 to: (   [ :i | 
-	    i
-		    factorial;
-		    + 3 ] value: 15   )
-do: [ :j | j ]'
+'(   [ :i | 
+    i
+	    factorial;
+	    + 3 ] value: 15   ) * 3'
 ]
 
 { #category : #tests }
@@ -495,6 +511,57 @@ BIEnlumineurMessageExpressionTest >> testKeywordNoExtraSpacesBetween [
 ]
 
 { #category : #tests }
+BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine [
+	| source |
+	configurationSelector := #blockAndCascadeInMessageConfiguration.
+	source := self formatExpression: '1 to: 100 by: 2 do: [ :i | transcript show: i;cr; cr]'.
+	self assert: source equals:
+'1 to: 100 by: 2 do: [ :i | 
+		transcript
+			show: i;
+			cr;
+			cr ]'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine2 [
+	| source |
+	configurationSelector := #blockAndCascadeInMessageConfiguration.
+	source := self formatExpression: 'aBoolean ifTrue:[ ^ 1] ifFalse:[ ^ 0 ]'.
+	self assert: source equals:
+'aBoolean ifTrue: [ ^1 ] ifFalse: [ ^0 ]'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine3 [
+	| source |
+	configurationSelector := #blockAndCascadeInMessageConfiguration.
+	source := self formatExpression: 'aBoolean ifTrue:[ tmp := tmp + a. ^ tmp] ifFalse:[ ^ 0 ]'.
+	self assert: source equals:
+'aBoolean ifTrue: [ 
+		tmp := tmp + a.
+		^tmp ]
+	ifFalse: [ ^0 ]'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testKeywordOnTheSameLine [
+	| source |
+	configurationSelector := #blockInMessageConfiguration.
+	source := self formatExpression: '1 to: 100 do: [ :i | transcript show: i ]'.
+	self assert: source equals: '1 to: 100 do: [ :i | transcript show: i ]'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testKeywordOnTheSameLine2 [
+	| source |
+	configurationSelector := #blockAndCascadeInMessageConfiguration.
+	source := self formatExpression: '1 to: 100 by: 2 do: [ :i | transcript show: i]'.
+	self assert: source equals:
+'1 to: 100 by: 2 do: [ :i | transcript show: i ]'
+]
+
+{ #category : #tests }
 BIEnlumineurMessageExpressionTest >> testKeywordOneArgumentPerLine [
 	| source |
 	configurationSelector := #oneArgumentPerLineConfiguration.
@@ -531,8 +598,7 @@ BIEnlumineurMessageExpressionTest >> testNewLineAfterOpeningBlockBraketWhenMulti
 	self
 		assert: source
 		equals:
-			'x = 0
-	ifFalse: [ 
+'x = 0 ifFalse: [ 
 		tan := y asFloat / x asFloat.
 		theta := tan arcCos ]'
 ]
@@ -567,8 +633,8 @@ BIEnlumineurMessageExpressionTest >> testNewLineWhenSelectorAndBeginingOfParamet
 	indentsForKeywords ]
 	ifFalse: [ 0 ]'.
 	self assert: source equals:
-'( newLineBetweenArguments and: [ aMessageNode isKeyword ] )
-	ifTrue: [ self indentsForKeywords ]
+'( newLineBetweenArguments and: [ aMessageNode isKeyword ] ) ifTrue: [ self
+		indentsForKeywords ]
 	ifFalse: [ 0 ]'.
 ]
 

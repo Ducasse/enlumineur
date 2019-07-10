@@ -923,24 +923,11 @@ BIEnlumineurPrettyPrinter >> currentLineLength [
 
 { #category : #'private-formatting' }
 BIEnlumineurPrettyPrinter >> firstSeparatorShouldNotPassLine: aMessageNode [
-"predicat that tell if the keyWord should be forced te be on the sameLine
-for now force it for the variables and the litterals
-Might not be great, might be changed or removed
+"predicat that tell if the keyWord should be forced te be on the sameLine"
 
-Example:
-
-aBoolean ifTrue:[]
-	ifFalse:[]
-
-(myClass doSomething: arg1 with: arg2)
-	ifTrue:[]
-	ifFalse
-"
 	^ aMessageNode isKeyword
-		and: [ (aMessageNode receiver isLiteralNode
-				or: [ aMessageNode receiver isVariable ])
 				and: [ aMessageNode arguments size <= 1
-						or: [ self newLineBeforeFirstKeyword not ] ] ]
+						or: [ self newLineBeforeFirstKeyword not ] ]
 ]
 
 { #category : #'public interface' }
@@ -1099,11 +1086,12 @@ BIEnlumineurPrettyPrinter >> formatPragmasFor: aMethodNode [
 
 { #category : #'private-formatting' }
 BIEnlumineurPrettyPrinter >> formatSelectorAndArguments: aMessageNode [
-	| newLineBetweenArguments |
-	newLineBetweenArguments := self isMultiLineMessage: aMessageNode.
+	| isMultilineMessage hasMutlineArguments|
+	isMultilineMessage := self isMultiLineMessage: aMessageNode.
+	hasMutlineArguments := self hasAMultiLineMessageArgument: aMessageNode arguments.
 	self
 		indent:
-			((newLineBetweenArguments and: [ aMessageNode isKeyword ])
+			(((isMultilineMessage or:[hasMutlineArguments]) and:[aMessageNode isKeyword])
 				ifTrue: [ self indentsForKeywords ]
 				ifFalse: [ 0 ])
 		around: [ self
@@ -1111,11 +1099,11 @@ BIEnlumineurPrettyPrinter >> formatSelectorAndArguments: aMessageNode [
 				firstSeparator:
 					((self firstSeparatorShouldNotPassLine: aMessageNode)
 						ifTrue: [ self space ]
-						ifFalse: [ newLineBetweenArguments
+						ifFalse: [ isMultilineMessage
 								ifTrue: [ [ self newLine ] ]
 								ifFalse: [ [ self space ] ] ])
 				restSeparator:
-					(newLineBetweenArguments
+					((isMultilineMessage)
 						ifTrue: [ [ self newLine ] ]
 						ifFalse: [ [ self space ] ]) ]
 ]
@@ -1130,15 +1118,20 @@ BIEnlumineurPrettyPrinter >> formatSelectorAndArguments: aMessageNode firstSepar
 				separatorBlock.
 			codeStream nextPutAll: aMessageNode selector ]
 		ifFalse: [ 
-			aMessageNode selectorParts
-				with: aMessageNode arguments
-				do: [ :selector :argument | 
-					self handleLineForSelector: selector withSeparatorBlock: separatorBlock.
-					separatorBlock := restBlock.
-					self
-						indentAround: [ 
-							codeStream nextPutAll: selector.
-							self handleLineForArgument: argument ] ] ]
+			1 to: (aMessageNode selectorParts size) do: [ :i |
+				| selector argument |
+				selector := (aMessageNode selectorParts at: i). 
+				argument := (aMessageNode arguments at: i).
+				self handleLineForSelector: selector withSeparatorBlock: separatorBlock.
+				separatorBlock := restBlock.
+				self
+					indentAround: [ 
+						codeStream nextPutAll: selector.
+						self handleLineForArgument: argument ].
+						((self willBeMultiline: argument) and:[ i < aMessageNode selectorParts size ])
+						ifTrue: [separatorBlock := self newLine]
+						]
+					]
 ]
 
 { #category : #'private-formatting' }
@@ -1207,7 +1200,7 @@ BIEnlumineurPrettyPrinter >> formatTemporariesFor: aSequenceNode [
 BIEnlumineurPrettyPrinter >> formattedSourceFor: aNode [
 	^ lookaheadCode
 		at: aNode
-		ifAbsentPut: [ 
+		ifAbsent: [ 
 			self class new
 				indent: self indent;
 				installNewContext: context;
@@ -1383,8 +1376,6 @@ BIEnlumineurPrettyPrinter >> isMultiLineMessage: aMessageNode [
 	(self oneLineMessages includes: aMessageNode selector)
 		ifTrue: [ ^ false ].
 	self numberOfArgumentsForMultiLine <= aMessageNode arguments size
-		ifTrue: [ ^ true ].
-	(self hasAMultiLineMessageArgument: aMessageNode arguments)
 		ifTrue: [ ^ true ].
 	aMessageNode isUnary
 		ifTrue: [ ^ self isLineTooLong: aMessageNode selector ].

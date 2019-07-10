@@ -633,6 +633,17 @@ BIEnlumineurExamples >> framePolyline: vertices on: aCanvas [
 ]
 
 { #category : #methods }
+BIEnlumineurExamples >> ifTrueIfFalse [
+
+true ifTrue: [ ^ 1 ]
+	ifFalse:[ ^ 2 ].
+true ifTrue: [ 
+			i := j. 
+			j := j + 1 ]
+		ifFalse:[i := j]
+]
+
+{ #category : #methods }
 BIEnlumineurExamples >> indentExample [
 1 to: 4 do: [ :i | 
 		i to: 4 do: [ :j |

@@ -303,9 +303,7 @@ BIEnlumineurMethodeExpressionTest >> testBigMethode [
 	<pragma>
 	| tmp |
 	tmp := 1.
-	tmp
-		to: 10
-		do: [:i | 
+	tmp to: 10 do: [:i | 
 			Transcript
 				show: i;
 				cr;

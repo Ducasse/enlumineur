@@ -423,10 +423,10 @@ BIEnlumineurBlockExpressionTest >> testFourSpaceIndent [
 		assert: source
 		equals:
 '1 to: 10 do: [ :i | 
-    i to: 10 do: [ :j | 
-        Transcript
-            show: i;
-            show: j ] ]'
+        i to: 10 do: [ :j | 
+                Transcript
+                    show: i;
+                    show: j ] ]'
 ]
 
 { #category : #test }
@@ -565,10 +565,10 @@ BIEnlumineurBlockExpressionTest >> testOneSpaceIndent [
 		assert: source
 		equals:
 '1 to: 10 do: [ :i | 
- i to: 10 do: [ :j | 
-  Transcript
-   show: i;
-   show: j ] ]'
+  i to: 10 do: [ :j | 
+    Transcript
+     show: i;
+     show: j ] ]'
 ]
 
 { #category : #test }
@@ -588,10 +588,10 @@ BIEnlumineurBlockExpressionTest >> testTabIndent [
 		assert: source
 		equals:
 '1 to: 10 do: [ :i | 
-	i to: 10 do: [ :j | 
-		Transcript
-			show: i;
-			show: j ] ]'
+		i to: 10 do: [ :j | 
+				Transcript
+					show: i;
+					show: j ] ]'
 ]
 
 { #category : #test }
@@ -605,10 +605,10 @@ BIEnlumineurBlockExpressionTest >> testTabIndentIsNotAffectedByNumberOfSpace [
 		assert: source
 		equals:
 '1 to: 10 do: [ :i | 
-	i to: 10 do: [ :j | 
-		Transcript
-			show: i;
-			show: j ] ]'
+		i to: 10 do: [ :j | 
+				Transcript
+					show: i;
+					show: j ] ]'
 ]
 
 { #category : #test }
@@ -622,10 +622,10 @@ BIEnlumineurBlockExpressionTest >> testnumberOfSpaceChangedAfterIndentCharacter 
 		assert: source
 		equals:
 '1 to: 10 do: [ :i | 
-  i to: 10 do: [ :j | 
-    Transcript
-      show: i;
-      show: j ] ]'
+    i to: 10 do: [ :j | 
+        Transcript
+          show: i;
+          show: j ] ]'
 ]
 
 { #category : #test }
