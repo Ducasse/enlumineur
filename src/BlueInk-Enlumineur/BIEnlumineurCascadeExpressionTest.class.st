@@ -230,8 +230,8 @@ BIEnlumineurCascadeExpressionTest >> testFormatMultilineMessage [
 '1
 	between: 2 and: 5;
 	to: 4 do: [ :each | 
-			each factorial.
-			each + 1 ]'
+		each factorial.
+		each + 1 ]'
 ]
 
 { #category : #tests }
@@ -386,8 +386,8 @@ BIEnlumineurCascadeExpressionTest >> testTooLongArgument [
 	self
 		assert: source
 		equals:
-			'foo a; b:
-		toLongArgument'
+'foo a; b:
+	toLongArgument'
 ]
 
 { #category : #configurations }

@@ -304,11 +304,11 @@ BIEnlumineurMethodeExpressionTest >> testBigMethode [
 	| tmp |
 	tmp := 1.
 	tmp to: 10 do: [:i | 
-			Transcript
-				show: i;
-				cr;
-				cr
-			]'
+		Transcript
+			show: i;
+			cr;
+			cr
+		]'
 ]
 
 { #category : #test }

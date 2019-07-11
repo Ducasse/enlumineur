@@ -640,7 +640,7 @@ true ifTrue: [ ^ 1 ]
 true ifTrue: [ 
 			i := j. 
 			j := j + 1 ]
-		ifFalse:[i := j]
+		ifFalse:[i := j. i]
 ]
 
 { #category : #methods }

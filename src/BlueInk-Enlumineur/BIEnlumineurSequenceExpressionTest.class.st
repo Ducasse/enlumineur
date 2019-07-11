@@ -381,11 +381,11 @@ BIEnlumineurSequenceExpressionTest >> testNoNewLineBetweenVariableAndIfTrue [
 			ungammaTable: gammaInverseTable ]		
 "
 x ifTrue: [ 
-		aBitBlt
-			copyBitsColor: foreColorVal
-			alpha: foreColorAlpha
-			gammaTable: gammaTable
-			ungammaTable: gammaInverseTable ]'
+	aBitBlt
+		copyBitsColor: foreColorVal
+		alpha: foreColorAlpha
+		gammaTable: gammaTable
+		ungammaTable: gammaInverseTable ]'
 ]
 
 { #category : #tests }

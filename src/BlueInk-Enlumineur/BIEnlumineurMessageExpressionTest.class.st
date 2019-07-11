@@ -55,7 +55,7 @@ BIEnlumineurMessageExpressionTest >> blockAndParenthesesInMessageConfiguration [
 		numberOfArgumentsForMultiLine: 10;
 		indentsForKeywords: 1;
 		maxLineLength: 70;
-		newLineBeforeFirstKeyword: false;
+		newLineBeforeFirstKeyword: true;
 		keepBlockInMessage: true;
 		numberOfSpacesInsideBlock: 1;
 		numberOfSpacesAfterCaretSymbolInReturn: 0;
@@ -78,7 +78,7 @@ BIEnlumineurMessageExpressionTest >> blockInMessageConfiguration [
 		multiLineMessages: Array new;
 		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine: 10;
-		indentsForKeywords: 0;
+		indentsForKeywords: 1;
 		maxLineLength: 70;
 		newLineBeforeFirstKeyword: true;
 		keepBlockInMessage: true;
@@ -133,6 +133,31 @@ BIEnlumineurMessageExpressionTest >> formatStatementsWithCommentsConfiguration [
 ]
 
 { #category : #configurations }
+BIEnlumineurMessageExpressionTest >> ifTrueIfFalseMutlilineMessageConfiguration [
+	^ self contextClass basicNew
+		indentStyle: #tabulation;
+		formatCommentWithStatements: false;
+		multiLineMessages:#(#ifTrue:ifFalse:);
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine: 10;
+		indentsForKeywords: 1;
+		maxLineLength: 70;
+		newLineBeforeFirstKeyword: true;
+		keepBlockInMessage: true;
+		numberOfSpacesInsideBlock: 1;
+		numberOfSpacesAfterCaretSymbolInReturn: 0;
+		periodsAtEndOfBlock: false;
+		periodsAtEndOfMethod: false;
+		lineUpBlockBrackets: false;
+		retainBlankLinesBetweenStatements: false;
+		minimumNewLinesBetweenStatements: 1;
+		indentExtraSpaces:0;
+		newLineBeforeFirstCascade: true;
+		numberOfSpacesInsideParentheses: 1 ;
+		newLineAfterCascade: true
+]
+
+{ #category : #configurations }
 BIEnlumineurMessageExpressionTest >> keepBlockInMessageConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
@@ -162,7 +187,7 @@ BIEnlumineurMessageExpressionTest >> littleMaxLineLengthConfiguration [
 		multiLineMessages: Array new;
 		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine: 10;
-		indentsForKeywords: 0;
+		indentsForKeywords: 1;
 		maxLineLength: 20;
 		newLineBeforeFirstKeyword: true;
 		keepBlockInMessage: true;
@@ -406,9 +431,9 @@ BIEnlumineurMessageExpressionTest >> testKeepBlockInMessageMutlilineNewLine [
 		assert: source
 		equals:
 'aBoolean ifTrue: [ 
-		Transcript cr.
-		Transcript cr.
-		Transcript cr ]'
+	Transcript cr.
+	Transcript cr.
+	Transcript cr ]'
 ]
 
 { #category : #tests }
@@ -423,9 +448,9 @@ BIEnlumineurMessageExpressionTest >> testKeepBlockInMessageMutlilineSpace [
 		assert: source
 		equals:
 'aBoolean ifTrue: [ 
-		12 factorial.
-		12 factorial.
-		3 factorial ]'
+	12 factorial.
+	12 factorial.
+	3 factorial ]'
 ]
 
 { #category : #tests }
@@ -517,10 +542,10 @@ BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine [
 	source := self formatExpression: '1 to: 100 by: 2 do: [ :i | transcript show: i;cr; cr]'.
 	self assert: source equals:
 '1 to: 100 by: 2 do: [ :i | 
-		transcript
-			show: i;
-			cr;
-			cr ]'
+	transcript
+		show: i;
+		cr;
+		cr ]'
 ]
 
 { #category : #tests }
@@ -542,6 +567,44 @@ BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine3 [
 		tmp := tmp + a.
 		^tmp ]
 	ifFalse: [ ^0 ]'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine4 [
+	| source |
+	configurationSelector := #blockAndCascadeInMessageConfiguration.
+	source := self formatExpression: 'aBoolean ifTrue:[ tmp := tmp + a. ^ tmp] ifFalse:[ tmp := tmp + a. ^tmp]'.
+	self assert: source equals:
+'aBoolean ifTrue: [ 
+		tmp := tmp + a.
+		^tmp ]
+	ifFalse: [ 
+		tmp := tmp + a.
+		^tmp ]'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine5 [
+	| source |
+	configurationSelector := #blockAndCascadeInMessageConfiguration.
+	source := self formatExpression: 'aBoolean ifTrue:[ ^ 1] ifFalse:[ tmp := tmp + a. ^tmp]'.
+	self assert: source equals:
+'aBoolean ifTrue: [ ^1 ] ifFalse: [ 
+	tmp := tmp + a.
+	^tmp ]'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine6 [
+	| source |
+	configurationSelector := #ifTrueIfFalseMutlilineMessageConfiguration.
+	source := self formatExpression: 'aBoolean ifTrue:[ ^ 1] ifFalse:[ tmp := tmp + a. ^tmp]'.
+	self assert: source equals:
+'aBoolean
+	ifTrue: [ ^1 ]
+	ifFalse: [ 
+		tmp := tmp + a.
+		^tmp ]'
 ]
 
 { #category : #tests }
@@ -599,8 +662,8 @@ BIEnlumineurMessageExpressionTest >> testNewLineAfterOpeningBlockBraketWhenMulti
 		assert: source
 		equals:
 'x = 0 ifFalse: [ 
-		tan := y asFloat / x asFloat.
-		theta := tan arcCos ]'
+	tan := y asFloat / x asFloat.
+	theta := tan arcCos ]'
 ]
 
 { #category : #tests }
@@ -633,8 +696,8 @@ BIEnlumineurMessageExpressionTest >> testNewLineWhenSelectorAndBeginingOfParamet
 	indentsForKeywords ]
 	ifFalse: [ 0 ]'.
 	self assert: source equals:
-'( newLineBetweenArguments and: [ aMessageNode isKeyword ] ) ifTrue: [ self
-		indentsForKeywords ]
+'( newLineBetweenArguments and: [ aMessageNode isKeyword ] )
+	ifTrue: [ self indentsForKeywords ]
 	ifFalse: [ 0 ]'.
 ]
 
@@ -665,10 +728,10 @@ BIEnlumineurMessageExpressionTest >> testNoNewLineBetweenVariableAndIfTrue [
 	self assert: source equals: 
 'x ifTrue: [ 
 	aBitBlt
-	copyBitsColor: foreColorVal
-	alpha: foreColorAlpha
-	gammaTable: gammaTable
-	ungammaTable: gammaInverseTable ]'
+		copyBitsColor: foreColorVal
+		alpha: foreColorAlpha
+		gammaTable: gammaTable
+		ungammaTable: gammaInverseTable ]'
 ]
 
 { #category : #tests }
@@ -720,8 +783,7 @@ BIEnlumineurMessageExpressionTest >> testTooLongArgument [
 	self
 		assert: source
 		equals:
-			'foo 
-message:
+'foo message:
 	TooLongArgument'
 ]
 
@@ -815,8 +877,8 @@ BIEnlumineurMessageExpressionTest >> tooLongArgumentConfiguration [
 		multiLineMessages:Array new;
 		oneLineMessages:Array new;
 		numberOfArgumentsForMultiLine:10;
-		indentsForKeywords: 0;
-		maxLineLength: 10;
+		indentsForKeywords: 1;
+		maxLineLength: 13;
 		newLineBeforeFirstKeyword:false;
 		keepBlockInMessage:false;
 		indentExtraSpaces:0

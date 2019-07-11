@@ -1117,21 +1117,23 @@ BIEnlumineurPrettyPrinter >> formatSelectorAndArguments: aMessageNode firstSepar
 			self handleLineForSelector: aMessageNode selector withSeparatorBlock:
 				separatorBlock.
 			codeStream nextPutAll: aMessageNode selector ]
-		ifFalse: [ 
-			1 to: (aMessageNode selectorParts size) do: [ :i |
+		ifFalse: [ 1 to: aMessageNode selectorParts size do: [ :i | 
 				| selector argument |
-				selector := (aMessageNode selectorParts at: i). 
-				argument := (aMessageNode arguments at: i).
-				self handleLineForSelector: selector withSeparatorBlock: separatorBlock.
+				selector := aMessageNode selectorParts at: i.
+				argument := aMessageNode arguments at: i.
+				self
+					handleLineForSelector: selector
+					withSeparatorBlock: separatorBlock.
 				separatorBlock := restBlock.
 				self
-					indentAround: [ 
-						codeStream nextPutAll: selector.
+					indent:
+						(((self willBeMultiline: argument) and: [ i ~= aMessageNode selectorParts size or: [ self newLineBefore ] ])
+							ifTrue: [ 1 ] ifFalse: [ 0 ])
+					around: [ codeStream nextPutAll: selector.
 						self handleLineForArgument: argument ].
-						((self willBeMultiline: argument) and:[ i < aMessageNode selectorParts size ])
-						ifTrue: [separatorBlock := self newLine]
-						]
-					]
+				((self willBeMultiline: argument) and:[i < aMessageNode selectorParts size]) ifTrue: [ separatorBlock := self newLine ]
+			]
+		]
 ]
 
 { #category : #'private-formatting' }
@@ -1531,6 +1533,18 @@ BIEnlumineurPrettyPrinter >> newLineAfterCascade [
 { #category : #accessing }
 BIEnlumineurPrettyPrinter >> newLineAfterCascade: aBoolean [
 	context newLineAfterCascade: aBoolean
+]
+
+{ #category : #private }
+BIEnlumineurPrettyPrinter >> newLineBefore [
+	"predicate which return true if there where a newLine in the code stream just before the current position"
+
+	| currentIndentationString |
+	currentIndentationString := ''.
+	1 to: self indent do: [ :i | 
+		currentIndentationString := currentIndentationString	, self indentString ].
+	currentIndentationString := currentIndentationString	, self indentExtraSpaces.
+	^ self codeStream contents lines last = currentIndentationString
 ]
 
 { #category : #accessing }
