@@ -318,25 +318,6 @@ BIEnlumineurPrettyPrinter class >> oneLineMessages: aString [
 	self announceASettingChange
 ]
 
-{ #category : #'candidate to removal' }
-BIEnlumineurPrettyPrinter class >> periodsAsTerminators [
-"for the moment the UI does not work at ALL when selecting as terminators:
-	It does not automatically select end of method and end of block.
-	Probably the settings UI does not manage dependencies between settings so we will simply remove it."
-	^ DefaultPrettyPrintContext periodsAtEndOfBlock
-		and: [ DefaultPrettyPrintContext periodsAtEndOfMethod ]
-]
-
-{ #category : #'candidate to removal' }
-BIEnlumineurPrettyPrinter class >> periodsAsTerminators: aBoolean [
-	"for the moment the UI does not work at ALL when selecting as terminators:
-	It does not automatically select end of method and end of block.
-	Probably the settings UI does not manage dependencies between settings so we will simply remove it."
-	DefaultPrettyPrintContext periodsAtEndOfBlock: aBoolean.
-	DefaultPrettyPrintContext periodsAtEndOfMethod: aBoolean.
-	self announceASettingChange
-]
-
 { #category : #accessing }
 BIEnlumineurPrettyPrinter class >> periodsAtEndOfBlock [
 	^ DefaultPrettyPrintContext periodsAtEndOfBlock
@@ -665,8 +646,6 @@ BIEnlumineurPrettyPrinter class >> settingsOn: aBuilder [
 			self settingsNewLinesAfterMethodSignature: aBuilder.
 			self settingsNewLinesAfterTemporaries: aBuilder.
 			self settingsNumberOfArgumentsForMultiLine: aBuilder.
-			self notInstalledCandidateForRemoval.
-	
 			self settingsPeriodsAtEndOfBlock: aBuilder.
 			self settingsPeriodsAtEndOfMethod: aBuilder.
 			self settingsRetainBlankLinesBeforeComments: aBuilder.
@@ -1147,7 +1126,7 @@ BIEnlumineurPrettyPrinter >> formatSequenceNodeStatementsFor: aSequenceNode [
 		(i < statements size
 			or: [ 
 				aSequenceNode parent
-					ifNil: [ self periodsAsTerminators ]
+					ifNil: [ self periodsAtEndOfBlock or:[self periodsAtEndOfMethod ] ]
 					ifNotNil: [ :parent | 
 						parent isBlock
 							ifTrue: [ self periodsAtEndOfBlock ]
