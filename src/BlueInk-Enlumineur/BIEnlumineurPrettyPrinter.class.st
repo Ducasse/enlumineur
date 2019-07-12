@@ -286,6 +286,17 @@ BIEnlumineurPrettyPrinter class >> numberOfSpacesInIndent: anInteger [
 ]
 
 { #category : #accessing }
+BIEnlumineurPrettyPrinter class >> numberOfSpacesInsideArray [
+	^ DefaultPrettyPrintContext numberOfSpacesInsideArray
+]
+
+{ #category : #accessing }
+BIEnlumineurPrettyPrinter class >> numberOfSpacesInsideArray: anInteger [
+	DefaultPrettyPrintContext numberOfSpacesInsideArray: anInteger.
+	self announceASettingChange
+]
+
+{ #category : #accessing }
 BIEnlumineurPrettyPrinter class >> numberOfSpacesInsideBlock [
 	^ DefaultPrettyPrintContext numberOfSpacesInsideBlock
 ]
@@ -654,6 +665,7 @@ BIEnlumineurPrettyPrinter class >> settingsOn: aBuilder [
 			self settingsSpacesAfterCaretSymbolInReturn: aBuilder.
 			self settingsSpacesInsideBlocks: aBuilder.
 			self settingsSpacesInsideParentheses: aBuilder.
+			self settingsSpacesInsideArray: aBuilder.
 			self settingsTraditionalBinaryPrecedenceArray: aBuilder.
 			self settingsUseBasicCommentFormat: aBuilder.
 			self settingsUseTraditionalBinaryPrecedenceForParentheses: aBuilder ]
@@ -741,6 +753,18 @@ BIEnlumineurPrettyPrinter class >> settingsSpacesAfterCaretSymbolInReturn: aBuil
 		label: 'Spaces following caret symbol in return';
 		description: 'Number of spaces expressed as a string that is put just after the caret (^) of a return expression. 
 For example: ^   self is the result for 3 spaces'.
+]
+
+{ #category : #settings }
+BIEnlumineurPrettyPrinter class >> settingsSpacesInsideArray: aBuilder [.
+	(aBuilder setting: #numberOfSpacesInsideArray)
+		label: 'Spaces inside array';
+		description: 'number of spaces after the opening and before the closing symbols of the array
+for example:
+#(   1 2 3   )
+{   1. 2. 3.   }
+	is the result of 3 spaces
+'.
 ]
 
 { #category : #settings }
