@@ -635,6 +635,7 @@ BIEnlumineurExamples >> framePolyline: vertices on: aCanvas [
 { #category : #methods }
 BIEnlumineurExamples >> ifTrueIfFalse [
 
+| i j|
 true ifTrue: [ ^ 1 ]
 	ifFalse:[ ^ 2 ].
 true ifTrue: [ 
@@ -816,6 +817,7 @@ BIEnlumineurExamples >> periodsAtEndOfMethodExample [
 
 { #category : #methods }
 BIEnlumineurExamples >> printOn2: stream [
+	|iterations elapsedTime|
 	super printOn: stream.
 	stream nextPut: $(.
 	self isEmpty
