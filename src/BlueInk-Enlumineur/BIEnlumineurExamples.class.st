@@ -7,6 +7,52 @@ Class {
 	#category : #'BlueInk-Enlumineur-Example to work'
 }
 
+{ #category : #accessing }
+BIEnlumineurExamples class >> bigExamplesSettingsTable [
+	^ {(#BigExample:WithMethodSignatureOnMultipleLinesExample:->
+			#(
+				#formatCommentWithStatements #indentsForKeywords 
+				#lineUpBlockBrackets 
+				#methodSignatureOnMultipleLines 
+				#multiLineMessages 
+				#newLineAfterCascade 
+				#newLineBeforeFirstCascade 
+				#newLineBeforeFirstKeyword 
+				#newLinesAfterMethodComment 
+				#newLinesAfterTemporaries 
+				#numberOfArgumentsForMultiLine 
+				#oneLineMessages 
+				#retainBlankLinesBeforeComments 
+				#selectorAndArgumentCombinedMaxSize 
+				#useBasicCommentFormat 
+				#numberOfSpacesAfterCaretSymbolInReturn 
+				#minimumNewLinesBetweenStatements 
+				#newLinesAfterMethodPattern 
+				#periodsAtEndOfBlock 
+				#periodsAtEndOfMethod 
+				#retainBlankLinesBetweenStatements 
+				#numberOfSpacesInsideBlock 
+				#numberOfSpacesInIndent 
+				#indentStyle)).
+		(#BigExample: ->
+			#(
+				#keepBlockInMessage
+				#maxLineLength
+				#useTraditionalBinaryPrecedenceForParentheses
+				#traditionalBinaryPrecedenceArray
+				#numberOfSpacesInsideParentheses
+				#numberOfSpacesInsideArray
+				#minimumNewLinesBetweenStatements
+				#newLinesAfterMethodPattern
+				#periodsAtEndOfBlock
+				#periodsAtEndOfMethod
+				#retainBlankLinesBetweenStatements
+				#numberOfSpacesInsideBlock
+				#numberOfSpacesInIndent
+				#indentStyle)
+			)}
+]
+
 { #category : #settings }
 BIEnlumineurExamples class >> defaultConfiguration [
 	^ 'BIEnlumineurContext {
