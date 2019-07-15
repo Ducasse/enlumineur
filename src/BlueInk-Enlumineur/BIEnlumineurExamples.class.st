@@ -428,6 +428,37 @@ BIEnlumineurExamples >> BigArray [
 ]
 
 { #category : #methods }
+BIEnlumineurExamples >> BigExample [
+1 keepBlockInMessage: [ 11111111111111111111111111111111111111111111111111111111111111111111].
+
+1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11 + 12 + 13 + 14 + 15 + 16 + 17 + 18 + 19 + 20.
+
+#(1 2 3 4 5 6 7 8 9 10).
+
+1 + 2 * (3+4) + 5.
+true | false = true & false.
+1 + 1@1
+]
+
+{ #category : #methods }
+BIEnlumineurExamples >> BigExample:aLoooooooooooongParameter
+WithMethodSignatureOnMultipleLinesExample:anotherLongParameter [
+"a method comment"
+| temp |
+
+1 to: 10 do:[:i | temp doSomething; doSomethingElse].
+
+temp ifTrue:[1] ifFalse: [ 0 ].
+
+self method:1 with:2 aLotOf:3 parameters:4.
+
+"     comment     "
+
+
+^ temp
+]
+
+{ #category : #methods }
 BIEnlumineurExamples >> bearingToPoint2: anotherPoint [
 	"Return the bearing, in degrees, from the receiver to anotherPoint."
 	"questions: 
@@ -731,25 +762,35 @@ BIEnlumineurExamples >> messageExample: a to: b [
 		ifTrue: [ i := a. j := b ]
 		ifFalse: [ i := b.	j := a ].
 	i to: j do: [:k | tmp := tmp + k].
-	self method:1 with:2 a:3 lot:4 of:5 parameters:6.
+	self method:1 with:2 aLotOf:3 parameters:4.
 	^ tmp
 ]
 
 { #category : #methods }
 BIEnlumineurExamples >> messageWithALotOfParameters [
-	^ self method:1 with:2 a:3 lot:4 of:5 parameters:6
+	^ self method:1 with:2 aLotOf:3 parameters:4
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> method:a with:b a:c lot:d of:e parameters:f [
-
-^1
+BIEnlumineurExamples >> method: a with: b aLotOf: c parameters: d [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> methodSignature:a onMultipleLinesExample:b [
+BIEnlumineurExamples >> methodSignature:aLoooooooooooongParameter
+onMultipleLinesExample:anotherLongParameter [
+"a method comment"
+| temp |
 
-	
+1 to: 10 do:[:i | temp doSomething; doSomethingElse].
+
+temp ifTrue:[1] ifFalse: [ 0 ].
+
+self method:1 with:2 aLotOf:3 parameters:4.
+
+"     comment     "
+
+
+^ temp
 ]
 
 { #category : #methods }
