@@ -970,16 +970,16 @@ BIEnlumineurPrettyPrinter >> formatArray: anArrayNode [
 { #category : #'private-formatting' }
 BIEnlumineurPrettyPrinter >> formatBlock: aBlockNode [
 	| isMultiline |
-			isMultiline := self willBeMultiline: aBlockNode body.
-			codeStream nextPutAll: self spacesInsideBlocks.
-			self formatBlockArgumentsFor: aBlockNode.
-			self formatBlockCommentFor: aBlockNode.
-			(isMultiline or: [self isTooLong: aBlockNode body.])
-				ifTrue: [ self newLine ].
-			self visitSequenceNode: aBlockNode body.
-	(self lineUpBlockBrackets and:[isMultiline])
+	isMultiline := self willBeMultiline: aBlockNode body.
+	codeStream nextPutAll: self spacesInsideBlocks.
+	self formatBlockArgumentsFor: aBlockNode.
+	self formatBlockCommentFor: aBlockNode.
+	(isMultiline or: [ self isLineTooLong2: aBlockNode body ])
+		ifTrue: [ self newLine ].
+	self visitSequenceNode: aBlockNode body.
+	(self lineUpBlockBrackets and: [ isMultiline ])
 		ifTrue: [ self newLine ]
-		ifFalse: [ codeStream nextPutAll: self spacesInsideBlocks ].
+		ifFalse: [ codeStream nextPutAll: self spacesInsideBlocks ]
 ]
 
 { #category : #'private-formatting' }
@@ -1366,6 +1366,15 @@ BIEnlumineurPrettyPrinter >> isInCascadeNode [
 { #category : #accessing }
 BIEnlumineurPrettyPrinter >> isInCascadeNode: aBoolean [
 	isInCascadeNode := aBoolean
+]
+
+{ #category : #private }
+BIEnlumineurPrettyPrinter >> isLineTooLong2: aNode [
+| aString |
+aString := (self formattedSourceFor: aNode).
+	^ self currentLineLength
+		+ (aString indexOf: Character cr ifAbsent: [ aString size ])
+		>= self maxLineLength
 ]
 
 { #category : #private }

@@ -549,6 +549,11 @@ BIEnlumineurBlockExpressionTest >> testNoNewLineBeforeEndBrackets [
 ]
 
 { #category : #test }
+BIEnlumineurBlockExpressionTest >> testNotTooLongBlockBody [
+	self validate: 'notLong' isFormattedAs: ' notLong ' with: #tooLongStatementConfiguration
+]
+
+{ #category : #test }
 BIEnlumineurBlockExpressionTest >> testNumberOfSpaces [
 
 	self validate: '2' isFormattedAs: '   2   ' with: #configurationWithThreeSpaces
@@ -612,6 +617,20 @@ BIEnlumineurBlockExpressionTest >> testTabIndentIsNotAffectedByNumberOfSpace [
 ]
 
 { #category : #test }
+BIEnlumineurBlockExpressionTest >> testTooLongBlockBody [
+	self validate: 'tooLongStatement' isFormattedAs:
+' 
+tooLongStatement ' with: #tooLongStatementConfiguration
+]
+
+{ #category : #test }
+BIEnlumineurBlockExpressionTest >> testTooLongBlockBodyWithArgument [
+	self validate: ':i | tooLongStatement' isFormattedAs:
+' :i | 
+tooLongStatement ' with: #tooLongStatementConfiguration
+]
+
+{ #category : #test }
 BIEnlumineurBlockExpressionTest >> testnumberOfSpaceChangedAfterIndentCharacter [
 	| source |
 	configurationSelector := #numberOfSpaceChangedAfterIndentCharacterConfiguration.
@@ -626,6 +645,28 @@ BIEnlumineurBlockExpressionTest >> testnumberOfSpaceChangedAfterIndentCharacter 
     Transcript
       show: i;
       show: j ] ]'
+]
+
+{ #category : #configurations }
+BIEnlumineurBlockExpressionTest >> tooLongStatementConfiguration [
+
+	^ self contextClass basicNew
+		numberOfSpacesInsideBlock: 1;
+		periodsAtEndOfBlock:false;
+		periodsAtEndOfMethod: false;
+		lineUpBlockBrackets:false;
+		indentStyle: #tabulation;
+		keepBlockInMessage:false;
+		retainBlankLinesBetweenStatements:false;
+		minimumNewLinesBetweenStatements:1;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine:5;
+		indentsForKeywords:1;
+		newLineBeforeFirstKeyword:false;
+		formatCommentWithStatements:true;
+		maxLineLength:10;
+		indentExtraSpaces: 0
 ]
 
 { #category : #test }

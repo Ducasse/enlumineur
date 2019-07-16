@@ -93,6 +93,28 @@ BIEnlumineurMessageExpressionTest >> blockInMessageConfiguration [
 ]
 
 { #category : #configurations }
+BIEnlumineurMessageExpressionTest >> blockInMessageTooLongConfiguration [
+	^ self contextClass basicNew
+		indentStyle: #tabulation;
+		formatCommentWithStatements: false;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine: 10;
+		indentsForKeywords: 1;
+		maxLineLength: 20;
+		newLineBeforeFirstKeyword: true;
+		keepBlockInMessage: true;
+		numberOfSpacesInsideBlock: 1;
+		numberOfSpacesAfterCaretSymbolInReturn: 0;
+		periodsAtEndOfBlock: false;
+		periodsAtEndOfMethod: false;
+		lineUpBlockBrackets: false;
+		retainBlankLinesBetweenStatements: false;
+		minimumNewLinesBetweenStatements: 1;
+		indentExtraSpaces: 0
+]
+
+{ #category : #configurations }
 BIEnlumineurMessageExpressionTest >> extraIndentWithThreeSpacesInsideParenthesesConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
@@ -367,6 +389,41 @@ BIEnlumineurMessageExpressionTest >> testBinaryOneArgumentPerLine [
 		equals:
 '1
 + 2'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testBlockParameterOnTheMethodLineWhenMultiline [
+	| source |
+	configurationSelector := #keepBlockInMessageConfiguration.
+	source := self
+		formatExpression: '1 to: 10 do:[ :i | Transcript show:i. Transcript cr. Transcript cr]'.
+	self
+		assert: source
+		equals:
+'1 to: 10 do: [ :i | 
+	Transcript show: i.
+	Transcript cr.
+	Transcript cr ]'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testBlockParameterWhenTheLineWillBeTooLong [
+	| source |
+	configurationSelector := #blockInMessageTooLongConfiguration.
+	source := self formatExpression: 'aMessage take:[ :i | i]'.
+	self
+		assert: source
+		equals:
+			'aMessage take: [ :i | 
+	i ]'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testBlockParameterWhenTheLineWillNotBeTooLong [
+	| source |
+	configurationSelector := #blockInMessageConfiguration.
+	source := self formatExpression: 'aMessage take:[ :i | i]'.
+	self assert: source equals: 'aMessage take: [ :i | i ]'
 ]
 
 { #category : #tests }
