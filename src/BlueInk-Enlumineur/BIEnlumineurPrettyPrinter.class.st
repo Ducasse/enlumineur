@@ -943,28 +943,25 @@ BIEnlumineurPrettyPrinter >> format: aParseTree [
 
 { #category : #'private-formatting' }
 BIEnlumineurPrettyPrinter >> formatArray: anArrayNode [
-	| current | 
+	| current |
 	codeStream nextPutAll: self spacesInsideArray.
-	(anArrayNode statements reject: [ :each | each class = RBLiteralValueNode ])
-		ifEmpty: [ 
-			anArrayNode statements
+	(anArrayNode statements
+		reject: [ :each | each class = RBLiteralValueNode ])
+		ifEmpty: [ anArrayNode statements
 				do: [ :each | 
-					current := each. 
+					current := each.
 					self visitNode: each ]
-				separatedBy: [  
-					(self isLineTooLong: current value asString)
-						ifTrue: [ 
-							codeStream nextPut: $..
+				separatedBy: [ (self isLineTooLongWithNode: current)
+						ifTrue: [ codeStream nextPut: $..
 							self newLine ]
 						ifFalse: [ codeStream nextPutAll: ' . ' ] ] ]
-		ifNotEmpty: [ 
-			(anArrayNode statements size > 1)
-				 ifTrue: [ 
-						self  indentAround: [
-							self newLine;
-							formatSequenceNodeStatementsFor: anArrayNode]  ]
-			ifFalse: [self formatSequenceNodeStatementsFor: anArrayNode ]].
-	codeStream nextPutAll: self spacesInsideArray.
+		ifNotEmpty: [ anArrayNode statements size > 1
+				ifTrue: [ self
+						indentAround: [ self
+								newLine;
+								formatSequenceNodeStatementsFor: anArrayNode ] ]
+				ifFalse: [ self formatSequenceNodeStatementsFor: anArrayNode ] ].
+	codeStream nextPutAll: self spacesInsideArray
 ]
 
 { #category : #'private-formatting' }
@@ -974,7 +971,7 @@ BIEnlumineurPrettyPrinter >> formatBlock: aBlockNode [
 	codeStream nextPutAll: self spacesInsideBlocks.
 	self formatBlockArgumentsFor: aBlockNode.
 	self formatBlockCommentFor: aBlockNode.
-	(isMultiline or: [ self isLineTooLong2: aBlockNode body ])
+	(isMultiline or: [ self isLineTooLongWithNode: aBlockNode body ])
 		ifTrue: [ self newLine ].
 	self visitSequenceNode: aBlockNode body.
 	(self lineUpBlockBrackets and: [ isMultiline ])
@@ -1214,23 +1211,23 @@ BIEnlumineurPrettyPrinter >> formattedSourceFor: aNode [
 
 { #category : #private }
 BIEnlumineurPrettyPrinter >> handleLineForArgument: anArgument [
-	(self isLineTooLong: anArgument asString) ifFalse: [self space]
-	ifTrue:[
-		(self keepBlockInMessage and: [ anArgument isBlock ])
-			ifTrue: [ self space ]
-			ifFalse: [ ((self willBeMultiline: anArgument)
-					or: [ anArgument sourceInterval size > self maxLineLength ])
-					ifTrue: [ self isInCascadeNode
-							ifTrue: [ codeStream nextPut: Character cr.
-								self indentTimesRepeat: self indent - 1]
-							ifFalse: [ self newLine ] ]
-					ifFalse: [ self space ] ].].
+	(self isLineTooLongWithNode: anArgument)
+		ifFalse: [ self space ]
+		ifTrue: [ (self keepBlockInMessage and: [ anArgument isBlock ])
+				ifTrue: [ self space ]
+				ifFalse: [ ((self willBeMultiline: anArgument)
+						or: [ anArgument sourceInterval size > self maxLineLength ])
+						ifTrue: [ self isInCascadeNode
+								ifTrue: [ codeStream nextPut: Character cr.
+									self indentTimesRepeat: self indent - 1 ]
+								ifFalse: [ self newLine ] ]
+						ifFalse: [ self space ] ] ].
 	self visitNode: anArgument
 ]
 
 { #category : #private }
 BIEnlumineurPrettyPrinter >> handleLineForSelector: selector withSeparatorBlock: aBlock [
-	(self isLineTooLong: selector)
+	(self isLineTooLongWithString: selector)
 		ifTrue: [ self newLine ]
 		ifFalse: [ aBlock value ]
 ]
@@ -1369,17 +1366,14 @@ BIEnlumineurPrettyPrinter >> isInCascadeNode: aBoolean [
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> isLineTooLong2: aNode [
-| aString |
-aString := (self formattedSourceFor: aNode).
-	^ self currentLineLength
-		+ (aString indexOf: Character cr ifAbsent: [ aString size ])
-		>= self maxLineLength
+BIEnlumineurPrettyPrinter >> isLineTooLongWithNode: aNode [
+	^ self isLineTooLongWithString: (self formattedSourceFor: aNode).
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> isLineTooLong: aString [
-	^ self currentLineLength + (aString indexOf: Character cr ifAbsent: [ aString size ])
+BIEnlumineurPrettyPrinter >> isLineTooLongWithString: aString [
+	^ self currentLineLength
+		+ (aString indexOf: Character cr ifAbsent: [ aString size ])
 		>= self maxLineLength
 ]
 
@@ -1392,19 +1386,13 @@ BIEnlumineurPrettyPrinter >> isMultiLineMessage: aMessageNode [
 	self numberOfArgumentsForMultiLine <= aMessageNode arguments size
 		ifTrue: [ ^ true ].
 	aMessageNode isUnary
-		ifTrue: [ ^ self isLineTooLong: aMessageNode selector ].
-	^ self isLineTooLong: (self formatMessageNodeInAMessageStreamFor: aMessageNode) contents
+		ifTrue: [ ^ self isLineTooLongWithString: aMessageNode selector ].
+	^ self isLineTooLongWithString: (self formatMessageNodeInAMessageStreamFor: aMessageNode) contents
 ]
 
 { #category : #private }
 BIEnlumineurPrettyPrinter >> isNonEmptySingleLineBlock: aBlockNode [
 	^ ((self willBeMultiline: aBlockNode body) or: [ aBlockNode body statements isEmpty ]) not
-]
-
-{ #category : #private }
-BIEnlumineurPrettyPrinter >> isTooLong:aNode [
-self flag: 'maybe find a better way'.
-^ (self formattedSourceFor: aNode) lines first size > self maxLineLength
 ]
 
 { #category : #accessing }
@@ -2006,7 +1994,7 @@ BIEnlumineurPrettyPrinter >> visitLiteralArrayNode: aRBArrayLiteralNode [
 						do: [ :each | 
 							current := each.
 							self visitNode: each ]
-						separatedBy: [ (self isLineTooLong: current value asString)
+						separatedBy: [ (self isLineTooLongWithNode: current)
 								ifTrue: [ self newLine ]
 								ifFalse: [ self space ] ].
 					codeStream nextPutAll: self spacesInsideArray ] ]
