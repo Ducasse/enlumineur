@@ -323,6 +323,22 @@ BIEnlumineurMessageExpressionTest >> oneLineMessageConfiguration [
 		indentExtraSpaces: 0
 ]
 
+{ #category : #configurations }
+BIEnlumineurMessageExpressionTest >> shortMaxLineLengthConfiguration [
+
+	^ self contextClass basicNew
+		indentStyle: #tabulation;
+		formatCommentWithStatements:false;
+		multiLineMessages:Array new;
+		oneLineMessages:Array new;
+		numberOfArgumentsForMultiLine:10;
+		indentsForKeywords: 1;
+		maxLineLength: 13;
+		newLineBeforeFirstKeyword:false;
+		keepBlockInMessage:false;
+		indentExtraSpaces:0
+]
+
 { #category : #tests }
 BIEnlumineurMessageExpressionTest >> testBinaryFormatParameter [
 	| source |
@@ -835,13 +851,25 @@ BIEnlumineurMessageExpressionTest >> testSpacesInsideParentheses [
 { #category : #tests }
 BIEnlumineurMessageExpressionTest >> testTooLongArgument [
 	| source |
-	configurationSelector := #tooLongArgumentConfiguration.
+	configurationSelector := #shortMaxLineLengthConfiguration.
 	source := self formatExpression: 'foo message: TooLongArgument'.
 	self
 		assert: source
 		equals:
 'foo message:
 	TooLongArgument'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testTooLongLineWithArgument [
+	| source |
+	configurationSelector := #shortMaxLineLengthConfiguration.
+	source := self formatExpression: 'foo message: argument'.
+	self
+		assert: source
+		equals:
+'foo message:
+	argument'
 ]
 
 { #category : #tests }
@@ -923,22 +951,6 @@ BIEnlumineurMessageExpressionTest >> testUnaryNoExtraSpacesBetween2 [
 	source := self
 		formatExpression: '2           factorial              factorial'.
 	self assert: source equals: '2 factorial factorial'
-]
-
-{ #category : #configurations }
-BIEnlumineurMessageExpressionTest >> tooLongArgumentConfiguration [
-
-	^ self contextClass basicNew
-		indentStyle: #tabulation;
-		formatCommentWithStatements:false;
-		multiLineMessages:Array new;
-		oneLineMessages:Array new;
-		numberOfArgumentsForMultiLine:10;
-		indentsForKeywords: 1;
-		maxLineLength: 13;
-		newLineBeforeFirstKeyword:false;
-		keepBlockInMessage:false;
-		indentExtraSpaces:0
 ]
 
 { #category : #configurations }

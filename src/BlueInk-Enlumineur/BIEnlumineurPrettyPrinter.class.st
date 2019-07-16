@@ -1215,13 +1215,10 @@ BIEnlumineurPrettyPrinter >> handleLineForArgument: anArgument [
 		ifFalse: [ self space ]
 		ifTrue: [ (self keepBlockInMessage and: [ anArgument isBlock ])
 				ifTrue: [ self space ]
-				ifFalse: [ ((self willBeMultiline: anArgument)
-						or: [ anArgument sourceInterval size > self maxLineLength ])
-						ifTrue: [ self isInCascadeNode
-								ifTrue: [ codeStream nextPut: Character cr.
-									self indentTimesRepeat: self indent - 1 ]
-								ifFalse: [ self newLine ] ]
-						ifFalse: [ self space ] ] ].
+				ifFalse: [ self isInCascadeNode
+						ifTrue: [ codeStream nextPut: Character cr.
+							self indentTimesRepeat: self indent - 1 ]
+						ifFalse: [ self newLine ] ] ].
 	self visitNode: anArgument
 ]
 
