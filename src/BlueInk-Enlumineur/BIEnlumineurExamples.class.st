@@ -9,48 +9,12 @@ Class {
 
 { #category : #accessing }
 BIEnlumineurExamples class >> bigExamplesSettingsTable [
-	^ {(#BigExample:WithMethodSignatureOnMultipleLinesExample:->
-			#(
-				#formatCommentWithStatements #indentsForKeywords 
-				#lineUpBlockBrackets 
-				#methodSignatureOnMultipleLines 
-				#multiLineMessages 
-				#newLineAfterCascade 
-				#newLineBeforeFirstCascade 
-				#newLineBeforeFirstKeyword 
-				#newLinesAfterMethodComment 
-				#newLinesAfterTemporaries 
-				#numberOfArgumentsForMultiLine 
-				#oneLineMessages 
-				#retainBlankLinesBeforeComments 
-				#selectorAndArgumentCombinedMaxSize 
-				#useBasicCommentFormat 
-				#numberOfSpacesAfterCaretSymbolInReturn 
-				#minimumNewLinesBetweenStatements 
-				#newLinesAfterMethodPattern 
-				#periodsAtEndOfBlock 
-				#periodsAtEndOfMethod 
-				#retainBlankLinesBetweenStatements 
-				#numberOfSpacesInsideBlock 
-				#numberOfSpacesInIndent 
-				#indentStyle)).
-		(#BigExample: ->
-			#(
-				#keepBlockInMessage
-				#maxLineLength
-				#useTraditionalBinaryPrecedenceForParentheses
-				#traditionalBinaryPrecedenceArray
-				#numberOfSpacesInsideParentheses
-				#numberOfSpacesInsideArray
-				#minimumNewLinesBetweenStatements
-				#newLinesAfterMethodPattern
-				#periodsAtEndOfBlock
-				#periodsAtEndOfMethod
-				#retainBlankLinesBetweenStatements
-				#numberOfSpacesInsideBlock
-				#numberOfSpacesInIndent
-				#indentStyle)
-			)}
+	^ {(#bigExample:withMethodSignatureOnMultipleLinesExample:
+		->
+			#(#formatCommentWithStatements #indentsForKeywords #lineUpBlockBrackets #methodSignatureOnMultipleLines #multiLineMessages #newLineAfterCascade #newLineBeforeFirstCascade #newLineBeforeFirstKeyword #newLinesAfterMethodComment #newLinesAfterTemporaries #numberOfArgumentsForMultiLine #oneLineMessages #retainBlankLinesBeforeComments #selectorAndArgumentCombinedMaxSize #useBasicCommentFormat #numberOfSpacesAfterCaretSymbolInReturn #minimumNewLinesBetweenStatements #newLinesAfterMethodPattern #periodsAtEndOfBlock #periodsAtEndOfMethod #retainBlankLinesBetweenStatements #numberOfSpacesInsideBlock #numberOfSpacesInIndent #indentStyle)).
+	(#bigExample:
+		->
+			#(#keepBlockInMessage #maxLineLength #useTraditionalBinaryPrecedenceForParentheses #traditionalBinaryPrecedenceArray #numberOfSpacesInsideParentheses #numberOfSpacesInsideArray #minimumNewLinesBetweenStatements #newLinesAfterMethodPattern #periodsAtEndOfBlock #periodsAtEndOfMethod #retainBlankLinesBetweenStatements #numberOfSpacesInsideBlock #numberOfSpacesInIndent #indentStyle))}
 ]
 
 { #category : #settings }
@@ -469,42 +433,6 @@ BIEnlumineurExamples class >> newConfig [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> BigArray [
-^ #(#(#expr0 #expr1 #expr2 #expr3 #expr4 #expr5 #expr6 #expr7 #expr8 #expr9 #expr10 #expr11 #expr12 #expr13 #expr14 #expr15 #expr16 #expr17 #expr18 #expr19 #expr20 #expr21 #expr22 #expr23 #expr24) #(#expr25 #expr26 #expr27 #expr28 #expr29 #expr30 #expr31 #expr32 #expr33 #expr34 #expr35 #expr36 #expr37 #expr38 #expr39 #expr40 #expr41 #expr42 #expr43 #expr44 #expr45 #expr46 #expr47 #expr48 #expr49))
-]
-
-{ #category : #methods }
-BIEnlumineurExamples >> BigExample [
-1 keepBlockInMessage: [ 11111111111111111111111111111111111111111111111111111111111111111111].
-
-1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11 + 12 + 13 + 14 + 15 + 16 + 17 + 18 + 19 + 20.
-
-#(1 2 3 4 5 6 7 8 9 10).
-
-1 + 2 * (3+4) + 5.
-true | false = true & false.
-1 + 1@1
-]
-
-{ #category : #methods }
-BIEnlumineurExamples >> BigExample:aLoooooooooooongParameter
-WithMethodSignatureOnMultipleLinesExample:anotherLongParameter [
-"a method comment"
-| temp |
-
-1 to: 10 do:[:i | temp doSomething; doSomethingElse].
-
-temp ifTrue:[1] ifFalse: [ 0 ].
-
-self method:1 with:2 aLotOf:3 parameters:4.
-
-"     comment     "
-
-
-^ temp
-]
-
-{ #category : #methods }
 BIEnlumineurExamples >> bearingToPoint2: anotherPoint [
 	"Return the bearing, in degrees, from the receiver to anotherPoint."
 	"questions: 
@@ -542,6 +470,42 @@ BIEnlumineurExamples >> bearingToPoint: anotherPoint [
 		ifTrue: [ 90 ]
 		ifFalse: [ 270 ])
 		- (deltaY / deltaX) arcTan negated radiansToDegrees) rounded
+]
+
+{ #category : #methods }
+BIEnlumineurExamples >> bigArray [
+^ #(#(#expr0 #expr1 #expr2 #expr3 #expr4 #expr5 #expr6 #expr7 #expr8 #expr9 #expr10 #expr11 #expr12 #expr13 #expr14 #expr15 #expr16 #expr17 #expr18 #expr19 #expr20 #expr21 #expr22 #expr23 #expr24) #(#expr25 #expr26 #expr27 #expr28 #expr29 #expr30 #expr31 #expr32 #expr33 #expr34 #expr35 #expr36 #expr37 #expr38 #expr39 #expr40 #expr41 #expr42 #expr43 #expr44 #expr45 #expr46 #expr47 #expr48 #expr49))
+]
+
+{ #category : #methods }
+BIEnlumineurExamples >> bigExample [
+1 keepBlockInMessage: [ 11111111111111111111111111111111111111111111111111111111111111111111].
+
+1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11 + 12 + 13 + 14 + 15 + 16 + 17 + 18 + 19 + 20.
+
+#(1 2 3 4 5 6 7 8 9 10).
+
+1 + 2 * (3+4) + 5.
+true | false = true & false.
+1 + 1@1
+]
+
+{ #category : #methods }
+BIEnlumineurExamples >> bigExample:aLoooooooooooongParameter
+withMethodSignatureOnMultipleLinesExample:anotherLongParameter [
+"a method comment"
+| temp |
+
+1 to: 10 do:[:i | temp doSomething; doSomethingElse].
+
+temp ifTrue:[1] ifFalse: [ 0 ].
+
+self method:1 with:2 aLotOf:3 parameters:4.
+
+"     comment     "
+
+
+^ temp
 ]
 
 { #category : #methods }
