@@ -1535,11 +1535,11 @@ BIEnlumineurPrettyPrinter >> newLineBefore [
 	"predicate which return true if there where a newLine in the code stream just before the current position"
 
 	| currentIndentationString |
-	currentIndentationString := ''.
+	currentIndentationString := WriteStream on: (String new: self maxLineLength).
 	1 to: self indent do: [ :i | 
-		currentIndentationString := currentIndentationString	, self indentString ].
-	currentIndentationString := currentIndentationString	, self indentExtraSpaces.
-	^ self codeStream contents lines last = currentIndentationString
+		currentIndentationString nextPutAll: self indentString ].
+	currentIndentationString nextPutAll: self indentExtraSpaces.
+	^ self codeStream contents lines last = currentIndentationString contents
 ]
 
 { #category : #accessing }
