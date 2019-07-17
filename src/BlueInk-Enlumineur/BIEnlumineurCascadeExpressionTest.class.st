@@ -5,23 +5,6 @@ Class {
 }
 
 { #category : #configurations }
-BIEnlumineurCascadeExpressionTest >> SpaceIndentConfiguration [
-
-	^ self contextClass basicNew
-		formatCommentWithStatements:false;
-		newLineAfterCascade:true;
-		newLineBeforeFirstCascade: true;
-		multiLineMessages: Array new;
-		oneLineMessages: Array new;
-		numberOfArgumentsForMultiLine:3;
-		maxLineLength:50;
-		keepBlockInMessage:false;
-		numberOfSpacesInIndent: 1;
-		indentStyle: #space;
-		indentExtraSpaces:0
-]
-
-{ #category : #configurations }
 BIEnlumineurCascadeExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
@@ -34,7 +17,8 @@ BIEnlumineurCascadeExpressionTest >> basicConfiguration [
 		keepBlockInMessage:false;
 		newLineAfterCascade:false;
 		indentStyle: #tabulation;
-		indentExtraSpaces:0
+		indentExtraSpaces:0;
+		indentsForKeywords: 1
 ]
 
 { #category : #configurations }
@@ -175,6 +159,23 @@ BIEnlumineurCascadeExpressionTest >> noNewLineBeforeCascadeConfiguration [
 
 ]
 
+{ #category : #configurations }
+BIEnlumineurCascadeExpressionTest >> spaceIndentConfiguration [
+
+	^ self contextClass basicNew
+		formatCommentWithStatements:false;
+		newLineAfterCascade:true;
+		newLineBeforeFirstCascade: true;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine:3;
+		maxLineLength:50;
+		keepBlockInMessage:false;
+		numberOfSpacesInIndent: 1;
+		indentStyle: #space;
+		indentExtraSpaces:0
+]
+
 { #category : #tests }
 BIEnlumineurCascadeExpressionTest >> testCommentAfterMessages [
 	| source |
@@ -203,19 +204,19 @@ BIEnlumineurCascadeExpressionTest >> testCommentBeforeMessage [
 ]
 
 { #category : #tests }
+BIEnlumineurCascadeExpressionTest >> testFormatArgument [
+	| source |
+	configurationSelector := #basicConfiguration.
+	source := self formatExpression: '1 between:2 + 2 and:5*5; +1'.
+	self assert: source equals: '1 between: 2 + 2 and: 5 * 5; + 1'
+]
+
+{ #category : #tests }
 BIEnlumineurCascadeExpressionTest >> testFormatMessage [
 	| source |
 	configurationSelector := #noNewLineAfterCascadeConfiguration.
 	source := self formatExpression: '1 *4; +1'.
 	self assert: source equals: '1 * 4; + 1'
-]
-
-{ #category : #tests }
-BIEnlumineurCascadeExpressionTest >> testFormatMessageAndArgument [
-	| source |
-	configurationSelector := #basicConfiguration.
-	source := self formatExpression: '1 between:2 and:5; +1'.
-	self assert: source equals: '1 between: 2 and: 5; + 1'
 ]
 
 { #category : #tests }
@@ -242,7 +243,7 @@ BIEnlumineurCascadeExpressionTest >> testFormatMultilineMessage2 [
 	self
 		assert: source
 		equals:
-			'1
+'1
 	factorial;
 	multi: 1
 		line: 2'
@@ -363,19 +364,17 @@ BIEnlumineurCascadeExpressionTest >> testNoNewLineBeforeCascade2 [
 { #category : #tests }
 BIEnlumineurCascadeExpressionTest >> testOneSpaceIndent [
 	| source |
-	configurationSelector := #SpaceIndentConfiguration.
+	configurationSelector := #spaceIndentConfiguration.
 	source := self
 		formatExpression:
-			'Transcript show:1 "firstComment";
-	cr "secondComment";
-	cr "thirdComment"'.
+			'Transcript show:1; cr; cr'.
 	self
 		assert: source
 		equals:
 'Transcript
- show: 1 "firstComment";
- "secondComment"cr;
- "thirdComment"cr'
+ show: 1;
+ cr;
+ cr'
 ]
 
 { #category : #tests }
@@ -387,6 +386,19 @@ BIEnlumineurCascadeExpressionTest >> testTooLongArgument [
 		assert: source
 		equals:
 'foo a; b:
+	toLongArgument'
+]
+
+{ #category : #tests }
+BIEnlumineurCascadeExpressionTest >> testTooLongArgument2 [
+	| source |
+	configurationSelector := #tooLongArgumentConfigurationWithNewLineAfterCascade.
+	source := self formatExpression: 'foo a;b: toLongArgument'.
+	self
+		assert: source
+		equals:
+'foo a;
+	b:
 	toLongArgument'
 ]
 
@@ -402,6 +414,21 @@ BIEnlumineurCascadeExpressionTest >> tooLongArgumentConfiguration [
 		maxLineLength:10;
 		keepBlockInMessage:false;
 		newLineAfterCascade:false;
+		indentStyle: #tabulation;
+		indentExtraSpaces:0
+]
+
+{ #category : #configurations }
+BIEnlumineurCascadeExpressionTest >> tooLongArgumentConfigurationWithNewLineAfterCascade [
+	^ self contextClass basicNew
+		formatCommentWithStatements:true;
+		newLineBeforeFirstCascade: false;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine:3;
+		maxLineLength:10;
+		keepBlockInMessage:false;
+		newLineAfterCascade:true;
 		indentStyle: #tabulation;
 		indentExtraSpaces:0
 ]
