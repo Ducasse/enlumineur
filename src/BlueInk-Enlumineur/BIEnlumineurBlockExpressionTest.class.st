@@ -152,6 +152,58 @@ BIEnlumineurBlockExpressionTest >> fourSpaceIndentConfiguration [
 ]
 
 { #category : #configurations }
+BIEnlumineurBlockExpressionTest >> multiLineConfiguration [
+
+	^ self contextClass basicNew
+		numberOfSpacesInsideBlock:1;
+		periodsAtEndOfBlock:false;
+		periodsAtEndOfMethod: false;
+		lineUpBlockBrackets:false;
+		indentStyle: #tabulation;
+		keepBlockInMessage:false;
+		retainBlankLinesBetweenStatements:false;
+		retainBlankLinesBeforeComments:false;
+		minimumNewLinesBetweenStatements:1;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine:5;
+		indentsForKeywords:1;
+		newLineBeforeFirstKeyword:false;
+		formatCommentWithStatements:true;
+		maxLineLength:50;
+		useBasicCommentFormat:false;
+		indentExtraSpaces:0;
+		newLineBeforeFirstCascade: true;
+		newLineAfterCascade: true
+]
+
+{ #category : #configurations }
+BIEnlumineurBlockExpressionTest >> multiLineWithThreeSpacesInsideBlockConfiguration [
+
+	^ self contextClass basicNew
+		numberOfSpacesInsideBlock:3;
+		periodsAtEndOfBlock:false;
+		periodsAtEndOfMethod: false;
+		lineUpBlockBrackets:false;
+		indentStyle: #tabulation;
+		keepBlockInMessage:false;
+		retainBlankLinesBetweenStatements:false;
+		retainBlankLinesBeforeComments:false;
+		minimumNewLinesBetweenStatements:1;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine:5;
+		indentsForKeywords:1;
+		newLineBeforeFirstKeyword:false;
+		formatCommentWithStatements:true;
+		maxLineLength:50;
+		useBasicCommentFormat:false;
+		indentExtraSpaces:0;
+		newLineBeforeFirstCascade: true;
+		newLineAfterCascade: true
+]
+
+{ #category : #configurations }
 BIEnlumineurBlockExpressionTest >> newLineBeforeEndBracketConfiguration [
 	"Here we can control explicitely the configuration we want."
 
@@ -373,23 +425,37 @@ BIEnlumineurBlockExpressionTest >> testDontFormatCommentWithStatement [
 ]
 
 { #category : #test }
-BIEnlumineurBlockExpressionTest >> testDontFormatCommentWithStatement2 [
-	self
-		validate: ' "aComment" 1 factorial.  2 factorial'
-		isFormattedAs:
-			' "aComment"
-1 factorial.
-2 factorial '
-		with: #dontFormatCommentWithStatementConfiguration
-]
-
-{ #category : #test }
 BIEnlumineurBlockExpressionTest >> testEndPeriodInside [
 	
 	self 
 		validate:'2.'
 		isFormattedAs:' 2. '
 		with: #periodAtEndConfiguration
+]
+
+{ #category : #test }
+BIEnlumineurBlockExpressionTest >> testExtraSpaceInIndentWhenMultiline [
+	self 
+		validate:' :i|Transcript show:i; cr '
+		isFormattedAs:' :i | 
+Transcript
+	show: i;
+	cr '
+		with: #multiLineConfiguration.
+
+]
+
+{ #category : #test }
+BIEnlumineurBlockExpressionTest >> testExtraSpaceInIndentWhenMultilineWithTreeSpacesInsideBlock [
+	self 
+		validate:' :i|Transcript show:i; cr '
+		isFormattedAs:'   :i | 
+Transcript
+	show: i;
+	cr   '
+		with: #multiLineWithThreeSpacesInsideBlockConfiguration.
+
+
 ]
 
 { #category : #test }
@@ -438,17 +504,6 @@ BIEnlumineurBlockExpressionTest >> testMultiline [
 ' 
 1 + 3.
 6 factorial '
-]
-
-{ #category : #test }
-BIEnlumineurBlockExpressionTest >> testNewLineAfterComment [
-	
-	self 
-		validate: '"aComment"1. 2'
-		isFormattedAs: 
-' "aComment"
-1.
-2 '
 ]
 
 { #category : #test }
@@ -550,7 +605,7 @@ BIEnlumineurBlockExpressionTest >> testNoNewLineBeforeEndBrackets [
 
 { #category : #test }
 BIEnlumineurBlockExpressionTest >> testNotTooLongBlockBody [
-	self validate: 'notLong' isFormattedAs: ' notLong ' with: #tooLongStatementConfiguration
+	self validate: 'short' isFormattedAs: ' short ' with: #tooLongStatementConfiguration
 ]
 
 { #category : #test }
