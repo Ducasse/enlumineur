@@ -338,7 +338,7 @@ BIEnlumineurMessageExpressionTest >> oneLineMessageConfiguration [
 		formatCommentWithStatements:false;
 		multiLineMessages:Array new;
 		oneLineMessages:#(#one:line:message:);
-		numberOfArgumentsForMultiLine:10;
+		numberOfArgumentsForMultiLine:2;
 		indentsForKeywords: 0;
 		maxLineLength: 50;
 		newLineBeforeFirstKeyword:false;
