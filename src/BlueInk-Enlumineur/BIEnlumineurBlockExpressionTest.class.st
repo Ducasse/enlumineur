@@ -5,7 +5,29 @@ Class {
 }
 
 { #category : #configurations }
-BIEnlumineurBlockExpressionTest >> BlockWithTemporariesConfiguration [
+BIEnlumineurBlockExpressionTest >> basicConfiguration [
+
+	^ self contextClass basicNew
+		numberOfSpacesInsideBlock: 1;
+		periodsAtEndOfBlock:false;
+		periodsAtEndOfMethod: false;
+		lineUpBlockBrackets:false;
+		indentStyle: #tabulation;
+		keepBlockInMessage:false;
+		retainBlankLinesBetweenStatements:false;
+		minimumNewLinesBetweenStatements:1;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine:5;
+		indentsForKeywords:1;
+		newLineBeforeFirstKeyword:false;
+		formatCommentWithStatements:true;
+		maxLineLength:50;
+		indentExtraSpaces: 0
+]
+
+{ #category : #configurations }
+BIEnlumineurBlockExpressionTest >> blockWithTemporariesConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock: 1;
@@ -27,28 +49,6 @@ BIEnlumineurBlockExpressionTest >> BlockWithTemporariesConfiguration [
 		indentStyle: #tab;
 		newLinesAfterTemporaries: 1;
 		indentExtraSpaces:0
-]
-
-{ #category : #configurations }
-BIEnlumineurBlockExpressionTest >> basicConfiguration [
-
-	^ self contextClass basicNew
-		numberOfSpacesInsideBlock: 1;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod: false;
-		lineUpBlockBrackets:false;
-		indentStyle: #tabulation;
-		keepBlockInMessage:false;
-		retainBlankLinesBetweenStatements:false;
-		minimumNewLinesBetweenStatements:1;
-		multiLineMessages: Array new;
-		oneLineMessages: Array new;
-		numberOfArgumentsForMultiLine:5;
-		indentsForKeywords:1;
-		newLineBeforeFirstKeyword:false;
-		formatCommentWithStatements:true;
-		maxLineLength:50;
-		indentExtraSpaces: 0
 ]
 
 { #category : #hooks }
@@ -434,31 +434,6 @@ BIEnlumineurBlockExpressionTest >> testEndPeriodInside [
 ]
 
 { #category : #test }
-BIEnlumineurBlockExpressionTest >> testExtraSpaceInIndentWhenMultiline [
-	self 
-		validate:' :i|Transcript show:i; cr '
-		isFormattedAs:' :i | 
-Transcript
-	show: i;
-	cr '
-		with: #multiLineConfiguration.
-
-]
-
-{ #category : #test }
-BIEnlumineurBlockExpressionTest >> testExtraSpaceInIndentWhenMultilineWithTreeSpacesInsideBlock [
-	self 
-		validate:' :i|Transcript show:i; cr '
-		isFormattedAs:'   :i | 
-Transcript
-	show: i;
-	cr   '
-		with: #multiLineWithThreeSpacesInsideBlockConfiguration.
-
-
-]
-
-{ #category : #test }
 BIEnlumineurBlockExpressionTest >> testFormatBody [
 	self
 		validate: ' [1]. [ a:=1] '
@@ -481,18 +456,15 @@ BIEnlumineurBlockExpressionTest >> testFormatCommentWithStatement [
 
 { #category : #test }
 BIEnlumineurBlockExpressionTest >> testFourSpaceIndent [
-	| source |
-	configurationSelector := #fourSpaceIndentConfiguration.
-	source := self
-		formatExpression: '1 to:10 do: [:i | i to: 10 do: [:j | Transcript show:i; show: j]]'.
 	self
-		assert: source
-		equals:
-'1 to: 10 do: [ :i | 
-    i to: 10 do: [ :j | 
-        Transcript
-            show: i;
-            show: j ] ]'
+		validate: ':i | i to: 10 do: [:j | Transcript show:i; show: j]'
+		isFormattedAs:
+' :i | 
+i to: 10 do: [ :j | 
+    Transcript
+        show: i;
+        show: j ] '
+		with: #fourSpaceIndentConfiguration
 ]
 
 { #category : #test }
@@ -507,55 +479,27 @@ BIEnlumineurBlockExpressionTest >> testMultiline [
 ]
 
 { #category : #test }
-BIEnlumineurBlockExpressionTest >> testNewLineAfterFirstBracketWhenMultiline [
-	| source |
-	configurationSelector := #tabIndentConfiguration.
-	source := self
-		formatExpression:
-			'[
-	tan := y asFloat / x asFloat.
-	theta := tan arcCos ]'.
-	self
-		assert: source
-		equals:
-'[ 
-tan := y asFloat / x asFloat.
-theta := tan arcCos ]'.
-]
-
-{ #category : #test }
 BIEnlumineurBlockExpressionTest >> testNewLineAfterFirstBracketWhenMultilineWithArguments [
-	| source |
-	configurationSelector := #tabIndentConfiguration.
-	source := self
-		formatExpression:
-			'[ :tan :theta |
-	tan := y asFloat / x asFloat.
-	theta := tan arcCos ]'.
-	self
-		assert: source
-		equals:
-'[ :tan :theta | 
-tan := y asFloat / x asFloat.
-theta := tan arcCos ]'.
+
+	self 
+		validate: ':i | i+3. i factorial '
+		isFormattedAs: 
+' :i | 
+i + 3.
+i factorial '
 ]
 
 { #category : #test }
 BIEnlumineurBlockExpressionTest >> testNewLineAfterFirstBracketWhenMultilineWithTemporaries [
-	| source |
-	configurationSelector := #BlockWithTemporariesConfiguration.
-	source := self
-		formatExpression:
-			'[ | tan theta |
-	tan := y asFloat / x asFloat.
-	theta := tan arcCos ]'.
-	self
-		assert: source
-		equals:
-'[ 
-| tan theta |
-tan := y asFloat / x asFloat.
-theta := tan arcCos ]'.
+
+	self 
+		validate: '| tmp | 1+3. 6 factorial '
+		isFormattedAs: 
+' 
+| tmp |
+1 + 3.
+6 factorial '
+with: #blockWithTemporariesConfiguration
 ]
 
 { #category : #test }
@@ -616,19 +560,14 @@ BIEnlumineurBlockExpressionTest >> testNumberOfSpaces [
 
 { #category : #test }
 BIEnlumineurBlockExpressionTest >> testOneSpaceIndent [
-	| source |
-	configurationSelector := #oneSpaceIndentConfiguration.
-	source := self
-		formatExpression:
-			'1 to:10 do: [:i | i to: 10 do: [:j | Transcript show:i; show: j]]'.
-	self
-		assert: source
-		equals:
-'1 to: 10 do: [ :i | 
- i to: 10 do: [ :j | 
-  Transcript
-   show: i;
-   show: j ] ]'
+	
+	self validate: ':i | i to: 10 do: [:j | Transcript show:i; show: j]'
+		isFormattedAs: ' :i | 
+i to: 10 do: [ :j | 
+ Transcript
+  show: i;
+  show: j ] '
+	with: #oneSpaceIndentConfiguration.
 ]
 
 { #category : #test }
@@ -639,36 +578,25 @@ BIEnlumineurBlockExpressionTest >> testSpace [
 
 { #category : #test }
 BIEnlumineurBlockExpressionTest >> testTabIndent [
-	| source |
-	configurationSelector := #tabIndentConfiguration.
-	source := self
-		formatExpression:
-			'1 to:10 do: [:i | i to: 10 do: [:j | Transcript show:i; show: j]]'.
-	self
-		assert: source
-		equals:
-'1 to: 10 do: [ :i | 
-	i to: 10 do: [ :j | 
-		Transcript
-			show: i;
-			show: j ] ]'
+	self validate: ':i | i to: 10 do: [:j | Transcript show:i; show: j]'
+	isFormattedAs: ' :i | 
+i to: 10 do: [ :j | 
+	Transcript
+		show: i;
+		show: j ] '
+	 with: #tabIndentConfiguration
 ]
 
 { #category : #test }
 BIEnlumineurBlockExpressionTest >> testTabIndentIsNotAffectedByNumberOfSpace [
-	| source |
-	configurationSelector := #tabIndentIsnotAffectedConfiguration.
-	source := self
-		formatExpression:
-			'1 to:10 do: [:i | i to: 10 do: [:j | Transcript show:i; show: j]]'.
-	self
-		assert: source
-		equals:
-'1 to: 10 do: [ :i | 
-	i to: 10 do: [ :j | 
-		Transcript
-			show: i;
-			show: j ] ]'
+
+	self validate: ':i | i to: 10 do: [:j | Transcript show:i; show: j]'
+	 isFormattedAs: ' :i | 
+i to: 10 do: [ :j | 
+	Transcript
+		show: i;
+		show: j ] '
+	 with: #tabIndentIsnotAffectedConfiguration
 ]
 
 { #category : #test }
@@ -687,19 +615,14 @@ tooLongStatement ' with: #tooLongStatementConfiguration
 
 { #category : #test }
 BIEnlumineurBlockExpressionTest >> testnumberOfSpaceChangedAfterIndentCharacter [
-	| source |
-	configurationSelector := #numberOfSpaceChangedAfterIndentCharacterConfiguration.
-	source := self
-		formatExpression:
-			'1 to:10 do: [:i | i to: 10 do: [:j | Transcript show:i; show: j]]'.
-	self
-		assert: source
-		equals:
-'1 to: 10 do: [ :i | 
-  i to: 10 do: [ :j | 
-    Transcript
-      show: i;
-      show: j ] ]'
+
+	self validate: ':i | i to: 10 do: [:j | Transcript show:i; show: j]'
+	isFormattedAs: ' :i | 
+i to: 10 do: [ :j | 
+  Transcript
+    show: i;
+    show: j ] '
+	with: #numberOfSpaceChangedAfterIndentCharacterConfiguration
 ]
 
 { #category : #configurations }
