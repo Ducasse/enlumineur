@@ -51,7 +51,7 @@ BIEnlumineurArrayExpressionTest >> multiLineConfiguration [
 		indentStyle: #tabulation;
 		periodsAtEndOfBlock:false;
 		periodsAtEndOfMethod:false;
-		numberOfSpacesInsideParentheses: 1;
+		numberOfSpacesInsideParentheses: 0;
 		multiLineMessages: Array new;
 		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine: 4;
@@ -78,7 +78,7 @@ BIEnlumineurArrayExpressionTest >> oneSpaceInsideArrayConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurArrayExpressionTest >> periodAsTerminatorConfiguration [
+BIEnlumineurArrayExpressionTest >> periodAtEndOfMethod [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -90,28 +90,7 @@ BIEnlumineurArrayExpressionTest >> periodAsTerminatorConfiguration [
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements: 1;
 		indentStyle: #tabulation;
-		periodsAtEndOfBlock:true;
-		periodsAtEndOfMethod:true;
-		numberOfSpacesInsideBlock:0;
-		lineUpBlockBrackets:false;
-		indentExtraSpaces:0;
-		numberOfSpacesInsideArray: 0
-]
-
-{ #category : #configurations }
-BIEnlumineurArrayExpressionTest >> periodAsTerminatorMessageConfiguration2 [
-	"Here we can control explicitely the configuration we want."
-
-	" String streamContents: [:s |
-			BIPrettyPrinterContext new storeOn: s]"
-
-	^ self contextClass basicNew
-		formatCommentWithStatements:false;
-		maxLineLength:12;
-		retainBlankLinesBetweenStatements:false;
-		minimumNewLinesBetweenStatements: 1;
-		indentStyle: #tabulation;
-		periodsAtEndOfBlock:true;
+		periodsAtEndOfBlock:false;
 		periodsAtEndOfMethod:true;
 		multiLineMessages:Array new;
 		oneLineMessages:Array new;
@@ -140,7 +119,7 @@ BIEnlumineurArrayExpressionTest >> testFormatElement [
 ]
 
 { #category : #test }
-BIEnlumineurArrayExpressionTest >> testNewLineAfterBracesWhenTooMultiline [
+BIEnlumineurArrayExpressionTest >> testNewLineAfterBracesWhenMultiline [
 	| source |
 	configurationSelector := #multiLineConfiguration.
 	source := self formatExpression: '{(self + (1 @ 0)).
@@ -155,14 +134,14 @@ BIEnlumineurArrayExpressionTest >> testNewLineAfterBracesWhenTooMultiline [
 		assert: source
 		equals:
 '{
-	( self + ( 1 @ 0 ) ).
-	( self + ( 1 @ 1 ) ).
-	( self + ( 0 @ 1 ) ).
-	( self + ( -1 @ 1 ) ).
-	( self + ( -1 @ 0 ) ).
-	( self + ( -1 @ -1 ) ).
-	( self + ( 0 @ -1 ) ).
-	( self + ( 1 @ -1 ) )}'.
+	(self + (1 @ 0)).
+	(self + (1 @ 1)).
+	(self + (0 @ 1)).
+	(self + (-1 @ 1)).
+	(self + (-1 @ 0)).
+	(self + (-1 @ -1)).
+	(self + (0 @ -1)).
+	(self + (1 @ -1))}'
 ]
 
 { #category : #test }
@@ -190,17 +169,9 @@ BIEnlumineurArrayExpressionTest >> testOneSpaceAroundBrackets [
 ]
 
 { #category : #test }
-BIEnlumineurArrayExpressionTest >> testPeriodAtEndOfBlock [
-	| source |
-	configurationSelector := #periodAsTerminatorConfiguration.
-	source := self formatExpression: '{[1]}'.
-	self assert: source equals: '{[1.].}'
-]
-
-{ #category : #test }
 BIEnlumineurArrayExpressionTest >> testPeriodAtEndOfMethod [
 	| source |
-	configurationSelector := #periodAsTerminatorMessageConfiguration2.
+	configurationSelector := #periodAtEndOfMethod.
 	source := self formatExpression: '{1 factorial}'.
 	self assert: source equals: '{1 factorial.}'
 ]

@@ -82,9 +82,9 @@ BIEnlumineurAssignmentExpressionTest >> testExtraIndentationWhenKeywordMessageIs
 	configurationSelector := #multilineConfiguration.
 	source := self
 		formatExpression:
-	'abcdefghijklmnop:= aBoolean
-				ifTrue: [ self indentsForKeywords ]
-				ifFalse: [ 0 ]'.
+'abcdefghijklmnop:= aBoolean
+	ifTrue: [ self indentsForKeywords ]
+	ifFalse: [ 0 ]'.
 	self
 		assert: source
 		equals:
@@ -99,8 +99,7 @@ BIEnlumineurAssignmentExpressionTest >> testExtraIndentationWhenMultiline [
 	configurationSelector := #multilineConfiguration.
 	source := self
 		formatExpression:
-	'abcdefghijklmnop:= p2-x - p0-x * ( p3-y - p0-y ) - ( p3-x - p0-x * ( p2-y - p0-y ) )
-	  * b0'.
+			'abcdefghijklmnop:= p2-x - p0-x * ( p3-y - p0-y ) - ( p3-x - p0-x * ( p2-y - p0-y ) ) * b0'.
 	self
 		assert: source
 		equals:
@@ -127,7 +126,7 @@ BIEnlumineurAssignmentExpressionTest >> testExtraIndentationWhenMultiline2 [
 
 { #category : #test }
 BIEnlumineurAssignmentExpressionTest >> testExtraIndentationWhenMultiline3 [
-	| source a |
+	| source |
 	configurationSelector := #multilineConfiguration.
 	source := self
 		formatExpression:
