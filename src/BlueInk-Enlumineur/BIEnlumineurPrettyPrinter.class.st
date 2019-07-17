@@ -700,7 +700,7 @@ for example:
 myMethode
 	^ true.
 	is the result if the setting is set to true
-'.
+'
 ]
 
 { #category : #settings }
@@ -714,7 +714,7 @@ for example:
 	
 	"Comment"
 	b :=2
-	will not be modified if the setting is set to true'.
+	will not be modified if the setting is set to true'
 ]
 
 { #category : #settings }
@@ -730,7 +730,7 @@ a := 1.
 b := 2.
 
 c := a + b
-will not change if the setting is set to true'.
+will not change if the setting is set to true'
 ]
 
 { #category : #settings }
@@ -764,7 +764,7 @@ for example:
 #(   1 2 3   )
 {   1. 2. 3.   }
 	is the result of 3 spaces
-'.
+'
 ]
 
 { #category : #settings }
@@ -775,7 +775,7 @@ BIEnlumineurPrettyPrinter class >> settingsSpacesInsideBlocks: aBuilder [.
 for example:
 [   :i | Transcript show:i   ]
 	is the result of 3 spaces
-'.
+'
 ]
 
 { #category : #settings }
@@ -791,7 +791,7 @@ BIEnlumineurPrettyPrinter class >> settingsTraditionalBinaryPrecedenceArray: aBu
 	(aBuilder setting: #traditionalBinaryPrecedenceArray)
 		label: 'Traditional binary precedence';
 		description: 'An 2 dimension array containing messages according to the priority
-Example: #( #($- $+) #($*) )'.
+Example: #( #($- $+) #($*) )'
 ]
 
 { #category : #settings }
