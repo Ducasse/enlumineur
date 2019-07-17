@@ -33,7 +33,7 @@ BIEnlumineurMessageExpressionTest >> blockAndCascadeInMessageConfiguration [
 		newLineBeforeFirstKeyword: false;
 		keepBlockInMessage: true;
 		numberOfSpacesInsideBlock: 1;
-		numberOfSpacesAfterCaretSymbolInReturn: 0;
+		numberOfSpacesAfterCaretSymbolInReturn: 1;
 		periodsAtEndOfBlock: false;
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets: false;
@@ -272,6 +272,29 @@ BIEnlumineurMessageExpressionTest >> noIdentsForKeyWordConfiguration [
 		numberOfArgumentsForMultiLine: 1;
 		indentsForKeywords: 0;
 		indentExtraSpaces:0
+]
+
+{ #category : #configurations }
+BIEnlumineurMessageExpressionTest >> noTraditionalBinaryPrecedenceConfiguration [
+	"Here we can control explicitely the configuration we want."
+
+	" String streamContents: [:s |
+			BIPrettyPrinterContext new storeOn: s]"
+
+	^ self contextClass basicNew
+	indentStyle: #tabulation;
+	formatCommentWithStatements:false;
+	multiLineMessages:Array new;
+	oneLineMessages:Array new;
+	numberOfArgumentsForMultiLine:10;
+	indentsForKeywords: 0;
+	maxLineLength: 50;
+	newLineBeforeFirstKeyword:false;
+	keepBlockInMessage:false;
+	useTraditionalBinaryPrecedenceForParentheses:false;
+	traditionalBinaryPrecedenceArray: #(#($| $& $?) #($= $~ $< $>) #($- $+) #($* $/ $% $\) #($@));
+	numberOfSpacesInsideParentheses: 0;
+	indentExtraSpaces: 0
 ]
 
 { #category : #configurations }
@@ -624,10 +647,14 @@ BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine [
 { #category : #tests }
 BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine2 [
 	| source |
-	configurationSelector := #blockAndCascadeInMessageConfiguration.
-	source := self formatExpression: 'aBoolean ifTrue:[ ^ 1] ifFalse:[ ^ 0 ]'.
+	configurationSelector := #ifTrueIfFalseMutlilineMessageConfiguration.
+	source := self formatExpression: 'aBoolean ifTrue:[ ^ 1] ifFalse:[ tmp := tmp + a. ^tmp]'.
 	self assert: source equals:
-'aBoolean ifTrue: [ ^1 ] ifFalse: [ ^0 ]'
+'aBoolean
+	ifTrue: [ ^1 ]
+	ifFalse: [ 
+		tmp := tmp + a.
+		^tmp ]'
 ]
 
 { #category : #tests }
@@ -638,8 +665,8 @@ BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine3 [
 	self assert: source equals:
 'aBoolean ifTrue: [ 
 		tmp := tmp + a.
-		^tmp ]
-	ifFalse: [ ^0 ]'
+		^ tmp ]
+	ifFalse: [ ^ 0 ]'
 ]
 
 { #category : #tests }
@@ -650,10 +677,10 @@ BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine4 [
 	self assert: source equals:
 'aBoolean ifTrue: [ 
 		tmp := tmp + a.
-		^tmp ]
+		^ tmp ]
 	ifFalse: [ 
 		tmp := tmp + a.
-		^tmp ]'
+		^ tmp ]'
 ]
 
 { #category : #tests }
@@ -662,22 +689,9 @@ BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine5 [
 	configurationSelector := #blockAndCascadeInMessageConfiguration.
 	source := self formatExpression: 'aBoolean ifTrue:[ ^ 1] ifFalse:[ tmp := tmp + a. ^tmp]'.
 	self assert: source equals:
-'aBoolean ifTrue: [ ^1 ] ifFalse: [ 
+'aBoolean ifTrue: [ ^ 1 ] ifFalse: [ 
 	tmp := tmp + a.
-	^tmp ]'
-]
-
-{ #category : #tests }
-BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine6 [
-	| source |
-	configurationSelector := #ifTrueIfFalseMutlilineMessageConfiguration.
-	source := self formatExpression: 'aBoolean ifTrue:[ ^ 1] ifFalse:[ tmp := tmp + a. ^tmp]'.
-	self assert: source equals:
-'aBoolean
-	ifTrue: [ ^1 ]
-	ifFalse: [ 
-		tmp := tmp + a.
-		^tmp ]'
+	^ tmp ]'
 ]
 
 { #category : #tests }
@@ -693,8 +707,15 @@ BIEnlumineurMessageExpressionTest >> testKeywordOnTheSameLine2 [
 	| source |
 	configurationSelector := #blockAndCascadeInMessageConfiguration.
 	source := self formatExpression: '1 to: 100 by: 2 do: [ :i | transcript show: i]'.
-	self assert: source equals:
-'1 to: 100 by: 2 do: [ :i | transcript show: i ]'
+	self assert: source equals: '1 to: 100 by: 2 do: [ :i | transcript show: i ]'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testKeywordOnTheSameLine3 [
+	| source |
+	configurationSelector := #blockAndCascadeInMessageConfiguration.
+	source := self formatExpression: 'aBoolean ifTrue:[ ^ 1] ifFalse:[ ^ 0 ]'.
+	self assert: source equals: 'aBoolean ifTrue: [ ^ 1 ] ifFalse: [ ^ 0 ]'
 ]
 
 { #category : #tests }
@@ -705,7 +726,7 @@ BIEnlumineurMessageExpressionTest >> testKeywordOneArgumentPerLine [
 	self
 		assert: source
 		equals:
-			'2
+'2
 between: 1
 and: 3'
 ]
@@ -718,25 +739,9 @@ BIEnlumineurMessageExpressionTest >> testMultiLineMessage [
 	self
 		assert: source
 		equals:
-			'foo
+'foo
 	multi: 1
 	line: 2'
-]
-
-{ #category : #tests }
-BIEnlumineurMessageExpressionTest >> testNewLineAfterOpeningBlockBraketWhenMultilineBlock [
-	| source |
-	configurationSelector := #keepBlockInMessageConfiguration.
-	source := self
-		formatExpression:
-			'x = 0 ifFalse: [ tan := y asFloat / x asFloat.
-	theta := tan arcCos ]'.
-	self
-		assert: source
-		equals:
-'x = 0 ifFalse: [ 
-	tan := y asFloat / x asFloat.
-	theta := tan arcCos ]'
 ]
 
 { #category : #tests }
@@ -758,6 +763,22 @@ BIEnlumineurMessageExpressionTest >> testNewLineBeforeFirstKeyword2 [
 	self
 		assert: source
 		equals:'1 + 1'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testNewLineBeforeStatementsWhenMultilineBlock [
+	| source |
+	configurationSelector := #keepBlockInMessageConfiguration.
+	source := self
+		formatExpression:
+			'x = 0 ifFalse: [ tan := y asFloat / x asFloat.
+	theta := tan arcCos ]'.
+	self
+		assert: source
+		equals:
+'x = 0 ifFalse: [ 
+	tan := y asFloat / x asFloat.
+	theta := tan arcCos ]'
 ]
 
 { #category : #tests }
@@ -830,6 +851,30 @@ BIEnlumineurMessageExpressionTest >> testNoNewLineForBeginingOfATooLongArgument2
 	self assert: source equals:
 'self parseMethod: ''foo: abd bar: cde  
 ^ abd + cde'''
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testNoTraditionalBinaryPrecedence [
+	| source |
+	configurationSelector := #noTraditionalBinaryPrecedenceConfiguration.
+	source := self formatExpression: '2+3*4'.
+	self assert: source equals: '2 + 3 * 4'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testNoTraditionalBinaryPrecedence2 [
+	| source |
+	configurationSelector := #noTraditionalBinaryPrecedenceConfiguration.
+	source := self formatExpression: '(2 + 3) * 4'.
+	self assert: source equals: '2 + 3 * 4'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testNoTraditionalBinaryPrecedence3 [
+	| source |
+	configurationSelector := #noTraditionalBinaryPrecedenceConfiguration.
+	source := self formatExpression: '2+3*4+5 * 2'.
+	self assert: source equals: '2 + 3 * 4 + 5 * 2'
 ]
 
 { #category : #tests }
