@@ -1117,21 +1117,19 @@ BIEnlumineurPrettyPrinter >> formatSelectorAndArguments: aMessageNode firstSepar
 			self handleLineForSelector: aMessageNode selector withSeparatorBlock:
 				separatorBlock.
 			codeStream nextPutAll: aMessageNode selector ]
-		ifFalse: [ 1 to: aMessageNode selectorParts size do: [ :i | 
-				| selector argument |
-				selector := aMessageNode selectorParts at: i.
-				argument := aMessageNode arguments at: i.
+		ifFalse: [
+			aMessageNode selectorParts with: aMessageNode arguments do: [ :selector :argument | 
 				self
 					handleLineForSelector: selector
 					withSeparatorBlock: separatorBlock.
 				separatorBlock := restBlock.
 				self
 					indent:
-						(((self willBeMultiline: argument) and: [ i ~= aMessageNode selectorParts size or: [ self newLineBefore ] ])
+						(((self willBeMultiline: argument) and: [ selector ~= aMessageNode selectorParts last or: [ self newLineBefore ] ])
 							ifTrue: [ 1 ] ifFalse: [ 0 ])
 					around: [ codeStream nextPutAll: selector.
 						self handleLineForArgument: argument ].
-				((self willBeMultiline: argument) and:[i < aMessageNode selectorParts size]) ifTrue: [ separatorBlock := self newLine ]
+				((self willBeMultiline: argument) and:[selector ~= aMessageNode selectorParts last]) ifTrue: [ separatorBlock := self newLine ]
 			]
 		]
 ]
