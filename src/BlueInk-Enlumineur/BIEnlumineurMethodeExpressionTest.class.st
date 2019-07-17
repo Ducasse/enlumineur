@@ -99,20 +99,6 @@ BIEnlumineurMethodeExpressionTest >> cascadeConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurMethodeExpressionTest >> newLineAfterSignatureConfiguration [
-	"Here we can control explicitely the configuration we want."
-
-	" String streamContents: [:s |
-			BIPrettyPrinterContext new storeOn: s]"
-
-	^ self contextClass basicNew
-		indentStyle: #tabulation;
-		formatCommentWithStatements:false;
-		newLinesAfterMethodPattern: 1;
-		indentExtraSpaces:0
-]
-
-{ #category : #configurations }
 BIEnlumineurMethodeExpressionTest >> newLineBetweenTopCommentsConfiguration [
 	"Here we can control explicitely the configuration we want."
 
@@ -401,17 +387,6 @@ BIEnlumineurMethodeExpressionTest >> testNewLinesAfterGluedComment [
 'aMethode
 	"aComment""anotherComment"
 
-	'
-]
-
-{ #category : #test }
-BIEnlumineurMethodeExpressionTest >> testNewLinesAfterSignature [
-	| expr source |
-	expr := RBParser parseMethod: 'aMethode'.
-	configurationSelector := #newLineAfterSignatureConfiguration.
-	source := self formatter format: expr.
-	self assert: source equals:
-'aMethode
 	'
 ]
 
