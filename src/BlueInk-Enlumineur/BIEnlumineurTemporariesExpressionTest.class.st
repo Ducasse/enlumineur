@@ -160,8 +160,7 @@ BIEnlumineurTemporariesExpressionTest >> testDontRetainBlankLinesBeforeComments2
 	e |'.
 	self
 		assert: source
-		equals:
-			'| d "comment" e |'
+		equals: '| d "comment" e |'
 ]
 
 { #category : #tests }
@@ -171,8 +170,7 @@ BIEnlumineurTemporariesExpressionTest >> testNewLineAfterTemporaries [
 	source := self formatExpression: ' |d e|'.
 	self
 		assert: source
-		equals:
-			'| d e |
+		equals: '| d e |
 '
 ]
 

@@ -21,7 +21,7 @@ BIEnlumineurSequenceExpressionTest >> basicConfiguration [
 		indentExtraSpaces:0
 ]
 
-{ #category : #tests }
+{ #category : #configurations }
 BIEnlumineurSequenceExpressionTest >> dontFormatCommentWithStatementConfiguration [
 
 	^ self contextClass basicNew
@@ -88,7 +88,7 @@ BIEnlumineurSequenceExpressionTest >> dontRetainBlankLinesBetweenStatementsConfi
 		indentExtraSpaces:0
 ]
 
-{ #category : #tests }
+{ #category : #configurations }
 BIEnlumineurSequenceExpressionTest >> formatBlockConfiguration [
 
 	^ self contextClass basicNew
@@ -113,7 +113,7 @@ BIEnlumineurSequenceExpressionTest >> formatBlockConfiguration [
 		lineUpBlockBrackets: false
 ]
 
-{ #category : #tests }
+{ #category : #configurations }
 BIEnlumineurSequenceExpressionTest >> formatCommentWithStatementConfiguration [
 
 	^ self contextClass basicNew
@@ -163,7 +163,30 @@ BIEnlumineurSequenceExpressionTest >> newLineAfterTemporariesConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurSequenceExpressionTest >> periodAsTerminatorConfiguration [
+BIEnlumineurSequenceExpressionTest >> noPeriodAtEndOfMethodConfiguration [ 
+
+	^ self contextClass basicNew
+		periodsAtEndOfBlock:false;
+		periodsAtEndOfMethod:false;
+		formatCommentWithStatements:true;
+		indentStyle: #tabulation;
+		newLinesAfterTemporaries:0;
+		retainBlankLinesBeforeComments:false;
+		useBasicCommentFormat:false;
+		maxLineLength:50;
+		retainBlankLinesBetweenStatements:false;
+		minimumNewLinesBetweenStatements:0;
+		numberOfSpacesInsideBlock:1;
+		lineUpBlockBrackets: false;
+		multiLineMessages:Array new;
+		oneLineMessages:Array new;
+		numberOfArgumentsForMultiLine:2;
+		newLineBeforeFirstKeyword:false;
+		indentExtraSpaces:0
+]
+
+{ #category : #configurations }
+BIEnlumineurSequenceExpressionTest >> periodAtEndOfMethodConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -182,29 +205,6 @@ BIEnlumineurSequenceExpressionTest >> periodAsTerminatorConfiguration [
 		minimumNewLinesBetweenStatements:0;
 		numberOfSpacesInsideBlock:1;
 		lineUpBlockBrackets: true;
-		multiLineMessages:Array new;
-		oneLineMessages:Array new;
-		numberOfArgumentsForMultiLine:2;
-		newLineBeforeFirstKeyword:false;
-		indentExtraSpaces:0
-]
-
-{ #category : #configurations }
-BIEnlumineurSequenceExpressionTest >> periodNotAsTerminatorConfiguration [ 
-
-	^ self contextClass basicNew
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod:false;
-		formatCommentWithStatements:true;
-		indentStyle: #tabulation;
-		newLinesAfterTemporaries:0;
-		retainBlankLinesBeforeComments:false;
-		useBasicCommentFormat:false;
-		maxLineLength:50;
-		retainBlankLinesBetweenStatements:false;
-		minimumNewLinesBetweenStatements:0;
-		numberOfSpacesInsideBlock:1;
-		lineUpBlockBrackets: false;
 		multiLineMessages:Array new;
 		oneLineMessages:Array new;
 		numberOfArgumentsForMultiLine:2;
@@ -277,7 +277,6 @@ a := 1'
 { #category : #tests }
 BIEnlumineurSequenceExpressionTest >> testDontFormatCommentWithStatement [
 	| source |
-	self flag: 'change the expected result to : 1 + 3 "We do an addition".	2'.
 	configurationSelector := #dontFormatCommentWithStatementConfiguration.
 	source := self formatExpression: '1+3 "We do an addition". 2'.
 	self assert: source equals:
@@ -389,33 +388,17 @@ x ifTrue: [
 ]
 
 { #category : #tests }
-BIEnlumineurSequenceExpressionTest >> testNoPeriodAtEndOfBlock [
-	| source |
-	configurationSelector := #periodNotAsTerminatorConfiguration.
-	source := self formatExpression: '|a b| [1.].'.
-	self assert: source equals: '| a b |[ 1 ]'
-]
-
-{ #category : #tests }
 BIEnlumineurSequenceExpressionTest >> testNoPeriodAtEndOfMethode [
 	| source |
-	configurationSelector := #periodNotAsTerminatorConfiguration.
+	configurationSelector := #noPeriodAtEndOfMethodConfiguration.
 	source := self formatExpression: '|a b| 6 factorial'.
 	self assert: source equals: '| a b |6 factorial'
 ]
 
 { #category : #tests }
-BIEnlumineurSequenceExpressionTest >> testPeriodAtEndOfBlock [
-	| source |
-	configurationSelector := #periodAsTerminatorConfiguration.
-	source := self formatExpression: '|a b| [1.].'.
-	self assert: source equals: '| a b |[ 1. ].'
-]
-
-{ #category : #tests }
 BIEnlumineurSequenceExpressionTest >> testPeriodAtEndOfMethode [
 	| source |
-	configurationSelector := #periodAsTerminatorConfiguration.
+	configurationSelector := #periodAtEndOfMethodConfiguration.
 	source := self formatExpression: '|a b| 6 factorial'.
 	self assert: source equals: '| a b |6 factorial.'
 ]
