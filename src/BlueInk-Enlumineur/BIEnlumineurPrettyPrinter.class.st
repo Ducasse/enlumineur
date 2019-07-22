@@ -1825,9 +1825,9 @@ BIEnlumineurPrettyPrinter >> resizeCommentFor: aComment startingAt: anIndex [
 BIEnlumineurPrettyPrinter >> resizeStringDependingOnWindowSizeFor: aComment [
 	| resizedComment |
 	resizedComment := aComment contents withNoLineLongerThan: self maxLineLength.
-	1 to: resizedComment size do: [ :i | 
-		codeStream nextPut: (resizedComment at: i).
-		(resizedComment at: i) = Character cr
+	resizedComment do: [ :each | 
+		codeStream nextPut: each.
+		each = Character cr
 			ifTrue: [ self indentTimesRepeat: self indent  ] ]
 ]
 
