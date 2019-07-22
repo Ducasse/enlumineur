@@ -1744,10 +1744,10 @@ BIEnlumineurPrettyPrinter >> precedenceOf: parentSelector greaterThan: childSele
 	| childIndex parentIndex |
 	childIndex := 0.
 	parentIndex := 0.
-	1 to: self traditionalBinaryPrecedenceArray size do: [ :i | 
-		((self traditionalBinaryPrecedenceArray at: i) includes: parentSelector first)
+	self traditionalBinaryPrecedenceArray doWithIndex: [ :each :i | 
+		(each includes: parentSelector first)
 			ifTrue: [ parentIndex := i ].
-		((self traditionalBinaryPrecedenceArray at: i) includes: childSelector first)
+		(each includes: childSelector first)
 			ifTrue: [ childIndex := i ] ].
 	^ childIndex < parentIndex
 ]
