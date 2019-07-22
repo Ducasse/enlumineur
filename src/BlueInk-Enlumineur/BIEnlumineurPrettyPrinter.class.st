@@ -1927,8 +1927,6 @@ BIEnlumineurPrettyPrinter >> visitArrayNode: anArrayNode [
 
 { #category : #visiting }
 BIEnlumineurPrettyPrinter >> visitAssignmentNode: anAssignmentNode [
-	| nodeAsString |
-	nodeAsString := anAssignmentNode asString.
 	self visitNode: anAssignmentNode variable.
 	codeStream space; nextPutAll: anAssignmentNode assignmentOperator; space.
 	self
