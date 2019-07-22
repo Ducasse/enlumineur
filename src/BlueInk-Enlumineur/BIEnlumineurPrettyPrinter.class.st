@@ -1110,7 +1110,8 @@ BIEnlumineurPrettyPrinter >> formatSelectorAndArguments: aMessageNode [
 
 { #category : #'private-formatting' }
 BIEnlumineurPrettyPrinter >> formatSelectorAndArguments: aMessageNode firstSeparator: firstBlock restSeparator: restBlock [
-	| separatorBlock |
+	| separatorBlock i|
+	i := 0.
 	separatorBlock := firstBlock.
 	aMessageNode isUnary
 		ifTrue: [ 
@@ -1119,17 +1120,18 @@ BIEnlumineurPrettyPrinter >> formatSelectorAndArguments: aMessageNode firstSepar
 			codeStream nextPutAll: aMessageNode selector ]
 		ifFalse: [
 			aMessageNode selectorParts with: aMessageNode arguments do: [ :selector :argument | 
+				i := i + 1.
 				self
 					handleLineForSelector: selector
 					withSeparatorBlock: separatorBlock.
 				separatorBlock := restBlock.
 				self
 					indent:
-						(((self willBeMultiline: argument) and: [ selector ~= aMessageNode selectorParts last or: [ self newLineBefore ] ])
+						(((self willBeMultiline: argument) and: [ i < aMessageNode selectorParts size or: [ self newLineBefore ] ])
 							ifTrue: [ 1 ] ifFalse: [ 0 ])
 					around: [ codeStream nextPutAll: selector.
 						self handleLineForArgument: argument ].
-				((self willBeMultiline: argument) and:[selector ~= aMessageNode selectorParts last]) ifTrue: [ separatorBlock := self newLine ]
+				((self willBeMultiline: argument) and:[i < aMessageNode selectorParts size]) ifTrue: [ separatorBlock := self newLine ]
 			]
 		]
 ]
