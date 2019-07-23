@@ -81,9 +81,10 @@ BIEnlumineurContext >> indentStyle [
 
 { #category : #accessing }
 BIEnlumineurContext >> indentStyle: aSymbole [
-	indentStyle:= aSymbole.
-	(aSymbole = #space) ifTrue: [indentString := (self numberOfSpaces: numberOfSpacesInIndent)]
-	ifFalse:[indentString := String tab]
+	indentStyle := aSymbole.
+	indentString := aSymbole = #space
+		ifTrue: [ self numberOfSpaces: numberOfSpacesInIndent ]
+		ifFalse: [ String tab ]
 ]
 
 { #category : #accessing }
@@ -403,16 +404,19 @@ BIEnlumineurContext >> spacesInsideParentheses [
 
 { #category : #printing }
 BIEnlumineurContext >> storeOn: aStream [
-
-	aStream 
+	aStream
 		nextPutAll: self class name;
-		nextPutAll: ' new' ; cr.
+		nextPutAll: ' new';
+		cr.
 	self class instVarNames sorted
 		do: [ :each | 
-					aStream tab.
-					aStream nextPutAll: each, ': '.
-					aStream print: (self instVarNamed: each asSymbol) ]
-		separatedBy: [ aStream nextPutAll: ';'; cr. ]
+			aStream tab;
+				nextPutAll: each;
+				nextPutAll: ': '.
+			aStream print: (self instVarNamed: each asSymbol) ]
+		separatedBy: [ aStream
+				nextPutAll: ';';
+				cr ]
 ]
 
 { #category : #accessing }
