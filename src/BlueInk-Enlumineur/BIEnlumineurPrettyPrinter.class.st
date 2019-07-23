@@ -19,7 +19,8 @@ Class {
 		'lineStart',
 		'context',
 		'isInCascadeNode',
-		'isInMethodNode'
+		'isInMethodNode',
+		'temporaryLookAheadCode'
 	],
 	#classVars : [
 		'DefaultPrettyPrintContext',
@@ -967,7 +968,7 @@ BIEnlumineurPrettyPrinter >> formatArray: anArrayNode [
 { #category : #'private-formatting' }
 BIEnlumineurPrettyPrinter >> formatBlock: aBlockNode [
 	| isMultiline |
-	isMultiline := self willBeMultiline: aBlockNode body.
+	isMultiline := self willBeMultiline: aBlockNode body saveIn: lookaheadCode.
 	codeStream nextPutAll: self spacesInsideBlocks.
 	self formatBlockArgumentsFor: aBlockNode.
 	self formatBlockCommentFor: aBlockNode.
@@ -1038,7 +1039,7 @@ BIEnlumineurPrettyPrinter >> formatMessageNodeInAMessageStreamFor: aMessageNode 
 			messageStream
 				nextPutAll: selector;
 				space;
-				nextPutAll: (self formattedSourceFor: arg) ]
+				nextPutAll: (self formattedSourceFor: arg withDictionary: temporaryLookAheadCode) ]
 		separatedBy: [ messageStream space ].
 		^ messageStream 
 ]
@@ -1127,11 +1128,11 @@ BIEnlumineurPrettyPrinter >> formatSelectorAndArguments: aMessageNode firstSepar
 				separatorBlock := restBlock.
 				self
 					indent:
-						(((self willBeMultiline: argument) and: [ i < aMessageNode selectorParts size or: [ self newLineBefore ] ])
+						(((self willBeMultiline: argument saveIn: temporaryLookAheadCode) and: [ i < aMessageNode selectorParts size or: [ self newLineBefore ] ])
 							ifTrue: [ 1 ] ifFalse: [ 0 ])
 					around: [ codeStream nextPutAll: selector.
 						self handleLineForArgument: argument ].
-				((self willBeMultiline: argument) and:[i < aMessageNode selectorParts size]) ifTrue: [ separatorBlock := self newLine ]
+				((self willBeMultiline: argument saveIn: lookaheadCode) and:[i < aMessageNode selectorParts size]) ifTrue: [ separatorBlock := self newLine ]
 			]
 		]
 ]
@@ -1199,14 +1200,12 @@ BIEnlumineurPrettyPrinter >> formatTemporariesFor: aSequenceNode [
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> formattedSourceFor: aNode [
-	^ lookaheadCode
-		at: aNode
-		ifAbsent: [ 
-			self class new
-				indent: self indent;
-				installNewContext: context;
-				format: aNode ]
+BIEnlumineurPrettyPrinter >> formattedSourceFor: aNode withDictionary: aDictionary [
+	^ aDictionary at: aNode ifAbsentPut: [ 
+		  self class new
+			  indent: self indent;
+			  installNewContext: context;
+			  format: aNode ]
 ]
 
 { #category : #private }
@@ -1234,11 +1233,11 @@ BIEnlumineurPrettyPrinter >> hasAMultiLineMessageArgument: anArgumentsCollection
 	^ anArgumentsCollection
 		anySatisfy: [ :each | 
 			self isInCascadeNode
-				ifTrue: [ self indent: 0 around: [ self willBeMultiline: each ] ]
+				ifTrue: [ self indent: 0 around: [ self willBeMultiline: each  saveIn: temporaryLookAheadCode ] ]
 				ifFalse: [ 
 					self
 						indent: self indentsForKeywords + 1
-						around: [ self willBeMultiline: each ] ] ]
+						around: [ self willBeMultiline: each  saveIn: temporaryLookAheadCode ] ] ]
 ]
 
 { #category : #accessing }
@@ -1322,6 +1321,7 @@ BIEnlumineurPrettyPrinter >> initialize [
 	self indent: 0.
 	self isInCascadeNode: false.
 	lookaheadCode := self initializeLookAheadCode.
+	temporaryLookAheadCode := self initializeLookAheadCode.
 	codeStream := self initializeCodeStream.
 	context := DefaultPrettyPrintContext
 ]
@@ -1364,7 +1364,7 @@ BIEnlumineurPrettyPrinter >> isInCascadeNode: aBoolean [
 
 { #category : #private }
 BIEnlumineurPrettyPrinter >> isLineTooLongWithNode: aNode [
-	^ self isLineTooLongWithString: (self formattedSourceFor: aNode).
+	^ self isLineTooLongWithString: (self formattedSourceFor: aNode withDictionary: lookaheadCode).
 ]
 
 { #category : #private }
@@ -1389,7 +1389,7 @@ BIEnlumineurPrettyPrinter >> isMultiLineMessage: aMessageNode [
 
 { #category : #private }
 BIEnlumineurPrettyPrinter >> isNonEmptySingleLineBlock: aBlockNode [
-	^ ((self willBeMultiline: aBlockNode body) or: [ aBlockNode body statements isEmpty ]) not
+	^ ((self willBeMultiline: aBlockNode body saveIn: temporaryLookAheadCode ) or: [ aBlockNode body statements isEmpty ]) not
 ]
 
 { #category : #accessing }
@@ -2107,7 +2107,12 @@ BIEnlumineurPrettyPrinter >> visitVariableNode: aVariableNode [
 
 { #category : #private }
 BIEnlumineurPrettyPrinter >> willBeMultiline: aNode [ 
-	^(self formattedSourceFor: aNode) includes: Character cr
+	^(self formattedSourceFor: aNode withDictionary: lookaheadCode) includes: Character cr
+]
+
+{ #category : #private }
+BIEnlumineurPrettyPrinter >> willBeMultiline: aNode saveIn: aDictionary [
+	^(self formattedSourceFor: aNode withDictionary: aDictionary) includes: Character cr
 ]
 
 { #category : #utilities }

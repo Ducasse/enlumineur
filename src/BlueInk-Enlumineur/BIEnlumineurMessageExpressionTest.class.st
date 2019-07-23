@@ -453,8 +453,7 @@ BIEnlumineurMessageExpressionTest >> testBlockParameterWhenTheLineWillBeTooLong 
 	self
 		assert: source
 		equals:
-			'aMessage take: [ :i | 
-	i ]'
+			'aMessage take: [ :i | i ]'
 ]
 
 { #category : #tests }
