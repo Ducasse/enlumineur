@@ -997,6 +997,18 @@ BIEnlumineurMessageExpressionTest >> testUnaryNoExtraSpacesBetween2 [
 	self assert: source equals: '2 factorial factorial'
 ]
 
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testUnaryTooLongArgument [
+	| source |
+	configurationSelector := #shortMaxLineLengthConfiguration.
+	source := self formatExpression: 'foo messageTooLongUnaryyyy'.
+	self
+		assert: source
+		equals:
+'foo
+messageTooLongUnaryyyy'
+]
+
 { #category : #configurations }
 BIEnlumineurMessageExpressionTest >> traditionalBinaryPrecedenceConfiguration [
 	"Here we can control explicitely the configuration we want."
