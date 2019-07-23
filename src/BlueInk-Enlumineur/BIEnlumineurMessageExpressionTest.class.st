@@ -755,7 +755,7 @@ BIEnlumineurMessageExpressionTest >> testNewLineBeforeFirstKeyword [
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testNewLineBeforeFirstKeyword2 [
+BIEnlumineurMessageExpressionTest >> testNewLineBeforeFirstKeywordDoesntAffectBinary [
 	| source |
 	configurationSelector := #newLineBeforeFirstKeywordConfiguration.
 	source := self formatExpression: '1+1'.
