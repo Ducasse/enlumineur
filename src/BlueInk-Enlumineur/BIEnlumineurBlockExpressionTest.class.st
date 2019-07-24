@@ -13,7 +13,7 @@ BIEnlumineurBlockExpressionTest >> basicConfiguration [
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets:false;
 		indentStyle: #tabulation;
-		keepBlockInMessage:false;
+		keepBlockInMessage:true;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:1;
 		multiLineMessages: Array new;
@@ -87,7 +87,7 @@ BIEnlumineurBlockExpressionTest >> dontFormatCommentWithStatementConfiguration [
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets:false;
 		indentStyle: #tabulation;
-		keepBlockInMessage:false;
+		keepBlockInMessage:true;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:1;
 		multiLineMessages: Array new;
@@ -111,7 +111,7 @@ BIEnlumineurBlockExpressionTest >> formatCommentWithStatementConfiguration [
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets:false;
 		indentStyle: #tabulation;
-		keepBlockInMessage:false;
+		keepBlockInMessage:true;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:1;
 		multiLineMessages: Array new;
@@ -216,7 +216,7 @@ BIEnlumineurBlockExpressionTest >> newLineBeforeEndBracketConfiguration [
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets: true;
 		indentStyle: #tabulation;
-		keepBlockInMessage: false;
+		keepBlockInMessage: true;
 		retainBlankLinesBetweenStatements: false;
 		minimumNewLinesBetweenStatements: 1;
 		multiLineMessages: Array new;
@@ -242,7 +242,7 @@ BIEnlumineurBlockExpressionTest >> noNewLineBeforeEndBracketConfiguration [
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets: false;
 		indentStyle: #tabulation;
-		keepBlockInMessage: false;
+		keepBlockInMessage: true;
 		retainBlankLinesBetweenStatements: false;
 		minimumNewLinesBetweenStatements: 1;
 		multiLineMessages: Array new;
@@ -634,7 +634,7 @@ BIEnlumineurBlockExpressionTest >> tooLongStatementConfiguration [
 		periodsAtEndOfMethod: false;
 		lineUpBlockBrackets:false;
 		indentStyle: #tabulation;
-		keepBlockInMessage:false;
+		keepBlockInMessage:true;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:1;
 		multiLineMessages: Array new;

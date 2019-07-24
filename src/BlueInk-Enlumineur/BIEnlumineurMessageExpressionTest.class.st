@@ -517,6 +517,21 @@ BIEnlumineurMessageExpressionTest >> testDontKeepBlockInMessage2 [
 ]
 
 { #category : #tests }
+BIEnlumineurMessageExpressionTest >> testDontKeepBlockInMessage3 [
+	| source |
+	configurationSelector := #dontKeepBlockInMessageConfiguration.
+	source := self
+		formatExpression:
+			'aBoolean ifTrue:[ Transcript cr. Transcript cr ]'.
+	self
+		assert: source
+		equals:
+'aBoolean ifTrue:
+	[ Transcript cr.
+	Transcript cr ]'
+]
+
+{ #category : #tests }
 BIEnlumineurMessageExpressionTest >> testExtraIndentInParentheses [
 	| source |
 	configurationSelector := #blockAndParenthesesInMessageConfiguration.

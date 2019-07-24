@@ -968,11 +968,14 @@ BIEnlumineurPrettyPrinter >> formatArray: anArrayNode [
 { #category : #'private-formatting' }
 BIEnlumineurPrettyPrinter >> formatBlock: aBlockNode [
 	| isMultiline |
-	isMultiline := self willBeMultiline: aBlockNode body saveIn: lookaheadCode.
+	isMultiline := self 
+		willBeMultiline: aBlockNode body
+		saveIn: lookaheadCode.
 	codeStream nextPutAll: self spacesInsideBlocks.
 	self formatBlockArgumentsFor: aBlockNode.
 	self formatBlockCommentFor: aBlockNode.
-	(isMultiline or: [ self isLineTooLongWithNode: aBlockNode body ])
+	((isMultiline or: [ self isLineTooLongWithNode: aBlockNode body ]) 
+		 and: [ self shouldPassNewLineAfterHeadOfBlock: aBlockNode ]) 
 		ifTrue: [ self newLine ].
 	self visitSequenceNode: aBlockNode body.
 	(self lineUpBlockBrackets and: [ isMultiline ])
@@ -1246,6 +1249,12 @@ BIEnlumineurPrettyPrinter >> hasAMultiLineMessageArgument: anArgumentsCollection
 					self
 						indent: self indentsForKeywords + 1
 						around: [ self willBeMultiline: each  saveIn: temporaryLookAheadCode ] ] ]
+]
+
+{ #category : #private }
+BIEnlumineurPrettyPrinter >> headOfBlockNotEmpty: aBlockNode [
+
+	^ aBlockNode arguments isNotEmpty	or: [aBlockNode comments isNotEmpty]
 ]
 
 { #category : #accessing }
@@ -1855,6 +1864,12 @@ BIEnlumineurPrettyPrinter >> selectorAndArgumentCombinedMaxSize [
 { #category : #accessing }
 BIEnlumineurPrettyPrinter >> selectorAndArgumentCombinedMaxSize: anInteger [
 	context selectorAndArgumentCombinedMaxSize: anInteger
+]
+
+{ #category : #'private-formatting' }
+BIEnlumineurPrettyPrinter >> shouldPassNewLineAfterHeadOfBlock: aBlockNode [
+	^ (self headOfBlockNotEmpty: aBlockNode)
+		or: [ self keepBlockInMessage ]
 ]
 
 { #category : #private }
