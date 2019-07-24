@@ -1210,14 +1210,22 @@ BIEnlumineurPrettyPrinter >> formattedSourceFor: aNode withDictionary: aDictiona
 
 { #category : #private }
 BIEnlumineurPrettyPrinter >> handleLineForArgument: anArgument [
-	(self isLineTooLongWithNode: anArgument)
-		ifFalse: [ self space ]
-		ifTrue: [ (self keepBlockInMessage and: [ anArgument isBlock ])
-				ifTrue: [ self space ]
-				ifFalse: [ self isInCascadeNode
-						ifTrue: [ codeStream nextPut: Character cr.
-							self indentTimesRepeat: self indent - 1 ]
-						ifFalse: [ self newLine ] ] ].
+	| isLineTooLong |
+	isLineTooLong := self isLineTooLongWithNode: anArgument.
+	anArgument isBlock
+		ifTrue: [ 
+			(isLineTooLong or: [ (self willBeMultiline: anArgument) and: [ self keepBlockInMessage not ] ])
+				ifTrue: [ self newLine ]
+				ifFalse: [ self space ] ]
+		ifFalse: [ 
+			(self isInCascadeNode and: [ isLineTooLong ])
+				ifTrue: [ 
+					codeStream nextPut: Character cr.
+					self indentTimesRepeat: self indent - 1 ]
+				ifFalse: [ 
+					isLineTooLong
+						ifTrue: [ self newLine ]
+						ifFalse: [ self space ] ] ].
 	self visitNode: anArgument
 ]
 

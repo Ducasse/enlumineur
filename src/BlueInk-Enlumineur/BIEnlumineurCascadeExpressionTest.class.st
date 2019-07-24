@@ -36,7 +36,7 @@ BIEnlumineurCascadeExpressionTest >> multilineMessageConfiguration [
 		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine:3;
 		maxLineLength:50;
-		keepBlockInMessage:false;
+		keepBlockInMessage:true;
 		indentStyle: #tabulation;
 		newLineBeforeFirstKeyword:false;
 		numberOfSpacesInsideBlock:1;

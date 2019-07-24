@@ -115,6 +115,28 @@ BIEnlumineurMessageExpressionTest >> blockInMessageTooLongConfiguration [
 ]
 
 { #category : #configurations }
+BIEnlumineurMessageExpressionTest >> dontKeepBlockInMessageConfiguration [
+	^ self contextClass basicNew
+		indentStyle: #tabulation;
+		formatCommentWithStatements: false;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine: 10;
+		indentsForKeywords: 1;
+		maxLineLength: 70;
+		newLineBeforeFirstKeyword: true;
+		keepBlockInMessage: false;
+		numberOfSpacesInsideBlock: 1;
+		numberOfSpacesAfterCaretSymbolInReturn: 0;
+		periodsAtEndOfBlock: false;
+		periodsAtEndOfMethod: false;
+		lineUpBlockBrackets: false;
+		retainBlankLinesBetweenStatements: false;
+		minimumNewLinesBetweenStatements: 1;
+		indentExtraSpaces:0
+]
+
+{ #category : #configurations }
 BIEnlumineurMessageExpressionTest >> extraIndentWithThreeSpacesInsideParenthesesConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
@@ -452,8 +474,9 @@ BIEnlumineurMessageExpressionTest >> testBlockParameterWhenTheLineWillBeTooLong 
 	source := self formatExpression: 'aMessage take:[ :i | i]'.
 	self
 		assert: source
-		equals:
-			'aMessage take: [ :i | i ]'
+		equals: 
+'aMessage take:
+	[ :i | i ]'
 ]
 
 { #category : #tests }
@@ -462,6 +485,35 @@ BIEnlumineurMessageExpressionTest >> testBlockParameterWhenTheLineWillNotBeTooLo
 	configurationSelector := #blockInMessageConfiguration.
 	source := self formatExpression: 'aMessage take:[ :i | i]'.
 	self assert: source equals: 'aMessage take: [ :i | i ]'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testDontKeepBlockInMessage [
+	| source |
+	configurationSelector := #dontKeepBlockInMessageConfiguration.
+	source := self
+		formatExpression:
+			'aBoolean ifTrue:[ :i | i := i factorial. Transcript show:i ]'.
+	self
+		assert: source
+		equals:
+'aBoolean ifTrue:
+	[ :i | 
+	i := i factorial.
+	Transcript show: i ]'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testDontKeepBlockInMessage2 [
+	| source |
+	configurationSelector := #dontKeepBlockInMessageConfiguration.
+	source := self
+		formatExpression:
+			'aBoolean ifTrue:[ :i | i ]'.
+	self
+		assert: source
+		equals:
+'aBoolean ifTrue: [ :i | i ]'
 ]
 
 { #category : #tests }
@@ -514,6 +566,21 @@ BIEnlumineurMessageExpressionTest >> testIndentsForKeywords2 [
 		k1: 1
 		k2: 2
 		k3: 3'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testKeepBlockInMessage [
+	| source |
+	configurationSelector := #keepBlockInMessageConfiguration.
+	source := self
+		formatExpression:
+			'aBoolean ifTrue:[ :i | i := i factorial. Transcript show:i ]'.
+	self
+		assert: source
+		equals:
+'aBoolean ifTrue: [ :i | 
+	i := i factorial.
+	Transcript show: i ]'
 ]
 
 { #category : #tests }
