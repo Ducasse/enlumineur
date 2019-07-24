@@ -716,7 +716,14 @@ true ifTrue: [ ^ 1 ]
 true ifTrue: [ 
 			i := j. 
 			j := j + 1 ]
-		ifFalse:[i := j. i]
+		ifFalse:[i := j. i].
+true ifTrue: [ 
+	i := j. 
+	j := j + 1 ]
+ifFalse:[i].
+true ifTrue: [ 1]
+ifFalse:[i. j].
+true ifTrue: [ 1. 2]
 ]
 
 { #category : #methods }
