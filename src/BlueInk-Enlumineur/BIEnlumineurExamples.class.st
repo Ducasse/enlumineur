@@ -500,6 +500,10 @@ withMethodSignatureOnMultipleLinesExample:anotherLongParameter [
 
 temp ifTrue:[1] ifFalse: [ 0 ].
 
+#(1 2 3 4 5) collect: [ :each | | t | 
+	t := each factorial.
+	t * 2 ] as: Set.
+
 self method:1 with:2 aLotOf:3 parameters:4.
 
 "     comment     "
@@ -655,6 +659,27 @@ BIEnlumineurExamples >> eightNeighbors [
 ]
 
 { #category : #methods }
+BIEnlumineurExamples >> foo [
+
+foo bar: [ 1+2. 2+2 ] bar2:[1+1. 2+2] bar3:5.
+foo bar3:5 bar: [ 1+2. 2+2 ] bar2:[1+1. 2+2].
+foo bar: [ 1+2. 2+2 ] bar3:5 bar2:[1+1. 2+2] .
+
+foo  bar3:5 bar: [ 1+2. 2+2 ] bar2:[1+1. 2+2]  bar3:5
+]
+
+{ #category : #methods }
+BIEnlumineurExamples >> foo2 [
+
+foo bar: [ 1+2. 2+2 ] bar3:5.
+foo bar3:5 bar2:[1+1. 2+2].
+
+foo bar3:5 bar: [ 1+2. 2+2 ] bar3:5.
+foo bar3:5 bar3:5 bar2:[1+1. 2+2].
+foo bar: [ 1+2. 2+2 ] bar3:5 bar3:5 .
+]
+
+{ #category : #methods }
 BIEnlumineurExamples >> formatCommentWithExpressionExample [
 
 	1 + 1.	"We do an addition"
@@ -713,9 +738,9 @@ BIEnlumineurExamples >> ifTrueIfFalse [
 | i j|
 true ifTrue: [ ^ 1 ]
 	ifFalse:[ ^ 2 ].
-true ifTrue: [ 
-			i := j. 
-			j := j + 1 ]
+(self isblah) ifTrue: [ 
+			i := self foo. 
+			j := self bar:4 ]
 		ifFalse:[i := j. i].
 true ifTrue: [ 
 	i := j. 
@@ -723,7 +748,7 @@ true ifTrue: [
 ifFalse:[i].
 true ifTrue: [ 1]
 ifFalse:[i. j].
-true ifTrue: [ 1. 2]
+true ifTrue: [ self foo. self bar:4]
 ]
 
 { #category : #methods }
