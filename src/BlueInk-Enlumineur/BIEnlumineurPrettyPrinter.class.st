@@ -960,7 +960,7 @@ BIEnlumineurPrettyPrinter >> formatArray: anArrayNode [
 				separatedBy: [ (self isLineTooLongWithNode: current)
 						ifTrue: [ codeStream nextPut: $..
 							self newLine ]
-						ifFalse: [ codeStream nextPutAll: ' . ' ] ] ]
+						ifFalse: [ codeStream nextPutAll: '. ' ] ] ]
 		ifNotEmpty: [ anArrayNode statements size > 1
 				ifTrue: [ self
 						indentAround: [ self

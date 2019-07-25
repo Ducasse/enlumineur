@@ -149,7 +149,7 @@ BIEnlumineurArrayExpressionTest >> testNoExtraSpaceAroundPeriod [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '{1.    2.        3}'.
-	self assert: source equals: '{1 . 2 . 3}'
+	self assert: source equals: '{1. 2. 3}'
 ]
 
 { #category : #test }
@@ -157,7 +157,7 @@ BIEnlumineurArrayExpressionTest >> testNoSpaceAroundBrackets [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: ' { 1. 2. 3 } '.
-	self assert: source equals: '{1 . 2 . 3}'
+	self assert: source equals: '{1. 2. 3}'
 ]
 
 { #category : #test }
@@ -165,7 +165,7 @@ BIEnlumineurArrayExpressionTest >> testOneSpaceAroundBrackets [
 	| source |
 	configurationSelector := #oneSpaceInsideArrayConfiguration.
 	source := self formatExpression: ' { 1. 2. 3 } '.
-	self assert: source equals: '{ 1 . 2 . 3 }'
+	self assert: source equals: '{ 1. 2. 3 }'
 ]
 
 { #category : #test }
@@ -181,7 +181,7 @@ BIEnlumineurArrayExpressionTest >> testSpaceAroundPeriod [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '{1. 2. 3}'.
-	self assert: source equals: '{1 . 2 . 3}'
+	self assert: source equals: '{1. 2. 3}'
 ]
 
 { #category : #test }
@@ -205,8 +205,8 @@ BIEnlumineurArrayExpressionTest >> testToLongNewLine2 [
 	self
 		assert: source
 		equals:
-			'{1 . 2 . 3 . 4.
-5 . 6 . 7 . 1}'
+			'{1. 2. 3. 4.
+5. 6. 7. 1}'
 ]
 
 { #category : #test }
@@ -214,7 +214,7 @@ BIEnlumineurArrayExpressionTest >> testTwoSpaceAroundBrackets [
 	| source |
 	configurationSelector := #twoSpacesInsideArrayConfiguration.
 	source := self formatExpression: ' { 1. 2. 3 } '.
-	self assert: source equals: '{  1 . 2 . 3  }'
+	self assert: source equals: '{  1. 2. 3  }'
 ]
 
 { #category : #configurations }
