@@ -107,6 +107,11 @@ BIEnlumineurPrettyPrinter class >> initialize [
 	DefaultPrettyPrintContext := BIEnlumineurContext new
 ]
 
+{ #category : #private }
+BIEnlumineurPrettyPrinter class >> isPrettyPrinter [
+	^ true
+]
+
 { #category : #accessing }
 BIEnlumineurPrettyPrinter class >> keepBlockInMessage [
 	^ DefaultPrettyPrintContext keepBlockInMessage
