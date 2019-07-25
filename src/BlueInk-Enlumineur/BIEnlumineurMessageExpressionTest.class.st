@@ -726,6 +726,92 @@ BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine [
 ]
 
 { #category : #tests }
+BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine10 [
+	| source |
+	configurationSelector := #blockAndCascadeInMessageConfiguration.
+	source := self formatExpression:
+'foo
+	bar: [ 
+		1 + 2.
+		2 + 2 ]
+	bar3: 5.'.
+	self assert: source equals:
+'foo
+	bar: [ 
+		1 + 2.
+		2 + 2 ]
+	bar3: 5'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine11 [
+	| source |
+	configurationSelector := #blockAndCascadeInMessageConfiguration.
+	source := self formatExpression:
+'foo bar3: 5 bar2: [ 
+	1 + 1.
+	2 + 2 ]'.
+	self assert: source equals:
+'foo bar3: 5 bar2: [ 
+	1 + 1.
+	2 + 2 ]'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine12 [
+	| source |
+	configurationSelector := #blockAndCascadeInMessageConfiguration.
+	source := self formatExpression:
+'foo
+	bar3: 5
+	bar: [ 
+		1 + 2.
+		2 + 2 ]
+	bar3: 5'.
+	self assert: source equals:
+'foo
+	bar3: 5
+	bar: [ 
+		1 + 2.
+		2 + 2 ]
+	bar3: 5'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine13 [
+	| source |
+	configurationSelector := #blockAndCascadeInMessageConfiguration.
+	source := self formatExpression:
+'foo bar3: 5 bar3: 5 bar2: [ 
+	1 + 1.
+	2 + 2 ]'.
+	self assert: source equals:
+'foo bar3: 5 bar3: 5 bar2: [ 
+	1 + 1.
+	2 + 2 ]'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine14 [
+	| source |
+	configurationSelector := #blockAndCascadeInMessageConfiguration.
+	source := self formatExpression:
+'foo
+	bar: [ 
+		1 + 2.
+		2 + 2 ]
+	bar3: 5 
+	bar3: 5'.
+	self assert: source equals:
+'foo
+	bar: [ 
+		1 + 2.
+		2 + 2 ]
+	bar3: 5
+	bar3: 5'.
+]
+
+{ #category : #tests }
 BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine2 [
 	| source |
 	configurationSelector := #ifTrueIfFalseMutlilineMessageConfiguration.
@@ -744,7 +830,8 @@ BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine3 [
 	configurationSelector := #blockAndCascadeInMessageConfiguration.
 	source := self formatExpression: 'aBoolean ifTrue:[ tmp := tmp + a. ^ tmp] ifFalse:[ ^ 0 ]'.
 	self assert: source equals:
-'aBoolean ifTrue: [ 
+'aBoolean
+	ifTrue: [ 
 		tmp := tmp + a.
 		^ tmp ]
 	ifFalse: [ ^ 0 ]'
@@ -756,7 +843,8 @@ BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine4 [
 	configurationSelector := #blockAndCascadeInMessageConfiguration.
 	source := self formatExpression: 'aBoolean ifTrue:[ tmp := tmp + a. ^ tmp] ifFalse:[ tmp := tmp + a. ^tmp]'.
 	self assert: source equals:
-'aBoolean ifTrue: [ 
+'aBoolean
+	ifTrue: [ 
 		tmp := tmp + a.
 		^ tmp ]
 	ifFalse: [ 
@@ -773,6 +861,104 @@ BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine5 [
 'aBoolean ifTrue: [ ^ 1 ] ifFalse: [ 
 	tmp := tmp + a.
 	^ tmp ]'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine6 [
+	| source |
+	configurationSelector := #blockAndCascadeInMessageConfiguration.
+	source := self formatExpression:
+'foo 
+	bar: [ 
+		1 + 2.
+		2 + 2 ]
+	bar2: [ 
+		1 + 1.
+		2 + 2 ]
+	bar3: 5'.
+	self assert: source equals:
+'foo
+	bar: [ 
+		1 + 2.
+		2 + 2 ]
+	bar2: [ 
+		1 + 1.
+		2 + 2 ]
+	bar3: 5'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine7 [
+	| source |
+	configurationSelector := #blockAndCascadeInMessageConfiguration.
+	source := self formatExpression:
+'foo 
+	bar3: 5
+	bar: [ 
+		1 + 2.
+		2 + 2 ]
+	bar2: [ 
+		1 + 1.
+		2 + 2 ]'.
+	self assert: source equals:
+'foo
+	bar3: 5
+	bar: [ 
+		1 + 2.
+		2 + 2 ]
+	bar2: [ 
+		1 + 1.
+		2 + 2 ]'
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine8 [
+	| source |
+	configurationSelector := #blockAndCascadeInMessageConfiguration.
+	source := self formatExpression:
+'foo
+	bar: [ 
+		1 + 2.
+		2 + 2 ]
+	bar3: 5
+	bar2: [ 
+		1 + 1.
+		2 + 2 ]'.
+	self assert: source equals:
+'foo
+	bar: [ 
+		1 + 2.
+		2 + 2 ]
+	bar3: 5
+	bar2: [ 
+		1 + 1.
+		2 + 2 ]'.
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine9 [
+	| source |
+	configurationSelector := #blockAndCascadeInMessageConfiguration.
+	source := self formatExpression:
+'foo
+	bar3: 5
+	bar: [ 
+		1 + 2.
+		2 + 2 ]
+	bar2: [ 
+		1 + 1.
+		2 + 2 ]
+	bar3: 5'.
+	self assert: source equals:
+'foo
+	bar3: 5
+	bar: [ 
+		1 + 2.
+		2 + 2 ]
+	bar2: [ 
+		1 + 1.
+		2 + 2 ]
+	bar3: 5'
 ]
 
 { #category : #tests }
