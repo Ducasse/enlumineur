@@ -386,7 +386,7 @@ BIEnlumineurCascadeExpressionTest >> testTooLongArgument [
 		assert: source
 		equals:
 'foo a; b:
-	toLongArgument'
+		toLongArgument'
 ]
 
 { #category : #tests }
@@ -399,7 +399,7 @@ BIEnlumineurCascadeExpressionTest >> testTooLongArgument2 [
 		equals:
 'foo a;
 	b:
-	toLongArgument'
+		toLongArgument'
 ]
 
 { #category : #configurations }

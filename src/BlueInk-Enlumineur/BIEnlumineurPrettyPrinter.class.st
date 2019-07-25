@@ -1229,9 +1229,7 @@ BIEnlumineurPrettyPrinter >> handleLineForArgument: anArgument [
 				ifFalse: [ self space ] ]
 		ifFalse: [ 
 			(self isInCascadeNode and: [ isLineTooLong ])
-				ifTrue: [ 
-					codeStream nextPut: Character cr.
-					self indentTimesRepeat: self indent - 1 ]
+				ifTrue: [ self newLine ]
 				ifFalse: [ 
 					isLineTooLong
 						ifTrue: [ self newLine ]
