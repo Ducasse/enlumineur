@@ -661,22 +661,72 @@ BIEnlumineurExamples >> eightNeighbors [
 { #category : #methods }
 BIEnlumineurExamples >> foo [
 
-foo bar: [ 1+2. 2+2 ] bar2:[1+1. 2+2] bar3:5.
-foo bar3:5 bar: [ 1+2. 2+2 ] bar2:[1+1. 2+2].
-foo bar: [ 1+2. 2+2 ] bar3:5 bar2:[1+1. 2+2] .
-
-foo  bar3:5 bar: [ 1+2. 2+2 ] bar2:[1+1. 2+2]  bar3:5
+	foo 
+		bar: [ 
+			1 + 2.
+			2 + 2 ]
+		bar2: [ 
+			1 + 1.
+			2 + 2 ]
+		bar3: 5.
+		
+	foo 
+		bar3: 5
+		bar: [ 
+			1 + 2.
+			2 + 2 ]
+		bar2: [ 
+			1 + 1.
+			2 + 2 ].
+		
+	foo 
+		bar: [ 
+			1 + 2.
+			2 + 2 ]
+		bar3: 5
+		bar2: [ 
+			1 + 1.
+			2 + 2 ].
+	foo
+		bar3: 5
+		bar: [ 
+			1 + 2.
+			2 + 2 ]
+		bar2: [ 
+			1 + 1.
+			2 + 2 ]
+		bar3: 5
 ]
 
 { #category : #methods }
 BIEnlumineurExamples >> foo2 [
-
-foo bar: [ 1+2. 2+2 ] bar3:5.
-foo bar3:5 bar2:[1+1. 2+2].
-
-foo bar3:5 bar: [ 1+2. 2+2 ] bar3:5.
-foo bar3:5 bar3:5 bar2:[1+1. 2+2].
-foo bar: [ 1+2. 2+2 ] bar3:5 bar3:5 .
+	foo 
+		bar: [ 
+			1 + 2.
+			2 + 2 ]
+		bar3: 5.
+		
+	foo bar3: 5 bar2: [ 
+			1 + 1.
+			2 + 2 ].
+		
+	foo 
+		bar3: 5
+		bar: [ 
+			1 + 2.
+			2 + 2 ]
+		bar3: 5.
+		
+	foo bar3: 5 bar3: 5 bar2: [ 
+		1 + 1.
+		2 + 2 ].
+	
+	foo 
+		bar: [ 
+			1 + 2.
+			2 + 2 ]
+		bar3: 5 
+		bar3: 5
 ]
 
 { #category : #methods }
