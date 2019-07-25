@@ -246,7 +246,7 @@ BIEnlumineurCascadeExpressionTest >> testFormatMultilineMessage2 [
 '1
 	factorial;
 	multi: 1
-		line: 2'
+	line: 2'
 ]
 
 { #category : #tests }

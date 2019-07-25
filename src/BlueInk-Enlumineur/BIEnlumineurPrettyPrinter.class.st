@@ -1137,7 +1137,8 @@ BIEnlumineurPrettyPrinter >> formatSelectorAndArguments: aMessageNode firstSepar
 				separatorBlock := restBlock.
 				self
 					indent:
-						(((self willBeMultiline: argument saveIn: temporaryLookAheadCode) and: [ i < aMessageNode selectorParts size or: [ self newLineBefore ] ])
+						((((self willBeMultiline: argument saveIn: temporaryLookAheadCode) and: [ i < aMessageNode selectorParts size or: [ self newLineBefore ] ])
+						or:[ self isInCascadeNode ])
 							ifTrue: [ 1 ] ifFalse: [ 0 ])
 					around: [ codeStream nextPutAll: selector.
 						self handleLineForArgument: argument ].
@@ -1981,15 +1982,13 @@ BIEnlumineurPrettyPrinter >> visitCascadeNode: aCascadeNode [
 				ifFalse: [ self space ].
 			aCascadeNode messages
 				do: [ :each | 
-					self
-						indentAround: [ 
 							self formatCommentsFor: each;
 								formatSelectorAndArguments: each
 								firstSeparator: [  ]
 								restSeparator:
 									((self isMultiLineMessage: each)
 										ifTrue: [ [ self newLine ] ]
-										ifFalse: [ [ self space ] ])]]
+										ifFalse: [ [ self space ] ])]
 				separatedBy: [ 
 					codeStream nextPut: $;.
 					self newLineAfterCascade
