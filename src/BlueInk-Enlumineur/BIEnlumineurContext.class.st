@@ -16,7 +16,6 @@ Class {
 		'maxLineLength',
 		'methodSignatureOnMultipleLines',
 		'minimumNewLinesBetweenStatements',
-		'multiLineMessages',
 		'newLineAfterCascade',
 		'newLineBeforeFirstCascade',
 		'newLineBeforeFirstKeyword',
@@ -24,7 +23,6 @@ Class {
 		'newLinesAfterMethodPattern',
 		'newLinesAfterTemporaries',
 		'numberOfArgumentsForMultiLine',
-		'oneLineMessages',
 		'periodsAtEndOfBlock',
 		'periodsAtEndOfMethod',
 		'retainBlankLinesBetweenStatements',
@@ -107,7 +105,6 @@ BIEnlumineurContext >> initialize [
 	maxLineLength := 70.
 	methodSignatureOnMultipleLines := false.
 	minimumNewLinesBetweenStatements := 1.
-	multiLineMessages := #(#ifTrue:ifFalse: #ifFalse:ifTrue: #ifTrue: #ifFalse: #on:do: #ensure: #ifCurtailed:).
 	newLineAfterCascade := true.
 	newLineBeforeFirstCascade := true.
 	newLineBeforeFirstKeyword := true.
@@ -115,7 +112,6 @@ BIEnlumineurContext >> initialize [
 	newLinesAfterMethodPattern := 1.
 	newLinesAfterTemporaries := 1.
 	numberOfArgumentsForMultiLine := 4.
-	oneLineMessages := #(#to: #to:do: #to:by: #to:by:do:).
 	periodsAtEndOfBlock := false.
 	periodsAtEndOfMethod := false.
 	retainBlankLinesBetweenStatements := false.
@@ -180,16 +176,6 @@ BIEnlumineurContext >> minimumNewLinesBetweenStatements [
 { #category : #accessing }
 BIEnlumineurContext >> minimumNewLinesBetweenStatements: anObject [
 	minimumNewLinesBetweenStatements := anObject
-]
-
-{ #category : #accessing }
-BIEnlumineurContext >> multiLineMessages [
-	^ multiLineMessages
-]
-
-{ #category : #accessing }
-BIEnlumineurContext >> multiLineMessages: anArray [
-	multiLineMessages := (self class compiler evaluate: anArray asString)
 ]
 
 { #category : #accessing }
@@ -320,16 +306,6 @@ BIEnlumineurContext >> numberOfSpacesInsideParentheses [
 BIEnlumineurContext >> numberOfSpacesInsideParentheses: aNumber [
 	spacesInsideParentheses :=  (self numberOfSpaces: aNumber).
 	numberOfSpacesInsideParentheses := aNumber
-]
-
-{ #category : #accessing }
-BIEnlumineurContext >> oneLineMessages [
-	^ oneLineMessages
-]
-
-{ #category : #accessing }
-BIEnlumineurContext >> oneLineMessages: anArray [
-	oneLineMessages := (self class compiler evaluate: anArray asString)
 ]
 
 { #category : #accessing }

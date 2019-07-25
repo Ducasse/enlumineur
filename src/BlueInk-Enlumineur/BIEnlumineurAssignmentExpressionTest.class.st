@@ -19,8 +19,6 @@ BIEnlumineurAssignmentExpressionTest >> multilineConfiguration [
 		formatCommentWithStatements: false;
 		maxLineLength: 70;
 		useTraditionalBinaryPrecedenceForParentheses: false;
-		multiLineMessages: Array new;
-		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine: 4;
 		indentsForKeywords: 1;
 		keepBlockInMessage: true;

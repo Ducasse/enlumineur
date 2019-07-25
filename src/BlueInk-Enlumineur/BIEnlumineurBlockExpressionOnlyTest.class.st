@@ -17,8 +17,6 @@ BIEnlumineurBlockExpressionOnlyTest >> basicConfiguration [
 		retainBlankLinesBetweenStatements:false;
 		retainBlankLinesBeforeComments:false;
 		minimumNewLinesBetweenStatements:1;
-		multiLineMessages: Array new;
-		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine:5;
 		indentsForKeywords:1;
 		newLineBeforeFirstKeyword:false;
@@ -40,8 +38,6 @@ BIEnlumineurBlockExpressionOnlyTest >> dontFormatCommentWithStatementConfigurati
 		keepBlockInMessage:false;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:1;
-		multiLineMessages: Array new;
-		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine:5;
 		indentsForKeywords:1;
 		newLineBeforeFirstKeyword:false;

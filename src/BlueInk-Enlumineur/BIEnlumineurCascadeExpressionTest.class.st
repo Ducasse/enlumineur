@@ -10,8 +10,6 @@ BIEnlumineurCascadeExpressionTest >> basicConfiguration [
 	^ self contextClass basicNew
 		formatCommentWithStatements:true;
 		newLineBeforeFirstCascade: false;
-		multiLineMessages: Array new;
-		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine:3;
 		maxLineLength:50;
 		keepBlockInMessage:false;
@@ -32,8 +30,6 @@ BIEnlumineurCascadeExpressionTest >> multilineMessageConfiguration [
 		newLineAfterCascade: true;
 		newLineBeforeFirstCascade: true;
 		formatCommentWithStatements:false;
-		multiLineMessages:#(#multi:line:);
-		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine:3;
 		maxLineLength:50;
 		keepBlockInMessage:true;
@@ -64,8 +60,6 @@ BIEnlumineurCascadeExpressionTest >> newLineAfterCascadeConfiguration [
 		newLineAfterCascade: true;
 		newLineBeforeFirstCascade: false;
 		formatCommentWithStatements:false;
-		multiLineMessages: Array new;
-		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine:3;
 		maxLineLength:50;
 		keepBlockInMessage:false;
@@ -85,8 +79,6 @@ BIEnlumineurCascadeExpressionTest >> newLineBeforeAndAfterCascadeConfiguration [
 		newLineAfterCascade: true;
 		newLineBeforeFirstCascade: true;
 		formatCommentWithStatements:false;
-		multiLineMessages: Array new;
-		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine:3;
 		maxLineLength:50;
 		keepBlockInMessage:false;
@@ -106,8 +98,6 @@ BIEnlumineurCascadeExpressionTest >> newLineBeforeCascadeConfiguration [
 		newLineAfterCascade: false;
 		newLineBeforeFirstCascade: true;
 		formatCommentWithStatements:false;
-		multiLineMessages: Array new;
-		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine:3;
 		maxLineLength:50;
 		keepBlockInMessage:false;
@@ -128,8 +118,6 @@ BIEnlumineurCascadeExpressionTest >> noNewLineAfterCascadeConfiguration [
 		newLineAfterCascade: false;
 		newLineBeforeFirstCascade: false;
 		formatCommentWithStatements:false;
-		multiLineMessages: Array new;
-		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine:3;
 		maxLineLength:50;
 		keepBlockInMessage:false;
@@ -149,8 +137,6 @@ BIEnlumineurCascadeExpressionTest >> noNewLineBeforeCascadeConfiguration [
 		newLineAfterCascade: false;
 		newLineBeforeFirstCascade: false;
 		formatCommentWithStatements:false;
-		multiLineMessages: Array new;
-		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine:3;
 		maxLineLength:50;
 		keepBlockInMessage:false;
@@ -166,8 +152,6 @@ BIEnlumineurCascadeExpressionTest >> spaceIndentConfiguration [
 		formatCommentWithStatements:false;
 		newLineAfterCascade:true;
 		newLineBeforeFirstCascade: true;
-		multiLineMessages: Array new;
-		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine:3;
 		maxLineLength:50;
 		keepBlockInMessage:false;
@@ -233,20 +217,6 @@ BIEnlumineurCascadeExpressionTest >> testFormatMultilineMessage [
 	to: 4 do: [ :each | 
 		each factorial.
 		each + 1 ]'
-]
-
-{ #category : #tests }
-BIEnlumineurCascadeExpressionTest >> testFormatMultilineMessage2 [
-	| source |
-	configurationSelector := #multilineMessageConfiguration.
-	source := self formatExpression: '1 factorial; multi:1 line:2'.
-	self
-		assert: source
-		equals:
-'1
-	factorial;
-	multi: 1
-	line: 2'
 ]
 
 { #category : #tests }
@@ -408,8 +378,6 @@ BIEnlumineurCascadeExpressionTest >> tooLongArgumentConfiguration [
 	^ self contextClass basicNew
 		formatCommentWithStatements:true;
 		newLineBeforeFirstCascade: false;
-		multiLineMessages: Array new;
-		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine:3;
 		maxLineLength:10;
 		keepBlockInMessage:false;
@@ -423,8 +391,6 @@ BIEnlumineurCascadeExpressionTest >> tooLongArgumentConfigurationWithNewLineAfte
 	^ self contextClass basicNew
 		formatCommentWithStatements:true;
 		newLineBeforeFirstCascade: false;
-		multiLineMessages: Array new;
-		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine:3;
 		maxLineLength:10;
 		keepBlockInMessage:false;

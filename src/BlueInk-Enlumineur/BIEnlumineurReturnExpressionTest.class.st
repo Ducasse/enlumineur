@@ -19,8 +19,6 @@ BIEnlumineurReturnExpressionTest >> multilineConfiguration [
 		formatCommentWithStatements: false;
 		numberOfSpacesAfterCaretSymbolInReturn: 1;
 		maxLineLength: 70;
-		multiLineMessages: Array new;
-		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine: 4;
 		indentStyle: #tabulation;
 		indentsForKeywords: 1;
@@ -35,8 +33,6 @@ BIEnlumineurReturnExpressionTest >> multilineWithThreeSpacesAfterCaretSymbolConf
 		formatCommentWithStatements: false;
 		numberOfSpacesAfterCaretSymbolInReturn: 3;
 		maxLineLength: 70;
-		multiLineMessages: Array new;
-		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine: 4;
 		indentStyle: #tabulation;
 		indentsForKeywords: 1;

@@ -10,8 +10,6 @@ BIEnlumineurMessageExpressionTest >> basicConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentWithStatements:false;
-		multiLineMessages:Array new;
-		oneLineMessages:Array new;
 		numberOfArgumentsForMultiLine:10;
 		indentsForKeywords: 0;
 		maxLineLength: 70;
@@ -25,8 +23,6 @@ BIEnlumineurMessageExpressionTest >> blockAndCascadeInMessageConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentWithStatements: false;
-		multiLineMessages: Array new;
-		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine: 10;
 		indentsForKeywords: 1;
 		maxLineLength: 70;
@@ -50,8 +46,6 @@ BIEnlumineurMessageExpressionTest >> blockAndParenthesesInMessageConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentWithStatements: false;
-		multiLineMessages: Array new;
-		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine: 10;
 		indentsForKeywords: 1;
 		maxLineLength: 70;
@@ -75,8 +69,6 @@ BIEnlumineurMessageExpressionTest >> blockInMessageConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentWithStatements: false;
-		multiLineMessages: Array new;
-		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine: 10;
 		indentsForKeywords: 1;
 		maxLineLength: 70;
@@ -97,8 +89,6 @@ BIEnlumineurMessageExpressionTest >> blockInMessageTooLongConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentWithStatements: false;
-		multiLineMessages: Array new;
-		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine: 10;
 		indentsForKeywords: 1;
 		maxLineLength: 20;
@@ -119,8 +109,6 @@ BIEnlumineurMessageExpressionTest >> dontKeepBlockInMessageConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentWithStatements: false;
-		multiLineMessages: Array new;
-		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine: 10;
 		indentsForKeywords: 1;
 		maxLineLength: 70;
@@ -141,8 +129,6 @@ BIEnlumineurMessageExpressionTest >> extraIndentWithThreeSpacesInsideParentheses
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentWithStatements: false;
-		multiLineMessages: Array new;
-		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine: 10;
 		indentsForKeywords: 0;
 		maxLineLength: 70;
@@ -167,8 +153,6 @@ BIEnlumineurMessageExpressionTest >> formatStatementsWithCommentsConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentWithStatements:true;
-		multiLineMessages:Array new;
-		oneLineMessages:Array new;
 		numberOfArgumentsForMultiLine:10;
 		indentsForKeywords: 0;
 		maxLineLength: 50;
@@ -181,8 +165,6 @@ BIEnlumineurMessageExpressionTest >> ifTrueIfFalseMutlilineMessageConfiguration 
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentWithStatements: false;
-		multiLineMessages:#(#ifTrue:ifFalse:);
-		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine: 10;
 		indentsForKeywords: 1;
 		maxLineLength: 70;
@@ -206,8 +188,6 @@ BIEnlumineurMessageExpressionTest >> keepBlockInMessageConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentWithStatements: false;
-		multiLineMessages: Array new;
-		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine: 10;
 		indentsForKeywords: 1;
 		maxLineLength: 70;
@@ -228,8 +208,6 @@ BIEnlumineurMessageExpressionTest >> littleMaxLineLengthConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentWithStatements: false;
-		multiLineMessages: Array new;
-		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine: 10;
 		indentsForKeywords: 1;
 		maxLineLength: 20;
@@ -250,8 +228,6 @@ BIEnlumineurMessageExpressionTest >> multiLineMessageConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentWithStatements: false;
-		multiLineMessages: #(#multi:line:);
-		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine: 10;
 		indentsForKeywords: 1;
 		maxLineLength: 50;
@@ -266,8 +242,6 @@ BIEnlumineurMessageExpressionTest >> newLineBeforeFirstKeywordConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentWithStatements:false;
-		multiLineMessages:Array new;
-		oneLineMessages:Array new;
 		numberOfArgumentsForMultiLine:10;
 		indentsForKeywords: 0;
 		maxLineLength: 50;
@@ -286,8 +260,6 @@ BIEnlumineurMessageExpressionTest >> noIdentsForKeyWordConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentWithStatements: false;
-		multiLineMessages: Array new;
-		oneLineMessages: Array new;
 		maxLineLength: 50;
 		newLineBeforeFirstKeyword: true;
 		keepBlockInMessage: false;
@@ -306,8 +278,6 @@ BIEnlumineurMessageExpressionTest >> noTraditionalBinaryPrecedenceConfiguration 
 	^ self contextClass basicNew
 	indentStyle: #tabulation;
 	formatCommentWithStatements:false;
-	multiLineMessages:Array new;
-	oneLineMessages:Array new;
 	numberOfArgumentsForMultiLine:10;
 	indentsForKeywords: 0;
 	maxLineLength: 50;
@@ -329,8 +299,6 @@ BIEnlumineurMessageExpressionTest >> oneArgumentPerLineConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentWithStatements: false;
-		multiLineMessages: Array new;
-		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine: 1;
 		indentsForKeywords: 0;
 		maxLineLength: 50;
@@ -358,8 +326,6 @@ BIEnlumineurMessageExpressionTest >> oneLineMessageConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentWithStatements:false;
-		multiLineMessages:Array new;
-		oneLineMessages:#(#one:line:message:);
 		numberOfArgumentsForMultiLine:2;
 		indentsForKeywords: 0;
 		maxLineLength: 50;
@@ -374,8 +340,6 @@ BIEnlumineurMessageExpressionTest >> shortMaxLineLengthConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentWithStatements:false;
-		multiLineMessages:Array new;
-		oneLineMessages:Array new;
 		numberOfArgumentsForMultiLine:10;
 		indentsForKeywords: 1;
 		maxLineLength: 13;
@@ -812,19 +776,6 @@ BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine14 [
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine2 [
-	| source |
-	configurationSelector := #ifTrueIfFalseMutlilineMessageConfiguration.
-	source := self formatExpression: 'aBoolean ifTrue:[ ^ 1] ifFalse:[ tmp := tmp + a. ^tmp]'.
-	self assert: source equals:
-'aBoolean
-	ifTrue: [ ^1 ]
-	ifFalse: [ 
-		tmp := tmp + a.
-		^tmp ]'
-]
-
-{ #category : #tests }
 BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine3 [
 	| source |
 	configurationSelector := #blockAndCascadeInMessageConfiguration.
@@ -999,19 +950,6 @@ and: 3'
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testMultiLineMessage [
-	| source |
-	configurationSelector := #multiLineMessageConfiguration.
-	source := self formatExpression: 'foo multi:1 line:2 '.
-	self
-		assert: source
-		equals:
-'foo
-	multi: 1
-	line: 2'
-]
-
-{ #category : #tests }
 BIEnlumineurMessageExpressionTest >> testNewLineBeforeFirstKeyword [
 	| source |
 	configurationSelector := #newLineBeforeFirstKeywordConfiguration.
@@ -1142,14 +1080,6 @@ BIEnlumineurMessageExpressionTest >> testNoTraditionalBinaryPrecedence3 [
 	configurationSelector := #noTraditionalBinaryPrecedenceConfiguration.
 	source := self formatExpression: '2+3*4+5 * 2'.
 	self assert: source equals: '2 + 3 * 4 + 5 * 2'
-]
-
-{ #category : #tests }
-BIEnlumineurMessageExpressionTest >> testOneLineMessage [
-	| source |
-	configurationSelector := #oneLineMessageConfiguration.
-	source := self formatExpression: 'foo one:1 line:2 message:3'.
-	self assert: source equals: 'foo one: 1 line: 2 message: 3'
 ]
 
 { #category : #tests }
@@ -1287,8 +1217,6 @@ BIEnlumineurMessageExpressionTest >> traditionalBinaryPrecedenceConfiguration [
 	^ self contextClass basicNew
 	indentStyle: #tabulation;
 	formatCommentWithStatements:false;
-	multiLineMessages:Array new;
-	oneLineMessages:Array new;
 	numberOfArgumentsForMultiLine:10;
 	indentsForKeywords: 0;
 	maxLineLength: 50;
@@ -1310,8 +1238,6 @@ BIEnlumineurMessageExpressionTest >> twoIdentsForKeyWordConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentWithStatements: false;
-		multiLineMessages: Array new;
-		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine: 1;
 		indentsForKeywords: 2;
 		maxLineLength: 50;
@@ -1327,8 +1253,6 @@ BIEnlumineurMessageExpressionTest >> twoSpacesInsideParenthesesConfiguration [
 		numberOfSpacesInsideParentheses: 2;
 		indentStyle: #tabulation;
 		formatCommentWithStatements:false;
-		multiLineMessages:Array new;
-		oneLineMessages:Array new;
 		numberOfArgumentsForMultiLine:10;
 		indentsForKeywords: 0;
 		maxLineLength: 50;

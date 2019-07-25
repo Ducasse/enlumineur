@@ -52,8 +52,6 @@ BIEnlumineurArrayExpressionTest >> multiLineConfiguration [
 		periodsAtEndOfBlock:false;
 		periodsAtEndOfMethod:false;
 		numberOfSpacesInsideParentheses: 0;
-		multiLineMessages: Array new;
-		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine: 4;
 		indentsForKeywords: 1;
 		keepBlockInMessage: true;
@@ -92,8 +90,6 @@ BIEnlumineurArrayExpressionTest >> periodAtEndOfMethod [
 		indentStyle: #tabulation;
 		periodsAtEndOfBlock:false;
 		periodsAtEndOfMethod:true;
-		multiLineMessages:Array new;
-		oneLineMessages:Array new;
 		numberOfArgumentsForMultiLine:2;
 		newLineBeforeFirstKeyword:false;
 		numberOfSpacesInsideArray: 0

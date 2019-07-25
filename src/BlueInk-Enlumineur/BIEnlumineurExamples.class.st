@@ -11,7 +11,7 @@ Class {
 BIEnlumineurExamples class >> bigExamplesSettingsTable [
 	^ {(#bigExample:withMethodSignatureOnMultipleLinesExample:
 		->
-			#(#formatCommentWithStatements #indentsForKeywords #lineUpBlockBrackets #methodSignatureOnMultipleLines #multiLineMessages #newLineAfterCascade #newLineBeforeFirstCascade #newLineBeforeFirstKeyword #newLinesAfterMethodComment #newLinesAfterTemporaries #numberOfArgumentsForMultiLine #oneLineMessages #retainBlankLinesBeforeComments #selectorAndArgumentCombinedMaxSize #useBasicCommentFormat #numberOfSpacesAfterCaretSymbolInReturn #minimumNewLinesBetweenStatements #newLinesAfterMethodPattern #periodsAtEndOfBlock #periodsAtEndOfMethod #retainBlankLinesBetweenStatements #numberOfSpacesInsideBlock #numberOfSpacesInIndent #indentStyle)).
+			#(#formatCommentWithStatements #indentsForKeywords #lineUpBlockBrackets #methodSignatureOnMultipleLines #newLineAfterCascade #newLineBeforeFirstCascade #newLineBeforeFirstKeyword #newLinesAfterMethodComment #newLinesAfterTemporaries #numberOfArgumentsForMultiLine #retainBlankLinesBeforeComments #selectorAndArgumentCombinedMaxSize #useBasicCommentFormat #numberOfSpacesAfterCaretSymbolInReturn #minimumNewLinesBetweenStatements #newLinesAfterMethodPattern #periodsAtEndOfBlock #periodsAtEndOfMethod #retainBlankLinesBetweenStatements #numberOfSpacesInsideBlock #numberOfSpacesInIndent #indentStyle)).
 	(#bigExample:
 		->
 			#(#keepBlockInMessage #maxLineLength #useTraditionalBinaryPrecedenceForParentheses #traditionalBinaryPrecedenceArray #numberOfSpacesInsideParentheses #numberOfSpacesInsideArray #minimumNewLinesBetweenStatements #newLinesAfterMethodPattern #periodsAtEndOfBlock #periodsAtEndOfMethod #retainBlankLinesBetweenStatements #numberOfSpacesInsideBlock #numberOfSpacesInIndent #indentStyle))}
@@ -28,15 +28,6 @@ BIEnlumineurExamples class >> defaultConfiguration [
 	#maxLineLength : 70,
 	#methodSignatureOnMultipleLines : false,
 	#minimumNewLinesBetweenStatements : 1,
-	#multiLineMessages : [
-		#''ifTrue:ifFalse:'',
-		#''ifFalse:ifTrue:'',
-		#''ifTrue:'',
-		#''ifFalse:'',
-		#''on:do:'',
-		#''ensure:'',
-		#''ifCurtailed:''
-	],
 	#newLineAfterCascade : true,
 	#newLineBeforeFirstCascade : true,
 	#newLineBeforeFirstKeyword : true,
@@ -44,12 +35,6 @@ BIEnlumineurExamples class >> defaultConfiguration [
 	#newLinesAfterMethodPattern : 1,
 	#newLinesAfterTemporaries : 1,
 	#numberOfArgumentsForMultiLine : 4,
-	#oneLineMessages : [
-		#''to:'',
-		#''to:do:'',
-		#''to:by:'',
-		#''to:by:do:''
-	],
 	#periodsAtEndOfBlock : false,
 	#periodsAtEndOfMethod : false,
 	#retainBlankLinesBetweenStatements : false,
@@ -95,148 +80,6 @@ BIEnlumineurExamples class >> defaultConfiguration [
 ]
 
 { #category : #settings }
-BIEnlumineurExamples class >> empty [
-	^ 'BIEnlumineurContext {
-	#formatCommentWithStatements : true,
-	#indentsForKeywords : 1,
-	#keepBlockInMessage : true,
-	#lineUpBlockBrackets : false,
-	#maxLineLength : 70,
-	#methodSignatureOnMultipleLines : false,
-	#minimumNewLinesBetweenStatements : 1,
-	#multiLineMessages : [ ],
-	#newLineAfterCascade : true,
-	#newLineBeforeFirstCascade : true,
-	#newLineBeforeFirstKeyword : true,
-	#newLinesAfterMethodComment : 2,
-	#newLinesAfterMethodPattern : 1,
-	#newLinesAfterTemporaries : 1,
-	#numberOfArgumentsForMultiLine : 4,
-	#oneLineMessages : [ ],
-	#periodsAtEndOfBlock : false,
-	#periodsAtEndOfMethod : false,
-	#retainBlankLinesBetweenStatements : false,
-	#retainBlankLinesBeforeComments : true,
-	#useTraditionalBinaryPrecedenceForParentheses : true,
-	#selectorAndArgumentCombinedMaxSize : 40,
-	#useBasicCommentFormat : true,
-	#traditionalBinaryPrecedenceArray : [
-		[
-			Character [ ''|'' ],
-			Character [ ''&'' ],
-			Character [ ''?'' ]
-		],
-		[
-			Character [ ''='' ],
-			Character [ ''~'' ],
-			Character [ ''<'' ],
-			Character [ ''>'' ]
-		],
-		[
-			Character [ ''-'' ],
-			Character [ ''+'' ]
-		],
-		[
-			Character [ ''*'' ],
-			Character [ ''/'' ],
-			Character [ ''%'' ],
-			Character [ ''\\'' ]
-		],
-		[
-			Character [ ''@'' ]
-		]
-	],
-	#numberOfSpacesInsideBlock : 1,
-	#numberOfSpacesInsideParentheses : 0,
-	#numberOfSpacesAfterCaretSymbolInReturn : 1,
-	#numberOfSpacesInIndent : 3,
-	#spacesAfterCaretSymbolInReturn : '' '',
-	#spacesInsideBlocks : '' '',
-	#indentStyle : #tabulation,
-	#indentString : ''\t'',
-	#spacesInsideParentheses : '''',
-	#indentExtraSpaces : '''',
-	#spacesInsideArray : '' '',
-	#numberOfSpacesInsideArray : 1
-}'
-]
-
-{ #category : #settings }
-BIEnlumineurExamples class >> emptyOneLineMessages [
-	^ 'BIEnlumineurContext {
-	#formatCommentWithStatements : true,
-	#indentsForKeywords : 1,
-	#keepBlockInMessage : true,
-	#lineUpBlockBrackets : false,
-	#maxLineLength : 70,
-	#methodSignatureOnMultipleLines : false,
-	#minimumNewLinesBetweenStatements : 1,
-	#multiLineMessages : [
-		#''ifTrue:ifFalse:'',
-		#''ifFalse:ifTrue:'',
-		#''ifTrue:'',
-		#''ifFalse:'',
-		#''on:do:'',
-		#''ensure:'',
-		#''ifCurtailed:''
-	],
-	#newLineAfterCascade : true,
-	#newLineBeforeFirstCascade : true,
-	#newLineBeforeFirstKeyword : false,
-	#newLinesAfterMethodComment : 2,
-	#newLinesAfterMethodPattern : 1,
-	#newLinesAfterTemporaries : 1,
-	#numberOfArgumentsForMultiLine : 4,
-	#oneLineMessages : [ ],
-	#periodsAtEndOfBlock : false,
-	#periodsAtEndOfMethod : false,
-	#retainBlankLinesBetweenStatements : false,
-	#retainBlankLinesBeforeComments : true,
-	#useTraditionalBinaryPrecedenceForParentheses : true,
-	#selectorAndArgumentCombinedMaxSize : 40,
-	#useBasicCommentFormat : true,
-	#traditionalBinaryPrecedenceArray : [
-		[
-			Character [ ''|'' ],
-			Character [ ''&'' ],
-			Character [ ''?'' ]
-		],
-		[
-			Character [ ''='' ],
-			Character [ ''~'' ],
-			Character [ ''<'' ],
-			Character [ ''>'' ]
-		],
-		[
-			Character [ ''-'' ],
-			Character [ ''+'' ]
-		],
-		[
-			Character [ ''*'' ],
-			Character [ ''/'' ],
-			Character [ ''%'' ],
-			Character [ ''\\'' ]
-		],
-		[
-			Character [ ''@'' ]
-		]
-	],
-	#numberOfSpacesInsideBlock : 1,
-	#numberOfSpacesInsideParentheses : 1,
-	#numberOfSpacesAfterCaretSymbolInReturn : 1,
-	#numberOfSpacesInIndent : 3,
-	#spacesAfterCaretSymbolInReturn : '' '',
-	#spacesInsideBlocks : '' '',
-	#indentStyle : #tabulation,
-	#indentString : ''\t'',
-	#spacesInsideParentheses : '' '',
-	#indentExtraSpaces : '''',
-	#spacesInsideArray : '' '',
-	#numberOfSpacesInsideArray : 1
-}'
-]
-
-{ #category : #settings }
 BIEnlumineurExamples class >> guille [
 	^ 'BIEnlumineurContext {
 	#formatCommentWithStatements : true,
@@ -246,15 +89,6 @@ BIEnlumineurExamples class >> guille [
 	#maxLineLength : 70,
 	#methodSignatureOnMultipleLines : false,
 	#minimumNewLinesBetweenStatements : 1,
-	#multiLineMessages : [
-		#''ifTrue:ifFalse:'',
-		#''ifFalse:ifTrue:'',
-		#''ifTrue:'',
-		#''ifFalse:'',
-		#''on:do:'',
-		#''ensure:'',
-		#''ifCurtailed:''
-	],
 	#newLineAfterCascade : true,
 	#newLineBeforeFirstCascade : true,
 	#newLineBeforeFirstKeyword : true,
@@ -262,12 +96,6 @@ BIEnlumineurExamples class >> guille [
 	#newLinesAfterMethodPattern : 1,
 	#newLinesAfterTemporaries : 1,
 	#numberOfArgumentsForMultiLine : 4,
-	#oneLineMessages : [
-		#''to:'',
-		#''to:do:'',
-		#''to:by:'',
-		#''to:by:do:''
-	],
 	#periodsAtEndOfBlock : false,
 	#periodsAtEndOfMethod : false,
 	#retainBlankLinesBetweenStatements : false,
@@ -329,7 +157,6 @@ BIEnlumineurExamples class >> initializeSettingsTable [
 		#maxLineLength -> #maxLineLengthExample.
 		#methodSignatureOnMultipleLines -> #method:with:A:lot:of:parameters:.
 		#minimumNewLinesBetweenStatements-> #minimumNewLinesBetweenStatementsExample.
-		#multiLineMessages.
 		#newLineAfterCascade -> #cascadeExample.
 		#newLineBeforeFirstCascade -> #cascadeExample.
 		#newLineBeforeFirstKeyword -> #messageWithALotOfParameters.
@@ -337,7 +164,6 @@ BIEnlumineurExamples class >> initializeSettingsTable [
 		#newLinesAfterMethodPattern -> #newLinesExample.
 		#newLinesAfterTemporaries -> #newLinesExample.
 		#numberOfArgumentsForMultiLine -> #messageWithALotOfParameters.
-		#oneLineMessages.
 		#periodsAtEndOfBlock -> #blockExample.
 		#periodsAtEndOfMethod -> #periodsAtEndOfMethodExample.
 		#retainBlankLinesBetweenStatements -> #retainBlankLinesExample.
@@ -362,15 +188,6 @@ BIEnlumineurExamples class >> newConfig [
 	#maxLineLength : 70,
 	#methodSignatureOnMultipleLines : false,
 	#minimumNewLinesBetweenStatements : 1,
-	#multiLineMessages : [
-		#''ifTrue:ifFalse:'',
-		#''ifFalse:ifTrue:'',
-		#''ifTrue:'',
-		#''ifFalse:'',
-		#''on:do:'',
-		#''ensure:'',
-		#''ifCurtailed:''
-	],
 	#newLineAfterCascade : true,
 	#newLineBeforeFirstCascade : true,
 	#newLineBeforeFirstKeyword : false,
@@ -378,12 +195,6 @@ BIEnlumineurExamples class >> newConfig [
 	#newLinesAfterMethodPattern : 1,
 	#newLinesAfterTemporaries : 1,
 	#numberOfArgumentsForMultiLine : 4,
-	#oneLineMessages : [
-		#''to:'',
-		#''to:do:'',
-		#''to:by:'',
-		#''to:by:do:''
-	],
 	#periodsAtEndOfBlock : false,
 	#periodsAtEndOfMethod : false,
 	#retainBlankLinesBetweenStatements : false,
@@ -825,7 +636,6 @@ BIEnlumineurExamples >> initializeSettingsTable [
 		#maxLineLength -> #maxLineLengthExample.
 		#methodSignatureOnMultipleLines -> #method:with:A:lot:of:parameters:.
 		#minimumNewLinesBetweenStatements-> #minimumNewLinesBetweenStatementsExample.
-		#multiLineMessages.
 		#newLineAfterCascade -> #cascadeExample.
 		#newLineBeforeFirstCascade -> #cascadeExample.
 		#newLineBeforeFirstKeyword -> #messageWithALotOfParameters.
@@ -833,7 +643,6 @@ BIEnlumineurExamples >> initializeSettingsTable [
 		#newLinesAfterMethodPattern -> #newLinesExample.
 		#newLinesAfterTemporaries -> #newLinesExample.
 		#numberOfArgumentsForMultiLine -> #messageWithALotOfParameters.
-		#oneLineMessages.
 		#periodsAtEndOfBlock -> #blockExample.
 		#periodsAtEndOfMethod -> #periodsAtEndOfMethodExample.
 		#retainBlankLinesBetweenStatements -> #retainBlankLinesExample.
