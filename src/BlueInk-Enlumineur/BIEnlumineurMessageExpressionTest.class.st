@@ -1274,7 +1274,7 @@ BIEnlumineurMessageExpressionTest >> testUnaryTooLongArgument [
 		assert: source
 		equals:
 'foo
-messageTooLongUnaryyyy'
+	messageTooLongUnaryyyy'
 ]
 
 { #category : #configurations }

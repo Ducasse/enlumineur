@@ -1125,9 +1125,9 @@ BIEnlumineurPrettyPrinter >> formatSelectorAndArguments: aMessageNode firstSepar
 	separatorBlock := firstBlock.
 	aMessageNode isUnary
 		ifTrue: [ 
-			self handleLineForSelector: aMessageNode selector withSeparatorBlock:
-				separatorBlock.
-			codeStream nextPutAll: aMessageNode selector ]
+				self indentAround: [self handleLineForSelector: aMessageNode selector withSeparatorBlock:
+					separatorBlock.
+				codeStream nextPutAll: aMessageNode selector ]]
 		ifFalse: [
 			aMessageNode selectorParts with: aMessageNode arguments do: [ :selector :argument | 
 				i := i + 1.
