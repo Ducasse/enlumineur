@@ -1050,9 +1050,9 @@ BIEnlumineurPrettyPrinter >> formatPragmasFor: aMethodNode [
 
 { #category : #'private-formatting' }
 BIEnlumineurPrettyPrinter >> formatSelectorAndArguments: aMessageNode [
-	| isMultilineMessage hasMutlineArguments multilineBlockBeforeAnotherArgument |
-	multilineBlockBeforeAnotherArgument := self messageHasMultilineBlockArgumentBeforeAnotherArgument: aMessageNode.
-	isMultilineMessage := (self isMultiLineMessage: aMessageNode) or:[multilineBlockBeforeAnotherArgument].
+	| isMultilineMessage hasMutlineArguments multilineArgumentBeforeAnotherArgument |
+	multilineArgumentBeforeAnotherArgument := self messageHasMultilineArgumentBeforeAnotherArgument: aMessageNode.
+	isMultilineMessage := (self isMultiLineMessage: aMessageNode) or:[multilineArgumentBeforeAnotherArgument].
 	hasMutlineArguments := self hasAMultiLineMessageArgument: aMessageNode arguments.
 	self
 		indent:
@@ -1062,7 +1062,7 @@ BIEnlumineurPrettyPrinter >> formatSelectorAndArguments: aMessageNode [
 		around: [ self
 				formatSelectorAndArguments: aMessageNode
 				firstSeparator:
-					(((self firstSeparatorShouldNotPassLine: aMessageNode) and:[multilineBlockBeforeAnotherArgument not])
+					(((self firstSeparatorShouldNotPassLine: aMessageNode) and:[multilineArgumentBeforeAnotherArgument not])
 						ifTrue: [ self space ]
 						ifFalse: [ isMultilineMessage
 								ifTrue: [ [ self newLine ] ]
@@ -1397,11 +1397,11 @@ BIEnlumineurPrettyPrinter >> maxLineLength: anInteger [
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> messageHasMultilineBlockArgumentBeforeAnotherArgument: aMessageNode [ 
+BIEnlumineurPrettyPrinter >> messageHasMultilineArgumentBeforeAnotherArgument: aMessageNode [ 
 
 	aMessageNode arguments doWithIndex: [ :each :i |
-		(each isBlock and:[ self willBeMultiline: each saveIn: temporaryLookAheadCode ])
-			ifTrue: [ ^ i < aMessageNode arguments size  ]].
+		(self willBeMultiline: each saveIn: temporaryLookAheadCode)
+			ifTrue: [ ^ i < aMessageNode arguments size ]].
 	^ false
 ]
 

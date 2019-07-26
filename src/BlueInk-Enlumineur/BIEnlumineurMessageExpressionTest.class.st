@@ -37,7 +37,7 @@ BIEnlumineurMessageExpressionTest >> blockAndCascadeInMessageConfiguration [
 		minimumNewLinesBetweenStatements: 1;
 		indentExtraSpaces:0;
 		newLineBeforeFirstCascade: true;
-		numberOfSpacesInsideParentheses: 1 ;
+		numberOfSpacesInsideParentheses: 0 ;
 		newLineAfterCascade: true
 ]
 
@@ -773,6 +773,25 @@ BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine14 [
 		2 + 2 ]
 	bar3: 5
 	bar3: 5'.
+]
+
+{ #category : #tests }
+BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine15 [
+	| source |
+	configurationSelector := #blockAndCascadeInMessageConfiguration.
+	source := self formatExpression:
+'self
+		indent:
+			(self do:[1. 2])
+		around: [ 1. 2 ]'.
+	self assert: source equals:
+'self
+	indent: (self do: [ 
+			 1.
+			 2 ])
+	around: [ 
+		1.
+		2 ]'
 ]
 
 { #category : #tests }
