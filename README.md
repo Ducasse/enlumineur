@@ -7,7 +7,7 @@ To install the packages of SingularizePluralize, go to the Playground (Ctrl+OW) 
 
 ```Smalltalk
 Metacello new
-  baseline: 'enlumineur';
+  baseline: 'Enlumineur';
   repository: 'github://Ducasse/enlumineur/src';
   load.
 ```
