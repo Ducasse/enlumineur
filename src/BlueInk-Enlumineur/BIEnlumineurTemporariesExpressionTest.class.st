@@ -245,7 +245,7 @@ BIEnlumineurTemporariesExpressionTest >> testSpaceBetweenTemporaries2 [
 ]
 
 { #category : #tests }
-BIEnlumineurTemporariesExpressionTest >> testTabBetweenVarAndComment [
+BIEnlumineurTemporariesExpressionTest >> testSpaceBetweenVarAndComment [
 	| source |
 	configurationSelector := #commentWithStatementsConfiguration.
 	source := self formatExpression: ' | d "comment" |'.

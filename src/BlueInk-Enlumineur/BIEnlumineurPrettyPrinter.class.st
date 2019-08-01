@@ -1127,7 +1127,6 @@ BIEnlumineurPrettyPrinter >> formatSequenceNodeStatementsFor: aSequenceNode [
 
 { #category : #'private-formatting' }
 BIEnlumineurPrettyPrinter >> formatStatementCommentsFor: aStatementNode [
-	self haltOnce.
 	originalSource isNil
 		ifTrue: [ ^ self ].
 	self formatCommentWithStatements
