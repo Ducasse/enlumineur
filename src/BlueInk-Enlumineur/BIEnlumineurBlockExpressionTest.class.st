@@ -419,7 +419,7 @@ BIEnlumineurBlockExpressionTest >> testFormatCommentWithStatement [
 		validate: '1 factorial. "aComment" 2 factorial'
 		isFormattedAs:
 			' 
-1 factorial.	"aComment"
+1 factorial. "aComment"
 2 factorial '
 		with: #formatCommentWithStatementConfiguration
 ]

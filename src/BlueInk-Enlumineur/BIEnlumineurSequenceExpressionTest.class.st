@@ -249,7 +249,7 @@ BIEnlumineurSequenceExpressionTest >> testCommentBetweenStatements [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '|a b| a := 1."comment"b := 2'.
-	self assert: source equals: '| a b |a := 1.	"comment" b := 2'
+	self assert: source equals: '| a b |a := 1. "comment" b := 2'
 ]
 
 { #category : #tests }
@@ -282,7 +282,7 @@ BIEnlumineurSequenceExpressionTest >> testDontRetainBlankLinesBeforeComments [
 			'|a b|
 	a :=1.
 	"Comment" b :=2'.
-	self assert: source equals: '| a b |a := 1.	"Comment" b := 2'
+	self assert: source equals: '| a b |a := 1. "Comment" b := 2'
 ]
 
 { #category : #tests }
@@ -305,7 +305,7 @@ BIEnlumineurSequenceExpressionTest >> testFormatCommentWithStatement [
 	configurationSelector := #formatCommentWithStatementConfiguration.
 	source := self formatExpression: '1+1 "We do an addition". 2'.
 	self assert: source equals: 
-'1 + 1.	"We do an addition" 2'
+'1 + 1. "We do an addition" 2'
 ]
 
 { #category : #tests }

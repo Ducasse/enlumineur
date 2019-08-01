@@ -119,7 +119,7 @@ BIEnlumineurTemporariesExpressionTest >> testCommentBasicFormat [
 	| source |
 	configurationSelector := #basicCommentFormatConfiguration.
 	source := self formatExpression: ' | d "    comment     " e |'.
-	self assert: source equals: '| d	"    comment     " e |'
+	self assert: source equals: '| d "    comment     " e |'
 ]
 
 { #category : #tests }
@@ -130,7 +130,7 @@ BIEnlumineurTemporariesExpressionTest >> testCommentNotBasicFormat [
 	self
 		assert: source
 		equals:
-			'| d	"comment     
+			'| d "comment     
 " e |'
 ]
 
@@ -224,7 +224,7 @@ BIEnlumineurTemporariesExpressionTest >> testRetainBlankLinesBeforeComments3 [
 	self
 		assert: source
 		equals:
-			'| d	"comment" e |
+			'| d "comment" e |
 '
 ]
 
@@ -249,7 +249,7 @@ BIEnlumineurTemporariesExpressionTest >> testTabBetweenVarAndComment [
 	| source |
 	configurationSelector := #commentWithStatementsConfiguration.
 	source := self formatExpression: ' | d "comment" |'.
-	self assert: source equals: '| d	"comment" |'
+	self assert: source equals: '| d "comment" |'
 ]
 
 { #category : #tests }

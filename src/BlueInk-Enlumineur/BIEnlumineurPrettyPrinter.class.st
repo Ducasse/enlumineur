@@ -1127,6 +1127,7 @@ BIEnlumineurPrettyPrinter >> formatSequenceNodeStatementsFor: aSequenceNode [
 
 { #category : #'private-formatting' }
 BIEnlumineurPrettyPrinter >> formatStatementCommentsFor: aStatementNode [
+	self haltOnce.
 	originalSource isNil
 		ifTrue: [ ^ self ].
 	self formatCommentWithStatements
@@ -1138,7 +1139,7 @@ BIEnlumineurPrettyPrinter >> formatStatementCommentsFor: aStatementNode [
 			count := self newLinesBeforeStartingAt: each start.
 			self retainBlankLinesBeforeComments & (count > 0)
 				ifTrue: [ self newLines: count ]
-				ifFalse: [ codeStream tab ].
+				ifFalse: [ self space ].
 			self useBasicCommentFormat
 				ifTrue: [ self basicFormatCommentFor: each ]
 				ifFalse: [ 
