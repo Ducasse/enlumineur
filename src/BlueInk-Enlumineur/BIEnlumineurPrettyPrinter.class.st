@@ -949,6 +949,7 @@ BIEnlumineurPrettyPrinter >> formatBlockArgumentsFor: aBlockNode [
 		ifTrue: [ ^ self ].
 	aBlockNode arguments
 		do: [ :each | 
+			(self isLineTooLongWithNode: each )ifTrue: [self newLine ].
 			codeStream nextPut: $:.
 			self visitNode: each.
 			self formatCommentWithStatements
@@ -1178,7 +1179,7 @@ BIEnlumineurPrettyPrinter >> handleLineForArgument: anArgument [
 	| isLineTooLong |
 	isLineTooLong := self isLineTooLongWithNode: anArgument.
 	anArgument isBlock
-		ifTrue: [((self willBeMultiline: anArgument)
+		ifTrue: [((self willBeMultiline: anArgument saveIn: temporaryLookAheadCode)
 						and: [ self keepBlockInMessage not ])
 				ifTrue: [ self newLine ]
 				ifFalse: [ self space ] ]
@@ -1330,7 +1331,7 @@ BIEnlumineurPrettyPrinter >> isInCascadeNode: aBoolean [
 
 { #category : #private }
 BIEnlumineurPrettyPrinter >> isLineTooLongWithNode: aNode [
-	^ self isLineTooLongWithString: (self formattedSourceFor: aNode withDictionary: lookaheadCode).
+	^ self isLineTooLongWithString: (self formattedSourceFor: aNode withDictionary: temporaryLookAheadCode ).
 ]
 
 { #category : #private }

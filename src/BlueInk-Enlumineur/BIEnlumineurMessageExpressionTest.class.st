@@ -444,6 +444,19 @@ BIEnlumineurMessageExpressionTest >> testBlockParameterWhenTheLineWillBeTooLong 
 ]
 
 { #category : #tests }
+BIEnlumineurMessageExpressionTest >> testBlockParameterWhenTheLineWillBeTooLong2 [
+	| source |
+	configurationSelector := #blockInMessageTooLongConfiguration.
+	source := self formatExpression: 'aMessage take:[ :iiiiiiiiiiiiiii | i factorial]'.
+	self
+		assert: source
+		equals:
+'aMessage take: [ 
+	:iiiiiiiiiiiiiii | 
+	i factorial ]'
+]
+
+{ #category : #tests }
 BIEnlumineurMessageExpressionTest >> testBlockParameterWhenTheLineWillNotBeTooLong [
 	| source |
 	configurationSelector := #blockInMessageConfiguration.
