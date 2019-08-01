@@ -91,7 +91,7 @@ BIEnlumineurMessageExpressionTest >> blockInMessageTooLongConfiguration [
 		formatCommentWithStatements: false;
 		numberOfArgumentsForMultiLine: 10;
 		indentsForKeywords: 1;
-		maxLineLength: 20;
+		maxLineLength: 30;
 		newLineBeforeFirstKeyword: true;
 		keepBlockInMessage: true;
 		numberOfSpacesInsideBlock: 1;
@@ -435,12 +435,12 @@ BIEnlumineurMessageExpressionTest >> testBlockParameterOnTheMethodLineWhenMultil
 BIEnlumineurMessageExpressionTest >> testBlockParameterWhenTheLineWillBeTooLong [
 	| source |
 	configurationSelector := #blockInMessageTooLongConfiguration.
-	source := self formatExpression: 'aMessage take:[ :i | i]'.
+	source := self formatExpression: 'aMessage take:[ :i | i factorial]'.
 	self
 		assert: source
 		equals: 
-'aMessage take:
-	[ :i | i ]'
+'aMessage take: [ :i | 
+	i factorial ]'
 ]
 
 { #category : #tests }

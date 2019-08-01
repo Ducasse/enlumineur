@@ -929,7 +929,7 @@ BIEnlumineurPrettyPrinter >> formatArray: anArrayNode [
 BIEnlumineurPrettyPrinter >> formatBlock: aBlockNode [
 	| isMultiline |
 	isMultiline := self 
-		willBeMultiline: aBlockNode body
+		willBeMultiline: aBlockNode body 
 		saveIn: lookaheadCode.
 	codeStream nextPutAll: self spacesInsideBlocks.
 	self formatBlockArgumentsFor: aBlockNode.
@@ -1166,7 +1166,7 @@ BIEnlumineurPrettyPrinter >> formatTemporariesFor: aSequenceNode [
 
 { #category : #private }
 BIEnlumineurPrettyPrinter >> formattedSourceFor: aNode withDictionary: aDictionary [
-	^ aDictionary at: aNode ifAbsentPut: [ 
+	^ aDictionary at: aNode asString ifAbsentPut: [ 
 		  self class new
 			  indent: self indent;
 			  installNewContext: context;
@@ -1178,15 +1178,13 @@ BIEnlumineurPrettyPrinter >> handleLineForArgument: anArgument [
 	| isLineTooLong |
 	isLineTooLong := self isLineTooLongWithNode: anArgument.
 	anArgument isBlock
-		ifTrue: [ 
-			(isLineTooLong or: [ (self willBeMultiline: anArgument) and: [ self keepBlockInMessage not ] ])
+		ifTrue: [((self willBeMultiline: anArgument)
+						and: [ self keepBlockInMessage not ])
 				ifTrue: [ self newLine ]
 				ifFalse: [ self space ] ]
-		ifFalse: [ 
-			(self isInCascadeNode and: [ isLineTooLong ])
+		ifFalse: [ (self isInCascadeNode and: [ isLineTooLong ])
 				ifTrue: [ self newLine ]
-				ifFalse: [ 
-					isLineTooLong
+				ifFalse: [ isLineTooLong
 						ifTrue: [ self newLine ]
 						ifFalse: [ self space ] ] ].
 	self visitNode: anArgument
