@@ -1167,7 +1167,7 @@ BIEnlumineurPrettyPrinter >> formatTemporariesFor: aSequenceNode [
 
 { #category : #private }
 BIEnlumineurPrettyPrinter >> formattedSourceFor: aNode withDictionary: aDictionary [
-	^ aDictionary at: aNode asString ifAbsentPut: [ 
+	^ aDictionary at: aNode ifAbsentPut: [ 
 		  self class new
 			  indent: self indent;
 			  installNewContext: context;
