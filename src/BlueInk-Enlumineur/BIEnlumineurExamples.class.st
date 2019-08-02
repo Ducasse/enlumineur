@@ -470,6 +470,14 @@ BIEnlumineurExamples >> eightNeighbors [
 ]
 
 { #category : #methods }
+BIEnlumineurExamples >> etrange [
+	extractedTree := extractedTree isSequence ifTrue:
+		                 [ RBParseTreeSearcher treeMatchingStatements: aSourceCode in: self ]
+		                 ifFalse:
+		                 [ RBParseTreeSearcher treeMatching: aSourceCode in: self ]
+]
+
+{ #category : #methods }
 BIEnlumineurExamples >> foo [
 
 	foo 
@@ -681,6 +689,34 @@ BIEnlumineurExamples >> insideTriangle: p1 with: p2 with: p3 [
 	b3 < 0.0
 		ifTrue: [ ^ false ].
 	^ true
+]
+
+{ #category : #methods }
+BIEnlumineurExamples >> keywords [
+	"Answer the angle the receiver makes with origin in degrees. right is 0; down is 90."
+	
+	"Questions the tan := y in the ifFalse: is not really nice it would be better to start to have it on the next line."
+	
+	
+	| tan theta x y |
+	 x = 0
+		ifTrue: [ tan := y asFloat / x asFloat ]
+		ifFalse: [ tan := y asFloat / x asFloat.
+			theta := tan arcTan.
+			theta := tan arcSin.
+			theta := tan arcCos ].
+		x = 0
+			on: [ tan := y asFloat / x asFloat ]
+			do: [ tan := y asFloat / x asFloat.
+				theta := tan arcTan.
+				theta := tan arcSin.
+				theta := tan arcCos ].
+		x = 0
+		on: Error
+		do: [ tan := y asFloat / x asFloat.
+			theta := tan arcTan.
+			theta := tan arcSin.
+			theta := tan arcCos ]
 ]
 
 { #category : #methods }
