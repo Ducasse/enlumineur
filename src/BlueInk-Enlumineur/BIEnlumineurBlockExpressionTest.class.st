@@ -16,6 +16,8 @@ BIEnlumineurBlockExpressionTest >> basicConfiguration [
 		keepBlockInMessage:true;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:1;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine:5;
 		indentsForKeywords:1;
 		newLineBeforeFirstKeyword:false;
@@ -35,6 +37,8 @@ BIEnlumineurBlockExpressionTest >> blockWithTemporariesConfiguration [
 		keepBlockInMessage:true;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:1;
+		multiLineMessages: Array new;
+		oneLineMessages:#(#to:do:);
 		numberOfArgumentsForMultiLine:5;
 		indentsForKeywords:1;
 		newLineBeforeFirstKeyword:false;
@@ -64,6 +68,8 @@ BIEnlumineurBlockExpressionTest >> configurationWithThreeSpaces [
 		keepBlockInMessage:false;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:1;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine:5;
 		indentsForKeywords:1;
 		newLineBeforeFirstKeyword:false;
@@ -84,6 +90,8 @@ BIEnlumineurBlockExpressionTest >> dontFormatCommentWithStatementConfiguration [
 		keepBlockInMessage:true;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:1;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine:5;
 		indentsForKeywords:1;
 		newLineBeforeFirstKeyword:false;
@@ -106,6 +114,8 @@ BIEnlumineurBlockExpressionTest >> formatCommentWithStatementConfiguration [
 		keepBlockInMessage:true;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:1;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine:5;
 		indentsForKeywords:1;
 		newLineBeforeFirstKeyword:false;
@@ -127,6 +137,8 @@ BIEnlumineurBlockExpressionTest >> fourSpaceIndentConfiguration [
 		keepBlockInMessage:true;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:1;
+		multiLineMessages: Array new;
+		oneLineMessages:#(#to:do:);
 		numberOfArgumentsForMultiLine:5;
 		indentsForKeywords:1;
 		newLineBeforeFirstKeyword:false;
@@ -152,6 +164,8 @@ BIEnlumineurBlockExpressionTest >> multiLineConfiguration [
 		retainBlankLinesBetweenStatements:false;
 		retainBlankLinesBeforeComments:false;
 		minimumNewLinesBetweenStatements:1;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine:5;
 		indentsForKeywords:1;
 		newLineBeforeFirstKeyword:false;
@@ -176,6 +190,8 @@ BIEnlumineurBlockExpressionTest >> multiLineWithThreeSpacesInsideBlockConfigurat
 		retainBlankLinesBetweenStatements:false;
 		retainBlankLinesBeforeComments:false;
 		minimumNewLinesBetweenStatements:1;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine:5;
 		indentsForKeywords:1;
 		newLineBeforeFirstKeyword:false;
@@ -203,6 +219,8 @@ BIEnlumineurBlockExpressionTest >> newLineBeforeEndBracketConfiguration [
 		keepBlockInMessage: true;
 		retainBlankLinesBetweenStatements: false;
 		minimumNewLinesBetweenStatements: 1;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine: 5;
 		indentsForKeywords: 1;
 		newLineBeforeFirstKeyword: false;
@@ -227,6 +245,8 @@ BIEnlumineurBlockExpressionTest >> noNewLineBeforeEndBracketConfiguration [
 		keepBlockInMessage: true;
 		retainBlankLinesBetweenStatements: false;
 		minimumNewLinesBetweenStatements: 1;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine: 5;
 		indentsForKeywords: 1;
 		newLineBeforeFirstKeyword: false;
@@ -246,6 +266,8 @@ BIEnlumineurBlockExpressionTest >> numberOfSpaceChangedAfterIndentCharacterConfi
 		keepBlockInMessage:true;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:1;
+		multiLineMessages: Array new;
+		oneLineMessages:#(#to:do:);
 		numberOfArgumentsForMultiLine:5;
 		indentsForKeywords:1;
 		newLineBeforeFirstKeyword:false;
@@ -270,6 +292,8 @@ BIEnlumineurBlockExpressionTest >> oneSpaceIndentConfiguration [
 		keepBlockInMessage:true;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:1;
+		multiLineMessages: Array new;
+		oneLineMessages:#(#to:do:);
 		numberOfArgumentsForMultiLine:5;
 		indentsForKeywords:1;
 		newLineBeforeFirstKeyword:false;
@@ -308,6 +332,8 @@ BIEnlumineurBlockExpressionTest >> periodAtEndConfiguration [
 		keepBlockInMessage: false;
 		retainBlankLinesBetweenStatements: false;
 		minimumNewLinesBetweenStatements: 1;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine: 5;
 		indentsForKeywords: 1;
 		newLineBeforeFirstKeyword: false;
@@ -327,6 +353,8 @@ BIEnlumineurBlockExpressionTest >> tabIndentConfiguration [
 		keepBlockInMessage:true;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:1;
+		multiLineMessages: Array new;
+		oneLineMessages:#(#to:do:);
 		numberOfArgumentsForMultiLine:5;
 		indentsForKeywords:1;
 		newLineBeforeFirstKeyword:false;
@@ -349,6 +377,8 @@ BIEnlumineurBlockExpressionTest >> tabIndentIsnotAffectedConfiguration [
 		keepBlockInMessage:true;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:1;
+		multiLineMessages: Array new;
+		oneLineMessages:#(#to:do:);
 		numberOfArgumentsForMultiLine:5;
 		indentsForKeywords:1;
 		newLineBeforeFirstKeyword:false;
@@ -607,6 +637,8 @@ BIEnlumineurBlockExpressionTest >> tooLongStatementConfiguration [
 		keepBlockInMessage:true;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:1;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine:5;
 		indentsForKeywords:1;
 		newLineBeforeFirstKeyword:false;

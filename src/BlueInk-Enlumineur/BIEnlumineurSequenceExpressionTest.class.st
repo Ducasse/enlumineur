@@ -35,6 +35,8 @@ BIEnlumineurSequenceExpressionTest >> dontFormatCommentWithStatementConfiguratio
 		minimumNewLinesBetweenStatements:0;
 		periodsAtEndOfBlock:false;
 		periodsAtEndOfMethod:false;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine: 5;
 		indentsForKeywords: 0;
 		keepBlockInMessage: false;
@@ -100,6 +102,8 @@ BIEnlumineurSequenceExpressionTest >> formatBlockConfiguration [
 		minimumNewLinesBetweenStatements:0;
 		periodsAtEndOfBlock:false;
 		periodsAtEndOfMethod:false;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine: 5;
 		indentsForKeywords: 1;
 		keepBlockInMessage: true;
@@ -123,6 +127,8 @@ BIEnlumineurSequenceExpressionTest >> formatCommentWithStatementConfiguration [
 		minimumNewLinesBetweenStatements:0;
 		periodsAtEndOfBlock:false;
 		periodsAtEndOfMethod:false;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine: 5;
 		indentsForKeywords: 0;
 		keepBlockInMessage: false;
@@ -172,6 +178,8 @@ BIEnlumineurSequenceExpressionTest >> noPeriodAtEndOfMethodConfiguration [
 		minimumNewLinesBetweenStatements:0;
 		numberOfSpacesInsideBlock:1;
 		lineUpBlockBrackets: false;
+		multiLineMessages:Array new;
+		oneLineMessages:Array new;
 		numberOfArgumentsForMultiLine:2;
 		newLineBeforeFirstKeyword:false;
 		indentExtraSpaces:0
@@ -197,6 +205,8 @@ BIEnlumineurSequenceExpressionTest >> periodAtEndOfMethodConfiguration [
 		minimumNewLinesBetweenStatements:0;
 		numberOfSpacesInsideBlock:1;
 		lineUpBlockBrackets: true;
+		multiLineMessages:Array new;
+		oneLineMessages:Array new;
 		numberOfArgumentsForMultiLine:2;
 		newLineBeforeFirstKeyword:false;
 		indentExtraSpaces:0

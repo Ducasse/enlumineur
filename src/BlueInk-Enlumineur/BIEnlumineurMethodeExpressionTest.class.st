@@ -53,6 +53,8 @@ BIEnlumineurMethodeExpressionTest >> bigMethodeConfiguration [
 		maxLineLength: 50;
 		periodsAtEndOfBlock: false;
 		periodsAtEndOfMethod: false;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
 		indentsForKeywords: 1;
 		keepBlockInMessage: true;
 		retainBlankLinesBetweenStatements: false;
@@ -86,6 +88,8 @@ BIEnlumineurMethodeExpressionTest >> cascadeConfiguration [
 		periodsAtEndOfMethod: false;
 		newLineBeforeFirstCascade:true;
 		newLineAfterCascade:true;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine:10;
 		keepBlockInMessage:true;
 		retainBlankLinesBetweenStatements:false;

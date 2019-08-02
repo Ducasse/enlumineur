@@ -168,6 +168,17 @@ BIEnlumineurPrettyPrinter class >> minimumNewLinesBetweenStatements: anInteger [
 ]
 
 { #category : #accessing }
+BIEnlumineurPrettyPrinter class >> multiLineMessages [
+	^ DefaultPrettyPrintContext multiLineMessages printString
+]
+
+{ #category : #accessing }
+BIEnlumineurPrettyPrinter class >> multiLineMessages: aString [
+	DefaultPrettyPrintContext multiLineMessages: (self compiler evaluate: aString).
+	self announceASettingChange
+]
+
+{ #category : #accessing }
 BIEnlumineurPrettyPrinter class >> newLineAfterCascade [
 	^ DefaultPrettyPrintContext newLineAfterCascade
 ]
@@ -310,6 +321,17 @@ BIEnlumineurPrettyPrinter class >> numberOfSpacesInsideParentheses [
 { #category : #accessing }
 BIEnlumineurPrettyPrinter class >> numberOfSpacesInsideParentheses: anInteger [
 	DefaultPrettyPrintContext numberOfSpacesInsideParentheses: anInteger.
+	self announceASettingChange
+]
+
+{ #category : #accessing }
+BIEnlumineurPrettyPrinter class >> oneLineMessages [
+	^ DefaultPrettyPrintContext oneLineMessages printString
+]
+
+{ #category : #accessing }
+BIEnlumineurPrettyPrinter class >> oneLineMessages: aString [
+	DefaultPrettyPrintContext oneLineMessages: (self compiler evaluate: aString).
 	self announceASettingChange
 ]
 
@@ -487,6 +509,18 @@ is the result if the setting is set to 2'.
 ]
 
 { #category : #settings }
+BIEnlumineurPrettyPrinter class >> settingsMultiLineMessages: aBuilder [
+	(aBuilder setting: #multiLineMessages)
+		label: 'Multi line messages';
+		description: 'An array containing all the messages that should be written on multiple line
+Example:
+aBoolean
+	ifTrue: [ ^ 1 ]
+	ifFalse: [ ^ 0 ]
+is the result if #ifTrue:ifFalse is in the array'.
+]
+
+{ #category : #settings }
 BIEnlumineurPrettyPrinter class >> settingsNewLineAfterCascade: aBuilder [
 	(aBuilder setting: #newLineAfterCascade)
 		label: 'New line after cascade';
@@ -619,6 +653,8 @@ BIEnlumineurPrettyPrinter class >> settingsOn: aBuilder [
 			self settingsKeepBlockInMessage: aBuilder.
 			self settingsAlignBlockBrackets: aBuilder.
 			self settingsMethodSignatureOnMultipleLines: aBuilder.
+			self settingsOneLineMessages: aBuilder.
+			self settingsMultiLineMessages: aBuilder.
 			self settingsMinimumNewLinesBetweenStatements: aBuilder.
 			self settingsNewLineAfterCascade: aBuilder.
 			self settingsNewLineBeforeFirstCascade: aBuilder.
@@ -639,6 +675,15 @@ BIEnlumineurPrettyPrinter class >> settingsOn: aBuilder [
 			self settingsTraditionalBinaryPrecedenceArray: aBuilder.
 			self settingsUseBasicCommentFormat: aBuilder.
 			self settingsUseTraditionalBinaryPrecedenceForParentheses: aBuilder ]
+]
+
+{ #category : #settings }
+BIEnlumineurPrettyPrinter class >> settingsOneLineMessages: aBuilder [
+	(aBuilder setting: #oneLineMessages)
+		label: 'One line messages';
+		description: 'An array containing all the messages that should be written on one line
+Example:
+1 to: 4 do: [ :i | Transcript show: i ] is the result if #to:do: is in the array'.
 ]
 
 { #category : #settings }
@@ -1343,6 +1388,10 @@ BIEnlumineurPrettyPrinter >> isLineTooLongWithString: aString [
 
 { #category : #private }
 BIEnlumineurPrettyPrinter >> isMultiLineMessage: aMessageNode [
+	(self multiLineMessages includes: aMessageNode selector)
+		ifTrue: [ ^ true ].
+	(self oneLineMessages includes: aMessageNode selector)
+		ifTrue: [ ^ false ].
 	self numberOfArgumentsForMultiLine <= aMessageNode arguments size
 		ifTrue: [ ^ true ].
 	aMessageNode isUnary
@@ -1422,6 +1471,16 @@ BIEnlumineurPrettyPrinter >> minimumNewLinesBetweenStatements [
 { #category : #accessing }
 BIEnlumineurPrettyPrinter >> minimumNewLinesBetweenStatements: anInteger [
 	context minimumNewLinesBetweenStatements: anInteger
+]
+
+{ #category : #accessing }
+BIEnlumineurPrettyPrinter >> multiLineMessages [
+	^ context multiLineMessages
+]
+
+{ #category : #accessing }
+BIEnlumineurPrettyPrinter >> multiLineMessages: anArray [
+	context multiLineMessages: anArray
 ]
 
 { #category : #private }
@@ -1650,6 +1709,16 @@ BIEnlumineurPrettyPrinter >> numberOfSpacesInsideParentheses [
 { #category : #accessing }
 BIEnlumineurPrettyPrinter >> numberOfSpacesInsideParentheses: anInteger [
 	context numberOfSpacesInsideParentheses: anInteger
+]
+
+{ #category : #accessing }
+BIEnlumineurPrettyPrinter >> oneLineMessages [
+	^ context oneLineMessages
+]
+
+{ #category : #accessing }
+BIEnlumineurPrettyPrinter >> oneLineMessages: anArray [
+	context oneLineMessages: anArray
 ]
 
 { #category : #accessing }
