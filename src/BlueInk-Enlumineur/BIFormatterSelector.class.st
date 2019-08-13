@@ -24,8 +24,9 @@ BIFormatterSelector class >> formatterClass: aFormatterClass [
 
 { #category : #accessing }
 BIFormatterSelector class >> formatters [
-	^ RBProgramNodeVisitor subclasses
-		select: [ :each | [each isPrettyPrinter] on: MessageNotUnderstood do: [false]]
+	^ "RBProgramNodeVisitor subclasses
+		select: [ :each | [each isPrettyPrinter] on: MessageNotUnderstood do: [false]]"
+		RBProgramNodeVisitor subclasses select: [ :each | each name endsWith: 'Formatter' ]
 ]
 
 { #category : #initialization }
