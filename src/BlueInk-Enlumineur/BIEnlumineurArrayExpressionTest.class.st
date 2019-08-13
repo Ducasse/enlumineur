@@ -28,13 +28,13 @@ BIEnlumineurArrayExpressionTest >> maxLineLengthConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-		formatCommentWithStatements:false;
-		maxLineLength:12;
-		retainBlankLinesBetweenStatements:false;
+		formatCommentWithStatements: false;
+		maxLineLength: 12;
+		retainBlankLinesBetweenStatements: false;
 		minimumNewLinesBetweenStatements: 1;
 		indentStyle: #tabulation;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod:false;
+		periodsAtEndOfBlock: false;
+		periodsAtEndOfMethod: false;
 		indentExtraSpaces: 0;
 		numberOfSpacesInsideArray: 0
 ]
@@ -43,17 +43,17 @@ BIEnlumineurArrayExpressionTest >> maxLineLengthConfiguration [
 BIEnlumineurArrayExpressionTest >> multiLineConfiguration [
 
 	^ self contextClass basicNew
-		formatCommentWithStatements:false;
-		maxLineLength:50;
+		formatCommentWithStatements: false;
+		maxLineLength: 50;
 		numberOfSpacesInsideParentheses: 0;
-		retainBlankLinesBetweenStatements:false;
-		minimumNewLinesBetweenStatements:1;
+		retainBlankLinesBetweenStatements: false;
+		minimumNewLinesBetweenStatements: 1;
 		indentStyle: #tabulation;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod:false;
+		periodsAtEndOfBlock: false;
+		periodsAtEndOfMethod: false;
 		numberOfSpacesInsideParentheses: 0;
-		multiLineMessages: Array new;
-		oneLineMessages: Array new;
+		multiLineMessages: #();
+		oneLineMessages: #();
 		numberOfArgumentsForMultiLine: 4;
 		indentsForKeywords: 1;
 		keepBlockInMessage: true;
@@ -65,15 +65,15 @@ BIEnlumineurArrayExpressionTest >> multiLineConfiguration [
 BIEnlumineurArrayExpressionTest >> oneSpaceInsideArrayConfiguration [
 
 	^ self contextClass basicNew
-		formatCommentWithStatements:false;
-		maxLineLength:50;
+		formatCommentWithStatements: false;
+		maxLineLength: 50;
 		numberOfSpacesInsideParentheses: 0;
-		retainBlankLinesBetweenStatements:false;
-		minimumNewLinesBetweenStatements:1;
+		retainBlankLinesBetweenStatements: false;
+		minimumNewLinesBetweenStatements: 1;
 		indentStyle: #tabulation;
 		indentExtraSpaces: 0;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod:false;
+		periodsAtEndOfBlock: false;
+		periodsAtEndOfMethod: false;
 		numberOfSpacesInsideArray: 1
 ]
 
@@ -85,17 +85,17 @@ BIEnlumineurArrayExpressionTest >> periodAtEndOfMethod [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-		formatCommentWithStatements:false;
-		maxLineLength:12;
-		retainBlankLinesBetweenStatements:false;
+		formatCommentWithStatements: false;
+		maxLineLength: 12;
+		retainBlankLinesBetweenStatements: false;
 		minimumNewLinesBetweenStatements: 1;
 		indentStyle: #tabulation;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod:true;
-		multiLineMessages:Array new;
-		oneLineMessages:Array new;
-		numberOfArgumentsForMultiLine:2;
-		newLineBeforeFirstKeyword:false;
+		periodsAtEndOfBlock: false;
+		periodsAtEndOfMethod: true;
+		multiLineMessages: #();
+		oneLineMessages: #();
+		numberOfArgumentsForMultiLine: 2;
+		newLineBeforeFirstKeyword: false;
 		numberOfSpacesInsideArray: 0
 ]
 
