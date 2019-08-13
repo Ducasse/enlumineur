@@ -968,7 +968,7 @@ BIEnlumineurFormatter >> formatArray: anArrayNode [
 						indentAround: [ self
 								newLine;
 								formatSequenceNodeStatementsFor: anArrayNode ] ]
-				ifFalse: [ self formatSequenceNodeStatementsFor: anArrayNode ] ].
+				ifFalse: [ self formatSingleArrayElement: anArrayNode statements first ] ].
 	codeStream nextPutAll: self spacesInsideArray
 ]
 
@@ -1171,6 +1171,13 @@ BIEnlumineurFormatter >> formatSequenceNodeStatementsFor: aSequenceNode [
 		i < statements size
 			ifTrue: [ self 
 					addNewLinesBeforeStatementStartingAt: (statements at: i + 1) start ] ]
+]
+
+{ #category : #visiting }
+BIEnlumineurFormatter >> formatSingleArrayElement: aRBNode [ 
+	"Imagine that you have {1 factorial}, you do not want an ending period. This method is only invoked on the last array element."
+	
+	self visitNode: aRBNode
 ]
 
 { #category : #'private-formatting' }
