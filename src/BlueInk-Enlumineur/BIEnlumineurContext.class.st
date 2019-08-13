@@ -68,7 +68,7 @@ BIEnlumineurContext >> indentExtraSpaces [
 BIEnlumineurContext >> indentExtraSpaces: anInteger [
 	"To set the number of spaces that represent an indent"
 	
-	indentExtraSpaces := self numberOfSpaces: anInteger
+	indentExtraSpaces := self stringFromSpaceNumber: anInteger
 ]
 
 { #category : #accessing }
@@ -86,7 +86,7 @@ BIEnlumineurContext >> indentStyle: aSymbol [
 	"Indent style can be either #tabulation or #space."
 	indentStyle := aSymbol.
 	indentString := aSymbol = #space
-		ifTrue: [ self numberOfSpaces: numberOfSpacesInIndent ]
+		ifTrue: [ self stringFromSpaceNumber: numberOfSpacesInIndent ]
 		ifFalse: [ String tab ]
 ]
 
@@ -267,19 +267,13 @@ BIEnlumineurContext >> numberOfArgumentsForMultiLine: anObject [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> numberOfSpaces: aNumber [
-	
-	^ String new: aNumber withAll: Character space
-]
-
-{ #category : #accessing }
 BIEnlumineurContext >> numberOfSpacesAfterCaretSymbolInReturn [
 	^ numberOfSpacesAfterCaretSymbolInReturn
 ]
 
 { #category : #accessing }
 BIEnlumineurContext >> numberOfSpacesAfterCaretSymbolInReturn: aNumber [
-	spacesAfterCaretSymbolInReturn := self numberOfSpaces: aNumber.
+	spacesAfterCaretSymbolInReturn := self stringFromSpaceNumber: aNumber.
 	numberOfSpacesAfterCaretSymbolInReturn := aNumber
 ]
 
@@ -292,7 +286,7 @@ BIEnlumineurContext >> numberOfSpacesInIndent [
 BIEnlumineurContext >> numberOfSpacesInIndent: anInteger [
 	numberOfSpacesInIndent := anInteger.
 	indentStyle = #space 
-		ifTrue: [ indentString := self numberOfSpaces: anInteger ]
+		ifTrue: [ indentString := self stringFromSpaceNumber: anInteger ]
 ]
 
 { #category : #accessing }
@@ -302,7 +296,7 @@ BIEnlumineurContext >> numberOfSpacesInsideArray [
 
 { #category : #accessing }
 BIEnlumineurContext >> numberOfSpacesInsideArray: anInteger [
-	spacesInsideArray := self numberOfSpaces: anInteger.
+	spacesInsideArray := self stringFromSpaceNumber: anInteger.
 	numberOfSpacesInsideArray := anInteger
 ]
 
@@ -313,7 +307,7 @@ BIEnlumineurContext >> numberOfSpacesInsideBlock [
 
 { #category : #accessing }
 BIEnlumineurContext >> numberOfSpacesInsideBlock: aNumber [
-	spacesInsideBlocks := self numberOfSpaces: aNumber.
+	spacesInsideBlocks := self stringFromSpaceNumber: aNumber.
 	numberOfSpacesInsideBlock := aNumber
 ]
 
@@ -324,7 +318,7 @@ BIEnlumineurContext >> numberOfSpacesInsideParentheses [
 
 { #category : #accessing }
 BIEnlumineurContext >> numberOfSpacesInsideParentheses: aNumber [
-	spacesInsideParentheses :=  self numberOfSpaces: aNumber.
+	spacesInsideParentheses :=  self stringFromSpaceNumber: aNumber.
 	numberOfSpacesInsideParentheses := aNumber
 ]
 
@@ -424,6 +418,12 @@ BIEnlumineurContext >> storeOn: aStream [
 		separatedBy: [ aStream
 				nextPutAll: ';';
 				cr ]
+]
+
+{ #category : #accessing }
+BIEnlumineurContext >> stringFromSpaceNumber: aNumber [
+	
+	^ String new: aNumber withAll: Character space
 ]
 
 { #category : #accessing }

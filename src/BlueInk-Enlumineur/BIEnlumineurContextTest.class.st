@@ -9,7 +9,7 @@ BIEnlumineurContextTest >> testNumberOfSpaces [
 
 	| context |
 	context := BIEnlumineurContext new. 
-	self assert: (context numberOfSpaces: 4) equals: '    '.
-	self assert: (context numberOfSpaces: 1) equals: ' '.
-	self assert: (context numberOfSpaces: 0) equals: ''.
+	self assert: (context stringFromSpaceNumber: 4) equals: '    '.
+	self assert: (context stringFromSpaceNumber: 1) equals: ' '.
+	self assert: (context stringFromSpaceNumber: 0) equals: ''.
 ]
