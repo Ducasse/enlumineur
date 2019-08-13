@@ -46,7 +46,7 @@ BIEnlumineurBlockExpressionTest >> blockWithTemporariesConfiguration [
 		maxLineLength:50;
 		newLineAfterCascade:true;
 		newLineBeforeFirstCascade: true;
-		indentStyle: #tab;
+		indentStyle: #tabulation;
 		newLinesAfterTemporaries: 1;
 		indentExtraSpaces:0
 ]
@@ -362,7 +362,7 @@ BIEnlumineurBlockExpressionTest >> tabIndentConfiguration [
 		maxLineLength:50;
 		newLineAfterCascade:true;
 		newLineBeforeFirstCascade: true;
-		indentStyle: #tab;
+		indentStyle: #tabulation;
 		indentExtraSpaces:0
 ]
 
@@ -386,7 +386,7 @@ BIEnlumineurBlockExpressionTest >> tabIndentIsnotAffectedConfiguration [
 		maxLineLength:50;
 		newLineAfterCascade:true;
 		newLineBeforeFirstCascade: true;
-		indentStyle: #tab;
+		indentStyle: #tabulation;
 		numberOfSpacesInIndent: 37;
 		indentExtraSpaces:0
 ]

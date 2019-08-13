@@ -330,7 +330,7 @@ BIEnlumineurContext >> oneLineMessages [
 
 { #category : #accessing }
 BIEnlumineurContext >> oneLineMessages: anArray [
-	self flag: #uh.
+	"To be revisited latter. Apparently this trick is to convert strings into an array."
 	oneLineMessages := self class compiler evaluate: anArray asString
 ]
 
@@ -434,7 +434,7 @@ BIEnlumineurContext >> traditionalBinaryPrecedenceArray [
 
 { #category : #accessing }
 BIEnlumineurContext >> traditionalBinaryPrecedenceArray: anArray [
-	self flag: #uh.
+	"To be revisited latter. Apparently this trick is to convert strings into an array."
 	traditionalBinaryPrecedenceArray := self class compiler evaluate: anArray asString
 ]
 

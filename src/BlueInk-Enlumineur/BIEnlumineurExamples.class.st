@@ -4,7 +4,7 @@ Class {
 	#classVars : [
 		'settingsTable'
 	],
-	#category : #'BlueInk-Enlumineur-Example to work'
+	#category : #'BlueInk-Enlumineur-CodeSample'
 }
 
 { #category : #accessing }

@@ -8,15 +8,15 @@ Class {
 BIEnlumineurArrayExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
-		formatCommentWithStatements:false;
-		maxLineLength:50;
+		formatCommentWithStatements: false;
+		maxLineLength: 50;
 		numberOfSpacesInsideParentheses: 0;
-		retainBlankLinesBetweenStatements:false;
-		minimumNewLinesBetweenStatements:1;
+		retainBlankLinesBetweenStatements: false;
+		minimumNewLinesBetweenStatements: 1;
 		indentStyle: #tabulation;
 		indentExtraSpaces: 0;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod:false;
+		periodsAtEndOfBlock: false;
+		periodsAtEndOfMethod: false;
 		numberOfSpacesInsideArray: 0
 ]
 
