@@ -268,8 +268,8 @@ BIEnlumineurContext >> numberOfArgumentsForMultiLine: anObject [
 
 { #category : #accessing }
 BIEnlumineurContext >> numberOfSpaces: aNumber [
-	self flag: #uh.
-	^ (1 to: aNumber) collect: [ :index | Character space ] as: String
+	
+	^ String new: aNumber withAll: Character space
 ]
 
 { #category : #accessing }
