@@ -508,6 +508,11 @@ BIEnlumineurExamples >> bar: arg [
 ]
 
 { #category : #methods }
+BIEnlumineurExamples >> bar: arg bar2: arg1 bar3: arg2 [
+	arg
+]
+
+{ #category : #methods }
 BIEnlumineurExamples >> bar: arg bar3: arg2 [
 	arg
 ]

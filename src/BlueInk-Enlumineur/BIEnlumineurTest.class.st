@@ -17,14 +17,14 @@ BIEnlumineurTest class >> testParameters [
 		yourself.
 ]
 
-{ #category : #hooks }
+{ #category : #accessing }
 BIEnlumineurTest >> contextClass [
 	^ contextClass
 ]
 
-{ #category : #hooks }
-BIEnlumineurTest >> contextClass: aContextClass [
-	contextClass := aContextClass
+{ #category : #accessing }
+BIEnlumineurTest >> contextClass: anObject [
+	contextClass := anObject
 ]
 
 { #category : #hooks }

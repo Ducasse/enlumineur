@@ -173,7 +173,15 @@ BIEnlumineurArrayExpressionTest >> testPeriodAtEndOfMethod [
 	| source |
 	configurationSelector := #periodAtEndOfMethod.
 	source := self formatExpression: '{1 factorial}'.
-	self assert: source equals: '{1 factorial.}'
+	self assert: source equals: '{1 factorial}'
+]
+
+{ #category : #test }
+BIEnlumineurArrayExpressionTest >> testPeriodAtEndOfMethodWithMultipleElementArray [
+	| source |
+	configurationSelector := #periodAtEndOfMethod.
+	source := self formatExpression: '{1 factorial . 3 + 2}'.
+	self assert: source equals: '{1 factorial . 3 + 2}'
 ]
 
 { #category : #test }
