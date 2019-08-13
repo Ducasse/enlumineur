@@ -6,6 +6,8 @@ and made sure that all the tests are in sync with the implementation.
 Note that we are nice guys since we implemented 180 tests for the old pretty printer.
 Now such tests can not be systematically applied on Enlumineur this is why we cloned them too. 
 
+Pay attention my name should finish with Formatter so that the Settings proposes me to the user along with the other formatters.
+
 
 "
 Class {
