@@ -13,7 +13,7 @@ Class {
 BIEnlumineurTest class >> testParameters [
 
 	^ ParametrizedTestMatrix new
-			addCase: { #formatterClass -> BIEnlumineurPrettyPrinter. #contextClass -> BIEnlumineurContext };
+			addCase: { #formatterClass -> BIEnlumineurFormatter. #contextClass -> BIEnlumineurContext };
 		yourself.
 ]
 
@@ -72,7 +72,7 @@ BIEnlumineurTest >> testLookAheadCodeIsResetWhenChangingConfiguration [
 	| prettyPrinterInstance context1 context2 astNode res1 res2 |
 	context1 := BIEnlumineurContext new.
 	context2 := BIEnlumineurContext new lineUpBlockBrackets: true.
-	prettyPrinterInstance := BIEnlumineurPrettyPrinter new installNewContext: context1.
+	prettyPrinterInstance := BIEnlumineurFormatter new installNewContext: context1.
 	astNode := RBParser parseExpression: 
 	'1 to: 4 do: [ :i | 
 		Transcript

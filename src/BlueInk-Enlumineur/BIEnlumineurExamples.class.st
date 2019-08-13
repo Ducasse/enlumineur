@@ -1057,7 +1057,7 @@ or before the first keyword ?
 "
 
 BISettingPreviewer2 openFormaterWithAnInstanceOfFormater: 
-BIEnlumineurPrettyPrinter new
+BIEnlumineurFormatter new
 onClass: BIEnlumineurExamples
 ]
 

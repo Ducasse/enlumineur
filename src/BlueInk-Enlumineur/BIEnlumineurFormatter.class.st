@@ -9,7 +9,7 @@ Now such tests can not be systematically applied on Enlumineur this is why we cl
 
 "
 Class {
-	#name : #BIEnlumineurPrettyPrinter,
+	#name : #BIEnlumineurFormatter,
 	#superclass : #RBProgramNodeVisitor,
 	#instVars : [
 		'codeStream',
@@ -30,77 +30,77 @@ Class {
 }
 
 { #category : #private }
-BIEnlumineurPrettyPrinter class >> announceASettingChange [
+BIEnlumineurFormatter class >> announceASettingChange [
 	SystemAnnouncer uniqueInstance announce: BISettingsChanged 
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter class >> defaultPrettyPrintContext [
+BIEnlumineurFormatter class >> defaultPrettyPrintContext [
 	^ DefaultPrettyPrintContext
 ]
 
 { #category : #public }
-BIEnlumineurPrettyPrinter class >> format: aParseTree [ 
+BIEnlumineurFormatter class >> format: aParseTree [ 
 	^self format: aParseTree withIndents: 0
 ]
 
 { #category : #public }
-BIEnlumineurPrettyPrinter class >> format: aParseTree withIndents: anInteger [ 
+BIEnlumineurFormatter class >> format: aParseTree withIndents: anInteger [ 
 	^ self new
 		indent: anInteger;
 		format: aParseTree
 ]
 
 { #category : #formatAsYouRead }
-BIEnlumineurPrettyPrinter class >> formatAsYouReadPolicy [
+BIEnlumineurFormatter class >> formatAsYouReadPolicy [
 	^ FormatAsYouReadPolicy
 ]
 
 { #category : #formatAsYouRead }
-BIEnlumineurPrettyPrinter class >> formatAsYouReadPolicy: anObject [
+BIEnlumineurFormatter class >> formatAsYouReadPolicy: anObject [
 	FormatAsYouReadPolicy := anObject
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> formatCommentWithStatements [
+BIEnlumineurFormatter class >> formatCommentWithStatements [
 	^ DefaultPrettyPrintContext formatCommentWithStatements
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> formatCommentWithStatements: aBoolean [
+BIEnlumineurFormatter class >> formatCommentWithStatements: aBoolean [
 	DefaultPrettyPrintContext formatCommentWithStatements: aBoolean.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> indentString [
+BIEnlumineurFormatter class >> indentString [
 	^ DefaultPrettyPrintContext indentString
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> indentStyle [
+BIEnlumineurFormatter class >> indentStyle [
 	^ DefaultPrettyPrintContext indentStyle
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> indentStyle: aSymbole [
+BIEnlumineurFormatter class >> indentStyle: aSymbole [
 	DefaultPrettyPrintContext indentStyle: aSymbole.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> indentsForKeywords [
+BIEnlumineurFormatter class >> indentsForKeywords [
 	^ DefaultPrettyPrintContext indentsForKeywords
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> indentsForKeywords: anInteger [
+BIEnlumineurFormatter class >> indentsForKeywords: anInteger [
 	DefaultPrettyPrintContext indentsForKeywords: anInteger.
 	self announceASettingChange
 ]
 
 { #category : #initialization }
-BIEnlumineurPrettyPrinter class >> initialize [
+BIEnlumineurFormatter class >> initialize [
 	"self initialize"
 
 	FormatAsYouReadPolicy := false.
@@ -108,144 +108,144 @@ BIEnlumineurPrettyPrinter class >> initialize [
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter class >> isPrettyPrinter [
+BIEnlumineurFormatter class >> isPrettyPrinter [
 	^ true
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> keepBlockInMessage [
+BIEnlumineurFormatter class >> keepBlockInMessage [
 	^ DefaultPrettyPrintContext keepBlockInMessage
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> keepBlockInMessage: aBoolean [
+BIEnlumineurFormatter class >> keepBlockInMessage: aBoolean [
 	DefaultPrettyPrintContext keepBlockInMessage: aBoolean.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> lineUpBlockBrackets [
+BIEnlumineurFormatter class >> lineUpBlockBrackets [
 	^ DefaultPrettyPrintContext lineUpBlockBrackets
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> lineUpBlockBrackets: aBoolean [
+BIEnlumineurFormatter class >> lineUpBlockBrackets: aBoolean [
 	DefaultPrettyPrintContext lineUpBlockBrackets: aBoolean.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> maxLineLength [
+BIEnlumineurFormatter class >> maxLineLength [
 	^ DefaultPrettyPrintContext maxLineLength
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> maxLineLength: anInteger [
+BIEnlumineurFormatter class >> maxLineLength: anInteger [
 	DefaultPrettyPrintContext maxLineLength: anInteger.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> methodSignatureOnMultipleLines [
+BIEnlumineurFormatter class >> methodSignatureOnMultipleLines [
 	^ DefaultPrettyPrintContext methodSignatureOnMultipleLines
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> methodSignatureOnMultipleLines: aBoolean [
+BIEnlumineurFormatter class >> methodSignatureOnMultipleLines: aBoolean [
 	DefaultPrettyPrintContext methodSignatureOnMultipleLines: aBoolean.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> minimumNewLinesBetweenStatements [
+BIEnlumineurFormatter class >> minimumNewLinesBetweenStatements [
 	^ DefaultPrettyPrintContext minimumNewLinesBetweenStatements
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> minimumNewLinesBetweenStatements: anInteger [
+BIEnlumineurFormatter class >> minimumNewLinesBetweenStatements: anInteger [
 	DefaultPrettyPrintContext minimumNewLinesBetweenStatements: anInteger.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> multiLineMessages [
+BIEnlumineurFormatter class >> multiLineMessages [
 	^ DefaultPrettyPrintContext multiLineMessages printString
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> multiLineMessages: aString [
+BIEnlumineurFormatter class >> multiLineMessages: aString [
 	DefaultPrettyPrintContext multiLineMessages: (self compiler evaluate: aString).
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> newLineAfterCascade [
+BIEnlumineurFormatter class >> newLineAfterCascade [
 	^ DefaultPrettyPrintContext newLineAfterCascade
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> newLineAfterCascade: aBoolean [
+BIEnlumineurFormatter class >> newLineAfterCascade: aBoolean [
 	DefaultPrettyPrintContext newLineAfterCascade: aBoolean.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> newLineBeforeFirstCascade [
+BIEnlumineurFormatter class >> newLineBeforeFirstCascade [
 	^ DefaultPrettyPrintContext newLineBeforeFirstCascade
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> newLineBeforeFirstCascade: aBoolean [
+BIEnlumineurFormatter class >> newLineBeforeFirstCascade: aBoolean [
 	DefaultPrettyPrintContext newLineBeforeFirstCascade: aBoolean.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> newLineBeforeFirstKeyword [
+BIEnlumineurFormatter class >> newLineBeforeFirstKeyword [
 	^ DefaultPrettyPrintContext newLineBeforeFirstKeyword
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> newLineBeforeFirstKeyword: aBoolean [
+BIEnlumineurFormatter class >> newLineBeforeFirstKeyword: aBoolean [
 	DefaultPrettyPrintContext newLineBeforeFirstKeyword: aBoolean.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> newLinesAfterMethodComment [
+BIEnlumineurFormatter class >> newLinesAfterMethodComment [
 	^ DefaultPrettyPrintContext newLinesAfterMethodComment
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> newLinesAfterMethodComment: anInteger [
+BIEnlumineurFormatter class >> newLinesAfterMethodComment: anInteger [
 	DefaultPrettyPrintContext newLinesAfterMethodComment: anInteger.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> newLinesAfterMethodPattern [
+BIEnlumineurFormatter class >> newLinesAfterMethodPattern [
 	^ DefaultPrettyPrintContext newLinesAfterMethodPattern
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> newLinesAfterMethodPattern: anInteger [
+BIEnlumineurFormatter class >> newLinesAfterMethodPattern: anInteger [
 	DefaultPrettyPrintContext newLinesAfterMethodPattern: anInteger.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> newLinesAfterTemporaries [
+BIEnlumineurFormatter class >> newLinesAfterTemporaries [
 	^ DefaultPrettyPrintContext newLinesAfterTemporaries
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> newLinesAfterTemporaries: anInteger [
+BIEnlumineurFormatter class >> newLinesAfterTemporaries: anInteger [
 	DefaultPrettyPrintContext newLinesAfterTemporaries: anInteger.
 	self announceASettingChange
 ]
 
 { #category : #settings }
-BIEnlumineurPrettyPrinter class >> notInstalledCandidateForRemoval [
+BIEnlumineurFormatter class >> notInstalledCandidateForRemoval [
 	"this method is for sync with guille and stef and we will remove it when ok"
 	
 	"(aBuilder setting: #periodsAsTerminators)
@@ -259,144 +259,144 @@ BIEnlumineurPrettyPrinter class >> notInstalledCandidateForRemoval [
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> numberOfArgumentsForMultiLine [
+BIEnlumineurFormatter class >> numberOfArgumentsForMultiLine [
 	^ DefaultPrettyPrintContext numberOfArgumentsForMultiLine
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> numberOfArgumentsForMultiLine: anInteger [
+BIEnlumineurFormatter class >> numberOfArgumentsForMultiLine: anInteger [
 	DefaultPrettyPrintContext numberOfArgumentsForMultiLine: anInteger.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> numberOfSpacesAfterCaretSymbolInReturn [
+BIEnlumineurFormatter class >> numberOfSpacesAfterCaretSymbolInReturn [
 	^ DefaultPrettyPrintContext numberOfSpacesAfterCaretSymbolInReturn
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> numberOfSpacesAfterCaretSymbolInReturn: anInteger [
+BIEnlumineurFormatter class >> numberOfSpacesAfterCaretSymbolInReturn: anInteger [
 	DefaultPrettyPrintContext numberOfSpacesAfterCaretSymbolInReturn: anInteger.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> numberOfSpacesInIndent [
+BIEnlumineurFormatter class >> numberOfSpacesInIndent [
 	^ DefaultPrettyPrintContext numberOfSpacesInIndent
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> numberOfSpacesInIndent: anInteger [
+BIEnlumineurFormatter class >> numberOfSpacesInIndent: anInteger [
 	DefaultPrettyPrintContext numberOfSpacesInIndent: anInteger.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> numberOfSpacesInsideArray [
+BIEnlumineurFormatter class >> numberOfSpacesInsideArray [
 	^ DefaultPrettyPrintContext numberOfSpacesInsideArray
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> numberOfSpacesInsideArray: anInteger [
+BIEnlumineurFormatter class >> numberOfSpacesInsideArray: anInteger [
 	DefaultPrettyPrintContext numberOfSpacesInsideArray: anInteger.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> numberOfSpacesInsideBlock [
+BIEnlumineurFormatter class >> numberOfSpacesInsideBlock [
 	^ DefaultPrettyPrintContext numberOfSpacesInsideBlock
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> numberOfSpacesInsideBlock: anInteger [
+BIEnlumineurFormatter class >> numberOfSpacesInsideBlock: anInteger [
 	DefaultPrettyPrintContext numberOfSpacesInsideBlock: anInteger.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> numberOfSpacesInsideParentheses [
+BIEnlumineurFormatter class >> numberOfSpacesInsideParentheses [
 	^ DefaultPrettyPrintContext numberOfSpacesInsideParentheses
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> numberOfSpacesInsideParentheses: anInteger [
+BIEnlumineurFormatter class >> numberOfSpacesInsideParentheses: anInteger [
 	DefaultPrettyPrintContext numberOfSpacesInsideParentheses: anInteger.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> oneLineMessages [
+BIEnlumineurFormatter class >> oneLineMessages [
 	^ DefaultPrettyPrintContext oneLineMessages printString
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> oneLineMessages: aString [
+BIEnlumineurFormatter class >> oneLineMessages: aString [
 	DefaultPrettyPrintContext oneLineMessages: (self compiler evaluate: aString).
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> periodsAtEndOfBlock [
+BIEnlumineurFormatter class >> periodsAtEndOfBlock [
 	^ DefaultPrettyPrintContext periodsAtEndOfBlock
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> periodsAtEndOfBlock: aBoolean [
+BIEnlumineurFormatter class >> periodsAtEndOfBlock: aBoolean [
 	DefaultPrettyPrintContext periodsAtEndOfBlock: aBoolean.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> periodsAtEndOfMethod [
+BIEnlumineurFormatter class >> periodsAtEndOfMethod [
 	^ DefaultPrettyPrintContext periodsAtEndOfMethod
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> periodsAtEndOfMethod: aBoolean [
+BIEnlumineurFormatter class >> periodsAtEndOfMethod: aBoolean [
 	DefaultPrettyPrintContext periodsAtEndOfMethod: aBoolean.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> retainBlankLinesBeforeComments [
+BIEnlumineurFormatter class >> retainBlankLinesBeforeComments [
 	^ DefaultPrettyPrintContext retainBlankLinesBeforeComments
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> retainBlankLinesBeforeComments: aBoolean [
+BIEnlumineurFormatter class >> retainBlankLinesBeforeComments: aBoolean [
 	DefaultPrettyPrintContext retainBlankLinesBeforeComments: aBoolean.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> retainBlankLinesBetweenStatements [
+BIEnlumineurFormatter class >> retainBlankLinesBetweenStatements [
 	^ DefaultPrettyPrintContext retainBlankLinesBetweenStatements
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> retainBlankLinesBetweenStatements: aBoolean [
+BIEnlumineurFormatter class >> retainBlankLinesBetweenStatements: aBoolean [
 	DefaultPrettyPrintContext retainBlankLinesBetweenStatements: aBoolean.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> selectorAndArgumentCombinedMaxSize [
+BIEnlumineurFormatter class >> selectorAndArgumentCombinedMaxSize [
 	^ DefaultPrettyPrintContext selectorAndArgumentCombinedMaxSize
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> selectorAndArgumentCombinedMaxSize: anInteger [
+BIEnlumineurFormatter class >> selectorAndArgumentCombinedMaxSize: anInteger [
 	DefaultPrettyPrintContext selectorAndArgumentCombinedMaxSize: anInteger.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> settingGroup [
+BIEnlumineurFormatter class >> settingGroup [
 	^ #blueInkEnlumineur
 ]
 
 { #category : #settings }
-BIEnlumineurPrettyPrinter class >> settingsAlignBlockBrackets: aBuilder [
+BIEnlumineurFormatter class >> settingsAlignBlockBrackets: aBuilder [
 	(aBuilder setting: #lineUpBlockBrackets)
 		label: 'Align block brackets';
 		description: 'pass a newLine before closing a multiline block. 
@@ -416,7 +416,7 @@ is the result when true
 ]
 
 { #category : #settings }
-BIEnlumineurPrettyPrinter class >> settingsFormatCommentWithExpression: aBuilder [
+BIEnlumineurFormatter class >> settingsFormatCommentWithExpression: aBuilder [
 	(aBuilder setting: #formatCommentWithStatements)
 		label: 'Format comment with expression';
 		description: 'if set to true: put the comment after the dot in an expression
@@ -426,7 +426,7 @@ For example if set to false: 1+1"We do an addition". 2+2'.
 ]
 
 { #category : #settings }
-BIEnlumineurPrettyPrinter class >> settingsIndentStyle:aBuilder [
+BIEnlumineurFormatter class >> settingsIndentStyle:aBuilder [
 	(aBuilder pickOne: #indentStyle)
 		label: 'Indent Style';
 		domainValues:#(#tabulation #space);
@@ -439,7 +439,7 @@ aBoolean
 ]
 
 { #category : #settings }
-BIEnlumineurPrettyPrinter class >> settingsIndentsForKeywords: aBuilder [ 
+BIEnlumineurFormatter class >> settingsIndentsForKeywords: aBuilder [ 
 	
 	(aBuilder setting: #indentsForKeywords)
 		label: 'Indents for keywords';
@@ -452,7 +452,7 @@ is the result for 2 indents'.
 ]
 
 { #category : #settings }
-BIEnlumineurPrettyPrinter class >> settingsKeepBlockInMessage: aBuilder [ 
+BIEnlumineurFormatter class >> settingsKeepBlockInMessage: aBuilder [ 
 	
 	(aBuilder setting: #keepBlockInMessage)
 		label: 'Keep block in message';
@@ -472,7 +472,7 @@ Example:
 ]
 
 { #category : #settings }
-BIEnlumineurPrettyPrinter class >> settingsMaxLineLength: aBuilder [
+BIEnlumineurFormatter class >> settingsMaxLineLength: aBuilder [
 	(aBuilder setting: #maxLineLength)
 		label: 'Max line length';
 		description: 'the maximum possible length of a line
@@ -483,7 +483,7 @@ is the result for 14'.
 ]
 
 { #category : #settings }
-BIEnlumineurPrettyPrinter class >> settingsMethodSignatureOnMultipleLines: aBuilder [ 
+BIEnlumineurFormatter class >> settingsMethodSignatureOnMultipleLines: aBuilder [ 
 	(aBuilder setting: #methodSignatureOnMultipleLines)
 		label: 'Method signature on multiple lines';
 		description: 'Write a multilines method signature on multiple lines only if set to true,
@@ -495,7 +495,7 @@ is the result if True and if selectorAndArgumentCombinedMaxSize is 6'.
 ]
 
 { #category : #settings }
-BIEnlumineurPrettyPrinter class >> settingsMinimumNewLinesBetweenStatements: aBuilder [
+BIEnlumineurFormatter class >> settingsMinimumNewLinesBetweenStatements: aBuilder [
 	(aBuilder setting: #minimumNewLinesBetweenStatements)
 		label: 'Minimum new lines between statements';
 		description: 'the number of new lines between each statement
@@ -509,7 +509,7 @@ is the result if the setting is set to 2'.
 ]
 
 { #category : #settings }
-BIEnlumineurPrettyPrinter class >> settingsMultiLineMessages: aBuilder [
+BIEnlumineurFormatter class >> settingsMultiLineMessages: aBuilder [
 	(aBuilder setting: #multiLineMessages)
 		label: 'Multi line messages';
 		description: 'An array containing all the messages that should be written on multiple line
@@ -521,7 +521,7 @@ is the result if #ifTrue:ifFalse is in the array'.
 ]
 
 { #category : #settings }
-BIEnlumineurPrettyPrinter class >> settingsNewLineAfterCascade: aBuilder [
+BIEnlumineurFormatter class >> settingsNewLineAfterCascade: aBuilder [
 	(aBuilder setting: #newLineAfterCascade)
 		label: 'New line after cascade';
 		description: 'pass a new line after each messages in a cascade
@@ -540,7 +540,7 @@ OrderedCollection new
 ]
 
 { #category : #settings }
-BIEnlumineurPrettyPrinter class >> settingsNewLineBeforeFirstCascade: aBuilder [
+BIEnlumineurFormatter class >> settingsNewLineBeforeFirstCascade: aBuilder [
 	(aBuilder setting: #newLineBeforeFirstCascade)
 		label: 'New line before cascade';
 		description: 'pass a new line before the messages in a cascade
@@ -559,7 +559,7 @@ OrderedCollection new
 ]
 
 { #category : #settings }
-BIEnlumineurPrettyPrinter class >> settingsNewLineBeforeFirstKeyword: aBuilder [
+BIEnlumineurFormatter class >> settingsNewLineBeforeFirstKeyword: aBuilder [
 	(aBuilder setting: #newLineBeforeFirstKeyword)
 		label: 'New line before first keyword';
 		description: 'pass a new line before the first keyword parameter of a message
@@ -574,7 +574,7 @@ is the result if the setting is set to false'.
 ]
 
 { #category : #settings }
-BIEnlumineurPrettyPrinter class >> settingsNewLinesAfterMethodComment: aBuilder [
+BIEnlumineurFormatter class >> settingsNewLinesAfterMethodComment: aBuilder [
 	(aBuilder setting: #newLinesAfterMethodComment)
 		label: 'New lines after method comment';
 		description: 'number of new lines after the comment of the method
@@ -587,7 +587,7 @@ is the result for 2 new lines'
 ]
 
 { #category : #settings }
-BIEnlumineurPrettyPrinter class >> settingsNewLinesAfterMethodSignature: aBuilder [
+BIEnlumineurFormatter class >> settingsNewLinesAfterMethodSignature: aBuilder [
 	(aBuilder setting: #newLinesAfterMethodPattern)
 		label: 'New lines after method signature';
 		description: 'number of new lines after the method signature
@@ -599,7 +599,7 @@ is the result for 2 new lines'
 ]
 
 { #category : #settings }
-BIEnlumineurPrettyPrinter class >> settingsNewLinesAfterTemporaries: aBuilder [
+BIEnlumineurFormatter class >> settingsNewLinesAfterTemporaries: aBuilder [
 	(aBuilder setting: #newLinesAfterTemporaries)
 		label: 'New lines after temporaries';
 		description: 'number of new lines after the temporaries declaration
@@ -612,7 +612,7 @@ is the result for 2 new lines'
 ]
 
 { #category : #settings }
-BIEnlumineurPrettyPrinter class >> settingsNumberOfArgumentsForMultiLine: aBuilder [ 
+BIEnlumineurFormatter class >> settingsNumberOfArgumentsForMultiLine: aBuilder [ 
 	
 	(aBuilder setting: #numberOfArgumentsForMultiLine)
 		label: 'Number of arguments for multiLine';
@@ -626,7 +626,7 @@ For example:
 ]
 
 { #category : #settings }
-BIEnlumineurPrettyPrinter class >> settingsNumberOfSpacesInIndent:aBuilder [
+BIEnlumineurFormatter class >> settingsNumberOfSpacesInIndent:aBuilder [
 	(aBuilder setting: #numberOfSpacesInIndent)
 		label: 'Number of spaces in indent';
 		description: 'the number of spaces representing an indentation if settingCharacter is set to space
@@ -638,7 +638,7 @@ is the result for 5'.
 ]
 
 { #category : #settings }
-BIEnlumineurPrettyPrinter class >> settingsOn: aBuilder [
+BIEnlumineurFormatter class >> settingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder group: self settingGroup)
 		target: self;
@@ -678,7 +678,7 @@ BIEnlumineurPrettyPrinter class >> settingsOn: aBuilder [
 ]
 
 { #category : #settings }
-BIEnlumineurPrettyPrinter class >> settingsOneLineMessages: aBuilder [
+BIEnlumineurFormatter class >> settingsOneLineMessages: aBuilder [
 	(aBuilder setting: #oneLineMessages)
 		label: 'One line messages';
 		description: 'An array containing all the messages that should be written on one line
@@ -687,7 +687,7 @@ Example:
 ]
 
 { #category : #settings }
-BIEnlumineurPrettyPrinter class >> settingsPeriodsAtEndOfBlock: aBuilder [
+BIEnlumineurFormatter class >> settingsPeriodsAtEndOfBlock: aBuilder [
 	(aBuilder setting: #periodsAtEndOfBlock)
 		label: 'Period at end of block';
 		description: 'put a period after the last expression of a block
@@ -698,7 +698,7 @@ for example:
 ]
 
 { #category : #settings }
-BIEnlumineurPrettyPrinter class >> settingsPeriodsAtEndOfMethod: aBuilder [.
+BIEnlumineurFormatter class >> settingsPeriodsAtEndOfMethod: aBuilder [.
 	(aBuilder setting: #periodsAtEndOfMethod)
 		label: 'Period at end of method';
 		description: 'put a period after the last expression of a method
@@ -710,7 +710,7 @@ myMethode
 ]
 
 { #category : #settings }
-BIEnlumineurPrettyPrinter class >> settingsRetainBlankLinesBeforeComments: aBuilder [.
+BIEnlumineurFormatter class >> settingsRetainBlankLinesBeforeComments: aBuilder [.
 	(aBuilder setting: #retainBlankLinesBeforeComments)
 		label: 'Retain blank lines before comments';
 		description: 'keep the blank lines which are before the comments 
@@ -724,7 +724,7 @@ for example:
 ]
 
 { #category : #settings }
-BIEnlumineurPrettyPrinter class >> settingsRetainBlankLinesBetweenStatements: aBuilder [.
+BIEnlumineurFormatter class >> settingsRetainBlankLinesBetweenStatements: aBuilder [.
 	(aBuilder setting: #retainBlankLinesBetweenStatements)
 		label: 'Retain blank lines between statements';
 		description: 'Keep the blank lines which are between the statements
@@ -740,7 +740,7 @@ will not change if the setting is set to true'
 ]
 
 { #category : #settings }
-BIEnlumineurPrettyPrinter class >> settingsSelectorAndArgumentCombinedMaxSize: aBuilder [.
+BIEnlumineurFormatter class >> settingsSelectorAndArgumentCombinedMaxSize: aBuilder [.
 	(aBuilder setting: #selectorAndArgumentCombinedMaxSize)
 		label: 'Selector and argument combined in method signature max size';
 		description: 'the maximum length a selector and his argument can be before the message is considered multiline
@@ -754,7 +754,7 @@ myMethod: argument1
 ]
 
 { #category : #settings }
-BIEnlumineurPrettyPrinter class >> settingsSpacesAfterCaretSymbolInReturn: aBuilder [ 
+BIEnlumineurFormatter class >> settingsSpacesAfterCaretSymbolInReturn: aBuilder [ 
 	(aBuilder setting: #numberOfSpacesAfterCaretSymbolInReturn)
 		label: 'Spaces following caret symbol in return';
 		description: 'Number of spaces expressed as a string that is put just after the caret (^) of a return expression. 
@@ -762,7 +762,7 @@ For example: ^   self is the result for 3 spaces'.
 ]
 
 { #category : #settings }
-BIEnlumineurPrettyPrinter class >> settingsSpacesInsideArray: aBuilder [.
+BIEnlumineurFormatter class >> settingsSpacesInsideArray: aBuilder [.
 	(aBuilder setting: #numberOfSpacesInsideArray)
 		label: 'Spaces inside array';
 		description: 'number of spaces after the opening and before the closing symbols of the array
@@ -774,7 +774,7 @@ for example:
 ]
 
 { #category : #settings }
-BIEnlumineurPrettyPrinter class >> settingsSpacesInsideBlocks: aBuilder [.
+BIEnlumineurFormatter class >> settingsSpacesInsideBlocks: aBuilder [.
 	(aBuilder setting: #numberOfSpacesInsideBlock)
 		label: 'Spaces inside blocks';
 		description: 'number of spaces after the opening bracket and before the closing bracket
@@ -785,7 +785,7 @@ for example:
 ]
 
 { #category : #settings }
-BIEnlumineurPrettyPrinter class >> settingsSpacesInsideParentheses: aBuilder [.
+BIEnlumineurFormatter class >> settingsSpacesInsideParentheses: aBuilder [.
 	(aBuilder setting: #numberOfSpacesInsideParentheses)
 		label: 'Spaces inside parentheses';
 		description: 'number of spaces after the opening parenthese and before the closing parenthese
@@ -793,7 +793,7 @@ for example: (   1 + 2   ) is the result for 3 spaces'
 ]
 
 { #category : #settings }
-BIEnlumineurPrettyPrinter class >> settingsTraditionalBinaryPrecedenceArray: aBuilder [.
+BIEnlumineurFormatter class >> settingsTraditionalBinaryPrecedenceArray: aBuilder [.
 	(aBuilder setting: #traditionalBinaryPrecedenceArray)
 		label: 'Traditional binary precedence';
 		description: 'An 2 dimension array containing messages according to the priority
@@ -801,7 +801,7 @@ Example: #( #($- $+) #($*) )'
 ]
 
 { #category : #settings }
-BIEnlumineurPrettyPrinter class >> settingsUseBasicCommentFormat: aBuilder [.
+BIEnlumineurFormatter class >> settingsUseBasicCommentFormat: aBuilder [.
 	self flag:'to modify'.
 	(aBuilder setting: #useBasicCommentFormat)
 		label: 'Use basic comment format';
@@ -812,7 +812,7 @@ Exemple:
 ]
 
 { #category : #settings }
-BIEnlumineurPrettyPrinter class >> settingsUseTraditionalBinaryPrecedenceForParentheses: aBuilder [.
+BIEnlumineurFormatter class >> settingsUseTraditionalBinaryPrecedenceForParentheses: aBuilder [.
 	(aBuilder setting: #useTraditionalBinaryPrecedenceForParentheses)
 		label: 'Use traditional binary precedence for parentheses';
 		description:'add parentheses in order to comply with the precedence
@@ -820,55 +820,55 @@ for example 1 + 2 * 3 will be formated: (1 + 2) * 3'
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> spacesAfterCaretSymbolInReturn [
+BIEnlumineurFormatter class >> spacesAfterCaretSymbolInReturn [
 	^ DefaultPrettyPrintContext spacesAfterCaretSymbolInReturn
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> spacesInsideBlocks [
+BIEnlumineurFormatter class >> spacesInsideBlocks [
 	^ DefaultPrettyPrintContext spacesInsideBlocks
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> spacesInsideParentheses [
+BIEnlumineurFormatter class >> spacesInsideParentheses [
 	^ DefaultPrettyPrintContext spacesInsideParentheses
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> traditionalBinaryPrecedenceArray [
+BIEnlumineurFormatter class >> traditionalBinaryPrecedenceArray [
 	^ DefaultPrettyPrintContext traditionalBinaryPrecedenceArray printString 
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> traditionalBinaryPrecedenceArray: aString [
+BIEnlumineurFormatter class >> traditionalBinaryPrecedenceArray: aString [
 	DefaultPrettyPrintContext traditionalBinaryPrecedenceArray: (self compiler evaluate: aString).
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> useBasicCommentFormat [
+BIEnlumineurFormatter class >> useBasicCommentFormat [
 	^ DefaultPrettyPrintContext useBasicCommentFormat
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> useBasicCommentFormat: aBoolean [
+BIEnlumineurFormatter class >> useBasicCommentFormat: aBoolean [
 	DefaultPrettyPrintContext useBasicCommentFormat: aBoolean.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> useTraditionalBinaryPrecedenceForParentheses [
+BIEnlumineurFormatter class >> useTraditionalBinaryPrecedenceForParentheses [
 	^ DefaultPrettyPrintContext useTraditionalBinaryPrecedenceForParentheses
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter class >> useTraditionalBinaryPrecedenceForParentheses: aBoolean [
+BIEnlumineurFormatter class >> useTraditionalBinaryPrecedenceForParentheses: aBoolean [
 	DefaultPrettyPrintContext useTraditionalBinaryPrecedenceForParentheses: aBoolean.
 	self announceASettingChange
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> addNewLinesBeforeStatementStartingAt: anInteger [ 
+BIEnlumineurFormatter >> addNewLinesBeforeStatementStartingAt: anInteger [ 
 	| newLines |
 	newLines := self minimumNewLinesBetweenStatements 
 				max: (self retainBlankLinesBetweenStatements 
@@ -878,7 +878,7 @@ BIEnlumineurPrettyPrinter >> addNewLinesBeforeStatementStartingAt: anInteger [
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> addSpaceIfNeededForLastArgument: aPragmaNode [
+BIEnlumineurFormatter >> addSpaceIfNeededForLastArgument: aPragmaNode [
 	aPragmaNode isUnary
 		ifTrue: [ ^ self ].
 	(self pragmaArgumentNeedsSeparator: aPragmaNode arguments last)
@@ -886,12 +886,12 @@ BIEnlumineurPrettyPrinter >> addSpaceIfNeededForLastArgument: aPragmaNode [
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> basicFormatCommentFor: aComment [
+BIEnlumineurFormatter >> basicFormatCommentFor: aComment [
 	codeStream nextPutAll: (originalSource copyFrom: aComment start to: aComment stop).
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> bracketWith: bracketString around: aBlock [
+BIEnlumineurFormatter >> bracketWith: bracketString around: aBlock [
 	bracketString isEmpty
 		ifTrue: [ ^ aBlock value ].
 	codeStream nextPut: bracketString first.
@@ -900,7 +900,7 @@ BIEnlumineurPrettyPrinter >> bracketWith: bracketString around: aBlock [
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> bracketWith: bracketString around: aBlock indentExtraSpaces: anInteger [
+BIEnlumineurFormatter >> bracketWith: bracketString around: aBlock indentExtraSpaces: anInteger [
 	bracketString isEmpty
 		ifTrue: [ ^ aBlock value ].
 	codeStream nextPut: bracketString first.
@@ -909,29 +909,29 @@ BIEnlumineurPrettyPrinter >> bracketWith: bracketString around: aBlock indentExt
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> characterSeparatorMethodSignatureFor: aMethodNode [
+BIEnlumineurFormatter >> characterSeparatorMethodSignatureFor: aMethodNode [
 	^ (self needsMethodSignatureOnMultipleLinesFor: aMethodNode)
 			ifTrue: [ self newLine ]
 			ifFalse: [ self space ]
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> codeStream [
+BIEnlumineurFormatter >> codeStream [
 	^ codeStream
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> codeStream: anObject [
+BIEnlumineurFormatter >> codeStream: anObject [
 	codeStream := anObject
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> currentLineLength [
+BIEnlumineurFormatter >> currentLineLength [
 	^ codeStream position - lineStart
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurPrettyPrinter >> firstSeparatorShouldNotPassLine: aMessageNode [
+BIEnlumineurFormatter >> firstSeparatorShouldNotPassLine: aMessageNode [
 "predicat that tell if the keyWord should be forced te be on the sameLine"
 
 	^ aMessageNode isKeyword
@@ -940,7 +940,7 @@ BIEnlumineurPrettyPrinter >> firstSeparatorShouldNotPassLine: aMessageNode [
 ]
 
 { #category : #'public interface' }
-BIEnlumineurPrettyPrinter >> format: aParseTree [
+BIEnlumineurFormatter >> format: aParseTree [
 	codeStream := self initializeCodeStream.
 	originalSource := aParseTree source.
 	self visitNode: aParseTree.
@@ -948,7 +948,7 @@ BIEnlumineurPrettyPrinter >> format: aParseTree [
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurPrettyPrinter >> formatArray: anArrayNode [
+BIEnlumineurFormatter >> formatArray: anArrayNode [
 	| current |
 	codeStream nextPutAll: self spacesInsideArray.
 	(anArrayNode statements
@@ -971,7 +971,7 @@ BIEnlumineurPrettyPrinter >> formatArray: anArrayNode [
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurPrettyPrinter >> formatBlock: aBlockNode [
+BIEnlumineurFormatter >> formatBlock: aBlockNode [
 	| isMultiline |
 	isMultiline := self 
 		willBeMultiline: aBlockNode body 
@@ -989,7 +989,7 @@ BIEnlumineurPrettyPrinter >> formatBlock: aBlockNode [
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurPrettyPrinter >> formatBlockArgumentsFor: aBlockNode [
+BIEnlumineurFormatter >> formatBlockArgumentsFor: aBlockNode [
 	aBlockNode arguments isEmpty
 		ifTrue: [ ^ self ].
 	aBlockNode arguments
@@ -1005,7 +1005,7 @@ BIEnlumineurPrettyPrinter >> formatBlockArgumentsFor: aBlockNode [
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurPrettyPrinter >> formatBlockCommentFor: aBlockNode [
+BIEnlumineurFormatter >> formatBlockCommentFor: aBlockNode [
 	originalSource isNil
 		ifTrue: [  ^ self ].
 	aBlockNode comments
@@ -1017,17 +1017,17 @@ BIEnlumineurPrettyPrinter >> formatBlockCommentFor: aBlockNode [
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> formatCommentWithStatements [
+BIEnlumineurFormatter >> formatCommentWithStatements [
 	^ context formatCommentWithStatements
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> formatCommentWithStatements: aBoolean [
+BIEnlumineurFormatter >> formatCommentWithStatements: aBoolean [
 	context formatCommentWithStatements: aBoolean
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurPrettyPrinter >> formatCommentsFor: aNode [
+BIEnlumineurFormatter >> formatCommentsFor: aNode [
 	originalSource isNil
 		ifTrue: [ ^ self ].
 	aNode comments
@@ -1038,7 +1038,7 @@ BIEnlumineurPrettyPrinter >> formatCommentsFor: aNode [
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> formatMessageNodeInAMessageStreamFor: aMessageNode [
+BIEnlumineurFormatter >> formatMessageNodeInAMessageStreamFor: aMessageNode [
 	| messageStream |
 	messageStream := WriteStream on: (String new: 100).
 	self
@@ -1054,7 +1054,7 @@ BIEnlumineurPrettyPrinter >> formatMessageNodeInAMessageStreamFor: aMessageNode 
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurPrettyPrinter >> formatMethodBodyFor: aMethodNode [
+BIEnlumineurFormatter >> formatMethodBodyFor: aMethodNode [
 	self
 		indentAround:
 			[ 
@@ -1065,7 +1065,7 @@ BIEnlumineurPrettyPrinter >> formatMethodBodyFor: aMethodNode [
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurPrettyPrinter >> formatMethodCommentFor: aMethodNode [
+BIEnlumineurFormatter >> formatMethodCommentFor: aMethodNode [
 	originalSource isNil
 		ifTrue: [ ^ self ].
 	aMethodNode comments
@@ -1080,7 +1080,7 @@ BIEnlumineurPrettyPrinter >> formatMethodCommentFor: aMethodNode [
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurPrettyPrinter >> formatMethodPatternFor: aMethodNode [
+BIEnlumineurFormatter >> formatMethodPatternFor: aMethodNode [
 	aMethodNode arguments isEmpty
 		ifTrue: [ codeStream nextPutAll: aMethodNode selector ]
 		ifFalse: [ 
@@ -1090,12 +1090,12 @@ BIEnlumineurPrettyPrinter >> formatMethodPatternFor: aMethodNode [
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurPrettyPrinter >> formatPragmasFor: aMethodNode [
+BIEnlumineurFormatter >> formatPragmasFor: aMethodNode [
 	aMethodNode pragmas do: [ :each | self visitNode: each; newLine ]
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurPrettyPrinter >> formatSelectorAndArguments: aMessageNode [
+BIEnlumineurFormatter >> formatSelectorAndArguments: aMessageNode [
 	| isMultilineMessage hasMutlineArguments multilineArgumentBeforeAnotherArgument |
 	multilineArgumentBeforeAnotherArgument := self messageHasMultilineArgumentBeforeAnotherArgument: aMessageNode.
 	isMultilineMessage := (self isMultiLineMessage: aMessageNode) or:[multilineArgumentBeforeAnotherArgument].
@@ -1120,7 +1120,7 @@ BIEnlumineurPrettyPrinter >> formatSelectorAndArguments: aMessageNode [
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurPrettyPrinter >> formatSelectorAndArguments: aMessageNode firstSeparator: firstBlock restSeparator: restBlock [
+BIEnlumineurFormatter >> formatSelectorAndArguments: aMessageNode firstSeparator: firstBlock restSeparator: restBlock [
 	| separatorBlock i|
 	i := 0.
 	separatorBlock := firstBlock.
@@ -1149,7 +1149,7 @@ BIEnlumineurPrettyPrinter >> formatSelectorAndArguments: aMessageNode firstSepar
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurPrettyPrinter >> formatSequenceNodeStatementsFor: aSequenceNode [
+BIEnlumineurFormatter >> formatSequenceNodeStatementsFor: aSequenceNode [
 	| statements |
 	statements := aSequenceNode statements.
 	statements isEmpty
@@ -1172,7 +1172,7 @@ BIEnlumineurPrettyPrinter >> formatSequenceNodeStatementsFor: aSequenceNode [
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurPrettyPrinter >> formatStatementCommentsFor: aStatementNode [
+BIEnlumineurFormatter >> formatStatementCommentsFor: aStatementNode [
 	originalSource isNil
 		ifTrue: [ ^ self ].
 	self formatCommentWithStatements
@@ -1192,7 +1192,7 @@ BIEnlumineurPrettyPrinter >> formatStatementCommentsFor: aStatementNode [
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> formatTemporariesFor: aSequenceNode [
+BIEnlumineurFormatter >> formatTemporariesFor: aSequenceNode [
 	aSequenceNode temporaries isEmpty
 		ifTrue: [ ^ self ].
 	self
@@ -1211,7 +1211,7 @@ BIEnlumineurPrettyPrinter >> formatTemporariesFor: aSequenceNode [
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> formattedSourceFor: aNode withDictionary: aDictionary [
+BIEnlumineurFormatter >> formattedSourceFor: aNode withDictionary: aDictionary [
 	^ aDictionary at: aNode ifAbsentPut: [ 
 		  self class new
 			  indent: self indent;
@@ -1220,7 +1220,7 @@ BIEnlumineurPrettyPrinter >> formattedSourceFor: aNode withDictionary: aDictiona
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> handleLineForArgument: anArgument [
+BIEnlumineurFormatter >> handleLineForArgument: anArgument [
 	| isLineTooLong |
 	isLineTooLong := self isLineTooLongWithNode: anArgument.
 	anArgument isBlock
@@ -1237,14 +1237,14 @@ BIEnlumineurPrettyPrinter >> handleLineForArgument: anArgument [
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> handleLineForSelector: selector withSeparatorBlock: aBlock [
+BIEnlumineurFormatter >> handleLineForSelector: selector withSeparatorBlock: aBlock [
 	(self isLineTooLongWithString: selector)
 		ifTrue: [ self newLine ]
 		ifFalse: [ aBlock value ]
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> hasAMultiLineMessageArgument: anArgumentsCollection [
+BIEnlumineurFormatter >> hasAMultiLineMessageArgument: anArgumentsCollection [
 	^ anArgumentsCollection
 		anySatisfy: [ :each | 
 			self isInCascadeNode
@@ -1256,45 +1256,45 @@ BIEnlumineurPrettyPrinter >> hasAMultiLineMessageArgument: anArgumentsCollection
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> headOfBlockNotEmpty: aBlockNode [
+BIEnlumineurFormatter >> headOfBlockNotEmpty: aBlockNode [
 
 	^ aBlockNode arguments isNotEmpty	or: [aBlockNode comments isNotEmpty]
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> indent [
+BIEnlumineurFormatter >> indent [
 	^ indent
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> indent: anInteger [
+BIEnlumineurFormatter >> indent: anInteger [
 
 	indent := anInteger
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> indent: anInteger around: aBlock [ 
+BIEnlumineurFormatter >> indent: anInteger around: aBlock [ 
 	self indent: self indent + anInteger.
 	^aBlock ensure: [self indent: self indent - anInteger]
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> indentAround: aBlock [ 
+BIEnlumineurFormatter >> indentAround: aBlock [ 
 	self indent: 1 around: aBlock
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> indentExtraSpaces [
+BIEnlumineurFormatter >> indentExtraSpaces [
 	^ context indentExtraSpaces
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> indentExtraSpaces: anInteger [
+BIEnlumineurFormatter >> indentExtraSpaces: anInteger [
 	context indentExtraSpaces: anInteger 
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> indentExtraSpaces: anInteger around: aBlock [
+BIEnlumineurFormatter >> indentExtraSpaces: anInteger around: aBlock [
 	| previousIndentExtraSpacesSize |
 	previousIndentExtraSpacesSize := self indentExtraSpaces size.
 	self indentExtraSpaces: anInteger + previousIndentExtraSpacesSize.
@@ -1303,22 +1303,22 @@ BIEnlumineurPrettyPrinter >> indentExtraSpaces: anInteger around: aBlock [
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> indentString [
+BIEnlumineurFormatter >> indentString [
 	^ context indentString
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> indentStyle [
+BIEnlumineurFormatter >> indentStyle [
 	^ context indentStyle
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> indentStyle: aSymbole [
+BIEnlumineurFormatter >> indentStyle: aSymbole [
 	context indentStyle: aSymbole
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> indentTimesRepeat: anInteger [
+BIEnlumineurFormatter >> indentTimesRepeat: anInteger [
 	
 	anInteger timesRepeat: 
 			[ codeStream nextPutAll: self indentString ].
@@ -1326,17 +1326,17 @@ BIEnlumineurPrettyPrinter >> indentTimesRepeat: anInteger [
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> indentsForKeywords [
+BIEnlumineurFormatter >> indentsForKeywords [
 	^ context indentsForKeywords
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> indentsForKeywords: anInteger [
+BIEnlumineurFormatter >> indentsForKeywords: anInteger [
 	context indentsForKeywords: anInteger
 ]
 
 { #category : #initialization }
-BIEnlumineurPrettyPrinter >> initialize [
+BIEnlumineurFormatter >> initialize [
 	super initialize.
 	lineStart := 0.
 	self indent: 0.
@@ -1348,46 +1348,46 @@ BIEnlumineurPrettyPrinter >> initialize [
 ]
 
 { #category : #initialization }
-BIEnlumineurPrettyPrinter >> initializeCodeStream [
+BIEnlumineurFormatter >> initializeCodeStream [
 	^ WriteStream on: (String new: 256)
 ]
 
 { #category : #initialization }
-BIEnlumineurPrettyPrinter >> initializeLookAheadCode [
+BIEnlumineurFormatter >> initializeLookAheadCode [
 	^ IdentityDictionary new
 ]
 
 { #category : #'public interface' }
-BIEnlumineurPrettyPrinter >> installNewContext: aContext [
+BIEnlumineurFormatter >> installNewContext: aContext [
 
 	context := aContext.
 	lookaheadCode := self initializeLookAheadCode
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> isInCascadeNode [
+BIEnlumineurFormatter >> isInCascadeNode [
 	^ isInCascadeNode
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> isInCascadeNode: aBoolean [
+BIEnlumineurFormatter >> isInCascadeNode: aBoolean [
 	isInCascadeNode := aBoolean
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> isLineTooLongWithNode: aNode [
+BIEnlumineurFormatter >> isLineTooLongWithNode: aNode [
 	^ self isLineTooLongWithString: (self formattedSourceFor: aNode withDictionary: temporaryLookAheadCode ).
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> isLineTooLongWithString: aString [
+BIEnlumineurFormatter >> isLineTooLongWithString: aString [
 	^ self currentLineLength
 		+ (aString indexOf: Character cr ifAbsent: [ aString size ])
 		>= self maxLineLength
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> isMultiLineMessage: aMessageNode [
+BIEnlumineurFormatter >> isMultiLineMessage: aMessageNode [
 	(self multiLineMessages includes: aMessageNode selector)
 		ifTrue: [ ^ true ].
 	(self oneLineMessages includes: aMessageNode selector)
@@ -1400,52 +1400,52 @@ BIEnlumineurPrettyPrinter >> isMultiLineMessage: aMessageNode [
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> isNonEmptySingleLineBlock: aBlockNode [
+BIEnlumineurFormatter >> isNonEmptySingleLineBlock: aBlockNode [
 	^ ((self willBeMultiline: aBlockNode body saveIn: temporaryLookAheadCode ) or: [ aBlockNode body statements isEmpty ]) not
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> keepBlockInMessage [
+BIEnlumineurFormatter >> keepBlockInMessage [
 	^ context keepBlockInMessage
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> keepBlockInMessage: aBoolean [
+BIEnlumineurFormatter >> keepBlockInMessage: aBoolean [
 	context keepBlockInMessage: aBoolean
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> lineStart [
+BIEnlumineurFormatter >> lineStart [
 	^ lineStart
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> lineStart: anObject [
+BIEnlumineurFormatter >> lineStart: anObject [
 	lineStart := anObject
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> lineUpBlockBrackets [
+BIEnlumineurFormatter >> lineUpBlockBrackets [
 	^ context lineUpBlockBrackets
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> lineUpBlockBrackets: aBoolean [
+BIEnlumineurFormatter >> lineUpBlockBrackets: aBoolean [
 	context lineUpBlockBrackets: aBoolean
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> maxLineLength [
+BIEnlumineurFormatter >> maxLineLength [
 	^ context maxLineLength
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> maxLineLength: anInteger [
+BIEnlumineurFormatter >> maxLineLength: anInteger [
 	context maxLineLength: anInteger
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> messageHasMultilineArgumentBeforeAnotherArgument: aMessageNode [ 
+BIEnlumineurFormatter >> messageHasMultilineArgumentBeforeAnotherArgument: aMessageNode [ 
 
 	aMessageNode arguments doWithIndex: [ :each :i |
 		(self willBeMultiline: each saveIn: temporaryLookAheadCode)
@@ -1454,37 +1454,37 @@ BIEnlumineurPrettyPrinter >> messageHasMultilineArgumentBeforeAnotherArgument: a
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> methodSignatureOnMultipleLines [
+BIEnlumineurFormatter >> methodSignatureOnMultipleLines [
 	^ context methodSignatureOnMultipleLines
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> methodSignatureOnMultipleLines: aBoolean [
+BIEnlumineurFormatter >> methodSignatureOnMultipleLines: aBoolean [
 	context methodSignatureOnMultipleLines: aBoolean
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> minimumNewLinesBetweenStatements [
+BIEnlumineurFormatter >> minimumNewLinesBetweenStatements [
 	^ context minimumNewLinesBetweenStatements
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> minimumNewLinesBetweenStatements: anInteger [
+BIEnlumineurFormatter >> minimumNewLinesBetweenStatements: anInteger [
 	context minimumNewLinesBetweenStatements: anInteger
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> multiLineMessages [
+BIEnlumineurFormatter >> multiLineMessages [
 	^ context multiLineMessages
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> multiLineMessages: anArray [
+BIEnlumineurFormatter >> multiLineMessages: anArray [
 	context multiLineMessages: anArray
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> needsMethodSignatureOnMultipleLinesFor: aMethodNode [
+BIEnlumineurFormatter >> needsMethodSignatureOnMultipleLinesFor: aMethodNode [
 	| cpt |
 	cpt := 0.
 	self methodSignatureOnMultipleLines
@@ -1501,7 +1501,7 @@ BIEnlumineurPrettyPrinter >> needsMethodSignatureOnMultipleLinesFor: aMethodNode
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> needsParenthesisFor: aNode [
+BIEnlumineurFormatter >> needsParenthesisFor: aNode [
 	| parent grandparent |
 	aNode ifNil: [ ^ false ].
 	aNode isValue
@@ -1539,22 +1539,22 @@ BIEnlumineurPrettyPrinter >> needsParenthesisFor: aNode [
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> newLine [
+BIEnlumineurFormatter >> newLine [
 	self newLines: 1
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> newLineAfterCascade [
+BIEnlumineurFormatter >> newLineAfterCascade [
 	^ context newLineAfterCascade
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> newLineAfterCascade: aBoolean [
+BIEnlumineurFormatter >> newLineAfterCascade: aBoolean [
 	context newLineAfterCascade: aBoolean
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> newLineBefore [
+BIEnlumineurFormatter >> newLineBefore [
 	"predicate which return true if there where a newLine in the code stream just before the current position"
 
 	| currentIndentationString |
@@ -1566,27 +1566,27 @@ BIEnlumineurPrettyPrinter >> newLineBefore [
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> newLineBeforeFirstCascade [
+BIEnlumineurFormatter >> newLineBeforeFirstCascade [
 	^ context newLineBeforeFirstCascade
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> newLineBeforeFirstCascade: aBoolean [
+BIEnlumineurFormatter >> newLineBeforeFirstCascade: aBoolean [
 	context newLineBeforeFirstCascade: aBoolean
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> newLineBeforeFirstKeyword [
+BIEnlumineurFormatter >> newLineBeforeFirstKeyword [
 	^ context newLineBeforeFirstKeyword
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> newLineBeforeFirstKeyword: aBoolean [
+BIEnlumineurFormatter >> newLineBeforeFirstKeyword: aBoolean [
 	context newLineBeforeFirstKeyword: aBoolean
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> newLines: anInteger [
+BIEnlumineurFormatter >> newLines: anInteger [
 	anInteger + self indentString size = 0
 		ifTrue: 
 			[ codeStream space ].
@@ -1599,37 +1599,37 @@ BIEnlumineurPrettyPrinter >> newLines: anInteger [
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> newLinesAfterMethodComment [
+BIEnlumineurFormatter >> newLinesAfterMethodComment [
 	^ context newLinesAfterMethodComment
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> newLinesAfterMethodComment: anInteger [
+BIEnlumineurFormatter >> newLinesAfterMethodComment: anInteger [
 	context newLinesAfterMethodComment: anInteger
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> newLinesAfterMethodPattern [
+BIEnlumineurFormatter >> newLinesAfterMethodPattern [
 	^ context newLinesAfterMethodPattern
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> newLinesAfterMethodPattern: anInteger [
+BIEnlumineurFormatter >> newLinesAfterMethodPattern: anInteger [
 	context newLinesAfterMethodPattern: anInteger
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> newLinesAfterTemporaries [
+BIEnlumineurFormatter >> newLinesAfterTemporaries [
 	^ context newLinesAfterTemporaries
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> newLinesAfterTemporaries: anInteger [
+BIEnlumineurFormatter >> newLinesAfterTemporaries: anInteger [
 	context newLinesAfterTemporaries: anInteger
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> newLinesBeforeStartingAt: anIndex [
+BIEnlumineurFormatter >> newLinesBeforeStartingAt: anIndex [
 	| count cr lf index char |
 	originalSource ifNil: [ ^ 0 ].
 	(anIndex isNil or: [ anIndex > originalSource size ])
@@ -1652,113 +1652,113 @@ BIEnlumineurPrettyPrinter >> newLinesBeforeStartingAt: anIndex [
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> numberOfArgumentsForMultiLine [
+BIEnlumineurFormatter >> numberOfArgumentsForMultiLine [
 	^ context numberOfArgumentsForMultiLine
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> numberOfArgumentsForMultiLine: anInteger [
+BIEnlumineurFormatter >> numberOfArgumentsForMultiLine: anInteger [
 	context numberOfArgumentsForMultiLine: anInteger
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> numberOfSpacesAfterCaretSymbolInReturn [
+BIEnlumineurFormatter >> numberOfSpacesAfterCaretSymbolInReturn [
 	^ context numberOfSpacesAfterCaretSymbolInReturn
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> numberOfSpacesAfterCaretSymbolInReturn: anInteger [
+BIEnlumineurFormatter >> numberOfSpacesAfterCaretSymbolInReturn: anInteger [
 	context numberOfSpacesAfterCaretSymbolInReturn: anInteger
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> numberOfSpacesInIndent [
+BIEnlumineurFormatter >> numberOfSpacesInIndent [
 	^ context numberOfSpacesInIndent
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> numberOfSpacesInIndent: anInteger [
+BIEnlumineurFormatter >> numberOfSpacesInIndent: anInteger [
 	context numberOfSpacesInIndent: anInteger
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> numberOfSpacesInsideArray [
+BIEnlumineurFormatter >> numberOfSpacesInsideArray [
 	^ context numberOfSpacesInsideArray
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> numberOfSpacesInsideArray: anInteger [
+BIEnlumineurFormatter >> numberOfSpacesInsideArray: anInteger [
 	context numberOfSpacesInsideArray: anInteger
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> numberOfSpacesInsideBlock [
+BIEnlumineurFormatter >> numberOfSpacesInsideBlock [
 	^ context numberOfSpacesInsideBlock
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> numberOfSpacesInsideBlock: anInteger [
+BIEnlumineurFormatter >> numberOfSpacesInsideBlock: anInteger [
 	context numberOfSpacesInsideBlock: anInteger
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> numberOfSpacesInsideParentheses [
+BIEnlumineurFormatter >> numberOfSpacesInsideParentheses [
 	^ context numberOfSpacesInsideParentheses
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> numberOfSpacesInsideParentheses: anInteger [
+BIEnlumineurFormatter >> numberOfSpacesInsideParentheses: anInteger [
 	context numberOfSpacesInsideParentheses: anInteger
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> oneLineMessages [
+BIEnlumineurFormatter >> oneLineMessages [
 	^ context oneLineMessages
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> oneLineMessages: anArray [
+BIEnlumineurFormatter >> oneLineMessages: anArray [
 	context oneLineMessages: anArray
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> periodsAsTerminators [
+BIEnlumineurFormatter >> periodsAsTerminators [
 	^ context periodsAtEndOfBlock and: [ context periodsAtEndOfMethod ]
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> periodsAsTerminators: aBoolean [
+BIEnlumineurFormatter >> periodsAsTerminators: aBoolean [
 	context periodsAtEndOfBlock: aBoolean.
 	context periodsAtEndOfMethod: aBoolean
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> periodsAtEndOfBlock [
+BIEnlumineurFormatter >> periodsAtEndOfBlock [
 	^ context periodsAtEndOfBlock
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> periodsAtEndOfBlock: aBoolean [
+BIEnlumineurFormatter >> periodsAtEndOfBlock: aBoolean [
 	context periodsAtEndOfBlock: aBoolean
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> periodsAtEndOfMethod [
+BIEnlumineurFormatter >> periodsAtEndOfMethod [
 	^ context periodsAtEndOfMethod
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> periodsAtEndOfMethod: aBoolean [
+BIEnlumineurFormatter >> periodsAtEndOfMethod: aBoolean [
 	context periodsAtEndOfMethod: aBoolean
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> pragmaArgumentNeedsSeparator: anArgumentNode [
+BIEnlumineurFormatter >> pragmaArgumentNeedsSeparator: anArgumentNode [
 	^ anArgumentNode value isSymbol and: [ anArgumentNode value isBinary ]
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> precedenceOf: parentSelector greaterThan: childSelector [
+BIEnlumineurFormatter >> precedenceOf: parentSelector greaterThan: childSelector [
 	"Put parenthesis around things that are preceived to have 'lower' precedence. For example, 'a + b * c' 
 	-> '(a + b) * c' but 'a * b + c' -> 'a * b + c'"
 
@@ -1774,7 +1774,7 @@ BIEnlumineurPrettyPrinter >> precedenceOf: parentSelector greaterThan: childSele
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> privateFormatMethodPatternMonoLineFor: aMethodNode [
+BIEnlumineurFormatter >> privateFormatMethodPatternMonoLineFor: aMethodNode [
 	self
 		with: aMethodNode selectorParts
 		and: aMethodNode arguments
@@ -1786,7 +1786,7 @@ BIEnlumineurPrettyPrinter >> privateFormatMethodPatternMonoLineFor: aMethodNode 
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> privateFormatMethodPatternMultiLineFor: aMethodNode [
+BIEnlumineurFormatter >> privateFormatMethodPatternMultiLineFor: aMethodNode [
 	| selectors arguments |
 	arguments := aMethodNode arguments.
 	selectors := aMethodNode selectorParts.
@@ -1807,7 +1807,7 @@ BIEnlumineurPrettyPrinter >> privateFormatMethodPatternMultiLineFor: aMethodNode
 ]
 
 { #category : #utilities }
-BIEnlumineurPrettyPrinter >> resizeComment: aComment withFirstLineShorterOf: anIndex [
+BIEnlumineurFormatter >> resizeComment: aComment withFirstLineShorterOf: anIndex [
 	| cutComment firstLine currentCharPos |
 	currentCharPos := 1.
 	firstLine := (aComment contents
@@ -1823,7 +1823,7 @@ BIEnlumineurPrettyPrinter >> resizeComment: aComment withFirstLineShorterOf: anI
 ]
 
 { #category : #utilities }
-BIEnlumineurPrettyPrinter >> resizeCommentFor: aComment startingAt: anIndex [
+BIEnlumineurFormatter >> resizeCommentFor: aComment startingAt: anIndex [
 	codeStream nextPut: $".
 	"Hack to keep the right comment in pop up like cmd n, cmd m..."
 	self maxLineLength < 50
@@ -1840,7 +1840,7 @@ BIEnlumineurPrettyPrinter >> resizeCommentFor: aComment startingAt: anIndex [
 ]
 
 { #category : #utilities }
-BIEnlumineurPrettyPrinter >> resizeStringDependingOnWindowSizeFor: aComment [
+BIEnlumineurFormatter >> resizeStringDependingOnWindowSizeFor: aComment [
 	| resizedComment |
 	resizedComment := aComment contents withNoLineLongerThan: self maxLineLength.
 	resizedComment do: [ :each | 
@@ -1850,109 +1850,109 @@ BIEnlumineurPrettyPrinter >> resizeStringDependingOnWindowSizeFor: aComment [
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> retainBlankLinesBeforeComments [
+BIEnlumineurFormatter >> retainBlankLinesBeforeComments [
 	^ context retainBlankLinesBeforeComments
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> retainBlankLinesBeforeComments: aBoolean [
+BIEnlumineurFormatter >> retainBlankLinesBeforeComments: aBoolean [
 	context retainBlankLinesBeforeComments: aBoolean
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> retainBlankLinesBetweenStatements [
+BIEnlumineurFormatter >> retainBlankLinesBetweenStatements [
 	^ context retainBlankLinesBetweenStatements
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> retainBlankLinesBetweenStatements: aBoolean [
+BIEnlumineurFormatter >> retainBlankLinesBetweenStatements: aBoolean [
 	context retainBlankLinesBetweenStatements: aBoolean
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> selectorAndArgumentCombinedMaxSize [
+BIEnlumineurFormatter >> selectorAndArgumentCombinedMaxSize [
 	^ context selectorAndArgumentCombinedMaxSize
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> selectorAndArgumentCombinedMaxSize: anInteger [
+BIEnlumineurFormatter >> selectorAndArgumentCombinedMaxSize: anInteger [
 	context selectorAndArgumentCombinedMaxSize: anInteger
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurPrettyPrinter >> shouldPassNewLineAfterHeadOfBlock: aBlockNode [
+BIEnlumineurFormatter >> shouldPassNewLineAfterHeadOfBlock: aBlockNode [
 	^ (self headOfBlockNotEmpty: aBlockNode)
 		or: [ self keepBlockInMessage ]
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> space [
+BIEnlumineurFormatter >> space [
 	codeStream space
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurPrettyPrinter >> spaceAndFormatComments: aNode [
+BIEnlumineurFormatter >> spaceAndFormatComments: aNode [
 	aNode comments ifNotEmpty: [ self space ].
 	self formatCommentsFor: aNode
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> spacesAfterCaretSymbolInReturn [
+BIEnlumineurFormatter >> spacesAfterCaretSymbolInReturn [
 	^ context spacesAfterCaretSymbolInReturn
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> spacesInsideArray [
+BIEnlumineurFormatter >> spacesInsideArray [
 	^ context spacesInsideArray
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> spacesInsideBlocks [
+BIEnlumineurFormatter >> spacesInsideBlocks [
 	^ context spacesInsideBlocks
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> spacesInsideParentheses [
+BIEnlumineurFormatter >> spacesInsideParentheses [
 	^ context spacesInsideParentheses
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> traditionalBinaryPrecedenceArray [
+BIEnlumineurFormatter >> traditionalBinaryPrecedenceArray [
 	^ context traditionalBinaryPrecedenceArray
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> traditionalBinaryPrecedenceArray: anArray [
+BIEnlumineurFormatter >> traditionalBinaryPrecedenceArray: anArray [
 	context traditionalBinaryPrecedenceArray: anArray
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> useBasicCommentFormat [ 
+BIEnlumineurFormatter >> useBasicCommentFormat [ 
 	^ context useBasicCommentFormat 
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> useBasicCommentFormat: aBoolean [
+BIEnlumineurFormatter >> useBasicCommentFormat: aBoolean [
 	context useBasicCommentFormat: aBoolean
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> useTraditionalBinaryPrecedenceForParentheses [
+BIEnlumineurFormatter >> useTraditionalBinaryPrecedenceForParentheses [
 	^ context useTraditionalBinaryPrecedenceForParentheses
 ]
 
 { #category : #accessing }
-BIEnlumineurPrettyPrinter >> useTraditionalBinaryPrecedenceForParentheses: aBoolean [
+BIEnlumineurFormatter >> useTraditionalBinaryPrecedenceForParentheses: aBoolean [
 	context useTraditionalBinaryPrecedenceForParentheses: aBoolean
 ]
 
 { #category : #visiting }
-BIEnlumineurPrettyPrinter >> visitArrayNode: anArrayNode [
+BIEnlumineurFormatter >> visitArrayNode: anArrayNode [
 	self bracketWith: '{}' around: [ self formatArray: anArrayNode ]
 ]
 
 { #category : #visiting }
-BIEnlumineurPrettyPrinter >> visitAssignmentNode: anAssignmentNode [
+BIEnlumineurFormatter >> visitAssignmentNode: anAssignmentNode [
 	self visitNode: anAssignmentNode variable.
 	codeStream space; nextPutAll: anAssignmentNode assignmentOperator; space.
 	self
@@ -1961,7 +1961,7 @@ BIEnlumineurPrettyPrinter >> visitAssignmentNode: anAssignmentNode [
 ]
 
 { #category : #visiting }
-BIEnlumineurPrettyPrinter >> visitBlockNode: aBlockNode [
+BIEnlumineurFormatter >> visitBlockNode: aBlockNode [
 	self
 		bracketWith: '[]'
 		around: [ self formatBlock: aBlockNode ].
@@ -1969,7 +1969,7 @@ BIEnlumineurPrettyPrinter >> visitBlockNode: aBlockNode [
 ]
 
 { #category : #visiting }
-BIEnlumineurPrettyPrinter >> visitCascadeNode: aCascadeNode [
+BIEnlumineurFormatter >> visitCascadeNode: aCascadeNode [
 	self isInCascadeNode: true.
 	self visitNode: aCascadeNode receiver.
 	self
@@ -1996,7 +1996,7 @@ BIEnlumineurPrettyPrinter >> visitCascadeNode: aCascadeNode [
 ]
 
 { #category : #visiting }
-BIEnlumineurPrettyPrinter >> visitLiteralArrayNode: aRBArrayLiteralNode [
+BIEnlumineurFormatter >> visitLiteralArrayNode: aRBArrayLiteralNode [
 	| brackets current |
 	codeStream nextPut: $#.
 	brackets := aRBArrayLiteralNode isForByteArray
@@ -2018,14 +2018,14 @@ BIEnlumineurPrettyPrinter >> visitLiteralArrayNode: aRBArrayLiteralNode [
 ]
 
 { #category : #visiting }
-BIEnlumineurPrettyPrinter >> visitLiteralNode: aLiteralNode [
+BIEnlumineurFormatter >> visitLiteralNode: aLiteralNode [
 	aLiteralNode value isLiteral
 		ifFalse: [ self writeString: '''<an unprintable nonliteral value>''' ]
 		ifTrue: [ self writeString: aLiteralNode sourceText ]
 ]
 
 { #category : #visiting }
-BIEnlumineurPrettyPrinter >> visitLiteralVariableNode: aLiteralVariableNode [
+BIEnlumineurFormatter >> visitLiteralVariableNode: aLiteralVariableNode [
 	| binding |
 	binding := aLiteralVariableNode binding.
 	self writeString: binding key storeString, ' -> '.
@@ -2035,19 +2035,19 @@ BIEnlumineurPrettyPrinter >> visitLiteralVariableNode: aLiteralVariableNode [
 ]
 
 { #category : #visiting }
-BIEnlumineurPrettyPrinter >> visitMessageNode: aMessageNode [
+BIEnlumineurFormatter >> visitMessageNode: aMessageNode [
 	self visitNode: aMessageNode receiver.
 	self formatSelectorAndArguments: aMessageNode
 ]
 
 { #category : #visiting }
-BIEnlumineurPrettyPrinter >> visitMethodNode: aMethodNode [ 
+BIEnlumineurFormatter >> visitMethodNode: aMethodNode [ 
 	self formatMethodPatternFor: aMethodNode.
 	self formatMethodBodyFor: aMethodNode
 ]
 
 { #category : #visiting }
-BIEnlumineurPrettyPrinter >> visitNode: aNode [
+BIEnlumineurFormatter >> visitNode: aNode [
 	| needsParenthesis |
 	(lookaheadCode includesKey: aNode)
 		ifTrue: [ ^ self writeString: (lookaheadCode at: aNode) ].
@@ -2069,12 +2069,12 @@ BIEnlumineurPrettyPrinter >> visitNode: aNode [
 ]
 
 { #category : #visiting }
-BIEnlumineurPrettyPrinter >> visitParseErrorNode: aNode [
+BIEnlumineurFormatter >> visitParseErrorNode: aNode [
 	self writeString: aNode value
 ]
 
 { #category : #visiting }
-BIEnlumineurPrettyPrinter >> visitPatternBlockNode: aRBPatternBlockNode [ 
+BIEnlumineurFormatter >> visitPatternBlockNode: aRBPatternBlockNode [ 
 	codeStream nextPut: $`.
 	self 
 		bracketWith: '{}' 
@@ -2082,7 +2082,7 @@ BIEnlumineurPrettyPrinter >> visitPatternBlockNode: aRBPatternBlockNode [
 ]
 
 { #category : #visiting }
-BIEnlumineurPrettyPrinter >> visitPatternWrapperBlockNode: aRBPatternWrapperBlockNode [
+BIEnlumineurFormatter >> visitPatternWrapperBlockNode: aRBPatternWrapperBlockNode [
 	self visitNode: aRBPatternWrapperBlockNode wrappedNode.
 	codeStream nextPut: $`.
 	self 
@@ -2091,7 +2091,7 @@ BIEnlumineurPrettyPrinter >> visitPatternWrapperBlockNode: aRBPatternWrapperBloc
 ]
 
 { #category : #visiting }
-BIEnlumineurPrettyPrinter >> visitPragmaNode: aPragmaNode [
+BIEnlumineurFormatter >> visitPragmaNode: aPragmaNode [
 	codeStream nextPut: $<.
 	self 
 		formatSelectorAndArguments: aPragmaNode 
@@ -2104,7 +2104,7 @@ BIEnlumineurPrettyPrinter >> visitPragmaNode: aPragmaNode [
 ]
 
 { #category : #visiting }
-BIEnlumineurPrettyPrinter >> visitReturnNode: aReturnNode [
+BIEnlumineurFormatter >> visitReturnNode: aReturnNode [
 	codeStream
 		nextPut: $^;
 		nextPutAll: self spacesAfterCaretSymbolInReturn.
@@ -2114,7 +2114,7 @@ BIEnlumineurPrettyPrinter >> visitReturnNode: aReturnNode [
 ]
 
 { #category : #visiting }
-BIEnlumineurPrettyPrinter >> visitSequenceNode: aSequenceNode [
+BIEnlumineurFormatter >> visitSequenceNode: aSequenceNode [
 	self formatTemporariesFor: aSequenceNode.
 	aSequenceNode comments
 		ifNotEmpty: [ self formatCommentsFor: aSequenceNode;
@@ -2123,22 +2123,22 @@ BIEnlumineurPrettyPrinter >> visitSequenceNode: aSequenceNode [
 ]
 
 { #category : #visiting }
-BIEnlumineurPrettyPrinter >> visitVariableNode: aVariableNode [ 
+BIEnlumineurFormatter >> visitVariableNode: aVariableNode [ 
 	codeStream nextPutAll: aVariableNode name
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> willBeMultiline: aNode [ 
+BIEnlumineurFormatter >> willBeMultiline: aNode [ 
 	^(self formattedSourceFor: aNode withDictionary: lookaheadCode) includes: Character cr
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> willBeMultiline: aNode saveIn: aDictionary [
+BIEnlumineurFormatter >> willBeMultiline: aNode saveIn: aDictionary [
 	^(self formattedSourceFor: aNode withDictionary: aDictionary) includes: Character cr
 ]
 
 { #category : #utilities }
-BIEnlumineurPrettyPrinter >> with: firstCollection and: secondCollection do: aBlock separatedBy: separatorBlock [
+BIEnlumineurFormatter >> with: firstCollection and: secondCollection do: aBlock separatedBy: separatorBlock [
 	firstCollection isEmpty
 		ifTrue: [ ^ self ].
 	aBlock value: firstCollection first value: secondCollection first.
@@ -2148,7 +2148,7 @@ BIEnlumineurPrettyPrinter >> with: firstCollection and: secondCollection do: aBl
 ]
 
 { #category : #private }
-BIEnlumineurPrettyPrinter >> writeString: aString [
+BIEnlumineurFormatter >> writeString: aString [
 	| index |
 	index := aString lastIndexOf: Character cr ifAbsent: [ 0 ].
 	 codeStream nextPutAll: aString .
