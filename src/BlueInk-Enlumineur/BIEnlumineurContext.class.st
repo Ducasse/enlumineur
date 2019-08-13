@@ -192,7 +192,8 @@ BIEnlumineurContext >> multiLineMessages [
 
 { #category : #accessing }
 BIEnlumineurContext >> multiLineMessages: anArray [
-	self flag: #uh.
+	"In case the user entered a string representing array we convert it into array."
+	
 	multiLineMessages := self class compiler evaluate: anArray asString
 ]
 

@@ -503,6 +503,16 @@ BIEnlumineurExamples class >> newConfig [
 ]
 
 { #category : #methods }
+BIEnlumineurExamples >> bar: arg [ 
+	arg
+]
+
+{ #category : #methods }
+BIEnlumineurExamples >> bar: arg bar3: arg2 [
+	arg
+]
+
+{ #category : #methods }
 BIEnlumineurExamples >> bearingToPoint2: anotherPoint [
 	"Return the bearing, in degrees, from the receiver to anotherPoint."
 	"questions: 
@@ -730,7 +740,7 @@ BIEnlumineurExamples >> eightNeighbors [
 
 { #category : #methods }
 BIEnlumineurExamples >> foo [
-
+	| foo |
 	foo 
 		bar: [ 
 			1 + 2.
@@ -770,6 +780,7 @@ BIEnlumineurExamples >> foo [
 
 { #category : #methods }
 BIEnlumineurExamples >> foo2 [
+	| foo |
 	foo 
 		bar: [ 
 			1 + 2.
