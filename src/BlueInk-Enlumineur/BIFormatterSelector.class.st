@@ -1,10 +1,14 @@
+"
+Should probably move somewhere else
+
+"
 Class {
 	#name : #BIFormatterSelector,
 	#superclass : #Object,
 	#classInstVars : [
 		'formatterClass'
 	],
-	#category : #'BlueInk-Enlumineur'
+	#category : #'BlueInk-Enlumineur-Settings'
 }
 
 { #category : #accessing }

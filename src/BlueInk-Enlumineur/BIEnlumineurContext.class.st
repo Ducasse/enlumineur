@@ -55,8 +55,8 @@ BIEnlumineurContext >> formatCommentWithStatements [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> formatCommentWithStatements: anObject [
-	formatCommentWithStatements := anObject
+BIEnlumineurContext >> formatCommentWithStatements: aBoolean [
+	formatCommentWithStatements := aBoolean
 ]
 
 { #category : #accessing }
@@ -66,7 +66,9 @@ BIEnlumineurContext >> indentExtraSpaces [
 
 { #category : #accessing }
 BIEnlumineurContext >> indentExtraSpaces: anInteger [
-	indentExtraSpaces := (self numberOfSpaces: anInteger)
+	"To set the number of spaces that represent an indent"
+	
+	indentExtraSpaces := self numberOfSpaces: anInteger
 ]
 
 { #category : #accessing }
@@ -80,9 +82,10 @@ BIEnlumineurContext >> indentStyle [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> indentStyle: aSymbole [
-	indentStyle := aSymbole.
-	indentString := aSymbole = #space
+BIEnlumineurContext >> indentStyle: aSymbol [
+	"Indent style can be either #tabulation or #space."
+	indentStyle := aSymbol.
+	indentString := aSymbol = #space
 		ifTrue: [ self numberOfSpaces: numberOfSpacesInIndent ]
 		ifFalse: [ String tab ]
 ]
@@ -189,7 +192,8 @@ BIEnlumineurContext >> multiLineMessages [
 
 { #category : #accessing }
 BIEnlumineurContext >> multiLineMessages: anArray [
-	multiLineMessages := (self class compiler evaluate: anArray asString)
+	self flag: #uh.
+	multiLineMessages := self class compiler evaluate: anArray asString
 ]
 
 { #category : #accessing }
@@ -264,6 +268,7 @@ BIEnlumineurContext >> numberOfArgumentsForMultiLine: anObject [
 
 { #category : #accessing }
 BIEnlumineurContext >> numberOfSpaces: aNumber [
+	self flag: #uh.
 	^ (1 to: aNumber) collect: [ :index | Character space ] as: String
 ]
 
@@ -274,7 +279,7 @@ BIEnlumineurContext >> numberOfSpacesAfterCaretSymbolInReturn [
 
 { #category : #accessing }
 BIEnlumineurContext >> numberOfSpacesAfterCaretSymbolInReturn: aNumber [
-	spacesAfterCaretSymbolInReturn := (self numberOfSpaces: aNumber).
+	spacesAfterCaretSymbolInReturn := self numberOfSpaces: aNumber.
 	numberOfSpacesAfterCaretSymbolInReturn := aNumber
 ]
 
@@ -285,8 +290,9 @@ BIEnlumineurContext >> numberOfSpacesInIndent [
 
 { #category : #accessing }
 BIEnlumineurContext >> numberOfSpacesInIndent: anInteger [
-	numberOfSpacesInIndent:= anInteger.
-	(indentStyle= #space) ifTrue: [indentString := (self numberOfSpaces: anInteger)]
+	numberOfSpacesInIndent := anInteger.
+	indentStyle = #space 
+		ifTrue: [ indentString := self numberOfSpaces: anInteger ]
 ]
 
 { #category : #accessing }
@@ -296,8 +302,8 @@ BIEnlumineurContext >> numberOfSpacesInsideArray [
 
 { #category : #accessing }
 BIEnlumineurContext >> numberOfSpacesInsideArray: anInteger [
-	spacesInsideArray := (self numberOfSpaces: anInteger).
-	numberOfSpacesInsideArray:= anInteger.
+	spacesInsideArray := self numberOfSpaces: anInteger.
+	numberOfSpacesInsideArray := anInteger
 ]
 
 { #category : #accessing }
@@ -307,7 +313,7 @@ BIEnlumineurContext >> numberOfSpacesInsideBlock [
 
 { #category : #accessing }
 BIEnlumineurContext >> numberOfSpacesInsideBlock: aNumber [
-	spacesInsideBlocks := (self numberOfSpaces: aNumber).
+	spacesInsideBlocks := self numberOfSpaces: aNumber.
 	numberOfSpacesInsideBlock := aNumber
 ]
 
@@ -318,7 +324,7 @@ BIEnlumineurContext >> numberOfSpacesInsideParentheses [
 
 { #category : #accessing }
 BIEnlumineurContext >> numberOfSpacesInsideParentheses: aNumber [
-	spacesInsideParentheses :=  (self numberOfSpaces: aNumber).
+	spacesInsideParentheses :=  self numberOfSpaces: aNumber.
 	numberOfSpacesInsideParentheses := aNumber
 ]
 
@@ -329,7 +335,8 @@ BIEnlumineurContext >> oneLineMessages [
 
 { #category : #accessing }
 BIEnlumineurContext >> oneLineMessages: anArray [
-	oneLineMessages := (self class compiler evaluate: anArray asString)
+	self flag: #uh.
+	oneLineMessages := self class compiler evaluate: anArray asString
 ]
 
 { #category : #accessing }
@@ -338,8 +345,8 @@ BIEnlumineurContext >> periodsAtEndOfBlock [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> periodsAtEndOfBlock: anObject [
-	periodsAtEndOfBlock := anObject
+BIEnlumineurContext >> periodsAtEndOfBlock: aBoolean [
+	periodsAtEndOfBlock := aBoolean
 ]
 
 { #category : #accessing }
@@ -348,8 +355,8 @@ BIEnlumineurContext >> periodsAtEndOfMethod [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> periodsAtEndOfMethod: anObject [
-	periodsAtEndOfMethod := anObject
+BIEnlumineurContext >> periodsAtEndOfMethod: aBoolean [
+	periodsAtEndOfMethod := aBoolean
 ]
 
 { #category : #accessing }
@@ -358,8 +365,8 @@ BIEnlumineurContext >> retainBlankLinesBeforeComments [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> retainBlankLinesBeforeComments: anObject [
-	retainBlankLinesBeforeComments := anObject
+BIEnlumineurContext >> retainBlankLinesBeforeComments: aBoolean [
+	retainBlankLinesBeforeComments := aBoolean
 ]
 
 { #category : #accessing }
@@ -368,8 +375,8 @@ BIEnlumineurContext >> retainBlankLinesBetweenStatements [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> retainBlankLinesBetweenStatements: anObject [
-	retainBlankLinesBetweenStatements := anObject
+BIEnlumineurContext >> retainBlankLinesBetweenStatements: aBoolean [
+	retainBlankLinesBetweenStatements := aBoolean
 ]
 
 { #category : #accessing }
@@ -426,7 +433,8 @@ BIEnlumineurContext >> traditionalBinaryPrecedenceArray [
 
 { #category : #accessing }
 BIEnlumineurContext >> traditionalBinaryPrecedenceArray: anArray [
-	traditionalBinaryPrecedenceArray := (self class compiler evaluate: anArray asString)
+	self flag: #uh.
+	traditionalBinaryPrecedenceArray := self class compiler evaluate: anArray asString
 ]
 
 { #category : #accessing }
@@ -445,6 +453,6 @@ BIEnlumineurContext >> useTraditionalBinaryPrecedenceForParentheses [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> useTraditionalBinaryPrecedenceForParentheses: anObject [
-	useTraditionalBinaryPrecedenceForParentheses := anObject
+BIEnlumineurContext >> useTraditionalBinaryPrecedenceForParentheses: aBoolean [
+	useTraditionalBinaryPrecedenceForParentheses := aBoolean
 ]
