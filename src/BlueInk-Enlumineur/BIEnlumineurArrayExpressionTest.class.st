@@ -87,13 +87,16 @@ BIEnlumineurArrayExpressionTest >> periodAtEndOfMethod [
 	^ self contextClass basicNew
 		formatCommentWithStatements: false;
 		maxLineLength: 12;
+		indentsForKeywords: 0;
 		retainBlankLinesBetweenStatements: false;
 		minimumNewLinesBetweenStatements: 1;
 		indentStyle: #tabulation;
+		indentExtraSpaces: 0;
 		periodsAtEndOfBlock: false;
 		periodsAtEndOfMethod: true;
 		multiLineMessages: #();
 		oneLineMessages: #();
+		numberOfSpacesInsideParentheses: 0;
 		numberOfArgumentsForMultiLine: 2;
 		newLineBeforeFirstKeyword: false;
 		numberOfSpacesInsideArray: 0
@@ -177,11 +180,24 @@ BIEnlumineurArrayExpressionTest >> testPeriodAtEndOfMethod [
 ]
 
 { #category : #test }
-BIEnlumineurArrayExpressionTest >> testPeriodAtEndOfMethodWithMultipleElementArray [
+BIEnlumineurArrayExpressionTest >> testPeriodAtEndOfMethodWithMultipleElementArrayShouldNotHavePeriodAtEnd [
+	| source |
+	configurationSelector := #periodAtEndOfMethod.
+	source := self formatExpression: '{ a := 2 . a := 2 }'.
+	self assert: source equals:  '{
+	(a := 2).
+	(a := 2)}'
+]
+
+{ #category : #test }
+BIEnlumineurArrayExpressionTest >> testPeriodAtEndOfMethodWithMultipleElementArrayShouldNotHavePointAtTheEnd [
 	| source |
 	configurationSelector := #periodAtEndOfMethod.
 	source := self formatExpression: '{1 factorial . 3 + 2}'.
-	self assert: source equals: '{1 factorial . 3 + 2}'
+	self assert: source equals: 
+ '{
+	1 factorial.
+	(3 + 2)}' "we should not have a point at the end."	
 ]
 
 { #category : #test }

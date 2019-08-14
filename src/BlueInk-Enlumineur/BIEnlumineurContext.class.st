@@ -67,7 +67,7 @@ BIEnlumineurContext >> indentExtraSpaces [
 { #category : #accessing }
 BIEnlumineurContext >> indentExtraSpaces: anInteger [
 	"To set the number of spaces that represent an indent"
-	
+
 	indentExtraSpaces := self stringFromSpaceNumber: anInteger
 ]
 
@@ -96,12 +96,13 @@ BIEnlumineurContext >> indentsForKeywords [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> indentsForKeywords: anObject [
-	indentsForKeywords := anObject
+BIEnlumineurContext >> indentsForKeywords: anInteger [
+	indentsForKeywords := anInteger
 ]
 
 { #category : #initialization }
 BIEnlumineurContext >> initialize [
+	super initialize.
 	useBasicCommentFormat := true.
 	formatCommentWithStatements := true.
 	indentsForKeywords := 1.

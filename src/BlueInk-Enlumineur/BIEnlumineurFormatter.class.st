@@ -874,9 +874,11 @@ BIEnlumineurFormatter >> addNewLinesBeforeStatementStartingAt: anInteger [
 	| newLines |
 	newLines := self minimumNewLinesBetweenStatements 
 				max: (self retainBlankLinesBetweenStatements 
-						ifTrue: [self newLinesBeforeStartingAt: anInteger]
-						ifFalse: [0]).
-	newLines = 0 ifTrue: [self space] ifFalse: [self newLines: newLines] 
+						ifTrue: [ self newLinesBeforeStartingAt: anInteger ]
+						ifFalse: [ 0 ]).
+	newLines = 0 
+		ifTrue: [ self space ] 
+		ifFalse: [ self newLines: newLines ] 
 ]
 
 { #category : #private }
@@ -965,11 +967,29 @@ BIEnlumineurFormatter >> formatArray: anArrayNode [
 						ifFalse: [ codeStream nextPutAll: '. ' ] ] ]
 		ifNotEmpty: [ anArrayNode statements size > 1
 				ifTrue: [ self
-						indentAround: [ self
+						indentAround: [ 
+							"I do not get why we do not have a property to decide if we emit or not the line" 
+							"with the introduction of formatArrayBody: we may remove formatSingleArrayElement"
+							self
 								newLine;
-								formatSequenceNodeStatementsFor: anArrayNode ] ]
+								formatArrayBody: anArrayNode ] ]
 				ifFalse: [ self formatSingleArrayElement: anArrayNode statements first ] ].
 	codeStream nextPutAll: self spacesInsideArray
+]
+
+{ #category : #'private-formatting' }
+BIEnlumineurFormatter >> formatArrayBody: aSequenceNode [
+	| statements |
+	statements := aSequenceNode statements.
+	statements isEmpty
+		ifTrue: [ ^ self ].
+	statements withIndexDo: [:statement :i | 
+		self visitNode: statement.
+		i < statements size
+			ifTrue: [ codeStream nextPut: $. ].
+		self formatStatementCommentsFor: statement.
+		i < statements size
+			ifTrue: [ self addNewLinesBeforeStatementStartingAt: (statements at: i + 1) start ] ]
 ]
 
 { #category : #'private-formatting' }
@@ -1098,6 +1118,8 @@ BIEnlumineurFormatter >> formatPragmasFor: aMethodNode [
 
 { #category : #'private-formatting' }
 BIEnlumineurFormatter >> formatSelectorAndArguments: aMessageNode [
+	"We are formatting a message and here we are about to format the message selector and its arguments."
+	
 	| isMultilineMessage hasMutlineArguments multilineArgumentBeforeAnotherArgument |
 	multilineArgumentBeforeAnotherArgument := self messageHasMultilineArgumentBeforeAnotherArgument: aMessageNode.
 	isMultilineMessage := (self isMultiLineMessage: aMessageNode) or:[multilineArgumentBeforeAnotherArgument].
@@ -1161,7 +1183,7 @@ BIEnlumineurFormatter >> formatSequenceNodeStatementsFor: aSequenceNode [
 		(i < statements size
 			or: [ 
 				aSequenceNode parent
-					ifNil: [ self periodsAtEndOfBlock or:[self periodsAtEndOfMethod ] ]
+					ifNil: [ self periodsAtEndOfBlock or:[ self periodsAtEndOfMethod ] ]
 					ifNotNil: [ :parent | 
 						parent isBlock
 							ifTrue: [ self periodsAtEndOfBlock ]
@@ -1169,8 +1191,7 @@ BIEnlumineurFormatter >> formatSequenceNodeStatementsFor: aSequenceNode [
 			ifTrue: [ codeStream nextPut: $. ].
 		self formatStatementCommentsFor: statement.
 		i < statements size
-			ifTrue: [ self 
-					addNewLinesBeforeStatementStartingAt: (statements at: i + 1) start ] ]
+			ifTrue: [ self addNewLinesBeforeStatementStartingAt: (statements at: i + 1) start ] ]
 ]
 
 { #category : #visiting }
@@ -2070,11 +2091,11 @@ BIEnlumineurFormatter >> visitNode: aNode [
 			needsParenthesis
 				ifTrue: [ codeStream nextPutAll: self spacesInsideParentheses ].
 			super visitNode: aNode.
-			(self formatCommentWithStatements or: [ aNode isMethod or: [ aNode isSequence or:[aNode isBlock] ] ])
+			(self formatCommentWithStatements or: [ aNode isMethod or: [ aNode isSequence or: [ aNode isBlock ] ] ])
 				ifFalse: [  self spaceAndFormatComments: aNode. ].
 			needsParenthesis
 				ifTrue: [ codeStream nextPutAll: self spacesInsideParentheses ] ]
-		indentExtraSpaces: (needsParenthesis ifTrue: [ 1 + self numberOfSpacesInsideParentheses] ifFalse:[0])
+		indentExtraSpaces: (needsParenthesis ifTrue: [ 1 + self numberOfSpacesInsideParentheses ] ifFalse:[ 0 ])
 ]
 
 { #category : #visiting }
