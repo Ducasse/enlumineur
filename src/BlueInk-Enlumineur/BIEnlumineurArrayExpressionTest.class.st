@@ -102,6 +102,21 @@ BIEnlumineurArrayExpressionTest >> periodAtEndOfMethod [
 		numberOfSpacesInsideArray: 0
 ]
 
+{ #category : #configurations }
+BIEnlumineurArrayExpressionTest >> spaceInsideArrayConfiguration [
+
+	^ self contextClass basicNew
+		formatCommentWithStatements: false;
+		maxLineLength: 50;
+		retainBlankLinesBetweenStatements: false;
+		minimumNewLinesBetweenStatements: 1;
+		indentStyle: #tabulation;
+		indentExtraSpaces: 0;
+		periodsAtEndOfBlock: false;
+		periodsAtEndOfMethod: false;
+		numberOfSpacesInsideArray: 5
+]
+
 { #category : #test }
 BIEnlumineurArrayExpressionTest >> testEmptyArray [
 	| source |
@@ -209,6 +224,14 @@ BIEnlumineurArrayExpressionTest >> testSpaceAroundPeriod [
 ]
 
 { #category : #test }
+BIEnlumineurArrayExpressionTest >> testSpaceInside [
+	| source |
+	configurationSelector := #spaceInsideArrayConfiguration.
+	source := self formatExpression: ' { 1. 2. 3 } '.
+	self assert: source equals: '{     1. 2. 3     }'
+]
+
+{ #category : #test }
 BIEnlumineurArrayExpressionTest >> testToLongNewLine [
 	| source |
 	configurationSelector := #maxLineLengthConfiguration.
@@ -238,21 +261,21 @@ BIEnlumineurArrayExpressionTest >> testTwoSpaceAroundBrackets [
 	| source |
 	configurationSelector := #twoSpacesInsideArrayConfiguration.
 	source := self formatExpression: ' { 1. 2. 3 } '.
-	self assert: source equals: '{  1. 2. 3  }'
+	self assert: source equals: '{     1. 2. 3     }'
 ]
 
 { #category : #configurations }
 BIEnlumineurArrayExpressionTest >> twoSpacesInsideArrayConfiguration [
 
 	^ self contextClass basicNew
-		formatCommentWithStatements:false;
-		maxLineLength:50;
+		formatCommentWithStatements: false;
+		maxLineLength: 50;
 		numberOfSpacesInsideParentheses: 0;
-		retainBlankLinesBetweenStatements:false;
-		minimumNewLinesBetweenStatements:1;
+		retainBlankLinesBetweenStatements: false;
+		minimumNewLinesBetweenStatements: 1;
 		indentStyle: #tabulation;
 		indentExtraSpaces: 0;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod:false;
-		numberOfSpacesInsideArray: 2
+		periodsAtEndOfBlock: false;
+		periodsAtEndOfMethod: false;
+		numberOfSpacesInsideArray: 5
 ]

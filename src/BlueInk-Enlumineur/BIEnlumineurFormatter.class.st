@@ -399,6 +399,7 @@ BIEnlumineurFormatter class >> settingGroup [
 
 { #category : #settings }
 BIEnlumineurFormatter class >> settingsAlignBlockBrackets: aBuilder [
+
 	(aBuilder setting: #lineUpBlockBrackets)
 		label: 'Align block brackets';
 		description: 'pass a newLine before closing a multiline block. 
@@ -419,6 +420,7 @@ is the result when true
 
 { #category : #settings }
 BIEnlumineurFormatter class >> settingsFormatCommentWithExpression: aBuilder [
+
 	(aBuilder setting: #formatCommentWithStatements)
 		label: 'Format comment with expression';
 		description: 'if set to true: put the comment after the dot in an expression
@@ -429,6 +431,7 @@ For example if set to false: 1+1"We do an addition". 2+2'.
 
 { #category : #settings }
 BIEnlumineurFormatter class >> settingsIndentStyle:aBuilder [
+
 	(aBuilder pickOne: #indentStyle)
 		label: 'Indent Style';
 		domainValues:#(#tabulation #space);
@@ -454,7 +457,7 @@ is the result for 2 indents'.
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsKeepBlockInMessage: aBuilder [ 
+BIEnlumineurFormatter class >> settingsKeepBlockInMessage: aBuilder [
 	
 	(aBuilder setting: #keepBlockInMessage)
 		label: 'Keep block in message';
@@ -475,6 +478,7 @@ Example:
 
 { #category : #settings }
 BIEnlumineurFormatter class >> settingsMaxLineLength: aBuilder [
+
 	(aBuilder setting: #maxLineLength)
 		label: 'Max line length';
 		description: 'the maximum possible length of a line
@@ -485,7 +489,8 @@ is the result for 14'.
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsMethodSignatureOnMultipleLines: aBuilder [ 
+BIEnlumineurFormatter class >> settingsMethodSignatureOnMultipleLines: aBuilder [
+
 	(aBuilder setting: #methodSignatureOnMultipleLines)
 		label: 'Method signature on multiple lines';
 		description: 'Write a multilines method signature on multiple lines only if set to true,
@@ -498,6 +503,7 @@ is the result if True and if selectorAndArgumentCombinedMaxSize is 6'.
 
 { #category : #settings }
 BIEnlumineurFormatter class >> settingsMinimumNewLinesBetweenStatements: aBuilder [
+
 	(aBuilder setting: #minimumNewLinesBetweenStatements)
 		label: 'Minimum new lines between statements';
 		description: 'the number of new lines between each statement
@@ -512,6 +518,7 @@ is the result if the setting is set to 2'.
 
 { #category : #settings }
 BIEnlumineurFormatter class >> settingsMultiLineMessages: aBuilder [
+
 	(aBuilder setting: #multiLineMessages)
 		label: 'Multi line messages';
 		description: 'An array containing all the messages that should be written on multiple line
@@ -524,6 +531,7 @@ is the result if #ifTrue:ifFalse is in the array'.
 
 { #category : #settings }
 BIEnlumineurFormatter class >> settingsNewLineAfterCascade: aBuilder [
+
 	(aBuilder setting: #newLineAfterCascade)
 		label: 'New line after cascade';
 		description: 'pass a new line after each messages in a cascade
@@ -543,6 +551,7 @@ OrderedCollection new
 
 { #category : #settings }
 BIEnlumineurFormatter class >> settingsNewLineBeforeFirstCascade: aBuilder [
+
 	(aBuilder setting: #newLineBeforeFirstCascade)
 		label: 'New line before cascade';
 		description: 'pass a new line before the messages in a cascade
@@ -562,6 +571,7 @@ OrderedCollection new
 
 { #category : #settings }
 BIEnlumineurFormatter class >> settingsNewLineBeforeFirstKeyword: aBuilder [
+
 	(aBuilder setting: #newLineBeforeFirstKeyword)
 		label: 'New line before first keyword';
 		description: 'pass a new line before the first keyword parameter of a message
@@ -577,6 +587,7 @@ is the result if the setting is set to false'.
 
 { #category : #settings }
 BIEnlumineurFormatter class >> settingsNewLinesAfterMethodComment: aBuilder [
+
 	(aBuilder setting: #newLinesAfterMethodComment)
 		label: 'New lines after method comment';
 		description: 'number of new lines after the comment of the method
@@ -590,6 +601,7 @@ is the result for 2 new lines'
 
 { #category : #settings }
 BIEnlumineurFormatter class >> settingsNewLinesAfterMethodSignature: aBuilder [
+
 	(aBuilder setting: #newLinesAfterMethodPattern)
 		label: 'New lines after method signature';
 		description: 'number of new lines after the method signature
@@ -602,6 +614,7 @@ is the result for 2 new lines'
 
 { #category : #settings }
 BIEnlumineurFormatter class >> settingsNewLinesAfterTemporaries: aBuilder [
+
 	(aBuilder setting: #newLinesAfterTemporaries)
 		label: 'New lines after temporaries';
 		description: 'number of new lines after the temporaries declaration
@@ -629,6 +642,7 @@ For example:
 
 { #category : #settings }
 BIEnlumineurFormatter class >> settingsNumberOfSpacesInIndent:aBuilder [
+
 	(aBuilder setting: #numberOfSpacesInIndent)
 		label: 'Number of spaces in indent';
 		description: 'the number of spaces representing an indentation if settingCharacter is set to space
@@ -642,11 +656,12 @@ is the result for 5'.
 { #category : #settings }
 BIEnlumineurFormatter class >> settingsOn: aBuilder [
 	<systemsettings>
+	
 	(aBuilder group: self settingGroup)
 		target: self;
 		parent: #codeBrowsing;
-		label: 'BlueInk Enlumineur Pretty Printing';
-		description: 'Settings related to BIEnlumineur';
+		label: 'Enlumineur Pretty Printer';
+		description: 'Settings related to automatic code formatting';
 		with: [ self settingsMaxLineLength: aBuilder.
 			self settingsFormatCommentWithExpression: aBuilder.
 			self settingsIndentStyle: aBuilder.
@@ -681,6 +696,7 @@ BIEnlumineurFormatter class >> settingsOn: aBuilder [
 
 { #category : #settings }
 BIEnlumineurFormatter class >> settingsOneLineMessages: aBuilder [
+
 	(aBuilder setting: #oneLineMessages)
 		label: 'One line messages';
 		description: 'An array containing all the messages that should be written on one line
@@ -690,6 +706,7 @@ Example:
 
 { #category : #settings }
 BIEnlumineurFormatter class >> settingsPeriodsAtEndOfBlock: aBuilder [
+
 	(aBuilder setting: #periodsAtEndOfBlock)
 		label: 'Period at end of block';
 		description: 'put a period after the last expression of a block
@@ -700,7 +717,8 @@ for example:
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsPeriodsAtEndOfMethod: aBuilder [.
+BIEnlumineurFormatter class >> settingsPeriodsAtEndOfMethod: aBuilder [
+
 	(aBuilder setting: #periodsAtEndOfMethod)
 		label: 'Period at end of method';
 		description: 'put a period after the last expression of a method
@@ -712,7 +730,8 @@ myMethode
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsRetainBlankLinesBeforeComments: aBuilder [.
+BIEnlumineurFormatter class >> settingsRetainBlankLinesBeforeComments: aBuilder [
+
 	(aBuilder setting: #retainBlankLinesBeforeComments)
 		label: 'Retain blank lines before comments';
 		description: 'keep the blank lines which are before the comments 
@@ -726,7 +745,8 @@ for example:
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsRetainBlankLinesBetweenStatements: aBuilder [.
+BIEnlumineurFormatter class >> settingsRetainBlankLinesBetweenStatements: aBuilder [
+
 	(aBuilder setting: #retainBlankLinesBetweenStatements)
 		label: 'Retain blank lines between statements';
 		description: 'Keep the blank lines which are between the statements
@@ -742,7 +762,8 @@ will not change if the setting is set to true'
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsSelectorAndArgumentCombinedMaxSize: aBuilder [.
+BIEnlumineurFormatter class >> settingsSelectorAndArgumentCombinedMaxSize: aBuilder [
+
 	(aBuilder setting: #selectorAndArgumentCombinedMaxSize)
 		label: 'Selector and argument combined in method signature max size';
 		description: 'the maximum length a selector and his argument can be before the message is considered multiline
@@ -757,6 +778,7 @@ myMethod: argument1
 
 { #category : #settings }
 BIEnlumineurFormatter class >> settingsSpacesAfterCaretSymbolInReturn: aBuilder [ 
+
 	(aBuilder setting: #numberOfSpacesAfterCaretSymbolInReturn)
 		label: 'Spaces following caret symbol in return';
 		description: 'Number of spaces expressed as a string that is put just after the caret (^) of a return expression. 
@@ -764,7 +786,8 @@ For example: ^   self is the result for 3 spaces'.
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsSpacesInsideArray: aBuilder [.
+BIEnlumineurFormatter class >> settingsSpacesInsideArray: aBuilder [
+
 	(aBuilder setting: #numberOfSpacesInsideArray)
 		label: 'Spaces inside array';
 		description: 'number of spaces after the opening and before the closing symbols of the array
@@ -776,7 +799,8 @@ for example:
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsSpacesInsideBlocks: aBuilder [.
+BIEnlumineurFormatter class >> settingsSpacesInsideBlocks: aBuilder [
+
 	(aBuilder setting: #numberOfSpacesInsideBlock)
 		label: 'Spaces inside blocks';
 		description: 'number of spaces after the opening bracket and before the closing bracket
@@ -787,7 +811,8 @@ for example:
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsSpacesInsideParentheses: aBuilder [.
+BIEnlumineurFormatter class >> settingsSpacesInsideParentheses: aBuilder [
+
 	(aBuilder setting: #numberOfSpacesInsideParentheses)
 		label: 'Spaces inside parentheses';
 		description: 'number of spaces after the opening parenthese and before the closing parenthese
@@ -795,7 +820,11 @@ for example: (   1 + 2   ) is the result for 3 spaces'
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsTraditionalBinaryPrecedenceArray: aBuilder [.
+BIEnlumineurFormatter class >> settingsTraditionalBinaryPrecedenceArray: aBuilder [
+	
+	self flag: #toRevisit.
+	"this is not a nice comment I do not care that this is an array!"
+	
 	(aBuilder setting: #traditionalBinaryPrecedenceArray)
 		label: 'Traditional binary precedence';
 		description: 'An 2 dimension array containing messages according to the priority
@@ -803,8 +832,10 @@ Example: #( #($- $+) #($*) )'
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsUseBasicCommentFormat: aBuilder [.
-	self flag:'to modify'.
+BIEnlumineurFormatter class >> settingsUseBasicCommentFormat: aBuilder [
+
+	self flag: #toRevisit.
+	"this is not a nice comment"
 	(aBuilder setting: #useBasicCommentFormat)
 		label: 'Use basic comment format';
 		description:'leave the comment unchanged
@@ -814,10 +845,12 @@ Exemple:
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsUseTraditionalBinaryPrecedenceForParentheses: aBuilder [.
+BIEnlumineurFormatter class >> settingsUseTraditionalBinaryPrecedenceForParentheses: aBuilder [
+
+
 	(aBuilder setting: #useTraditionalBinaryPrecedenceForParentheses)
 		label: 'Use traditional binary precedence for parentheses';
-		description:'add parentheses in order to comply with the precedence
+		description:'Add parentheses to comply with the precedence
 for example 1 + 2 * 3 will be formated: (1 + 2) * 3'
 ]
 
@@ -964,7 +997,8 @@ BIEnlumineurFormatter >> formatArray: anArrayNode [
 				separatedBy: [ (self isLineTooLongWithNode: current)
 						ifTrue: [ codeStream nextPut: $..
 							self newLine ]
-						ifFalse: [ codeStream nextPutAll: '. ' ] ] ]
+						ifFalse: [ codeStream nextPutAll: '. ' ] 
+						"here there is something wrong since we should also be able to put a space in front"] ]
 		ifNotEmpty: [ anArrayNode statements size > 1
 				ifTrue: [ self
 						indentAround: [ 

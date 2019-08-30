@@ -1,5 +1,8 @@
 "
 Should probably move somewhere else
+This class should be eliminated when we remove the blueink formatter. 
+
+
 
 "
 Class {

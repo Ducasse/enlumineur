@@ -320,7 +320,7 @@ BIEnlumineurContext >> numberOfSpacesInsideParentheses [
 
 { #category : #accessing }
 BIEnlumineurContext >> numberOfSpacesInsideParentheses: aNumber [
-	spacesInsideParentheses :=  self stringFromSpaceNumber: aNumber.
+	spacesInsideParentheses := self stringFromSpaceNumber: aNumber.
 	numberOfSpacesInsideParentheses := aNumber
 ]
 
