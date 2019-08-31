@@ -1,5 +1,5 @@
 "
-I'm using to testing import feature of the BISettingPreviewer
+I'm used to test import feature of the BISettingPreviewer.
 "
 Class {
 	#name : #BIUseForTestWithMethod,
@@ -14,10 +14,10 @@ Class {
 BIUseForTestWithMethod class >> gandalf [
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #operations }
 BIUseForTestWithMethod >> methodA [
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #operations }
 BIUseForTestWithMethod >> methodB [
 ]

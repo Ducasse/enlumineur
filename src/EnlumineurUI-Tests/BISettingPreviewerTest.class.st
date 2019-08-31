@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #tests }
-BISettingPreviewerTest >> selectClassNamed: aName FromUI:biChooseMethod [
+BISettingPreviewerTest >> selectClassNamed: aName fromUI:biChooseMethod [
 	biChooseMethod classList
 		selectIndex:
 			(biChooseMethod classList items
@@ -19,7 +19,7 @@ BISettingPreviewerTest >> selectClassNamed: aName FromUI:biChooseMethod [
 ]
 
 { #category : #tests }
-BISettingPreviewerTest >> selectPackageNamed: aName FromUI: biChooseMethod [
+BISettingPreviewerTest >> selectPackageNamed: aName fromUI: biChooseMethod [
 	biChooseMethod packageList
 		selectIndex:
 			(biChooseMethod packageList items
@@ -32,7 +32,7 @@ BISettingPreviewerTest >> selectPackageNamed: aName FromUI: biChooseMethod [
 { #category : #running }
 BISettingPreviewerTest >> setUp [
     biSettingPreviewer := BISettingPreviewer2 new.
-    biSettingPreviewer methodProvider: BIUseForTest
+    biSettingPreviewer methodProvider: BIForTestMethodProvider
 ]
 
 { #category : #running }
@@ -44,15 +44,15 @@ BISettingPreviewerTest >> tearDown [
 
 { #category : #tests }
 BISettingPreviewerTest >> testChangingMethodProvider [
-    biSettingPreviewer methodProvider: BIUseForTest.
+    biSettingPreviewer methodProvider: BIForTestMethodProvider.
     self
         assertCollection:
-            (BIUseForTest methods
+            (BIForTestMethodProvider methods
                 select: [ :method | method category = 'methods' ])
         hasSameElements: biSettingPreviewer methodDropList listItems.
     self
         assertCollection:
-            (BIUseForTest class methods
+            (BIForTestMethodProvider class methods
                 select: [ :method | method category = 'settings' ])
         hasSameElements: biSettingPreviewer settingsDropList listItems.
 
@@ -64,10 +64,10 @@ BISettingPreviewerTest >> testClickChooseMethodButtonAndAcceptWithNotNilMethodSh
 	chooseMethodUI := SpChooseMethodUI new.
 	self
 		selectPackageNamed: BIUseForTestWithMethod package name
-		FromUI: chooseMethodUI.
+		fromUI: chooseMethodUI.
 	self
 		selectClassNamed: BIUseForTestWithMethod name
-		FromUI: chooseMethodUI.
+		fromUI: chooseMethodUI.
 	biSettingPreviewer acceptActionBIChooseMethod: chooseMethodUI.
 	self
 		assert: biSettingPreviewer notFormatedTextPresenter text
@@ -76,19 +76,19 @@ BISettingPreviewerTest >> testClickChooseMethodButtonAndAcceptWithNotNilMethodSh
 
 { #category : #tests }
 BISettingPreviewerTest >> testClickOnRemoveMethodButtonShouldRemoveTheFromMethodDropList [
-	[ BIUseForTest  
+	[ BIForTestMethodProvider  
 		compile: 'myMethodTestazert ' , String cr , '^ klm'.
-		(BIUseForTest   >> #myMethodTestazert) protocol: 'methods'.
+		(BIForTestMethodProvider   >> #myMethodTestazert) protocol: 'methods'.
 	biSettingPreviewer methodDropList
 		selectedIndex:
-			(biSettingPreviewer methodDropList listItems indexOf: (BIUseForTest>>#myMethodTestazert)).
+			(biSettingPreviewer methodDropList listItems indexOf: (BIForTestMethodProvider>>#myMethodTestazert)).
 	biSettingPreviewer removeMethodButton click.
 	self
 		deny:
 			(biSettingPreviewer methodDropList listItems
 				contains: [ :item | item selector = #myMethodTestazert ]) ]
 		ensure: [ [ 
-				(BIUseForTest >> #myMethodTestazert) removeFromSystem ]
+				(BIForTestMethodProvider >> #myMethodTestazert) removeFromSystem ]
 				on: KeyNotFound
 				do: [  ] ]
 ]
@@ -104,9 +104,9 @@ BISettingPreviewerTest >> testClickOnSaveMethodButtonShouldAddToMethodDropListAn
 			(biSettingPreviewer methodDropList listItems
 				anySatisfy: [ :item | item selector = #myMethodTestazert ]).
 	self
-		assert: (BIUseForTest >> #myMethodTestazert) category
+		assert: (BIForTestMethodProvider >> #myMethodTestazert) category
 		equals: 'methods' ]
-		ensure: [ [ (BIUseForTest >> #myMethodTestazert) removeFromSystem ]
+		ensure: [ [ (BIForTestMethodProvider >> #myMethodTestazert) removeFromSystem ]
 				on: KeyNotFound
 				do: [ self fail ] ]
 ]
@@ -144,7 +144,7 @@ BISettingPreviewerTest >> testWhenAddNewWithSameAsAnOhterOneShouldRemoveTheOldOn
 			(biSettingPreviewer settingsDropList listItems
 				count:
 					[ :settingCompiledMethod | settingCompiledMethod selector = #testSameNameSetting ])
-		equals: 1]ensure: [(BIUseForTest class >>#testSameNameSetting) removeFromSystem]
+		equals: 1]ensure: [(BIForTestMethodProvider class >>#testSameNameSetting) removeFromSystem]
 
 ]
 
@@ -180,7 +180,7 @@ BISettingPreviewerTest >> testWhenClickOnRemoveSettingButtonShouldRemoveItFromSe
     biSettingPreviewer methodProvider contentRemovable storeOn: stream.
     biSettingPreviewer methodProvider class
         compile: ('' join: stream contents).
-    BIUseForTest class >> #testConfigRemoveSettingTest
+    BIForTestMethodProvider class >> #testConfigRemoveSettingTest
         protocol: 'settings'.
     biSettingPreviewer settingsDropList
         items:
@@ -190,7 +190,7 @@ BISettingPreviewerTest >> testWhenClickOnRemoveSettingButtonShouldRemoveItFromSe
     biSettingPreviewer settingsDropList
         selectedIndex:
             (biSettingPreviewer settingsDropList listItems
-                indexOf: BIUseForTest class >> #testConfigRemoveSettingTest).
+                indexOf: BIForTestMethodProvider class >> #testConfigRemoveSettingTest).
     biSettingPreviewer removeSettingButton click.
     self
         deny:
@@ -198,9 +198,9 @@ BISettingPreviewerTest >> testWhenClickOnRemoveSettingButtonShouldRemoveItFromSe
                 anySatisfy: [ :item | item selector = #testConfigRemoveSettingTest ]).
     self
         deny:
-            (BIUseForTest class methods
+            (BIForTestMethodProvider class methods
                 anySatisfy: [ :item | item selector = #testConfigRemoveSettingTest ]) ]
-        ensure: [ [ (BIUseForTest class >> #testConfigRemoveSettingTest)
+        ensure: [ [ (BIForTestMethodProvider class >> #testConfigRemoveSettingTest)
                 removeFromSystem ]
                 on: KeyNotFound
                 do: [  ] ]
@@ -237,7 +237,7 @@ BISettingPreviewerTest >> testWhenSaveAMethodShouldBeInstanceSide [
 	biSettingPreviewer notFormatedTextPresenter
 		text: 'myMethodTestazert ' , String  cr , '^ klm'.
 	biSettingPreviewer saveMethodButton click ]
-		ensure: [ [ (BIUseForTest >> #myMethodTestazert) removeFromSystem ]
+		ensure: [ [ (BIForTestMethodProvider >> #myMethodTestazert) removeFromSystem ]
 				on: KeyNotFound
 				do: [ self fail ] ]
 ]
@@ -248,8 +248,8 @@ BISettingPreviewerTest >> testWhenSaveAModifiedMethodShouldAppearOnlyOnceInMetho
 	lastCompileMethod := biSettingPreviewer methodDropList listItems
 		at:
 			(biSettingPreviewer methodDropList listItems
-				indexOf: BIUseForTest >> #useForTestWillBeModified).
-	BIUseForTest
+				indexOf: BIForTestMethodProvider >> #useForTestWillBeModified).
+	BIForTestMethodProvider
 		compile:
 			'useForTestWillBeModified ' , String cr
 				, '^ ''what i have in my hat ? a banana'''.
@@ -260,8 +260,8 @@ BISettingPreviewerTest >> testWhenSaveAModifiedMethodShouldAppearOnlyOnceInMetho
 					[ :compiledMethod | compiledMethod selector = #useForTestWillBeModified ])
 		equals: 1.
 	self
-		deny: BIUseForTest >> #useForTestWillBeModified = lastCompileMethod ]
-		ensure: [ BIUseForTest
+		deny: BIForTestMethodProvider >> #useForTestWillBeModified = lastCompileMethod ]
+		ensure: [ BIForTestMethodProvider
 				compile:
 					'useForTestWillBeModified ' , String cr
 						, '^ ''what i have in my hat ? ''' ]
@@ -314,28 +314,28 @@ BISettingPreviewerTest >> testWhenSettingsDropListSelectionShouldPrettyPrinterCo
 { #category : #tests }
 BISettingPreviewerTest >> testWhenWeCreatAMethodInBrowserWithTheGoodTagShouldAddThisOneToMethodDropList [
 	[
-	BIUseForTest
+	BIForTestMethodProvider
 		compile: 'myMethodForTestingAnnouncement' , String cr , '^ ''klmklm'' '.
 	self
 		assert:
 			(biSettingPreviewer methodDropList listItems
 				contains:  [:methodItem |methodItem selector = #myMethodForTestingAnnouncement])]
-			ensure: [(BIUseForTest >>#myMethodForTestingAnnouncement ) removeFromSystem] 
+			ensure: [(BIForTestMethodProvider >>#myMethodForTestingAnnouncement ) removeFromSystem] 
 ]
 
 { #category : #tests }
 BISettingPreviewerTest >> testWhenWeDelateAMethodInBrowserShouldRemoveThisOneFromMethodDropList [
 	[
-	(BIUseForTest >> #useForTestWillBeRemove) removeFromSystem.
+	(BIForTestMethodProvider >> #useForTestWillBeRemove) removeFromSystem.
 	self
 		deny:
 			(biSettingPreviewer methodDropList listItems
 				contains: [ :methodItem | methodItem selector = #useForTestWillBeRemove ])
 	]
 		ensure: [ | newMethod |
-			newMethod := BIUseForTest
+			newMethod := BIForTestMethodProvider
 				>>
-					(BIUseForTest
+					(BIForTestMethodProvider
 						compile: 'useForTestWillBeRemove' , String cr , '^ ''klmklm'' ').
 			newMethod protocol: 'methods'
 			]
@@ -367,14 +367,14 @@ BISettingPreviewerTest >> testWhenWeHave2MethodWithSameASTAndWeWantToremoveOneOf
 
 { #category : #tests }
 BISettingPreviewerTest >> testWhenWeModifiedAMethodInBrowserShouldModifieBeforePrettyPrintTextPresenter [
-	BIUseForTest
+	BIForTestMethodProvider
 		compile:
 			'useForTestWillBeModified' , String cr
 				, '^ ''what i have in my hat ? A Banana'''.
 	biSettingPreviewer methodDropList
 		selectedIndex:
 			(biSettingPreviewer methodDropList listItems
-				indexOf: BIUseForTest >> #useForTestWillBeModified).
+				indexOf: BIForTestMethodProvider >> #useForTestWillBeModified).
 	self
 		assert: biSettingPreviewer notFormatedTextPresenter text
 		equals:

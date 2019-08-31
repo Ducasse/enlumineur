@@ -2,13 +2,13 @@
 I'm using to test the BISettingPreviewer
 "
 Class {
-	#name : #BIUseForTest,
+	#name : #BIForTestMethodProvider,
 	#superclass : #Object,
 	#category : #'EnlumineurUI-Tests'
 }
 
 { #category : #utils }
-BIUseForTest class >> contentRemovable [
+BIForTestMethodProvider class >> contentRemovable [
 	^ 'BIPrettyPrinterContext {
 	#formatCommentWithStatements : true,
 	#indentString : ''-'',
@@ -80,7 +80,7 @@ BIUseForTest class >> contentRemovable [
 ]
 
 { #category : #settings }
-BIUseForTest class >> testConfigIdentStringTabulation [
+BIForTestMethodProvider class >> testConfigIdentStringTabulation [
 	^ 'BIPrettyPrinterContext {
 	#formatCommentWithStatements : false,
 	#indentString : ''\t'',
@@ -152,7 +152,7 @@ BIUseForTest class >> testConfigIdentStringTabulation [
 ]
 
 { #category : #settings }
-BIUseForTest class >> textConfigIdentStringFourSpace [
+BIForTestMethodProvider class >> textConfigIdentStringFourSpace [
 	^ 'BIPrettyPrinterContext {
 	#formatCommentWithStatements : true,
 	#indentString : ''    '',
@@ -224,11 +224,11 @@ BIUseForTest class >> textConfigIdentStringFourSpace [
 ]
 
 { #category : #methods }
-BIUseForTest >> useForTestWillBeModified [
+BIForTestMethodProvider >> useForTestWillBeModified [
 ^ 'what i have in my hat ? A Banana'
 ]
 
 { #category : #methods }
-BIUseForTest >> useForTestWillBeRemove [
+BIForTestMethodProvider >> useForTestWillBeRemove [
 ^ 'klmklm' 
 ]
