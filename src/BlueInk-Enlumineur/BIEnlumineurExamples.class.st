@@ -1,3 +1,6 @@
+"
+This class is just holding some code to serve as pretty printer examples.
+"
 Class {
 	#name : #BIEnlumineurExamples,
 	#superclass : #Object,
@@ -374,86 +377,6 @@ BIEnlumineurExamples class >> multiLineMessages [
 	#newLinesAfterTemporaries : 1,
 	#numberOfArgumentsForMultiLine : 4,
 	#oneLineMessages : [ ],
-	#periodsAtEndOfBlock : false,
-	#periodsAtEndOfMethod : false,
-	#retainBlankLinesBetweenStatements : false,
-	#retainBlankLinesBeforeComments : true,
-	#useTraditionalBinaryPrecedenceForParentheses : true,
-	#selectorAndArgumentCombinedMaxSize : 40,
-	#useBasicCommentFormat : true,
-	#traditionalBinaryPrecedenceArray : [
-		[
-			Character [ ''|'' ],
-			Character [ ''&'' ],
-			Character [ ''?'' ]
-		],
-		[
-			Character [ ''='' ],
-			Character [ ''~'' ],
-			Character [ ''<'' ],
-			Character [ ''>'' ]
-		],
-		[
-			Character [ ''-'' ],
-			Character [ ''+'' ]
-		],
-		[
-			Character [ ''*'' ],
-			Character [ ''/'' ],
-			Character [ ''%'' ],
-			Character [ ''\\'' ]
-		],
-		[
-			Character [ ''@'' ]
-		]
-	],
-	#numberOfSpacesInsideBlock : 1,
-	#numberOfSpacesInsideParentheses : 0,
-	#numberOfSpacesAfterCaretSymbolInReturn : 1,
-	#numberOfSpacesInIndent : 3,
-	#spacesAfterCaretSymbolInReturn : '' '',
-	#spacesInsideBlocks : '' '',
-	#indentStyle : #tabulation,
-	#indentString : ''\t'',
-	#spacesInsideParentheses : '''',
-	#indentExtraSpaces : '''',
-	#spacesInsideArray : '' '',
-	#numberOfSpacesInsideArray : 1
-}'
-]
-
-{ #category : #settings }
-BIEnlumineurExamples class >> newConfig [
-	^ 'BIEnlumineurContext {
-	#formatCommentWithStatements : true,
-	#indentsForKeywords : 1,
-	#keepBlockInMessage : true,
-	#lineUpBlockBrackets : false,
-	#maxLineLength : 70,
-	#methodSignatureOnMultipleLines : false,
-	#minimumNewLinesBetweenStatements : 1,
-	#multiLineMessages : [
-		#''ifTrue:ifFalse:'',
-		#''ifFalse:ifTrue:'',
-		#''ifTrue:'',
-		#''ifFalse:'',
-		#''on:do:'',
-		#''ensure:'',
-		#''ifCurtailed:''
-	],
-	#newLineAfterCascade : true,
-	#newLineBeforeFirstCascade : true,
-	#newLineBeforeFirstKeyword : false,
-	#newLinesAfterMethodComment : 2,
-	#newLinesAfterMethodPattern : 1,
-	#newLinesAfterTemporaries : 1,
-	#numberOfArgumentsForMultiLine : 4,
-	#oneLineMessages : [
-		#''to:'',
-		#''to:do:'',
-		#''to:by:'',
-		#''to:by:do:''
-	],
 	#periodsAtEndOfBlock : false,
 	#periodsAtEndOfMethod : false,
 	#retainBlankLinesBetweenStatements : false,
@@ -1050,15 +973,10 @@ BIEnlumineurExamples >> newLinesExample [
 
 { #category : #methods }
 BIEnlumineurExamples >> openSettingPreviewerWithEnlumineur [
-"how should it be formated ?
-if the first keyWord and his parameter are on the same line we have a line longer than the maxLineLenght value
-Should we pass a line between the first keyWord and his argument 
-or before the first keyword ?
-"
 
-BISettingPreviewer2 openFormaterWithAnInstanceOfFormater: 
-BIEnlumineurFormatter new
-onClass: BIEnlumineurExamples
+	BISettingPreviewer2 
+		openFormaterWithAnInstanceOfFormater: BIEnlumineurFormatter new 
+		onClass: BIEnlumineurExamples
 ]
 
 { #category : #methods }

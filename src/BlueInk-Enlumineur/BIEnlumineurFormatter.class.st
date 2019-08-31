@@ -53,12 +53,12 @@ BIEnlumineurFormatter class >> format: aParseTree withIndents: anInteger [
 		format: aParseTree
 ]
 
-{ #category : #formatAsYouRead }
+{ #category : #accessing }
 BIEnlumineurFormatter class >> formatAsYouReadPolicy [
 	^ FormatAsYouReadPolicy
 ]
 
-{ #category : #formatAsYouRead }
+{ #category : #accessing }
 BIEnlumineurFormatter class >> formatAsYouReadPolicy: anObject [
 	FormatAsYouReadPolicy := anObject
 ]
@@ -402,31 +402,35 @@ BIEnlumineurFormatter class >> settingsAlignBlockBrackets: aBuilder [
 
 	(aBuilder setting: #lineUpBlockBrackets)
 		label: 'Align block brackets';
-		description: 'pass a newLine before closing a multiline block. 
-For example:
+		description: 'Place a newLine before closing a multiline block.
+This gives a C-like syntax. Pharo 
+
+When lineUpBlockBrackets is true
 
 1 to: 4 do: [ Transcript
 		show: i;
 		cr
 	]
-is the result when true
 
+When lineUpBlockBrackets is false
 1 to: 4 do: [ Transcript
 		show: i;
-		cr]
-	is the result when false
-'.
+		cr ]
+'
 ]
 
 { #category : #settings }
 BIEnlumineurFormatter class >> settingsFormatCommentWithExpression: aBuilder [
 
 	(aBuilder setting: #formatCommentWithStatements)
-		label: 'Format comment with expression';
-		description: 'if set to true: put the comment after the dot in an expression
-		else put it before 
-For example if set to true: 1+1."We do an addition" 2+2
-For example if set to false: 1+1"We do an addition". 2+2'.
+		label: 'Place comment close to expression';
+		description: 'This setting places a comment close to an expression before the separator. 
+	
+When formatCommentWithStatements is set to true
+ 1+1."We do an addition" 2+2
+
+When formatCommentWithStatements is set to false
+ 1+1"We do an addition". 2+2'.
 ]
 
 { #category : #settings }
