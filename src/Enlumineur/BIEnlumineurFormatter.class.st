@@ -288,6 +288,11 @@ BIEnlumineurFormatter class >> numberOfSpacesAfterCaretSymbolInReturn: anInteger
 ]
 
 { #category : #accessing }
+BIEnlumineurFormatter class >> numberOfSpacesBeforeDotInDynamicArray [
+	^ DefaultPrettyPrintContext numberOfSpacesBeforeDotInDynamicArray
+]
+
+{ #category : #accessing }
 BIEnlumineurFormatter class >> numberOfSpacesInIndent [
 	^ DefaultPrettyPrintContext numberOfSpacesInIndent
 ]
@@ -795,6 +800,15 @@ For example: ^   self is the result for 3 spaces'.
 ]
 
 { #category : #settings }
+BIEnlumineurFormatter class >> settingsSpacesBeforeDotInDynamicArray: aBuilder [
+
+	(aBuilder setting: #numberOfSpacesBeforeDotInDynamicArray)
+		label: 'Spaces before dot in dynamic array';
+		description: 'number of spaces after the opening and before the closing () {}) symbols of the array
+for example: {1 . 2 . 3} is the result of 1 space, while {1. 2. 3} is the result of zero space.'
+]
+
+{ #category : #settings }
 BIEnlumineurFormatter class >> settingsSpacesInsideArray: aBuilder [
 
 	(aBuilder setting: #numberOfSpacesInsideArray)
@@ -855,7 +869,6 @@ Exemple:
 
 { #category : #settings }
 BIEnlumineurFormatter class >> settingsUseTraditionalBinaryPrecedenceForParentheses: aBuilder [
-
 
 	(aBuilder setting: #useTraditionalBinaryPrecedenceForParentheses)
 		label: 'Use traditional binary precedence for parentheses';
@@ -1006,7 +1019,7 @@ BIEnlumineurFormatter >> formatArray: anArrayNode [
 				separatedBy: [ (self isLineTooLongWithNode: current)
 						ifTrue: [ codeStream nextPut: $..
 							self newLine ]
-						ifFalse: [ codeStream nextPutAll: '. ' ] 
+						ifFalse: [ codeStream nextPutAll: self spacesBeforeDotInDynamicArray ; nextPutAll: '. ' ] 
 						"here there is something wrong since we should also be able to put a space in front"] ]
 		ifNotEmpty: [ anArrayNode statements size > 1
 				ifTrue: [ self
@@ -1972,6 +1985,11 @@ BIEnlumineurFormatter >> spaceAndFormatComments: aNode [
 { #category : #accessing }
 BIEnlumineurFormatter >> spacesAfterCaretSymbolInReturn [
 	^ context spacesAfterCaretSymbolInReturn
+]
+
+{ #category : #accessing }
+BIEnlumineurFormatter >> spacesBeforeDotInDynamicArray [ 
+	^ context spacesBeforeDotInDynamicArray
 ]
 
 { #category : #accessing }

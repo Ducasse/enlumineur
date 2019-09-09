@@ -44,7 +44,9 @@ Class {
 		'spacesInsideParentheses',
 		'indentExtraSpaces',
 		'spacesInsideArray',
-		'numberOfSpacesInsideArray'
+		'numberOfSpacesInsideArray',
+		'numberOfSpacesBeforeDotInDynamicArray',
+		'spacesBeforeDotInDynamicArray'
 	],
 	#category : #'Enlumineur-Core'
 }
@@ -132,6 +134,7 @@ BIEnlumineurContext >> initialize [
 	self numberOfSpacesAfterCaretSymbolInReturn: 1.
 	self indentStyle: #tabulation.
 	self numberOfSpacesInIndent: 3.
+	self 	numberOfSpacesBeforeDotInDynamicArray: 0.
 	self indentExtraSpaces: 0.
 	self numberOfSpacesInsideArray: 1
 ]
@@ -280,6 +283,18 @@ BIEnlumineurContext >> numberOfSpacesAfterCaretSymbolInReturn: aNumber [
 ]
 
 { #category : #accessing }
+BIEnlumineurContext >> numberOfSpacesBeforeDotInDynamicArray [
+	^ numberOfSpacesBeforeDotInDynamicArray
+]
+
+{ #category : #accessing }
+BIEnlumineurContext >> numberOfSpacesBeforeDotInDynamicArray: anInteger [
+	
+	spacesBeforeDotInDynamicArray := self stringFromSpaceNumber: anInteger.
+	numberOfSpacesBeforeDotInDynamicArray := anInteger
+]
+
+{ #category : #accessing }
 BIEnlumineurContext >> numberOfSpacesInIndent [
 	^ numberOfSpacesInIndent
 ]
@@ -388,6 +403,11 @@ BIEnlumineurContext >> selectorAndArgumentCombinedMaxSize: anInteger [
 { #category : #accessing }
 BIEnlumineurContext >> spacesAfterCaretSymbolInReturn [
 	^ spacesAfterCaretSymbolInReturn
+]
+
+{ #category : #accessing }
+BIEnlumineurContext >> spacesBeforeDotInDynamicArray [ 
+	^ spacesBeforeDotInDynamicArray 
 ]
 
 { #category : #accessing }
