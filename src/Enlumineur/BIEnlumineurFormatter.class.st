@@ -1042,7 +1042,7 @@ BIEnlumineurFormatter >> formatArrayBody: aSequenceNode [
 	statements withIndexDo: [:statement :i | 
 		self visitNode: statement.
 		i < statements size
-			ifTrue: [ codeStream nextPut: $. ].
+			ifTrue: [ codeStream nextPutAll: self spacesBeforeDotInDynamicArray ; nextPut: $. ].
 		self formatStatementCommentsFor: statement.
 		i < statements size
 			ifTrue: [ self addNewLinesBeforeStatementStartingAt: (statements at: i + 1) start ] ]

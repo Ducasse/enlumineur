@@ -345,6 +345,19 @@ BIEnlumineurArrayExpressionTest >> testToLongNewLine2WithSpaceBefore [
 5 . 6 . 7 . 1}'
 ]
 
+{ #category : #test }
+BIEnlumineurArrayExpressionTest >> testToLongNewLineWithSpaceBefore [
+	| source |
+	configurationSelector := #maxLineLengthConfigurationWithSpaceBefore.
+	source := self formatExpression: '{VeryLongExpression. 1}'.
+	self
+		assert: source
+		equals:
+'{
+	VeryLongExpression .
+	1}'
+]
+
 { #category : #configurations }
 BIEnlumineurArrayExpressionTest >> threeSpacesBeforeDotInArrayConfiguration [
 
