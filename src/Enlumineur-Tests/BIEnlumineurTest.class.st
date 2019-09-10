@@ -1,3 +1,8 @@
+"
+There is a big warning about the design of these tests. 
+The context is not initialized so that we are sure about the configuration we are building. 
+
+"
 Class {
 	#name : #BIEnlumineurTest,
 	#superclass : #ParametrizedTestCase,

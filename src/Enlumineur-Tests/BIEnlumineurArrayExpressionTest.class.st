@@ -36,7 +36,10 @@ BIEnlumineurArrayExpressionTest >> fiveSpacesInsideArrayConfiguration [
 		indentExtraSpaces: 0;
 		periodsAtEndOfBlock: false;
 		periodsAtEndOfMethod: false;
-		numberOfSpacesInsideArray: 5
+		numberOfSpacesInsideArray: 5;
+		numberOfSpacesBeforeDotInDynamicArray: 0.
+		"here since we shortcut the initialize method we have to set the numberOfSpace...
+		manually so that the spacesBefore string is correctly computed." 
 ]
 
 { #category : #configurations }
@@ -55,7 +58,32 @@ BIEnlumineurArrayExpressionTest >> maxLineLengthConfiguration [
 		periodsAtEndOfBlock: false;
 		periodsAtEndOfMethod: false;
 		indentExtraSpaces: 0;
-		numberOfSpacesInsideArray: 0
+		numberOfSpacesInsideArray: 0;
+		numberOfSpacesBeforeDotInDynamicArray: 0.
+		"here since we shortcut the initialize method we have to set the numberOfSpace...
+		manually so that the spacesBefore string is correctly computed." 
+]
+
+{ #category : #configurations }
+BIEnlumineurArrayExpressionTest >> maxLineLengthConfigurationWithSpaceBefore [
+	"Here we can control explicitely the configuration we want."
+
+	" String streamContents: [:s |
+			BIPrettyPrinterContext new storeOn: s]"
+
+	^ self contextClass basicNew
+		formatCommentWithStatements: false;
+		maxLineLength: 12;
+		retainBlankLinesBetweenStatements: false;
+		minimumNewLinesBetweenStatements: 1;
+		indentStyle: #tabulation;
+		periodsAtEndOfBlock: false;
+		periodsAtEndOfMethod: false;
+		indentExtraSpaces: 0;
+		numberOfSpacesInsideArray: 0;
+		numberOfSpacesBeforeDotInDynamicArray: 1.
+		"here since we shortcut the initialize method we have to set the numberOfSpace...
+		manually so that the spacesBefore string is correctly computed." 
 ]
 
 { #category : #configurations }
@@ -93,7 +121,10 @@ BIEnlumineurArrayExpressionTest >> oneSpaceInsideArrayConfiguration [
 		indentExtraSpaces: 0;
 		periodsAtEndOfBlock: false;
 		periodsAtEndOfMethod: false;
-		numberOfSpacesInsideArray: 1
+		numberOfSpacesInsideArray: 1;
+		numberOfSpacesBeforeDotInDynamicArray: 0.
+		"here since we shortcut the initialize method we have to set the numberOfSpace...
+		manually so that the spacesBefore string is correctly computed." 
 ]
 
 { #category : #configurations }
@@ -133,7 +164,10 @@ BIEnlumineurArrayExpressionTest >> spaceInsideArrayConfiguration [
 		indentExtraSpaces: 0;
 		periodsAtEndOfBlock: false;
 		periodsAtEndOfMethod: false;
-		numberOfSpacesInsideArray: 5
+		numberOfSpacesInsideArray: 5;
+		numberOfSpacesBeforeDotInDynamicArray: 0.
+		"here since we shortcut the initialize method we have to set the numberOfSpace...
+		manually so that the spacesBefore string is correctly computed." 
 ]
 
 { #category : #test }
@@ -297,6 +331,18 @@ BIEnlumineurArrayExpressionTest >> testToLongNewLine2 [
 		equals:
 			'{1. 2. 3. 4.
 5. 6. 7. 1}'
+]
+
+{ #category : #test }
+BIEnlumineurArrayExpressionTest >> testToLongNewLine2WithSpaceBefore [
+	| source |
+	configurationSelector := #maxLineLengthConfigurationWithSpaceBefore.
+	source := self formatExpression: '{1. 2. 3. 4. 5. 6. 7. 1}'.
+	self
+		assert: source
+		equals:
+			'{1 . 2 . 3 . 4 .
+5 . 6 . 7 . 1}'
 ]
 
 { #category : #configurations }

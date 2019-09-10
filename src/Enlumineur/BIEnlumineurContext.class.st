@@ -289,7 +289,7 @@ BIEnlumineurContext >> numberOfSpacesBeforeDotInDynamicArray [
 
 { #category : #accessing }
 BIEnlumineurContext >> numberOfSpacesBeforeDotInDynamicArray: anInteger [
-	
+
 	spacesBeforeDotInDynamicArray := self stringFromSpaceNumber: anInteger.
 	numberOfSpacesBeforeDotInDynamicArray := anInteger
 ]
