@@ -1017,7 +1017,7 @@ BIEnlumineurFormatter >> formatArray: anArrayNode [
 					current := each.
 					self visitNode: each ]
 				separatedBy: [ (self isLineTooLongWithNode: current)
-						ifTrue: [ codeStream nextPut: $..
+						ifTrue: [ codeStream nextPutAll: self spacesBeforeDotInDynamicArray; nextPut: $..
 							self newLine ]
 						ifFalse: [ codeStream nextPutAll: self spacesBeforeDotInDynamicArray ; nextPutAll: '. ' ] 
 						"here there is something wrong since we should also be able to put a space in front"] ]
