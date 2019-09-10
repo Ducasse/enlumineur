@@ -179,6 +179,7 @@ BIEnlumineurCascadeExpressionTest >> spaceIndentConfiguration [
 { #category : #tests }
 BIEnlumineurCascadeExpressionTest >> testCommentAfterMessages [
 	| source |
+	self flag: #tocheck. "We do we lose the first comment."
 	configurationSelector := #basicConfiguration.
 	source := self
 		formatExpression:
@@ -197,6 +198,7 @@ BIEnlumineurCascadeExpressionTest >> testCommentBeforeMessage [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: 'Transcript show:1; "cr" cr'.
+	self flag: #tocheck. "the comment is glued and this is ugly"
 	self
 		assert: source
 		equals:

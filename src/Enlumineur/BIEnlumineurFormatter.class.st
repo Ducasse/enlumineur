@@ -251,20 +251,6 @@ BIEnlumineurFormatter class >> newLinesAfterTemporaries: anInteger [
 	self announceASettingChange
 ]
 
-{ #category : #settings }
-BIEnlumineurFormatter class >> notInstalledCandidateForRemoval [
-	"this method is for sync with guille and stef and we will remove it when ok"
-	
-	"(aBuilder setting: #periodsAsTerminators)
-				label: 'Periods as terminators'.
-	for the moment the UI does not work at ALL when selecting as terminators:
-	It does not automatically select end of method and end of block.
-	Probably the settings UI does not manage dependencies between settings so we will simply remove it."			
-			
-	
-			
-]
-
 { #category : #accessing }
 BIEnlumineurFormatter class >> numberOfArgumentsForMultiLine [
 	^ DefaultPrettyPrintContext numberOfArgumentsForMultiLine
@@ -412,17 +398,17 @@ BIEnlumineurFormatter class >> settingsAlignBlockBrackets: aBuilder [
 
 	(aBuilder setting: #lineUpBlockBrackets)
 		label: 'Align block brackets';
-		description: 'Place a newLine before closing a multiline block.
-This gives a C-like syntax. Pharo 
+		description: 'Place a new line before closing a multiline block.
+This gives a C-like syntax in Pharo .
 
-When lineUpBlockBrackets is true
+When lineUpBlockBrackets is set to true
 
 1 to: 4 do: [ Transcript
 		show: i;
 		cr
 	]
 
-When lineUpBlockBrackets is false
+When lineUpBlockBrackets is set to false
 1 to: 4 do: [ Transcript
 		show: i;
 		cr ]
@@ -1512,6 +1498,12 @@ BIEnlumineurFormatter >> lineStart: anObject [
 
 { #category : #accessing }
 BIEnlumineurFormatter >> lineUpBlockBrackets [
+	"Return whether a new line should be added before closing a multiline block.
+	1 to: 4 do: [ Transcript
+		show: i;
+		cr
+	]
+	"
 	^ context lineUpBlockBrackets
 ]
 

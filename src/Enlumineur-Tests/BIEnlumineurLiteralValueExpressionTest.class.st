@@ -8,7 +8,8 @@ Class {
 BIEnlumineurLiteralValueExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
-		formatCommentWithStatements:false
+		formatCommentWithStatements: false
+		
 ]
 
 { #category : #tests }
@@ -36,4 +37,12 @@ BIEnlumineurLiteralValueExpressionTest >> testSpaces [
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '2'.
 	self assert: source equals: '2'
+]
+
+{ #category : #tests }
+BIEnlumineurLiteralValueExpressionTest >> testTrue [
+	| source |
+	configurationSelector := #basicConfiguration.
+	source := self formatExpression: ' true '.
+	self assert: source equals: 'true'
 ]

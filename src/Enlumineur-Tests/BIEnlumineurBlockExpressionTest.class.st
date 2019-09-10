@@ -51,7 +51,7 @@ BIEnlumineurBlockExpressionTest >> blockWithTemporariesConfiguration [
 		indentExtraSpaces:0
 ]
 
-{ #category : #hooks }
+{ #category : #helpers }
 BIEnlumineurBlockExpressionTest >> closeBracket [
 	^']'
 ]
@@ -306,12 +306,12 @@ BIEnlumineurBlockExpressionTest >> oneSpaceIndentConfiguration [
 		indentExtraSpaces:0
 ]
 
-{ #category : #hooks }
+{ #category : #helpers }
 BIEnlumineurBlockExpressionTest >> openBracket [
 	^ '['
 ]
 
-{ #category : #hooks }
+{ #category : #helpers }
 BIEnlumineurBlockExpressionTest >> parserClass [
 	^ RBParser
 ]
@@ -647,16 +647,20 @@ BIEnlumineurBlockExpressionTest >> tooLongStatementConfiguration [
 		indentExtraSpaces: 0
 ]
 
-{ #category : #test }
-BIEnlumineurBlockExpressionTest >> validate: stringInsideBlock isFormattedAs: ExpectedStringInsideBlock [
-	self validate: stringInsideBlock isFormattedAs: ExpectedStringInsideBlock with: #basicConfiguration
+{ #category : #helpers }
+BIEnlumineurBlockExpressionTest >> validate: stringInsideBlock isFormattedAs: expectedStringInsideBlock [
+	self 
+		validate: stringInsideBlock 
+		isFormattedAs: expectedStringInsideBlock 
+		with: #basicConfiguration
 ]
 
-{ #category : #test }
+{ #category : #helpers }
 BIEnlumineurBlockExpressionTest >> validate: stringInsideBlock isFormattedAs: expectedStringInsideBlock with: aConfiguration [
+
 	| expr source |
-	expr := self parserClass parseExpression: self openBracket ,stringInsideBlock,self closeBracket.
+	expr := self parserClass parseExpression: self openBracket , stringInsideBlock, self closeBracket.
 	configurationSelector := aConfiguration.
 	source := self formatter format: expr.
-	self assert: source equals: self openBracket,expectedStringInsideBlock,self closeBracket
+	self assert: source equals: self openBracket , expectedStringInsideBlock , self closeBracket
 ]

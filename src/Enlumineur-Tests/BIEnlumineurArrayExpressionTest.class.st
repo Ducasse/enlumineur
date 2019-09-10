@@ -105,7 +105,8 @@ BIEnlumineurArrayExpressionTest >> multiLineConfiguration [
 		indentsForKeywords: 1;
 		keepBlockInMessage: true;
 		indentExtraSpaces: 0;
-		numberOfSpacesInsideArray: 0
+		numberOfSpacesInsideArray: 0;
+		numberOfSpacesBeforeDotInDynamicArray: 0
 ]
 
 { #category : #configurations }
@@ -149,7 +150,8 @@ BIEnlumineurArrayExpressionTest >> periodAtEndOfMethod [
 		numberOfSpacesInsideParentheses: 0;
 		numberOfArgumentsForMultiLine: 2;
 		newLineBeforeFirstKeyword: false;
-		numberOfSpacesInsideArray: 0
+		numberOfSpacesInsideArray: 0;
+		numberOfSpacesBeforeDotInDynamicArray: 0
 ]
 
 { #category : #configurations }

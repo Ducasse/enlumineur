@@ -75,6 +75,8 @@ BIEnlumineurContext >> indentExtraSpaces: anInteger [
 
 { #category : #accessing }
 BIEnlumineurContext >> indentString [
+	"My value is set using numberOfSpacesInIndent: "
+	
 	^ indentString
 ]
 
@@ -86,6 +88,7 @@ BIEnlumineurContext >> indentStyle [
 { #category : #accessing }
 BIEnlumineurContext >> indentStyle: aSymbol [
 	"Indent style can be either #tabulation or #space."
+	
 	indentStyle := aSymbol.
 	indentString := aSymbol = #space
 		ifTrue: [ self stringFromSpaceNumber: numberOfSpacesInIndent ]
@@ -145,18 +148,25 @@ BIEnlumineurContext >> keepBlockInMessage [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> keepBlockInMessage: anObject [
-	keepBlockInMessage := anObject
+BIEnlumineurContext >> keepBlockInMessage: aBoolean [
+	keepBlockInMessage := aBoolean
 ]
 
 { #category : #accessing }
 BIEnlumineurContext >> lineUpBlockBrackets [
+	"When true place a new line before closing a multiline block.
+	1 to: 4 do: [ Transcript
+		show: i;
+		cr
+	]
+	"
+	
 	^ lineUpBlockBrackets
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> lineUpBlockBrackets: anObject [
-	lineUpBlockBrackets := anObject
+BIEnlumineurContext >> lineUpBlockBrackets: aBoolean [
+	lineUpBlockBrackets := aBoolean
 ]
 
 { #category : #accessing }
@@ -165,8 +175,8 @@ BIEnlumineurContext >> maxLineLength [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> maxLineLength: anObject [
-	maxLineLength := anObject
+BIEnlumineurContext >> maxLineLength: anInteger [
+	maxLineLength := anInteger
 ]
 
 { #category : #accessing }
@@ -175,8 +185,8 @@ BIEnlumineurContext >> methodSignatureOnMultipleLines [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> methodSignatureOnMultipleLines: anObject [
-	methodSignatureOnMultipleLines := anObject
+BIEnlumineurContext >> methodSignatureOnMultipleLines: aBoolean [
+	methodSignatureOnMultipleLines := aBoolean
 ]
 
 { #category : #accessing }
@@ -185,8 +195,8 @@ BIEnlumineurContext >> minimumNewLinesBetweenStatements [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> minimumNewLinesBetweenStatements: anObject [
-	minimumNewLinesBetweenStatements := anObject
+BIEnlumineurContext >> minimumNewLinesBetweenStatements: anInteger [
+	minimumNewLinesBetweenStatements := anInteger
 ]
 
 { #category : #accessing }
@@ -197,7 +207,7 @@ BIEnlumineurContext >> multiLineMessages [
 { #category : #accessing }
 BIEnlumineurContext >> multiLineMessages: anArray [
 	"In case the user entered a string representing array we convert it into array."
-	
+	self flag: #tocheck. "we should change this logic. It is terrible, the UI should give us an array and not a string!"
 	multiLineMessages := self class compiler evaluate: anArray asString
 ]
 
@@ -207,8 +217,8 @@ BIEnlumineurContext >> newLineAfterCascade [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> newLineAfterCascade: anObject [
-	newLineAfterCascade := anObject
+BIEnlumineurContext >> newLineAfterCascade: anInteger [
+	newLineAfterCascade := anInteger
 ]
 
 { #category : #accessing }
@@ -217,8 +227,8 @@ BIEnlumineurContext >> newLineBeforeFirstCascade [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> newLineBeforeFirstCascade: anObject [
-	newLineBeforeFirstCascade := anObject
+BIEnlumineurContext >> newLineBeforeFirstCascade: anInteger [
+	newLineBeforeFirstCascade := anInteger
 ]
 
 { #category : #accessing }
@@ -227,8 +237,8 @@ BIEnlumineurContext >> newLineBeforeFirstKeyword [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> newLineBeforeFirstKeyword: anObject [
-	newLineBeforeFirstKeyword := anObject
+BIEnlumineurContext >> newLineBeforeFirstKeyword: aBoolean [
+	newLineBeforeFirstKeyword := aBoolean
 ]
 
 { #category : #accessing }
@@ -237,8 +247,8 @@ BIEnlumineurContext >> newLinesAfterMethodComment [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> newLinesAfterMethodComment: anObject [
-	newLinesAfterMethodComment := anObject
+BIEnlumineurContext >> newLinesAfterMethodComment: aBoolean [
+	newLinesAfterMethodComment := aBoolean
 ]
 
 { #category : #accessing }
@@ -247,8 +257,8 @@ BIEnlumineurContext >> newLinesAfterMethodPattern [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> newLinesAfterMethodPattern: anObject [
-	newLinesAfterMethodPattern := anObject
+BIEnlumineurContext >> newLinesAfterMethodPattern: aBoolean [
+	newLinesAfterMethodPattern := aBoolean
 ]
 
 { #category : #accessing }
@@ -257,8 +267,8 @@ BIEnlumineurContext >> newLinesAfterTemporaries [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> newLinesAfterTemporaries: anObject [
-	newLinesAfterTemporaries := anObject
+BIEnlumineurContext >> newLinesAfterTemporaries: anInteger [
+	newLinesAfterTemporaries := anInteger
 ]
 
 { #category : #accessing }
@@ -267,8 +277,8 @@ BIEnlumineurContext >> numberOfArgumentsForMultiLine [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> numberOfArgumentsForMultiLine: anObject [
-	numberOfArgumentsForMultiLine := anObject
+BIEnlumineurContext >> numberOfArgumentsForMultiLine: anInteger [
+	numberOfArgumentsForMultiLine := anInteger
 ]
 
 { #category : #accessing }
@@ -302,8 +312,9 @@ BIEnlumineurContext >> numberOfSpacesInIndent [
 { #category : #accessing }
 BIEnlumineurContext >> numberOfSpacesInIndent: anInteger [
 	numberOfSpacesInIndent := anInteger.
-	indentStyle = #space 
-		ifTrue: [ indentString := self stringFromSpaceNumber: anInteger ]
+	indentString := indentStyle = #space 
+		ifTrue: [ self stringFromSpaceNumber: anInteger ]
+		ifFalse: [ String tab ]
 ]
 
 { #category : #accessing }
