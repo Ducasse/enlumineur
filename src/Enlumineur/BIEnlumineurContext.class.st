@@ -51,6 +51,13 @@ Class {
 	#category : #'Enlumineur-Core'
 }
 
+{ #category : #initialization }
+BIEnlumineurContext >> configureForTraditionalBinaryPrecedence [
+
+	useTraditionalBinaryPrecedenceForParentheses := true.
+	traditionalBinaryPrecedenceArray := #(#($| $& $?) #($= $~ $< $>) #($- $+) #($* $/ $% $\) #($@))
+]
+
 { #category : #accessing }
 BIEnlumineurContext >> formatCommentWithStatements [
 	^ formatCommentWithStatements
@@ -130,8 +137,7 @@ BIEnlumineurContext >> initialize [
 	retainBlankLinesBetweenStatements := false.
 	retainBlankLinesBeforeComments := true.
 	selectorAndArgumentCombinedMaxSize := 40.
-	traditionalBinaryPrecedenceArray := #(#($| $& $?) #($= $~ $< $>) #($- $+) #($* $/ $% $\) #($@)).
-	useTraditionalBinaryPrecedenceForParentheses := true.
+	self configureForTraditionalBinaryPrecedence.
 	self numberOfSpacesInsideBlock: 1.
 	self numberOfSpacesInsideParentheses: 0.
 	self numberOfSpacesAfterCaretSymbolInReturn: 1.
