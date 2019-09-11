@@ -44,7 +44,7 @@ BIEnlumineurLiteralArrayExpressionTest >> testBigArray [
 ]
 
 { #category : #tests }
-BIEnlumineurLiteralArrayExpressionTest >> testBigArrayWithoutExtraSpaces [
+BIEnlumineurLiteralArrayExpressionTest >> testBigArrayWithExtraSpaces [
 	| source |
 	configurationSelector := #oneSpaceConfiguration.
 	source := self formatExpression:

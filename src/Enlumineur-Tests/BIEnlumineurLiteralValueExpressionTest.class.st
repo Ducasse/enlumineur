@@ -32,11 +32,29 @@ BIEnlumineurLiteralValueExpressionTest >> testNotLitteral [
 ]
 
 { #category : #tests }
+BIEnlumineurLiteralValueExpressionTest >> testNumbers [
+	| source |
+	configurationSelector := #basicConfiguration.
+	source := self formatExpression: ' 3.141592653589793 '.
+	self assert: source equals: '3.141592653589793'
+	
+
+]
+
+{ #category : #tests }
 BIEnlumineurLiteralValueExpressionTest >> testSpaces [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '2'.
 	self assert: source equals: '2'
+]
+
+{ #category : #tests }
+BIEnlumineurLiteralValueExpressionTest >> testString [
+	| source |
+	configurationSelector := #basicConfiguration.
+	source := self formatExpression: ' ''Pharo'' '.
+	self assert: source equals: '''Pharo'''
 ]
 
 { #category : #tests }
