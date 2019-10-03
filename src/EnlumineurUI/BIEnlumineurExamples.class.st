@@ -14,7 +14,7 @@ Class {
 BIEnlumineurExamples class >> bigExamplesSettingsTable [
 	^ {(#bigExample:withMethodSignatureOnMultipleLinesExample:
 		->
-			#(#formatCommentCloseToStatements #indentsForKeywords #lineUpBlockBrackets #methodSignatureOnMultipleLines #multiLineMessages #newLineAfterCascade #newLineBeforeFirstCascade #newLineBeforeFirstKeyword #newLinesAfterMethodComment #newLinesAfterTemporaries #numberOfArgumentsForMultiLine #oneLineMessages #retainBlankLinesBeforeComments #selectorAndArgumentCombinedMaxSize #useBasicCommentFormat #numberOfSpacesAfterCaretSymbolInReturn #minimumNewLinesBetweenStatements #newLinesAfterMethodPattern #periodsAtEndOfBlock #periodsAtEndOfMethod #retainBlankLinesBetweenStatements #numberOfSpacesInsideBlock #numberOfSpacesInIndent #indentStyle)).
+			#(#formatCommentCloseToStatements #indentsForKeywords #lineUpBlockBrackets #methodSignatureOnMultipleLines #multiLineMessages #newLineAfterCascade #newLineBeforeFirstCascade #newLineBeforeFirstKeyword #numberOfNewLinesAfterMethodComment #newLinesAfterTemporaries #numberOfArgumentsForMultiLine #oneLineMessages #retainBlankLinesBeforeComments #selectorAndArgumentCombinedMaxSize #useBasicCommentFormat #numberOfSpacesAfterCaretSymbolInReturn #minimumNewLinesBetweenStatements #newLinesAfterMethodPattern #periodsAtEndOfBlock #periodsAtEndOfMethod #retainBlankLinesBetweenStatements #numberOfSpacesInsideBlock #numberOfSpacesInIndent #indentStyle)).
 	(#bigExample:
 		->
 			#(#keepBlockInMessage #maxLineLength #useTraditionalBinaryPrecedenceForParentheses #traditionalBinaryPrecedenceArray #numberOfSpacesInsideParentheses #numberOfSpacesInsideArray #minimumNewLinesBetweenStatements #newLinesAfterMethodPattern #periodsAtEndOfBlock #periodsAtEndOfMethod #retainBlankLinesBetweenStatements #numberOfSpacesInsideBlock #numberOfSpacesInIndent #indentStyle))}
@@ -336,7 +336,7 @@ BIEnlumineurExamples class >> initializeSettingsTable [
 		#newLineAfterCascade -> #cascadeExample.
 		#newLineBeforeFirstCascade -> #cascadeExample.
 		#newLineBeforeFirstKeyword -> #messageWithALotOfParameters.
-		#newLinesAfterMethodComment -> #newLinesExample.
+		#numberOfNewLinesAfterMethodComment -> #newLinesExample.
 		#newLinesAfterMethodPattern -> #newLinesExample.
 		#newLinesAfterTemporaries -> #newLinesExample.
 		#numberOfArgumentsForMultiLine -> #messageWithALotOfParameters.
@@ -838,7 +838,7 @@ BIEnlumineurExamples >> initializeSettingsTable [
 		#newLineAfterCascade -> #cascadeExample.
 		#newLineBeforeFirstCascade -> #cascadeExample.
 		#newLineBeforeFirstKeyword -> #messageWithALotOfParameters.
-		#newLinesAfterMethodComment -> #newLinesExample.
+		#numberOfNewLinesAfterMethodComment -> #newLinesExample.
 		#newLinesAfterMethodPattern -> #newLinesExample.
 		#newLinesAfterTemporaries -> #newLinesExample.
 		#numberOfArgumentsForMultiLine -> #messageWithALotOfParameters.

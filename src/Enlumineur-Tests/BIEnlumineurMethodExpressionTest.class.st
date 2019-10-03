@@ -16,7 +16,7 @@ BIEnlumineurMethodExpressionTest >> basicCommentFormatConfiguration [
 		formatCommentWithStatements:false;
 		useBasicCommentFormat: true;
 		newLinesAfterMethodPattern: 1;
-		newLinesAfterMethodComment: 1;
+		numberOfNewLinesAfterMethodComment: 1;
 		indentExtraSpaces: 0
 ]
 
@@ -35,7 +35,7 @@ BIEnlumineurMethodExpressionTest >> basicConfiguration [
 		periodsAtEndOfBlock: false;
 		periodsAtEndOfMethod: false;
 		newLinesAfterMethodPattern: 1;
-		newLinesAfterMethodComment: 1;
+		numberOfNewLinesAfterMethodComment: 1;
 		indentExtraSpaces:0
 ]
 
@@ -67,7 +67,7 @@ BIEnlumineurMethodExpressionTest >> bigMethodeConfiguration [
 		numberOfSpacesInsideBlock: 0;
 		lineUpBlockBrackets: true;
 		newLinesAfterMethodPattern: 1;
-		newLinesAfterMethodComment: 1;
+		numberOfNewLinesAfterMethodComment: 1;
 		newLineBeforeFirstKeyword:true;
 		indentExtraSpaces:0
 ]
@@ -113,7 +113,7 @@ BIEnlumineurMethodExpressionTest >> newLineBetweenTopCommentsConfiguration [
 		periodsAtEndOfBlock: false;
 		periodsAtEndOfMethod: false;
 		newLinesAfterMethodPattern: 1;
-		newLinesAfterMethodComment: 1;
+		numberOfNewLinesAfterMethodComment: 1;
 		indentExtraSpaces:0
 ]
 
@@ -129,7 +129,7 @@ BIEnlumineurMethodExpressionTest >> noNewLineBetweenTopCommentsConfiguration [
 		formatCommentWithStatements:false;
 		useBasicCommentFormat: true;
 		newLinesAfterMethodPattern: 1;
-		newLinesAfterMethodComment: 0;
+		numberOfNewLinesAfterMethodComment: 0;
 		indentExtraSpaces:0
 ]
 
@@ -145,7 +145,7 @@ BIEnlumineurMethodExpressionTest >> noNewLinesAfterCommentConfiguration [
 		formatCommentWithStatements:false;
 		useBasicCommentFormat: true;
 		newLinesAfterMethodPattern: 1;
-		newLinesAfterMethodComment: 1;
+		numberOfNewLinesAfterMethodComment: 1;
 		indentExtraSpaces:0
 ]
 
@@ -162,7 +162,7 @@ BIEnlumineurMethodExpressionTest >> notBasicCommentFormatConfiguration [
 		useBasicCommentFormat: false;
 		maxLineLength: 50;	
 		newLinesAfterMethodPattern: 1;
-		newLinesAfterMethodComment: 1;
+		numberOfNewLinesAfterMethodComment: 1;
 		indentExtraSpaces:0
 ]
 
@@ -179,7 +179,7 @@ BIEnlumineurMethodExpressionTest >> oneNewLineAfterCommentConfiguration [
 		useBasicCommentFormat:false;
 		maxLineLength:50;
 		newLinesAfterMethodPattern: 1;
-		newLinesAfterMethodComment: 2;
+		numberOfNewLinesAfterMethodComment: 2;
 		indentExtraSpaces:0
 ]
 
@@ -256,7 +256,7 @@ BIEnlumineurMethodExpressionTest >> spaceIndentConfiguration [
 		periodsAtEndOfBlock: false;
 		periodsAtEndOfMethod: false;
 		newLinesAfterMethodPattern: 1;
-		newLinesAfterMethodComment: 1;
+		numberOfNewLinesAfterMethodComment: 1;
 		indentExtraSpaces:0
 ]
 

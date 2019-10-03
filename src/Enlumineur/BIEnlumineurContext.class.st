@@ -20,7 +20,6 @@ Class {
 		'newLineAfterCascade',
 		'newLineBeforeFirstCascade',
 		'newLineBeforeFirstKeyword',
-		'newLinesAfterMethodComment',
 		'newLinesAfterMethodPattern',
 		'newLinesAfterTemporaries',
 		'numberOfArgumentsForMultiLine',
@@ -46,7 +45,8 @@ Class {
 		'spacesInsideArray',
 		'numberOfSpacesInsideArray',
 		'numberOfSpacesBeforeDotInDynamicArray',
-		'spacesBeforeDotInDynamicArray'
+		'spacesBeforeDotInDynamicArray',
+		'numberOfNewLinesAfterMethodComment'
 	],
 	#category : #'Enlumineur-Core'
 }
@@ -56,6 +56,12 @@ BIEnlumineurContext >> configureForTraditionalBinaryPrecedence [
 
 	useTraditionalBinaryPrecedenceForParentheses := true.
 	traditionalBinaryPrecedenceArray := #(#($| $& $?) #($= $~ $< $>) #($- $+) #($* $/ $% $\) #($@))
+]
+
+{ #category : #initialization }
+BIEnlumineurContext >> configureMultiLineMessages [
+
+	multiLineMessages := #(#ifTrue:ifFalse: #ifFalse:ifTrue: #ifTrue: #ifFalse: #on:do: #ensure: #ifCurtailed:)
 ]
 
 { #category : #accessing }
@@ -123,11 +129,11 @@ BIEnlumineurContext >> initialize [
 	maxLineLength := 70.
 	methodSignatureOnMultipleLines := false.
 	minimumNewLinesBetweenStatements := 1.
-	multiLineMessages := #(#ifTrue:ifFalse: #ifFalse:ifTrue: #ifTrue: #ifFalse: #on:do: #ensure: #ifCurtailed:).
+	self configureMultiLineMessages.
 	newLineAfterCascade := true.
 	newLineBeforeFirstCascade := true.
 	newLineBeforeFirstKeyword := true.
-	newLinesAfterMethodComment := 2.
+	numberOfNewLinesAfterMethodComment := 2.
 	newLinesAfterMethodPattern := 1.
 	newLinesAfterTemporaries := 1.
 	numberOfArgumentsForMultiLine := 4.
@@ -248,16 +254,6 @@ BIEnlumineurContext >> newLineBeforeFirstKeyword: aBoolean [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> newLinesAfterMethodComment [
-	^ newLinesAfterMethodComment
-]
-
-{ #category : #accessing }
-BIEnlumineurContext >> newLinesAfterMethodComment: aBoolean [
-	newLinesAfterMethodComment := aBoolean
-]
-
-{ #category : #accessing }
 BIEnlumineurContext >> newLinesAfterMethodPattern [
 	^ newLinesAfterMethodPattern
 ]
@@ -285,6 +281,16 @@ BIEnlumineurContext >> numberOfArgumentsForMultiLine [
 { #category : #accessing }
 BIEnlumineurContext >> numberOfArgumentsForMultiLine: anInteger [
 	numberOfArgumentsForMultiLine := anInteger
+]
+
+{ #category : #accessing }
+BIEnlumineurContext >> numberOfNewLinesAfterMethodComment [
+	^ numberOfNewLinesAfterMethodComment
+]
+
+{ #category : #accessing }
+BIEnlumineurContext >> numberOfNewLinesAfterMethodComment: aBoolean [
+	numberOfNewLinesAfterMethodComment := aBoolean
 ]
 
 { #category : #accessing }

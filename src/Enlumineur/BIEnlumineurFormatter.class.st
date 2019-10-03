@@ -227,17 +227,6 @@ BIEnlumineurFormatter class >> newLineBeforeFirstKeyword: aBoolean [
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> newLinesAfterMethodComment [
-	^ DefaultPrettyPrintContext newLinesAfterMethodComment
-]
-
-{ #category : #accessing }
-BIEnlumineurFormatter class >> newLinesAfterMethodComment: anInteger [
-	DefaultPrettyPrintContext newLinesAfterMethodComment: anInteger.
-	self announceASettingChange
-]
-
-{ #category : #accessing }
 BIEnlumineurFormatter class >> newLinesAfterMethodPattern [
 	^ DefaultPrettyPrintContext newLinesAfterMethodPattern
 ]
@@ -267,6 +256,17 @@ BIEnlumineurFormatter class >> numberOfArgumentsForMultiLine [
 { #category : #accessing }
 BIEnlumineurFormatter class >> numberOfArgumentsForMultiLine: anInteger [
 	DefaultPrettyPrintContext numberOfArgumentsForMultiLine: anInteger.
+	self announceASettingChange
+]
+
+{ #category : #accessing }
+BIEnlumineurFormatter class >> numberOfNewLinesAfterMethodComment [
+	^ DefaultPrettyPrintContext numberOfNewLinesAfterMethodComment
+]
+
+{ #category : #accessing }
+BIEnlumineurFormatter class >> numberOfNewLinesAfterMethodComment: anInteger [
+	DefaultPrettyPrintContext numberOfNewLinesAfterMethodComment: anInteger.
 	self announceASettingChange
 ]
 
@@ -490,7 +490,7 @@ BIEnlumineurFormatter class >> settingsMaxLineLength: aBuilder [
 
 	(aBuilder setting: #maxLineLength)
 		label: 'Max line length';
-		description: 'the maximum possible length of a line
+		description: 'Set the maximum possible length of a line.
 For example:
 1 + 2 + 3 + 4
 	+ 5 + 6
@@ -502,12 +502,15 @@ BIEnlumineurFormatter class >> settingsMethodSignatureOnMultipleLines: aBuilder 
 
 	(aBuilder setting: #methodSignatureOnMultipleLines)
 		label: 'Method signature on multiple lines';
-		description: 'Write a multilines method signature on multiple lines only if set to true,
-		(a method signature is multilines, depends of the setting selectorAndArgumentCombinedMaxSize).
-For example:
-myMethod:arg
-	foo:bar
-is the result if True and if selectorAndArgumentCombinedMaxSize is 6'.
+		description: 'Write a multiline method signature on multiple lines only if set to true.
+Pay attention the fact that a method signature is considered multilined depends of the setting selectorAndArgumentCombinedMaxSize).
+
+For example: the method myMethod:foo: will be shown as 
+
+myMethod: arg1
+	foo: arg2
+
+is the result of having methodSignatureOnMultipleLines set to true and selectorAndArgumentCombinedMaxSize set to 6'.
 ]
 
 { #category : #settings }
@@ -515,14 +518,15 @@ BIEnlumineurFormatter class >> settingsMinimumNewLinesBetweenStatements: aBuilde
 
 	(aBuilder setting: #minimumNewLinesBetweenStatements)
 		label: 'Minimum new lines between statements';
-		description: 'the number of new lines between each statement
-for example:
+		description: 'Set the number of new lines between each statement. Its value is usually 0 or 1.
+
+The following is obtained by setting minimumNewLinesBetweenStatements to 2.
 	1+1.
 	
 	2+2.
 	
 	3+3
-is the result if the setting is set to 2'.
+'
 ]
 
 { #category : #settings }
@@ -530,11 +534,12 @@ BIEnlumineurFormatter class >> settingsMultiLineMessages: aBuilder [
 
 	(aBuilder setting: #multiLineMessages)
 		label: 'Multi line messages';
-		description: 'An array containing all the messages that should be written on multiple line
+		description: 'An array containing all the messages that should be written on multiple lines.
+		
 Example:
 aBoolean
-	ifTrue: [ ^ 1 ]
-	ifFalse: [ ^ 0 ]
+	ifTrue: [ 1 ]
+	ifFalse: [ 0 ]
 is the result if #ifTrue:ifFalse is in the array'.
 ]
 
@@ -543,18 +548,19 @@ BIEnlumineurFormatter class >> settingsNewLineAfterCascade: aBuilder [
 
 	(aBuilder setting: #newLineAfterCascade)
 		label: 'New line after cascade';
-		description: 'pass a new line after each messages in a cascade
-Examples:
+		description: 'To add to a new line after each message in a cascade.
+
+When newLineAfterCascade is set to false.
 
 OrderedCollection new
 	add: 1; add: 2; add: 3
-	is the result of the setting is set to false
+	
+When newLineAfterCascade is set to true.
 
 OrderedCollection new
 	add: 1;
 	add: 2;
 	add: 3
-	is the result of the setting is set to true
 '.
 ]
 
@@ -563,19 +569,21 @@ BIEnlumineurFormatter class >> settingsNewLineBeforeFirstCascade: aBuilder [
 
 	(aBuilder setting: #newLineBeforeFirstCascade)
 		label: 'New line before cascade';
-		description: 'pass a new line before the messages in a cascade
-Examples:
+		description: 'To add a new line before the messages participating in a cascade.
+
+When newLineBeforeFirstCascade set to false
 
 OrderedCollection new add: 1;
 	add: 2;
 	add: 3
-	is the result of the setting is set to false
+
+When newLineBeforeFirstCascade set to true
 
 OrderedCollection new
 	add: 1;
 	add: 2;
 	add: 3
-	is the result of the setting is set to true'.
+'.
 ]
 
 { #category : #settings }
@@ -583,29 +591,35 @@ BIEnlumineurFormatter class >> settingsNewLineBeforeFirstKeyword: aBuilder [
 
 	(aBuilder setting: #newLineBeforeFirstKeyword)
 		label: 'New line before first keyword';
-		description: 'pass a new line before the first keyword parameter of a message
-Examples:
+		description: 'To add a new line before the first keyword parameter of a message. This can be useful combined with other settings.
+
+When newLineBeforeFirstKeyword is set to true
 
 1
 between: 0 and: 4
-is the result if the setting is set to true
-	
+
+
+When newLineBeforeFirstKeyword is set to false
+
 1 between: 0 and: 4
-is the result if the setting is set to false'.
+
+'.
 ]
 
 { #category : #settings }
 BIEnlumineurFormatter class >> settingsNewLinesAfterMethodComment: aBuilder [
 
-	(aBuilder setting: #newLinesAfterMethodComment)
+	(aBuilder setting: #numberOfNewLinesAfterMethodComment)
 		label: 'New lines after method comment';
-		description: 'number of new lines after the comment of the method
-Example:
+		description: 'Set the number of new lines after the comment of a method.
+		
+When numberOfNewLinesAfterMethodComment is set to 2
+
 myMethode
 	"myComment"
 
 	^ true
-is the result for 2 new lines'
+'
 ]
 
 { #category : #settings }
@@ -1149,7 +1163,7 @@ BIEnlumineurFormatter >> formatMethodCommentFor: aMethodNode [
 			ifTrue: [ self basicFormatCommentFor: each ]
 			ifFalse: [ 
 			self resizeCommentFor: each startingAt: 0].
-			self newLines: self newLinesAfterMethodComment ]
+			self newLines: self numberOfNewLinesAfterMethodComment ]
 ]
 
 { #category : #'private-formatting' }
@@ -1694,16 +1708,6 @@ BIEnlumineurFormatter >> newLines: anInteger [
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> newLinesAfterMethodComment [
-	^ context newLinesAfterMethodComment
-]
-
-{ #category : #accessing }
-BIEnlumineurFormatter >> newLinesAfterMethodComment: anInteger [
-	context newLinesAfterMethodComment: anInteger
-]
-
-{ #category : #accessing }
 BIEnlumineurFormatter >> newLinesAfterMethodPattern [
 	^ context newLinesAfterMethodPattern
 ]
@@ -1754,6 +1758,16 @@ BIEnlumineurFormatter >> numberOfArgumentsForMultiLine [
 { #category : #accessing }
 BIEnlumineurFormatter >> numberOfArgumentsForMultiLine: anInteger [
 	context numberOfArgumentsForMultiLine: anInteger
+]
+
+{ #category : #accessing }
+BIEnlumineurFormatter >> numberOfNewLinesAfterMethodComment [
+	^ context numberOfNewLinesAfterMethodComment
+]
+
+{ #category : #accessing }
+BIEnlumineurFormatter >> numberOfNewLinesAfterMethodComment: anInteger [
+	context numberOfNewLinesAfterMethodComment: anInteger
 ]
 
 { #category : #accessing }
