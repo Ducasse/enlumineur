@@ -14,7 +14,7 @@ Class {
 BIEnlumineurExamples class >> bigExamplesSettingsTable [
 	^ {(#bigExample:withMethodSignatureOnMultipleLinesExample:
 		->
-			#(#formatCommentWithStatements #indentsForKeywords #lineUpBlockBrackets #methodSignatureOnMultipleLines #multiLineMessages #newLineAfterCascade #newLineBeforeFirstCascade #newLineBeforeFirstKeyword #newLinesAfterMethodComment #newLinesAfterTemporaries #numberOfArgumentsForMultiLine #oneLineMessages #retainBlankLinesBeforeComments #selectorAndArgumentCombinedMaxSize #useBasicCommentFormat #numberOfSpacesAfterCaretSymbolInReturn #minimumNewLinesBetweenStatements #newLinesAfterMethodPattern #periodsAtEndOfBlock #periodsAtEndOfMethod #retainBlankLinesBetweenStatements #numberOfSpacesInsideBlock #numberOfSpacesInIndent #indentStyle)).
+			#(#formatCommentCloseToStatements #indentsForKeywords #lineUpBlockBrackets #methodSignatureOnMultipleLines #multiLineMessages #newLineAfterCascade #newLineBeforeFirstCascade #newLineBeforeFirstKeyword #newLinesAfterMethodComment #newLinesAfterTemporaries #numberOfArgumentsForMultiLine #oneLineMessages #retainBlankLinesBeforeComments #selectorAndArgumentCombinedMaxSize #useBasicCommentFormat #numberOfSpacesAfterCaretSymbolInReturn #minimumNewLinesBetweenStatements #newLinesAfterMethodPattern #periodsAtEndOfBlock #periodsAtEndOfMethod #retainBlankLinesBetweenStatements #numberOfSpacesInsideBlock #numberOfSpacesInIndent #indentStyle)).
 	(#bigExample:
 		->
 			#(#keepBlockInMessage #maxLineLength #useTraditionalBinaryPrecedenceForParentheses #traditionalBinaryPrecedenceArray #numberOfSpacesInsideParentheses #numberOfSpacesInsideArray #minimumNewLinesBetweenStatements #newLinesAfterMethodPattern #periodsAtEndOfBlock #periodsAtEndOfMethod #retainBlankLinesBetweenStatements #numberOfSpacesInsideBlock #numberOfSpacesInIndent #indentStyle))}
@@ -324,7 +324,7 @@ BIEnlumineurExamples class >> initializeSettingsTable [
 	"self initializeSettingsTable"
 	
 	settingsTable := {
-		#formatCommentWithStatements -> #formatCommentWithExpressionExample.
+		#formatCommentCloseToStatements -> #formatCommentWithExpressionExample.
 		#indentString -> #indentExample.
 		#indentsForKeywords -> #messageWithALotOfParameters.
 		#keepBlockInMessage -> #blockExample.
@@ -826,7 +826,7 @@ BIEnlumineurExamples >> initializeSettingsTable [
 	"self initializeSettingsTable"
 	
 	settingsTable := {
-		#formatCommentWithStatements -> #formatCommentWithExpressionExample.
+		#formatCommentCloseToStatements -> #formatCommentWithExpressionExample.
 		#indentString -> #indentExample.
 		#indentsForKeywords -> #messageWithALotOfParameters.
 		#keepBlockInMessage -> #blockExample.

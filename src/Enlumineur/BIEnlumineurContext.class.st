@@ -59,7 +59,7 @@ BIEnlumineurContext >> configureForTraditionalBinaryPrecedence [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> formatCommentWithStatements [
+BIEnlumineurContext >> formatCommentCloseToStatements [
 	^ formatCommentWithStatements
 ]
 
@@ -143,7 +143,7 @@ BIEnlumineurContext >> initialize [
 	self numberOfSpacesAfterCaretSymbolInReturn: 1.
 	self indentStyle: #tabulation.
 	self numberOfSpacesInIndent: 3.
-	self 	numberOfSpacesBeforeDotInDynamicArray: 0.
+	self numberOfSpacesBeforeDotInDynamicArray: 0.
 	self indentExtraSpaces: 0.
 	self numberOfSpacesInsideArray: 1
 ]
@@ -318,7 +318,7 @@ BIEnlumineurContext >> numberOfSpacesInIndent [
 { #category : #accessing }
 BIEnlumineurContext >> numberOfSpacesInIndent: anInteger [
 	numberOfSpacesInIndent := anInteger.
-	indentString := indentStyle = #space 
+	indentString := self indentStyle = #space 
 		ifTrue: [ self stringFromSpaceNumber: anInteger ]
 		ifFalse: [ String tab ]
 ]

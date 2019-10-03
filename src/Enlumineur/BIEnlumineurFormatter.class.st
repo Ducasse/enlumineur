@@ -69,8 +69,8 @@ BIEnlumineurFormatter class >> formatAsYouReadPolicy: anObject [
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> formatCommentWithStatements [
-	^ DefaultPrettyPrintContext formatCommentWithStatements
+BIEnlumineurFormatter class >> formatCommentCloseToStatements [
+	^ DefaultPrettyPrintContext formatCommentCloseToStatements
 ]
 
 { #category : #accessing }
@@ -416,27 +416,26 @@ When lineUpBlockBrackets is set to false
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsFormatCommentWithExpression: aBuilder [
+BIEnlumineurFormatter class >> settingsCommentCloseToStatement: aBuilder [
 	
-	(aBuilder setting: #formatCommentWithStatements)
+	(aBuilder setting: #formatCommentCloseToStatements)
 		label: 'Place comment close to expression';
 		description: 'This setting places a comment close to an expression before the separator. 
 	
-When formatCommentWithStatements is set to true
+When formatCommentCloseToStatements is set to true
  1+1."We do an addition" 2+2
 
-When formatCommentWithStatements is set to false
+When formatCommentCloseToStatements is set to false
  1+1"We do an addition". 2+2'.
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsIndentStyle:aBuilder [
+BIEnlumineurFormatter class >> settingsIndentStyle: aBuilder [
 
 	(aBuilder pickOne: #indentStyle)
 		label: 'Indent Style';
 		domainValues:#(#tabulation #space);
-		description: 'the represention of an indentation,
-		it can be space or tabulation
+		description: 'Set the character used for an indentation, it can be space or tabulation. When a space is used you can decide how many spaces are used using numberOfSpacesInIndent.		
 Exemple:
 aBoolean
 	ifTrue:[^1]
@@ -448,7 +447,7 @@ BIEnlumineurFormatter class >> settingsIndentsForKeywords: aBuilder [
 	
 	(aBuilder setting: #indentsForKeywords)
 		label: 'Indents for keywords';
-		description: 'Number of indentations before each keywords of a multiline message . 
+		description: 'Number of indentations before each keywords of a multiline message. 
 For example:
 aBoolean:
 		ifTrue:[^1]
@@ -645,7 +644,7 @@ BIEnlumineurFormatter class >> settingsNumberOfSpacesInIndent:aBuilder [
 
 	(aBuilder setting: #numberOfSpacesInIndent)
 		label: 'Number of spaces in indent';
-		description: 'the number of spaces representing an indentation if settingCharacter is set to space
+		description: 'Set the number of spaces representing an indentation if indentStyle is set to space.
 Exemple:
 aBoolean
      ifTrue:[^1]
@@ -663,7 +662,7 @@ BIEnlumineurFormatter class >> settingsOn: aBuilder [
 		label: 'Enlumineur Pretty Printer';
 		description: 'Settings related to automatic code formatting';
 		with: [ self settingsMaxLineLength: aBuilder.
-			self settingsFormatCommentWithExpression: aBuilder.
+			self settingsCommentCloseToStatement: aBuilder.
 			self settingsIndentStyle: aBuilder.
 			self settingsNumberOfSpacesInIndent: aBuilder.
 			self settingsIndentsForKeywords: aBuilder.
@@ -1061,7 +1060,7 @@ BIEnlumineurFormatter >> formatBlockArgumentsFor: aBlockNode [
 			(self isLineTooLongWithNode: each )ifTrue: [self newLine ].
 			codeStream nextPut: $:.
 			self visitNode: each.
-			self formatCommentWithStatements
+			self formatCommentCloseToStatements
 				ifTrue:
 					[ self spaceAndFormatComments: each ].
 			self space ].
@@ -1081,8 +1080,8 @@ BIEnlumineurFormatter >> formatBlockCommentFor: aBlockNode [
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> formatCommentWithStatements [
-	^ context formatCommentWithStatements
+BIEnlumineurFormatter >> formatCommentCloseToStatements [
+	^ context formatCommentCloseToStatements
 ]
 
 { #category : #accessing }
@@ -1247,7 +1246,7 @@ BIEnlumineurFormatter >> formatSingleArrayElement: aRBNode [
 BIEnlumineurFormatter >> formatStatementCommentsFor: aStatementNode [
 	originalSource isNil
 		ifTrue: [ ^ self ].
-	self formatCommentWithStatements
+	self formatCommentCloseToStatements
 		ifFalse: [ ^ self ].
 	aStatementNode statementComments
 		do:
@@ -1276,7 +1275,7 @@ BIEnlumineurFormatter >> formatTemporariesFor: aSequenceNode [
 				do:
 					[ :each | 
 					self visitNode: each.
-					self formatCommentWithStatements
+					self formatCommentCloseToStatements
 						ifTrue: [ self formatStatementCommentsFor: each ].
 					self space ] ].
 	self newLines: self newLinesAfterTemporaries
@@ -2144,7 +2143,7 @@ BIEnlumineurFormatter >> visitNode: aNode [
 			needsParenthesis
 				ifTrue: [ codeStream nextPutAll: self spacesInsideParentheses ].
 			super visitNode: aNode.
-			(self formatCommentWithStatements or: [ aNode isMethod or: [ aNode isSequence or: [ aNode isBlock ] ] ])
+			(self formatCommentCloseToStatements or: [ aNode isMethod or: [ aNode isSequence or: [ aNode isBlock ] ] ])
 				ifFalse: [  self spaceAndFormatComments: aNode. ].
 			needsParenthesis
 				ifTrue: [ codeStream nextPutAll: self spacesInsideParentheses ] ]

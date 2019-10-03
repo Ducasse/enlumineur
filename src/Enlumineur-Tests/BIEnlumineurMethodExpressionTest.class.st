@@ -1,11 +1,11 @@
 Class {
-	#name : #BIEnlumineurMethodeExpressionTest,
+	#name : #BIEnlumineurMethodExpressionTest,
 	#superclass : #BIEnlumineurTest,
 	#category : #'Enlumineur-Tests'
 }
 
 { #category : #configurations }
-BIEnlumineurMethodeExpressionTest >> basicCommentFormatConfiguration [
+BIEnlumineurMethodExpressionTest >> basicCommentFormatConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -21,7 +21,7 @@ BIEnlumineurMethodeExpressionTest >> basicCommentFormatConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurMethodeExpressionTest >> basicConfiguration [
+BIEnlumineurMethodExpressionTest >> basicConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -40,7 +40,7 @@ BIEnlumineurMethodeExpressionTest >> basicConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurMethodeExpressionTest >> bigMethodeConfiguration [
+BIEnlumineurMethodExpressionTest >> bigMethodeConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -73,7 +73,7 @@ BIEnlumineurMethodeExpressionTest >> bigMethodeConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurMethodeExpressionTest >> cascadeConfiguration [
+BIEnlumineurMethodExpressionTest >> cascadeConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -99,7 +99,7 @@ BIEnlumineurMethodeExpressionTest >> cascadeConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurMethodeExpressionTest >> newLineBetweenTopCommentsConfiguration [
+BIEnlumineurMethodExpressionTest >> newLineBetweenTopCommentsConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -118,7 +118,7 @@ BIEnlumineurMethodeExpressionTest >> newLineBetweenTopCommentsConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurMethodeExpressionTest >> noNewLineBetweenTopCommentsConfiguration [
+BIEnlumineurMethodExpressionTest >> noNewLineBetweenTopCommentsConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -134,7 +134,7 @@ BIEnlumineurMethodeExpressionTest >> noNewLineBetweenTopCommentsConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurMethodeExpressionTest >> noNewLinesAfterCommentConfiguration [
+BIEnlumineurMethodExpressionTest >> noNewLinesAfterCommentConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -150,7 +150,7 @@ BIEnlumineurMethodeExpressionTest >> noNewLinesAfterCommentConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurMethodeExpressionTest >> notBasicCommentFormatConfiguration [
+BIEnlumineurMethodExpressionTest >> notBasicCommentFormatConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -167,7 +167,7 @@ BIEnlumineurMethodeExpressionTest >> notBasicCommentFormatConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurMethodeExpressionTest >> oneNewLineAfterCommentConfiguration [
+BIEnlumineurMethodExpressionTest >> oneNewLineAfterCommentConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -184,7 +184,7 @@ BIEnlumineurMethodeExpressionTest >> oneNewLineAfterCommentConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurMethodeExpressionTest >> oneNewLinesAfterSignatureConfiguration [
+BIEnlumineurMethodExpressionTest >> oneNewLinesAfterSignatureConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -196,7 +196,7 @@ BIEnlumineurMethodeExpressionTest >> oneNewLinesAfterSignatureConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurMethodeExpressionTest >> signatureConfiguration [
+BIEnlumineurMethodExpressionTest >> signatureConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -210,7 +210,7 @@ BIEnlumineurMethodeExpressionTest >> signatureConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurMethodeExpressionTest >> signatureNotOnMultipleLinesConfiguration [
+BIEnlumineurMethodExpressionTest >> signatureNotOnMultipleLinesConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -225,7 +225,7 @@ BIEnlumineurMethodeExpressionTest >> signatureNotOnMultipleLinesConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurMethodeExpressionTest >> signatureOnMultipleLinesConfiguration [
+BIEnlumineurMethodExpressionTest >> signatureOnMultipleLinesConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -240,27 +240,47 @@ BIEnlumineurMethodeExpressionTest >> signatureOnMultipleLinesConfiguration [
 		indentExtraSpaces:0
 ]
 
+{ #category : #configurations }
+BIEnlumineurMethodExpressionTest >> spaceIndentConfiguration [
+	"Here we can control explicitely the configuration we want."
+
+	" String streamContents: [:s |
+			BIPrettyPrinterContext new storeOn: s]"
+
+	^ self contextClass basicNew
+		numberOfSpacesInIndent: 10; "pay attention since there are dependency."
+		indentStyle: #space;
+		formatCommentWithStatements:false;
+		useBasicCommentFormat: false;
+		maxLineLength: 50;
+		periodsAtEndOfBlock: false;
+		periodsAtEndOfMethod: false;
+		newLinesAfterMethodPattern: 1;
+		newLinesAfterMethodComment: 1;
+		indentExtraSpaces:0
+]
+
 { #category : #test }
-BIEnlumineurMethodeExpressionTest >> testBasic [
+BIEnlumineurMethodExpressionTest >> testBasic [
 	| expr source |
-	expr := RBParser parseMethod: 'aMethode <pragma> "aComment" body'.
+	expr := RBParser parseMethod: 'aMethod <pragma> "aComment" body'.
 	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
-'aMethode
+'aMethod
 	"aComment"
 	<pragma>
 	body'
 ]
 
 { #category : #test }
-BIEnlumineurMethodeExpressionTest >> testBasic2 [
+BIEnlumineurMethodExpressionTest >> testBasic2 [
 	| expr source |
-	expr := RBParser parseMethod: 'aMethode <pragma1> <pragma2> "aComment1" "aComment2"  body'.
+	expr := RBParser parseMethod: 'aMethod <pragma1> <pragma2> "aComment1" "aComment2"  body'.
 	configurationSelector := #newLineBetweenTopCommentsConfiguration.
 	source := self formatter format: expr.
 	self assert: source equals:
-'aMethode
+'aMethod
 	"aComment1"
 	"aComment2"
 	<pragma1>
@@ -269,7 +289,20 @@ BIEnlumineurMethodeExpressionTest >> testBasic2 [
 ]
 
 { #category : #test }
-BIEnlumineurMethodeExpressionTest >> testBigMethode [
+BIEnlumineurMethodExpressionTest >> testBasicSpaceIndent [
+	| expr source |
+	expr := RBParser parseMethod: 'aMethod <pragma> "aComment" body'.
+	configurationSelector := #spaceIndentConfiguration.
+	source := self formatter format: expr.
+	self assert: source equals:
+'aMethod
+          "aComment"
+          <pragma>
+          body'
+]
+
+{ #category : #test }
+BIEnlumineurMethodExpressionTest >> testBigMethod [
 	| expr source |
 	expr := RBParser parseMethod: 
 	'aMethode
@@ -298,7 +331,7 @@ BIEnlumineurMethodeExpressionTest >> testBigMethode [
 ]
 
 { #category : #test }
-BIEnlumineurMethodeExpressionTest >> testCommentBasicFormat [
+BIEnlumineurMethodExpressionTest >> testCommentBasicFormat [
 	| expr source |
 	expr := RBParser parseMethod: 'aMethode "   aComment   "'.
 	configurationSelector := #basicCommentFormatConfiguration.
@@ -310,7 +343,7 @@ BIEnlumineurMethodeExpressionTest >> testCommentBasicFormat [
 ]
 
 { #category : #test }
-BIEnlumineurMethodeExpressionTest >> testCommentNotBasicFormat [
+BIEnlumineurMethodExpressionTest >> testCommentNotBasicFormat [
 	| expr source |
 	expr := RBParser parseMethod: 'aMethode "   aComment   "'.
 	configurationSelector := #notBasicCommentFormatConfiguration.
@@ -322,7 +355,7 @@ BIEnlumineurMethodeExpressionTest >> testCommentNotBasicFormat [
 ]
 
 { #category : #test }
-BIEnlumineurMethodeExpressionTest >> testFormatBody [
+BIEnlumineurMethodExpressionTest >> testFormatBody [
 	| expr source |
 	expr := RBParser parseMethod: 'aMethode a:=1'.
 	configurationSelector := #basicConfiguration.
@@ -333,7 +366,7 @@ BIEnlumineurMethodeExpressionTest >> testFormatBody [
 ]
 
 { #category : #test }
-BIEnlumineurMethodeExpressionTest >> testIndentCascade [
+BIEnlumineurMethodExpressionTest >> testIndentCascade [
 	| expr source |
 	expr := RBParser parseMethod: 'aMethode	Transcript cr; show: ''foo'';	cr. Transcript cr;cr'.
 	configurationSelector := #cascadeConfiguration.
@@ -350,7 +383,7 @@ BIEnlumineurMethodeExpressionTest >> testIndentCascade [
 ]
 
 { #category : #test }
-BIEnlumineurMethodeExpressionTest >> testNewLinesAfterComment [
+BIEnlumineurMethodExpressionTest >> testNewLinesAfterComment [
 	| expr source |
 	expr := RBParser parseMethod: 'aMethode "aComment"'.
 	configurationSelector := #oneNewLineAfterCommentConfiguration.
@@ -363,7 +396,7 @@ BIEnlumineurMethodeExpressionTest >> testNewLinesAfterComment [
 ]
 
 { #category : #test }
-BIEnlumineurMethodeExpressionTest >> testNewLinesAfterComment2 [
+BIEnlumineurMethodExpressionTest >> testNewLinesAfterComment2 [
 	| expr source |
 	expr := RBParser parseMethod: 'aMethode "aComment" "anotherComment"'.
 	configurationSelector := #oneNewLineAfterCommentConfiguration.
@@ -378,7 +411,7 @@ BIEnlumineurMethodeExpressionTest >> testNewLinesAfterComment2 [
 ]
 
 { #category : #test }
-BIEnlumineurMethodeExpressionTest >> testNewLinesAfterGluedComment [
+BIEnlumineurMethodExpressionTest >> testNewLinesAfterGluedComment [
 	| expr source |
 	expr := RBParser parseMethod: 'aMethode"aComment""anotherComment"'.
 	configurationSelector := #oneNewLineAfterCommentConfiguration.
@@ -391,7 +424,7 @@ BIEnlumineurMethodeExpressionTest >> testNewLinesAfterGluedComment [
 ]
 
 { #category : #test }
-BIEnlumineurMethodeExpressionTest >> testNewLinesBetweenTopComments [
+BIEnlumineurMethodExpressionTest >> testNewLinesBetweenTopComments [
 	| expr source |
 	expr := RBParser parseMethod: 'aMethode "aComment" "anotherComment"'.
 	configurationSelector := #newLineBetweenTopCommentsConfiguration.
@@ -404,7 +437,7 @@ BIEnlumineurMethodeExpressionTest >> testNewLinesBetweenTopComments [
 ]
 
 { #category : #test }
-BIEnlumineurMethodeExpressionTest >> testNoNewLinesAfterComment [
+BIEnlumineurMethodExpressionTest >> testNoNewLinesAfterComment [
 	| expr source |
 	expr := RBParser parseMethod: 'aMethode "aComment"'.
 	configurationSelector := #basicCommentFormatConfiguration.
@@ -417,7 +450,7 @@ BIEnlumineurMethodeExpressionTest >> testNoNewLinesAfterComment [
 ]
 
 { #category : #test }
-BIEnlumineurMethodeExpressionTest >> testNoNewLinesAfterGluedComment [
+BIEnlumineurMethodExpressionTest >> testNoNewLinesAfterGluedComment [
 	| expr source |
 	expr := RBParser parseMethod: 'aMethode "aComment""anotherComment"'.
 	configurationSelector := #noNewLinesAfterCommentConfiguration.
@@ -430,7 +463,7 @@ BIEnlumineurMethodeExpressionTest >> testNoNewLinesAfterGluedComment [
 ]
 
 { #category : #test }
-BIEnlumineurMethodeExpressionTest >> testNoNewLinesAfterSignature [
+BIEnlumineurMethodExpressionTest >> testNoNewLinesAfterSignature [
 	| expr source |
 	expr := RBParser parseMethod: 'aMethode'.
 	configurationSelector := #signatureConfiguration.
@@ -441,7 +474,7 @@ BIEnlumineurMethodeExpressionTest >> testNoNewLinesAfterSignature [
 ]
 
 { #category : #test }
-BIEnlumineurMethodeExpressionTest >> testNoNewLinesBetweenTopComments [
+BIEnlumineurMethodExpressionTest >> testNoNewLinesBetweenTopComments [
 	| expr source |
 	expr := RBParser parseMethod: 'aMethode "aComment" "anotherComment"'.
 	configurationSelector := #noNewLineBetweenTopCommentsConfiguration.
@@ -453,7 +486,7 @@ BIEnlumineurMethodeExpressionTest >> testNoNewLinesBetweenTopComments [
 ]
 
 { #category : #test }
-BIEnlumineurMethodeExpressionTest >> testOneNewLinesAfterSignature [
+BIEnlumineurMethodExpressionTest >> testOneNewLinesAfterSignature [
 	| expr source |
 	expr := RBParser parseMethod: 'aMethode'.
 	configurationSelector := #oneNewLineAfterCommentConfiguration.
@@ -464,7 +497,7 @@ BIEnlumineurMethodeExpressionTest >> testOneNewLinesAfterSignature [
 ]
 
 { #category : #test }
-BIEnlumineurMethodeExpressionTest >> testPragma [
+BIEnlumineurMethodExpressionTest >> testPragma [
 	| expr source |
 	expr := RBParser parseMethod: 'aMethode <pragma>'.
 	configurationSelector := #notBasicCommentFormatConfiguration.
@@ -476,7 +509,7 @@ BIEnlumineurMethodeExpressionTest >> testPragma [
 ]
 
 { #category : #test }
-BIEnlumineurMethodeExpressionTest >> testSignatureNotOnMultipleLines [
+BIEnlumineurMethodExpressionTest >> testSignatureNotOnMultipleLines [
 	| expr source |
 	expr := RBParser parseMethod: 'aMethode:arg1 foo:arg2'.
 	configurationSelector := #signatureNotOnMultipleLinesConfiguration.
@@ -487,7 +520,7 @@ BIEnlumineurMethodeExpressionTest >> testSignatureNotOnMultipleLines [
 ]
 
 { #category : #test }
-BIEnlumineurMethodeExpressionTest >> testSignatureOnMultipleLines [
+BIEnlumineurMethodExpressionTest >> testSignatureOnMultipleLines [
 	| expr source |
 	expr := RBParser parseMethod: 'aMethode: arg1 foo:arg2'.
 	configurationSelector := #signatureOnMultipleLinesConfiguration.
@@ -499,7 +532,7 @@ BIEnlumineurMethodeExpressionTest >> testSignatureOnMultipleLines [
 ]
 
 { #category : #test }
-BIEnlumineurMethodeExpressionTest >> testSignatureWithArgument [
+BIEnlumineurMethodExpressionTest >> testSignatureWithArgument [
 	| expr source |
 	expr := RBParser parseMethod: 'aMethode:arg'.
 	configurationSelector := #signatureNotOnMultipleLinesConfiguration.
@@ -510,7 +543,7 @@ BIEnlumineurMethodeExpressionTest >> testSignatureWithArgument [
 ]
 
 { #category : #test }
-BIEnlumineurMethodeExpressionTest >> testSignatureWithoutArgument [
+BIEnlumineurMethodExpressionTest >> testSignatureWithoutArgument [
 	| expr source |
 	expr := RBParser parseMethod: 'aMethode'.
 	configurationSelector := #basicConfiguration.
@@ -521,7 +554,7 @@ BIEnlumineurMethodeExpressionTest >> testSignatureWithoutArgument [
 ]
 
 { #category : #test }
-BIEnlumineurMethodeExpressionTest >> testTwoNewLinesAfterSignature [
+BIEnlumineurMethodExpressionTest >> testTwoNewLinesAfterSignature [
 	| expr source |
 	expr := RBParser parseMethod: 'aMethode'.
 	configurationSelector := #twoNewLinesAfterSignatureConfiguration.
@@ -534,7 +567,7 @@ BIEnlumineurMethodeExpressionTest >> testTwoNewLinesAfterSignature [
 ]
 
 { #category : #configurations }
-BIEnlumineurMethodeExpressionTest >> twoNewLinesAfterSignatureConfiguration [
+BIEnlumineurMethodExpressionTest >> twoNewLinesAfterSignatureConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
