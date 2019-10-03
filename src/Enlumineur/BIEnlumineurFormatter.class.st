@@ -121,6 +121,14 @@ BIEnlumineurFormatter class >> isPrettyPrinter [
 
 { #category : #accessing }
 BIEnlumineurFormatter class >> keepBlockInMessage [
+	"Return a boolean for 
+		1 to: 4 do: [ :i | 
+			
+	vs. 
+	
+		1 to: 4 do: 
+			[ :i |"
+		
 	^ DefaultPrettyPrintContext keepBlockInMessage
 ]
 
@@ -447,7 +455,7 @@ BIEnlumineurFormatter class >> settingsIndentsForKeywords: aBuilder [
 	
 	(aBuilder setting: #indentsForKeywords)
 		label: 'Indents for keywords';
-		description: 'Number of indentations before each keywords of a multiline message. 
+		description: 'Number of indentations before each keyword of a multiline message. 
 For example:
 aBoolean:
 		ifTrue:[^1]
@@ -460,19 +468,21 @@ BIEnlumineurFormatter class >> settingsKeepBlockInMessage: aBuilder [
 	
 	(aBuilder setting: #keepBlockInMessage)
 		label: 'Keep block in message';
-		description: 'keep the begining of the block on the line of the message
-Example:
+		description: 'Keep the begining of the block on the line of the message
+
+When keepBlockInMessage is true: 
 1 to: 4 do: [ :i | 
 		Transcript
 			show: i;cr]
-		is the result for true
 		
+
+When keepBlockInMessage is false: 		
 1 to: 4 do:
 	[ :i | 
 	Transcript
 		show: i;
 		cr ]
-		is the result for false'.
+'.
 ]
 
 { #category : #settings }
@@ -1477,6 +1487,14 @@ BIEnlumineurFormatter >> isNonEmptySingleLineBlock: aBlockNode [
 
 { #category : #accessing }
 BIEnlumineurFormatter >> keepBlockInMessage [
+	"Return a boolean for 
+		1 to: 4 do: [ :i | 
+			
+	vs. 
+	
+		1 to: 4 do: 
+			[ :i |"
+			
 	^ context keepBlockInMessage
 ]
 

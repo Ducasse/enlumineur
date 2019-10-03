@@ -79,6 +79,28 @@ BIEnlumineurBlockExpressionTest >> configurationWithThreeSpaces [
 ]
 
 { #category : #configurations }
+BIEnlumineurBlockExpressionTest >> doNotKeepBlockInMessageConfiguration [
+
+	^ self contextClass basicNew
+		numberOfSpacesInsideBlock: 1;
+		periodsAtEndOfBlock: false;
+		periodsAtEndOfMethod: false;
+		lineUpBlockBrackets: false;
+		indentStyle: #tabulation;
+		keepBlockInMessage: false;
+		retainBlankLinesBetweenStatements: false;
+		minimumNewLinesBetweenStatements: 1;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine: 5;
+		indentsForKeywords: 1;
+		newLineBeforeFirstKeyword: false;
+		formatCommentWithStatements: true;
+		maxLineLength: 50;
+		indentExtraSpaces: 0
+]
+
+{ #category : #configurations }
 BIEnlumineurBlockExpressionTest >> dontFormatCommentWithStatementConfiguration [
 
 	^ self contextClass basicNew
@@ -411,6 +433,18 @@ BIEnlumineurBlockExpressionTest >> testArgumentsComments [
 		validate:':i "aComment" :j "anotherComment"| i '
 		isFormattedAs:
 ' :i "aComment" :j "anotherComment" | i '
+]
+
+{ #category : #test }
+BIEnlumineurBlockExpressionTest >> testDoNotKeepBlockInMessageConfiguration [
+	
+	self validate: ':i | i to: 10 do: [:j | Transcript show:i. Transcript show: j]'
+		isFormattedAs: ' :i | 
+i to: 10 do:
+	[ :j | 
+	Transcript show: i.
+	Transcript show: j ] '
+	with: #doNotKeepBlockInMessageConfiguration.
 ]
 
 { #category : #test }
