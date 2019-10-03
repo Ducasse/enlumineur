@@ -20,7 +20,6 @@ Class {
 		'newLineAfterCascade',
 		'newLineBeforeFirstCascade',
 		'newLineBeforeFirstKeyword',
-		'newLinesAfterMethodPattern',
 		'newLinesAfterTemporaries',
 		'numberOfArgumentsForMultiLine',
 		'oneLineMessages',
@@ -46,7 +45,8 @@ Class {
 		'numberOfSpacesInsideArray',
 		'numberOfSpacesBeforeDotInDynamicArray',
 		'spacesBeforeDotInDynamicArray',
-		'numberOfNewLinesAfterMethodComment'
+		'numberOfNewLinesAfterMethodComment',
+		'newLinesAfterMethodSignature'
 	],
 	#category : #'Enlumineur-Core'
 }
@@ -134,7 +134,7 @@ BIEnlumineurContext >> initialize [
 	newLineBeforeFirstCascade := true.
 	newLineBeforeFirstKeyword := true.
 	numberOfNewLinesAfterMethodComment := 2.
-	newLinesAfterMethodPattern := 1.
+	newLinesAfterMethodSignature := 1.
 	newLinesAfterTemporaries := 1.
 	numberOfArgumentsForMultiLine := 4.
 	oneLineMessages := #(#to: #to:do: #to:by: #to:by:do:).
@@ -254,26 +254,6 @@ BIEnlumineurContext >> newLineBeforeFirstKeyword: aBoolean [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> newLinesAfterMethodPattern [
-	^ newLinesAfterMethodPattern
-]
-
-{ #category : #accessing }
-BIEnlumineurContext >> newLinesAfterMethodPattern: aBoolean [
-	newLinesAfterMethodPattern := aBoolean
-]
-
-{ #category : #accessing }
-BIEnlumineurContext >> newLinesAfterTemporaries [
-	^ newLinesAfterTemporaries
-]
-
-{ #category : #accessing }
-BIEnlumineurContext >> newLinesAfterTemporaries: anInteger [
-	newLinesAfterTemporaries := anInteger
-]
-
-{ #category : #accessing }
 BIEnlumineurContext >> numberOfArgumentsForMultiLine [
 	^ numberOfArgumentsForMultiLine
 ]
@@ -291,6 +271,26 @@ BIEnlumineurContext >> numberOfNewLinesAfterMethodComment [
 { #category : #accessing }
 BIEnlumineurContext >> numberOfNewLinesAfterMethodComment: aBoolean [
 	numberOfNewLinesAfterMethodComment := aBoolean
+]
+
+{ #category : #accessing }
+BIEnlumineurContext >> numberOfNewLinesAfterMethodSignature [
+	^ newLinesAfterMethodSignature
+]
+
+{ #category : #accessing }
+BIEnlumineurContext >> numberOfNewLinesAfterMethodSignature: aBoolean [
+	newLinesAfterMethodSignature := aBoolean
+]
+
+{ #category : #accessing }
+BIEnlumineurContext >> numberOfNewLinesAfterTemporaries [
+	^ newLinesAfterTemporaries
+]
+
+{ #category : #accessing }
+BIEnlumineurContext >> numberOfNewLinesAfterTemporaries: anInteger [
+	newLinesAfterTemporaries := anInteger
 ]
 
 { #category : #accessing }

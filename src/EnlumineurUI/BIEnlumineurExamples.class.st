@@ -14,10 +14,10 @@ Class {
 BIEnlumineurExamples class >> bigExamplesSettingsTable [
 	^ {(#bigExample:withMethodSignatureOnMultipleLinesExample:
 		->
-			#(#formatCommentCloseToStatements #indentsForKeywords #lineUpBlockBrackets #methodSignatureOnMultipleLines #multiLineMessages #newLineAfterCascade #newLineBeforeFirstCascade #newLineBeforeFirstKeyword #numberOfNewLinesAfterMethodComment #newLinesAfterTemporaries #numberOfArgumentsForMultiLine #oneLineMessages #retainBlankLinesBeforeComments #selectorAndArgumentCombinedMaxSize #useBasicCommentFormat #numberOfSpacesAfterCaretSymbolInReturn #minimumNewLinesBetweenStatements #newLinesAfterMethodPattern #periodsAtEndOfBlock #periodsAtEndOfMethod #retainBlankLinesBetweenStatements #numberOfSpacesInsideBlock #numberOfSpacesInIndent #indentStyle)).
+			#(#formatCommentCloseToStatements #indentsForKeywords #lineUpBlockBrackets #methodSignatureOnMultipleLines #multiLineMessages #newLineAfterCascade #newLineBeforeFirstCascade #newLineBeforeFirstKeyword #numberOfNewLinesAfterMethodComment #numberOfNewLinesAfterTemporaries #numberOfArgumentsForMultiLine #oneLineMessages #retainBlankLinesBeforeComments #selectorAndArgumentCombinedMaxSize #useBasicCommentFormat #numberOfSpacesAfterCaretSymbolInReturn #minimumNewLinesBetweenStatements #numberOfNewLinesAfterMethodSignature #periodsAtEndOfBlock #periodsAtEndOfMethod #retainBlankLinesBetweenStatements #numberOfSpacesInsideBlock #numberOfSpacesInIndent #indentStyle)).
 	(#bigExample:
 		->
-			#(#keepBlockInMessage #maxLineLength #useTraditionalBinaryPrecedenceForParentheses #traditionalBinaryPrecedenceArray #numberOfSpacesInsideParentheses #numberOfSpacesInsideArray #minimumNewLinesBetweenStatements #newLinesAfterMethodPattern #periodsAtEndOfBlock #periodsAtEndOfMethod #retainBlankLinesBetweenStatements #numberOfSpacesInsideBlock #numberOfSpacesInIndent #indentStyle))}
+			#(#keepBlockInMessage #maxLineLength #useTraditionalBinaryPrecedenceForParentheses #traditionalBinaryPrecedenceArray #numberOfSpacesInsideParentheses #numberOfSpacesInsideArray #minimumNewLinesBetweenStatements #numberOfNewLinesAfterMethodSignature #periodsAtEndOfBlock #periodsAtEndOfMethod #retainBlankLinesBetweenStatements #numberOfSpacesInsideBlock #numberOfSpacesInIndent #indentStyle))}
 ]
 
 { #category : #settings }
@@ -337,8 +337,8 @@ BIEnlumineurExamples class >> initializeSettingsTable [
 		#newLineBeforeFirstCascade -> #cascadeExample.
 		#newLineBeforeFirstKeyword -> #messageWithALotOfParameters.
 		#numberOfNewLinesAfterMethodComment -> #newLinesExample.
-		#newLinesAfterMethodPattern -> #newLinesExample.
-		#newLinesAfterTemporaries -> #newLinesExample.
+		#numberOfNewLinesAfterMethodSignature -> #newLinesExample.
+		#numberOfNewLinesAfterTemporaries -> #newLinesExample.
 		#numberOfArgumentsForMultiLine -> #messageWithALotOfParameters.
 		#oneLineMessages.
 		#periodsAtEndOfBlock -> #blockExample.
@@ -839,8 +839,8 @@ BIEnlumineurExamples >> initializeSettingsTable [
 		#newLineBeforeFirstCascade -> #cascadeExample.
 		#newLineBeforeFirstKeyword -> #messageWithALotOfParameters.
 		#numberOfNewLinesAfterMethodComment -> #newLinesExample.
-		#newLinesAfterMethodPattern -> #newLinesExample.
-		#newLinesAfterTemporaries -> #newLinesExample.
+		#numberOfNewLinesAfterMethodSignature -> #newLinesExample.
+		#numberOfNewLinesAfterTemporaries -> #newLinesExample.
 		#numberOfArgumentsForMultiLine -> #messageWithALotOfParameters.
 		#oneLineMessages.
 		#periodsAtEndOfBlock -> #blockExample.
@@ -988,7 +988,7 @@ BIEnlumineurExamples >> parenthesesExample [
 BIEnlumineurExamples >> parenthesizedExpresssionWithCascade: aBuilder [
 
 
-	(aBuilder setting: #newLinesAfterMethodPattern)
+	(aBuilder setting: #numberOfNewLinesAfterMethodSignature)
 		label: 'New lines after method signature';
 		description:
 			'number of new lines after the method signature
@@ -997,7 +997,7 @@ myMethode: arg
 
 	^ true
 is the result for 2 new lines'.
-	(aBuilder setting: #newLinesAfterMethodPattern)
+	(aBuilder setting: #numberOfNewLinesAfterMethodSignature)
 		label: 'New lines after method signature';
 		description:
 			'number of new lines after the method signature

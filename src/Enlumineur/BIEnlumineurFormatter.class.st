@@ -227,28 +227,6 @@ BIEnlumineurFormatter class >> newLineBeforeFirstKeyword: aBoolean [
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> newLinesAfterMethodPattern [
-	^ DefaultPrettyPrintContext newLinesAfterMethodPattern
-]
-
-{ #category : #accessing }
-BIEnlumineurFormatter class >> newLinesAfterMethodPattern: anInteger [
-	DefaultPrettyPrintContext newLinesAfterMethodPattern: anInteger.
-	self announceASettingChange
-]
-
-{ #category : #accessing }
-BIEnlumineurFormatter class >> newLinesAfterTemporaries [
-	^ DefaultPrettyPrintContext newLinesAfterTemporaries
-]
-
-{ #category : #accessing }
-BIEnlumineurFormatter class >> newLinesAfterTemporaries: anInteger [
-	DefaultPrettyPrintContext newLinesAfterTemporaries: anInteger.
-	self announceASettingChange
-]
-
-{ #category : #accessing }
 BIEnlumineurFormatter class >> numberOfArgumentsForMultiLine [
 	^ DefaultPrettyPrintContext numberOfArgumentsForMultiLine
 ]
@@ -267,6 +245,28 @@ BIEnlumineurFormatter class >> numberOfNewLinesAfterMethodComment [
 { #category : #accessing }
 BIEnlumineurFormatter class >> numberOfNewLinesAfterMethodComment: anInteger [
 	DefaultPrettyPrintContext numberOfNewLinesAfterMethodComment: anInteger.
+	self announceASettingChange
+]
+
+{ #category : #accessing }
+BIEnlumineurFormatter class >> numberOfNewLinesAfterMethodSignature [
+	^ DefaultPrettyPrintContext numberOfNewLinesAfterMethodSignature
+]
+
+{ #category : #accessing }
+BIEnlumineurFormatter class >> numberOfNewLinesAfterMethodSignature: anInteger [
+	DefaultPrettyPrintContext numberOfNewLinesAfterMethodSignature: anInteger.
+	self announceASettingChange
+]
+
+{ #category : #accessing }
+BIEnlumineurFormatter class >> numberOfNewLinesAfterTemporaries [
+	^ DefaultPrettyPrintContext numberOfNewLinesAfterTemporaries
+]
+
+{ #category : #accessing }
+BIEnlumineurFormatter class >> numberOfNewLinesAfterTemporaries: anInteger [
+	DefaultPrettyPrintContext numberOfNewLinesAfterTemporaries: anInteger.
 	self announceASettingChange
 ]
 
@@ -434,7 +434,7 @@ When formatCommentCloseToStatements is set to true
  1+1."We do an addition" 2+2
 
 When formatCommentCloseToStatements is set to false
- 1+1"We do an addition". 2+2'.
+ 1+1"We do an addition". 2+2'
 ]
 
 { #category : #settings }
@@ -447,7 +447,7 @@ BIEnlumineurFormatter class >> settingsIndentStyle: aBuilder [
 Exemple:
 aBoolean
 	ifTrue:[^1]
-	ifFalse:[^0] is the result for tabulation.'.
+	ifFalse:[^0] is the result for tabulation.'
 ]
 
 { #category : #settings }
@@ -460,7 +460,7 @@ For example:
 aBoolean:
 		ifTrue:[^1]
 		ifFalse:[^0]
-is the result for 2 indents'.
+is the result for 2 indents'
 ]
 
 { #category : #settings }
@@ -482,7 +482,7 @@ When keepBlockInMessage is false:
 	Transcript
 		show: i;
 		cr ]
-'.
+'
 ]
 
 { #category : #settings }
@@ -494,7 +494,7 @@ BIEnlumineurFormatter class >> settingsMaxLineLength: aBuilder [
 For example:
 1 + 2 + 3 + 4
 	+ 5 + 6
-is the result for 14'.
+is the result for 14'
 ]
 
 { #category : #settings }
@@ -510,7 +510,7 @@ For example: the method myMethod:foo: will be shown as
 myMethod: arg1
 	foo: arg2
 
-is the result of having methodSignatureOnMultipleLines set to true and selectorAndArgumentCombinedMaxSize set to 6'.
+is the result of having methodSignatureOnMultipleLines set to true and selectorAndArgumentCombinedMaxSize set to 6'
 ]
 
 { #category : #settings }
@@ -540,7 +540,7 @@ Example:
 aBoolean
 	ifTrue: [ 1 ]
 	ifFalse: [ 0 ]
-is the result if #ifTrue:ifFalse is in the array'.
+is the result if #ifTrue:ifFalse is in the array'
 ]
 
 { #category : #settings }
@@ -561,7 +561,7 @@ OrderedCollection new
 	add: 1;
 	add: 2;
 	add: 3
-'.
+'
 ]
 
 { #category : #settings }
@@ -583,7 +583,7 @@ OrderedCollection new
 	add: 1;
 	add: 2;
 	add: 3
-'.
+'
 ]
 
 { #category : #settings }
@@ -603,7 +603,7 @@ When newLineBeforeFirstKeyword is set to false
 
 1 between: 0 and: 4
 
-'.
+'
 ]
 
 { #category : #settings }
@@ -615,7 +615,7 @@ BIEnlumineurFormatter class >> settingsNewLinesAfterMethodComment: aBuilder [
 		
 When numberOfNewLinesAfterMethodComment is set to 2
 
-myMethode
+myMethod
 	"myComment"
 
 	^ true
@@ -625,28 +625,30 @@ myMethode
 { #category : #settings }
 BIEnlumineurFormatter class >> settingsNewLinesAfterMethodSignature: aBuilder [
 
-	(aBuilder setting: #newLinesAfterMethodPattern)
+	(aBuilder setting: #numberOfNewLinesAfterMethodSignature)
 		label: 'New lines after method signature';
-		description: 'number of new lines after the method signature
-Example:
-myMethode: arg
+		description: 'To set the number of new lines directly after the method signature.
+When numberOfNewLinesAfterMethodSignature is set to 2 new lines
+
+myMethod: arg
 
 	^ true
-is the result for 2 new lines'
+'
 ]
 
 { #category : #settings }
 BIEnlumineurFormatter class >> settingsNewLinesAfterTemporaries: aBuilder [
 
-	(aBuilder setting: #newLinesAfterTemporaries)
+	(aBuilder setting: #numberOfNewLinesAfterTemporaries)
 		label: 'New lines after temporaries';
-		description: 'number of new lines after the temporaries declaration
-Example:
-myMethode
+		description: 'To set the number of new lines after the temporaries declaration.
+
+For example setting numberOfNewLinesAfterTemporaries to 2 produces
+myMethod
 	| a |
 
 	a := 1
-is the result for 2 new lines'
+'
 ]
 
 { #category : #settings }
@@ -654,13 +656,14 @@ BIEnlumineurFormatter class >> settingsNumberOfArgumentsForMultiLine: aBuilder [
 	
 	(aBuilder setting: #numberOfArgumentsForMultiLine)
 		label: 'Number of arguments for multiLine';
-		description: 'Number of argument a message must have to be considered multiline. 
-For example:
+		description: 'To set the number of argument that a message must have to be considered as a multiline message. 
+
+For example when set to 2 we obtain
+
 1
 	between: 0
 	and: 5
-	
- is the result if the setting is set to 2'.
+'
 ]
 
 { #category : #settings }
@@ -669,11 +672,13 @@ BIEnlumineurFormatter class >> settingsNumberOfSpacesInIndent:aBuilder [
 	(aBuilder setting: #numberOfSpacesInIndent)
 		label: 'Number of spaces in indent';
 		description: 'Set the number of spaces representing an indentation if indentStyle is set to space.
-Exemple:
+
+The following is the result for 5.
+
 aBoolean
-     ifTrue:[^1]
-     ifFalse:[^0]
-is the result for 5'.
+     ifTrue:[ 1 ]
+     ifFalse:[ 0 ]
+'
 ]
 
 { #category : #settings }
@@ -724,7 +729,7 @@ BIEnlumineurFormatter class >> settingsOneLineMessages: aBuilder [
 		label: 'One line messages';
 		description: 'An array containing all the messages that should be written on one line
 Example:
-1 to: 4 do: [ :i | Transcript show: i ] is the result if #to:do: is in the array'.
+1 to: 4 do: [ :i | Transcript show: i ] is the result if #to:do: is in the array'
 ]
 
 { #category : #settings }
@@ -1145,7 +1150,7 @@ BIEnlumineurFormatter >> formatMethodBodyFor: aMethodNode [
 	self
 		indentAround:
 			[ 
-			self newLines: self newLinesAfterMethodPattern.
+			self newLines: self numberOfNewLinesAfterMethodSignature.
 			self formatMethodCommentFor: aMethodNode.
 			self formatPragmasFor: aMethodNode.
 			self visitNode: aMethodNode body ]
@@ -1302,7 +1307,7 @@ BIEnlumineurFormatter >> formatTemporariesFor: aSequenceNode [
 					self formatCommentCloseToStatements
 						ifTrue: [ self formatStatementCommentsFor: each ].
 					self space ] ].
-	self newLines: self newLinesAfterTemporaries
+	self newLines: self numberOfNewLinesAfterTemporaries
 ]
 
 { #category : #private }
@@ -1707,26 +1712,6 @@ BIEnlumineurFormatter >> newLines: anInteger [
 		indentTimesRepeat: self indent
 ]
 
-{ #category : #accessing }
-BIEnlumineurFormatter >> newLinesAfterMethodPattern [
-	^ context newLinesAfterMethodPattern
-]
-
-{ #category : #accessing }
-BIEnlumineurFormatter >> newLinesAfterMethodPattern: anInteger [
-	context newLinesAfterMethodPattern: anInteger
-]
-
-{ #category : #accessing }
-BIEnlumineurFormatter >> newLinesAfterTemporaries [
-	^ context newLinesAfterTemporaries
-]
-
-{ #category : #accessing }
-BIEnlumineurFormatter >> newLinesAfterTemporaries: anInteger [
-	context newLinesAfterTemporaries: anInteger
-]
-
 { #category : #private }
 BIEnlumineurFormatter >> newLinesBeforeStartingAt: anIndex [
 	| count cr lf index char |
@@ -1768,6 +1753,26 @@ BIEnlumineurFormatter >> numberOfNewLinesAfterMethodComment [
 { #category : #accessing }
 BIEnlumineurFormatter >> numberOfNewLinesAfterMethodComment: anInteger [
 	context numberOfNewLinesAfterMethodComment: anInteger
+]
+
+{ #category : #accessing }
+BIEnlumineurFormatter >> numberOfNewLinesAfterMethodSignature [
+	^ context numberOfNewLinesAfterMethodSignature
+]
+
+{ #category : #accessing }
+BIEnlumineurFormatter >> numberOfNewLinesAfterMethodSignature: anInteger [
+	context numberOfNewLinesAfterMethodSignature: anInteger
+]
+
+{ #category : #accessing }
+BIEnlumineurFormatter >> numberOfNewLinesAfterTemporaries [
+	^ context numberOfNewLinesAfterTemporaries
+]
+
+{ #category : #accessing }
+BIEnlumineurFormatter >> numberOfNewLinesAfterTemporaries: anInteger [
+	context numberOfNewLinesAfterTemporaries: anInteger
 ]
 
 { #category : #accessing }

@@ -15,7 +15,7 @@ BIEnlumineurTemporariesExpressionTest >> basicCommentFormatConfiguration [
 	useBasicCommentFormat: true;
 	formatCommentWithStatements:true;
 	indentStyle: #tabulation;
-	newLinesAfterTemporaries:0;
+	numberOfNewLinesAfterTemporaries:0;
 	retainBlankLinesBeforeComments:false;
 	indentExtraSpaces:0
 ]
@@ -26,7 +26,7 @@ BIEnlumineurTemporariesExpressionTest >> commentWithStatementsConfiguration [
 	^ self contextClass basicNew
 		formatCommentWithStatements:true;
 		indentStyle: #tabulation;
-		newLinesAfterTemporaries:0;
+		numberOfNewLinesAfterTemporaries:0;
 		retainBlankLinesBeforeComments:false;
 		useBasicCommentFormat:false;
 		maxLineLength:50;
@@ -45,7 +45,7 @@ BIEnlumineurTemporariesExpressionTest >> dontRetainBlankLinesBeforeComments [
 		useBasicCommentFormat: false;
 		formatCommentWithStatements:false;
 		indentStyle: #tabulation;
-		newLinesAfterTemporaries:0;
+		numberOfNewLinesAfterTemporaries:0;
 		indentExtraSpaces:0
 ]
 
@@ -57,7 +57,7 @@ BIEnlumineurTemporariesExpressionTest >> newLinesAfterTemporariesConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 		
 	^ self contextClass basicNew
-		newLinesAfterTemporaries: 1;
+		numberOfNewLinesAfterTemporaries: 1;
 		useBasicCommentFormat: false;
 		formatCommentWithStatements:false;
 		indentStyle: #tabulation;
@@ -73,7 +73,7 @@ BIEnlumineurTemporariesExpressionTest >> noNewLinesAfterTemporariesConfiguration
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-		newLinesAfterTemporaries: 0;
+		numberOfNewLinesAfterTemporaries: 0;
 		useBasicCommentFormat: false;
 		formatCommentWithStatements:false;
 		indentStyle: #tabulation;
@@ -92,7 +92,7 @@ BIEnlumineurTemporariesExpressionTest >> notBasicCommentFormatConfiguration [
 		useBasicCommentFormat: false;
 		formatCommentWithStatements:true;
 		indentStyle: #tabulation;
-		newLinesAfterTemporaries:0;
+		numberOfNewLinesAfterTemporaries:0;
 		retainBlankLinesBeforeComments:false;
 		maxLineLength: 50;
 		indentExtraSpaces:0
@@ -105,7 +105,7 @@ BIEnlumineurTemporariesExpressionTest >> retainBlankLinesBeforeComments [
 	" String streamContents: [:s |
 			BIPrettyPrinterContext new storeOn: s]"
 	^ self contextClass basicNew
-		newLinesAfterTemporaries: 1;
+		numberOfNewLinesAfterTemporaries: 1;
 		useBasicCommentFormat: false;
 		formatCommentWithStatements:true;
 		maxLineLength:50;
@@ -273,7 +273,7 @@ BIEnlumineurTemporariesExpressionTest >> twoLinesAfterTemporariesConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 		
 	^ self contextClass basicNew
-		newLinesAfterTemporaries: 2;
+		numberOfNewLinesAfterTemporaries: 2;
 		useBasicCommentFormat: false;
 		formatCommentWithStatements:false;
 		indentStyle: #tabulation;

@@ -47,7 +47,7 @@ BIEnlumineurBlockExpressionTest >> blockWithTemporariesConfiguration [
 		newLineAfterCascade:true;
 		newLineBeforeFirstCascade: true;
 		indentStyle: #tabulation;
-		newLinesAfterTemporaries: 1;
+		numberOfNewLinesAfterTemporaries: 1;
 		indentExtraSpaces:0
 ]
 

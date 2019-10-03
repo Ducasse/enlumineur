@@ -10,7 +10,7 @@ BIEnlumineurSequenceExpressionTest >> basicConfiguration [
 	^ self contextClass basicNew
 		formatCommentWithStatements:true;
 		indentStyle: #tabulation;
-		newLinesAfterTemporaries:0;
+		numberOfNewLinesAfterTemporaries:0;
 		retainBlankLinesBeforeComments:false;
 		useBasicCommentFormat:false;
 		maxLineLength:50;
@@ -27,7 +27,7 @@ BIEnlumineurSequenceExpressionTest >> dontFormatCommentWithStatementConfiguratio
 	^ self contextClass basicNew
 		formatCommentWithStatements:false;
 		indentStyle: #tabulation;
-		newLinesAfterTemporaries:0;
+		numberOfNewLinesAfterTemporaries:0;
 		retainBlankLinesBeforeComments:false;
 		useBasicCommentFormat:false;
 		maxLineLength:50;
@@ -57,7 +57,7 @@ BIEnlumineurSequenceExpressionTest >> dontRetainBlankLinesBeforeCommentsConfigur
 		retainBlankLinesBeforeComments:false;
 		formatCommentWithStatements:true;
 		indentStyle: #tabulation;
-		newLinesAfterTemporaries:0;
+		numberOfNewLinesAfterTemporaries:0;
 		useBasicCommentFormat:false;
 		maxLineLength:50;
 		retainBlankLinesBetweenStatements:false;
@@ -79,7 +79,7 @@ BIEnlumineurSequenceExpressionTest >> dontRetainBlankLinesBetweenStatementsConfi
 		retainBlankLinesBeforeComments:false;
 		formatCommentWithStatements:true;
 		indentStyle: #tabulation;
-		newLinesAfterTemporaries:0;
+		numberOfNewLinesAfterTemporaries:0;
 		useBasicCommentFormat:false;
 		maxLineLength:50;
 		minimumNewLinesBetweenStatements:0;
@@ -94,7 +94,7 @@ BIEnlumineurSequenceExpressionTest >> formatBlockConfiguration [
 	^ self contextClass basicNew
 		formatCommentWithStatements:false;
 		indentStyle: #tabulation;
-		newLinesAfterTemporaries:1;
+		numberOfNewLinesAfterTemporaries:1;
 		retainBlankLinesBeforeComments:false;
 		useBasicCommentFormat:false;
 		maxLineLength:50;
@@ -119,7 +119,7 @@ BIEnlumineurSequenceExpressionTest >> formatCommentWithStatementConfiguration [
 	^ self contextClass basicNew
 		formatCommentWithStatements:true;
 		indentStyle: #tabulation;
-		newLinesAfterTemporaries:0;
+		numberOfNewLinesAfterTemporaries:0;
 		retainBlankLinesBeforeComments:false;
 		useBasicCommentFormat:false;
 		maxLineLength:50;
@@ -142,7 +142,7 @@ BIEnlumineurSequenceExpressionTest >> newLineAfterStatementConfiguration [
 		minimumNewLinesBetweenStatements:1;
 		formatCommentWithStatements:true;
 		indentStyle: #tabulation;
-		newLinesAfterTemporaries:0;
+		numberOfNewLinesAfterTemporaries:0;
 		retainBlankLinesBeforeComments:false;
 		useBasicCommentFormat:false;
 		maxLineLength:50;
@@ -158,7 +158,7 @@ BIEnlumineurSequenceExpressionTest >> newLineAfterTemporariesConfiguration [
 	^ self contextClass basicNew
 		formatCommentWithStatements:true;
 		indentStyle: #tabulation;
-		newLinesAfterTemporaries:1;
+		numberOfNewLinesAfterTemporaries:1;
 		indentExtraSpaces:0
 ]
 
@@ -170,7 +170,7 @@ BIEnlumineurSequenceExpressionTest >> noPeriodAtEndOfMethodConfiguration [
 		periodsAtEndOfMethod:false;
 		formatCommentWithStatements:true;
 		indentStyle: #tabulation;
-		newLinesAfterTemporaries:0;
+		numberOfNewLinesAfterTemporaries:0;
 		retainBlankLinesBeforeComments:false;
 		useBasicCommentFormat:false;
 		maxLineLength:50;
@@ -197,7 +197,7 @@ BIEnlumineurSequenceExpressionTest >> periodAtEndOfMethodConfiguration [
 		periodsAtEndOfMethod:true;
 		formatCommentWithStatements:true;
 		indentStyle: #tabulation;
-		newLinesAfterTemporaries:0;
+		numberOfNewLinesAfterTemporaries:0;
 		retainBlankLinesBeforeComments:false;
 		useBasicCommentFormat:false;
 		maxLineLength:50;
@@ -223,7 +223,7 @@ BIEnlumineurSequenceExpressionTest >> retainBlankLinesBeforeCommentsConfiguratio
 		retainBlankLinesBeforeComments:true;
 		formatCommentWithStatements:true;
 		indentStyle: #tabulation;
-		newLinesAfterTemporaries:0;
+		numberOfNewLinesAfterTemporaries:0;
 		useBasicCommentFormat:false;
 		maxLineLength:50;
 		retainBlankLinesBetweenStatements:false;
@@ -245,7 +245,7 @@ BIEnlumineurSequenceExpressionTest >> retainBlankLinesBetweenStatementsConfigura
 		retainBlankLinesBeforeComments:false;
 		formatCommentWithStatements:true;
 		indentStyle: #tabulation;
-		newLinesAfterTemporaries:0;
+		numberOfNewLinesAfterTemporaries:0;
 		useBasicCommentFormat:false;
 		maxLineLength:50;
 		minimumNewLinesBetweenStatements:0;
