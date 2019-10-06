@@ -8,7 +8,7 @@ Class {
 BIEnlumineurVariableExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
-		formatCommentWithStatements:false
+		formatCommentCloseToStatements:false
 ]
 
 { #category : #tests }

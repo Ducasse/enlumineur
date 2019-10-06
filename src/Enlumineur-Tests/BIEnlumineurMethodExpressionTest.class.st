@@ -13,7 +13,7 @@ BIEnlumineurMethodExpressionTest >> basicCommentFormatConfiguration [
 
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
-		formatCommentWithStatements:false;
+		formatCommentCloseToStatements:false;
 		useBasicCommentFormat: true;
 		numberOfNewLinesAfterMethodSignature: 1;
 		numberOfNewLinesAfterMethodComment: 1;
@@ -29,7 +29,7 @@ BIEnlumineurMethodExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
-		formatCommentWithStatements:false;
+		formatCommentCloseToStatements:false;
 		useBasicCommentFormat: false;
 		maxLineLength: 50;
 		periodAtEndOfBlock: false;
@@ -48,7 +48,7 @@ BIEnlumineurMethodExpressionTest >> bigMethodeConfiguration [
 
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
-		formatCommentWithStatements: false;
+		formatCommentCloseToStatements: false;
 		useBasicCommentFormat: false;
 		maxLineLength: 50;
 		periodAtEndOfBlock: false;
@@ -81,7 +81,7 @@ BIEnlumineurMethodExpressionTest >> cascadeConfiguration [
 
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
-		formatCommentWithStatements:false;
+		formatCommentCloseToStatements:false;
 		useBasicCommentFormat: false;
 		maxLineLength: 50;
 		periodAtEndOfBlock: false;
@@ -107,7 +107,7 @@ BIEnlumineurMethodExpressionTest >> newLineBetweenTopCommentsConfiguration [
 
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
-		formatCommentWithStatements:false;
+		formatCommentCloseToStatements:false;
 		useBasicCommentFormat: false;
 		maxLineLength: 50;
 		periodAtEndOfBlock: false;
@@ -126,7 +126,7 @@ BIEnlumineurMethodExpressionTest >> noNewLineBetweenTopCommentsConfiguration [
 
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
-		formatCommentWithStatements:false;
+		formatCommentCloseToStatements:false;
 		useBasicCommentFormat: true;
 		numberOfNewLinesAfterMethodSignature: 1;
 		numberOfNewLinesAfterMethodComment: 0;
@@ -142,7 +142,7 @@ BIEnlumineurMethodExpressionTest >> noNewLinesAfterCommentConfiguration [
 
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
-		formatCommentWithStatements:false;
+		formatCommentCloseToStatements:false;
 		useBasicCommentFormat: true;
 		numberOfNewLinesAfterMethodSignature: 1;
 		numberOfNewLinesAfterMethodComment: 1;
@@ -158,7 +158,7 @@ BIEnlumineurMethodExpressionTest >> notBasicCommentFormatConfiguration [
 
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
-		formatCommentWithStatements:false;
+		formatCommentCloseToStatements:false;
 		useBasicCommentFormat: false;
 		maxLineLength: 50;	
 		numberOfNewLinesAfterMethodSignature: 1;
@@ -175,7 +175,7 @@ BIEnlumineurMethodExpressionTest >> oneNewLineAfterCommentConfiguration [
 
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
-		formatCommentWithStatements:false;
+		formatCommentCloseToStatements:false;
 		useBasicCommentFormat:false;
 		maxLineLength:50;
 		numberOfNewLinesAfterMethodSignature: 1;
@@ -192,7 +192,7 @@ BIEnlumineurMethodExpressionTest >> oneNewLinesAfterSignatureConfiguration [
 
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
-		formatCommentWithStatements:false
+		formatCommentCloseToStatements:false
 ]
 
 { #category : #configurations }
@@ -204,7 +204,7 @@ BIEnlumineurMethodExpressionTest >> signatureConfiguration [
 
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
-		formatCommentWithStatements:false;
+		formatCommentCloseToStatements:false;
 		numberOfNewLinesAfterMethodSignature: 1;
 		indentExtraSpaces:0
 ]
@@ -218,7 +218,7 @@ BIEnlumineurMethodExpressionTest >> signatureNotOnMultipleLinesConfiguration [
 
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
-		formatCommentWithStatements:false;
+		formatCommentCloseToStatements:false;
 		methodSignatureOnMultipleLines: false;
 		numberOfNewLinesAfterMethodSignature: 1;
 		indentExtraSpaces:0
@@ -233,7 +233,7 @@ BIEnlumineurMethodExpressionTest >> signatureOnMultipleLinesConfiguration [
 
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
-		formatCommentWithStatements:false;
+		formatCommentCloseToStatements:false;
 		methodSignatureOnMultipleLines: true;
 		selectorAndArgumentCombinedMaxSize: 2;
 		numberOfNewLinesAfterMethodSignature: 0;
@@ -250,7 +250,7 @@ BIEnlumineurMethodExpressionTest >> spaceIndentConfiguration [
 	^ self contextClass basicNew
 		numberOfSpacesInIndent: 10; "pay attention since there are dependency."
 		indentStyle: #space;
-		formatCommentWithStatements:false;
+		formatCommentCloseToStatements:false;
 		useBasicCommentFormat: false;
 		maxLineLength: 50;
 		periodAtEndOfBlock: false;
@@ -575,7 +575,7 @@ BIEnlumineurMethodExpressionTest >> twoNewLinesAfterSignatureConfiguration [
 
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
-		formatCommentWithStatements:false;
+		formatCommentCloseToStatements:false;
 		numberOfNewLinesAfterMethodSignature: 3;
 		indentExtraSpaces:0
 ]

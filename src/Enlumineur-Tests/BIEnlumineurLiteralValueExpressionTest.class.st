@@ -8,7 +8,7 @@ Class {
 BIEnlumineurLiteralValueExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
-		formatCommentWithStatements: false
+		formatCommentCloseToStatements: false
 		
 ]
 

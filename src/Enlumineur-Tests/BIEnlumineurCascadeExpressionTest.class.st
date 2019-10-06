@@ -8,7 +8,7 @@ Class {
 BIEnlumineurCascadeExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
-		formatCommentWithStatements:true;
+		formatCommentCloseToStatements:true;
 		newLineBeforeFirstCascade: false;
 		multiLineMessages: Array new;
 		oneLineMessages: Array new;
@@ -31,7 +31,7 @@ BIEnlumineurCascadeExpressionTest >> multilineMessageConfiguration [
 	^ self contextClass basicNew
 		newLineAfterCascade: true;
 		newLineBeforeFirstCascade: true;
-		formatCommentWithStatements:false;
+		formatCommentCloseToStatements:false;
 		multiLineMessages:#(#multi:line:);
 		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine:3;
@@ -63,7 +63,7 @@ BIEnlumineurCascadeExpressionTest >> newLineAfterCascadeConfiguration [
 	^ self contextClass basicNew
 		newLineAfterCascade: true;
 		newLineBeforeFirstCascade: false;
-		formatCommentWithStatements:false;
+		formatCommentCloseToStatements:false;
 		multiLineMessages: Array new;
 		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine:3;
@@ -84,7 +84,7 @@ BIEnlumineurCascadeExpressionTest >> newLineBeforeAndAfterCascadeConfiguration [
 	^ self contextClass basicNew
 		newLineAfterCascade: true;
 		newLineBeforeFirstCascade: true;
-		formatCommentWithStatements:false;
+		formatCommentCloseToStatements:false;
 		multiLineMessages: Array new;
 		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine:3;
@@ -105,7 +105,7 @@ BIEnlumineurCascadeExpressionTest >> newLineBeforeCascadeConfiguration [
 	^ self contextClass basicNew
 		newLineAfterCascade: false;
 		newLineBeforeFirstCascade: true;
-		formatCommentWithStatements:false;
+		formatCommentCloseToStatements:false;
 		multiLineMessages: Array new;
 		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine:3;
@@ -127,7 +127,7 @@ BIEnlumineurCascadeExpressionTest >> noNewLineAfterCascadeConfiguration [
 	^ self contextClass basicNew
 		newLineAfterCascade: false;
 		newLineBeforeFirstCascade: false;
-		formatCommentWithStatements:false;
+		formatCommentCloseToStatements:false;
 		multiLineMessages: Array new;
 		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine:3;
@@ -148,7 +148,7 @@ BIEnlumineurCascadeExpressionTest >> noNewLineBeforeCascadeConfiguration [
 	^ self contextClass basicNew
 		newLineAfterCascade: false;
 		newLineBeforeFirstCascade: false;
-		formatCommentWithStatements:false;
+		formatCommentCloseToStatements:false;
 		multiLineMessages: Array new;
 		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine:3;
@@ -163,7 +163,7 @@ BIEnlumineurCascadeExpressionTest >> noNewLineBeforeCascadeConfiguration [
 BIEnlumineurCascadeExpressionTest >> spaceIndentConfiguration [
 
 	^ self contextClass basicNew
-		formatCommentWithStatements:false;
+		formatCommentCloseToStatements:false;
 		newLineAfterCascade:true;
 		newLineBeforeFirstCascade: true;
 		multiLineMessages: Array new;
@@ -408,7 +408,7 @@ BIEnlumineurCascadeExpressionTest >> testTooLongArgument2 [
 BIEnlumineurCascadeExpressionTest >> tooLongArgumentConfiguration [
 
 	^ self contextClass basicNew
-		formatCommentWithStatements:true;
+		formatCommentCloseToStatements:true;
 		newLineBeforeFirstCascade: false;
 		multiLineMessages: Array new;
 		oneLineMessages: Array new;
@@ -423,7 +423,7 @@ BIEnlumineurCascadeExpressionTest >> tooLongArgumentConfiguration [
 { #category : #configurations }
 BIEnlumineurCascadeExpressionTest >> tooLongArgumentConfigurationWithNewLineAfterCascade [
 	^ self contextClass basicNew
-		formatCommentWithStatements:true;
+		formatCommentCloseToStatements:true;
 		newLineBeforeFirstCascade: false;
 		multiLineMessages: Array new;
 		oneLineMessages: Array new;

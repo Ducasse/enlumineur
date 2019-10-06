@@ -8,7 +8,7 @@ Class {
 BIEnlumineurLiteralArrayExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
-		formatCommentWithStatements:false;
+		formatCommentCloseToStatements:false;
 		numberOfSpacesInsideArray: 0;
 		indentStyle: #tabulation;
 		indentExtraSpaces: 0;
@@ -19,7 +19,7 @@ BIEnlumineurLiteralArrayExpressionTest >> basicConfiguration [
 BIEnlumineurLiteralArrayExpressionTest >> oneSpaceConfiguration [
 
 	^ self contextClass basicNew
-		formatCommentWithStatements:false;
+		formatCommentCloseToStatements:false;
 		numberOfSpacesInsideArray: 1;
 		indentStyle: #tabulation;
 		indentExtraSpaces: 0;
@@ -120,7 +120,7 @@ BIEnlumineurLiteralArrayExpressionTest >> testTwoSpacesInsideArray [
 BIEnlumineurLiteralArrayExpressionTest >> twoSpacesConfiguration [
 
 	^ self contextClass basicNew
-		formatCommentWithStatements:false;
+		formatCommentCloseToStatements:false;
 		numberOfSpacesInsideArray: 2;
 		indentStyle: #tabulation;
 		indentExtraSpaces: 0;

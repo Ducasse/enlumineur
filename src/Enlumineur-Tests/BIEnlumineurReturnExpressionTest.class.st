@@ -7,7 +7,7 @@ Class {
 { #category : #configuration }
 BIEnlumineurReturnExpressionTest >> basicConfiguration [
 	^ self contextClass basicNew
-		formatCommentWithStatements: false;
+		formatCommentCloseToStatements: false;
 		numberOfSpacesAfterCaretSymbolInReturn: 1;
 		maxLineLength: 70;
 		indentExtraSpaces: 0
@@ -16,7 +16,7 @@ BIEnlumineurReturnExpressionTest >> basicConfiguration [
 { #category : #configuration }
 BIEnlumineurReturnExpressionTest >> multilineConfiguration [
 	^ self contextClass basicNew
-		formatCommentWithStatements: false;
+		formatCommentCloseToStatements: false;
 		numberOfSpacesAfterCaretSymbolInReturn: 1;
 		maxLineLength: 70;
 		multiLineMessages: Array new;
@@ -32,7 +32,7 @@ BIEnlumineurReturnExpressionTest >> multilineConfiguration [
 { #category : #configuration }
 BIEnlumineurReturnExpressionTest >> multilineWithThreeSpacesAfterCaretSymbolConfiguration [
 	^ self contextClass basicNew
-		formatCommentWithStatements: false;
+		formatCommentCloseToStatements: false;
 		numberOfSpacesAfterCaretSymbolInReturn: 3;
 		maxLineLength: 70;
 		multiLineMessages: Array new;

@@ -22,7 +22,7 @@ BIEnlumineurBlockExpressionOnlyTest >> basicConfiguration [
 		numberOfArgumentsForMultiLine:5;
 		indentsForKeywords:1;
 		newLineBeforeFirstKeyword:false;
-		formatCommentWithStatements:true;
+		formatCommentCloseToStatements:true;
 		maxLineLength:50;
 		useBasicCommentFormat:false;
 		indentExtraSpaces:0
@@ -45,7 +45,7 @@ BIEnlumineurBlockExpressionOnlyTest >> dontFormatCommentWithStatementConfigurati
 		numberOfArgumentsForMultiLine:5;
 		indentsForKeywords:1;
 		newLineBeforeFirstKeyword:false;
-		formatCommentWithStatements:false;
+		formatCommentCloseToStatements:false;
 		maxLineLength:50;
 		retainBlankLinesBeforeComments: false;
 		useBasicCommentFormat: false;

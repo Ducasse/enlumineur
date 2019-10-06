@@ -8,7 +8,7 @@ Class {
 BIEnlumineurPragmaExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
-		formatCommentWithStatements:false;
+		formatCommentCloseToStatements:false;
 		maxLineLength: 50;
 		keepBlockInMessage: true
 ]

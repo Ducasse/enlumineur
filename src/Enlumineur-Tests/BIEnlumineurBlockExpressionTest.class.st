@@ -21,7 +21,7 @@ BIEnlumineurBlockExpressionTest >> basicConfiguration [
 		numberOfArgumentsForMultiLine:5;
 		indentsForKeywords:1;
 		newLineBeforeFirstKeyword:false;
-		formatCommentWithStatements:true;
+		formatCommentCloseToStatements:true;
 		maxLineLength:50;
 		indentExtraSpaces: 0
 ]
@@ -42,7 +42,7 @@ BIEnlumineurBlockExpressionTest >> blockWithTemporariesConfiguration [
 		numberOfArgumentsForMultiLine:5;
 		indentsForKeywords:1;
 		newLineBeforeFirstKeyword:false;
-		formatCommentWithStatements:true;
+		formatCommentCloseToStatements:true;
 		maxLineLength:50;
 		newLineAfterCascade:true;
 		newLineBeforeFirstCascade: true;
@@ -73,7 +73,7 @@ BIEnlumineurBlockExpressionTest >> configurationWithThreeSpaces [
 		numberOfArgumentsForMultiLine:5;
 		indentsForKeywords:1;
 		newLineBeforeFirstKeyword:false;
-		formatCommentWithStatements:true;
+		formatCommentCloseToStatements:true;
 		maxLineLength:50;
 		indentExtraSpaces:0
 ]
@@ -95,7 +95,7 @@ BIEnlumineurBlockExpressionTest >> doNotKeepBlockInMessageConfiguration [
 		numberOfArgumentsForMultiLine: 5;
 		indentsForKeywords: 1;
 		newLineBeforeFirstKeyword: false;
-		formatCommentWithStatements: true;
+		formatCommentCloseToStatements: true;
 		maxLineLength: 50;
 		indentExtraSpaces: 0
 ]
@@ -117,7 +117,7 @@ BIEnlumineurBlockExpressionTest >> dontFormatCommentWithStatementConfiguration [
 		numberOfArgumentsForMultiLine:5;
 		indentsForKeywords:1;
 		newLineBeforeFirstKeyword:false;
-		formatCommentWithStatements:false;
+		formatCommentCloseToStatements:false;
 		maxLineLength:50;
 		retainBlankLinesBeforeComments: false;
 		useBasicCommentFormat: false;
@@ -141,7 +141,7 @@ BIEnlumineurBlockExpressionTest >> formatCommentWithStatementConfiguration [
 		numberOfArgumentsForMultiLine:5;
 		indentsForKeywords:1;
 		newLineBeforeFirstKeyword:false;
-		formatCommentWithStatements:true;
+		formatCommentCloseToStatements:true;
 		maxLineLength:50;
 		retainBlankLinesBeforeComments: false;
 		useBasicCommentFormat: false;
@@ -164,7 +164,7 @@ BIEnlumineurBlockExpressionTest >> fourSpaceIndentConfiguration [
 		numberOfArgumentsForMultiLine:5;
 		indentsForKeywords:1;
 		newLineBeforeFirstKeyword:false;
-		formatCommentWithStatements:true;
+		formatCommentCloseToStatements:true;
 		maxLineLength:50;
 		newLineAfterCascade:true;
 		newLineBeforeFirstCascade: true;
@@ -191,7 +191,7 @@ BIEnlumineurBlockExpressionTest >> multiLineConfiguration [
 		numberOfArgumentsForMultiLine:5;
 		indentsForKeywords:1;
 		newLineBeforeFirstKeyword:false;
-		formatCommentWithStatements:true;
+		formatCommentCloseToStatements:true;
 		maxLineLength:50;
 		useBasicCommentFormat:false;
 		indentExtraSpaces:0;
@@ -217,7 +217,7 @@ BIEnlumineurBlockExpressionTest >> multiLineWithThreeSpacesInsideBlockConfigurat
 		numberOfArgumentsForMultiLine:5;
 		indentsForKeywords:1;
 		newLineBeforeFirstKeyword:false;
-		formatCommentWithStatements:true;
+		formatCommentCloseToStatements:true;
 		maxLineLength:50;
 		useBasicCommentFormat:false;
 		indentExtraSpaces:0;
@@ -246,7 +246,7 @@ BIEnlumineurBlockExpressionTest >> newLineBeforeEndBracketConfiguration [
 		numberOfArgumentsForMultiLine: 5;
 		indentsForKeywords: 1;
 		newLineBeforeFirstKeyword: false;
-		formatCommentWithStatements: true;
+		formatCommentCloseToStatements: true;
 		maxLineLength: 50;
 		indentExtraSpaces:0
 ]
@@ -272,7 +272,7 @@ BIEnlumineurBlockExpressionTest >> noNewLineBeforeEndBracketConfiguration [
 		numberOfArgumentsForMultiLine: 5;
 		indentsForKeywords: 1;
 		newLineBeforeFirstKeyword: false;
-		formatCommentWithStatements: true;
+		formatCommentCloseToStatements: true;
 		maxLineLength: 50;
 		indentExtraSpaces:0
 ]
@@ -293,7 +293,7 @@ BIEnlumineurBlockExpressionTest >> numberOfSpaceChangedAfterIndentCharacterConfi
 		numberOfArgumentsForMultiLine:5;
 		indentsForKeywords:1;
 		newLineBeforeFirstKeyword:false;
-		formatCommentWithStatements:true;
+		formatCommentCloseToStatements:true;
 		maxLineLength:50;
 		newLineAfterCascade:true;
 		newLineBeforeFirstCascade: true;
@@ -319,7 +319,7 @@ BIEnlumineurBlockExpressionTest >> oneSpaceIndentConfiguration [
 		numberOfArgumentsForMultiLine:5;
 		indentsForKeywords:1;
 		newLineBeforeFirstKeyword:false;
-		formatCommentWithStatements:true;
+		formatCommentCloseToStatements:true;
 		maxLineLength:50;
 		newLineAfterCascade:true;
 		newLineBeforeFirstCascade: true;
@@ -359,7 +359,7 @@ BIEnlumineurBlockExpressionTest >> periodAtEndConfiguration [
 		numberOfArgumentsForMultiLine: 5;
 		indentsForKeywords: 1;
 		newLineBeforeFirstKeyword: false;
-		formatCommentWithStatements: true;
+		formatCommentCloseToStatements: true;
 		maxLineLength: 50;
 		indentExtraSpaces:0
 ]
@@ -380,7 +380,7 @@ BIEnlumineurBlockExpressionTest >> tabIndentConfiguration [
 		numberOfArgumentsForMultiLine:5;
 		indentsForKeywords:1;
 		newLineBeforeFirstKeyword:false;
-		formatCommentWithStatements:true;
+		formatCommentCloseToStatements:true;
 		maxLineLength:50;
 		newLineAfterCascade:true;
 		newLineBeforeFirstCascade: true;
@@ -404,7 +404,7 @@ BIEnlumineurBlockExpressionTest >> tabIndentIsnotAffectedConfiguration [
 		numberOfArgumentsForMultiLine:5;
 		indentsForKeywords:1;
 		newLineBeforeFirstKeyword:false;
-		formatCommentWithStatements:true;
+		formatCommentCloseToStatements:true;
 		maxLineLength:50;
 		newLineAfterCascade:true;
 		newLineBeforeFirstCascade: true;
@@ -676,7 +676,7 @@ BIEnlumineurBlockExpressionTest >> tooLongStatementConfiguration [
 		numberOfArgumentsForMultiLine:5;
 		indentsForKeywords:1;
 		newLineBeforeFirstKeyword:false;
-		formatCommentWithStatements:true;
+		formatCommentCloseToStatements:true;
 		maxLineLength:10;
 		indentExtraSpaces: 0
 ]

@@ -70,7 +70,7 @@ BIEnlumineurContext >> formatCommentCloseToStatements [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> formatCommentWithStatements: aBoolean [
+BIEnlumineurContext >> formatCommentCloseToStatements: aBoolean [
 	formatCommentWithStatements := aBoolean
 ]
 
@@ -122,8 +122,8 @@ BIEnlumineurContext >> indentsForKeywords: anInteger [
 BIEnlumineurContext >> initialize [
 
 	super initialize.
-	useBasicCommentFormat := true.
-	formatCommentWithStatements := true.
+	self useBasicCommentFormat: true.
+	self formatCommentCloseToStatements: true.
 	indentsForKeywords := 1.
 	keepBlockInMessage := true.
 	lineUpBlockBrackets := false.
@@ -144,7 +144,7 @@ BIEnlumineurContext >> initialize [
 	self retainBlankLinesBetweenStatements: false.
 	self retainBlankLinesBeforeComments: true.
 	self selectorAndArgumentCombinedMaxSize: 40.
-	self configureForTraditionalBinaryPrecedence.
+	self useTraditionalBinaryPrecedenceForParentheses: false.
 	self numberOfSpacesInsideBlock: 1.
 	self numberOfSpacesInsideParentheses: 0.
 	self numberOfSpacesAfterCaretSymbolInReturn: 1.

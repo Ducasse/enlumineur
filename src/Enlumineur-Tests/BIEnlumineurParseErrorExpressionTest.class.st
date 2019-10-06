@@ -8,7 +8,7 @@ Class {
 BIEnlumineurParseErrorExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
-		formatCommentWithStatements:false;
+		formatCommentCloseToStatements:false;
 		retainBlankLinesBetweenStatements: false;
 		minimumNewLinesBetweenStatements:0;
 		periodAtEndOfBlock:false;

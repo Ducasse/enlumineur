@@ -8,7 +8,7 @@ Class {
 BIEnlumineurAssignmentExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
-		formatCommentWithStatements:false;
+		formatCommentCloseToStatements:false;
 		maxLineLength: 70;
 		indentExtraSpaces: 0
 ]
@@ -16,7 +16,7 @@ BIEnlumineurAssignmentExpressionTest >> basicConfiguration [
 { #category : #configurations }
 BIEnlumineurAssignmentExpressionTest >> multilineConfiguration [
 	^ self contextClass basicNew
-		formatCommentWithStatements: false;
+		formatCommentCloseToStatements: false;
 		maxLineLength: 70;
 		useTraditionalBinaryPrecedenceForParentheses: false;
 		multiLineMessages: Array new;

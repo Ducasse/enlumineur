@@ -8,7 +8,7 @@ Class {
 BIEnlumineurArrayExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
-		formatCommentWithStatements: false;
+		formatCommentCloseToStatements: false;
 		maxLineLength: 50;
 		numberOfSpacesInsideParentheses: 0;
 		retainBlankLinesBetweenStatements: false;
@@ -27,7 +27,7 @@ BIEnlumineurArrayExpressionTest >> basicConfiguration [
 BIEnlumineurArrayExpressionTest >> fiveSpacesInsideArrayConfiguration [
 
 	^ self contextClass basicNew
-		formatCommentWithStatements: false;
+		formatCommentCloseToStatements: false;
 		maxLineLength: 50;
 		numberOfSpacesInsideParentheses: 0;
 		retainBlankLinesBetweenStatements: false;
@@ -50,7 +50,7 @@ BIEnlumineurArrayExpressionTest >> maxLineLengthConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-		formatCommentWithStatements: false;
+		formatCommentCloseToStatements: false;
 		maxLineLength: 12;
 		retainBlankLinesBetweenStatements: false;
 		minimumNewLinesBetweenStatements: 1;
@@ -72,7 +72,7 @@ BIEnlumineurArrayExpressionTest >> maxLineLengthConfigurationWithSpaceBefore [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-		formatCommentWithStatements: false;
+		formatCommentCloseToStatements: false;
 		maxLineLength: 12;
 		retainBlankLinesBetweenStatements: false;
 		minimumNewLinesBetweenStatements: 1;
@@ -90,7 +90,7 @@ BIEnlumineurArrayExpressionTest >> maxLineLengthConfigurationWithSpaceBefore [
 BIEnlumineurArrayExpressionTest >> multiLineConfiguration [
 
 	^ self contextClass basicNew
-		formatCommentWithStatements: false;
+		formatCommentCloseToStatements: false;
 		maxLineLength: 50;
 		numberOfSpacesInsideParentheses: 0;
 		retainBlankLinesBetweenStatements: false;
@@ -113,7 +113,7 @@ BIEnlumineurArrayExpressionTest >> multiLineConfiguration [
 BIEnlumineurArrayExpressionTest >> oneSpaceInsideArrayConfiguration [
 
 	^ self contextClass basicNew
-		formatCommentWithStatements: false;
+		formatCommentCloseToStatements: false;
 		maxLineLength: 50;
 		numberOfSpacesInsideParentheses: 0;
 		retainBlankLinesBetweenStatements: false;
@@ -136,7 +136,7 @@ BIEnlumineurArrayExpressionTest >> periodAtEndOfMethod [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-		formatCommentWithStatements: false;
+		formatCommentCloseToStatements: false;
 		maxLineLength: 12;
 		indentsForKeywords: 0;
 		retainBlankLinesBetweenStatements: false;
@@ -158,7 +158,7 @@ BIEnlumineurArrayExpressionTest >> periodAtEndOfMethod [
 BIEnlumineurArrayExpressionTest >> spaceInsideArrayConfiguration [
 
 	^ self contextClass basicNew
-		formatCommentWithStatements: false;
+		formatCommentCloseToStatements: false;
 		maxLineLength: 50;
 		retainBlankLinesBetweenStatements: false;
 		minimumNewLinesBetweenStatements: 1;
@@ -364,7 +364,7 @@ BIEnlumineurArrayExpressionTest >> testToLongNewLineWithSpaceBefore [
 BIEnlumineurArrayExpressionTest >> threeSpacesBeforeDotInArrayConfiguration [
 
 	^ self contextClass basicNew
-		formatCommentWithStatements: false;
+		formatCommentCloseToStatements: false;
 		maxLineLength: 50;
 		numberOfSpacesInsideParentheses: 0;
 		retainBlankLinesBetweenStatements: false;

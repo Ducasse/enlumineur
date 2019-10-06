@@ -8,7 +8,7 @@ Class {
 BIEnlumineurSequenceExpressionTest >> basicConfiguration [ 
 
 	^ self contextClass basicNew
-		formatCommentWithStatements:true;
+		formatCommentCloseToStatements:true;
 		indentStyle: #tabulation;
 		numberOfNewLinesAfterTemporaries:0;
 		retainBlankLinesBeforeComments:false;
@@ -25,7 +25,7 @@ BIEnlumineurSequenceExpressionTest >> basicConfiguration [
 BIEnlumineurSequenceExpressionTest >> dontFormatCommentWithStatementConfiguration [
 
 	^ self contextClass basicNew
-		formatCommentWithStatements:false;
+		formatCommentCloseToStatements:false;
 		indentStyle: #tabulation;
 		numberOfNewLinesAfterTemporaries:0;
 		retainBlankLinesBeforeComments:false;
@@ -55,7 +55,7 @@ BIEnlumineurSequenceExpressionTest >> dontRetainBlankLinesBeforeCommentsConfigur
 		
 	^ self contextClass basicNew
 		retainBlankLinesBeforeComments:false;
-		formatCommentWithStatements:true;
+		formatCommentCloseToStatements:true;
 		indentStyle: #tabulation;
 		numberOfNewLinesAfterTemporaries:0;
 		useBasicCommentFormat:false;
@@ -77,7 +77,7 @@ BIEnlumineurSequenceExpressionTest >> dontRetainBlankLinesBetweenStatementsConfi
 	^ self contextClass basicNew
 		retainBlankLinesBetweenStatements: false;
 		retainBlankLinesBeforeComments:false;
-		formatCommentWithStatements:true;
+		formatCommentCloseToStatements:true;
 		indentStyle: #tabulation;
 		numberOfNewLinesAfterTemporaries:0;
 		useBasicCommentFormat:false;
@@ -92,7 +92,7 @@ BIEnlumineurSequenceExpressionTest >> dontRetainBlankLinesBetweenStatementsConfi
 BIEnlumineurSequenceExpressionTest >> formatBlockConfiguration [
 
 	^ self contextClass basicNew
-		formatCommentWithStatements:false;
+		formatCommentCloseToStatements:false;
 		indentStyle: #tabulation;
 		numberOfNewLinesAfterTemporaries:1;
 		retainBlankLinesBeforeComments:false;
@@ -117,7 +117,7 @@ BIEnlumineurSequenceExpressionTest >> formatBlockConfiguration [
 BIEnlumineurSequenceExpressionTest >> formatCommentWithStatementConfiguration [
 
 	^ self contextClass basicNew
-		formatCommentWithStatements:true;
+		formatCommentCloseToStatements:true;
 		indentStyle: #tabulation;
 		numberOfNewLinesAfterTemporaries:0;
 		retainBlankLinesBeforeComments:false;
@@ -140,7 +140,7 @@ BIEnlumineurSequenceExpressionTest >> newLineAfterStatementConfiguration [
 
 	^ self contextClass basicNew
 		minimumNewLinesBetweenStatements:1;
-		formatCommentWithStatements:true;
+		formatCommentCloseToStatements:true;
 		indentStyle: #tabulation;
 		numberOfNewLinesAfterTemporaries:0;
 		retainBlankLinesBeforeComments:false;
@@ -156,7 +156,7 @@ BIEnlumineurSequenceExpressionTest >> newLineAfterStatementConfiguration [
 BIEnlumineurSequenceExpressionTest >> newLineAfterTemporariesConfiguration [
 
 	^ self contextClass basicNew
-		formatCommentWithStatements:true;
+		formatCommentCloseToStatements:true;
 		indentStyle: #tabulation;
 		numberOfNewLinesAfterTemporaries:1;
 		indentExtraSpaces:0
@@ -168,7 +168,7 @@ BIEnlumineurSequenceExpressionTest >> noPeriodAtEndOfMethodConfiguration [
 	^ self contextClass basicNew
 		periodAtEndOfBlock:false;
 		periodAtEndOfMethod:false;
-		formatCommentWithStatements:true;
+		formatCommentCloseToStatements:true;
 		indentStyle: #tabulation;
 		numberOfNewLinesAfterTemporaries:0;
 		retainBlankLinesBeforeComments:false;
@@ -195,7 +195,7 @@ BIEnlumineurSequenceExpressionTest >> periodAtEndOfMethodConfiguration [
 	^ self contextClass basicNew
 		periodAtEndOfBlock:true;
 		periodAtEndOfMethod:true;
-		formatCommentWithStatements:true;
+		formatCommentCloseToStatements:true;
 		indentStyle: #tabulation;
 		numberOfNewLinesAfterTemporaries:0;
 		retainBlankLinesBeforeComments:false;
@@ -221,7 +221,7 @@ BIEnlumineurSequenceExpressionTest >> retainBlankLinesBeforeCommentsConfiguratio
 
 	^ self contextClass basicNew
 		retainBlankLinesBeforeComments:true;
-		formatCommentWithStatements:true;
+		formatCommentCloseToStatements:true;
 		indentStyle: #tabulation;
 		numberOfNewLinesAfterTemporaries:0;
 		useBasicCommentFormat:false;
@@ -243,7 +243,7 @@ BIEnlumineurSequenceExpressionTest >> retainBlankLinesBetweenStatementsConfigura
 	^ self contextClass basicNew
 		retainBlankLinesBetweenStatements: true;
 		retainBlankLinesBeforeComments:false;
-		formatCommentWithStatements:true;
+		formatCommentCloseToStatements:true;
 		indentStyle: #tabulation;
 		numberOfNewLinesAfterTemporaries:0;
 		useBasicCommentFormat:false;

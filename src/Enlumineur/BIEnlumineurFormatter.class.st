@@ -74,8 +74,8 @@ BIEnlumineurFormatter class >> formatCommentCloseToStatements [
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> formatCommentWithStatements: aBoolean [
-	DefaultPrettyPrintContext formatCommentWithStatements: aBoolean.
+BIEnlumineurFormatter class >> formatCommentCloseToStatements: aBoolean [
+	DefaultPrettyPrintContext formatCommentCloseToStatements: aBoolean.
 	self announceASettingChange
 ]
 
@@ -804,8 +804,9 @@ BIEnlumineurFormatter class >> settingsSelectorAndArgumentCombinedMaxSize: aBuil
 	(aBuilder setting: #selectorAndArgumentCombinedMaxSize)
 		label: 'Selector and argument combined in method signature max size';
 		description: 'the maximum length a selector and his argument can be before the message is considered multiline
-		(depend of the setting methodSignatureOnMultipleLines 
+		(depends of the setting methodSignatureOnMultipleLines 
 		which will write the message on multiple lines only if is set to true)
+		
 Example:
 myMethod: argument1
 	and: argument2
@@ -818,7 +819,7 @@ BIEnlumineurFormatter class >> settingsSpacesAfterCaretSymbolInReturn: aBuilder 
 
 	(aBuilder setting: #numberOfSpacesAfterCaretSymbolInReturn)
 		label: 'Spaces following caret symbol in return';
-		description: 'Number of spaces expressed as a string that is put just after the caret (^) of a return expression. 
+		description: 'Number of spaces expressed that is put just after the caret (^) of a return expression. 
 For example: ^   self is the result for 3 spaces'.
 ]
 
@@ -826,21 +827,23 @@ For example: ^   self is the result for 3 spaces'.
 BIEnlumineurFormatter class >> settingsSpacesBeforeDotInDynamicArray: aBuilder [
 
 	(aBuilder setting: #numberOfSpacesBeforeDotInDynamicArray)
-		label: 'Spaces before dot in dynamic array';
-		description: 'number of spaces after the opening and before the closing () {}) symbols of the array
-for example: {1 . 2 . 3} is the result of 1 space, while {1. 2. 3} is the result of zero space.'
+		label: 'Spaces before separating period in dynamic array';
+		description: 'To set the number of spaces before the separating period in dynamic array { 1here. 2})
+for example, when set to one space: {1 . 2 . 3}, 
+
+when set to zero space: {1. 2. 3}'
 ]
 
 { #category : #settings }
 BIEnlumineurFormatter class >> settingsSpacesInsideArray: aBuilder [
 
 	(aBuilder setting: #numberOfSpacesInsideArray)
-		label: 'Spaces inside array';
-		description: 'number of spaces after the opening and before the closing symbols of the array
-for example:
+		label: 'Spaces inside arrays #( here ) or { there }';
+		description: 'Set the number of spaces after the opening and before the closing symbols of an array.
+		
+For example, we get the following wehn set to 3 spaces: 
 #(   1 2 3   )
 {   1. 2. 3.   }
-	is the result of 3 spaces
 '
 ]
 
@@ -848,19 +851,18 @@ for example:
 BIEnlumineurFormatter class >> settingsSpacesInsideBlocks: aBuilder [
 
 	(aBuilder setting: #numberOfSpacesInsideBlock)
-		label: 'Spaces inside blocks';
-		description: 'number of spaces after the opening bracket and before the closing bracket
-for example:
-[   :i | Transcript show:i   ]
-	is the result of 3 spaces
-'
+		label: 'Spaces inside blocks [ here ]';
+		description: 'Set the number of spaces after the opening and before the closing brackets.
+
+For example, when set to 3 spaces we get
+[   :i | Transcript show: i   ]'
 ]
 
 { #category : #settings }
 BIEnlumineurFormatter class >> settingsSpacesInsideParentheses: aBuilder [
 
 	(aBuilder setting: #numberOfSpacesInsideParentheses)
-		label: 'Spaces inside parentheses';
+		label: 'Spaces inside parentheses ( here )';
 		description: 'Sets the number of spaces after the opening and before the closing parentheses.
 For example: (   1 + 2   ) is the result for 3 spaces'
 ]
@@ -1117,8 +1119,8 @@ BIEnlumineurFormatter >> formatCommentCloseToStatements [
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> formatCommentWithStatements: aBoolean [
-	context formatCommentWithStatements: aBoolean
+BIEnlumineurFormatter >> formatCommentCloseToStatements: aBoolean [
+	context formatCommentCloseToStatements: aBoolean
 ]
 
 { #category : #'private-formatting' }
