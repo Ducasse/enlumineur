@@ -861,33 +861,25 @@ BIEnlumineurFormatter class >> settingsSpacesInsideParentheses: aBuilder [
 
 	(aBuilder setting: #numberOfSpacesInsideParentheses)
 		label: 'Spaces inside parentheses';
-		description: 'number of spaces after the opening parenthese and before the closing parenthese
-for example: (   1 + 2   ) is the result for 3 spaces'
+		description: 'Sets the number of spaces after the opening and before the closing parentheses.
+For example: (   1 + 2   ) is the result for 3 spaces'
 ]
 
 { #category : #settings }
 BIEnlumineurFormatter class >> settingsTraditionalBinaryPrecedenceArray: aBuilder [
 	
-	self flag: #toRevisit.
-	"this is not a nice comment I do not care that this is an array!"
-	
 	(aBuilder setting: #traditionalBinaryPrecedenceArray)
 		label: 'Traditional binary precedence';
-		description: 'An 2 dimension array containing messages according to the priority
+		description: 'Set the logical grouping to handle message priority when using the setting UseTraditionalBinaryPrecedence. For now it is expressed as an 2 dimension array containing messages according to the priority
 Example: #( #($- $+) #($*) )'
 ]
 
 { #category : #settings }
 BIEnlumineurFormatter class >> settingsUseBasicCommentFormat: aBuilder [
 
-	self flag: #toRevisit.
-	"this is not a nice comment"
 	(aBuilder setting: #useBasicCommentFormat)
 		label: 'Use basic comment format';
-		description:'leave the comment unchanged
-Exemple:
-"   anAddition   " is the result for true
-'
+		description: 'Leave the comment unchanged and do not resize comment.'
 ]
 
 { #category : #settings }
@@ -895,8 +887,10 @@ BIEnlumineurFormatter class >> settingsUseTraditionalBinaryPrecedenceForParenthe
 
 	(aBuilder setting: #useTraditionalBinaryPrecedenceForParentheses)
 		label: 'Use traditional binary precedence for parentheses';
-		description:'Add parentheses to comply with the precedence
-for example 1 + 2 * 3 will be formated: (1 + 2) * 3'
+		description: 'Add parentheses to comply with the precedence.
+		
+When set to true the expression 1 + 2 * 3 will be formated as (1 + 2) * 3 but 
+1 + (2 * 3) will not be affected since the programmer had to write it this way to express the logic he wanted in the first place.'
 ]
 
 { #category : #accessing }
