@@ -342,25 +342,25 @@ BIEnlumineurFormatter class >> oneLineMessages: aString [
 ]
 
 { #category : #accessing }
+BIEnlumineurFormatter class >> periodAtEndOfBlock: aBoolean [
+	DefaultPrettyPrintContext periodAtEndOfBlock: aBoolean.
+	self announceASettingChange
+]
+
+{ #category : #accessing }
+BIEnlumineurFormatter class >> periodAtEndOfMethod: aBoolean [
+	DefaultPrettyPrintContext periodAtEndOfMethod: aBoolean.
+	self announceASettingChange
+]
+
+{ #category : #accessing }
 BIEnlumineurFormatter class >> periodsAtEndOfBlock [
 	^ DefaultPrettyPrintContext periodsAtEndOfBlock
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> periodsAtEndOfBlock: aBoolean [
-	DefaultPrettyPrintContext periodsAtEndOfBlock: aBoolean.
-	self announceASettingChange
-]
-
-{ #category : #accessing }
 BIEnlumineurFormatter class >> periodsAtEndOfMethod [
 	^ DefaultPrettyPrintContext periodsAtEndOfMethod
-]
-
-{ #category : #accessing }
-BIEnlumineurFormatter class >> periodsAtEndOfMethod: aBoolean [
-	DefaultPrettyPrintContext periodsAtEndOfMethod: aBoolean.
-	self announceASettingChange
 ]
 
 { #category : #accessing }
@@ -727,20 +727,24 @@ BIEnlumineurFormatter class >> settingsOneLineMessages: aBuilder [
 
 	(aBuilder setting: #oneLineMessages)
 		label: 'One line messages';
-		description: 'An array containing all the messages that should be written on one line
-Example:
-1 to: 4 do: [ :i | Transcript show: i ] is the result if #to:do: is in the array'
+		description: 'All the messages listed in this setting will be formatted on one single line. 
+		
+If we include #todo: in the oneLineMessages we get 
+
+1 to: 4 do: [ :i | Transcript show: i ]'
 ]
 
 { #category : #settings }
 BIEnlumineurFormatter class >> settingsPeriodsAtEndOfBlock: aBuilder [
 
 	(aBuilder setting: #periodsAtEndOfBlock)
-		label: 'Period at end of block';
-		description: 'put a period after the last expression of a block
-for example:
+		label: 'Period at end of block body';
+		description: 'This settings puts a period after the last expression of a block.
+
+Example: when set to true
+
 	1 to:10 do: [:i | i+1.]
-	is the result if the setting is set to true
+
 '.
 ]
 
@@ -749,11 +753,13 @@ BIEnlumineurFormatter class >> settingsPeriodsAtEndOfMethod: aBuilder [
 
 	(aBuilder setting: #periodsAtEndOfMethod)
 		label: 'Period at end of method';
-		description: 'put a period after the last expression of a method
-for example:
-myMethode
+		description: 'This setting puts a period after the last expression of a method.
+		
+For example: when set to true
+
+myMethod
 	^ true.
-	is the result if the setting is set to true
+
 '
 ]
 
@@ -762,14 +768,16 @@ BIEnlumineurFormatter class >> settingsRetainBlankLinesBeforeComments: aBuilder 
 
 	(aBuilder setting: #retainBlankLinesBeforeComments)
 		label: 'Retain blank lines before comments';
-		description: 'keep the blank lines which are before the comments 
-for example:
+		description: 'Keep blank lines which are before comments. 
+
+For example, when set to true the formatter will not change the following
+
 	|a b|
 	a :=1.
 	
 	"Comment"
 	b :=2
-	will not be modified if the setting is set to true'
+'
 ]
 
 { #category : #settings }
@@ -777,8 +785,9 @@ BIEnlumineurFormatter class >> settingsRetainBlankLinesBetweenStatements: aBuild
 
 	(aBuilder setting: #retainBlankLinesBetweenStatements)
 		label: 'Retain blank lines between statements';
-		description: 'Keep the blank lines which are between the statements
-for example:
+		description: 'Keep blank lines which are between statements.
+		
+For example: when set to true the formatter will not change the following: 
 | a b c |
 a := 1.
 
@@ -786,7 +795,7 @@ a := 1.
 b := 2.
 
 c := a + b
-will not change if the setting is set to true'
+'
 ]
 
 { #category : #settings }
@@ -1836,14 +1845,24 @@ BIEnlumineurFormatter >> oneLineMessages: anArray [
 ]
 
 { #category : #accessing }
+BIEnlumineurFormatter >> periodAtEndOfBlock: aBoolean [
+	context periodAtEndOfBlock: aBoolean
+]
+
+{ #category : #accessing }
+BIEnlumineurFormatter >> periodAtEndOfMethod: aBoolean [
+	context periodAtEndOfMethod: aBoolean
+]
+
+{ #category : #accessing }
 BIEnlumineurFormatter >> periodsAsTerminators [
 	^ context periodsAtEndOfBlock and: [ context periodsAtEndOfMethod ]
 ]
 
 { #category : #accessing }
 BIEnlumineurFormatter >> periodsAsTerminators: aBoolean [
-	context periodsAtEndOfBlock: aBoolean.
-	context periodsAtEndOfMethod: aBoolean
+	context periodAtEndOfBlock: aBoolean.
+	context periodAtEndOfMethod: aBoolean
 ]
 
 { #category : #accessing }
@@ -1852,18 +1871,8 @@ BIEnlumineurFormatter >> periodsAtEndOfBlock [
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> periodsAtEndOfBlock: aBoolean [
-	context periodsAtEndOfBlock: aBoolean
-]
-
-{ #category : #accessing }
 BIEnlumineurFormatter >> periodsAtEndOfMethod [
 	^ context periodsAtEndOfMethod
-]
-
-{ #category : #accessing }
-BIEnlumineurFormatter >> periodsAtEndOfMethod: aBoolean [
-	context periodsAtEndOfMethod: aBoolean
 ]
 
 { #category : #private }

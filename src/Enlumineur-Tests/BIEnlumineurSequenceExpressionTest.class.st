@@ -16,8 +16,8 @@ BIEnlumineurSequenceExpressionTest >> basicConfiguration [
 		maxLineLength:50;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:0;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod:false;
+		periodAtEndOfBlock:false;
+		periodAtEndOfMethod:false;
 		indentExtraSpaces:0
 ]
 
@@ -33,8 +33,8 @@ BIEnlumineurSequenceExpressionTest >> dontFormatCommentWithStatementConfiguratio
 		maxLineLength:50;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:0;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod:false;
+		periodAtEndOfBlock:false;
+		periodAtEndOfMethod:false;
 		multiLineMessages: Array new;
 		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine: 5;
@@ -62,8 +62,8 @@ BIEnlumineurSequenceExpressionTest >> dontRetainBlankLinesBeforeCommentsConfigur
 		maxLineLength:50;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:0;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod:false;
+		periodAtEndOfBlock:false;
+		periodAtEndOfMethod:false;
 		indentExtraSpaces:0
 ]
 
@@ -83,8 +83,8 @@ BIEnlumineurSequenceExpressionTest >> dontRetainBlankLinesBetweenStatementsConfi
 		useBasicCommentFormat:false;
 		maxLineLength:50;
 		minimumNewLinesBetweenStatements:0;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod:false;
+		periodAtEndOfBlock:false;
+		periodAtEndOfMethod:false;
 		indentExtraSpaces:0
 ]
 
@@ -100,8 +100,8 @@ BIEnlumineurSequenceExpressionTest >> formatBlockConfiguration [
 		maxLineLength:50;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:0;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod:false;
+		periodAtEndOfBlock:false;
+		periodAtEndOfMethod:false;
 		multiLineMessages: Array new;
 		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine: 5;
@@ -125,8 +125,8 @@ BIEnlumineurSequenceExpressionTest >> formatCommentWithStatementConfiguration [
 		maxLineLength:50;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:0;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod:false;
+		periodAtEndOfBlock:false;
+		periodAtEndOfMethod:false;
 		multiLineMessages: Array new;
 		oneLineMessages: Array new;
 		numberOfArgumentsForMultiLine: 5;
@@ -147,8 +147,8 @@ BIEnlumineurSequenceExpressionTest >> newLineAfterStatementConfiguration [
 		useBasicCommentFormat:false;
 		maxLineLength:50;
 		retainBlankLinesBetweenStatements:false;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod:false;
+		periodAtEndOfBlock:false;
+		periodAtEndOfMethod:false;
 		indentExtraSpaces:0
 ]
 
@@ -166,8 +166,8 @@ BIEnlumineurSequenceExpressionTest >> newLineAfterTemporariesConfiguration [
 BIEnlumineurSequenceExpressionTest >> noPeriodAtEndOfMethodConfiguration [ 
 
 	^ self contextClass basicNew
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod:false;
+		periodAtEndOfBlock:false;
+		periodAtEndOfMethod:false;
 		formatCommentWithStatements:true;
 		indentStyle: #tabulation;
 		numberOfNewLinesAfterTemporaries:0;
@@ -193,8 +193,8 @@ BIEnlumineurSequenceExpressionTest >> periodAtEndOfMethodConfiguration [
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-		periodsAtEndOfBlock:true;
-		periodsAtEndOfMethod:true;
+		periodAtEndOfBlock:true;
+		periodAtEndOfMethod:true;
 		formatCommentWithStatements:true;
 		indentStyle: #tabulation;
 		numberOfNewLinesAfterTemporaries:0;
@@ -228,8 +228,8 @@ BIEnlumineurSequenceExpressionTest >> retainBlankLinesBeforeCommentsConfiguratio
 		maxLineLength:50;
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:0;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod:false;
+		periodAtEndOfBlock:false;
+		periodAtEndOfMethod:false;
 		indentExtraSpaces:0
 ]
 
@@ -249,8 +249,8 @@ BIEnlumineurSequenceExpressionTest >> retainBlankLinesBetweenStatementsConfigura
 		useBasicCommentFormat:false;
 		maxLineLength:50;
 		minimumNewLinesBetweenStatements:0;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod:false;
+		periodAtEndOfBlock:false;
+		periodAtEndOfMethod:false;
 		indentExtraSpaces:0
 ]
 

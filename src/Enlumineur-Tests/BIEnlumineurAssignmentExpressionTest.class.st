@@ -28,8 +28,8 @@ BIEnlumineurAssignmentExpressionTest >> multilineConfiguration [
 		indentStyle: #tabulation;
 		retainBlankLinesBetweenStatements: true;
 		minimumNewLinesBetweenStatements: 1;
-		periodsAtEndOfMethod: false;
-		periodsAtEndOfBlock: false;
+		periodAtEndOfMethod: false;
+		periodAtEndOfBlock: false;
 		numberOfSpacesInsideBlock: 1;
 		lineUpBlockBrackets: true;
 		newLineBeforeFirstKeyword: true;

@@ -9,8 +9,8 @@ BIEnlumineurBlockExpressionOnlyTest >> basicConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock:1;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock:false;
+		periodAtEndOfMethod: false;
 		lineUpBlockBrackets:false;
 		indentStyle: #tabulation;
 		keepBlockInMessage:false;
@@ -33,8 +33,8 @@ BIEnlumineurBlockExpressionOnlyTest >> dontFormatCommentWithStatementConfigurati
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock:1;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock:false;
+		periodAtEndOfMethod: false;
 		lineUpBlockBrackets:false;
 		indentStyle: #tabulation;
 		keepBlockInMessage:false;

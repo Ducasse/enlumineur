@@ -15,8 +15,8 @@ BIEnlumineurArrayExpressionTest >> basicConfiguration [
 		minimumNewLinesBetweenStatements: 1;
 		indentStyle: #tabulation;
 		indentExtraSpaces: 0;
-		periodsAtEndOfBlock: false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock: false;
+		periodAtEndOfMethod: false;
 		numberOfSpacesInsideArray: 0;
 		numberOfSpacesBeforeDotInDynamicArray: 0.
 		"here since we shortcut the initialize method we have to set the numberOfSpace...
@@ -34,8 +34,8 @@ BIEnlumineurArrayExpressionTest >> fiveSpacesInsideArrayConfiguration [
 		minimumNewLinesBetweenStatements: 1;
 		indentStyle: #tabulation;
 		indentExtraSpaces: 0;
-		periodsAtEndOfBlock: false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock: false;
+		periodAtEndOfMethod: false;
 		numberOfSpacesInsideArray: 5;
 		numberOfSpacesBeforeDotInDynamicArray: 0.
 		"here since we shortcut the initialize method we have to set the numberOfSpace...
@@ -55,8 +55,8 @@ BIEnlumineurArrayExpressionTest >> maxLineLengthConfiguration [
 		retainBlankLinesBetweenStatements: false;
 		minimumNewLinesBetweenStatements: 1;
 		indentStyle: #tabulation;
-		periodsAtEndOfBlock: false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock: false;
+		periodAtEndOfMethod: false;
 		indentExtraSpaces: 0;
 		numberOfSpacesInsideArray: 0;
 		numberOfSpacesBeforeDotInDynamicArray: 0.
@@ -77,8 +77,8 @@ BIEnlumineurArrayExpressionTest >> maxLineLengthConfigurationWithSpaceBefore [
 		retainBlankLinesBetweenStatements: false;
 		minimumNewLinesBetweenStatements: 1;
 		indentStyle: #tabulation;
-		periodsAtEndOfBlock: false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock: false;
+		periodAtEndOfMethod: false;
 		indentExtraSpaces: 0;
 		numberOfSpacesInsideArray: 0;
 		numberOfSpacesBeforeDotInDynamicArray: 1.
@@ -96,8 +96,8 @@ BIEnlumineurArrayExpressionTest >> multiLineConfiguration [
 		retainBlankLinesBetweenStatements: false;
 		minimumNewLinesBetweenStatements: 1;
 		indentStyle: #tabulation;
-		periodsAtEndOfBlock: false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock: false;
+		periodAtEndOfMethod: false;
 		numberOfSpacesInsideParentheses: 0;
 		multiLineMessages: #();
 		oneLineMessages: #();
@@ -120,8 +120,8 @@ BIEnlumineurArrayExpressionTest >> oneSpaceInsideArrayConfiguration [
 		minimumNewLinesBetweenStatements: 1;
 		indentStyle: #tabulation;
 		indentExtraSpaces: 0;
-		periodsAtEndOfBlock: false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock: false;
+		periodAtEndOfMethod: false;
 		numberOfSpacesInsideArray: 1;
 		numberOfSpacesBeforeDotInDynamicArray: 0.
 		"here since we shortcut the initialize method we have to set the numberOfSpace...
@@ -143,8 +143,8 @@ BIEnlumineurArrayExpressionTest >> periodAtEndOfMethod [
 		minimumNewLinesBetweenStatements: 1;
 		indentStyle: #tabulation;
 		indentExtraSpaces: 0;
-		periodsAtEndOfBlock: false;
-		periodsAtEndOfMethod: true;
+		periodAtEndOfBlock: false;
+		periodAtEndOfMethod: true;
 		multiLineMessages: #();
 		oneLineMessages: #();
 		numberOfSpacesInsideParentheses: 0;
@@ -164,8 +164,8 @@ BIEnlumineurArrayExpressionTest >> spaceInsideArrayConfiguration [
 		minimumNewLinesBetweenStatements: 1;
 		indentStyle: #tabulation;
 		indentExtraSpaces: 0;
-		periodsAtEndOfBlock: false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock: false;
+		periodAtEndOfMethod: false;
 		numberOfSpacesInsideArray: 5;
 		numberOfSpacesBeforeDotInDynamicArray: 0.
 		"here since we shortcut the initialize method we have to set the numberOfSpace...
@@ -371,8 +371,8 @@ BIEnlumineurArrayExpressionTest >> threeSpacesBeforeDotInArrayConfiguration [
 		minimumNewLinesBetweenStatements: 1;
 		indentStyle: #tabulation;
 		indentExtraSpaces: 0;
-		periodsAtEndOfBlock: false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock: false;
+		periodAtEndOfMethod: false;
 		numberOfSpacesInsideArray: 0;
 		numberOfSpacesBeforeDotInDynamicArray: 3
 ]

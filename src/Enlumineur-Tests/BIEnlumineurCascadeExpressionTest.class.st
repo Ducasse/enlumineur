@@ -43,8 +43,8 @@ BIEnlumineurCascadeExpressionTest >> multilineMessageConfiguration [
 		retainBlankLinesBetweenStatements:false;
 		minimumNewLinesBetweenStatements:1;
 		indentsForKeywords:0;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock:false;
+		periodAtEndOfMethod: false;
 		lineUpBlockBrackets:false;
 		indentExtraSpaces:0
 ]

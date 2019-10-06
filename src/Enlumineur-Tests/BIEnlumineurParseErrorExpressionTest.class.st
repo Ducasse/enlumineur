@@ -11,8 +11,8 @@ BIEnlumineurParseErrorExpressionTest >> basicConfiguration [
 		formatCommentWithStatements:false;
 		retainBlankLinesBetweenStatements: false;
 		minimumNewLinesBetweenStatements:0;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod:false
+		periodAtEndOfBlock:false;
+		periodAtEndOfMethod:false
 ]
 
 { #category : #tests }

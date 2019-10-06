@@ -32,8 +32,8 @@ BIEnlumineurMethodExpressionTest >> basicConfiguration [
 		formatCommentWithStatements:false;
 		useBasicCommentFormat: false;
 		maxLineLength: 50;
-		periodsAtEndOfBlock: false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock: false;
+		periodAtEndOfMethod: false;
 		numberOfNewLinesAfterMethodSignature: 1;
 		numberOfNewLinesAfterMethodComment: 1;
 		indentExtraSpaces:0
@@ -51,8 +51,8 @@ BIEnlumineurMethodExpressionTest >> bigMethodeConfiguration [
 		formatCommentWithStatements: false;
 		useBasicCommentFormat: false;
 		maxLineLength: 50;
-		periodsAtEndOfBlock: false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock: false;
+		periodAtEndOfMethod: false;
 		multiLineMessages: Array new;
 		oneLineMessages: Array new;
 		indentsForKeywords: 1;
@@ -84,8 +84,8 @@ BIEnlumineurMethodExpressionTest >> cascadeConfiguration [
 		formatCommentWithStatements:false;
 		useBasicCommentFormat: false;
 		maxLineLength: 50;
-		periodsAtEndOfBlock: false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock: false;
+		periodAtEndOfMethod: false;
 		newLineBeforeFirstCascade:true;
 		newLineAfterCascade:true;
 		multiLineMessages: Array new;
@@ -110,8 +110,8 @@ BIEnlumineurMethodExpressionTest >> newLineBetweenTopCommentsConfiguration [
 		formatCommentWithStatements:false;
 		useBasicCommentFormat: false;
 		maxLineLength: 50;
-		periodsAtEndOfBlock: false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock: false;
+		periodAtEndOfMethod: false;
 		numberOfNewLinesAfterMethodSignature: 1;
 		numberOfNewLinesAfterMethodComment: 1;
 		indentExtraSpaces:0
@@ -253,8 +253,8 @@ BIEnlumineurMethodExpressionTest >> spaceIndentConfiguration [
 		formatCommentWithStatements:false;
 		useBasicCommentFormat: false;
 		maxLineLength: 50;
-		periodsAtEndOfBlock: false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock: false;
+		periodAtEndOfMethod: false;
 		numberOfNewLinesAfterMethodSignature: 1;
 		numberOfNewLinesAfterMethodComment: 1;
 		indentExtraSpaces:0

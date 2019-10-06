@@ -23,8 +23,6 @@ Class {
 		'newLinesAfterTemporaries',
 		'numberOfArgumentsForMultiLine',
 		'oneLineMessages',
-		'periodsAtEndOfBlock',
-		'periodsAtEndOfMethod',
 		'retainBlankLinesBetweenStatements',
 		'retainBlankLinesBeforeComments',
 		'useTraditionalBinaryPrecedenceForParentheses',
@@ -46,7 +44,9 @@ Class {
 		'numberOfSpacesBeforeDotInDynamicArray',
 		'spacesBeforeDotInDynamicArray',
 		'numberOfNewLinesAfterMethodComment',
-		'newLinesAfterMethodSignature'
+		'newLinesAfterMethodSignature',
+		'periodAtEndOfMethod',
+		'periodAtEndOfBlock'
 	],
 	#category : #'Enlumineur-Core'
 }
@@ -120,6 +120,7 @@ BIEnlumineurContext >> indentsForKeywords: anInteger [
 
 { #category : #initialization }
 BIEnlumineurContext >> initialize [
+
 	super initialize.
 	useBasicCommentFormat := true.
 	formatCommentWithStatements := true.
@@ -138,11 +139,11 @@ BIEnlumineurContext >> initialize [
 	newLinesAfterTemporaries := 1.
 	numberOfArgumentsForMultiLine := 4.
 	oneLineMessages := #(#to: #to:do: #to:by: #to:by:do:).
-	periodsAtEndOfBlock := false.
-	periodsAtEndOfMethod := false.
-	retainBlankLinesBetweenStatements := false.
-	retainBlankLinesBeforeComments := true.
-	selectorAndArgumentCombinedMaxSize := 40.
+	self periodAtEndOfBlock: false.
+	self periodAtEndOfMethod: false.
+	self retainBlankLinesBetweenStatements: false.
+	self retainBlankLinesBeforeComments: true.
+	self selectorAndArgumentCombinedMaxSize: 40.
 	self configureForTraditionalBinaryPrecedence.
 	self numberOfSpacesInsideBlock: 1.
 	self numberOfSpacesInsideParentheses: 0.
@@ -374,23 +375,23 @@ BIEnlumineurContext >> oneLineMessages: anArray [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> periodsAtEndOfBlock [
-	^ periodsAtEndOfBlock
+BIEnlumineurContext >> periodAtEndOfBlock: aBoolean [
+	periodAtEndOfBlock := aBoolean
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> periodsAtEndOfBlock: aBoolean [
-	periodsAtEndOfBlock := aBoolean
+BIEnlumineurContext >> periodAtEndOfMethod: aBoolean [
+	periodAtEndOfMethod := aBoolean
+]
+
+{ #category : #accessing }
+BIEnlumineurContext >> periodsAtEndOfBlock [
+	^ periodAtEndOfBlock
 ]
 
 { #category : #accessing }
 BIEnlumineurContext >> periodsAtEndOfMethod [
-	^ periodsAtEndOfMethod
-]
-
-{ #category : #accessing }
-BIEnlumineurContext >> periodsAtEndOfMethod: aBoolean [
-	periodsAtEndOfMethod := aBoolean
+	^ periodAtEndOfMethod
 ]
 
 { #category : #accessing }

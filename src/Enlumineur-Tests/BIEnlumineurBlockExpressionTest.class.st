@@ -9,8 +9,8 @@ BIEnlumineurBlockExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock: 1;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock:false;
+		periodAtEndOfMethod: false;
 		lineUpBlockBrackets:false;
 		indentStyle: #tabulation;
 		keepBlockInMessage:true;
@@ -31,8 +31,8 @@ BIEnlumineurBlockExpressionTest >> blockWithTemporariesConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock: 1;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock:false;
+		periodAtEndOfMethod: false;
 		lineUpBlockBrackets:false;
 		keepBlockInMessage:true;
 		retainBlankLinesBetweenStatements:false;
@@ -61,8 +61,8 @@ BIEnlumineurBlockExpressionTest >> configurationWithThreeSpaces [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock: 3;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock:false;
+		periodAtEndOfMethod: false;
 		lineUpBlockBrackets:false;
 		indentStyle: #tabulation;
 		keepBlockInMessage:false;
@@ -83,8 +83,8 @@ BIEnlumineurBlockExpressionTest >> doNotKeepBlockInMessageConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock: 1;
-		periodsAtEndOfBlock: false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock: false;
+		periodAtEndOfMethod: false;
 		lineUpBlockBrackets: false;
 		indentStyle: #tabulation;
 		keepBlockInMessage: false;
@@ -105,8 +105,8 @@ BIEnlumineurBlockExpressionTest >> dontFormatCommentWithStatementConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock:1;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock:false;
+		periodAtEndOfMethod: false;
 		lineUpBlockBrackets:false;
 		indentStyle: #tabulation;
 		keepBlockInMessage:true;
@@ -129,8 +129,8 @@ BIEnlumineurBlockExpressionTest >> formatCommentWithStatementConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock:1;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock:false;
+		periodAtEndOfMethod: false;
 		lineUpBlockBrackets:false;
 		indentStyle: #tabulation;
 		keepBlockInMessage:true;
@@ -153,8 +153,8 @@ BIEnlumineurBlockExpressionTest >> fourSpaceIndentConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock: 1;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock:false;
+		periodAtEndOfMethod: false;
 		lineUpBlockBrackets:false;
 		keepBlockInMessage:true;
 		retainBlankLinesBetweenStatements:false;
@@ -178,8 +178,8 @@ BIEnlumineurBlockExpressionTest >> multiLineConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock:1;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock:false;
+		periodAtEndOfMethod: false;
 		lineUpBlockBrackets:false;
 		indentStyle: #tabulation;
 		keepBlockInMessage:false;
@@ -204,8 +204,8 @@ BIEnlumineurBlockExpressionTest >> multiLineWithThreeSpacesInsideBlockConfigurat
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock:3;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock:false;
+		periodAtEndOfMethod: false;
 		lineUpBlockBrackets:false;
 		indentStyle: #tabulation;
 		keepBlockInMessage:false;
@@ -234,8 +234,8 @@ BIEnlumineurBlockExpressionTest >> newLineBeforeEndBracketConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock:1;
-		periodsAtEndOfBlock: false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock: false;
+		periodAtEndOfMethod: false;
 		lineUpBlockBrackets: true;
 		indentStyle: #tabulation;
 		keepBlockInMessage: true;
@@ -260,8 +260,8 @@ BIEnlumineurBlockExpressionTest >> noNewLineBeforeEndBracketConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock:1;
-		periodsAtEndOfBlock: false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock: false;
+		periodAtEndOfMethod: false;
 		lineUpBlockBrackets: false;
 		indentStyle: #tabulation;
 		keepBlockInMessage: true;
@@ -282,8 +282,8 @@ BIEnlumineurBlockExpressionTest >> numberOfSpaceChangedAfterIndentCharacterConfi
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock: 1;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock:false;
+		periodAtEndOfMethod: false;
 		lineUpBlockBrackets:false;
 		keepBlockInMessage:true;
 		retainBlankLinesBetweenStatements:false;
@@ -308,8 +308,8 @@ BIEnlumineurBlockExpressionTest >> oneSpaceIndentConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock: 1;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock:false;
+		periodAtEndOfMethod: false;
 		lineUpBlockBrackets:false;
 		keepBlockInMessage:true;
 		retainBlankLinesBetweenStatements:false;
@@ -347,8 +347,8 @@ BIEnlumineurBlockExpressionTest >> periodAtEndConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock:1;
-		periodsAtEndOfBlock: true;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock: true;
+		periodAtEndOfMethod: false;
 		lineUpBlockBrackets: false;
 		indentStyle: #tabulation;
 		keepBlockInMessage: false;
@@ -369,8 +369,8 @@ BIEnlumineurBlockExpressionTest >> tabIndentConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock: 1;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock:false;
+		periodAtEndOfMethod: false;
 		lineUpBlockBrackets:false;
 		keepBlockInMessage:true;
 		retainBlankLinesBetweenStatements:false;
@@ -393,8 +393,8 @@ BIEnlumineurBlockExpressionTest >> tabIndentIsnotAffectedConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock: 1;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock:false;
+		periodAtEndOfMethod: false;
 		lineUpBlockBrackets:false;
 		keepBlockInMessage:true;
 		retainBlankLinesBetweenStatements:false;
@@ -664,8 +664,8 @@ BIEnlumineurBlockExpressionTest >> tooLongStatementConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock: 1;
-		periodsAtEndOfBlock:false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock:false;
+		periodAtEndOfMethod: false;
 		lineUpBlockBrackets:false;
 		indentStyle: #tabulation;
 		keepBlockInMessage:true;

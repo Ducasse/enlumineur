@@ -34,8 +34,8 @@ BIEnlumineurMessageExpressionTest >> blockAndCascadeInMessageConfiguration [
 		keepBlockInMessage: true;
 		numberOfSpacesInsideBlock: 1;
 		numberOfSpacesAfterCaretSymbolInReturn: 1;
-		periodsAtEndOfBlock: false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock: false;
+		periodAtEndOfMethod: false;
 		lineUpBlockBrackets: false;
 		retainBlankLinesBetweenStatements: false;
 		minimumNewLinesBetweenStatements: 1;
@@ -59,8 +59,8 @@ BIEnlumineurMessageExpressionTest >> blockAndParenthesesInMessageConfiguration [
 		keepBlockInMessage: true;
 		numberOfSpacesInsideBlock: 1;
 		numberOfSpacesAfterCaretSymbolInReturn: 0;
-		periodsAtEndOfBlock: false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock: false;
+		periodAtEndOfMethod: false;
 		lineUpBlockBrackets: false;
 		retainBlankLinesBetweenStatements: false;
 		minimumNewLinesBetweenStatements: 1;
@@ -84,8 +84,8 @@ BIEnlumineurMessageExpressionTest >> blockInMessageConfiguration [
 		keepBlockInMessage: true;
 		numberOfSpacesInsideBlock: 1;
 		numberOfSpacesAfterCaretSymbolInReturn: 0;
-		periodsAtEndOfBlock: false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock: false;
+		periodAtEndOfMethod: false;
 		lineUpBlockBrackets: false;
 		retainBlankLinesBetweenStatements: false;
 		minimumNewLinesBetweenStatements: 1;
@@ -106,8 +106,8 @@ BIEnlumineurMessageExpressionTest >> blockInMessageTooLongConfiguration [
 		keepBlockInMessage: true;
 		numberOfSpacesInsideBlock: 1;
 		numberOfSpacesAfterCaretSymbolInReturn: 0;
-		periodsAtEndOfBlock: false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock: false;
+		periodAtEndOfMethod: false;
 		lineUpBlockBrackets: false;
 		retainBlankLinesBetweenStatements: false;
 		minimumNewLinesBetweenStatements: 1;
@@ -128,8 +128,8 @@ BIEnlumineurMessageExpressionTest >> dontKeepBlockInMessageConfiguration [
 		keepBlockInMessage: false;
 		numberOfSpacesInsideBlock: 1;
 		numberOfSpacesAfterCaretSymbolInReturn: 0;
-		periodsAtEndOfBlock: false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock: false;
+		periodAtEndOfMethod: false;
 		lineUpBlockBrackets: false;
 		retainBlankLinesBetweenStatements: false;
 		minimumNewLinesBetweenStatements: 1;
@@ -150,8 +150,8 @@ BIEnlumineurMessageExpressionTest >> extraIndentWithThreeSpacesInsideParentheses
 		keepBlockInMessage: true;
 		numberOfSpacesInsideBlock: 1;
 		numberOfSpacesAfterCaretSymbolInReturn: 0;
-		periodsAtEndOfBlock: false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock: false;
+		periodAtEndOfMethod: false;
 		lineUpBlockBrackets: false;
 		retainBlankLinesBetweenStatements: false;
 		minimumNewLinesBetweenStatements: 1;
@@ -190,8 +190,8 @@ BIEnlumineurMessageExpressionTest >> ifTrueIfFalseMutlilineMessageConfiguration 
 		keepBlockInMessage: true;
 		numberOfSpacesInsideBlock: 1;
 		numberOfSpacesAfterCaretSymbolInReturn: 0;
-		periodsAtEndOfBlock: false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock: false;
+		periodAtEndOfMethod: false;
 		lineUpBlockBrackets: false;
 		retainBlankLinesBetweenStatements: false;
 		minimumNewLinesBetweenStatements: 1;
@@ -215,8 +215,8 @@ BIEnlumineurMessageExpressionTest >> keepBlockInMessageConfiguration [
 		keepBlockInMessage: true;
 		numberOfSpacesInsideBlock: 1;
 		numberOfSpacesAfterCaretSymbolInReturn: 0;
-		periodsAtEndOfBlock: false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock: false;
+		periodAtEndOfMethod: false;
 		lineUpBlockBrackets: false;
 		retainBlankLinesBetweenStatements: false;
 		minimumNewLinesBetweenStatements: 1;
@@ -237,8 +237,8 @@ BIEnlumineurMessageExpressionTest >> littleMaxLineLengthConfiguration [
 		keepBlockInMessage: true;
 		numberOfSpacesInsideBlock: 1;
 		numberOfSpacesAfterCaretSymbolInReturn: 0;
-		periodsAtEndOfBlock: false;
-		periodsAtEndOfMethod: false;
+		periodAtEndOfBlock: false;
+		periodAtEndOfMethod: false;
 		lineUpBlockBrackets: false;
 		retainBlankLinesBetweenStatements: false;
 		minimumNewLinesBetweenStatements: 1;
