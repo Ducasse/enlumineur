@@ -94,23 +94,3 @@ BIMethodProvider class >> yodaPrettyPrint [
 	
 	', moins en forme tu seras. '
 ]
-
-{ #category : #methods }
-BIMethodProvider >> klm [
-	^ 'Quand 900 ans comme moi tu auras' , 
-	
-	
-	
-	
-	', moins en forme tu seras. '
-]
-
-{ #category : #methods }
-BIMethodProvider >> yodaPrettyPrint [
-	^ 'Quand 900 ans comme moi tu auras' , 
-	
-	
-	
-	
-	', moins en forme tu seras. '
-]

@@ -157,14 +157,15 @@ BISettingPreviewer2 class >> dialogOpenBIPreviewer [
 	^ Smalltalk ui theme
 		newRowIn: World
 		for:
-			{(Smalltalk ui theme buttonLabelForText: 'Open Blue Ink Setting Previewer ').
+			{(Smalltalk ui theme buttonLabelForText: 'Open Setting Previewer ').
 			self buildOpenBIInspectorButton}
 ]
 
 { #category : #'class initialization' }
 BISettingPreviewer2 class >> initialize [
-    FormaterPrettyPrinter := BIConfigurableFormatter new.
-    MethodProvider := BIMethodProvider
+	"self initialize"
+	FormaterPrettyPrinter := BIEnlumineurFormatter new.
+	MethodProvider := BIMethodProvider
 ]
 
 { #category : #'instance creation' }
@@ -195,11 +196,11 @@ BISettingPreviewer2 class >> openBIInspectorButtonState [
 { #category : #settings }
 BISettingPreviewer2 class >> settingsOn: aBuilder [
 	<systemsettings>
-	(aBuilder group: #blueInkFormatterExtra)
+	(aBuilder group: #EnlumineurFormatterExtra)
 		target: self;
-		parent: #blueInkFormatter;
-		label: 'BlueInk Formatting Editor';
-		description: 'Open the BlueInk setting previewer to edit the formatting options';
+		parent: #codeBrowsing;
+		label: 'Formatter Previewer';
+		description: 'Open the setting previewer to edit the formatting options';
 		dialog: [ self dialogOpenBIPreviewer ]
 
 	
@@ -362,6 +363,8 @@ BISettingPreviewer2 >> chooseMethodUI [
 
 { #category : #'initialization widgets' }
 BISettingPreviewer2 >> formatPrettyPrint [
+	methodDropList selectedItem
+		ifNil: [ ^ self ].
 	^ formaterPrettyPrinter format: methodDropList selectedItem ast
 ]
 
@@ -396,9 +399,9 @@ BISettingPreviewer2 >> initialize [
 
 { #category : #'initialization widgets' }
 BISettingPreviewer2 >> initializeButtons [
-	saveMethodButton label: 'save'.
-	removeMethodButton label: 'remove current Method'.
-	removeSettingButton label: 'remove setting'.
+	
+	
+
 	saveSettingButton label: 'save'.
 	chooseMethodUI label: 'choose another method'
 ]
@@ -421,19 +424,25 @@ BISettingPreviewer2 >> initializeWidgets [
     settingsTree := self newTreeTable.
     methodDropList := self newDropList.
     chooseMethodUI := self newButton.
+	chooseMethodUI label: 'choose another method'.
     notFormatedTextPresenter := self newCode.
     formatedTextPresenter := self newCode.
     settingsDropList := self newDropList.
     saveMethodButton := self newButton.
-    removeMethodButton := self newButton.
-    saveSettingButton := self newButton.
-    removeSettingButton := self newButton.
-    self initializeButtons.
+	saveMethodButton label: 'save'.
+ removeMethodButton := self newButton.
+	 removeMethodButton label: 'remove current Method'.
+	saveSettingButton := self newButton.
+	saveSettingButton label: 'save'.
+	
+	removeSettingButton := self newButton.
+	removeSettingButton label: 'remove setting'.
+
     self setupMethodDropList.
     self setupSettingsDropList.
     self setupSettingsTree.
     self setupBeforePrettyPrinterCodePresenter.
-    self setupAfterPrettyPrinterCodePresenter.
+   "self setupAfterPrettyPrinterCodePresenter."
     self unregisterAnnouncement.
     SystemAnnouncer uniqueInstance weak
         when: MethodAdded send: #methodAdded: to: self;
@@ -509,15 +518,13 @@ BISettingPreviewer2 >> methodProvider: aMethodProvider [
 
 { #category : #'system-Announcement' }
 BISettingPreviewer2 >> methodRemoved: aMethodRemoved [
-	(aMethodRemoved methodOrigin = methodProvider
-		and: [ isSettingModification not ])
-		ifFalse: [ ^ self ].
-	methodDropList selectedIndex: 1.
-	methodDropList
-		items:
-			(methodDropList listItems
-				removeAllSuchThat: [ :method | method selector = aMethodRemoved method selector ];
-				yourself)
+	(aMethodRemoved methodOrigin = methodProvider and: [ 
+		 isSettingModification not ]) ifFalse: [ ^ self ].
+	methodDropList selectIndex: 1.
+	methodDropList items: (methodDropList listItems
+			 removeAllSuchThat: [ :method | 
+				 method selector = aMethodRemoved method selector ];
+			 yourself)
 ]
 
 { #category : #accessing }
@@ -571,33 +578,29 @@ BISettingPreviewer2 >> setupBeforePrettyPrinterCodePresenter [
 	notFormatedTextPresenter
 		withSyntaxHighlight;
 		autoAccept: true.
-	notFormatedTextPresenter
-		text: methodDropList selectedItem sourceCode
+	"notFormatedTextPresenter
+		text: methodDropList selectedItem sourceCode"
 ]
 
 { #category : #'initialization widgets' }
 BISettingPreviewer2 >> setupMethodDropList [
 	methodDropList
 		items:
-			(methodProvider methods select: [ :each | each category = 'methods' ])
-				asOrderedCollection;
-		displayBlock: [ :item | item selector ]
+			(methodProvider methods select: [ :each | 
+					 each category = 'methods' ]) asOrderedCollection;
+		display: [ :item | item selector ]
 ]
 
 { #category : #'initialization widgets' }
 BISettingPreviewer2 >> setupSettingsDropList [
 	settingsDropList
-		items:
-			((methodProvider methods , methodProvider class methods)
-				asOrderedCollection select: [ :each | each category = 'settings' ]);
-		displayBlock: [ :each | each selector ].
-	formaterPrettyPrinter
-		installNewContext:
-			(STON
-				fromString:
-					(settingsDropList selectedItem
-						valueWithReceiver: settingsDropList selectedItem origin
-						arguments: #()))
+		items: ((methodProvider methods , methodProvider class methods)
+				 asOrderedCollection select: [ :each | each category = 'settings' ]);
+		display: [ :each | each selector ].
+	"formaterPrettyPrinter installNewContext:
+		(STON fromString: (settingsDropList selectedItem
+				  valueWithReceiver: settingsDropList selectedItem origin
+				  arguments: #(  )))"
 ]
 
 { #category : #'initialization widgets' }
