@@ -304,24 +304,21 @@ BIEnlumineurMessageExpressionTest >> noTraditionalBinaryPrecedenceConfiguration 
 			BIPrettyPrinterContext new storeOn: s]"
 
 	^ self contextClass basicNew
-	indentStyle: #tabulation;
-	formatCommentCloseToStatements:false;
-	multiLineMessages:Array new;
-	oneLineMessages:Array new;
-	numberOfArgumentsForMultiLine:10;
-	indentsForKeywords: 0;
-	maxLineLength: 50;
-	newLineBeforeFirstKeyword:false;
-	keepBlockInMessage:false;
-	useTraditionalBinaryPrecedenceForParentheses:false;
-	traditionalBinaryPrecedenceArray: #(#($| $& $?) #($= $~ $< $>) #($- $+) #($* $/ $% $\) #($@));
-	numberOfSpacesInsideParentheses: 0;
-	indentExtraSpaces: 0
+		indentStyle: #tabulation;
+		formatCommentCloseToStatements: false;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine: 10;
+		indentsForKeywords: 0;
+		maxLineLength: 50;
+		newLineBeforeFirstKeyword: false;
+		keepBlockInMessage: false;
+		numberOfSpacesInsideParentheses: 0;
+		indentExtraSpaces: 0
 ]
 
 { #category : #configurations }
 BIEnlumineurMessageExpressionTest >> oneArgumentPerLineConfiguration [
-
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentCloseToStatements: false;
@@ -333,8 +330,7 @@ BIEnlumineurMessageExpressionTest >> oneArgumentPerLineConfiguration [
 		newLineBeforeFirstKeyword: true;
 		keepBlockInMessage: false;
 		indentExtraSpaces: 0;
-		numberOfSpacesInsideParentheses: 0;
-		configureForTraditionalBinaryPrecedence 
+		numberOfSpacesInsideParentheses: 0
 ]
 
 { #category : #configurations }
@@ -364,19 +360,17 @@ BIEnlumineurMessageExpressionTest >> oneLineMessageConfiguration [
 
 { #category : #configurations }
 BIEnlumineurMessageExpressionTest >> parentheseConfiguration [
-
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
-		formatCommentCloseToStatements:false;
-		multiLineMessages:Array new;
-		oneLineMessages:Array new;
-		numberOfArgumentsForMultiLine:10;
+		formatCommentCloseToStatements: false;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine: 10;
 		indentsForKeywords: 0;
 		maxLineLength: 70;
-		newLineBeforeFirstKeyword:false;
-		keepBlockInMessage:false;
+		newLineBeforeFirstKeyword: false;
+		keepBlockInMessage: false;
 		indentExtraSpaces: 0;
-		configureForTraditionalBinaryPrecedence;
 		numberOfSpacesInsideParentheses: 0
 ]
 
@@ -394,6 +388,27 @@ BIEnlumineurMessageExpressionTest >> shortMaxLineLengthConfiguration [
 		newLineBeforeFirstKeyword:false;
 		keepBlockInMessage:false;
 		indentExtraSpaces:0
+]
+
+{ #category : #configurations }
+BIEnlumineurMessageExpressionTest >> simpleConfiguration [
+	"Here we can control explicitely the configuration we want."
+
+	" String streamContents: [:s |
+			BIPrettyPrinterContext new storeOn: s]"
+
+	^ self contextClass basicNew
+		indentStyle: #tabulation;
+		formatCommentCloseToStatements: false;
+		multiLineMessages: Array new;
+		oneLineMessages: Array new;
+		numberOfArgumentsForMultiLine: 10;
+		indentsForKeywords: 0;
+		maxLineLength: 50;
+		newLineBeforeFirstKeyword: false;
+		keepBlockInMessage: false;
+		numberOfSpacesInsideParentheses: 0;
+		indentExtraSpaces: 0
 ]
 
 { #category : #'test binary' }
@@ -472,10 +487,10 @@ BIEnlumineurMessageExpressionTest >> testBinaryOneArgumentPerLine2 [
 	source := self formatExpression: '(1+2)*3'.
 	self
 		assert: source
-		equals: 
- '(1
- + 2)
-* 3'		
+		equals:
+			'1
++ 2
+* 3'
 ]
 
 { #category : #'test block arg' }
@@ -1269,15 +1284,15 @@ BIEnlumineurMessageExpressionTest >> testTooLongLineWithArgument [
 { #category : #tests }
 BIEnlumineurMessageExpressionTest >> testTraditionalBinaryPrecedence [
 	| source |
-	configurationSelector := #traditionalBinaryPrecedenceConfiguration.
+	configurationSelector := #simpleConfiguration.
 	source := self formatExpression: '2+3*4'.
-	self assert: source equals: '(2 + 3) * 4'
+	self assert: source equals: '2 + 3 * 4'
 ]
 
 { #category : #tests }
 BIEnlumineurMessageExpressionTest >> testTraditionalBinaryPrecedence2 [
 	| source |
-	configurationSelector := #traditionalBinaryPrecedenceConfiguration.
+	configurationSelector := #simpleConfiguration.
 	source := self formatExpression: '2*3+4'.
 	self assert: source equals: '2 * 3 + 4'
 ]
@@ -1285,9 +1300,9 @@ BIEnlumineurMessageExpressionTest >> testTraditionalBinaryPrecedence2 [
 { #category : #tests }
 BIEnlumineurMessageExpressionTest >> testTraditionalBinaryPrecedence3 [
 	| source |
-	configurationSelector := #traditionalBinaryPrecedenceConfiguration.
+	configurationSelector := #simpleConfiguration.
 	source := self formatExpression: '2+3*4+5 * 2'.
-	self assert: source equals: '((2 + 3) * 4 + 5) * 2'
+	self assert: source equals: '2 + 3 * 4 + 5 * 2'
 ]
 
 { #category : #'test unary' }
@@ -1373,28 +1388,6 @@ BIEnlumineurMessageExpressionTest >> testUnaryTooLongArgument [
 		equals:
 'foo
 	messageTooLongUnaryyyy'
-]
-
-{ #category : #configurations }
-BIEnlumineurMessageExpressionTest >> traditionalBinaryPrecedenceConfiguration [
-	"Here we can control explicitely the configuration we want."
-
-	" String streamContents: [:s |
-			BIPrettyPrinterContext new storeOn: s]"
-
-	^ self contextClass basicNew
-	indentStyle: #tabulation;
-	formatCommentCloseToStatements:false;
-	multiLineMessages:Array new;
-	oneLineMessages:Array new;
-	numberOfArgumentsForMultiLine:10;
-	indentsForKeywords: 0;
-	maxLineLength: 50;
-	newLineBeforeFirstKeyword:false;
-	keepBlockInMessage:false;
-	configureForTraditionalBinaryPrecedence;
-	numberOfSpacesInsideParentheses: 0;
-	indentExtraSpaces: 0
 ]
 
 { #category : #configurations }

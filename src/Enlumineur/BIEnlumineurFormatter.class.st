@@ -868,31 +868,11 @@ For example: (   1 + 2   ) is the result for 3 spaces'
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsTraditionalBinaryPrecedenceArray: aBuilder [
-	
-	(aBuilder setting: #traditionalBinaryPrecedenceArray)
-		label: 'Traditional binary precedence';
-		description: 'Set the logical grouping to handle message priority when using the setting UseTraditionalBinaryPrecedence. For now it is expressed as an 2 dimension array containing messages according to the priority
-Example: #( #($- $+) #($*) )'
-]
-
-{ #category : #settings }
 BIEnlumineurFormatter class >> settingsUseBasicCommentFormat: aBuilder [
 
 	(aBuilder setting: #useBasicCommentFormat)
 		label: 'Use basic comment format';
 		description: 'Leave the comment unchanged and do not resize comment.'
-]
-
-{ #category : #settings }
-BIEnlumineurFormatter class >> settingsUseTraditionalBinaryPrecedenceForParentheses: aBuilder [
-
-	(aBuilder setting: #useTraditionalBinaryPrecedenceForParentheses)
-		label: 'Use traditional binary precedence for parentheses';
-		description: 'Add parentheses to comply with the precedence.
-		
-When set to true the expression 1 + 2 * 3 will be formated as (1 + 2) * 3 but 
-1 + (2 * 3) will not be affected since the programmer had to write it this way to express the logic he wanted in the first place.'
 ]
 
 { #category : #accessing }
@@ -911,17 +891,6 @@ BIEnlumineurFormatter class >> spacesInsideParentheses [
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> traditionalBinaryPrecedenceArray [
-	^ DefaultPrettyPrintContext traditionalBinaryPrecedenceArray printString 
-]
-
-{ #category : #accessing }
-BIEnlumineurFormatter class >> traditionalBinaryPrecedenceArray: aString [
-	DefaultPrettyPrintContext traditionalBinaryPrecedenceArray: (self compiler evaluate: aString).
-	self announceASettingChange
-]
-
-{ #category : #accessing }
 BIEnlumineurFormatter class >> useBasicCommentFormat [
 	^ DefaultPrettyPrintContext useBasicCommentFormat
 ]
@@ -929,17 +898,6 @@ BIEnlumineurFormatter class >> useBasicCommentFormat [
 { #category : #accessing }
 BIEnlumineurFormatter class >> useBasicCommentFormat: aBoolean [
 	DefaultPrettyPrintContext useBasicCommentFormat: aBoolean.
-	self announceASettingChange
-]
-
-{ #category : #accessing }
-BIEnlumineurFormatter class >> useTraditionalBinaryPrecedenceForParentheses [
-	^ DefaultPrettyPrintContext useTraditionalBinaryPrecedenceForParentheses
-]
-
-{ #category : #accessing }
-BIEnlumineurFormatter class >> useTraditionalBinaryPrecedenceForParentheses: aBoolean [
-	DefaultPrettyPrintContext useTraditionalBinaryPrecedenceForParentheses: aBoolean.
 	self announceASettingChange
 ]
 
@@ -1625,14 +1583,13 @@ BIEnlumineurFormatter >> needsParenthesisFor: aNode [
 	aNode ifNil: [ ^ false ].
 	aNode isValue
 		ifFalse: [ ^ false ].
-	aNode isParseError ifTrue: [ ^false ].
+	aNode isParseError
+		ifTrue: [ ^ false ].
 	parent := aNode parent ifNil: [ ^ false ].
-	(aNode isMessage and: [ 
-		parent isMessage and: [ 
-		parent receiver == aNode and:[
-		aNode selector isUnary not ] ] ])
-		ifTrue: [ 
-			grandparent := parent parent.
+	(aNode isMessage
+		and: [ parent isMessage
+				and: [ parent receiver == aNode and: [ aNode selector isUnary not ] ] ])
+		ifTrue: [ grandparent := parent parent.
 			(grandparent notNil and: [ grandparent isCascade ])
 				ifTrue: [ ^ true ] ].
 	aNode precedence < parent precedence
@@ -1653,8 +1610,7 @@ BIEnlumineurFormatter >> needsParenthesisFor: aNode [
 		ifFalse: [ ^ true ].
 	aNode precedence = parent precedence
 		ifFalse: [ ^ true ].
-	^ self useTraditionalBinaryPrecedenceForParentheses
-		and: [ self precedenceOf: parent selector greaterThan: aNode selector ]
+	^ false
 ]
 
 { #category : #private }
@@ -1877,22 +1833,6 @@ BIEnlumineurFormatter >> pragmaArgumentNeedsSeparator: anArgumentNode [
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> precedenceOf: parentSelector greaterThan: childSelector [
-	"Put parenthesis around things that are preceived to have 'lower' precedence. For example, 'a + b * c' 
-	-> '(a + b) * c' but 'a * b + c' -> 'a * b + c'"
-
-	| childIndex parentIndex |
-	childIndex := 0.
-	parentIndex := 0.
-	self traditionalBinaryPrecedenceArray doWithIndex: [ :each :i | 
-		(each includes: parentSelector first)
-			ifTrue: [ parentIndex := i ].
-		(each includes: childSelector first)
-			ifTrue: [ childIndex := i ] ].
-	^ childIndex < parentIndex
-]
-
-{ #category : #private }
 BIEnlumineurFormatter >> privateFormatMethodPatternMonoLineFor: aMethodNode [
 	self
 		with: aMethodNode selectorParts
@@ -2041,16 +1981,6 @@ BIEnlumineurFormatter >> spacesInsideParentheses [
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> traditionalBinaryPrecedenceArray [
-	^ context traditionalBinaryPrecedenceArray
-]
-
-{ #category : #accessing }
-BIEnlumineurFormatter >> traditionalBinaryPrecedenceArray: anArray [
-	context traditionalBinaryPrecedenceArray: anArray
-]
-
-{ #category : #accessing }
 BIEnlumineurFormatter >> useBasicCommentFormat [ 
 	^ context useBasicCommentFormat 
 ]
@@ -2058,16 +1988,6 @@ BIEnlumineurFormatter >> useBasicCommentFormat [
 { #category : #accessing }
 BIEnlumineurFormatter >> useBasicCommentFormat: aBoolean [
 	context useBasicCommentFormat: aBoolean
-]
-
-{ #category : #accessing }
-BIEnlumineurFormatter >> useTraditionalBinaryPrecedenceForParentheses [
-	^ context useTraditionalBinaryPrecedenceForParentheses
-]
-
-{ #category : #accessing }
-BIEnlumineurFormatter >> useTraditionalBinaryPrecedenceForParentheses: aBoolean [
-	context useTraditionalBinaryPrecedenceForParentheses: aBoolean
 ]
 
 { #category : #visiting }

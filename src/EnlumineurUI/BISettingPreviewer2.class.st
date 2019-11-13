@@ -361,6 +361,11 @@ BISettingPreviewer2 >> chooseMethodUI [
 	^ chooseMethodUI
 ]
 
+{ #category : #'initialization-actions' }
+BISettingPreviewer2 >> foo [ 
+	^ 1 + 2 * 3
+]
+
 { #category : #'initialization widgets' }
 BISettingPreviewer2 >> formatPrettyPrint [
 	methodDropList selectedItem

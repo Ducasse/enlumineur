@@ -25,7 +25,6 @@ Class {
 		'oneLineMessages',
 		'retainBlankLinesBetweenStatements',
 		'retainBlankLinesBeforeComments',
-		'useTraditionalBinaryPrecedenceForParentheses',
 		'selectorAndArgumentCombinedMaxSize',
 		'useBasicCommentFormat',
 		'traditionalBinaryPrecedenceArray',
@@ -50,13 +49,6 @@ Class {
 	],
 	#category : #'Enlumineur-Core'
 }
-
-{ #category : #initialization }
-BIEnlumineurContext >> configureForTraditionalBinaryPrecedence [
-
-	useTraditionalBinaryPrecedenceForParentheses := true.
-	traditionalBinaryPrecedenceArray := #(#($| $& $?) #($= $~ $< $>) #($- $+) #($* $/ $% $\) #($@))
-]
 
 { #category : #initialization }
 BIEnlumineurContext >> configureMultiLineMessages [
@@ -120,7 +112,6 @@ BIEnlumineurContext >> indentsForKeywords: anInteger [
 
 { #category : #initialization }
 BIEnlumineurContext >> initialize [
-
 	super initialize.
 	self useBasicCommentFormat: true.
 	self formatCommentCloseToStatements: true.
@@ -144,7 +135,6 @@ BIEnlumineurContext >> initialize [
 	self retainBlankLinesBetweenStatements: false.
 	self retainBlankLinesBeforeComments: true.
 	self selectorAndArgumentCombinedMaxSize: 40.
-	self useTraditionalBinaryPrecedenceForParentheses: false.
 	self numberOfSpacesInsideBlock: 1.
 	self numberOfSpacesInsideParentheses: 0.
 	self numberOfSpacesAfterCaretSymbolInReturn: 1.
@@ -473,17 +463,6 @@ BIEnlumineurContext >> stringFromSpaceNumber: aNumber [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> traditionalBinaryPrecedenceArray [
-	^ traditionalBinaryPrecedenceArray
-]
-
-{ #category : #accessing }
-BIEnlumineurContext >> traditionalBinaryPrecedenceArray: anArray [
-	"To be revisited latter. Apparently this trick is to convert strings into an array."
-	traditionalBinaryPrecedenceArray := self class compiler evaluate: anArray asString
-]
-
-{ #category : #accessing }
 BIEnlumineurContext >> useBasicCommentFormat [
 	^ useBasicCommentFormat
 ]
@@ -491,14 +470,4 @@ BIEnlumineurContext >> useBasicCommentFormat [
 { #category : #accessing }
 BIEnlumineurContext >> useBasicCommentFormat: aBoolean [
 	useBasicCommentFormat := aBoolean
-]
-
-{ #category : #accessing }
-BIEnlumineurContext >> useTraditionalBinaryPrecedenceForParentheses [
-	^ useTraditionalBinaryPrecedenceForParentheses
-]
-
-{ #category : #accessing }
-BIEnlumineurContext >> useTraditionalBinaryPrecedenceForParentheses: aBoolean [
-	useTraditionalBinaryPrecedenceForParentheses := aBoolean
 ]

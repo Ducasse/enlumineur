@@ -17,7 +17,7 @@ BIEnlumineurExamples class >> bigExamplesSettingsTable [
 			#(#formatCommentCloseToStatements #indentsForKeywords #lineUpBlockBrackets #methodSignatureOnMultipleLines #multiLineMessages #newLineAfterCascade #newLineBeforeFirstCascade #newLineBeforeFirstKeyword #numberOfNewLinesAfterMethodComment #numberOfNewLinesAfterTemporaries #numberOfArgumentsForMultiLine #oneLineMessages #retainBlankLinesBeforeComments #selectorAndArgumentCombinedMaxSize #useBasicCommentFormat #numberOfSpacesAfterCaretSymbolInReturn #minimumNewLinesBetweenStatements #numberOfNewLinesAfterMethodSignature #periodsAtEndOfBlock #periodsAtEndOfMethod #retainBlankLinesBetweenStatements #numberOfSpacesInsideBlock #numberOfSpacesInIndent #indentStyle)).
 	(#bigExample:
 		->
-			#(#keepBlockInMessage #maxLineLength #useTraditionalBinaryPrecedenceForParentheses #traditionalBinaryPrecedenceArray #numberOfSpacesInsideParentheses #numberOfSpacesInsideArray #minimumNewLinesBetweenStatements #numberOfNewLinesAfterMethodSignature #periodsAtEndOfBlock #periodsAtEndOfMethod #retainBlankLinesBetweenStatements #numberOfSpacesInsideBlock #numberOfSpacesInIndent #indentStyle))}
+			#(#keepBlockInMessage #maxLineLength #numberOfSpacesInsideParentheses #numberOfSpacesInsideArray #minimumNewLinesBetweenStatements #numberOfNewLinesAfterMethodSignature #periodsAtEndOfBlock #periodsAtEndOfMethod #retainBlankLinesBetweenStatements #numberOfSpacesInsideBlock #numberOfSpacesInIndent #indentStyle))}
 ]
 
 { #category : #settings }
@@ -322,37 +322,36 @@ BIEnlumineurExamples class >> guille [
 { #category : #'class initialization' }
 BIEnlumineurExamples class >> initializeSettingsTable [
 	"self initializeSettingsTable"
-	
-	settingsTable := {
-		#formatCommentCloseToStatements -> #formatCommentWithExpressionExample.
-		#indentString -> #indentExample.
-		#indentsForKeywords -> #messageWithALotOfParameters.
-		#keepBlockInMessage -> #blockExample.
-		#lineUpBlockBrackets -> #blockExample.
-		#maxLineLength -> #maxLineLengthExample.
-		#methodSignatureOnMultipleLines -> #method:with:A:lot:of:parameters:.
-		#minimumNewLinesBetweenStatements-> #minimumNewLinesBetweenStatementsExample.
-		#multiLineMessages.
-		#newLineAfterCascade -> #cascadeExample.
-		#newLineBeforeFirstCascade -> #cascadeExample.
-		#newLineBeforeFirstKeyword -> #messageWithALotOfParameters.
-		#numberOfNewLinesAfterMethodComment -> #newLinesExample.
-		#numberOfNewLinesAfterMethodSignature -> #newLinesExample.
-		#numberOfNewLinesAfterTemporaries -> #newLinesExample.
-		#numberOfArgumentsForMultiLine -> #messageWithALotOfParameters.
-		#oneLineMessages.
-		#periodsAtEndOfBlock -> #blockExample.
-		#periodsAtEndOfMethod -> #periodsAtEndOfMethodExample.
-		#retainBlankLinesBetweenStatements -> #retainBlankLinesExample.
-		#retainBlankLinesBeforeComments -> #retainBlankLinesExample.
-		#spacesAfterCaretSymbolInReturn -> #spacesAfterCaretSymbolInReturnExample.
-		#spacesInsideBlocks -> #blockExample.
-		#spacesInsideParentheses -> #parenthesesExample.
-		#useTraditionalBinaryPrecedenceForParentheses -> #traditionalBinaryPrecedenceForParenthesesExample.
-		#selectorAndArgumentCombinedMaxSize -> #messageWithALotOfParameters.
-		#useBasicCommentFormat -> #useBasicCommentFormatExample.
-		#traditionalBinaryPrecedenceArray.
-	}
+
+	settingsTable := {(#formatCommentCloseToStatements
+		-> #formatCommentWithExpressionExample).
+	(#indentString -> #indentExample).
+	(#indentsForKeywords -> #messageWithALotOfParameters).
+	(#keepBlockInMessage -> #blockExample).
+	(#lineUpBlockBrackets -> #blockExample).
+	(#maxLineLength -> #maxLineLengthExample).
+	(#methodSignatureOnMultipleLines -> #method:with:A:lot:of:parameters:).
+	(#minimumNewLinesBetweenStatements
+		-> #minimumNewLinesBetweenStatementsExample).
+	#multiLineMessages.
+	(#newLineAfterCascade -> #cascadeExample).
+	(#newLineBeforeFirstCascade -> #cascadeExample).
+	(#newLineBeforeFirstKeyword -> #messageWithALotOfParameters).
+	(#numberOfNewLinesAfterMethodComment -> #newLinesExample).
+	(#numberOfNewLinesAfterMethodSignature -> #newLinesExample).
+	(#numberOfNewLinesAfterTemporaries -> #newLinesExample).
+	(#numberOfArgumentsForMultiLine -> #messageWithALotOfParameters).
+	#oneLineMessages.
+	(#periodsAtEndOfBlock -> #blockExample).
+	(#periodsAtEndOfMethod -> #periodsAtEndOfMethodExample).
+	(#retainBlankLinesBetweenStatements -> #retainBlankLinesExample).
+	(#retainBlankLinesBeforeComments -> #retainBlankLinesExample).
+	(#spacesAfterCaretSymbolInReturn
+		-> #spacesAfterCaretSymbolInReturnExample).
+	(#spacesInsideBlocks -> #blockExample).
+	(#spacesInsideParentheses -> #parenthesesExample).
+	(#selectorAndArgumentCombinedMaxSize -> #messageWithALotOfParameters).
+	(#useBasicCommentFormat -> #useBasicCommentFormatExample)}
 ]
 
 { #category : #settings }
@@ -824,37 +823,36 @@ BIEnlumineurExamples >> indentExample [
 { #category : #methods }
 BIEnlumineurExamples >> initializeSettingsTable [
 	"self initializeSettingsTable"
-	
-	settingsTable := {
-		#formatCommentCloseToStatements -> #formatCommentWithExpressionExample.
-		#indentString -> #indentExample.
-		#indentsForKeywords -> #messageWithALotOfParameters.
-		#keepBlockInMessage -> #blockExample.
-		#lineUpBlockBrackets -> #blockExample.
-		#maxLineLength -> #maxLineLengthExample.
-		#methodSignatureOnMultipleLines -> #method:with:A:lot:of:parameters:.
-		#minimumNewLinesBetweenStatements-> #minimumNewLinesBetweenStatementsExample.
-		#multiLineMessages.
-		#newLineAfterCascade -> #cascadeExample.
-		#newLineBeforeFirstCascade -> #cascadeExample.
-		#newLineBeforeFirstKeyword -> #messageWithALotOfParameters.
-		#numberOfNewLinesAfterMethodComment -> #newLinesExample.
-		#numberOfNewLinesAfterMethodSignature -> #newLinesExample.
-		#numberOfNewLinesAfterTemporaries -> #newLinesExample.
-		#numberOfArgumentsForMultiLine -> #messageWithALotOfParameters.
-		#oneLineMessages.
-		#periodsAtEndOfBlock -> #blockExample.
-		#periodsAtEndOfMethod -> #periodsAtEndOfMethodExample.
-		#retainBlankLinesBetweenStatements -> #retainBlankLinesExample.
-		#retainBlankLinesBeforeComments -> #retainBlankLinesExample.
-		#spacesAfterCaretSymbolInReturn -> #spacesAfterCaretSymbolInReturnExample.
-		#spacesInsideBlocks -> #blockExample.
-		#spacesInsideParentheses -> #parenthesesExample.
-		#useTraditionalBinaryPrecedenceForParentheses -> #traditionalBinaryPrecedenceForParenthesesExample.
-		#selectorAndArgumentCombinedMaxSize -> #messageWithALotOfParameters.
-		#useBasicCommentFormat -> #useBasicCommentFormatExample.
-		#traditionalBinaryPrecedenceArray.
-	}
+
+	settingsTable := {(#formatCommentCloseToStatements
+		-> #formatCommentWithExpressionExample).
+	(#indentString -> #indentExample).
+	(#indentsForKeywords -> #messageWithALotOfParameters).
+	(#keepBlockInMessage -> #blockExample).
+	(#lineUpBlockBrackets -> #blockExample).
+	(#maxLineLength -> #maxLineLengthExample).
+	(#methodSignatureOnMultipleLines -> #method:with:A:lot:of:parameters:).
+	(#minimumNewLinesBetweenStatements
+		-> #minimumNewLinesBetweenStatementsExample).
+	#multiLineMessages.
+	(#newLineAfterCascade -> #cascadeExample).
+	(#newLineBeforeFirstCascade -> #cascadeExample).
+	(#newLineBeforeFirstKeyword -> #messageWithALotOfParameters).
+	(#numberOfNewLinesAfterMethodComment -> #newLinesExample).
+	(#numberOfNewLinesAfterMethodSignature -> #newLinesExample).
+	(#numberOfNewLinesAfterTemporaries -> #newLinesExample).
+	(#numberOfArgumentsForMultiLine -> #messageWithALotOfParameters).
+	#oneLineMessages.
+	(#periodsAtEndOfBlock -> #blockExample).
+	(#periodsAtEndOfMethod -> #periodsAtEndOfMethodExample).
+	(#retainBlankLinesBetweenStatements -> #retainBlankLinesExample).
+	(#retainBlankLinesBeforeComments -> #retainBlankLinesExample).
+	(#spacesAfterCaretSymbolInReturn
+		-> #spacesAfterCaretSymbolInReturnExample).
+	(#spacesInsideBlocks -> #blockExample).
+	(#spacesInsideParentheses -> #parenthesesExample).
+	(#selectorAndArgumentCombinedMaxSize -> #messageWithALotOfParameters).
+	(#useBasicCommentFormat -> #useBasicCommentFormatExample)}
 ]
 
 { #category : #methods }
