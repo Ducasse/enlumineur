@@ -1,4 +1,4 @@
-# Enlumineur
+# EnlumineurFormatter
 
 [![Build Status](https://travis-ci.org/Ducasse/enlumineur.svg?branch=master)](https://travis-ci.org/Ducasse/enlumineur)
 [![Build status](https://ci.appveyor.com/api/projects/status/1dugaws6dlc20lts?svg=true)](https://ci.appveyor.com/project/Ducasse/enlumineur)
@@ -8,7 +8,7 @@
 [![Pharo version](https://img.shields.io/badge/Pharo-7.0-%23aac9ff.svg)](https://pharo.org/download)
 [![Pharo version](https://img.shields.io/badge/Pharo-8.0-%23aac9ff.svg)](https://pharo.org/download)
 
-Enlumineur is a pretty printer extending the blueInk pharo pretty printer
+Enlumineur is a pretty printer for Pharo.
 
 ## Installation
 
