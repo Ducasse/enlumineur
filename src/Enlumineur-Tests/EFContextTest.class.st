@@ -1,13 +1,13 @@
 Class {
-	#name : #BIEnlumineurContextTest,
+	#name : #EFContextTest,
 	#superclass : #TestCase,
 	#category : #'Enlumineur-Tests'
 }
 
 { #category : #tests }
-BIEnlumineurContextTest >> testNumberOfSpaces [
+EFContextTest >> testNumberOfSpaces [
 
 	| context |
-	context := BIEnlumineurContext new. 
+	context := EFContext new. 
 	self assert: context indentExtraSpaces equals: ''
 ]

@@ -1,11 +1,11 @@
 Class {
-	#name : #BIEnlumineurAssignmentExpressionTest,
-	#superclass : #BIEnlumineurTest,
+	#name : #EFAssignmentExpressionTest,
+	#superclass : #EFTest,
 	#category : #'Enlumineur-Tests'
 }
 
 { #category : #configurations }
-BIEnlumineurAssignmentExpressionTest >> basicConfiguration [
+EFAssignmentExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
 		formatCommentCloseToStatements:false;
@@ -14,7 +14,7 @@ BIEnlumineurAssignmentExpressionTest >> basicConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurAssignmentExpressionTest >> multilineConfiguration [
+EFAssignmentExpressionTest >> multilineConfiguration [
 	^ self contextClass basicNew
 		formatCommentCloseToStatements: false;
 		maxLineLength: 70;
@@ -36,7 +36,7 @@ BIEnlumineurAssignmentExpressionTest >> multilineConfiguration [
 ]
 
 { #category : #test }
-BIEnlumineurAssignmentExpressionTest >> testAssignment [
+EFAssignmentExpressionTest >> testAssignment [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: 'a:=1'.
@@ -44,7 +44,7 @@ BIEnlumineurAssignmentExpressionTest >> testAssignment [
 ]
 
 { #category : #test }
-BIEnlumineurAssignmentExpressionTest >> testAssignmentFormatValue [
+EFAssignmentExpressionTest >> testAssignmentFormatValue [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: 'a:= b:=1'.
@@ -52,7 +52,7 @@ BIEnlumineurAssignmentExpressionTest >> testAssignmentFormatValue [
 ]
 
 { #category : #test }
-BIEnlumineurAssignmentExpressionTest >> testAssignmentFormatVariable [
+EFAssignmentExpressionTest >> testAssignmentFormatVariable [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: ' a   := 1'.
@@ -60,7 +60,7 @@ BIEnlumineurAssignmentExpressionTest >> testAssignmentFormatVariable [
 ]
 
 { #category : #test }
-BIEnlumineurAssignmentExpressionTest >> testAssignmentHasNoExtraSpace [
+EFAssignmentExpressionTest >> testAssignmentHasNoExtraSpace [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '   a:=1   '.
@@ -68,7 +68,7 @@ BIEnlumineurAssignmentExpressionTest >> testAssignmentHasNoExtraSpace [
 ]
 
 { #category : #test }
-BIEnlumineurAssignmentExpressionTest >> testAssignmentHasNoExtraSpaceInside [
+EFAssignmentExpressionTest >> testAssignmentHasNoExtraSpaceInside [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '   a    :=    1   '.
@@ -76,7 +76,7 @@ BIEnlumineurAssignmentExpressionTest >> testAssignmentHasNoExtraSpaceInside [
 ]
 
 { #category : #test }
-BIEnlumineurAssignmentExpressionTest >> testExtraIndentationWhenKeywordMessageIsMultiline [
+EFAssignmentExpressionTest >> testExtraIndentationWhenKeywordMessageIsMultiline [
 	| source |
 	configurationSelector := #multilineConfiguration.
 	source := self
@@ -93,7 +93,7 @@ BIEnlumineurAssignmentExpressionTest >> testExtraIndentationWhenKeywordMessageIs
 ]
 
 { #category : #test }
-BIEnlumineurAssignmentExpressionTest >> testExtraIndentationWhenMultiline [
+EFAssignmentExpressionTest >> testExtraIndentationWhenMultiline [
 	| source |
 	configurationSelector := #multilineConfiguration.
 	source := self
@@ -107,7 +107,7 @@ BIEnlumineurAssignmentExpressionTest >> testExtraIndentationWhenMultiline [
 ]
 
 { #category : #test }
-BIEnlumineurAssignmentExpressionTest >> testExtraIndentationWhenMultiline2 [
+EFAssignmentExpressionTest >> testExtraIndentationWhenMultiline2 [
 	| source |
 	configurationSelector := #multilineConfiguration.
 	source := self
@@ -124,7 +124,7 @@ BIEnlumineurAssignmentExpressionTest >> testExtraIndentationWhenMultiline2 [
 ]
 
 { #category : #test }
-BIEnlumineurAssignmentExpressionTest >> testExtraIndentationWhenMultiline3 [
+EFAssignmentExpressionTest >> testExtraIndentationWhenMultiline3 [
 	| source |
 	configurationSelector := #multilineConfiguration.
 	source := self
@@ -140,7 +140,7 @@ BIEnlumineurAssignmentExpressionTest >> testExtraIndentationWhenMultiline3 [
 ]
 
 { #category : #test }
-BIEnlumineurAssignmentExpressionTest >> testExtraIndentationWhenMultilineResetTheIndentWhenFinish [
+EFAssignmentExpressionTest >> testExtraIndentationWhenMultilineResetTheIndentWhenFinish [
 	| source |
 	configurationSelector := #multilineConfiguration.
 	source := self formatExpression: 'a := p2-x - p0-x * ( p3-y - p0-y ) - ( p3-x - p0-x * ( p2-y - p0-y ) ) * b0. a:=1'.
@@ -151,7 +151,7 @@ a := 1'
 ]
 
 { #category : #test }
-BIEnlumineurAssignmentExpressionTest >> testMultipleAssignmentHasNoExtraSpaceInside [
+EFAssignmentExpressionTest >> testMultipleAssignmentHasNoExtraSpaceInside [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '   a    :=    b :=  1   '.

@@ -1,11 +1,11 @@
 Class {
-	#name : #BIEnlumineurBlockExpressionOnlyTest,
-	#superclass : #BIEnlumineurTest,
+	#name : #EFBlockExpressionOnlyTest,
+	#superclass : #EFTest,
 	#category : #'Enlumineur-Tests'
 }
 
 { #category : #configuration }
-BIEnlumineurBlockExpressionOnlyTest >> basicConfiguration [
+EFBlockExpressionOnlyTest >> basicConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock:1;
@@ -29,7 +29,7 @@ BIEnlumineurBlockExpressionOnlyTest >> basicConfiguration [
 ]
 
 { #category : #configuration }
-BIEnlumineurBlockExpressionOnlyTest >> dontFormatCommentWithStatementConfiguration [
+EFBlockExpressionOnlyTest >> dontFormatCommentWithStatementConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock:1;
@@ -53,7 +53,7 @@ BIEnlumineurBlockExpressionOnlyTest >> dontFormatCommentWithStatementConfigurati
 ]
 
 { #category : #configuration }
-BIEnlumineurBlockExpressionOnlyTest >> testDontFormatCommentWithStatement2 [
+EFBlockExpressionOnlyTest >> testDontFormatCommentWithStatement2 [
 	| source |
 	configurationSelector := #dontFormatCommentWithStatementConfiguration.
 	source := self formatExpression: '[ "aComment" 1 factorial.  2 factorial]'.
@@ -63,7 +63,7 @@ BIEnlumineurBlockExpressionOnlyTest >> testDontFormatCommentWithStatement2 [
 ]
 
 { #category : #configuration }
-BIEnlumineurBlockExpressionOnlyTest >> testNewLineAfterComment [
+EFBlockExpressionOnlyTest >> testNewLineAfterComment [
 
 	| source |
 	configurationSelector := #dontFormatCommentWithStatementConfiguration.
@@ -74,7 +74,7 @@ BIEnlumineurBlockExpressionOnlyTest >> testNewLineAfterComment [
 ]
 
 { #category : #configuration }
-BIEnlumineurBlockExpressionOnlyTest >> testSpaceAfterComment [
+EFBlockExpressionOnlyTest >> testSpaceAfterComment [
 
 	| source |
 	configurationSelector := #dontFormatCommentWithStatementConfiguration.
@@ -83,7 +83,7 @@ BIEnlumineurBlockExpressionOnlyTest >> testSpaceAfterComment [
 ]
 
 { #category : #configuration }
-BIEnlumineurBlockExpressionOnlyTest >> testformatComment [
+EFBlockExpressionOnlyTest >> testformatComment [
 
 	| source |
 	configurationSelector := #dontFormatCommentWithStatementConfiguration.

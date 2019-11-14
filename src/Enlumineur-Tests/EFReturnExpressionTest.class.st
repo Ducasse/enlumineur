@@ -1,11 +1,11 @@
 Class {
-	#name : #BIEnlumineurReturnExpressionTest,
-	#superclass : #BIEnlumineurTest,
+	#name : #EFReturnExpressionTest,
+	#superclass : #EFTest,
 	#category : #'Enlumineur-Tests'
 }
 
 { #category : #configuration }
-BIEnlumineurReturnExpressionTest >> basicConfiguration [
+EFReturnExpressionTest >> basicConfiguration [
 	^ self contextClass basicNew
 		formatCommentCloseToStatements: false;
 		numberOfSpacesAfterCaretSymbolInReturn: 1;
@@ -14,7 +14,7 @@ BIEnlumineurReturnExpressionTest >> basicConfiguration [
 ]
 
 { #category : #configuration }
-BIEnlumineurReturnExpressionTest >> multilineConfiguration [
+EFReturnExpressionTest >> multilineConfiguration [
 	^ self contextClass basicNew
 		formatCommentCloseToStatements: false;
 		numberOfSpacesAfterCaretSymbolInReturn: 1;
@@ -30,7 +30,7 @@ BIEnlumineurReturnExpressionTest >> multilineConfiguration [
 ]
 
 { #category : #configuration }
-BIEnlumineurReturnExpressionTest >> multilineWithThreeSpacesAfterCaretSymbolConfiguration [
+EFReturnExpressionTest >> multilineWithThreeSpacesAfterCaretSymbolConfiguration [
 	^ self contextClass basicNew
 		formatCommentCloseToStatements: false;
 		numberOfSpacesAfterCaretSymbolInReturn: 3;
@@ -46,7 +46,7 @@ BIEnlumineurReturnExpressionTest >> multilineWithThreeSpacesAfterCaretSymbolConf
 ]
 
 { #category : #tests }
-BIEnlumineurReturnExpressionTest >> testReturnExtraSpacesInIndentWhenMultilne [
+EFReturnExpressionTest >> testReturnExtraSpacesInIndentWhenMultilne [
 	| source |
 	configurationSelector := #multilineConfiguration.
 	source := self formatExpression: '^ Array with: self leftRotated with: self negated with: self rightRotated with: self'.
@@ -59,7 +59,7 @@ BIEnlumineurReturnExpressionTest >> testReturnExtraSpacesInIndentWhenMultilne [
 ]
 
 { #category : #tests }
-BIEnlumineurReturnExpressionTest >> testReturnExtraSpacesInIndentWhenMultilneWithThreeSpacesAfterCaretSymbol [
+EFReturnExpressionTest >> testReturnExtraSpacesInIndentWhenMultilneWithThreeSpacesAfterCaretSymbol [
 	| source |
 	configurationSelector := #multilineWithThreeSpacesAfterCaretSymbolConfiguration.
 	source := self formatExpression: '^ Array with: self leftRotated with: self negated with: self rightRotated with: self'.
@@ -72,7 +72,7 @@ BIEnlumineurReturnExpressionTest >> testReturnExtraSpacesInIndentWhenMultilneWit
 ]
 
 { #category : #tests }
-BIEnlumineurReturnExpressionTest >> testReturnFormatValue [
+EFReturnExpressionTest >> testReturnFormatValue [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '    ^a:=1   '.
@@ -80,7 +80,7 @@ BIEnlumineurReturnExpressionTest >> testReturnFormatValue [
 ]
 
 { #category : #tests }
-BIEnlumineurReturnExpressionTest >> testReturnHasNoExtraSpace [
+EFReturnExpressionTest >> testReturnHasNoExtraSpace [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '    ^a   '.
@@ -88,7 +88,7 @@ BIEnlumineurReturnExpressionTest >> testReturnHasNoExtraSpace [
 ]
 
 { #category : #tests }
-BIEnlumineurReturnExpressionTest >> testReturnHasNoExtraSpaceInside [
+EFReturnExpressionTest >> testReturnHasNoExtraSpaceInside [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: ' ^    a'.
@@ -96,7 +96,7 @@ BIEnlumineurReturnExpressionTest >> testReturnHasNoExtraSpaceInside [
 ]
 
 { #category : #tests }
-BIEnlumineurReturnExpressionTest >> testReturnHasNoPeriod [
+EFReturnExpressionTest >> testReturnHasNoPeriod [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '^a.'.
@@ -104,7 +104,7 @@ BIEnlumineurReturnExpressionTest >> testReturnHasNoPeriod [
 ]
 
 { #category : #tests }
-BIEnlumineurReturnExpressionTest >> testReturnHasSpaceBetween [
+EFReturnExpressionTest >> testReturnHasSpaceBetween [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '^a'.

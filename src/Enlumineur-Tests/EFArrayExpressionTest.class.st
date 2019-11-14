@@ -1,11 +1,11 @@
 Class {
-	#name : #BIEnlumineurArrayExpressionTest,
-	#superclass : #BIEnlumineurTest,
+	#name : #EFArrayExpressionTest,
+	#superclass : #EFTest,
 	#category : #'Enlumineur-Tests'
 }
 
 { #category : #configurations }
-BIEnlumineurArrayExpressionTest >> basicConfiguration [
+EFArrayExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
 		formatCommentCloseToStatements: false;
@@ -24,7 +24,7 @@ BIEnlumineurArrayExpressionTest >> basicConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurArrayExpressionTest >> fiveSpacesInsideArrayConfiguration [
+EFArrayExpressionTest >> fiveSpacesInsideArrayConfiguration [
 
 	^ self contextClass basicNew
 		formatCommentCloseToStatements: false;
@@ -43,7 +43,7 @@ BIEnlumineurArrayExpressionTest >> fiveSpacesInsideArrayConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurArrayExpressionTest >> maxLineLengthConfiguration [
+EFArrayExpressionTest >> maxLineLengthConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -65,7 +65,7 @@ BIEnlumineurArrayExpressionTest >> maxLineLengthConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurArrayExpressionTest >> maxLineLengthConfigurationWithSpaceBefore [
+EFArrayExpressionTest >> maxLineLengthConfigurationWithSpaceBefore [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -87,7 +87,7 @@ BIEnlumineurArrayExpressionTest >> maxLineLengthConfigurationWithSpaceBefore [
 ]
 
 { #category : #configurations }
-BIEnlumineurArrayExpressionTest >> multiLineConfiguration [
+EFArrayExpressionTest >> multiLineConfiguration [
 
 	^ self contextClass basicNew
 		formatCommentCloseToStatements: false;
@@ -110,7 +110,7 @@ BIEnlumineurArrayExpressionTest >> multiLineConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurArrayExpressionTest >> oneSpaceInsideArrayConfiguration [
+EFArrayExpressionTest >> oneSpaceInsideArrayConfiguration [
 
 	^ self contextClass basicNew
 		formatCommentCloseToStatements: false;
@@ -129,7 +129,7 @@ BIEnlumineurArrayExpressionTest >> oneSpaceInsideArrayConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurArrayExpressionTest >> periodAtEndOfMethod [
+EFArrayExpressionTest >> periodAtEndOfMethod [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -155,7 +155,7 @@ BIEnlumineurArrayExpressionTest >> periodAtEndOfMethod [
 ]
 
 { #category : #configurations }
-BIEnlumineurArrayExpressionTest >> spaceInsideArrayConfiguration [
+EFArrayExpressionTest >> spaceInsideArrayConfiguration [
 
 	^ self contextClass basicNew
 		formatCommentCloseToStatements: false;
@@ -173,7 +173,7 @@ BIEnlumineurArrayExpressionTest >> spaceInsideArrayConfiguration [
 ]
 
 { #category : #test }
-BIEnlumineurArrayExpressionTest >> testEmptyArray [
+EFArrayExpressionTest >> testEmptyArray [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '{}'.
@@ -181,7 +181,7 @@ BIEnlumineurArrayExpressionTest >> testEmptyArray [
 ]
 
 { #category : #test }
-BIEnlumineurArrayExpressionTest >> testFiveSpaceAroundBrackets [
+EFArrayExpressionTest >> testFiveSpaceAroundBrackets [
 	| source |
 	configurationSelector := #fiveSpacesInsideArrayConfiguration.
 	source := self formatExpression: ' { 1. 2. 3 } '.
@@ -189,7 +189,7 @@ BIEnlumineurArrayExpressionTest >> testFiveSpaceAroundBrackets [
 ]
 
 { #category : #test }
-BIEnlumineurArrayExpressionTest >> testFormatElement [
+EFArrayExpressionTest >> testFormatElement [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: ' { a:=1. b:=2 } '.
@@ -200,7 +200,7 @@ BIEnlumineurArrayExpressionTest >> testFormatElement [
 ]
 
 { #category : #test }
-BIEnlumineurArrayExpressionTest >> testNewLineAfterBracesWhenMultiline [
+EFArrayExpressionTest >> testNewLineAfterBracesWhenMultiline [
 	| source |
 	configurationSelector := #multiLineConfiguration.
 	source := self formatExpression: '{(self + (1 @ 0)).
@@ -226,7 +226,7 @@ BIEnlumineurArrayExpressionTest >> testNewLineAfterBracesWhenMultiline [
 ]
 
 { #category : #test }
-BIEnlumineurArrayExpressionTest >> testNoExtraSpaceAroundPeriod [
+EFArrayExpressionTest >> testNoExtraSpaceAroundPeriod [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '{1.    2.        3}'.
@@ -234,7 +234,7 @@ BIEnlumineurArrayExpressionTest >> testNoExtraSpaceAroundPeriod [
 ]
 
 { #category : #test }
-BIEnlumineurArrayExpressionTest >> testNoSpaceAroundBrackets [
+EFArrayExpressionTest >> testNoSpaceAroundBrackets [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: ' { 1. 2. 3 } '.
@@ -242,7 +242,7 @@ BIEnlumineurArrayExpressionTest >> testNoSpaceAroundBrackets [
 ]
 
 { #category : #test }
-BIEnlumineurArrayExpressionTest >> testOneSpaceAroundBrackets [
+EFArrayExpressionTest >> testOneSpaceAroundBrackets [
 	| source |
 	configurationSelector := #oneSpaceInsideArrayConfiguration.
 	source := self formatExpression: ' { 1. 2. 3 } '.
@@ -250,7 +250,7 @@ BIEnlumineurArrayExpressionTest >> testOneSpaceAroundBrackets [
 ]
 
 { #category : #test }
-BIEnlumineurArrayExpressionTest >> testPeriodAtEndOfMethod [
+EFArrayExpressionTest >> testPeriodAtEndOfMethod [
 	| source |
 	configurationSelector := #periodAtEndOfMethod.
 	source := self formatExpression: '{1 factorial}'.
@@ -258,7 +258,7 @@ BIEnlumineurArrayExpressionTest >> testPeriodAtEndOfMethod [
 ]
 
 { #category : #test }
-BIEnlumineurArrayExpressionTest >> testPeriodAtEndOfMethodWithMultipleElementArrayShouldNotHavePeriodAtEnd [
+EFArrayExpressionTest >> testPeriodAtEndOfMethodWithMultipleElementArrayShouldNotHavePeriodAtEnd [
 	| source |
 	configurationSelector := #periodAtEndOfMethod.
 	source := self formatExpression: '{ a := 2 . a := 2 }'.
@@ -268,7 +268,7 @@ BIEnlumineurArrayExpressionTest >> testPeriodAtEndOfMethodWithMultipleElementArr
 ]
 
 { #category : #test }
-BIEnlumineurArrayExpressionTest >> testPeriodAtEndOfMethodWithMultipleElementArrayShouldNotHavePointAtTheEnd [
+EFArrayExpressionTest >> testPeriodAtEndOfMethodWithMultipleElementArrayShouldNotHavePointAtTheEnd [
 	| source |
 	configurationSelector := #periodAtEndOfMethod.
 	source := self formatExpression: '{1 factorial . 3 + 2}'.
@@ -279,7 +279,7 @@ BIEnlumineurArrayExpressionTest >> testPeriodAtEndOfMethodWithMultipleElementArr
 ]
 
 { #category : #test }
-BIEnlumineurArrayExpressionTest >> testSpaceAroundPeriod [
+EFArrayExpressionTest >> testSpaceAroundPeriod [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '{1. 2. 3}'.
@@ -287,7 +287,7 @@ BIEnlumineurArrayExpressionTest >> testSpaceAroundPeriod [
 ]
 
 { #category : #test }
-BIEnlumineurArrayExpressionTest >> testSpaceBeforePeriod [
+EFArrayExpressionTest >> testSpaceBeforePeriod [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '{1 . 2 . 3}'.
@@ -295,7 +295,7 @@ BIEnlumineurArrayExpressionTest >> testSpaceBeforePeriod [
 ]
 
 { #category : #test }
-BIEnlumineurArrayExpressionTest >> testSpaceInside [
+EFArrayExpressionTest >> testSpaceInside [
 	| source |
 	configurationSelector := #spaceInsideArrayConfiguration.
 	source := self formatExpression: ' { 1. 2. 3 } '.
@@ -303,7 +303,7 @@ BIEnlumineurArrayExpressionTest >> testSpaceInside [
 ]
 
 { #category : #test }
-BIEnlumineurArrayExpressionTest >> testThreeSpacesBeforePeriod [
+EFArrayExpressionTest >> testThreeSpacesBeforePeriod [
 	| source |
 	configurationSelector := #threeSpacesBeforeDotInArrayConfiguration.
 	source := self formatExpression: '{1. 2. 3}'.
@@ -311,7 +311,7 @@ BIEnlumineurArrayExpressionTest >> testThreeSpacesBeforePeriod [
 ]
 
 { #category : #test }
-BIEnlumineurArrayExpressionTest >> testToLongNewLine [
+EFArrayExpressionTest >> testToLongNewLine [
 	| source |
 	configurationSelector := #maxLineLengthConfiguration.
 	source := self formatExpression: '{VeryLongExpression. 1}'.
@@ -324,7 +324,7 @@ BIEnlumineurArrayExpressionTest >> testToLongNewLine [
 ]
 
 { #category : #test }
-BIEnlumineurArrayExpressionTest >> testToLongNewLine2 [
+EFArrayExpressionTest >> testToLongNewLine2 [
 	| source |
 	configurationSelector := #maxLineLengthConfiguration.
 	source := self formatExpression: '{1. 2. 3. 4. 5. 6. 7. 1}'.
@@ -336,7 +336,7 @@ BIEnlumineurArrayExpressionTest >> testToLongNewLine2 [
 ]
 
 { #category : #test }
-BIEnlumineurArrayExpressionTest >> testToLongNewLine2WithSpaceBefore [
+EFArrayExpressionTest >> testToLongNewLine2WithSpaceBefore [
 	| source |
 	configurationSelector := #maxLineLengthConfigurationWithSpaceBefore.
 	source := self formatExpression: '{1. 2. 3. 4. 5. 6. 7. 1}'.
@@ -348,7 +348,7 @@ BIEnlumineurArrayExpressionTest >> testToLongNewLine2WithSpaceBefore [
 ]
 
 { #category : #test }
-BIEnlumineurArrayExpressionTest >> testToLongNewLineWithSpaceBefore [
+EFArrayExpressionTest >> testToLongNewLineWithSpaceBefore [
 	| source |
 	configurationSelector := #maxLineLengthConfigurationWithSpaceBefore.
 	source := self formatExpression: '{VeryLongExpression. 1}'.
@@ -361,7 +361,7 @@ BIEnlumineurArrayExpressionTest >> testToLongNewLineWithSpaceBefore [
 ]
 
 { #category : #configurations }
-BIEnlumineurArrayExpressionTest >> threeSpacesBeforeDotInArrayConfiguration [
+EFArrayExpressionTest >> threeSpacesBeforeDotInArrayConfiguration [
 
 	^ self contextClass basicNew
 		formatCommentCloseToStatements: false;

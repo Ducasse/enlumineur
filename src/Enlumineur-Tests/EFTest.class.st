@@ -4,7 +4,7 @@ The context is not initialized so that we are sure about the configuration we ar
 
 "
 Class {
-	#name : #BIEnlumineurTest,
+	#name : #EFTest,
 	#superclass : #ParametrizedTestCase,
 	#instVars : [
 		'configurationSelector',
@@ -15,25 +15,25 @@ Class {
 }
 
 { #category : #'building suites' }
-BIEnlumineurTest class >> testParameters [
+EFTest class >> testParameters [
 
 	^ ParametrizedTestMatrix new
-			addCase: { #formatterClass -> BIEnlumineurFormatter. #contextClass -> BIEnlumineurContext };
+			addCase: { #formatterClass -> EFFormatter. #contextClass -> EFContext };
 		yourself.
 ]
 
 { #category : #accessing }
-BIEnlumineurTest >> contextClass [
+EFTest >> contextClass [
 	^ contextClass
 ]
 
 { #category : #accessing }
-BIEnlumineurTest >> contextClass: anObject [
+EFTest >> contextClass: anObject [
 	contextClass := anObject
 ]
 
 { #category : #hooks }
-BIEnlumineurTest >> formatExpression: anExpression [
+EFTest >> formatExpression: anExpression [
 
 	| expr |
 	expr := self parseExpression: anExpression.
@@ -42,42 +42,42 @@ BIEnlumineurTest >> formatExpression: anExpression [
 ]
 
 { #category : #hooks }
-BIEnlumineurTest >> formatter [
+EFTest >> formatter [
 	^ self formatterClass new
 		installNewContext: (self perform: configurationSelector)
 		yourself
 ]
 
 { #category : #hooks }
-BIEnlumineurTest >> formatterClass [
+EFTest >> formatterClass [
 
 	^ formatterClass
 ]
 
 { #category : #hooks }
-BIEnlumineurTest >> formatterClass: aFormatterClass [
+EFTest >> formatterClass: aFormatterClass [
 	formatterClass := aFormatterClass
 ]
 
 { #category : #hooks }
-BIEnlumineurTest >> parseExpression: anExpression [
+EFTest >> parseExpression: anExpression [
 
 	^ self parserClass parseExpression: anExpression
 ]
 
 { #category : #hooks }
-BIEnlumineurTest >> parserClass [
+EFTest >> parserClass [
 	^ RBParser
 ]
 
 { #category : #test }
-BIEnlumineurTest >> testLookAheadCodeIsResetWhenChangingConfiguration [
+EFTest >> testLookAheadCodeIsResetWhenChangingConfiguration [
 	"This is a test to show that the formatter got a problem with a cache. When we execute two formatting passes one after the other and changed the context. Some nodes are not formatted with the new context but with the old. This is due to a cache used by the formatter."
 	
 	| prettyPrinterInstance context1 context2 astNode res1 res2 |
-	context1 := BIEnlumineurContext new.
-	context2 := BIEnlumineurContext new lineUpBlockBrackets: true.
-	prettyPrinterInstance := BIEnlumineurFormatter new installNewContext: context1.
+	context1 := EFContext new.
+	context2 := EFContext new lineUpBlockBrackets: true.
+	prettyPrinterInstance := EFFormatter new installNewContext: context1.
 	astNode := RBParser parseExpression: 
 	'1 to: 4 do: [ :i | 
 		Transcript

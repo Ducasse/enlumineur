@@ -1,11 +1,11 @@
 Class {
-	#name : #BIEnlumineurParseErrorExpressionTest,
-	#superclass : #BIEnlumineurTest,
+	#name : #EFParseErrorExpressionTest,
+	#superclass : #EFTest,
 	#category : #'Enlumineur-Tests'
 }
 
 { #category : #configuration }
-BIEnlumineurParseErrorExpressionTest >> basicConfiguration [
+EFParseErrorExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
 		formatCommentCloseToStatements:false;
@@ -16,7 +16,7 @@ BIEnlumineurParseErrorExpressionTest >> basicConfiguration [
 ]
 
 { #category : #tests }
-BIEnlumineurParseErrorExpressionTest >> testParseError [
+EFParseErrorExpressionTest >> testParseError [
 
 	| expr source |
 	expr := RBParser parseFaultyExpression: '#(1 3 4'.
@@ -26,7 +26,7 @@ BIEnlumineurParseErrorExpressionTest >> testParseError [
 ]
 
 { #category : #tests }
-BIEnlumineurParseErrorExpressionTest >> testParseError2 [
+EFParseErrorExpressionTest >> testParseError2 [
 
 	| expr source |
 	expr := RBParser parseFaultyExpression: '1 := '.

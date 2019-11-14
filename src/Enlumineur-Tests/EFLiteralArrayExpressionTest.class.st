@@ -1,11 +1,11 @@
 Class {
-	#name : #BIEnlumineurLiteralArrayExpressionTest,
-	#superclass : #BIEnlumineurTest,
+	#name : #EFLiteralArrayExpressionTest,
+	#superclass : #EFTest,
 	#category : #'Enlumineur-Tests'
 }
 
 { #category : #configurations }
-BIEnlumineurLiteralArrayExpressionTest >> basicConfiguration [
+EFLiteralArrayExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
 		formatCommentCloseToStatements:false;
@@ -16,7 +16,7 @@ BIEnlumineurLiteralArrayExpressionTest >> basicConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurLiteralArrayExpressionTest >> oneSpaceConfiguration [
+EFLiteralArrayExpressionTest >> oneSpaceConfiguration [
 
 	^ self contextClass basicNew
 		formatCommentCloseToStatements:false;
@@ -27,7 +27,7 @@ BIEnlumineurLiteralArrayExpressionTest >> oneSpaceConfiguration [
 ]
 
 { #category : #tests }
-BIEnlumineurLiteralArrayExpressionTest >> testBigArray [
+EFLiteralArrayExpressionTest >> testBigArray [
 	| source |
 	configurationSelector := #oneSpaceConfiguration.
 	source := self formatExpression:
@@ -44,7 +44,7 @@ BIEnlumineurLiteralArrayExpressionTest >> testBigArray [
 ]
 
 { #category : #tests }
-BIEnlumineurLiteralArrayExpressionTest >> testBigArrayWithExtraSpaces [
+EFLiteralArrayExpressionTest >> testBigArrayWithExtraSpaces [
 	| source |
 	configurationSelector := #oneSpaceConfiguration.
 	source := self formatExpression:
@@ -61,7 +61,7 @@ BIEnlumineurLiteralArrayExpressionTest >> testBigArrayWithExtraSpaces [
 ]
 
 { #category : #tests }
-BIEnlumineurLiteralArrayExpressionTest >> testByteArrayParenthesis [
+EFLiteralArrayExpressionTest >> testByteArrayParenthesis [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '#[1 2 3]'.
@@ -69,7 +69,7 @@ BIEnlumineurLiteralArrayExpressionTest >> testByteArrayParenthesis [
 ]
 
 { #category : #tests }
-BIEnlumineurLiteralArrayExpressionTest >> testNoExtraSpaceArroundParenthesis [
+EFLiteralArrayExpressionTest >> testNoExtraSpaceArroundParenthesis [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '#(  1 2 3    )  '.
@@ -77,7 +77,7 @@ BIEnlumineurLiteralArrayExpressionTest >> testNoExtraSpaceArroundParenthesis [
 ]
 
 { #category : #tests }
-BIEnlumineurLiteralArrayExpressionTest >> testNoExtraSpaceArroundParenthesis2 [
+EFLiteralArrayExpressionTest >> testNoExtraSpaceArroundParenthesis2 [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '#[  1 2 3    ]  '.
@@ -85,7 +85,7 @@ BIEnlumineurLiteralArrayExpressionTest >> testNoExtraSpaceArroundParenthesis2 [
 ]
 
 { #category : #tests }
-BIEnlumineurLiteralArrayExpressionTest >> testNoExtraSpaceBetweenValue [
+EFLiteralArrayExpressionTest >> testNoExtraSpaceBetweenValue [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '#(1     2       3)'.
@@ -93,7 +93,7 @@ BIEnlumineurLiteralArrayExpressionTest >> testNoExtraSpaceBetweenValue [
 ]
 
 { #category : #tests }
-BIEnlumineurLiteralArrayExpressionTest >> testNoExtraSpaceBetweenValue2 [
+EFLiteralArrayExpressionTest >> testNoExtraSpaceBetweenValue2 [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '#[1     2       3]'.
@@ -101,7 +101,7 @@ BIEnlumineurLiteralArrayExpressionTest >> testNoExtraSpaceBetweenValue2 [
 ]
 
 { #category : #tests }
-BIEnlumineurLiteralArrayExpressionTest >> testOneSpaceInsideArray [
+EFLiteralArrayExpressionTest >> testOneSpaceInsideArray [
 	| source |
 	configurationSelector := #oneSpaceConfiguration.
 	source := self formatExpression: '#(1 2 3)'.
@@ -109,7 +109,7 @@ BIEnlumineurLiteralArrayExpressionTest >> testOneSpaceInsideArray [
 ]
 
 { #category : #tests }
-BIEnlumineurLiteralArrayExpressionTest >> testTwoSpacesInsideArray [
+EFLiteralArrayExpressionTest >> testTwoSpacesInsideArray [
 	| source |
 	configurationSelector := #twoSpacesConfiguration.
 	source := self formatExpression: '#(1 2 3)'.
@@ -117,7 +117,7 @@ BIEnlumineurLiteralArrayExpressionTest >> testTwoSpacesInsideArray [
 ]
 
 { #category : #configurations }
-BIEnlumineurLiteralArrayExpressionTest >> twoSpacesConfiguration [
+EFLiteralArrayExpressionTest >> twoSpacesConfiguration [
 
 	^ self contextClass basicNew
 		formatCommentCloseToStatements:false;

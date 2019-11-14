@@ -8,13 +8,13 @@ README
 	and put into class side 
 "
 Class {
-	#name : #BIMethodProvider,
+	#name : #EFMethodProvider,
 	#superclass : #Object,
 	#category : #EnlumineurUI
 }
 
 { #category : #settings }
-BIMethodProvider class >> myConfigTest2 [
+EFMethodProvider class >> myConfigTest2 [
 	^ 'BIPrettyPrinterContext {
 	#formatCommentWithStatements : false,
 	#indentString : ''\t'',
@@ -86,7 +86,7 @@ BIMethodProvider class >> myConfigTest2 [
 ]
 
 { #category : #methods }
-BIMethodProvider class >> yodaPrettyPrint [
+EFMethodProvider class >> yodaPrettyPrint [
 	^ 'Quand 900 ans comme moi tu auras' , 
 	
 	

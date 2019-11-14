@@ -1,18 +1,18 @@
 Class {
-	#name : #BIEnlumineurVariableExpressionTest,
-	#superclass : #BIEnlumineurTest,
+	#name : #EFVariableExpressionTest,
+	#superclass : #EFTest,
 	#category : #'Enlumineur-Tests'
 }
 
 { #category : #configuration }
-BIEnlumineurVariableExpressionTest >> basicConfiguration [
+EFVariableExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
 		formatCommentCloseToStatements:false
 ]
 
 { #category : #tests }
-BIEnlumineurVariableExpressionTest >> testNoExtraSpaces [
+EFVariableExpressionTest >> testNoExtraSpaces [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '    a     '.
@@ -20,7 +20,7 @@ BIEnlumineurVariableExpressionTest >> testNoExtraSpaces [
 ]
 
 { #category : #tests }
-BIEnlumineurVariableExpressionTest >> testSpaces [
+EFVariableExpressionTest >> testSpaces [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: 'a'.

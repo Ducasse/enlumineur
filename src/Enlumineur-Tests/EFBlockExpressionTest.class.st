@@ -1,11 +1,11 @@
 Class {
-	#name : #BIEnlumineurBlockExpressionTest,
-	#superclass : #BIEnlumineurTest,
+	#name : #EFBlockExpressionTest,
+	#superclass : #EFTest,
 	#category : #'Enlumineur-Tests'
 }
 
 { #category : #configurations }
-BIEnlumineurBlockExpressionTest >> basicConfiguration [
+EFBlockExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock: 1;
@@ -27,7 +27,7 @@ BIEnlumineurBlockExpressionTest >> basicConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurBlockExpressionTest >> blockWithTemporariesConfiguration [
+EFBlockExpressionTest >> blockWithTemporariesConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock: 1;
@@ -52,12 +52,12 @@ BIEnlumineurBlockExpressionTest >> blockWithTemporariesConfiguration [
 ]
 
 { #category : #helpers }
-BIEnlumineurBlockExpressionTest >> closeBracket [
+EFBlockExpressionTest >> closeBracket [
 	^']'
 ]
 
 { #category : #configurations }
-BIEnlumineurBlockExpressionTest >> configurationWithThreeSpaces [
+EFBlockExpressionTest >> configurationWithThreeSpaces [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock: 3;
@@ -79,7 +79,7 @@ BIEnlumineurBlockExpressionTest >> configurationWithThreeSpaces [
 ]
 
 { #category : #configurations }
-BIEnlumineurBlockExpressionTest >> doNotKeepBlockInMessageConfiguration [
+EFBlockExpressionTest >> doNotKeepBlockInMessageConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock: 1;
@@ -101,7 +101,7 @@ BIEnlumineurBlockExpressionTest >> doNotKeepBlockInMessageConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurBlockExpressionTest >> dontFormatCommentWithStatementConfiguration [
+EFBlockExpressionTest >> dontFormatCommentWithStatementConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock:1;
@@ -125,7 +125,7 @@ BIEnlumineurBlockExpressionTest >> dontFormatCommentWithStatementConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurBlockExpressionTest >> formatCommentWithStatementConfiguration [
+EFBlockExpressionTest >> formatCommentWithStatementConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock:1;
@@ -149,7 +149,7 @@ BIEnlumineurBlockExpressionTest >> formatCommentWithStatementConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurBlockExpressionTest >> fourSpaceIndentConfiguration [
+EFBlockExpressionTest >> fourSpaceIndentConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock: 1;
@@ -174,7 +174,7 @@ BIEnlumineurBlockExpressionTest >> fourSpaceIndentConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurBlockExpressionTest >> multiLineConfiguration [
+EFBlockExpressionTest >> multiLineConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock:1;
@@ -200,7 +200,7 @@ BIEnlumineurBlockExpressionTest >> multiLineConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurBlockExpressionTest >> multiLineWithThreeSpacesInsideBlockConfiguration [
+EFBlockExpressionTest >> multiLineWithThreeSpacesInsideBlockConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock:3;
@@ -226,7 +226,7 @@ BIEnlumineurBlockExpressionTest >> multiLineWithThreeSpacesInsideBlockConfigurat
 ]
 
 { #category : #configurations }
-BIEnlumineurBlockExpressionTest >> newLineBeforeEndBracketConfiguration [
+EFBlockExpressionTest >> newLineBeforeEndBracketConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -252,7 +252,7 @@ BIEnlumineurBlockExpressionTest >> newLineBeforeEndBracketConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurBlockExpressionTest >> noNewLineBeforeEndBracketConfiguration [
+EFBlockExpressionTest >> noNewLineBeforeEndBracketConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -278,7 +278,7 @@ BIEnlumineurBlockExpressionTest >> noNewLineBeforeEndBracketConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurBlockExpressionTest >> numberOfSpaceChangedAfterIndentCharacterConfiguration [
+EFBlockExpressionTest >> numberOfSpaceChangedAfterIndentCharacterConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock: 1;
@@ -304,7 +304,7 @@ BIEnlumineurBlockExpressionTest >> numberOfSpaceChangedAfterIndentCharacterConfi
 ]
 
 { #category : #configurations }
-BIEnlumineurBlockExpressionTest >> oneSpaceIndentConfiguration [
+EFBlockExpressionTest >> oneSpaceIndentConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock: 1;
@@ -329,17 +329,17 @@ BIEnlumineurBlockExpressionTest >> oneSpaceIndentConfiguration [
 ]
 
 { #category : #helpers }
-BIEnlumineurBlockExpressionTest >> openBracket [
+EFBlockExpressionTest >> openBracket [
 	^ '['
 ]
 
 { #category : #helpers }
-BIEnlumineurBlockExpressionTest >> parserClass [
+EFBlockExpressionTest >> parserClass [
 	^ RBParser
 ]
 
 { #category : #configurations }
-BIEnlumineurBlockExpressionTest >> periodAtEndConfiguration [
+EFBlockExpressionTest >> periodAtEndConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -365,7 +365,7 @@ BIEnlumineurBlockExpressionTest >> periodAtEndConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurBlockExpressionTest >> tabIndentConfiguration [
+EFBlockExpressionTest >> tabIndentConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock: 1;
@@ -389,7 +389,7 @@ BIEnlumineurBlockExpressionTest >> tabIndentConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurBlockExpressionTest >> tabIndentIsnotAffectedConfiguration [
+EFBlockExpressionTest >> tabIndentIsnotAffectedConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock: 1;
@@ -414,12 +414,12 @@ BIEnlumineurBlockExpressionTest >> tabIndentIsnotAffectedConfiguration [
 ]
 
 { #category : #test }
-BIEnlumineurBlockExpressionTest >> testArgumentIsFormated [
+EFBlockExpressionTest >> testArgumentIsFormated [
 	self validate: ':i|i' isFormattedAs: ' :i | i ' 
 ]
 
 { #category : #test }
-BIEnlumineurBlockExpressionTest >> testArgumentsAreFormated [
+EFBlockExpressionTest >> testArgumentsAreFormated [
 	
 	self 
 		validate:':i :j| i '
@@ -427,7 +427,7 @@ BIEnlumineurBlockExpressionTest >> testArgumentsAreFormated [
 ]
 
 { #category : #test }
-BIEnlumineurBlockExpressionTest >> testArgumentsComments [
+EFBlockExpressionTest >> testArgumentsComments [
 	
 	self 
 		validate:':i "aComment" :j "anotherComment"| i '
@@ -436,7 +436,7 @@ BIEnlumineurBlockExpressionTest >> testArgumentsComments [
 ]
 
 { #category : #test }
-BIEnlumineurBlockExpressionTest >> testDoNotKeepBlockInMessageConfiguration [
+EFBlockExpressionTest >> testDoNotKeepBlockInMessageConfiguration [
 	
 	self validate: ':i | i to: 10 do: [:j | Transcript show:i. Transcript show: j]'
 		isFormattedAs: ' :i | 
@@ -448,7 +448,7 @@ i to: 10 do:
 ]
 
 { #category : #test }
-BIEnlumineurBlockExpressionTest >> testDontFormatCommentWithStatement [
+EFBlockExpressionTest >> testDontFormatCommentWithStatement [
 	self
 		validate: '1 factorial. "aComment" 2 factorial'
 		isFormattedAs:
@@ -459,7 +459,7 @@ BIEnlumineurBlockExpressionTest >> testDontFormatCommentWithStatement [
 ]
 
 { #category : #test }
-BIEnlumineurBlockExpressionTest >> testEndPeriodInside [
+EFBlockExpressionTest >> testEndPeriodInside [
 	
 	self 
 		validate:'2.'
@@ -468,7 +468,7 @@ BIEnlumineurBlockExpressionTest >> testEndPeriodInside [
 ]
 
 { #category : #test }
-BIEnlumineurBlockExpressionTest >> testFormatBody [
+EFBlockExpressionTest >> testFormatBody [
 	self
 		validate: ' [1]. [ a:=1] '
 		isFormattedAs:
@@ -478,7 +478,7 @@ BIEnlumineurBlockExpressionTest >> testFormatBody [
 ]
 
 { #category : #test }
-BIEnlumineurBlockExpressionTest >> testFormatCommentWithStatement [
+EFBlockExpressionTest >> testFormatCommentWithStatement [
 	self
 		validate: '1 factorial. "aComment" 2 factorial'
 		isFormattedAs:
@@ -489,7 +489,7 @@ BIEnlumineurBlockExpressionTest >> testFormatCommentWithStatement [
 ]
 
 { #category : #test }
-BIEnlumineurBlockExpressionTest >> testFourSpaceIndent [
+EFBlockExpressionTest >> testFourSpaceIndent [
 	self
 		validate: ':i | i to: 10 do: [:j | Transcript show:i; show: j]'
 		isFormattedAs:
@@ -502,7 +502,7 @@ i to: 10 do: [ :j |
 ]
 
 { #category : #test }
-BIEnlumineurBlockExpressionTest >> testMultiline [
+EFBlockExpressionTest >> testMultiline [
 
 	self 
 		validate: '1+3. 6 factorial '
@@ -513,7 +513,7 @@ BIEnlumineurBlockExpressionTest >> testMultiline [
 ]
 
 { #category : #test }
-BIEnlumineurBlockExpressionTest >> testNewLineAfterFirstBracketWhenMultilineWithArguments [
+EFBlockExpressionTest >> testNewLineAfterFirstBracketWhenMultilineWithArguments [
 
 	self 
 		validate: ':i | i+3. i factorial '
@@ -524,7 +524,7 @@ i factorial '
 ]
 
 { #category : #test }
-BIEnlumineurBlockExpressionTest >> testNewLineAfterFirstBracketWhenMultilineWithTemporaries [
+EFBlockExpressionTest >> testNewLineAfterFirstBracketWhenMultilineWithTemporaries [
 
 	self 
 		validate: '| tmp | 1+3. 6 factorial '
@@ -537,7 +537,7 @@ with: #blockWithTemporariesConfiguration
 ]
 
 { #category : #test }
-BIEnlumineurBlockExpressionTest >> testNewLineBeforeEndBrackets [
+EFBlockExpressionTest >> testNewLineBeforeEndBrackets [
 
 	self 
 		validate:'3. 4'  
@@ -549,13 +549,13 @@ BIEnlumineurBlockExpressionTest >> testNewLineBeforeEndBrackets [
 ]
 
 { #category : #test }
-BIEnlumineurBlockExpressionTest >> testNoEndPeriodInside [
+EFBlockExpressionTest >> testNoEndPeriodInside [
 
 	self validate: '2.' isFormattedAs: ' 2 '
 ]
 
 { #category : #test }
-BIEnlumineurBlockExpressionTest >> testNoExtraSpaceAroundBlock [
+EFBlockExpressionTest >> testNoExtraSpaceAroundBlock [
 
 	| expr source |
 	expr := self parserClass parseExpression: '   ', self openBracket, '2', self closeBracket, '   '.
@@ -565,13 +565,13 @@ BIEnlumineurBlockExpressionTest >> testNoExtraSpaceAroundBlock [
 ]
 
 { #category : #test }
-BIEnlumineurBlockExpressionTest >> testNoExtraSpaceInside [
+EFBlockExpressionTest >> testNoExtraSpaceInside [
 
 	self validate: '    2     ' isFormattedAs: ' 2 '
 ]
 
 { #category : #test }
-BIEnlumineurBlockExpressionTest >> testNoNewLineBeforeEndBrackets [
+EFBlockExpressionTest >> testNoNewLineBeforeEndBrackets [
 
 	self 
 		validate: '3. 4'  
@@ -582,18 +582,18 @@ BIEnlumineurBlockExpressionTest >> testNoNewLineBeforeEndBrackets [
 ]
 
 { #category : #test }
-BIEnlumineurBlockExpressionTest >> testNotTooLongBlockBody [
+EFBlockExpressionTest >> testNotTooLongBlockBody [
 	self validate: 'short' isFormattedAs: ' short ' with: #tooLongStatementConfiguration
 ]
 
 { #category : #test }
-BIEnlumineurBlockExpressionTest >> testNumberOfSpaces [
+EFBlockExpressionTest >> testNumberOfSpaces [
 
 	self validate: '2' isFormattedAs: '   2   ' with: #configurationWithThreeSpaces
 ]
 
 { #category : #test }
-BIEnlumineurBlockExpressionTest >> testOneSpaceIndent [
+EFBlockExpressionTest >> testOneSpaceIndent [
 	
 	self validate: ':i | i to: 10 do: [:j | Transcript show:i; show: j]'
 		isFormattedAs: ' :i | 
@@ -605,13 +605,13 @@ i to: 10 do: [ :j |
 ]
 
 { #category : #test }
-BIEnlumineurBlockExpressionTest >> testSpace [
+EFBlockExpressionTest >> testSpace [
 
 	self validate: '2' isFormattedAs: ' 2 '
 ]
 
 { #category : #test }
-BIEnlumineurBlockExpressionTest >> testTabIndent [
+EFBlockExpressionTest >> testTabIndent [
 	self validate: ':i | i to: 10 do: [:j | Transcript show:i; show: j]'
 	isFormattedAs: ' :i | 
 i to: 10 do: [ :j | 
@@ -622,7 +622,7 @@ i to: 10 do: [ :j |
 ]
 
 { #category : #test }
-BIEnlumineurBlockExpressionTest >> testTabIndentIsNotAffectedByNumberOfSpace [
+EFBlockExpressionTest >> testTabIndentIsNotAffectedByNumberOfSpace [
 
 	self validate: ':i | i to: 10 do: [:j | Transcript show:i; show: j]'
 	 isFormattedAs: ' :i | 
@@ -634,21 +634,21 @@ i to: 10 do: [ :j |
 ]
 
 { #category : #test }
-BIEnlumineurBlockExpressionTest >> testTooLongBlockBody [
+EFBlockExpressionTest >> testTooLongBlockBody [
 	self validate: 'tooLongStatement' isFormattedAs:
 ' 
 tooLongStatement ' with: #tooLongStatementConfiguration
 ]
 
 { #category : #test }
-BIEnlumineurBlockExpressionTest >> testTooLongBlockBodyWithArgument [
+EFBlockExpressionTest >> testTooLongBlockBodyWithArgument [
 	self validate: ':i | tooLongStatement' isFormattedAs:
 ' :i | 
 tooLongStatement ' with: #tooLongStatementConfiguration
 ]
 
 { #category : #test }
-BIEnlumineurBlockExpressionTest >> testnumberOfSpaceChangedAfterIndentCharacter [
+EFBlockExpressionTest >> testnumberOfSpaceChangedAfterIndentCharacter [
 
 	self validate: ':i | i to: 10 do: [:j | Transcript show:i; show: j]'
 	isFormattedAs: ' :i | 
@@ -660,7 +660,7 @@ i to: 10 do: [ :j |
 ]
 
 { #category : #configurations }
-BIEnlumineurBlockExpressionTest >> tooLongStatementConfiguration [
+EFBlockExpressionTest >> tooLongStatementConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideBlock: 1;
@@ -682,7 +682,7 @@ BIEnlumineurBlockExpressionTest >> tooLongStatementConfiguration [
 ]
 
 { #category : #helpers }
-BIEnlumineurBlockExpressionTest >> validate: stringInsideBlock isFormattedAs: expectedStringInsideBlock [
+EFBlockExpressionTest >> validate: stringInsideBlock isFormattedAs: expectedStringInsideBlock [
 	self 
 		validate: stringInsideBlock 
 		isFormattedAs: expectedStringInsideBlock 
@@ -690,7 +690,7 @@ BIEnlumineurBlockExpressionTest >> validate: stringInsideBlock isFormattedAs: ex
 ]
 
 { #category : #helpers }
-BIEnlumineurBlockExpressionTest >> validate: stringInsideBlock isFormattedAs: expectedStringInsideBlock with: aConfiguration [
+EFBlockExpressionTest >> validate: stringInsideBlock isFormattedAs: expectedStringInsideBlock with: aConfiguration [
 
 	| expr source |
 	expr := self parserClass parseExpression: self openBracket , stringInsideBlock, self closeBracket.

@@ -1,11 +1,11 @@
 Class {
-	#name : #BIEnlumineurTemporariesExpressionTest,
-	#superclass : #BIEnlumineurTest,
+	#name : #EFTemporariesExpressionTest,
+	#superclass : #EFTest,
 	#category : #'Enlumineur-Tests'
 }
 
 { #category : #configurations }
-BIEnlumineurTemporariesExpressionTest >> basicCommentFormatConfiguration [
+EFTemporariesExpressionTest >> basicCommentFormatConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -21,7 +21,7 @@ BIEnlumineurTemporariesExpressionTest >> basicCommentFormatConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurTemporariesExpressionTest >> commentWithStatementsConfiguration [
+EFTemporariesExpressionTest >> commentWithStatementsConfiguration [
 
 	^ self contextClass basicNew
 		formatCommentCloseToStatements:true;
@@ -34,7 +34,7 @@ BIEnlumineurTemporariesExpressionTest >> commentWithStatementsConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurTemporariesExpressionTest >> dontRetainBlankLinesBeforeComments [
+EFTemporariesExpressionTest >> dontRetainBlankLinesBeforeComments [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -50,7 +50,7 @@ BIEnlumineurTemporariesExpressionTest >> dontRetainBlankLinesBeforeComments [
 ]
 
 { #category : #configurations }
-BIEnlumineurTemporariesExpressionTest >> newLinesAfterTemporariesConfiguration [
+EFTemporariesExpressionTest >> newLinesAfterTemporariesConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -66,7 +66,7 @@ BIEnlumineurTemporariesExpressionTest >> newLinesAfterTemporariesConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurTemporariesExpressionTest >> noNewLinesAfterTemporariesConfiguration [
+EFTemporariesExpressionTest >> noNewLinesAfterTemporariesConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -82,7 +82,7 @@ BIEnlumineurTemporariesExpressionTest >> noNewLinesAfterTemporariesConfiguration
 ]
 
 { #category : #configurations }
-BIEnlumineurTemporariesExpressionTest >> notBasicCommentFormatConfiguration [
+EFTemporariesExpressionTest >> notBasicCommentFormatConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -99,7 +99,7 @@ BIEnlumineurTemporariesExpressionTest >> notBasicCommentFormatConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurTemporariesExpressionTest >> retainBlankLinesBeforeComments [
+EFTemporariesExpressionTest >> retainBlankLinesBeforeComments [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -115,7 +115,7 @@ BIEnlumineurTemporariesExpressionTest >> retainBlankLinesBeforeComments [
 ]
 
 { #category : #tests }
-BIEnlumineurTemporariesExpressionTest >> testCommentBasicFormat [
+EFTemporariesExpressionTest >> testCommentBasicFormat [
 	| source |
 	configurationSelector := #basicCommentFormatConfiguration.
 	source := self formatExpression: ' | d "    comment     " e |'.
@@ -123,7 +123,7 @@ BIEnlumineurTemporariesExpressionTest >> testCommentBasicFormat [
 ]
 
 { #category : #tests }
-BIEnlumineurTemporariesExpressionTest >> testCommentNotBasicFormat [
+EFTemporariesExpressionTest >> testCommentNotBasicFormat [
 	| source |
 	configurationSelector := #notBasicCommentFormatConfiguration.
 	source := self formatExpression: ' | d "    comment     " e |'.
@@ -135,7 +135,7 @@ BIEnlumineurTemporariesExpressionTest >> testCommentNotBasicFormat [
 ]
 
 { #category : #tests }
-BIEnlumineurTemporariesExpressionTest >> testDontRetainBlankLinesBeforeComments [
+EFTemporariesExpressionTest >> testDontRetainBlankLinesBeforeComments [
 	| source |
 	configurationSelector := #dontRetainBlankLinesBeforeComments.
 	source := self
@@ -149,7 +149,7 @@ BIEnlumineurTemporariesExpressionTest >> testDontRetainBlankLinesBeforeComments 
 ]
 
 { #category : #tests }
-BIEnlumineurTemporariesExpressionTest >> testDontRetainBlankLinesBeforeComments2 [
+EFTemporariesExpressionTest >> testDontRetainBlankLinesBeforeComments2 [
 	| source |
 	configurationSelector := #dontRetainBlankLinesBeforeComments.
 	source := self
@@ -164,7 +164,7 @@ BIEnlumineurTemporariesExpressionTest >> testDontRetainBlankLinesBeforeComments2
 ]
 
 { #category : #tests }
-BIEnlumineurTemporariesExpressionTest >> testNewLineAfterTemporaries [
+EFTemporariesExpressionTest >> testNewLineAfterTemporaries [
 	| source |
 	configurationSelector := #newLinesAfterTemporariesConfiguration.
 	source := self formatExpression: ' |d e|'.
@@ -175,7 +175,7 @@ BIEnlumineurTemporariesExpressionTest >> testNewLineAfterTemporaries [
 ]
 
 { #category : #tests }
-BIEnlumineurTemporariesExpressionTest >> testNoNewLineAfterTemporaries [
+EFTemporariesExpressionTest >> testNoNewLineAfterTemporaries [
 	| source |
 	configurationSelector := #noNewLinesAfterTemporariesConfiguration.
 	source := self formatExpression: ' |d e|'.
@@ -183,7 +183,7 @@ BIEnlumineurTemporariesExpressionTest >> testNoNewLineAfterTemporaries [
 ]
 
 { #category : #tests }
-BIEnlumineurTemporariesExpressionTest >> testRetainBlankLinesBeforeComments [
+EFTemporariesExpressionTest >> testRetainBlankLinesBeforeComments [
 	| source |
 	configurationSelector := #retainBlankLinesBeforeComments.
 	source := self
@@ -199,7 +199,7 @@ BIEnlumineurTemporariesExpressionTest >> testRetainBlankLinesBeforeComments [
 ]
 
 { #category : #tests }
-BIEnlumineurTemporariesExpressionTest >> testRetainBlankLinesBeforeComments2 [
+EFTemporariesExpressionTest >> testRetainBlankLinesBeforeComments2 [
 	| source |
 	configurationSelector := #retainBlankLinesBeforeComments.
 	source := self
@@ -217,7 +217,7 @@ BIEnlumineurTemporariesExpressionTest >> testRetainBlankLinesBeforeComments2 [
 ]
 
 { #category : #tests }
-BIEnlumineurTemporariesExpressionTest >> testRetainBlankLinesBeforeComments3 [
+EFTemporariesExpressionTest >> testRetainBlankLinesBeforeComments3 [
 	| source |
 	configurationSelector := #retainBlankLinesBeforeComments.
 	source := self formatExpression: ' | d "comment" e |'.
@@ -229,7 +229,7 @@ BIEnlumineurTemporariesExpressionTest >> testRetainBlankLinesBeforeComments3 [
 ]
 
 { #category : #tests }
-BIEnlumineurTemporariesExpressionTest >> testSpaceBetweenTemporaries [
+EFTemporariesExpressionTest >> testSpaceBetweenTemporaries [
 	| source |
 	configurationSelector := #noNewLinesAfterTemporariesConfiguration.
 	source := self formatExpression: '|a|'.
@@ -237,7 +237,7 @@ BIEnlumineurTemporariesExpressionTest >> testSpaceBetweenTemporaries [
 ]
 
 { #category : #tests }
-BIEnlumineurTemporariesExpressionTest >> testSpaceBetweenTemporaries2 [
+EFTemporariesExpressionTest >> testSpaceBetweenTemporaries2 [
 	| source |
 	configurationSelector := #noNewLinesAfterTemporariesConfiguration.
 	source := self formatExpression: '|a b|'.
@@ -245,7 +245,7 @@ BIEnlumineurTemporariesExpressionTest >> testSpaceBetweenTemporaries2 [
 ]
 
 { #category : #tests }
-BIEnlumineurTemporariesExpressionTest >> testSpaceBetweenVarAndComment [
+EFTemporariesExpressionTest >> testSpaceBetweenVarAndComment [
 	| source |
 	configurationSelector := #commentWithStatementsConfiguration.
 	source := self formatExpression: ' | d "comment" |'.
@@ -253,7 +253,7 @@ BIEnlumineurTemporariesExpressionTest >> testSpaceBetweenVarAndComment [
 ]
 
 { #category : #tests }
-BIEnlumineurTemporariesExpressionTest >> testTwoLinesAfterTemporaries [
+EFTemporariesExpressionTest >> testTwoLinesAfterTemporaries [
 	| source |
 	configurationSelector := #twoLinesAfterTemporariesConfiguration.
 	source := self formatExpression: ' |d e|'.
@@ -266,7 +266,7 @@ BIEnlumineurTemporariesExpressionTest >> testTwoLinesAfterTemporaries [
 ]
 
 { #category : #configurations }
-BIEnlumineurTemporariesExpressionTest >> twoLinesAfterTemporariesConfiguration [
+EFTemporariesExpressionTest >> twoLinesAfterTemporariesConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |

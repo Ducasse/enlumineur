@@ -1,11 +1,11 @@
 Class {
-	#name : #BIEnlumineurMessageExpressionTest,
-	#superclass : #BIEnlumineurTest,
+	#name : #EFMessageExpressionTest,
+	#superclass : #EFTest,
 	#category : #'Enlumineur-Tests'
 }
 
 { #category : #configurations }
-BIEnlumineurMessageExpressionTest >> basicConfiguration [
+EFMessageExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
@@ -21,7 +21,7 @@ BIEnlumineurMessageExpressionTest >> basicConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurMessageExpressionTest >> blockAndCascadeInMessageConfiguration [
+EFMessageExpressionTest >> blockAndCascadeInMessageConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentCloseToStatements: false;
@@ -46,7 +46,7 @@ BIEnlumineurMessageExpressionTest >> blockAndCascadeInMessageConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurMessageExpressionTest >> blockAndParenthesesInMessageConfiguration [
+EFMessageExpressionTest >> blockAndParenthesesInMessageConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentCloseToStatements: false;
@@ -71,7 +71,7 @@ BIEnlumineurMessageExpressionTest >> blockAndParenthesesInMessageConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurMessageExpressionTest >> blockInMessageConfiguration [
+EFMessageExpressionTest >> blockInMessageConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentCloseToStatements: false;
@@ -93,7 +93,7 @@ BIEnlumineurMessageExpressionTest >> blockInMessageConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurMessageExpressionTest >> blockInMessageTooLongConfiguration [
+EFMessageExpressionTest >> blockInMessageTooLongConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentCloseToStatements: false;
@@ -115,7 +115,7 @@ BIEnlumineurMessageExpressionTest >> blockInMessageTooLongConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurMessageExpressionTest >> dontKeepBlockInMessageConfiguration [
+EFMessageExpressionTest >> dontKeepBlockInMessageConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentCloseToStatements: false;
@@ -137,7 +137,7 @@ BIEnlumineurMessageExpressionTest >> dontKeepBlockInMessageConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurMessageExpressionTest >> extraIndentWithThreeSpacesInsideParenthesesConfiguration [
+EFMessageExpressionTest >> extraIndentWithThreeSpacesInsideParenthesesConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentCloseToStatements: false;
@@ -162,7 +162,7 @@ BIEnlumineurMessageExpressionTest >> extraIndentWithThreeSpacesInsideParentheses
 ]
 
 { #category : #configurations }
-BIEnlumineurMessageExpressionTest >> formatStatementsWithCommentsConfiguration [
+EFMessageExpressionTest >> formatStatementsWithCommentsConfiguration [
 
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
@@ -177,7 +177,7 @@ BIEnlumineurMessageExpressionTest >> formatStatementsWithCommentsConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurMessageExpressionTest >> ifTrueIfFalseMutlilineMessageConfiguration [
+EFMessageExpressionTest >> ifTrueIfFalseMutlilineMessageConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentCloseToStatements: false;
@@ -202,7 +202,7 @@ BIEnlumineurMessageExpressionTest >> ifTrueIfFalseMutlilineMessageConfiguration 
 ]
 
 { #category : #configurations }
-BIEnlumineurMessageExpressionTest >> keepBlockInMessageConfiguration [
+EFMessageExpressionTest >> keepBlockInMessageConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentCloseToStatements: false;
@@ -224,7 +224,7 @@ BIEnlumineurMessageExpressionTest >> keepBlockInMessageConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurMessageExpressionTest >> littleMaxLineLengthConfiguration [
+EFMessageExpressionTest >> littleMaxLineLengthConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentCloseToStatements: false;
@@ -246,7 +246,7 @@ BIEnlumineurMessageExpressionTest >> littleMaxLineLengthConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurMessageExpressionTest >> multiLineMessageConfiguration [
+EFMessageExpressionTest >> multiLineMessageConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentCloseToStatements: false;
@@ -261,7 +261,7 @@ BIEnlumineurMessageExpressionTest >> multiLineMessageConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurMessageExpressionTest >> newLineBeforeFirstKeywordConfiguration [
+EFMessageExpressionTest >> newLineBeforeFirstKeywordConfiguration [
 
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
@@ -277,7 +277,7 @@ BIEnlumineurMessageExpressionTest >> newLineBeforeFirstKeywordConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurMessageExpressionTest >> noIdentsForKeyWordConfiguration [
+EFMessageExpressionTest >> noIdentsForKeyWordConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -297,7 +297,7 @@ BIEnlumineurMessageExpressionTest >> noIdentsForKeyWordConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurMessageExpressionTest >> noTraditionalBinaryPrecedenceConfiguration [
+EFMessageExpressionTest >> noTraditionalBinaryPrecedenceConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -318,7 +318,7 @@ BIEnlumineurMessageExpressionTest >> noTraditionalBinaryPrecedenceConfiguration 
 ]
 
 { #category : #configurations }
-BIEnlumineurMessageExpressionTest >> oneArgumentPerLineConfiguration [
+EFMessageExpressionTest >> oneArgumentPerLineConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentCloseToStatements: false;
@@ -334,7 +334,7 @@ BIEnlumineurMessageExpressionTest >> oneArgumentPerLineConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurMessageExpressionTest >> oneIdentsForKeyWordConfiguration [
+EFMessageExpressionTest >> oneIdentsForKeyWordConfiguration [
 
 	^ self contextClass new
 		newLineBeforeFirstKeyword: true;
@@ -343,7 +343,7 @@ BIEnlumineurMessageExpressionTest >> oneIdentsForKeyWordConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurMessageExpressionTest >> oneLineMessageConfiguration [
+EFMessageExpressionTest >> oneLineMessageConfiguration [
 
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
@@ -359,7 +359,7 @@ BIEnlumineurMessageExpressionTest >> oneLineMessageConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurMessageExpressionTest >> parentheseConfiguration [
+EFMessageExpressionTest >> parentheseConfiguration [
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
 		formatCommentCloseToStatements: false;
@@ -375,7 +375,7 @@ BIEnlumineurMessageExpressionTest >> parentheseConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurMessageExpressionTest >> shortMaxLineLengthConfiguration [
+EFMessageExpressionTest >> shortMaxLineLengthConfiguration [
 
 	^ self contextClass basicNew
 		indentStyle: #tabulation;
@@ -391,7 +391,7 @@ BIEnlumineurMessageExpressionTest >> shortMaxLineLengthConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurMessageExpressionTest >> simpleConfiguration [
+EFMessageExpressionTest >> simpleConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -412,7 +412,7 @@ BIEnlumineurMessageExpressionTest >> simpleConfiguration [
 ]
 
 { #category : #'test binary' }
-BIEnlumineurMessageExpressionTest >> testBinaryFormatParameter [
+EFMessageExpressionTest >> testBinaryFormatParameter [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '1 + (3     factorial)'.
@@ -420,7 +420,7 @@ BIEnlumineurMessageExpressionTest >> testBinaryFormatParameter [
 ]
 
 { #category : #'test binary' }
-BIEnlumineurMessageExpressionTest >> testBinaryFormatReceiver [
+EFMessageExpressionTest >> testBinaryFormatReceiver [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: 'a:=''abc'' + 2'.
@@ -428,7 +428,7 @@ BIEnlumineurMessageExpressionTest >> testBinaryFormatReceiver [
 ]
 
 { #category : #'test binary' }
-BIEnlumineurMessageExpressionTest >> testBinaryMessageComments [
+EFMessageExpressionTest >> testBinaryMessageComments [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '1 + 1 "aComment"'.
@@ -436,7 +436,7 @@ BIEnlumineurMessageExpressionTest >> testBinaryMessageComments [
 ]
 
 { #category : #'test binary' }
-BIEnlumineurMessageExpressionTest >> testBinaryMessageFormatCommentsWithStatement [
+EFMessageExpressionTest >> testBinaryMessageFormatCommentsWithStatement [
 	| source |
 	self flag: #toCheck. "Why would we lose the comment?"
 	configurationSelector := #formatStatementsWithCommentsConfiguration.
@@ -445,7 +445,7 @@ BIEnlumineurMessageExpressionTest >> testBinaryMessageFormatCommentsWithStatemen
 ]
 
 { #category : #'test binary' }
-BIEnlumineurMessageExpressionTest >> testBinaryNoExtraSpacesAfter [
+EFMessageExpressionTest >> testBinaryNoExtraSpacesAfter [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '1+2          '.
@@ -453,7 +453,7 @@ BIEnlumineurMessageExpressionTest >> testBinaryNoExtraSpacesAfter [
 ]
 
 { #category : #'test binary' }
-BIEnlumineurMessageExpressionTest >> testBinaryNoExtraSpacesBefore [
+EFMessageExpressionTest >> testBinaryNoExtraSpacesBefore [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '   1+2'.
@@ -461,7 +461,7 @@ BIEnlumineurMessageExpressionTest >> testBinaryNoExtraSpacesBefore [
 ]
 
 { #category : #'test binary' }
-BIEnlumineurMessageExpressionTest >> testBinaryNoExtraSpacesBetween [
+EFMessageExpressionTest >> testBinaryNoExtraSpacesBetween [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '1     +     2'.
@@ -469,7 +469,7 @@ BIEnlumineurMessageExpressionTest >> testBinaryNoExtraSpacesBetween [
 ]
 
 { #category : #'test binary' }
-BIEnlumineurMessageExpressionTest >> testBinaryOneArgumentPerLine [
+EFMessageExpressionTest >> testBinaryOneArgumentPerLine [
 	| source |
 	configurationSelector := #oneArgumentPerLineConfiguration.
 	source := self formatExpression: '1+2'.
@@ -481,7 +481,7 @@ BIEnlumineurMessageExpressionTest >> testBinaryOneArgumentPerLine [
 ]
 
 { #category : #'test binary' }
-BIEnlumineurMessageExpressionTest >> testBinaryOneArgumentPerLine2 [
+EFMessageExpressionTest >> testBinaryOneArgumentPerLine2 [
 	| source |
 	configurationSelector := #oneArgumentPerLineConfiguration.
 	source := self formatExpression: '(1+2)*3'.
@@ -494,7 +494,7 @@ BIEnlumineurMessageExpressionTest >> testBinaryOneArgumentPerLine2 [
 ]
 
 { #category : #'test block arg' }
-BIEnlumineurMessageExpressionTest >> testBlockParameterOnTheMethodLineWhenMultiline [
+EFMessageExpressionTest >> testBlockParameterOnTheMethodLineWhenMultiline [
 	| source |
 	configurationSelector := #keepBlockInMessageConfiguration.
 	source := self
@@ -509,7 +509,7 @@ BIEnlumineurMessageExpressionTest >> testBlockParameterOnTheMethodLineWhenMultil
 ]
 
 { #category : #'test block arg' }
-BIEnlumineurMessageExpressionTest >> testBlockParameterWhenTheLineWillBeTooLong [
+EFMessageExpressionTest >> testBlockParameterWhenTheLineWillBeTooLong [
 	| source |
 	configurationSelector := #blockInMessageTooLongConfiguration.
 	source := self formatExpression: 'aMessage take:[ :i | i factorial]'.
@@ -521,7 +521,7 @@ BIEnlumineurMessageExpressionTest >> testBlockParameterWhenTheLineWillBeTooLong 
 ]
 
 { #category : #'test block arg' }
-BIEnlumineurMessageExpressionTest >> testBlockParameterWhenTheLineWillBeTooLong2 [
+EFMessageExpressionTest >> testBlockParameterWhenTheLineWillBeTooLong2 [
 	| source |
 	configurationSelector := #blockInMessageTooLongConfiguration.
 	source := self formatExpression: 'aMessage take:[ :iiiiiiiiiiiiiii | i factorial]'.
@@ -534,7 +534,7 @@ BIEnlumineurMessageExpressionTest >> testBlockParameterWhenTheLineWillBeTooLong2
 ]
 
 { #category : #'test block arg' }
-BIEnlumineurMessageExpressionTest >> testBlockParameterWhenTheLineWillNotBeTooLong [
+EFMessageExpressionTest >> testBlockParameterWhenTheLineWillNotBeTooLong [
 	| source |
 	configurationSelector := #blockInMessageConfiguration.
 	source := self formatExpression: 'aMessage take:[ :i | i]'.
@@ -542,7 +542,7 @@ BIEnlumineurMessageExpressionTest >> testBlockParameterWhenTheLineWillNotBeTooLo
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testDontKeepBlockInMessage [
+EFMessageExpressionTest >> testDontKeepBlockInMessage [
 	| source |
 	configurationSelector := #dontKeepBlockInMessageConfiguration.
 	source := self
@@ -558,7 +558,7 @@ BIEnlumineurMessageExpressionTest >> testDontKeepBlockInMessage [
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testDontKeepBlockInMessage2 [
+EFMessageExpressionTest >> testDontKeepBlockInMessage2 [
 	| source |
 	configurationSelector := #dontKeepBlockInMessageConfiguration.
 	source := self
@@ -571,7 +571,7 @@ BIEnlumineurMessageExpressionTest >> testDontKeepBlockInMessage2 [
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testDontKeepBlockInMessage3 [
+EFMessageExpressionTest >> testDontKeepBlockInMessage3 [
 	| source |
 	configurationSelector := #dontKeepBlockInMessageConfiguration.
 	source := self
@@ -586,7 +586,7 @@ BIEnlumineurMessageExpressionTest >> testDontKeepBlockInMessage3 [
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testExtraIndentInParentheses [
+EFMessageExpressionTest >> testExtraIndentInParentheses [
 	| source |
 	configurationSelector := #blockAndParenthesesInMessageConfiguration.
 	source := self formatExpression: '( [ :i | 	i factorial; +3 ] value: 15 )*3'.
@@ -598,7 +598,7 @@ BIEnlumineurMessageExpressionTest >> testExtraIndentInParentheses [
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testExtraIndentInParenthesesWhenThreeSpacesInsideParentheses [
+EFMessageExpressionTest >> testExtraIndentInParenthesesWhenThreeSpacesInsideParentheses [
 	| source |
 	configurationSelector := #extraIndentWithThreeSpacesInsideParenthesesConfiguration.
 	source := self formatExpression:'( [ :i | 	i factorial; +3 ] value: 15 )*3'.
@@ -610,7 +610,7 @@ BIEnlumineurMessageExpressionTest >> testExtraIndentInParenthesesWhenThreeSpaces
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testIndentsForKeywords1 [
+EFMessageExpressionTest >> testIndentsForKeywords1 [
 	| source |
 	configurationSelector := #oneIdentsForKeyWordConfiguration.
 	source := self formatExpression: 'a k1:1 k2:2 k3:3'.
@@ -624,7 +624,7 @@ BIEnlumineurMessageExpressionTest >> testIndentsForKeywords1 [
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testIndentsForKeywords2 [
+EFMessageExpressionTest >> testIndentsForKeywords2 [
 	| source |
 	configurationSelector := #twoIdentsForKeyWordConfiguration.
 	source := self formatExpression: 'a k1:1 k2:2 k3:3'.
@@ -638,7 +638,7 @@ BIEnlumineurMessageExpressionTest >> testIndentsForKeywords2 [
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testKeepBlockInMessage [
+EFMessageExpressionTest >> testKeepBlockInMessage [
 	| source |
 	configurationSelector := #keepBlockInMessageConfiguration.
 	source := self
@@ -653,7 +653,7 @@ BIEnlumineurMessageExpressionTest >> testKeepBlockInMessage [
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testKeepBlockInMessageMutlilineNewLine [
+EFMessageExpressionTest >> testKeepBlockInMessageMutlilineNewLine [
 	| source |
 	configurationSelector := #keepBlockInMessageConfiguration.
 	source := self
@@ -668,7 +668,7 @@ BIEnlumineurMessageExpressionTest >> testKeepBlockInMessageMutlilineNewLine [
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testKeepBlockInMessageMutlilineSpace [
+EFMessageExpressionTest >> testKeepBlockInMessageMutlilineSpace [
 	| source |
 	configurationSelector := #keepBlockInMessageConfiguration.
 	source := self
@@ -685,7 +685,7 @@ BIEnlumineurMessageExpressionTest >> testKeepBlockInMessageMutlilineSpace [
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testKeepBlockInMessageNotMultilineSpace [
+EFMessageExpressionTest >> testKeepBlockInMessageNotMultilineSpace [
 	| source |
 	configurationSelector := #keepBlockInMessageConfiguration.
 	source := self formatExpression: 'aBoolean ifTrue:[^1]'.
@@ -696,7 +696,7 @@ BIEnlumineurMessageExpressionTest >> testKeepBlockInMessageNotMultilineSpace [
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testKeepBlockInMessageNotMutlilineNewLine [
+EFMessageExpressionTest >> testKeepBlockInMessageNotMutlilineNewLine [
 	| source |
 	configurationSelector := #littleMaxLineLengthConfiguration.
 	source := self
@@ -709,7 +709,7 @@ BIEnlumineurMessageExpressionTest >> testKeepBlockInMessageNotMutlilineNewLine [
 ]
 
 { #category : #'tests keyword' }
-BIEnlumineurMessageExpressionTest >> testKeywordComments [
+EFMessageExpressionTest >> testKeywordComments [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '1 between: 2"firstComment" and: 3 "secondComment"'.
@@ -717,7 +717,7 @@ BIEnlumineurMessageExpressionTest >> testKeywordComments [
 ]
 
 { #category : #'tests keyword' }
-BIEnlumineurMessageExpressionTest >> testKeywordCommentsFormatCommentsWithStatement [
+EFMessageExpressionTest >> testKeywordCommentsFormatCommentsWithStatement [
 	| source |
 	self flag: #toCheck. "why no more comment." 
 	configurationSelector := #formatStatementsWithCommentsConfiguration.
@@ -726,7 +726,7 @@ BIEnlumineurMessageExpressionTest >> testKeywordCommentsFormatCommentsWithStatem
 ]
 
 { #category : #'tests keyword' }
-BIEnlumineurMessageExpressionTest >> testKeywordFormatParameter [
+EFMessageExpressionTest >> testKeywordFormatParameter [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self
@@ -735,7 +735,7 @@ BIEnlumineurMessageExpressionTest >> testKeywordFormatParameter [
 ]
 
 { #category : #'tests keyword' }
-BIEnlumineurMessageExpressionTest >> testKeywordFormatReceiver [
+EFMessageExpressionTest >> testKeywordFormatReceiver [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '2 between: 4-2 and: 3     factorial'.
@@ -743,7 +743,7 @@ BIEnlumineurMessageExpressionTest >> testKeywordFormatReceiver [
 ]
 
 { #category : #'tests keyword' }
-BIEnlumineurMessageExpressionTest >> testKeywordFormatReceiver2 [
+EFMessageExpressionTest >> testKeywordFormatReceiver2 [
 	| source |
 	configurationSelector := #parentheseConfiguration.
 	source := self formatExpression: '(2 between: 4-2 and: 3)     factorial'.
@@ -751,7 +751,7 @@ BIEnlumineurMessageExpressionTest >> testKeywordFormatReceiver2 [
 ]
 
 { #category : #'tests keyword' }
-BIEnlumineurMessageExpressionTest >> testKeywordFormatReceiver3 [
+EFMessageExpressionTest >> testKeywordFormatReceiver3 [
 	| source |
 	configurationSelector := #parentheseConfiguration.
 	source := self formatExpression: '(d at: 2)factorial'.
@@ -759,7 +759,7 @@ BIEnlumineurMessageExpressionTest >> testKeywordFormatReceiver3 [
 ]
 
 { #category : #'tests keyword' }
-BIEnlumineurMessageExpressionTest >> testKeywordFormatReceiverAssignment [
+EFMessageExpressionTest >> testKeywordFormatReceiverAssignment [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: 'a:=''abc'' at: 2'.
@@ -767,7 +767,7 @@ BIEnlumineurMessageExpressionTest >> testKeywordFormatReceiverAssignment [
 ]
 
 { #category : #'tests keyword' }
-BIEnlumineurMessageExpressionTest >> testKeywordNoExtraSpacesAfter [
+EFMessageExpressionTest >> testKeywordNoExtraSpacesAfter [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '2 between: 1 and: 3          '.
@@ -775,7 +775,7 @@ BIEnlumineurMessageExpressionTest >> testKeywordNoExtraSpacesAfter [
 ]
 
 { #category : #'tests keyword' }
-BIEnlumineurMessageExpressionTest >> testKeywordNoExtraSpacesBefore [
+EFMessageExpressionTest >> testKeywordNoExtraSpacesBefore [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '   2 between: 1 and: 3'.
@@ -783,7 +783,7 @@ BIEnlumineurMessageExpressionTest >> testKeywordNoExtraSpacesBefore [
 ]
 
 { #category : #'tests keyword' }
-BIEnlumineurMessageExpressionTest >> testKeywordNoExtraSpacesBetween [
+EFMessageExpressionTest >> testKeywordNoExtraSpacesBetween [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '2      between:     1   and:    3'.
@@ -791,7 +791,7 @@ BIEnlumineurMessageExpressionTest >> testKeywordNoExtraSpacesBetween [
 ]
 
 { #category : #'tests keyword' }
-BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine [
+EFMessageExpressionTest >> testKeywordOnMultipleLine [
 	| source |
 	configurationSelector := #blockAndCascadeInMessageConfiguration.
 	source := self formatExpression: '1 to: 100 by: 2 do: [ :i | transcript show: i;cr; cr]'.
@@ -804,7 +804,7 @@ BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine [
 ]
 
 { #category : #'tests keyword' }
-BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine10 [
+EFMessageExpressionTest >> testKeywordOnMultipleLine10 [
 	| source |
 	configurationSelector := #blockAndCascadeInMessageConfiguration.
 	source := self formatExpression:
@@ -822,7 +822,7 @@ BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine10 [
 ]
 
 { #category : #'tests keyword' }
-BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine11 [
+EFMessageExpressionTest >> testKeywordOnMultipleLine11 [
 	| source |
 	configurationSelector := #blockAndCascadeInMessageConfiguration.
 	source := self formatExpression:
@@ -836,7 +836,7 @@ BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine11 [
 ]
 
 { #category : #'tests keyword' }
-BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine12 [
+EFMessageExpressionTest >> testKeywordOnMultipleLine12 [
 	| source |
 	configurationSelector := #blockAndCascadeInMessageConfiguration.
 	source := self formatExpression:
@@ -856,7 +856,7 @@ BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine12 [
 ]
 
 { #category : #'tests keyword' }
-BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine13 [
+EFMessageExpressionTest >> testKeywordOnMultipleLine13 [
 	| source |
 	configurationSelector := #blockAndCascadeInMessageConfiguration.
 	source := self formatExpression:
@@ -870,7 +870,7 @@ BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine13 [
 ]
 
 { #category : #'tests keyword' }
-BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine14 [
+EFMessageExpressionTest >> testKeywordOnMultipleLine14 [
 	| source |
 	configurationSelector := #blockAndCascadeInMessageConfiguration.
 	source := self formatExpression:
@@ -890,7 +890,7 @@ BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine14 [
 ]
 
 { #category : #'tests keyword' }
-BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine15 [
+EFMessageExpressionTest >> testKeywordOnMultipleLine15 [
 	| source |
 	configurationSelector := #blockAndCascadeInMessageConfiguration.
 	source := self formatExpression:
@@ -909,7 +909,7 @@ BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine15 [
 ]
 
 { #category : #'tests keyword' }
-BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine2 [
+EFMessageExpressionTest >> testKeywordOnMultipleLine2 [
 	| source |
 	configurationSelector := #ifTrueIfFalseMutlilineMessageConfiguration.
 	source := self formatExpression: 'aBoolean ifTrue:[ ^ 1] ifFalse:[ tmp := tmp + a. ^tmp]'.
@@ -922,7 +922,7 @@ BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine2 [
 ]
 
 { #category : #'tests keyword' }
-BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine3 [
+EFMessageExpressionTest >> testKeywordOnMultipleLine3 [
 	| source |
 	configurationSelector := #blockAndCascadeInMessageConfiguration.
 	source := self formatExpression: 'aBoolean ifTrue:[ tmp := tmp + a. ^ tmp] ifFalse:[ ^ 0 ]'.
@@ -935,7 +935,7 @@ BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine3 [
 ]
 
 { #category : #'tests keyword' }
-BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine4 [
+EFMessageExpressionTest >> testKeywordOnMultipleLine4 [
 	| source |
 	configurationSelector := #blockAndCascadeInMessageConfiguration.
 	source := self formatExpression: 'aBoolean ifTrue:[ tmp := tmp + a. ^ tmp] ifFalse:[ tmp := tmp + a. ^tmp]'.
@@ -950,7 +950,7 @@ BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine4 [
 ]
 
 { #category : #'tests keyword' }
-BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine5 [
+EFMessageExpressionTest >> testKeywordOnMultipleLine5 [
 	| source |
 	configurationSelector := #blockAndCascadeInMessageConfiguration.
 	source := self formatExpression: 'aBoolean ifTrue:[ ^ 1] ifFalse:[ tmp := tmp + a. ^tmp]'.
@@ -961,7 +961,7 @@ BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine5 [
 ]
 
 { #category : #'tests keyword' }
-BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine6 [
+EFMessageExpressionTest >> testKeywordOnMultipleLine6 [
 	| source |
 	configurationSelector := #blockAndCascadeInMessageConfiguration.
 	source := self formatExpression:
@@ -985,7 +985,7 @@ BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine6 [
 ]
 
 { #category : #'tests keyword' }
-BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine7 [
+EFMessageExpressionTest >> testKeywordOnMultipleLine7 [
 	| source |
 	configurationSelector := #blockAndCascadeInMessageConfiguration.
 	source := self formatExpression:
@@ -1009,7 +1009,7 @@ BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine7 [
 ]
 
 { #category : #'tests keyword' }
-BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine8 [
+EFMessageExpressionTest >> testKeywordOnMultipleLine8 [
 	| source |
 	configurationSelector := #blockAndCascadeInMessageConfiguration.
 	source := self formatExpression:
@@ -1033,7 +1033,7 @@ BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine8 [
 ]
 
 { #category : #'tests keyword' }
-BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine9 [
+EFMessageExpressionTest >> testKeywordOnMultipleLine9 [
 	| source |
 	configurationSelector := #blockAndCascadeInMessageConfiguration.
 	source := self formatExpression:
@@ -1059,7 +1059,7 @@ BIEnlumineurMessageExpressionTest >> testKeywordOnMultipleLine9 [
 ]
 
 { #category : #'tests keyword' }
-BIEnlumineurMessageExpressionTest >> testKeywordOnTheSameLine [
+EFMessageExpressionTest >> testKeywordOnTheSameLine [
 	| source |
 	configurationSelector := #blockInMessageConfiguration.
 	source := self formatExpression: '1 to: 100 do: [ :i | Transcript show: i ]'.
@@ -1067,7 +1067,7 @@ BIEnlumineurMessageExpressionTest >> testKeywordOnTheSameLine [
 ]
 
 { #category : #'tests keyword' }
-BIEnlumineurMessageExpressionTest >> testKeywordOnTheSameLine2 [
+EFMessageExpressionTest >> testKeywordOnTheSameLine2 [
 	| source |
 	configurationSelector := #blockAndCascadeInMessageConfiguration.
 	source := self formatExpression: '1 to: 100 by: 2 do: [ :i | Transcript show: i]'.
@@ -1075,7 +1075,7 @@ BIEnlumineurMessageExpressionTest >> testKeywordOnTheSameLine2 [
 ]
 
 { #category : #'tests keyword' }
-BIEnlumineurMessageExpressionTest >> testKeywordOnTheSameLine3 [
+EFMessageExpressionTest >> testKeywordOnTheSameLine3 [
 	| source |
 	configurationSelector := #blockAndCascadeInMessageConfiguration.
 	source := self formatExpression: 'aBoolean ifTrue:[ ^ 1] ifFalse:[ ^ 0 ]'.
@@ -1083,7 +1083,7 @@ BIEnlumineurMessageExpressionTest >> testKeywordOnTheSameLine3 [
 ]
 
 { #category : #'tests keyword' }
-BIEnlumineurMessageExpressionTest >> testKeywordOneArgumentPerLine [
+EFMessageExpressionTest >> testKeywordOneArgumentPerLine [
 	| source |
 	configurationSelector := #oneArgumentPerLineConfiguration.
 	source := self formatExpression: '2      between:     1   and:    3'.
@@ -1096,7 +1096,7 @@ and: 3'
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testMultiLineMessage [
+EFMessageExpressionTest >> testMultiLineMessage [
 	| source |
 	configurationSelector := #multiLineMessageConfiguration.
 	source := self formatExpression: 'foo multi:1 line:2 '.
@@ -1109,7 +1109,7 @@ BIEnlumineurMessageExpressionTest >> testMultiLineMessage [
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testNewLineBeforeFirstKeyword [
+EFMessageExpressionTest >> testNewLineBeforeFirstKeyword [
 	| source |
 	configurationSelector := #newLineBeforeFirstKeywordConfiguration.
 	source := self formatExpression: '2 between: 1 and: 3'.
@@ -1120,7 +1120,7 @@ BIEnlumineurMessageExpressionTest >> testNewLineBeforeFirstKeyword [
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testNewLineBeforeFirstKeywordDoesntAffectBinary [
+EFMessageExpressionTest >> testNewLineBeforeFirstKeywordDoesntAffectBinary [
 	| source |
 	configurationSelector := #newLineBeforeFirstKeywordConfiguration.
 	source := self formatExpression: '1+1'.
@@ -1130,7 +1130,7 @@ BIEnlumineurMessageExpressionTest >> testNewLineBeforeFirstKeywordDoesntAffectBi
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testNewLineBeforeStatementsWhenMultilineBlock [
+EFMessageExpressionTest >> testNewLineBeforeStatementsWhenMultilineBlock [
 	| source |
 	configurationSelector := #keepBlockInMessageConfiguration.
 	source := self
@@ -1146,7 +1146,7 @@ BIEnlumineurMessageExpressionTest >> testNewLineBeforeStatementsWhenMultilineBlo
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testNewLineWhenSelectorAndBeginingOfParametersWillBeTooLong [
+EFMessageExpressionTest >> testNewLineWhenSelectorAndBeginingOfParametersWillBeTooLong [
 	| source |
 	configurationSelector := #blockAndParenthesesInMessageConfiguration.
 	source := self formatExpression:
@@ -1160,7 +1160,7 @@ BIEnlumineurMessageExpressionTest >> testNewLineWhenSelectorAndBeginingOfParamet
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testNoIndentsForKeywords [
+EFMessageExpressionTest >> testNoIndentsForKeywords [
 	| source |
 	configurationSelector := #noIdentsForKeyWordConfiguration.
 	source := self formatExpression: 'a k1:1 k2:2 k3:3'.
@@ -1174,7 +1174,7 @@ k3: 3'
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testNoNewLineBetweenVariableAndIfTrue [
+EFMessageExpressionTest >> testNoNewLineBetweenVariableAndIfTrue [
 	| source |
 	configurationSelector := #blockInMessageConfiguration.
 	source := self formatExpression: 'x
@@ -1193,7 +1193,7 @@ BIEnlumineurMessageExpressionTest >> testNoNewLineBetweenVariableAndIfTrue [
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testNoNewLineForBeginingOfATooLongArgument [
+EFMessageExpressionTest >> testNoNewLineForBeginingOfATooLongArgument [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self
@@ -1204,7 +1204,7 @@ b'''
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testNoNewLineForBeginingOfATooLongArgument2 [
+EFMessageExpressionTest >> testNoNewLineForBeginingOfATooLongArgument2 [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self
@@ -1218,7 +1218,7 @@ BIEnlumineurMessageExpressionTest >> testNoNewLineForBeginingOfATooLongArgument2
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testNoTraditionalBinaryPrecedence [
+EFMessageExpressionTest >> testNoTraditionalBinaryPrecedence [
 	| source |
 	configurationSelector := #noTraditionalBinaryPrecedenceConfiguration.
 	source := self formatExpression: '2+3*4'.
@@ -1226,7 +1226,7 @@ BIEnlumineurMessageExpressionTest >> testNoTraditionalBinaryPrecedence [
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testNoTraditionalBinaryPrecedence2 [
+EFMessageExpressionTest >> testNoTraditionalBinaryPrecedence2 [
 	| source |
 	configurationSelector := #noTraditionalBinaryPrecedenceConfiguration.
 	source := self formatExpression: '(2 + 3) * 4'.
@@ -1234,7 +1234,7 @@ BIEnlumineurMessageExpressionTest >> testNoTraditionalBinaryPrecedence2 [
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testNoTraditionalBinaryPrecedence3 [
+EFMessageExpressionTest >> testNoTraditionalBinaryPrecedence3 [
 	| source |
 	configurationSelector := #noTraditionalBinaryPrecedenceConfiguration.
 	source := self formatExpression: '2+3*4+5 * 2'.
@@ -1242,7 +1242,7 @@ BIEnlumineurMessageExpressionTest >> testNoTraditionalBinaryPrecedence3 [
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testOneLineMessage [
+EFMessageExpressionTest >> testOneLineMessage [
 	| source |
 	configurationSelector := #oneLineMessageConfiguration.
 	source := self formatExpression: 'foo one:1 line:2 message:3'.
@@ -1250,7 +1250,7 @@ BIEnlumineurMessageExpressionTest >> testOneLineMessage [
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testSpacesInsideParentheses [
+EFMessageExpressionTest >> testSpacesInsideParentheses [
 	| source |
 	configurationSelector := #twoSpacesInsideParenthesesConfiguration.
 	source := self formatExpression: '1+(2*3)'.
@@ -1258,7 +1258,7 @@ BIEnlumineurMessageExpressionTest >> testSpacesInsideParentheses [
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testTooLongArgument [
+EFMessageExpressionTest >> testTooLongArgument [
 	| source |
 	configurationSelector := #shortMaxLineLengthConfiguration.
 	source := self formatExpression: 'foo message: TooLongArgument'.
@@ -1270,7 +1270,7 @@ BIEnlumineurMessageExpressionTest >> testTooLongArgument [
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testTooLongLineWithArgument [
+EFMessageExpressionTest >> testTooLongLineWithArgument [
 	| source |
 	configurationSelector := #shortMaxLineLengthConfiguration.
 	source := self formatExpression: 'foo message: argument'.
@@ -1282,7 +1282,7 @@ BIEnlumineurMessageExpressionTest >> testTooLongLineWithArgument [
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testTraditionalBinaryPrecedence [
+EFMessageExpressionTest >> testTraditionalBinaryPrecedence [
 	| source |
 	configurationSelector := #simpleConfiguration.
 	source := self formatExpression: '2+3*4'.
@@ -1290,7 +1290,7 @@ BIEnlumineurMessageExpressionTest >> testTraditionalBinaryPrecedence [
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testTraditionalBinaryPrecedence2 [
+EFMessageExpressionTest >> testTraditionalBinaryPrecedence2 [
 	| source |
 	configurationSelector := #simpleConfiguration.
 	source := self formatExpression: '2*3+4'.
@@ -1298,7 +1298,7 @@ BIEnlumineurMessageExpressionTest >> testTraditionalBinaryPrecedence2 [
 ]
 
 { #category : #tests }
-BIEnlumineurMessageExpressionTest >> testTraditionalBinaryPrecedence3 [
+EFMessageExpressionTest >> testTraditionalBinaryPrecedence3 [
 	| source |
 	configurationSelector := #simpleConfiguration.
 	source := self formatExpression: '2+3*4+5 * 2'.
@@ -1306,7 +1306,7 @@ BIEnlumineurMessageExpressionTest >> testTraditionalBinaryPrecedence3 [
 ]
 
 { #category : #'test unary' }
-BIEnlumineurMessageExpressionTest >> testUnaryFormatReceiver [
+EFMessageExpressionTest >> testUnaryFormatReceiver [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: 'a:=1 factorial'.
@@ -1314,7 +1314,7 @@ BIEnlumineurMessageExpressionTest >> testUnaryFormatReceiver [
 ]
 
 { #category : #'test unary' }
-BIEnlumineurMessageExpressionTest >> testUnaryFormatReceiver2 [
+EFMessageExpressionTest >> testUnaryFormatReceiver2 [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: 'a:=1 factorial foo bar'.
@@ -1322,7 +1322,7 @@ BIEnlumineurMessageExpressionTest >> testUnaryFormatReceiver2 [
 ]
 
 { #category : #'test unary' }
-BIEnlumineurMessageExpressionTest >> testUnaryMessageComments [
+EFMessageExpressionTest >> testUnaryMessageComments [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '1 factorial "aComment"'.
@@ -1330,7 +1330,7 @@ BIEnlumineurMessageExpressionTest >> testUnaryMessageComments [
 ]
 
 { #category : #'test unary' }
-BIEnlumineurMessageExpressionTest >> testUnaryMessageFormatCommentsWithStatement [
+EFMessageExpressionTest >> testUnaryMessageFormatCommentsWithStatement [
 	| source |
 	self flag: #toCheck. "why do we lose this comment"
 	configurationSelector := #formatStatementsWithCommentsConfiguration.
@@ -1339,7 +1339,7 @@ BIEnlumineurMessageExpressionTest >> testUnaryMessageFormatCommentsWithStatement
 ]
 
 { #category : #'test unary' }
-BIEnlumineurMessageExpressionTest >> testUnaryNoExtraSpacesAfter [
+EFMessageExpressionTest >> testUnaryNoExtraSpacesAfter [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: 'Transcript cr        '.
@@ -1347,7 +1347,7 @@ BIEnlumineurMessageExpressionTest >> testUnaryNoExtraSpacesAfter [
 ]
 
 { #category : #'test unary' }
-BIEnlumineurMessageExpressionTest >> testUnaryNoExtraSpacesAfter2 [
+EFMessageExpressionTest >> testUnaryNoExtraSpacesAfter2 [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: 'Transcript cr cr cr       '.
@@ -1355,7 +1355,7 @@ BIEnlumineurMessageExpressionTest >> testUnaryNoExtraSpacesAfter2 [
 ]
 
 { #category : #'test unary' }
-BIEnlumineurMessageExpressionTest >> testUnaryNoExtraSpacesBefore [
+EFMessageExpressionTest >> testUnaryNoExtraSpacesBefore [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '   Transcript cr'.
@@ -1363,7 +1363,7 @@ BIEnlumineurMessageExpressionTest >> testUnaryNoExtraSpacesBefore [
 ]
 
 { #category : #'test unary' }
-BIEnlumineurMessageExpressionTest >> testUnaryNoExtraSpacesBetween [
+EFMessageExpressionTest >> testUnaryNoExtraSpacesBetween [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: 'Transcript        cr'.
@@ -1371,7 +1371,7 @@ BIEnlumineurMessageExpressionTest >> testUnaryNoExtraSpacesBetween [
 ]
 
 { #category : #'test unary' }
-BIEnlumineurMessageExpressionTest >> testUnaryNoExtraSpacesBetween2 [
+EFMessageExpressionTest >> testUnaryNoExtraSpacesBetween2 [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: 'Transcript        cr cr       cr     cr'.
@@ -1379,7 +1379,7 @@ BIEnlumineurMessageExpressionTest >> testUnaryNoExtraSpacesBetween2 [
 ]
 
 { #category : #'test unary' }
-BIEnlumineurMessageExpressionTest >> testUnaryTooLongArgument [
+EFMessageExpressionTest >> testUnaryTooLongArgument [
 	| source |
 	configurationSelector := #shortMaxLineLengthConfiguration.
 	source := self formatExpression: 'foo messageTooLongUnaryyyy'.
@@ -1391,7 +1391,7 @@ BIEnlumineurMessageExpressionTest >> testUnaryTooLongArgument [
 ]
 
 { #category : #configurations }
-BIEnlumineurMessageExpressionTest >> twoIdentsForKeyWordConfiguration [
+EFMessageExpressionTest >> twoIdentsForKeyWordConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -1411,7 +1411,7 @@ BIEnlumineurMessageExpressionTest >> twoIdentsForKeyWordConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurMessageExpressionTest >> twoSpacesInsideParenthesesConfiguration [
+EFMessageExpressionTest >> twoSpacesInsideParenthesesConfiguration [
 
 	^ self contextClass basicNew
 		numberOfSpacesInsideParentheses: 2;

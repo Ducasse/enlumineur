@@ -1,11 +1,11 @@
 Class {
-	#name : #BIEnlumineurPragmaExpressionTest,
-	#superclass : #BIEnlumineurTest,
+	#name : #EFPragmaExpressionTest,
+	#superclass : #EFTest,
 	#category : #'Enlumineur-Tests'
 }
 
 { #category : #configuration }
-BIEnlumineurPragmaExpressionTest >> basicConfiguration [
+EFPragmaExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
 		formatCommentCloseToStatements:false;
@@ -14,7 +14,7 @@ BIEnlumineurPragmaExpressionTest >> basicConfiguration [
 ]
 
 { #category : #tests }
-BIEnlumineurPragmaExpressionTest >> testPragmaNoExtraSpace [
+EFPragmaExpressionTest >> testPragmaNoExtraSpace [
 	| expr source |
 	expr := RBParser parsePragma:'<   Pragma   >'.
 	configurationSelector := #basicConfiguration.
@@ -23,7 +23,7 @@ BIEnlumineurPragmaExpressionTest >> testPragmaNoExtraSpace [
 ]
 
 { #category : #tests }
-BIEnlumineurPragmaExpressionTest >> testPragmaNoExtraSpace2 [
+EFPragmaExpressionTest >> testPragmaNoExtraSpace2 [
 	| expr source |
 	expr := RBParser parsePragma:'<func:     ''(3+4)''       res:      7>'.
 	configurationSelector := #basicConfiguration.
@@ -32,7 +32,7 @@ BIEnlumineurPragmaExpressionTest >> testPragmaNoExtraSpace2 [
 ]
 
 { #category : #tests }
-BIEnlumineurPragmaExpressionTest >> testPragmaNoExtraSpaceBetweenMethodeAndArgument [
+EFPragmaExpressionTest >> testPragmaNoExtraSpaceBetweenMethodeAndArgument [
 	| expr source |
 	expr := RBParser parsePragma:'<primitive:    41>'.
 	configurationSelector := #basicConfiguration.

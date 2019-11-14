@@ -83,7 +83,7 @@ Internal Representation and Key Implementation Points.
 
 "
 Class {
-	#name : #BISettingPreviewer2,
+	#name : #EFSettingPreviewer2,
 	#superclass : #SpPresenter,
 	#instVars : [
 		'settingsTree',
@@ -108,7 +108,7 @@ Class {
 }
 
 { #category : #'build ui buttons' }
-BISettingPreviewer2 class >> buildOpenBIInspectorButton [
+EFSettingPreviewer2 class >> buildOpenBIInspectorButton [
 	^ PluggableButtonMorph
 		on: self
 		getState: #openBIInspectorButtonState
@@ -117,7 +117,7 @@ BISettingPreviewer2 class >> buildOpenBIInspectorButton [
 ]
 
 { #category : #specs }
-BISettingPreviewer2 class >> defaultSpec [
+EFSettingPreviewer2 class >> defaultSpec [
 	<spec: #default>
 	^ SpBoxLayout newVertical
 		add: #settingsTree;
@@ -153,7 +153,7 @@ BISettingPreviewer2 class >> defaultSpec [
 ]
 
 { #category : #settings }
-BISettingPreviewer2 class >> dialogOpenBIPreviewer [
+EFSettingPreviewer2 class >> dialogOpenBIPreviewer [
 	^ Smalltalk ui theme
 		newRowIn: World
 		for:
@@ -162,14 +162,14 @@ BISettingPreviewer2 class >> dialogOpenBIPreviewer [
 ]
 
 { #category : #'class initialization' }
-BISettingPreviewer2 class >> initialize [
+EFSettingPreviewer2 class >> initialize [
 	"self initialize"
-	FormaterPrettyPrinter := BIEnlumineurFormatter new.
-	MethodProvider := BIMethodProvider
+	FormaterPrettyPrinter := EFFormatter new.
+	MethodProvider := EFMethodProvider
 ]
 
 { #category : #'instance creation' }
-BISettingPreviewer2 class >> open [
+EFSettingPreviewer2 class >> open [
 	<script>
 	| presenter |
 	presenter := self new.
@@ -178,23 +178,23 @@ BISettingPreviewer2 class >> open [
 ]
 
 { #category : #'button behavior' }
-BISettingPreviewer2 class >> openBIInspectorButtonAction [
+EFSettingPreviewer2 class >> openBIInspectorButtonAction [
 	<script>
 	self open
 ]
 
 { #category : #'button behavior' }
-BISettingPreviewer2 class >> openBIInspectorButtonLabel [
+EFSettingPreviewer2 class >> openBIInspectorButtonLabel [
 	^ 'Open'
 ]
 
 { #category : #'button behavior' }
-BISettingPreviewer2 class >> openBIInspectorButtonState [
+EFSettingPreviewer2 class >> openBIInspectorButtonState [
 	^ true
 ]
 
 { #category : #settings }
-BISettingPreviewer2 class >> settingsOn: aBuilder [
+EFSettingPreviewer2 class >> settingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder group: #EnlumineurFormatterExtra)
 		target: self;
@@ -207,7 +207,7 @@ BISettingPreviewer2 class >> settingsOn: aBuilder [
 ]
 
 { #category : #specs }
-BISettingPreviewer2 class >> specLayoutHHizontal [
+EFSettingPreviewer2 class >> specLayoutHHizontal [
     ^ SpPanedLayout newHorizontal
         add:
             (SpBoxLayout newVertical
@@ -242,7 +242,7 @@ BISettingPreviewer2 class >> specLayoutHHizontal [
 ]
 
 { #category : #visiting }
-BISettingPreviewer2 >> acceptActionBIChooseMethod: anInstanceOFBIChooseMethodUI [
+EFSettingPreviewer2 >> acceptActionBIChooseMethod: anInstanceOFBIChooseMethodUI [
 	anInstanceOFBIChooseMethodUI methodList selection selectedItem
 		ifNil: [ self inform: 'you have to select a method' ]
 		ifNotNil:
@@ -250,44 +250,41 @@ BISettingPreviewer2 >> acceptActionBIChooseMethod: anInstanceOFBIChooseMethodUI 
 ]
 
 { #category : #visiting }
-BISettingPreviewer2 >> acceptActionBICodePresenter: aBICodePresenter [
-    "I'm compile a method returning a String at Ston format of the context"
+EFSettingPreviewer2 >> acceptActionBICodePresenter: aBICodePresenter [
+	"I'm compile a method returning a String at Ston format of the context"
 
-    | string newSettingMethod |
-    isSettingModification := true.
-    string := String
-        streamContents: [ :stream | 
-            stream
-                nextPutAll: aBICodePresenter codePresenter text;
-                cr;
-                tab;
-                nextPutAll: '^ '.
-            (STON
-                toStringPretty: formaterPrettyPrinter class defaultPrettyPrintContext)
-                storeOn: stream ].
-    newSettingMethod := methodProvider class
-        >> (methodProvider class compile: string).
-    newSettingMethod protocol: 'settings'.
-    settingsDropList
-        items:
-            (settingsDropList listItems
-                removeAllSuchThat: [ :item | item selector = newSettingMethod selector ];
-                add: newSettingMethod;
-                yourself).
-    settingsDropList
-        selectedIndex:
-            ((settingsDropList listItems collect: #selector)
-                indexOf: newSettingMethod selector).
-    isSettingModification := false
+	| string newSettingMethod |
+	isSettingModification := true.
+	string := String streamContents: [ :stream | 
+		          stream
+			          nextPutAll: aBICodePresenter codePresenter text;
+			          cr;
+			          tab;
+			          nextPutAll: '^ '.
+		          (STON toStringPretty:
+			           formaterPrettyPrinter class defaultPrettyPrintContext) 
+			          storeOn: stream ].
+	newSettingMethod := methodProvider class
+	                    >> (methodProvider class compile: string).
+	newSettingMethod protocol: 'settings'.
+	settingsDropList items: (settingsDropList listItems
+			 removeAllSuchThat: [ :item | 
+				 item selector = newSettingMethod selector ];
+			 add: newSettingMethod;
+			 yourself).
+	settingsDropList selectIndex:
+		((settingsDropList listItems collect: #selector) indexOf:
+			 newSettingMethod selector).
+	isSettingModification := false
 ]
 
 { #category : #'initialization-actions' }
-BISettingPreviewer2 >> actionChooseMethodUI [
+EFSettingPreviewer2 >> actionChooseMethodUI [
     chooseMethodUI action: [ SpChooseMethodUI openOn: self ]
 ]
 
 { #category : #'initialization-actions' }
-BISettingPreviewer2 >> actionMethodDropList [
+EFSettingPreviewer2 >> actionMethodDropList [
 	methodDropList
 		transmitTo: notFormatedTextPresenter
 		transform: [ :method | method sourceCode ].
@@ -297,13 +294,13 @@ BISettingPreviewer2 >> actionMethodDropList [
 ]
 
 { #category : #'initialization-actions' }
-BISettingPreviewer2 >> actionRemoveMethodButton [
+EFSettingPreviewer2 >> actionRemoveMethodButton [
 	removeMethodButton
 		action: [ methodDropList selectedItem removeFromSystem ]
 ]
 
 { #category : #'initialization-actions' }
-BISettingPreviewer2 >> actionRemoveSettingButton [
+EFSettingPreviewer2 >> actionRemoveSettingButton [
 	removeSettingButton
 		action: [ isSettingModification := true.
 			settingsDropList selectedItem
@@ -322,25 +319,25 @@ BISettingPreviewer2 >> actionRemoveSettingButton [
 ]
 
 { #category : #'initialization-actions' }
-BISettingPreviewer2 >> actionSaveMethodButton [
-    saveMethodButton
-        action: [ | newMethod |
-            newMethod := methodProvider
-                >> (methodProvider compile: notFormatedTextPresenter text).
-            newMethod protocol: 'methods'.
-            methodDropList
-                selectedIndex:
-                    ((methodDropList listItems collect: #selector)
-                        indexOf: newMethod selector) ]
+EFSettingPreviewer2 >> actionSaveMethodButton [
+	saveMethodButton action: [ 
+		| newMethod |
+		newMethod := methodProvider
+		             >>
+		             (methodProvider compile: notFormatedTextPresenter text).
+		newMethod protocol: 'methods'.
+		methodDropList selectIndex:
+			((methodDropList listItems collect: #selector) indexOf:
+				 newMethod selector) ]
 ]
 
 { #category : #'initialization-actions' }
-BISettingPreviewer2 >> actionSaveSettingButton [
-	saveSettingButton action: [ BIInputPresenterUI openOn: self ]
+EFSettingPreviewer2 >> actionSaveSettingButton [
+	saveSettingButton action: [ EFInputPresenterUI openOn: self ]
 ]
 
 { #category : #'initialization-actions' }
-BISettingPreviewer2 >> actionSettingDropList [
+EFSettingPreviewer2 >> actionSettingDropList [
     settingsDropList
         whenSelectionChangedDo: [ :setting | 
             | currentContext |
@@ -357,53 +354,53 @@ BISettingPreviewer2 >> actionSettingDropList [
 ]
 
 { #category : #accessing }
-BISettingPreviewer2 >> chooseMethodUI [
+EFSettingPreviewer2 >> chooseMethodUI [
 	^ chooseMethodUI
 ]
 
 { #category : #'initialization-actions' }
-BISettingPreviewer2 >> foo [ 
+EFSettingPreviewer2 >> foo [ 
 	^ 1 + 2 * 3
 ]
 
 { #category : #'initialization widgets' }
-BISettingPreviewer2 >> formatPrettyPrint [
+EFSettingPreviewer2 >> formatPrettyPrint [
 	methodDropList selectedItem
 		ifNil: [ ^ self ].
 	^ formaterPrettyPrinter format: methodDropList selectedItem ast
 ]
 
 { #category : #accessing }
-BISettingPreviewer2 >> formatedTextPresenter [
+EFSettingPreviewer2 >> formatedTextPresenter [
 	^ formatedTextPresenter
 ]
 
 { #category : #accessing }
-BISettingPreviewer2 >> formaterPrettyPrinter [
+EFSettingPreviewer2 >> formaterPrettyPrinter [
 	^ formaterPrettyPrinter
 ]
 
 { #category : #api }
-BISettingPreviewer2 >> formaterPrettyPrinter: aPrettyPrinter [ 
+EFSettingPreviewer2 >> formaterPrettyPrinter: aPrettyPrinter [ 
 	formaterPrettyPrinter := aPrettyPrinter.
 	settingsTree roots: self getSystemsettingsAsParentName
 ]
 
 { #category : #'initialization widgets' }
-BISettingPreviewer2 >> getSystemsettingsAsParentName [
+EFSettingPreviewer2 >> getSystemsettingsAsParentName [
 	^ ((SettingTree acceptableKeywords: #(#systemsettings)) nodeList
 		select: [ :node | node parentName = formaterPrettyPrinter class settingGroup ])
 		asOrderedCollection
 ]
 
 { #category : #initialization }
-BISettingPreviewer2 >> initialize [
+EFSettingPreviewer2 >> initialize [
 	super initialize.
 	isSettingModification := false.
 ]
 
 { #category : #'initialization widgets' }
-BISettingPreviewer2 >> initializeButtons [
+EFSettingPreviewer2 >> initializeButtons [
 	
 	
 
@@ -412,7 +409,7 @@ BISettingPreviewer2 >> initializeButtons [
 ]
 
 { #category : #initialization }
-BISettingPreviewer2 >> initializePresenter [
+EFSettingPreviewer2 >> initializePresenter [
     self actionMethodDropList.
     self actionRemoveMethodButton.
     self actionSaveMethodButton.
@@ -423,7 +420,7 @@ BISettingPreviewer2 >> initializePresenter [
 ]
 
 { #category : #initialization }
-BISettingPreviewer2 >> initializeWidgets [
+EFSettingPreviewer2 >> initializeWidgets [
     methodProvider := MethodProvider.
     formaterPrettyPrinter := FormaterPrettyPrinter.
     settingsTree := self newTreeTable.
@@ -463,13 +460,13 @@ BISettingPreviewer2 >> initializeWidgets [
 ]
 
 { #category : #initialization }
-BISettingPreviewer2 >> initializeWindow: aWindowPresenter [
+EFSettingPreviewer2 >> initializeWindow: aWindowPresenter [
     aWindowPresenter title: 'Blue Ink Setting Previewer'.
     aWindowPresenter initialExtent: 1000 @ 700
 ]
 
 { #category : #'system-Announcement' }
-BISettingPreviewer2 >> methodAdded: aMethodAdded [
+EFSettingPreviewer2 >> methodAdded: aMethodAdded [
 	isSettingModification ifNil: [ isSettingModification := false ].
 	(isSettingModification not
 		and: [ aMethodAdded methodOrigin = methodProvider
@@ -483,12 +480,12 @@ BISettingPreviewer2 >> methodAdded: aMethodAdded [
 ]
 
 { #category : #accessing }
-BISettingPreviewer2 >> methodDropList [
+EFSettingPreviewer2 >> methodDropList [
 	^ methodDropList
 ]
 
 { #category : #'system-Announcement' }
-BISettingPreviewer2 >> methodModified: aModifiedMethod [
+EFSettingPreviewer2 >> methodModified: aModifiedMethod [
 	(aModifiedMethod methodOrigin = methodProvider
 		and: [ isSettingModification not ])
 		ifFalse: [ ^ self ].
@@ -501,28 +498,23 @@ BISettingPreviewer2 >> methodModified: aModifiedMethod [
 ]
 
 { #category : #accessing }
-BISettingPreviewer2 >> methodProvider [
+EFSettingPreviewer2 >> methodProvider [
 	^ methodProvider
 ]
 
 { #category : #api }
-BISettingPreviewer2 >> methodProvider: aMethodProvider [
+EFSettingPreviewer2 >> methodProvider: aMethodProvider [
 	methodProvider := aMethodProvider.
-	methodDropList
-		items:
-			(methodProvider methods
-				select: [ :method | method category = 'methods' ])
-				asOrderedCollection.
-	settingsDropList
-		items:
-			(methodProvider class methods
-				select: [ :method | method category = 'settings' ])
-				asOrderedCollection.
-	methodDropList selectedIndex: 1
+	methodDropList items: (methodProvider methods select: [ :method | 
+			 method category = 'methods' ]) asOrderedCollection.
+	settingsDropList items:
+		(methodProvider class methods select: [ :method | 
+			 method category = 'settings' ]) asOrderedCollection.
+	methodDropList selectIndex: 1
 ]
 
 { #category : #'system-Announcement' }
-BISettingPreviewer2 >> methodRemoved: aMethodRemoved [
+EFSettingPreviewer2 >> methodRemoved: aMethodRemoved [
 	(aMethodRemoved methodOrigin = methodProvider and: [ 
 		 isSettingModification not ]) ifFalse: [ ^ self ].
 	methodDropList selectIndex: 1.
@@ -533,53 +525,53 @@ BISettingPreviewer2 >> methodRemoved: aMethodRemoved [
 ]
 
 { #category : #accessing }
-BISettingPreviewer2 >> notFormatedTextPresenter [
+EFSettingPreviewer2 >> notFormatedTextPresenter [
 	^ notFormatedTextPresenter
 ]
 
 { #category : #'system-Announcement' }
-BISettingPreviewer2 >> onWindowClosed [
+EFSettingPreviewer2 >> onWindowClosed [
 	self unregisterAnnouncement.
 ]
 
 { #category : #accessing }
-BISettingPreviewer2 >> removeMethodButton [
+EFSettingPreviewer2 >> removeMethodButton [
 	^ removeMethodButton
 ]
 
 { #category : #accessing }
-BISettingPreviewer2 >> removeSettingButton [
+EFSettingPreviewer2 >> removeSettingButton [
 	^ removeSettingButton
 ]
 
 { #category : #accessing }
-BISettingPreviewer2 >> saveMethodButton [
+EFSettingPreviewer2 >> saveMethodButton [
 	^ saveMethodButton
 ]
 
 { #category : #accessing }
-BISettingPreviewer2 >> saveSettingButton [
+EFSettingPreviewer2 >> saveSettingButton [
 	^ saveSettingButton
 ]
 
 { #category : #accessing }
-BISettingPreviewer2 >> settingsDropList [
+EFSettingPreviewer2 >> settingsDropList [
 	^ settingsDropList
 ]
 
 { #category : #accessing }
-BISettingPreviewer2 >> settingsTree [
+EFSettingPreviewer2 >> settingsTree [
 	^ settingsTree
 ]
 
 { #category : #'initialization widgets' }
-BISettingPreviewer2 >> setupAfterPrettyPrinterCodePresenter [
+EFSettingPreviewer2 >> setupAfterPrettyPrinterCodePresenter [
 	formatedTextPresenter withSyntaxHighlight.
 	formatedTextPresenter text: self formatPrettyPrint
 ]
 
 { #category : #'initialization widgets' }
-BISettingPreviewer2 >> setupBeforePrettyPrinterCodePresenter [
+EFSettingPreviewer2 >> setupBeforePrettyPrinterCodePresenter [
 	notFormatedTextPresenter
 		withSyntaxHighlight;
 		autoAccept: true.
@@ -588,7 +580,7 @@ BISettingPreviewer2 >> setupBeforePrettyPrinterCodePresenter [
 ]
 
 { #category : #'initialization widgets' }
-BISettingPreviewer2 >> setupMethodDropList [
+EFSettingPreviewer2 >> setupMethodDropList [
 	methodDropList
 		items:
 			(methodProvider methods select: [ :each | 
@@ -597,7 +589,7 @@ BISettingPreviewer2 >> setupMethodDropList [
 ]
 
 { #category : #'initialization widgets' }
-BISettingPreviewer2 >> setupSettingsDropList [
+EFSettingPreviewer2 >> setupSettingsDropList [
 	settingsDropList
 		items: ((methodProvider methods , methodProvider class methods)
 				 asOrderedCollection select: [ :each | each category = 'settings' ]);
@@ -609,7 +601,7 @@ BISettingPreviewer2 >> setupSettingsDropList [
 ]
 
 { #category : #'initialization widgets' }
-BISettingPreviewer2 >> setupSettingsTree [
+EFSettingPreviewer2 >> setupSettingsTree [
 	settingsTree
 		roots: self getSystemsettingsAsParentName;
 		addColumn: (SpStringTableColumn evaluated: [ :eachItem | eachItem item label ]);
@@ -619,11 +611,11 @@ BISettingPreviewer2 >> setupSettingsTree [
 ]
 
 { #category : #'system-Announcement' }
-BISettingPreviewer2 >> unregisterAnnouncement [
+EFSettingPreviewer2 >> unregisterAnnouncement [
 SystemAnnouncer uniqueInstance unsubscribe: self  
 ]
 
 { #category : #'system-Announcement' }
-BISettingPreviewer2 >> whenASettingChanged [
+EFSettingPreviewer2 >> whenASettingChanged [
 	formatedTextPresenter text: self formatPrettyPrint 
 ]

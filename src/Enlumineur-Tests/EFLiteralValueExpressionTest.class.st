@@ -1,11 +1,11 @@
 Class {
-	#name : #BIEnlumineurLiteralValueExpressionTest,
-	#superclass : #BIEnlumineurTest,
+	#name : #EFLiteralValueExpressionTest,
+	#superclass : #EFTest,
 	#category : #'Enlumineur-Tests'
 }
 
 { #category : #configurations }
-BIEnlumineurLiteralValueExpressionTest >> basicConfiguration [
+EFLiteralValueExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
 		formatCommentCloseToStatements: false
@@ -13,7 +13,7 @@ BIEnlumineurLiteralValueExpressionTest >> basicConfiguration [
 ]
 
 { #category : #tests }
-BIEnlumineurLiteralValueExpressionTest >> testNoExtraSpaces [
+EFLiteralValueExpressionTest >> testNoExtraSpaces [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '    2     '.
@@ -21,7 +21,7 @@ BIEnlumineurLiteralValueExpressionTest >> testNoExtraSpaces [
 ]
 
 { #category : #tests }
-BIEnlumineurLiteralValueExpressionTest >> testNotLitteral [
+EFLiteralValueExpressionTest >> testNotLitteral [
 
 	| expr source |
 	expr := RBLiteralValueNode value: Transcript. 
@@ -32,7 +32,7 @@ BIEnlumineurLiteralValueExpressionTest >> testNotLitteral [
 ]
 
 { #category : #tests }
-BIEnlumineurLiteralValueExpressionTest >> testNumbers [
+EFLiteralValueExpressionTest >> testNumbers [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: ' 3.141592653589793 '.
@@ -42,7 +42,7 @@ BIEnlumineurLiteralValueExpressionTest >> testNumbers [
 ]
 
 { #category : #tests }
-BIEnlumineurLiteralValueExpressionTest >> testSpaces [
+EFLiteralValueExpressionTest >> testSpaces [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '2'.
@@ -50,7 +50,7 @@ BIEnlumineurLiteralValueExpressionTest >> testSpaces [
 ]
 
 { #category : #tests }
-BIEnlumineurLiteralValueExpressionTest >> testString [
+EFLiteralValueExpressionTest >> testString [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: ' ''Pharo'' '.
@@ -58,7 +58,7 @@ BIEnlumineurLiteralValueExpressionTest >> testString [
 ]
 
 { #category : #tests }
-BIEnlumineurLiteralValueExpressionTest >> testTrue [
+EFLiteralValueExpressionTest >> testTrue [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: ' true '.

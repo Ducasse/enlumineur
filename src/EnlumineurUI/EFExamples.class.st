@@ -2,7 +2,7 @@
 This class is just holding some code to serve as pretty printer examples.
 "
 Class {
-	#name : #BIEnlumineurExamples,
+	#name : #EFExamples,
 	#superclass : #Object,
 	#classVars : [
 		'settingsTable'
@@ -11,7 +11,7 @@ Class {
 }
 
 { #category : #accessing }
-BIEnlumineurExamples class >> bigExamplesSettingsTable [
+EFExamples class >> bigExamplesSettingsTable [
 	^ {(#bigExample:withMethodSignatureOnMultipleLinesExample:
 		->
 			#(#formatCommentCloseToStatements #indentsForKeywords #lineUpBlockBrackets #methodSignatureOnMultipleLines #multiLineMessages #newLineAfterCascade #newLineBeforeFirstCascade #newLineBeforeFirstKeyword #numberOfNewLinesAfterMethodComment #numberOfNewLinesAfterTemporaries #numberOfArgumentsForMultiLine #oneLineMessages #retainBlankLinesBeforeComments #selectorAndArgumentCombinedMaxSize #useBasicCommentFormat #numberOfSpacesAfterCaretSymbolInReturn #minimumNewLinesBetweenStatements #numberOfNewLinesAfterMethodSignature #periodsAtEndOfBlock #periodsAtEndOfMethod #retainBlankLinesBetweenStatements #numberOfSpacesInsideBlock #numberOfSpacesInIndent #indentStyle)).
@@ -21,7 +21,7 @@ BIEnlumineurExamples class >> bigExamplesSettingsTable [
 ]
 
 { #category : #settings }
-BIEnlumineurExamples class >> defaultConfiguration [
+EFExamples class >> defaultConfiguration [
 	^ 'BIEnlumineurContext {
 	#formatCommentWithStatements : true,
 	#indentString : ''\t'',
@@ -98,7 +98,7 @@ BIEnlumineurExamples class >> defaultConfiguration [
 ]
 
 { #category : #settings }
-BIEnlumineurExamples class >> empty [
+EFExamples class >> empty [
 	^ 'BIEnlumineurContext {
 	#formatCommentWithStatements : true,
 	#indentsForKeywords : 1,
@@ -165,7 +165,7 @@ BIEnlumineurExamples class >> empty [
 ]
 
 { #category : #settings }
-BIEnlumineurExamples class >> emptyOneLineMessages [
+EFExamples class >> emptyOneLineMessages [
 	^ 'BIEnlumineurContext {
 	#formatCommentWithStatements : true,
 	#indentsForKeywords : 1,
@@ -240,7 +240,7 @@ BIEnlumineurExamples class >> emptyOneLineMessages [
 ]
 
 { #category : #settings }
-BIEnlumineurExamples class >> guille [
+EFExamples class >> guille [
 	^ 'BIEnlumineurContext {
 	#formatCommentWithStatements : true,
 	#indentsForKeywords : 1,
@@ -320,7 +320,7 @@ BIEnlumineurExamples class >> guille [
 ]
 
 { #category : #'class initialization' }
-BIEnlumineurExamples class >> initializeSettingsTable [
+EFExamples class >> initializeSettingsTable [
 	"self initializeSettingsTable"
 
 	settingsTable := {(#formatCommentCloseToStatements
@@ -355,7 +355,7 @@ BIEnlumineurExamples class >> initializeSettingsTable [
 ]
 
 { #category : #settings }
-BIEnlumineurExamples class >> multiLineMessages [
+EFExamples class >> multiLineMessages [
 	^ 'BIEnlumineurContext {
 	#formatCommentWithStatements : true,
 	#indentsForKeywords : 1,
@@ -425,22 +425,22 @@ BIEnlumineurExamples class >> multiLineMessages [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> bar: arg [ 
+EFExamples >> bar: arg [ 
 	arg
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> bar: arg bar2: arg1 bar3: arg2 [
+EFExamples >> bar: arg bar2: arg1 bar3: arg2 [
 	arg
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> bar: arg bar3: arg2 [
+EFExamples >> bar: arg bar3: arg2 [
 	arg
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> bearingToPoint2: anotherPoint [
+EFExamples >> bearingToPoint2: anotherPoint [
 	"Return the bearing, in degrees, from the receiver to anotherPoint."
 	"questions: 
 		are nested ifT indented enough?
@@ -460,7 +460,7 @@ BIEnlumineurExamples >> bearingToPoint2: anotherPoint [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> bearingToPoint: anotherPoint [
+EFExamples >> bearingToPoint: anotherPoint [
 	"Return the bearing, in degrees, from the receiver to anotherPoint."
 	"questions: 
 		are nested ifT indented enough?
@@ -480,12 +480,12 @@ BIEnlumineurExamples >> bearingToPoint: anotherPoint [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> bigArray [
+EFExamples >> bigArray [
 ^ #(#(#expr0 #expr1 #expr2 #expr3 #expr4 #expr5 #expr6 #expr7 #expr8 #expr9 #expr10 #expr11 #expr12 #expr13 #expr14 #expr15 #expr16 #expr17 #expr18 #expr19 #expr20 #expr21 #expr22 #expr23 #expr24) #(#expr25 #expr26 #expr27 #expr28 #expr29 #expr30 #expr31 #expr32 #expr33 #expr34 #expr35 #expr36 #expr37 #expr38 #expr39 #expr40 #expr41 #expr42 #expr43 #expr44 #expr45 #expr46 #expr47 #expr48 #expr49))
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> bigExample [
+EFExamples >> bigExample [
 1 keepBlockInMessage: [ 11111111111111111111111111111111111111111111111111111111111111111111].
 
 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11 + 12 + 13 + 14 + 15 + 16 + 17 + 18 + 19 + 20.
@@ -498,7 +498,7 @@ true | false = true & false.
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> bigExample:aLoooooooooooongParameter
+EFExamples >> bigExample:aLoooooooooooongParameter
 withMethodSignatureOnMultipleLinesExample:anotherLongParameter [
 "a method comment"
 | temp |
@@ -520,7 +520,7 @@ self method:1 with:2 aLotOf:3 parameters:4.
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> bigMethod: argumentOne example: argumentTwo [
+EFExamples >> bigMethod: argumentOne example: argumentTwo [
 "   methode comment   "
 |tmp|
 tmp := 3.
@@ -534,7 +534,7 @@ tmp := tmp + 1.
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> blockExample [
+EFExamples >> blockExample [
 	1 to: 4 do: [ :i | 
 		Transcript
 			show: i;
@@ -543,7 +543,7 @@ BIEnlumineurExamples >> blockExample [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> bonk: glyphForm with: bonkForm [
+EFExamples >> bonk: glyphForm with: bonkForm [
 	"Bonking means to run through the glyphs clearing out black pixels
 	between characters to prevent them from straying into an adjacent
 	character as a result of, eg, bolding or italicizing"
@@ -574,12 +574,12 @@ BIEnlumineurExamples >> bonk: glyphForm with: bonkForm [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> cascadeExample [
+EFExamples >> cascadeExample [
 	Transcript cr;cr;cr
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> changeSourceSelector: oldSelector keywordsIntervals: oldIntervals arguments: oldArguments [
+EFExamples >> changeSourceSelector: oldSelector keywordsIntervals: oldIntervals arguments: oldArguments [
 	"If this is the same number of arguments, we try a one to one replacement of selector parts and arguments. If this is not the c
 ase try to rewrite the signature as a whole, what unfortunately drops the comments within the signature."
 
@@ -613,7 +613,7 @@ ase try to rewrite the signature as a whole, what unfortunately drops the commen
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> criticNameOn: aStream [
+EFExamples >> criticNameOn: aStream [
 	"This behavior may be folded later by changing the name of this method or using another one."
 	
 	aStream 
@@ -626,7 +626,7 @@ BIEnlumineurExamples >> criticNameOn: aStream [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> degreesHacked [
+EFExamples >> degreesHacked [
 	"Answer the angle the receiver makes with origin in degrees. right is 0; down is 90."
 	
 	"Questions the tan := y in the ifFalse: is not really nice it would be better to start to have it on the next line."
@@ -642,7 +642,7 @@ BIEnlumineurExamples >> degreesHacked [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> eightNeighbors [
+EFExamples >> eightNeighbors [
 	"why not having 
 		^ {
 			(self + (1 @ 0)).
@@ -666,7 +666,7 @@ BIEnlumineurExamples >> eightNeighbors [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> foo [
+EFExamples >> foo [
 	| foo |
 	foo 
 		bar: [ 
@@ -706,7 +706,7 @@ BIEnlumineurExamples >> foo [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> foo2 [
+EFExamples >> foo2 [
 	| foo |
 	foo 
 		bar: [ 
@@ -738,14 +738,14 @@ BIEnlumineurExamples >> foo2 [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> formatCommentWithExpressionExample [
+EFExamples >> formatCommentWithExpressionExample [
 
 	1 + 1.	"We do an addition"
 	2 + 2
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> fourDirections [
+EFExamples >> fourDirections [
 	"Return vertices for a square centered at 0 asPoint with the receiver as first corner.
 	Returns the four rotation of the reciever in counter clockwise order with the receiver appearing last."
 	
@@ -762,7 +762,7 @@ BIEnlumineurExamples >> fourDirections [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> fourDirectionsWorkingWell [
+EFExamples >> fourDirectionsWorkingWell [
 	"Return vertices for a square centered at 0 asPoint with the receiver as first corner.
 	Returns the four rotation of the reciever in counter clockwise order with the receiver appearing last."
 
@@ -774,7 +774,7 @@ BIEnlumineurExamples >> fourDirectionsWorkingWell [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> framePolyline: vertices on: aCanvas [ 
+EFExamples >> framePolyline: vertices on: aCanvas [ 
 	"Frame the given rectangle on aCanvas"
 
 	| prev next |
@@ -791,7 +791,7 @@ BIEnlumineurExamples >> framePolyline: vertices on: aCanvas [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> ifTrueIfFalse [
+EFExamples >> ifTrueIfFalse [
 
 | i j|
 true ifTrue: [ ^ 1 ]
@@ -810,7 +810,7 @@ true ifTrue: [ self foo. self bar:4]
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> indentExample [
+EFExamples >> indentExample [
 1 to: 4 do: [ :i | 
 		i to: 4 do: [ :j |
 		Transcript
@@ -821,7 +821,7 @@ BIEnlumineurExamples >> indentExample [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> initializeSettingsTable [
+EFExamples >> initializeSettingsTable [
 	"self initializeSettingsTable"
 
 	settingsTable := {(#formatCommentCloseToStatements
@@ -856,7 +856,7 @@ BIEnlumineurExamples >> initializeSettingsTable [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> insideTriangle: p1 with: p2 with: p3 [
+EFExamples >> insideTriangle: p1 with: p2 with: p3 [
 	"Return true if the receiver is within the triangle defined by the three coordinates.
 	Note: This method computes the barycentric coordinates for the receiver and tests those coordinates."
 
@@ -882,7 +882,7 @@ BIEnlumineurExamples >> insideTriangle: p1 with: p2 with: p3 [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> keywords [
+EFExamples >> keywords [
 	"Answer the angle the receiver makes with origin in degrees. right is 0; down is 90."
 	
 	"Questions the tan := y in the ifFalse: is not really nice it would be better to start to have it on the next line."
@@ -910,12 +910,12 @@ BIEnlumineurExamples >> keywords [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> maxLineLengthExample [
+EFExamples >> maxLineLengthExample [
 	^ 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11 + 12 + 13 + 14 + 15 + 16 + 17 + 18 + 19 + 20
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> messageExample: a to: b [
+EFExamples >> messageExample: a to: b [
 
 	| i j tmp |
 	tmp := 20.
@@ -928,16 +928,16 @@ BIEnlumineurExamples >> messageExample: a to: b [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> messageWithALotOfParameters [
+EFExamples >> messageWithALotOfParameters [
 	^ self method:1 with:2 aLotOf:3 parameters:4
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> method: a with: b aLotOf: c parameters: d [
+EFExamples >> method: a with: b aLotOf: c parameters: d [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> methodSignature:aLoooooooooooongParameter
+EFExamples >> methodSignature:aLoooooooooooongParameter
 onMultipleLinesExample:anotherLongParameter [
 "a method comment"
 | temp |
@@ -955,14 +955,14 @@ self method:1 with:2 aLotOf:3 parameters:4.
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> minimumNewLinesBetweenStatementsExample [
+EFExamples >> minimumNewLinesBetweenStatementsExample [
 	1 + 1.
 	2 + 2.
 	3 + 3
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> newLinesExample [
+EFExamples >> newLinesExample [
 	"myComment"
 	| tmp |
 	tmp:= 1.
@@ -970,20 +970,20 @@ BIEnlumineurExamples >> newLinesExample [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> openSettingPreviewerWithEnlumineur [
+EFExamples >> openSettingPreviewerWithEnlumineur [
 
-	BISettingPreviewer2 
-		openFormaterWithAnInstanceOfFormater: BIEnlumineurFormatter new 
-		onClass: BIEnlumineurExamples
+	EFSettingPreviewer2 
+		openFormaterWithAnInstanceOfFormater: EFFormatter new 
+		onClass: EFExamples
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> parenthesesExample [
+EFExamples >> parenthesesExample [
 	1 + ( 2 * 3 )
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> parenthesizedExpresssionWithCascade: aBuilder [
+EFExamples >> parenthesizedExpresssionWithCascade: aBuilder [
 
 
 	(aBuilder setting: #numberOfNewLinesAfterMethodSignature)
@@ -1007,13 +1007,13 @@ is the result for 2 new lines'
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> periodsAtEndOfMethodExample [
+EFExamples >> periodsAtEndOfMethodExample [
 	
 	^ 1 factorial
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> printOn2: stream [
+EFExamples >> printOn2: stream [
 	|iterations elapsedTime|
 	super printOn: stream.
 	stream nextPut: $(.
@@ -1031,12 +1031,12 @@ BIEnlumineurExamples >> printOn2: stream [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> printOn3: s [
+EFExamples >> printOn3: s [
 	[ super printOn: s ] on: Error do: [ :ex | s << '![' << ex messageText << ']!' ]
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> printOn: aStream [
+EFExamples >> printOn: aStream [
 	aStream nextPutAll: 'Path'.
 	self isRoot
 		ifTrue: [aStream nextPutAll: ' root']
@@ -1050,7 +1050,7 @@ BIEnlumineurExamples >> printOn: aStream [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> retainBlankLinesExample [
+EFExamples >> retainBlankLinesExample [
 "methodComment"	
 
 	| a b c|
@@ -1066,12 +1066,12 @@ BIEnlumineurExamples >> retainBlankLinesExample [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> spacesAfterCaretSymbolInReturnExample [
+EFExamples >> spacesAfterCaretSymbolInReturnExample [
 	^ 1
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> strangeFormattingWithAssignment [
+EFExamples >> strangeFormattingWithAssignment [
 	"look at this ugly parseMethod that is badly indented"
 	| tree |
 	tree := self
@@ -1087,7 +1087,7 @@ BIEnlumineurExamples >> strangeFormattingWithAssignment [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> strangeFormattingWithAssignment2 [
+EFExamples >> strangeFormattingWithAssignment2 [
 	"as you see this is the length and the width of the argument that is pushing th parseMerthod on the second line"
 
 	| tree |
@@ -1100,7 +1100,7 @@ b'.
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> sumFrom: a to: b [
+EFExamples >> sumFrom: a to: b [
 	"MethodComment"
 	| tmp i j |
 	tmp := 0.
@@ -1115,7 +1115,7 @@ BIEnlumineurExamples >> sumFrom: a to: b [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> toLongExpressionDo [
+EFExamples >> toLongExpressionDo [
 	1 to:
 			([ :i | 
 			    i
@@ -1125,7 +1125,7 @@ BIEnlumineurExamples >> toLongExpressionDo [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> traditionalBinaryPrecedenceForParenthesesExample [
+EFExamples >> traditionalBinaryPrecedenceForParenthesesExample [
 
 	1 + 2 * 3.
 	true | false = true & true
@@ -1133,12 +1133,12 @@ BIEnlumineurExamples >> traditionalBinaryPrecedenceForParenthesesExample [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> useBasicCommentFormatExample [
+EFExamples >> useBasicCommentFormatExample [
 "	  aComment    "
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> useRule41 [
+EFExamples >> useRule41 [
 	| x aBitBlt foreColorVal foreColorAlpha gammaTable gammaInverseTable |
 	"x ifTrue: [ 
 		aBitBlt
@@ -1160,7 +1160,7 @@ BIEnlumineurExamples >> useRule41 [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> valueWithInterval: aDelay [
+EFExamples >> valueWithInterval: aDelay [
 	"Executes the block every x milliseconds specified in arguments. Answers the process, so you can terminate it"
 	
 	^ [ [ self value. aDelay wait. ] repeat ] 
@@ -1174,7 +1174,7 @@ BIEnlumineurExamples >> valueWithInterval: aDelay [
 ]
 
 { #category : #methods }
-BIEnlumineurExamples >> visitSequenceNode: aSequenceNode [
+EFExamples >> visitSequenceNode: aSequenceNode [
 "how do we want to indent the cascade  
 					self
 					 formatCommentsFor: aSequenceNode;

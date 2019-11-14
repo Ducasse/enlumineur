@@ -1,11 +1,11 @@
 Class {
-	#name : #BIEnlumineurSequenceExpressionTest,
-	#superclass : #BIEnlumineurTest,
+	#name : #EFSequenceExpressionTest,
+	#superclass : #EFTest,
 	#category : #'Enlumineur-Tests'
 }
 
 { #category : #configurations }
-BIEnlumineurSequenceExpressionTest >> basicConfiguration [ 
+EFSequenceExpressionTest >> basicConfiguration [ 
 
 	^ self contextClass basicNew
 		formatCommentCloseToStatements:true;
@@ -22,7 +22,7 @@ BIEnlumineurSequenceExpressionTest >> basicConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurSequenceExpressionTest >> dontFormatCommentWithStatementConfiguration [
+EFSequenceExpressionTest >> dontFormatCommentWithStatementConfiguration [
 
 	^ self contextClass basicNew
 		formatCommentCloseToStatements:false;
@@ -45,7 +45,7 @@ BIEnlumineurSequenceExpressionTest >> dontFormatCommentWithStatementConfiguratio
 ]
 
 { #category : #configurations }
-BIEnlumineurSequenceExpressionTest >> dontRetainBlankLinesBeforeCommentsConfiguration [
+EFSequenceExpressionTest >> dontRetainBlankLinesBeforeCommentsConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -68,7 +68,7 @@ BIEnlumineurSequenceExpressionTest >> dontRetainBlankLinesBeforeCommentsConfigur
 ]
 
 { #category : #configurations }
-BIEnlumineurSequenceExpressionTest >> dontRetainBlankLinesBetweenStatementsConfiguration [
+EFSequenceExpressionTest >> dontRetainBlankLinesBetweenStatementsConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -89,7 +89,7 @@ BIEnlumineurSequenceExpressionTest >> dontRetainBlankLinesBetweenStatementsConfi
 ]
 
 { #category : #configurations }
-BIEnlumineurSequenceExpressionTest >> formatBlockConfiguration [
+EFSequenceExpressionTest >> formatBlockConfiguration [
 
 	^ self contextClass basicNew
 		formatCommentCloseToStatements:false;
@@ -114,7 +114,7 @@ BIEnlumineurSequenceExpressionTest >> formatBlockConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurSequenceExpressionTest >> formatCommentWithStatementConfiguration [
+EFSequenceExpressionTest >> formatCommentWithStatementConfiguration [
 
 	^ self contextClass basicNew
 		formatCommentCloseToStatements:true;
@@ -136,7 +136,7 @@ BIEnlumineurSequenceExpressionTest >> formatCommentWithStatementConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurSequenceExpressionTest >> newLineAfterStatementConfiguration [
+EFSequenceExpressionTest >> newLineAfterStatementConfiguration [
 
 	^ self contextClass basicNew
 		minimumNewLinesBetweenStatements:1;
@@ -153,7 +153,7 @@ BIEnlumineurSequenceExpressionTest >> newLineAfterStatementConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurSequenceExpressionTest >> newLineAfterTemporariesConfiguration [
+EFSequenceExpressionTest >> newLineAfterTemporariesConfiguration [
 
 	^ self contextClass basicNew
 		formatCommentCloseToStatements:true;
@@ -163,7 +163,7 @@ BIEnlumineurSequenceExpressionTest >> newLineAfterTemporariesConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurSequenceExpressionTest >> noPeriodAtEndOfMethodConfiguration [ 
+EFSequenceExpressionTest >> noPeriodAtEndOfMethodConfiguration [ 
 
 	^ self contextClass basicNew
 		periodAtEndOfBlock:false;
@@ -186,7 +186,7 @@ BIEnlumineurSequenceExpressionTest >> noPeriodAtEndOfMethodConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurSequenceExpressionTest >> periodAtEndOfMethodConfiguration [
+EFSequenceExpressionTest >> periodAtEndOfMethodConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -213,7 +213,7 @@ BIEnlumineurSequenceExpressionTest >> periodAtEndOfMethodConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurSequenceExpressionTest >> retainBlankLinesBeforeCommentsConfiguration [
+EFSequenceExpressionTest >> retainBlankLinesBeforeCommentsConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -234,7 +234,7 @@ BIEnlumineurSequenceExpressionTest >> retainBlankLinesBeforeCommentsConfiguratio
 ]
 
 { #category : #configurations }
-BIEnlumineurSequenceExpressionTest >> retainBlankLinesBetweenStatementsConfiguration [
+EFSequenceExpressionTest >> retainBlankLinesBetweenStatementsConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -255,7 +255,7 @@ BIEnlumineurSequenceExpressionTest >> retainBlankLinesBetweenStatementsConfigura
 ]
 
 { #category : #tests }
-BIEnlumineurSequenceExpressionTest >> testCommentBetweenStatements [
+EFSequenceExpressionTest >> testCommentBetweenStatements [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '|a b| a := 1."comment"b := 2'.
@@ -263,7 +263,7 @@ BIEnlumineurSequenceExpressionTest >> testCommentBetweenStatements [
 ]
 
 { #category : #tests }
-BIEnlumineurSequenceExpressionTest >> testCommentBetweenTemporariesAndStatement [
+EFSequenceExpressionTest >> testCommentBetweenTemporariesAndStatement [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '|a b| "comment" a := 1'.
@@ -275,7 +275,7 @@ a := 1'
 ]
 
 { #category : #tests }
-BIEnlumineurSequenceExpressionTest >> testDontFormatCommentWithStatement [
+EFSequenceExpressionTest >> testDontFormatCommentWithStatement [
 	| source |
 	configurationSelector := #dontFormatCommentWithStatementConfiguration.
 	source := self formatExpression: '1+3 "We do an addition". 2'.
@@ -284,7 +284,7 @@ BIEnlumineurSequenceExpressionTest >> testDontFormatCommentWithStatement [
 ]
 
 { #category : #tests }
-BIEnlumineurSequenceExpressionTest >> testDontRetainBlankLinesBeforeComments [
+EFSequenceExpressionTest >> testDontRetainBlankLinesBeforeComments [
 	| source |
 	configurationSelector := #dontRetainBlankLinesBeforeCommentsConfiguration.
 	source := self
@@ -296,7 +296,7 @@ BIEnlumineurSequenceExpressionTest >> testDontRetainBlankLinesBeforeComments [
 ]
 
 { #category : #tests }
-BIEnlumineurSequenceExpressionTest >> testDontRetainBlankLinesBetweenStatements [
+EFSequenceExpressionTest >> testDontRetainBlankLinesBetweenStatements [
 	| source |
 	configurationSelector := #dontRetainBlankLinesBetweenStatementsConfiguration.
 	source := self
@@ -310,7 +310,7 @@ BIEnlumineurSequenceExpressionTest >> testDontRetainBlankLinesBetweenStatements 
 ]
 
 { #category : #tests }
-BIEnlumineurSequenceExpressionTest >> testFormatCommentWithStatement [
+EFSequenceExpressionTest >> testFormatCommentWithStatement [
 	| source |
 	configurationSelector := #formatCommentWithStatementConfiguration.
 	source := self formatExpression: '1+1 "We do an addition". 2'.
@@ -319,7 +319,7 @@ BIEnlumineurSequenceExpressionTest >> testFormatCommentWithStatement [
 ]
 
 { #category : #tests }
-BIEnlumineurSequenceExpressionTest >> testFormatEachStatement [
+EFSequenceExpressionTest >> testFormatEachStatement [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '|a b|a:=1.b:=a'.
@@ -327,7 +327,7 @@ BIEnlumineurSequenceExpressionTest >> testFormatEachStatement [
 ]
 
 { #category : #tests }
-BIEnlumineurSequenceExpressionTest >> testLineBetweenTemporariesAndComment [
+EFSequenceExpressionTest >> testLineBetweenTemporariesAndComment [
 	| source |
 	configurationSelector := #newLineAfterTemporariesConfiguration.
 	source := self formatExpression: '|a b| "comment"'.
@@ -340,7 +340,7 @@ BIEnlumineurSequenceExpressionTest >> testLineBetweenTemporariesAndComment [
 ]
 
 { #category : #tests }
-BIEnlumineurSequenceExpressionTest >> testNewLineBetweenStatement [
+EFSequenceExpressionTest >> testNewLineBetweenStatement [
 	| source |
 	configurationSelector := #newLineAfterStatementConfiguration.
 	source := self formatExpression: '|a b| a := 1. b := a'.
@@ -352,7 +352,7 @@ b := a'
 ]
 
 { #category : #tests }
-BIEnlumineurSequenceExpressionTest >> testNoNewLineBetweenVariableAndIfTrue [
+EFSequenceExpressionTest >> testNoNewLineBetweenVariableAndIfTrue [
 	| source |
 	configurationSelector := #formatBlockConfiguration.
 	source := self formatExpression: 
@@ -388,7 +388,7 @@ x ifTrue: [
 ]
 
 { #category : #tests }
-BIEnlumineurSequenceExpressionTest >> testNoPeriodAtEndOfMethode [
+EFSequenceExpressionTest >> testNoPeriodAtEndOfMethode [
 	| source |
 	configurationSelector := #noPeriodAtEndOfMethodConfiguration.
 	source := self formatExpression: '|a b| 6 factorial'.
@@ -396,7 +396,7 @@ BIEnlumineurSequenceExpressionTest >> testNoPeriodAtEndOfMethode [
 ]
 
 { #category : #tests }
-BIEnlumineurSequenceExpressionTest >> testPeriodAtEndOfMethode [
+EFSequenceExpressionTest >> testPeriodAtEndOfMethode [
 	| source |
 	configurationSelector := #periodAtEndOfMethodConfiguration.
 	source := self formatExpression: '|a b| 6 factorial'.
@@ -404,7 +404,7 @@ BIEnlumineurSequenceExpressionTest >> testPeriodAtEndOfMethode [
 ]
 
 { #category : #tests }
-BIEnlumineurSequenceExpressionTest >> testRetainBlankLinesBeforeComments [
+EFSequenceExpressionTest >> testRetainBlankLinesBeforeComments [
 	| source |
 	configurationSelector := #retainBlankLinesBeforeCommentsConfiguration.
 	source := self
@@ -421,7 +421,7 @@ BIEnlumineurSequenceExpressionTest >> testRetainBlankLinesBeforeComments [
 ]
 
 { #category : #tests }
-BIEnlumineurSequenceExpressionTest >> testRetainBlankLinesBetweenStatements [
+EFSequenceExpressionTest >> testRetainBlankLinesBetweenStatements [
 	| source |
 	configurationSelector := #retainBlankLinesBetweenStatementsConfiguration.
 	source := self
@@ -440,7 +440,7 @@ b := a'
 ]
 
 { #category : #tests }
-BIEnlumineurSequenceExpressionTest >> testRetainBlankLinesBetweenStatements2 [
+EFSequenceExpressionTest >> testRetainBlankLinesBetweenStatements2 [
 	| source |
 	configurationSelector := #retainBlankLinesBetweenStatementsConfiguration.
 	source := self
@@ -461,7 +461,7 @@ b := a'
 ]
 
 { #category : #tests }
-BIEnlumineurSequenceExpressionTest >> testRetainBlankLinesBetweenStatements3 [
+EFSequenceExpressionTest >> testRetainBlankLinesBetweenStatements3 [
 	| source |
 	configurationSelector := #retainBlankLinesBetweenStatementsConfiguration.
 	source := self

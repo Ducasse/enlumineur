@@ -6,7 +6,7 @@ with the related tests.
 The goal is to make sure that we can have a better prettyprinter and replace the Basic pretty printer (configurationFormatter)
 "
 Class {
-	#name : #BIEnlumineurContext,
+	#name : #EFContext,
 	#superclass : #Object,
 	#instVars : [
 		'formatCommentWithStatements',
@@ -51,47 +51,47 @@ Class {
 }
 
 { #category : #initialization }
-BIEnlumineurContext >> configureMultiLineMessages [
+EFContext >> configureMultiLineMessages [
 
 	multiLineMessages := #(#ifTrue:ifFalse: #ifFalse:ifTrue: #ifTrue: #ifFalse: #on:do: #ensure: #ifCurtailed:)
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> formatCommentCloseToStatements [
+EFContext >> formatCommentCloseToStatements [
 	^ formatCommentWithStatements
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> formatCommentCloseToStatements: aBoolean [
+EFContext >> formatCommentCloseToStatements: aBoolean [
 	formatCommentWithStatements := aBoolean
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> indentExtraSpaces [
+EFContext >> indentExtraSpaces [
 	^ indentExtraSpaces
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> indentExtraSpaces: anInteger [
+EFContext >> indentExtraSpaces: anInteger [
 	"To set the number of spaces that represent an indent"
 
 	indentExtraSpaces := self stringFromSpaceNumber: anInteger
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> indentString [
+EFContext >> indentString [
 	"My value is set using numberOfSpacesInIndent: "
 	
 	^ indentString
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> indentStyle [
+EFContext >> indentStyle [
 	^ indentStyle
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> indentStyle: aSymbol [
+EFContext >> indentStyle: aSymbol [
 	"Indent style can be either #tabulation or #space."
 	
 	indentStyle := aSymbol.
@@ -101,17 +101,17 @@ BIEnlumineurContext >> indentStyle: aSymbol [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> indentsForKeywords [
+EFContext >> indentsForKeywords [
 	^ indentsForKeywords
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> indentsForKeywords: anInteger [
+EFContext >> indentsForKeywords: anInteger [
 	indentsForKeywords := anInteger
 ]
 
 { #category : #initialization }
-BIEnlumineurContext >> initialize [
+EFContext >> initialize [
 	super initialize.
 	self useBasicCommentFormat: true.
 	self formatCommentCloseToStatements: true.
@@ -146,17 +146,17 @@ BIEnlumineurContext >> initialize [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> keepBlockInMessage [
+EFContext >> keepBlockInMessage [
 	^ keepBlockInMessage
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> keepBlockInMessage: aBoolean [
+EFContext >> keepBlockInMessage: aBoolean [
 	keepBlockInMessage := aBoolean
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> lineUpBlockBrackets [
+EFContext >> lineUpBlockBrackets [
 	"When true place a new line before closing a multiline block.
 	1 to: 4 do: [ Transcript
 		show: i;
@@ -168,152 +168,152 @@ BIEnlumineurContext >> lineUpBlockBrackets [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> lineUpBlockBrackets: aBoolean [
+EFContext >> lineUpBlockBrackets: aBoolean [
 	lineUpBlockBrackets := aBoolean
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> maxLineLength [
+EFContext >> maxLineLength [
 	^ maxLineLength
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> maxLineLength: anInteger [
+EFContext >> maxLineLength: anInteger [
 	maxLineLength := anInteger
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> methodSignatureOnMultipleLines [
+EFContext >> methodSignatureOnMultipleLines [
 	^ methodSignatureOnMultipleLines
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> methodSignatureOnMultipleLines: aBoolean [
+EFContext >> methodSignatureOnMultipleLines: aBoolean [
 	methodSignatureOnMultipleLines := aBoolean
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> minimumNewLinesBetweenStatements [
+EFContext >> minimumNewLinesBetweenStatements [
 	^ minimumNewLinesBetweenStatements
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> minimumNewLinesBetweenStatements: anInteger [
+EFContext >> minimumNewLinesBetweenStatements: anInteger [
 	minimumNewLinesBetweenStatements := anInteger
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> multiLineMessages [
+EFContext >> multiLineMessages [
 	^ multiLineMessages
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> multiLineMessages: anArray [
+EFContext >> multiLineMessages: anArray [
 	"In case the user entered a string representing array we convert it into array."
 	self flag: #tocheck. "we should change this logic. It is terrible, the UI should give us an array and not a string!"
 	multiLineMessages := self class compiler evaluate: anArray asString
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> newLineAfterCascade [
+EFContext >> newLineAfterCascade [
 	^ newLineAfterCascade
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> newLineAfterCascade: anInteger [
+EFContext >> newLineAfterCascade: anInteger [
 	newLineAfterCascade := anInteger
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> newLineBeforeFirstCascade [
+EFContext >> newLineBeforeFirstCascade [
 	^ newLineBeforeFirstCascade
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> newLineBeforeFirstCascade: anInteger [
+EFContext >> newLineBeforeFirstCascade: anInteger [
 	newLineBeforeFirstCascade := anInteger
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> newLineBeforeFirstKeyword [
+EFContext >> newLineBeforeFirstKeyword [
 	^ newLineBeforeFirstKeyword
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> newLineBeforeFirstKeyword: aBoolean [
+EFContext >> newLineBeforeFirstKeyword: aBoolean [
 	newLineBeforeFirstKeyword := aBoolean
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> numberOfArgumentsForMultiLine [
+EFContext >> numberOfArgumentsForMultiLine [
 	^ numberOfArgumentsForMultiLine
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> numberOfArgumentsForMultiLine: anInteger [
+EFContext >> numberOfArgumentsForMultiLine: anInteger [
 	numberOfArgumentsForMultiLine := anInteger
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> numberOfNewLinesAfterMethodComment [
+EFContext >> numberOfNewLinesAfterMethodComment [
 	^ numberOfNewLinesAfterMethodComment
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> numberOfNewLinesAfterMethodComment: aBoolean [
+EFContext >> numberOfNewLinesAfterMethodComment: aBoolean [
 	numberOfNewLinesAfterMethodComment := aBoolean
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> numberOfNewLinesAfterMethodSignature [
+EFContext >> numberOfNewLinesAfterMethodSignature [
 	^ newLinesAfterMethodSignature
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> numberOfNewLinesAfterMethodSignature: aBoolean [
+EFContext >> numberOfNewLinesAfterMethodSignature: aBoolean [
 	newLinesAfterMethodSignature := aBoolean
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> numberOfNewLinesAfterTemporaries [
+EFContext >> numberOfNewLinesAfterTemporaries [
 	^ newLinesAfterTemporaries
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> numberOfNewLinesAfterTemporaries: anInteger [
+EFContext >> numberOfNewLinesAfterTemporaries: anInteger [
 	newLinesAfterTemporaries := anInteger
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> numberOfSpacesAfterCaretSymbolInReturn [
+EFContext >> numberOfSpacesAfterCaretSymbolInReturn [
 	^ numberOfSpacesAfterCaretSymbolInReturn
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> numberOfSpacesAfterCaretSymbolInReturn: aNumber [
+EFContext >> numberOfSpacesAfterCaretSymbolInReturn: aNumber [
 	spacesAfterCaretSymbolInReturn := self stringFromSpaceNumber: aNumber.
 	numberOfSpacesAfterCaretSymbolInReturn := aNumber
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> numberOfSpacesBeforeDotInDynamicArray [
+EFContext >> numberOfSpacesBeforeDotInDynamicArray [
 	^ numberOfSpacesBeforeDotInDynamicArray
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> numberOfSpacesBeforeDotInDynamicArray: anInteger [
+EFContext >> numberOfSpacesBeforeDotInDynamicArray: anInteger [
 
 	spacesBeforeDotInDynamicArray := self stringFromSpaceNumber: anInteger.
 	numberOfSpacesBeforeDotInDynamicArray := anInteger
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> numberOfSpacesInIndent [
+EFContext >> numberOfSpacesInIndent [
 	^ numberOfSpacesInIndent
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> numberOfSpacesInIndent: anInteger [
+EFContext >> numberOfSpacesInIndent: anInteger [
 	numberOfSpacesInIndent := anInteger.
 	indentString := self indentStyle = #space 
 		ifTrue: [ self stringFromSpaceNumber: anInteger ]
@@ -321,126 +321,126 @@ BIEnlumineurContext >> numberOfSpacesInIndent: anInteger [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> numberOfSpacesInsideArray [
+EFContext >> numberOfSpacesInsideArray [
 	^ numberOfSpacesInsideArray
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> numberOfSpacesInsideArray: anInteger [
+EFContext >> numberOfSpacesInsideArray: anInteger [
 	spacesInsideArray := self stringFromSpaceNumber: anInteger.
 	numberOfSpacesInsideArray := anInteger
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> numberOfSpacesInsideBlock [
+EFContext >> numberOfSpacesInsideBlock [
 	^ numberOfSpacesInsideBlock
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> numberOfSpacesInsideBlock: aNumber [
+EFContext >> numberOfSpacesInsideBlock: aNumber [
 	spacesInsideBlocks := self stringFromSpaceNumber: aNumber.
 	numberOfSpacesInsideBlock := aNumber
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> numberOfSpacesInsideParentheses [
+EFContext >> numberOfSpacesInsideParentheses [
 	^ numberOfSpacesInsideParentheses
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> numberOfSpacesInsideParentheses: aNumber [
+EFContext >> numberOfSpacesInsideParentheses: aNumber [
 	spacesInsideParentheses := self stringFromSpaceNumber: aNumber.
 	numberOfSpacesInsideParentheses := aNumber
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> oneLineMessages [
+EFContext >> oneLineMessages [
 	^ oneLineMessages
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> oneLineMessages: anArray [
+EFContext >> oneLineMessages: anArray [
 	"To be revisited latter. Apparently this trick is to convert strings into an array."
 	oneLineMessages := self class compiler evaluate: anArray asString
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> periodAtEndOfBlock: aBoolean [
+EFContext >> periodAtEndOfBlock: aBoolean [
 	periodAtEndOfBlock := aBoolean
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> periodAtEndOfMethod: aBoolean [
+EFContext >> periodAtEndOfMethod: aBoolean [
 	periodAtEndOfMethod := aBoolean
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> periodsAtEndOfBlock [
+EFContext >> periodsAtEndOfBlock [
 	^ periodAtEndOfBlock
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> periodsAtEndOfMethod [
+EFContext >> periodsAtEndOfMethod [
 	^ periodAtEndOfMethod
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> retainBlankLinesBeforeComments [
+EFContext >> retainBlankLinesBeforeComments [
 	^ retainBlankLinesBeforeComments
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> retainBlankLinesBeforeComments: aBoolean [
+EFContext >> retainBlankLinesBeforeComments: aBoolean [
 	retainBlankLinesBeforeComments := aBoolean
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> retainBlankLinesBetweenStatements [
+EFContext >> retainBlankLinesBetweenStatements [
 	^ retainBlankLinesBetweenStatements
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> retainBlankLinesBetweenStatements: aBoolean [
+EFContext >> retainBlankLinesBetweenStatements: aBoolean [
 	retainBlankLinesBetweenStatements := aBoolean
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> selectorAndArgumentCombinedMaxSize [
+EFContext >> selectorAndArgumentCombinedMaxSize [
 	^ selectorAndArgumentCombinedMaxSize
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> selectorAndArgumentCombinedMaxSize: anInteger [
+EFContext >> selectorAndArgumentCombinedMaxSize: anInteger [
 	selectorAndArgumentCombinedMaxSize := anInteger
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> spacesAfterCaretSymbolInReturn [
+EFContext >> spacesAfterCaretSymbolInReturn [
 	^ spacesAfterCaretSymbolInReturn
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> spacesBeforeDotInDynamicArray [ 
+EFContext >> spacesBeforeDotInDynamicArray [ 
 	^ spacesBeforeDotInDynamicArray 
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> spacesInsideArray [
+EFContext >> spacesInsideArray [
 	^ spacesInsideArray
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> spacesInsideBlocks [
+EFContext >> spacesInsideBlocks [
 	^ spacesInsideBlocks
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> spacesInsideParentheses [
+EFContext >> spacesInsideParentheses [
 	^ spacesInsideParentheses
 ]
 
 { #category : #printing }
-BIEnlumineurContext >> storeOn: aStream [
+EFContext >> storeOn: aStream [
 	aStream
 		nextPutAll: self class name;
 		nextPutAll: ' new';
@@ -457,17 +457,17 @@ BIEnlumineurContext >> storeOn: aStream [
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> stringFromSpaceNumber: aNumber [
+EFContext >> stringFromSpaceNumber: aNumber [
 	
 	^ String new: aNumber withAll: Character space
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> useBasicCommentFormat [
+EFContext >> useBasicCommentFormat [
 	^ useBasicCommentFormat
 ]
 
 { #category : #accessing }
-BIEnlumineurContext >> useBasicCommentFormat: aBoolean [
+EFContext >> useBasicCommentFormat: aBoolean [
 	useBasicCommentFormat := aBoolean
 ]

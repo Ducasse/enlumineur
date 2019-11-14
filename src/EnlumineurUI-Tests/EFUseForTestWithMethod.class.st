@@ -2,7 +2,7 @@
 I'm used to test import feature of the BISettingPreviewer.
 "
 Class {
-	#name : #BIUseForTestWithMethod,
+	#name : #EFUseForTestWithMethod,
 	#superclass : #Object,
 	#instVars : [
 		'biChooseMethod'
@@ -11,13 +11,13 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-BIUseForTestWithMethod class >> gandalf [
+EFUseForTestWithMethod class >> gandalf [
 ]
 
 { #category : #operations }
-BIUseForTestWithMethod >> methodA [
+EFUseForTestWithMethod >> methodA [
 ]
 
 { #category : #operations }
-BIUseForTestWithMethod >> methodB [
+EFUseForTestWithMethod >> methodB [
 ]

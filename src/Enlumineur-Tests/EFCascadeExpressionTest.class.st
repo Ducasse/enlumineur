@@ -1,11 +1,11 @@
 Class {
-	#name : #BIEnlumineurCascadeExpressionTest,
-	#superclass : #BIEnlumineurTest,
+	#name : #EFCascadeExpressionTest,
+	#superclass : #EFTest,
 	#category : #'Enlumineur-Tests'
 }
 
 { #category : #configurations }
-BIEnlumineurCascadeExpressionTest >> basicConfiguration [
+EFCascadeExpressionTest >> basicConfiguration [
 
 	^ self contextClass basicNew
 		formatCommentCloseToStatements:true;
@@ -22,7 +22,7 @@ BIEnlumineurCascadeExpressionTest >> basicConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurCascadeExpressionTest >> multilineMessageConfiguration [
+EFCascadeExpressionTest >> multilineMessageConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -50,7 +50,7 @@ BIEnlumineurCascadeExpressionTest >> multilineMessageConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurCascadeExpressionTest >> newLineAfterCascadeConfiguration [
+EFCascadeExpressionTest >> newLineAfterCascadeConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -75,7 +75,7 @@ BIEnlumineurCascadeExpressionTest >> newLineAfterCascadeConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurCascadeExpressionTest >> newLineBeforeAndAfterCascadeConfiguration [
+EFCascadeExpressionTest >> newLineBeforeAndAfterCascadeConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -96,7 +96,7 @@ BIEnlumineurCascadeExpressionTest >> newLineBeforeAndAfterCascadeConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurCascadeExpressionTest >> newLineBeforeCascadeConfiguration [
+EFCascadeExpressionTest >> newLineBeforeCascadeConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -118,7 +118,7 @@ BIEnlumineurCascadeExpressionTest >> newLineBeforeCascadeConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurCascadeExpressionTest >> noNewLineAfterCascadeConfiguration [
+EFCascadeExpressionTest >> noNewLineAfterCascadeConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -139,7 +139,7 @@ BIEnlumineurCascadeExpressionTest >> noNewLineAfterCascadeConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurCascadeExpressionTest >> noNewLineBeforeCascadeConfiguration [
+EFCascadeExpressionTest >> noNewLineBeforeCascadeConfiguration [
 	"Here we can control explicitely the configuration we want."
 
 	" String streamContents: [:s |
@@ -160,7 +160,7 @@ BIEnlumineurCascadeExpressionTest >> noNewLineBeforeCascadeConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurCascadeExpressionTest >> spaceIndentConfiguration [
+EFCascadeExpressionTest >> spaceIndentConfiguration [
 
 	^ self contextClass basicNew
 		formatCommentCloseToStatements:false;
@@ -177,7 +177,7 @@ BIEnlumineurCascadeExpressionTest >> spaceIndentConfiguration [
 ]
 
 { #category : #tests }
-BIEnlumineurCascadeExpressionTest >> testCommentAfterMessages [
+EFCascadeExpressionTest >> testCommentAfterMessages [
 	| source |
 	self flag: #tocheck. "We do we lose the first comment."
 	configurationSelector := #basicConfiguration.
@@ -194,7 +194,7 @@ BIEnlumineurCascadeExpressionTest >> testCommentAfterMessages [
 ]
 
 { #category : #tests }
-BIEnlumineurCascadeExpressionTest >> testCommentBeforeMessage [
+EFCascadeExpressionTest >> testCommentBeforeMessage [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: 'Transcript show:1; "cr" cr'.
@@ -206,7 +206,7 @@ BIEnlumineurCascadeExpressionTest >> testCommentBeforeMessage [
 ]
 
 { #category : #tests }
-BIEnlumineurCascadeExpressionTest >> testFormatArgument [
+EFCascadeExpressionTest >> testFormatArgument [
 	| source |
 	configurationSelector := #basicConfiguration.
 	source := self formatExpression: '1 between:2 + 2 and:5*5; +1'.
@@ -214,7 +214,7 @@ BIEnlumineurCascadeExpressionTest >> testFormatArgument [
 ]
 
 { #category : #tests }
-BIEnlumineurCascadeExpressionTest >> testFormatMessage [
+EFCascadeExpressionTest >> testFormatMessage [
 	| source |
 	configurationSelector := #noNewLineAfterCascadeConfiguration.
 	source := self formatExpression: '1 *4; +1'.
@@ -222,7 +222,7 @@ BIEnlumineurCascadeExpressionTest >> testFormatMessage [
 ]
 
 { #category : #tests }
-BIEnlumineurCascadeExpressionTest >> testFormatMultilineMessage [
+EFCascadeExpressionTest >> testFormatMultilineMessage [
 	| source |
 	configurationSelector := #multilineMessageConfiguration.
 	source := self
@@ -238,7 +238,7 @@ BIEnlumineurCascadeExpressionTest >> testFormatMultilineMessage [
 ]
 
 { #category : #tests }
-BIEnlumineurCascadeExpressionTest >> testFormatMultilineMessage2 [
+EFCascadeExpressionTest >> testFormatMultilineMessage2 [
 	| source |
 	configurationSelector := #multilineMessageConfiguration.
 	source := self formatExpression: '1 factorial; multi:1 line:2'.
@@ -252,7 +252,7 @@ BIEnlumineurCascadeExpressionTest >> testFormatMultilineMessage2 [
 ]
 
 { #category : #tests }
-BIEnlumineurCascadeExpressionTest >> testFormatReceiver [
+EFCascadeExpressionTest >> testFormatReceiver [
 	| source |
 	configurationSelector := #noNewLineAfterCascadeConfiguration.
 	source := self formatExpression: 'a:=1 factorial; +1'.
@@ -260,7 +260,7 @@ BIEnlumineurCascadeExpressionTest >> testFormatReceiver [
 ]
 
 { #category : #tests }
-BIEnlumineurCascadeExpressionTest >> testNewLineAfterCascade [
+EFCascadeExpressionTest >> testNewLineAfterCascade [
 	| source |
 	configurationSelector := #newLineAfterCascadeConfiguration.
 	source := self formatExpression: 'Foo a;b;c'.
@@ -273,7 +273,7 @@ BIEnlumineurCascadeExpressionTest >> testNewLineAfterCascade [
 ]
 
 { #category : #tests }
-BIEnlumineurCascadeExpressionTest >> testNewLineAfterCascade2 [
+EFCascadeExpressionTest >> testNewLineAfterCascade2 [
 	| source |
 	configurationSelector := #newLineAfterCascadeConfiguration.
 	source := self
@@ -287,7 +287,7 @@ BIEnlumineurCascadeExpressionTest >> testNewLineAfterCascade2 [
 ]
 
 { #category : #tests }
-BIEnlumineurCascadeExpressionTest >> testNewLineBeforeAndAfterCascade [
+EFCascadeExpressionTest >> testNewLineBeforeAndAfterCascade [
 	| source |
 	configurationSelector := #newLineBeforeAndAfterCascadeConfiguration.
 	source := self formatExpression: 'Transcript cr;cr;cr'.
@@ -301,7 +301,7 @@ BIEnlumineurCascadeExpressionTest >> testNewLineBeforeAndAfterCascade [
 ]
 
 { #category : #tests }
-BIEnlumineurCascadeExpressionTest >> testNewLineBeforeCascade [
+EFCascadeExpressionTest >> testNewLineBeforeCascade [
 	| source |
 	configurationSelector := #newLineBeforeCascadeConfiguration.
 	source := self formatExpression: 'Foo a;b;c'.
@@ -313,7 +313,7 @@ BIEnlumineurCascadeExpressionTest >> testNewLineBeforeCascade [
 ]
 
 { #category : #tests }
-BIEnlumineurCascadeExpressionTest >> testNewLineBeforeCascade2 [
+EFCascadeExpressionTest >> testNewLineBeforeCascade2 [
 	| source |
 	configurationSelector := #newLineBeforeCascadeConfiguration.
 	source := self
@@ -326,7 +326,7 @@ BIEnlumineurCascadeExpressionTest >> testNewLineBeforeCascade2 [
 ]
 
 { #category : #tests }
-BIEnlumineurCascadeExpressionTest >> testNoNewLineAfterCascade [
+EFCascadeExpressionTest >> testNoNewLineAfterCascade [
 	| source |
 	configurationSelector := #noNewLineAfterCascadeConfiguration.
 	source := self formatExpression: 'Foo a;b;c'.
@@ -334,7 +334,7 @@ BIEnlumineurCascadeExpressionTest >> testNoNewLineAfterCascade [
 ]
 
 { #category : #tests }
-BIEnlumineurCascadeExpressionTest >> testNoNewLineAfterCascade2 [
+EFCascadeExpressionTest >> testNoNewLineAfterCascade2 [
 	| source |
 	configurationSelector := #noNewLineAfterCascadeConfiguration.
 	source := self
@@ -345,7 +345,7 @@ BIEnlumineurCascadeExpressionTest >> testNoNewLineAfterCascade2 [
 ]
 
 { #category : #tests }
-BIEnlumineurCascadeExpressionTest >> testNoNewLineBeforeCascade [
+EFCascadeExpressionTest >> testNoNewLineBeforeCascade [
 	| source |
 	configurationSelector := #noNewLineBeforeCascadeConfiguration.
 	source := self formatExpression: 'Foo a;b;c'.
@@ -353,7 +353,7 @@ BIEnlumineurCascadeExpressionTest >> testNoNewLineBeforeCascade [
 ]
 
 { #category : #tests }
-BIEnlumineurCascadeExpressionTest >> testNoNewLineBeforeCascade2 [
+EFCascadeExpressionTest >> testNoNewLineBeforeCascade2 [
 	| source |
 	configurationSelector := #noNewLineBeforeCascadeConfiguration.
 	source := self
@@ -364,7 +364,7 @@ BIEnlumineurCascadeExpressionTest >> testNoNewLineBeforeCascade2 [
 ]
 
 { #category : #tests }
-BIEnlumineurCascadeExpressionTest >> testOneSpaceIndent [
+EFCascadeExpressionTest >> testOneSpaceIndent [
 	| source |
 	configurationSelector := #spaceIndentConfiguration.
 	source := self
@@ -380,7 +380,7 @@ BIEnlumineurCascadeExpressionTest >> testOneSpaceIndent [
 ]
 
 { #category : #tests }
-BIEnlumineurCascadeExpressionTest >> testTooLongArgument [
+EFCascadeExpressionTest >> testTooLongArgument [
 	| source |
 	configurationSelector := #tooLongArgumentConfiguration.
 	source := self formatExpression: 'foo a;b: toLongArgument'.
@@ -392,7 +392,7 @@ BIEnlumineurCascadeExpressionTest >> testTooLongArgument [
 ]
 
 { #category : #tests }
-BIEnlumineurCascadeExpressionTest >> testTooLongArgument2 [
+EFCascadeExpressionTest >> testTooLongArgument2 [
 	| source |
 	configurationSelector := #tooLongArgumentConfigurationWithNewLineAfterCascade.
 	source := self formatExpression: 'foo a;b: toLongArgument'.
@@ -405,7 +405,7 @@ BIEnlumineurCascadeExpressionTest >> testTooLongArgument2 [
 ]
 
 { #category : #configurations }
-BIEnlumineurCascadeExpressionTest >> tooLongArgumentConfiguration [
+EFCascadeExpressionTest >> tooLongArgumentConfiguration [
 
 	^ self contextClass basicNew
 		formatCommentCloseToStatements:true;
@@ -421,7 +421,7 @@ BIEnlumineurCascadeExpressionTest >> tooLongArgumentConfiguration [
 ]
 
 { #category : #configurations }
-BIEnlumineurCascadeExpressionTest >> tooLongArgumentConfigurationWithNewLineAfterCascade [
+EFCascadeExpressionTest >> tooLongArgumentConfigurationWithNewLineAfterCascade [
 	^ self contextClass basicNew
 		formatCommentCloseToStatements:true;
 		newLineBeforeFirstCascade: false;

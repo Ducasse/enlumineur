@@ -18,7 +18,7 @@ Internal Representation and Key Implementation Points.
     Implementation Points
 "
 Class {
-	#name : #BIInputPresenterUI,
+	#name : #EFInputPresenterUI,
 	#superclass : #SpPresenter,
 	#instVars : [
 		'uiReceiver',
@@ -28,13 +28,13 @@ Class {
 }
 
 { #category : #specs }
-BIInputPresenterUI class >> defaultSpec [
+EFInputPresenterUI class >> defaultSpec [
 	^ SpBoxLayout newHorizontal 
 		add: #codePresenter; yourself
 ]
 
 { #category : #'instance creation' }
-BIInputPresenterUI class >> openOn: aUIReceiver [
+EFInputPresenterUI class >> openOn: aUIReceiver [
 	| biCodePresenter |
 	biCodePresenter := self new.
 	biCodePresenter uiReceiver: aUIReceiver.
@@ -42,29 +42,29 @@ BIInputPresenterUI class >> openOn: aUIReceiver [
 ]
 
 { #category : #accessing }
-BIInputPresenterUI >> codePresenter [
+EFInputPresenterUI >> codePresenter [
 	^ codePresenter
 ]
 
 { #category : #initialization }
-BIInputPresenterUI >> initializeDialogWindow: aDialog [
+EFInputPresenterUI >> initializeDialogWindow: aDialog [
 	super initializeDialogWindow: aDialog.
 	aDialog okAction: [ :presenter | uiReceiver acceptActionBICodePresenter: self  ]
 ]
 
 { #category : #initialization }
-BIInputPresenterUI >> initializeWidgets [ 
+EFInputPresenterUI >> initializeWidgets [ 
 	codePresenter := self instantiate: SpTextInputFieldPresenter.
 	codePresenter placeholder: 'write the name of you configuration'.
 	codePresenter autoAccept: true
 ]
 
 { #category : #accessing }
-BIInputPresenterUI >> uiReceiver [
+EFInputPresenterUI >> uiReceiver [
 	^ uiReceiver
 ]
 
 { #category : #accessing }
-BIInputPresenterUI >> uiReceiver: anUI [
+EFInputPresenterUI >> uiReceiver: anUI [
 	uiReceiver := anUI
 ]

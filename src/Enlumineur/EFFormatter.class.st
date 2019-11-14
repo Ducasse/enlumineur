@@ -11,7 +11,7 @@ Pay attention my name should finish with Formatter so that the Settings proposes
 
 "
 Class {
-	#name : #BIEnlumineurFormatter,
+	#name : #EFFormatter,
 	#superclass : #RBProgramNodeVisitor,
 	#instVars : [
 		'codeStream',
@@ -32,95 +32,95 @@ Class {
 }
 
 { #category : #private }
-BIEnlumineurFormatter class >> announceASettingChange [
+EFFormatter class >> announceASettingChange [
 	SystemAnnouncer uniqueInstance announce: BISettingsChanged 
 ]
 
 { #category : #private }
-BIEnlumineurFormatter class >> defaultPrettyPrintContext [
+EFFormatter class >> defaultPrettyPrintContext [
 	^ DefaultPrettyPrintContext
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> defaultPrettyPrintContext: aContext [ 
+EFFormatter class >> defaultPrettyPrintContext: aContext [ 
 	DefaultPrettyPrintContext := aContext 
 ]
 
 { #category : #public }
-BIEnlumineurFormatter class >> format: aParseTree [ 
+EFFormatter class >> format: aParseTree [ 
 	^self format: aParseTree withIndents: 0
 ]
 
 { #category : #public }
-BIEnlumineurFormatter class >> format: aParseTree withIndents: anInteger [ 
+EFFormatter class >> format: aParseTree withIndents: anInteger [ 
 	^ self new
 		indent: anInteger;
 		format: aParseTree
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> formatAsYouReadPolicy [
+EFFormatter class >> formatAsYouReadPolicy [
 	^ FormatAsYouReadPolicy
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> formatAsYouReadPolicy: anObject [
+EFFormatter class >> formatAsYouReadPolicy: anObject [
 	FormatAsYouReadPolicy := anObject
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> formatCommentCloseToStatements [
+EFFormatter class >> formatCommentCloseToStatements [
 	^ DefaultPrettyPrintContext formatCommentCloseToStatements
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> formatCommentCloseToStatements: aBoolean [
+EFFormatter class >> formatCommentCloseToStatements: aBoolean [
 	DefaultPrettyPrintContext formatCommentCloseToStatements: aBoolean.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> indentString [
+EFFormatter class >> indentString [
 	^ DefaultPrettyPrintContext indentString
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> indentStyle [
+EFFormatter class >> indentStyle [
 	^ DefaultPrettyPrintContext indentStyle
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> indentStyle: aSymbole [
+EFFormatter class >> indentStyle: aSymbole [
 	DefaultPrettyPrintContext indentStyle: aSymbole.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> indentsForKeywords [
+EFFormatter class >> indentsForKeywords [
 	^ DefaultPrettyPrintContext indentsForKeywords
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> indentsForKeywords: anInteger [
+EFFormatter class >> indentsForKeywords: anInteger [
 	DefaultPrettyPrintContext indentsForKeywords: anInteger.
 	self announceASettingChange
 ]
 
 { #category : #initialization }
-BIEnlumineurFormatter class >> initialize [
+EFFormatter class >> initialize [
 	"self initialize"
 
 	FormatAsYouReadPolicy := false.
-	DefaultPrettyPrintContext := BIEnlumineurContext new
+	DefaultPrettyPrintContext := EFContext new
 ]
 
 { #category : #private }
-BIEnlumineurFormatter class >> isPrettyPrinter [
+EFFormatter class >> isPrettyPrinter [
 	^ true
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> keepBlockInMessage [
+EFFormatter class >> keepBlockInMessage [
 	"Return a boolean for 
 		1 to: 4 do: [ :i | 
 			
@@ -133,276 +133,276 @@ BIEnlumineurFormatter class >> keepBlockInMessage [
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> keepBlockInMessage: aBoolean [
+EFFormatter class >> keepBlockInMessage: aBoolean [
 	DefaultPrettyPrintContext keepBlockInMessage: aBoolean.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> lineUpBlockBrackets [
+EFFormatter class >> lineUpBlockBrackets [
 	^ DefaultPrettyPrintContext lineUpBlockBrackets
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> lineUpBlockBrackets: aBoolean [
+EFFormatter class >> lineUpBlockBrackets: aBoolean [
 	DefaultPrettyPrintContext lineUpBlockBrackets: aBoolean.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> maxLineLength [
+EFFormatter class >> maxLineLength [
 	^ DefaultPrettyPrintContext maxLineLength
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> maxLineLength: anInteger [
+EFFormatter class >> maxLineLength: anInteger [
 	DefaultPrettyPrintContext maxLineLength: anInteger.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> methodSignatureOnMultipleLines [
+EFFormatter class >> methodSignatureOnMultipleLines [
 	^ DefaultPrettyPrintContext methodSignatureOnMultipleLines
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> methodSignatureOnMultipleLines: aBoolean [
+EFFormatter class >> methodSignatureOnMultipleLines: aBoolean [
 	DefaultPrettyPrintContext methodSignatureOnMultipleLines: aBoolean.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> minimumNewLinesBetweenStatements [
+EFFormatter class >> minimumNewLinesBetweenStatements [
 	^ DefaultPrettyPrintContext minimumNewLinesBetweenStatements
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> minimumNewLinesBetweenStatements: anInteger [
+EFFormatter class >> minimumNewLinesBetweenStatements: anInteger [
 	DefaultPrettyPrintContext minimumNewLinesBetweenStatements: anInteger.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> multiLineMessages [
+EFFormatter class >> multiLineMessages [
 	^ DefaultPrettyPrintContext multiLineMessages printString
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> multiLineMessages: aString [
+EFFormatter class >> multiLineMessages: aString [
 	DefaultPrettyPrintContext multiLineMessages: (self compiler evaluate: aString).
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> newLineAfterCascade [
+EFFormatter class >> newLineAfterCascade [
 	^ DefaultPrettyPrintContext newLineAfterCascade
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> newLineAfterCascade: aBoolean [
+EFFormatter class >> newLineAfterCascade: aBoolean [
 	DefaultPrettyPrintContext newLineAfterCascade: aBoolean.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> newLineBeforeFirstCascade [
+EFFormatter class >> newLineBeforeFirstCascade [
 	^ DefaultPrettyPrintContext newLineBeforeFirstCascade
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> newLineBeforeFirstCascade: aBoolean [
+EFFormatter class >> newLineBeforeFirstCascade: aBoolean [
 	DefaultPrettyPrintContext newLineBeforeFirstCascade: aBoolean.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> newLineBeforeFirstKeyword [
+EFFormatter class >> newLineBeforeFirstKeyword [
 	^ DefaultPrettyPrintContext newLineBeforeFirstKeyword
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> newLineBeforeFirstKeyword: aBoolean [
+EFFormatter class >> newLineBeforeFirstKeyword: aBoolean [
 	DefaultPrettyPrintContext newLineBeforeFirstKeyword: aBoolean.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> numberOfArgumentsForMultiLine [
+EFFormatter class >> numberOfArgumentsForMultiLine [
 	^ DefaultPrettyPrintContext numberOfArgumentsForMultiLine
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> numberOfArgumentsForMultiLine: anInteger [
+EFFormatter class >> numberOfArgumentsForMultiLine: anInteger [
 	DefaultPrettyPrintContext numberOfArgumentsForMultiLine: anInteger.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> numberOfNewLinesAfterMethodComment [
+EFFormatter class >> numberOfNewLinesAfterMethodComment [
 	^ DefaultPrettyPrintContext numberOfNewLinesAfterMethodComment
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> numberOfNewLinesAfterMethodComment: anInteger [
+EFFormatter class >> numberOfNewLinesAfterMethodComment: anInteger [
 	DefaultPrettyPrintContext numberOfNewLinesAfterMethodComment: anInteger.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> numberOfNewLinesAfterMethodSignature [
+EFFormatter class >> numberOfNewLinesAfterMethodSignature [
 	^ DefaultPrettyPrintContext numberOfNewLinesAfterMethodSignature
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> numberOfNewLinesAfterMethodSignature: anInteger [
+EFFormatter class >> numberOfNewLinesAfterMethodSignature: anInteger [
 	DefaultPrettyPrintContext numberOfNewLinesAfterMethodSignature: anInteger.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> numberOfNewLinesAfterTemporaries [
+EFFormatter class >> numberOfNewLinesAfterTemporaries [
 	^ DefaultPrettyPrintContext numberOfNewLinesAfterTemporaries
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> numberOfNewLinesAfterTemporaries: anInteger [
+EFFormatter class >> numberOfNewLinesAfterTemporaries: anInteger [
 	DefaultPrettyPrintContext numberOfNewLinesAfterTemporaries: anInteger.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> numberOfSpacesAfterCaretSymbolInReturn [
+EFFormatter class >> numberOfSpacesAfterCaretSymbolInReturn [
 	^ DefaultPrettyPrintContext numberOfSpacesAfterCaretSymbolInReturn
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> numberOfSpacesAfterCaretSymbolInReturn: anInteger [
+EFFormatter class >> numberOfSpacesAfterCaretSymbolInReturn: anInteger [
 	DefaultPrettyPrintContext numberOfSpacesAfterCaretSymbolInReturn: anInteger.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> numberOfSpacesBeforeDotInDynamicArray [
+EFFormatter class >> numberOfSpacesBeforeDotInDynamicArray [
 	^ DefaultPrettyPrintContext numberOfSpacesBeforeDotInDynamicArray
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> numberOfSpacesInIndent [
+EFFormatter class >> numberOfSpacesInIndent [
 	^ DefaultPrettyPrintContext numberOfSpacesInIndent
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> numberOfSpacesInIndent: anInteger [
+EFFormatter class >> numberOfSpacesInIndent: anInteger [
 	DefaultPrettyPrintContext numberOfSpacesInIndent: anInteger.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> numberOfSpacesInsideArray [
+EFFormatter class >> numberOfSpacesInsideArray [
 	^ DefaultPrettyPrintContext numberOfSpacesInsideArray
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> numberOfSpacesInsideArray: anInteger [
+EFFormatter class >> numberOfSpacesInsideArray: anInteger [
 	DefaultPrettyPrintContext numberOfSpacesInsideArray: anInteger.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> numberOfSpacesInsideBlock [
+EFFormatter class >> numberOfSpacesInsideBlock [
 	^ DefaultPrettyPrintContext numberOfSpacesInsideBlock
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> numberOfSpacesInsideBlock: anInteger [
+EFFormatter class >> numberOfSpacesInsideBlock: anInteger [
 	DefaultPrettyPrintContext numberOfSpacesInsideBlock: anInteger.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> numberOfSpacesInsideParentheses [
+EFFormatter class >> numberOfSpacesInsideParentheses [
 	^ DefaultPrettyPrintContext numberOfSpacesInsideParentheses
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> numberOfSpacesInsideParentheses: anInteger [
+EFFormatter class >> numberOfSpacesInsideParentheses: anInteger [
 	DefaultPrettyPrintContext numberOfSpacesInsideParentheses: anInteger.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> oneLineMessages [
+EFFormatter class >> oneLineMessages [
 	^ DefaultPrettyPrintContext oneLineMessages printString
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> oneLineMessages: aString [
+EFFormatter class >> oneLineMessages: aString [
 	DefaultPrettyPrintContext oneLineMessages: (self compiler evaluate: aString).
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> periodAtEndOfBlock: aBoolean [
+EFFormatter class >> periodAtEndOfBlock: aBoolean [
 	DefaultPrettyPrintContext periodAtEndOfBlock: aBoolean.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> periodAtEndOfMethod: aBoolean [
+EFFormatter class >> periodAtEndOfMethod: aBoolean [
 	DefaultPrettyPrintContext periodAtEndOfMethod: aBoolean.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> periodsAtEndOfBlock [
+EFFormatter class >> periodsAtEndOfBlock [
 	^ DefaultPrettyPrintContext periodsAtEndOfBlock
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> periodsAtEndOfMethod [
+EFFormatter class >> periodsAtEndOfMethod [
 	^ DefaultPrettyPrintContext periodsAtEndOfMethod
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> retainBlankLinesBeforeComments [
+EFFormatter class >> retainBlankLinesBeforeComments [
 	^ DefaultPrettyPrintContext retainBlankLinesBeforeComments
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> retainBlankLinesBeforeComments: aBoolean [
+EFFormatter class >> retainBlankLinesBeforeComments: aBoolean [
 	DefaultPrettyPrintContext retainBlankLinesBeforeComments: aBoolean.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> retainBlankLinesBetweenStatements [
+EFFormatter class >> retainBlankLinesBetweenStatements [
 	^ DefaultPrettyPrintContext retainBlankLinesBetweenStatements
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> retainBlankLinesBetweenStatements: aBoolean [
+EFFormatter class >> retainBlankLinesBetweenStatements: aBoolean [
 	DefaultPrettyPrintContext retainBlankLinesBetweenStatements: aBoolean.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> selectorAndArgumentCombinedMaxSize [
+EFFormatter class >> selectorAndArgumentCombinedMaxSize [
 	^ DefaultPrettyPrintContext selectorAndArgumentCombinedMaxSize
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> selectorAndArgumentCombinedMaxSize: anInteger [
+EFFormatter class >> selectorAndArgumentCombinedMaxSize: anInteger [
 	DefaultPrettyPrintContext selectorAndArgumentCombinedMaxSize: anInteger.
 	self announceASettingChange
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> settingGroup [
+EFFormatter class >> settingGroup [
 	^ #blueInkEnlumineur
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsAlignBlockBrackets: aBuilder [
+EFFormatter class >> settingsAlignBlockBrackets: aBuilder [
 
 	(aBuilder setting: #lineUpBlockBrackets)
 		label: 'Align block brackets';
@@ -424,7 +424,7 @@ When lineUpBlockBrackets is set to false
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsCommentCloseToStatement: aBuilder [
+EFFormatter class >> settingsCommentCloseToStatement: aBuilder [
 	
 	(aBuilder setting: #formatCommentCloseToStatements)
 		label: 'Place comment close to expression';
@@ -438,7 +438,7 @@ When formatCommentCloseToStatements is set to false
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsIndentStyle: aBuilder [
+EFFormatter class >> settingsIndentStyle: aBuilder [
 
 	(aBuilder pickOne: #indentStyle)
 		label: 'Indent Style';
@@ -451,7 +451,7 @@ aBoolean
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsIndentsForKeywords: aBuilder [ 
+EFFormatter class >> settingsIndentsForKeywords: aBuilder [ 
 	
 	(aBuilder setting: #indentsForKeywords)
 		label: 'Indents for keywords';
@@ -464,7 +464,7 @@ is the result for 2 indents'
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsKeepBlockInMessage: aBuilder [
+EFFormatter class >> settingsKeepBlockInMessage: aBuilder [
 	
 	(aBuilder setting: #keepBlockInMessage)
 		label: 'Keep block in message';
@@ -486,7 +486,7 @@ When keepBlockInMessage is false:
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsMaxLineLength: aBuilder [
+EFFormatter class >> settingsMaxLineLength: aBuilder [
 
 	(aBuilder setting: #maxLineLength)
 		label: 'Max line length';
@@ -498,7 +498,7 @@ is the result for 14'
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsMethodSignatureOnMultipleLines: aBuilder [
+EFFormatter class >> settingsMethodSignatureOnMultipleLines: aBuilder [
 
 	(aBuilder setting: #methodSignatureOnMultipleLines)
 		label: 'Method signature on multiple lines';
@@ -514,7 +514,7 @@ is the result of having methodSignatureOnMultipleLines set to true and selectorA
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsMinimumNewLinesBetweenStatements: aBuilder [
+EFFormatter class >> settingsMinimumNewLinesBetweenStatements: aBuilder [
 
 	(aBuilder setting: #minimumNewLinesBetweenStatements)
 		label: 'Minimum new lines between statements';
@@ -530,7 +530,7 @@ The following is obtained by setting minimumNewLinesBetweenStatements to 2.
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsMultiLineMessages: aBuilder [
+EFFormatter class >> settingsMultiLineMessages: aBuilder [
 
 	(aBuilder setting: #multiLineMessages)
 		label: 'Multi line messages';
@@ -544,7 +544,7 @@ is the result if #ifTrue:ifFalse is in the array'
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsNewLineAfterCascade: aBuilder [
+EFFormatter class >> settingsNewLineAfterCascade: aBuilder [
 
 	(aBuilder setting: #newLineAfterCascade)
 		label: 'New line after cascade';
@@ -565,7 +565,7 @@ OrderedCollection new
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsNewLineBeforeFirstCascade: aBuilder [
+EFFormatter class >> settingsNewLineBeforeFirstCascade: aBuilder [
 
 	(aBuilder setting: #newLineBeforeFirstCascade)
 		label: 'New line before cascade';
@@ -587,7 +587,7 @@ OrderedCollection new
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsNewLineBeforeFirstKeyword: aBuilder [
+EFFormatter class >> settingsNewLineBeforeFirstKeyword: aBuilder [
 
 	(aBuilder setting: #newLineBeforeFirstKeyword)
 		label: 'New line before first keyword';
@@ -607,7 +607,7 @@ When newLineBeforeFirstKeyword is set to false
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsNewLinesAfterMethodComment: aBuilder [
+EFFormatter class >> settingsNewLinesAfterMethodComment: aBuilder [
 
 	(aBuilder setting: #numberOfNewLinesAfterMethodComment)
 		label: 'New lines after method comment';
@@ -623,7 +623,7 @@ myMethod
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsNewLinesAfterMethodSignature: aBuilder [
+EFFormatter class >> settingsNewLinesAfterMethodSignature: aBuilder [
 
 	(aBuilder setting: #numberOfNewLinesAfterMethodSignature)
 		label: 'New lines after method signature';
@@ -637,7 +637,7 @@ myMethod: arg
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsNewLinesAfterTemporaries: aBuilder [
+EFFormatter class >> settingsNewLinesAfterTemporaries: aBuilder [
 
 	(aBuilder setting: #numberOfNewLinesAfterTemporaries)
 		label: 'New lines after temporaries';
@@ -652,7 +652,7 @@ myMethod
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsNumberOfArgumentsForMultiLine: aBuilder [ 
+EFFormatter class >> settingsNumberOfArgumentsForMultiLine: aBuilder [ 
 	
 	(aBuilder setting: #numberOfArgumentsForMultiLine)
 		label: 'Number of arguments for multiLine';
@@ -667,7 +667,7 @@ For example when set to 2 we obtain
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsNumberOfSpacesInIndent:aBuilder [
+EFFormatter class >> settingsNumberOfSpacesInIndent:aBuilder [
 
 	(aBuilder setting: #numberOfSpacesInIndent)
 		label: 'Number of spaces in indent';
@@ -682,7 +682,7 @@ aBoolean
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsOn: aBuilder [
+EFFormatter class >> settingsOn: aBuilder [
 	<systemsettings>
 	
 	(aBuilder group: self settingGroup)
@@ -721,7 +721,7 @@ BIEnlumineurFormatter class >> settingsOn: aBuilder [
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsOneLineMessages: aBuilder [
+EFFormatter class >> settingsOneLineMessages: aBuilder [
 
 	(aBuilder setting: #oneLineMessages)
 		label: 'One line messages';
@@ -733,7 +733,7 @@ If we include #todo: in the oneLineMessages we get
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsPeriodsAtEndOfBlock: aBuilder [
+EFFormatter class >> settingsPeriodsAtEndOfBlock: aBuilder [
 
 	(aBuilder setting: #periodsAtEndOfBlock)
 		label: 'Period at end of block body';
@@ -747,7 +747,7 @@ Example: when set to true
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsPeriodsAtEndOfMethod: aBuilder [
+EFFormatter class >> settingsPeriodsAtEndOfMethod: aBuilder [
 
 	(aBuilder setting: #periodsAtEndOfMethod)
 		label: 'Period at end of method';
@@ -762,7 +762,7 @@ myMethod
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsRetainBlankLinesBeforeComments: aBuilder [
+EFFormatter class >> settingsRetainBlankLinesBeforeComments: aBuilder [
 
 	(aBuilder setting: #retainBlankLinesBeforeComments)
 		label: 'Retain blank lines before comments';
@@ -779,7 +779,7 @@ For example, when set to true the formatter will not change the following
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsRetainBlankLinesBetweenStatements: aBuilder [
+EFFormatter class >> settingsRetainBlankLinesBetweenStatements: aBuilder [
 
 	(aBuilder setting: #retainBlankLinesBetweenStatements)
 		label: 'Retain blank lines between statements';
@@ -797,7 +797,7 @@ c := a + b
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsSelectorAndArgumentCombinedMaxSize: aBuilder [
+EFFormatter class >> settingsSelectorAndArgumentCombinedMaxSize: aBuilder [
 
 	(aBuilder setting: #selectorAndArgumentCombinedMaxSize)
 		label: 'Selector and argument combined in method signature max size';
@@ -813,7 +813,7 @@ myMethod: argument1
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsSpacesAfterCaretSymbolInReturn: aBuilder [ 
+EFFormatter class >> settingsSpacesAfterCaretSymbolInReturn: aBuilder [ 
 
 	(aBuilder setting: #numberOfSpacesAfterCaretSymbolInReturn)
 		label: 'Spaces following caret symbol in return';
@@ -822,7 +822,7 @@ For example: ^   self is the result for 3 spaces'.
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsSpacesBeforeDotInDynamicArray: aBuilder [
+EFFormatter class >> settingsSpacesBeforeDotInDynamicArray: aBuilder [
 
 	(aBuilder setting: #numberOfSpacesBeforeDotInDynamicArray)
 		label: 'Spaces before separating period in dynamic array';
@@ -833,7 +833,7 @@ when set to zero space: {1. 2. 3}'
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsSpacesInsideArray: aBuilder [
+EFFormatter class >> settingsSpacesInsideArray: aBuilder [
 
 	(aBuilder setting: #numberOfSpacesInsideArray)
 		label: 'Spaces inside arrays #( here ) or { there }';
@@ -846,7 +846,7 @@ For example, we get the following wehn set to 3 spaces:
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsSpacesInsideBlocks: aBuilder [
+EFFormatter class >> settingsSpacesInsideBlocks: aBuilder [
 
 	(aBuilder setting: #numberOfSpacesInsideBlock)
 		label: 'Spaces inside blocks [ here ]';
@@ -857,7 +857,7 @@ For example, when set to 3 spaces we get
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsSpacesInsideParentheses: aBuilder [
+EFFormatter class >> settingsSpacesInsideParentheses: aBuilder [
 
 	(aBuilder setting: #numberOfSpacesInsideParentheses)
 		label: 'Spaces inside parentheses ( here )';
@@ -866,7 +866,7 @@ For example: (   1 + 2   ) is the result for 3 spaces'
 ]
 
 { #category : #settings }
-BIEnlumineurFormatter class >> settingsUseBasicCommentFormat: aBuilder [
+EFFormatter class >> settingsUseBasicCommentFormat: aBuilder [
 
 	(aBuilder setting: #useBasicCommentFormat)
 		label: 'Use basic comment format';
@@ -874,33 +874,33 @@ BIEnlumineurFormatter class >> settingsUseBasicCommentFormat: aBuilder [
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> spacesAfterCaretSymbolInReturn [
+EFFormatter class >> spacesAfterCaretSymbolInReturn [
 	^ DefaultPrettyPrintContext spacesAfterCaretSymbolInReturn
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> spacesInsideBlocks [
+EFFormatter class >> spacesInsideBlocks [
 	^ DefaultPrettyPrintContext spacesInsideBlocks
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> spacesInsideParentheses [
+EFFormatter class >> spacesInsideParentheses [
 	^ DefaultPrettyPrintContext spacesInsideParentheses
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> useBasicCommentFormat [
+EFFormatter class >> useBasicCommentFormat [
 	^ DefaultPrettyPrintContext useBasicCommentFormat
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter class >> useBasicCommentFormat: aBoolean [
+EFFormatter class >> useBasicCommentFormat: aBoolean [
 	DefaultPrettyPrintContext useBasicCommentFormat: aBoolean.
 	self announceASettingChange
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> addNewLinesBeforeStatementStartingAt: anInteger [ 
+EFFormatter >> addNewLinesBeforeStatementStartingAt: anInteger [ 
 	| newLines |
 	newLines := self minimumNewLinesBetweenStatements 
 				max: (self retainBlankLinesBetweenStatements 
@@ -912,7 +912,7 @@ BIEnlumineurFormatter >> addNewLinesBeforeStatementStartingAt: anInteger [
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> addSpaceIfNeededForLastArgument: aPragmaNode [
+EFFormatter >> addSpaceIfNeededForLastArgument: aPragmaNode [
 	aPragmaNode isUnary
 		ifTrue: [ ^ self ].
 	(self pragmaArgumentNeedsSeparator: aPragmaNode arguments last)
@@ -920,12 +920,12 @@ BIEnlumineurFormatter >> addSpaceIfNeededForLastArgument: aPragmaNode [
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> basicFormatCommentFor: aComment [
+EFFormatter >> basicFormatCommentFor: aComment [
 	codeStream nextPutAll: (originalSource copyFrom: aComment start to: aComment stop).
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> bracketWith: bracketString around: aBlock [
+EFFormatter >> bracketWith: bracketString around: aBlock [
 	bracketString isEmpty
 		ifTrue: [ ^ aBlock value ].
 	codeStream nextPut: bracketString first.
@@ -934,7 +934,7 @@ BIEnlumineurFormatter >> bracketWith: bracketString around: aBlock [
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> bracketWith: bracketString around: aBlock indentExtraSpaces: anInteger [
+EFFormatter >> bracketWith: bracketString around: aBlock indentExtraSpaces: anInteger [
 	bracketString isEmpty
 		ifTrue: [ ^ aBlock value ].
 	codeStream nextPut: bracketString first.
@@ -943,29 +943,29 @@ BIEnlumineurFormatter >> bracketWith: bracketString around: aBlock indentExtraSp
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> characterSeparatorMethodSignatureFor: aMethodNode [
+EFFormatter >> characterSeparatorMethodSignatureFor: aMethodNode [
 	^ (self needsMethodSignatureOnMultipleLinesFor: aMethodNode)
 			ifTrue: [ self newLine ]
 			ifFalse: [ self space ]
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> codeStream [
+EFFormatter >> codeStream [
 	^ codeStream
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> codeStream: anObject [
+EFFormatter >> codeStream: anObject [
 	codeStream := anObject
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> currentLineLength [
+EFFormatter >> currentLineLength [
 	^ codeStream position - lineStart
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurFormatter >> firstSeparatorShouldNotPassLine: aMessageNode [
+EFFormatter >> firstSeparatorShouldNotPassLine: aMessageNode [
 "predicat that tell if the keyWord should be forced te be on the sameLine"
 
 	^ aMessageNode isKeyword
@@ -974,7 +974,7 @@ BIEnlumineurFormatter >> firstSeparatorShouldNotPassLine: aMessageNode [
 ]
 
 { #category : #'public interface' }
-BIEnlumineurFormatter >> format: aParseTree [
+EFFormatter >> format: aParseTree [
 	codeStream := self initializeCodeStream.
 	originalSource := aParseTree source.
 	self visitNode: aParseTree.
@@ -982,7 +982,7 @@ BIEnlumineurFormatter >> format: aParseTree [
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurFormatter >> formatArray: anArrayNode [
+EFFormatter >> formatArray: anArrayNode [
 	| current |
 	codeStream nextPutAll: self spacesInsideArray.
 	(anArrayNode statements
@@ -1009,7 +1009,7 @@ BIEnlumineurFormatter >> formatArray: anArrayNode [
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurFormatter >> formatArrayBody: aSequenceNode [
+EFFormatter >> formatArrayBody: aSequenceNode [
 	| statements |
 	statements := aSequenceNode statements.
 	statements isEmpty
@@ -1024,7 +1024,7 @@ BIEnlumineurFormatter >> formatArrayBody: aSequenceNode [
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurFormatter >> formatBlock: aBlockNode [
+EFFormatter >> formatBlock: aBlockNode [
 	| isMultiline |
 	isMultiline := self 
 		willBeMultiline: aBlockNode body 
@@ -1042,7 +1042,7 @@ BIEnlumineurFormatter >> formatBlock: aBlockNode [
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurFormatter >> formatBlockArgumentsFor: aBlockNode [
+EFFormatter >> formatBlockArgumentsFor: aBlockNode [
 	aBlockNode arguments isEmpty
 		ifTrue: [ ^ self ].
 	aBlockNode arguments
@@ -1058,7 +1058,7 @@ BIEnlumineurFormatter >> formatBlockArgumentsFor: aBlockNode [
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurFormatter >> formatBlockCommentFor: aBlockNode [
+EFFormatter >> formatBlockCommentFor: aBlockNode [
 	originalSource isNil
 		ifTrue: [  ^ self ].
 	aBlockNode comments
@@ -1070,17 +1070,17 @@ BIEnlumineurFormatter >> formatBlockCommentFor: aBlockNode [
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> formatCommentCloseToStatements [
+EFFormatter >> formatCommentCloseToStatements [
 	^ context formatCommentCloseToStatements
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> formatCommentCloseToStatements: aBoolean [
+EFFormatter >> formatCommentCloseToStatements: aBoolean [
 	context formatCommentCloseToStatements: aBoolean
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurFormatter >> formatCommentsFor: aNode [
+EFFormatter >> formatCommentsFor: aNode [
 	originalSource isNil
 		ifTrue: [ ^ self ].
 	aNode comments
@@ -1091,7 +1091,7 @@ BIEnlumineurFormatter >> formatCommentsFor: aNode [
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> formatMessageNodeInAMessageStreamFor: aMessageNode [
+EFFormatter >> formatMessageNodeInAMessageStreamFor: aMessageNode [
 	| messageStream |
 	messageStream := WriteStream on: (String new: 100).
 	self
@@ -1107,7 +1107,7 @@ BIEnlumineurFormatter >> formatMessageNodeInAMessageStreamFor: aMessageNode [
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurFormatter >> formatMethodBodyFor: aMethodNode [
+EFFormatter >> formatMethodBodyFor: aMethodNode [
 	self
 		indentAround:
 			[ 
@@ -1118,7 +1118,7 @@ BIEnlumineurFormatter >> formatMethodBodyFor: aMethodNode [
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurFormatter >> formatMethodCommentFor: aMethodNode [
+EFFormatter >> formatMethodCommentFor: aMethodNode [
 	originalSource isNil
 		ifTrue: [ ^ self ].
 	aMethodNode comments
@@ -1133,7 +1133,7 @@ BIEnlumineurFormatter >> formatMethodCommentFor: aMethodNode [
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurFormatter >> formatMethodPatternFor: aMethodNode [
+EFFormatter >> formatMethodPatternFor: aMethodNode [
 	aMethodNode arguments isEmpty
 		ifTrue: [ codeStream nextPutAll: aMethodNode selector ]
 		ifFalse: [ 
@@ -1143,12 +1143,12 @@ BIEnlumineurFormatter >> formatMethodPatternFor: aMethodNode [
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurFormatter >> formatPragmasFor: aMethodNode [
+EFFormatter >> formatPragmasFor: aMethodNode [
 	aMethodNode pragmas do: [ :each | self visitNode: each; newLine ]
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurFormatter >> formatSelectorAndArguments: aMessageNode [
+EFFormatter >> formatSelectorAndArguments: aMessageNode [
 	"We are formatting a message and here we are about to format the message selector and its arguments."
 	
 	| isMultilineMessage hasMutlineArguments multilineArgumentBeforeAnotherArgument |
@@ -1175,7 +1175,7 @@ BIEnlumineurFormatter >> formatSelectorAndArguments: aMessageNode [
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurFormatter >> formatSelectorAndArguments: aMessageNode firstSeparator: firstBlock restSeparator: restBlock [
+EFFormatter >> formatSelectorAndArguments: aMessageNode firstSeparator: firstBlock restSeparator: restBlock [
 	| separatorBlock i|
 	i := 0.
 	separatorBlock := firstBlock.
@@ -1204,7 +1204,7 @@ BIEnlumineurFormatter >> formatSelectorAndArguments: aMessageNode firstSeparator
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurFormatter >> formatSequenceNodeStatementsFor: aSequenceNode [
+EFFormatter >> formatSequenceNodeStatementsFor: aSequenceNode [
 	| statements |
 	statements := aSequenceNode statements.
 	statements isEmpty
@@ -1226,14 +1226,14 @@ BIEnlumineurFormatter >> formatSequenceNodeStatementsFor: aSequenceNode [
 ]
 
 { #category : #visiting }
-BIEnlumineurFormatter >> formatSingleArrayElement: aRBNode [ 
+EFFormatter >> formatSingleArrayElement: aRBNode [ 
 	"Imagine that you have {1 factorial}, you do not want an ending period. This method is only invoked on the last array element."
 	
 	self visitNode: aRBNode
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurFormatter >> formatStatementCommentsFor: aStatementNode [
+EFFormatter >> formatStatementCommentsFor: aStatementNode [
 	originalSource isNil
 		ifTrue: [ ^ self ].
 	self formatCommentCloseToStatements
@@ -1253,7 +1253,7 @@ BIEnlumineurFormatter >> formatStatementCommentsFor: aStatementNode [
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> formatTemporariesFor: aSequenceNode [
+EFFormatter >> formatTemporariesFor: aSequenceNode [
 	aSequenceNode temporaries isEmpty
 		ifTrue: [ ^ self ].
 	self
@@ -1272,7 +1272,7 @@ BIEnlumineurFormatter >> formatTemporariesFor: aSequenceNode [
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> formattedSourceFor: aNode withDictionary: aDictionary [
+EFFormatter >> formattedSourceFor: aNode withDictionary: aDictionary [
 	^ aDictionary at: aNode ifAbsentPut: [ 
 		  self class new
 			  indent: self indent;
@@ -1281,7 +1281,7 @@ BIEnlumineurFormatter >> formattedSourceFor: aNode withDictionary: aDictionary [
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> handleLineForArgument: anArgument [
+EFFormatter >> handleLineForArgument: anArgument [
 	| isLineTooLong |
 	isLineTooLong := self isLineTooLongWithNode: anArgument.
 	anArgument isBlock
@@ -1298,14 +1298,14 @@ BIEnlumineurFormatter >> handleLineForArgument: anArgument [
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> handleLineForSelector: selector withSeparatorBlock: aBlock [
+EFFormatter >> handleLineForSelector: selector withSeparatorBlock: aBlock [
 	(self isLineTooLongWithString: selector)
 		ifTrue: [ self newLine ]
 		ifFalse: [ aBlock value ]
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> hasAMultiLineMessageArgument: anArgumentsCollection [
+EFFormatter >> hasAMultiLineMessageArgument: anArgumentsCollection [
 	^ anArgumentsCollection
 		anySatisfy: [ :each | 
 			self isInCascadeNode
@@ -1317,45 +1317,45 @@ BIEnlumineurFormatter >> hasAMultiLineMessageArgument: anArgumentsCollection [
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> headOfBlockNotEmpty: aBlockNode [
+EFFormatter >> headOfBlockNotEmpty: aBlockNode [
 
 	^ aBlockNode arguments isNotEmpty	or: [aBlockNode comments isNotEmpty]
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> indent [
+EFFormatter >> indent [
 	^ indent
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> indent: anInteger [
+EFFormatter >> indent: anInteger [
 
 	indent := anInteger
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> indent: anInteger around: aBlock [ 
+EFFormatter >> indent: anInteger around: aBlock [ 
 	self indent: self indent + anInteger.
 	^aBlock ensure: [self indent: self indent - anInteger]
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> indentAround: aBlock [ 
+EFFormatter >> indentAround: aBlock [ 
 	self indent: 1 around: aBlock
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> indentExtraSpaces [
+EFFormatter >> indentExtraSpaces [
 	^ context indentExtraSpaces
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> indentExtraSpaces: anInteger [
+EFFormatter >> indentExtraSpaces: anInteger [
 	context indentExtraSpaces: anInteger 
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> indentExtraSpaces: anInteger around: aBlock [
+EFFormatter >> indentExtraSpaces: anInteger around: aBlock [
 	| previousIndentExtraSpacesSize |
 	previousIndentExtraSpacesSize := self indentExtraSpaces size.
 	self indentExtraSpaces: anInteger + previousIndentExtraSpacesSize.
@@ -1364,22 +1364,22 @@ BIEnlumineurFormatter >> indentExtraSpaces: anInteger around: aBlock [
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> indentString [
+EFFormatter >> indentString [
 	^ context indentString
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> indentStyle [
+EFFormatter >> indentStyle [
 	^ context indentStyle
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> indentStyle: aSymbole [
+EFFormatter >> indentStyle: aSymbole [
 	context indentStyle: aSymbole
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> indentTimesRepeat: anInteger [
+EFFormatter >> indentTimesRepeat: anInteger [
 	
 	anInteger timesRepeat: 
 			[ codeStream nextPutAll: self indentString ].
@@ -1387,17 +1387,17 @@ BIEnlumineurFormatter >> indentTimesRepeat: anInteger [
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> indentsForKeywords [
+EFFormatter >> indentsForKeywords [
 	^ context indentsForKeywords
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> indentsForKeywords: anInteger [
+EFFormatter >> indentsForKeywords: anInteger [
 	context indentsForKeywords: anInteger
 ]
 
 { #category : #initialization }
-BIEnlumineurFormatter >> initialize [
+EFFormatter >> initialize [
 	super initialize.
 	lineStart := 0.
 	self indent: 0.
@@ -1409,46 +1409,46 @@ BIEnlumineurFormatter >> initialize [
 ]
 
 { #category : #initialization }
-BIEnlumineurFormatter >> initializeCodeStream [
+EFFormatter >> initializeCodeStream [
 	^ WriteStream on: (String new: 256)
 ]
 
 { #category : #initialization }
-BIEnlumineurFormatter >> initializeLookAheadCode [
+EFFormatter >> initializeLookAheadCode [
 	^ IdentityDictionary new
 ]
 
 { #category : #'public interface' }
-BIEnlumineurFormatter >> installNewContext: aContext [
+EFFormatter >> installNewContext: aContext [
 
 	context := aContext.
 	lookaheadCode := self initializeLookAheadCode
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> isInCascadeNode [
+EFFormatter >> isInCascadeNode [
 	^ isInCascadeNode
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> isInCascadeNode: aBoolean [
+EFFormatter >> isInCascadeNode: aBoolean [
 	isInCascadeNode := aBoolean
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> isLineTooLongWithNode: aNode [
+EFFormatter >> isLineTooLongWithNode: aNode [
 	^ self isLineTooLongWithString: (self formattedSourceFor: aNode withDictionary: temporaryLookAheadCode ).
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> isLineTooLongWithString: aString [
+EFFormatter >> isLineTooLongWithString: aString [
 	^ self currentLineLength
 		+ (aString indexOf: Character cr ifAbsent: [ aString size ])
 		>= self maxLineLength
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> isMultiLineMessage: aMessageNode [
+EFFormatter >> isMultiLineMessage: aMessageNode [
 	(self multiLineMessages includes: aMessageNode selector)
 		ifTrue: [ ^ true ].
 	(self oneLineMessages includes: aMessageNode selector)
@@ -1461,12 +1461,12 @@ BIEnlumineurFormatter >> isMultiLineMessage: aMessageNode [
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> isNonEmptySingleLineBlock: aBlockNode [
+EFFormatter >> isNonEmptySingleLineBlock: aBlockNode [
 	^ ((self willBeMultiline: aBlockNode body saveIn: temporaryLookAheadCode ) or: [ aBlockNode body statements isEmpty ]) not
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> keepBlockInMessage [
+EFFormatter >> keepBlockInMessage [
 	"Return a boolean for 
 		1 to: 4 do: [ :i | 
 			
@@ -1479,22 +1479,22 @@ BIEnlumineurFormatter >> keepBlockInMessage [
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> keepBlockInMessage: aBoolean [
+EFFormatter >> keepBlockInMessage: aBoolean [
 	context keepBlockInMessage: aBoolean
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> lineStart [
+EFFormatter >> lineStart [
 	^ lineStart
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> lineStart: anObject [
+EFFormatter >> lineStart: anObject [
 	lineStart := anObject
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> lineUpBlockBrackets [
+EFFormatter >> lineUpBlockBrackets [
 	"Return whether a new line should be added before closing a multiline block.
 	1 to: 4 do: [ Transcript
 		show: i;
@@ -1505,22 +1505,22 @@ BIEnlumineurFormatter >> lineUpBlockBrackets [
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> lineUpBlockBrackets: aBoolean [
+EFFormatter >> lineUpBlockBrackets: aBoolean [
 	context lineUpBlockBrackets: aBoolean
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> maxLineLength [
+EFFormatter >> maxLineLength [
 	^ context maxLineLength
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> maxLineLength: anInteger [
+EFFormatter >> maxLineLength: anInteger [
 	context maxLineLength: anInteger
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> messageHasMultilineArgumentBeforeAnotherArgument: aMessageNode [ 
+EFFormatter >> messageHasMultilineArgumentBeforeAnotherArgument: aMessageNode [ 
 
 	aMessageNode arguments doWithIndex: [ :each :i |
 		(self willBeMultiline: each saveIn: temporaryLookAheadCode)
@@ -1529,37 +1529,37 @@ BIEnlumineurFormatter >> messageHasMultilineArgumentBeforeAnotherArgument: aMess
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> methodSignatureOnMultipleLines [
+EFFormatter >> methodSignatureOnMultipleLines [
 	^ context methodSignatureOnMultipleLines
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> methodSignatureOnMultipleLines: aBoolean [
+EFFormatter >> methodSignatureOnMultipleLines: aBoolean [
 	context methodSignatureOnMultipleLines: aBoolean
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> minimumNewLinesBetweenStatements [
+EFFormatter >> minimumNewLinesBetweenStatements [
 	^ context minimumNewLinesBetweenStatements
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> minimumNewLinesBetweenStatements: anInteger [
+EFFormatter >> minimumNewLinesBetweenStatements: anInteger [
 	context minimumNewLinesBetweenStatements: anInteger
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> multiLineMessages [
+EFFormatter >> multiLineMessages [
 	^ context multiLineMessages
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> multiLineMessages: anArray [
+EFFormatter >> multiLineMessages: anArray [
 	context multiLineMessages: anArray
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> needsMethodSignatureOnMultipleLinesFor: aMethodNode [
+EFFormatter >> needsMethodSignatureOnMultipleLinesFor: aMethodNode [
 	| cpt |
 	cpt := 0.
 	self methodSignatureOnMultipleLines
@@ -1576,7 +1576,7 @@ BIEnlumineurFormatter >> needsMethodSignatureOnMultipleLinesFor: aMethodNode [
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> needsParenthesisFor: aNode [
+EFFormatter >> needsParenthesisFor: aNode [
 	| parent grandparent |
 	aNode ifNil: [ ^ false ].
 	aNode isValue
@@ -1612,22 +1612,22 @@ BIEnlumineurFormatter >> needsParenthesisFor: aNode [
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> newLine [
+EFFormatter >> newLine [
 	self newLines: 1
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> newLineAfterCascade [
+EFFormatter >> newLineAfterCascade [
 	^ context newLineAfterCascade
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> newLineAfterCascade: aBoolean [
+EFFormatter >> newLineAfterCascade: aBoolean [
 	context newLineAfterCascade: aBoolean
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> newLineBefore [
+EFFormatter >> newLineBefore [
 	"predicate which return true if there where a newLine in the code stream just before the current position"
 
 	| currentIndentationString |
@@ -1639,27 +1639,27 @@ BIEnlumineurFormatter >> newLineBefore [
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> newLineBeforeFirstCascade [
+EFFormatter >> newLineBeforeFirstCascade [
 	^ context newLineBeforeFirstCascade
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> newLineBeforeFirstCascade: aBoolean [
+EFFormatter >> newLineBeforeFirstCascade: aBoolean [
 	context newLineBeforeFirstCascade: aBoolean
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> newLineBeforeFirstKeyword [
+EFFormatter >> newLineBeforeFirstKeyword [
 	^ context newLineBeforeFirstKeyword
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> newLineBeforeFirstKeyword: aBoolean [
+EFFormatter >> newLineBeforeFirstKeyword: aBoolean [
 	context newLineBeforeFirstKeyword: aBoolean
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> newLines: anInteger [
+EFFormatter >> newLines: anInteger [
 	anInteger + self indentString size = 0
 		ifTrue: 
 			[ codeStream space ].
@@ -1672,7 +1672,7 @@ BIEnlumineurFormatter >> newLines: anInteger [
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> newLinesBeforeStartingAt: anIndex [
+EFFormatter >> newLinesBeforeStartingAt: anIndex [
 	| count cr lf index char |
 	originalSource ifNil: [ ^ 0 ].
 	(anIndex isNil or: [ anIndex > originalSource size ])
@@ -1695,143 +1695,143 @@ BIEnlumineurFormatter >> newLinesBeforeStartingAt: anIndex [
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> numberOfArgumentsForMultiLine [
+EFFormatter >> numberOfArgumentsForMultiLine [
 	^ context numberOfArgumentsForMultiLine
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> numberOfArgumentsForMultiLine: anInteger [
+EFFormatter >> numberOfArgumentsForMultiLine: anInteger [
 	context numberOfArgumentsForMultiLine: anInteger
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> numberOfNewLinesAfterMethodComment [
+EFFormatter >> numberOfNewLinesAfterMethodComment [
 	^ context numberOfNewLinesAfterMethodComment
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> numberOfNewLinesAfterMethodComment: anInteger [
+EFFormatter >> numberOfNewLinesAfterMethodComment: anInteger [
 	context numberOfNewLinesAfterMethodComment: anInteger
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> numberOfNewLinesAfterMethodSignature [
+EFFormatter >> numberOfNewLinesAfterMethodSignature [
 	^ context numberOfNewLinesAfterMethodSignature
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> numberOfNewLinesAfterMethodSignature: anInteger [
+EFFormatter >> numberOfNewLinesAfterMethodSignature: anInteger [
 	context numberOfNewLinesAfterMethodSignature: anInteger
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> numberOfNewLinesAfterTemporaries [
+EFFormatter >> numberOfNewLinesAfterTemporaries [
 	^ context numberOfNewLinesAfterTemporaries
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> numberOfNewLinesAfterTemporaries: anInteger [
+EFFormatter >> numberOfNewLinesAfterTemporaries: anInteger [
 	context numberOfNewLinesAfterTemporaries: anInteger
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> numberOfSpacesAfterCaretSymbolInReturn [
+EFFormatter >> numberOfSpacesAfterCaretSymbolInReturn [
 	^ context numberOfSpacesAfterCaretSymbolInReturn
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> numberOfSpacesAfterCaretSymbolInReturn: anInteger [
+EFFormatter >> numberOfSpacesAfterCaretSymbolInReturn: anInteger [
 	context numberOfSpacesAfterCaretSymbolInReturn: anInteger
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> numberOfSpacesInIndent [
+EFFormatter >> numberOfSpacesInIndent [
 	^ context numberOfSpacesInIndent
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> numberOfSpacesInIndent: anInteger [
+EFFormatter >> numberOfSpacesInIndent: anInteger [
 	context numberOfSpacesInIndent: anInteger
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> numberOfSpacesInsideArray [
+EFFormatter >> numberOfSpacesInsideArray [
 	^ context numberOfSpacesInsideArray
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> numberOfSpacesInsideArray: anInteger [
+EFFormatter >> numberOfSpacesInsideArray: anInteger [
 	context numberOfSpacesInsideArray: anInteger
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> numberOfSpacesInsideBlock [
+EFFormatter >> numberOfSpacesInsideBlock [
 	^ context numberOfSpacesInsideBlock
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> numberOfSpacesInsideBlock: anInteger [
+EFFormatter >> numberOfSpacesInsideBlock: anInteger [
 	context numberOfSpacesInsideBlock: anInteger
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> numberOfSpacesInsideParentheses [
+EFFormatter >> numberOfSpacesInsideParentheses [
 	^ context numberOfSpacesInsideParentheses
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> numberOfSpacesInsideParentheses: anInteger [
+EFFormatter >> numberOfSpacesInsideParentheses: anInteger [
 	context numberOfSpacesInsideParentheses: anInteger
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> oneLineMessages [
+EFFormatter >> oneLineMessages [
 	^ context oneLineMessages
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> oneLineMessages: anArray [
+EFFormatter >> oneLineMessages: anArray [
 	context oneLineMessages: anArray
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> periodAtEndOfBlock: aBoolean [
+EFFormatter >> periodAtEndOfBlock: aBoolean [
 	context periodAtEndOfBlock: aBoolean
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> periodAtEndOfMethod: aBoolean [
+EFFormatter >> periodAtEndOfMethod: aBoolean [
 	context periodAtEndOfMethod: aBoolean
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> periodsAsTerminators [
+EFFormatter >> periodsAsTerminators [
 	^ context periodsAtEndOfBlock and: [ context periodsAtEndOfMethod ]
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> periodsAsTerminators: aBoolean [
+EFFormatter >> periodsAsTerminators: aBoolean [
 	context periodAtEndOfBlock: aBoolean.
 	context periodAtEndOfMethod: aBoolean
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> periodsAtEndOfBlock [
+EFFormatter >> periodsAtEndOfBlock [
 	^ context periodsAtEndOfBlock
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> periodsAtEndOfMethod [
+EFFormatter >> periodsAtEndOfMethod [
 	^ context periodsAtEndOfMethod
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> pragmaArgumentNeedsSeparator: anArgumentNode [
+EFFormatter >> pragmaArgumentNeedsSeparator: anArgumentNode [
 	^ anArgumentNode value isSymbol and: [ anArgumentNode value isBinary ]
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> privateFormatMethodPatternMonoLineFor: aMethodNode [
+EFFormatter >> privateFormatMethodPatternMonoLineFor: aMethodNode [
 	self
 		with: aMethodNode selectorParts
 		and: aMethodNode arguments
@@ -1843,7 +1843,7 @@ BIEnlumineurFormatter >> privateFormatMethodPatternMonoLineFor: aMethodNode [
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> privateFormatMethodPatternMultiLineFor: aMethodNode [
+EFFormatter >> privateFormatMethodPatternMultiLineFor: aMethodNode [
 	| selectors arguments |
 	arguments := aMethodNode arguments.
 	selectors := aMethodNode selectorParts.
@@ -1864,7 +1864,7 @@ BIEnlumineurFormatter >> privateFormatMethodPatternMultiLineFor: aMethodNode [
 ]
 
 { #category : #utilities }
-BIEnlumineurFormatter >> resizeComment: aComment withFirstLineShorterOf: anIndex [
+EFFormatter >> resizeComment: aComment withFirstLineShorterOf: anIndex [
 	| cutComment firstLine currentCharPos |
 	currentCharPos := 1.
 	firstLine := (aComment contents
@@ -1880,7 +1880,7 @@ BIEnlumineurFormatter >> resizeComment: aComment withFirstLineShorterOf: anIndex
 ]
 
 { #category : #utilities }
-BIEnlumineurFormatter >> resizeCommentFor: aComment startingAt: anIndex [
+EFFormatter >> resizeCommentFor: aComment startingAt: anIndex [
 	codeStream nextPut: $".
 	"Hack to keep the right comment in pop up like cmd n, cmd m..."
 	self maxLineLength < 50
@@ -1897,7 +1897,7 @@ BIEnlumineurFormatter >> resizeCommentFor: aComment startingAt: anIndex [
 ]
 
 { #category : #utilities }
-BIEnlumineurFormatter >> resizeStringDependingOnWindowSizeFor: aComment [
+EFFormatter >> resizeStringDependingOnWindowSizeFor: aComment [
 	| resizedComment |
 	resizedComment := aComment contents withNoLineLongerThan: self maxLineLength.
 	resizedComment do: [ :each | 
@@ -1907,94 +1907,94 @@ BIEnlumineurFormatter >> resizeStringDependingOnWindowSizeFor: aComment [
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> retainBlankLinesBeforeComments [
+EFFormatter >> retainBlankLinesBeforeComments [
 	^ context retainBlankLinesBeforeComments
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> retainBlankLinesBeforeComments: aBoolean [
+EFFormatter >> retainBlankLinesBeforeComments: aBoolean [
 	context retainBlankLinesBeforeComments: aBoolean
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> retainBlankLinesBetweenStatements [
+EFFormatter >> retainBlankLinesBetweenStatements [
 	^ context retainBlankLinesBetweenStatements
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> retainBlankLinesBetweenStatements: aBoolean [
+EFFormatter >> retainBlankLinesBetweenStatements: aBoolean [
 	context retainBlankLinesBetweenStatements: aBoolean
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> selectorAndArgumentCombinedMaxSize [
+EFFormatter >> selectorAndArgumentCombinedMaxSize [
 	^ context selectorAndArgumentCombinedMaxSize
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> selectorAndArgumentCombinedMaxSize: anInteger [
+EFFormatter >> selectorAndArgumentCombinedMaxSize: anInteger [
 	context selectorAndArgumentCombinedMaxSize: anInteger
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurFormatter >> shouldPassNewLineAfterHeadOfBlock: aBlockNode [
+EFFormatter >> shouldPassNewLineAfterHeadOfBlock: aBlockNode [
 	^ (self headOfBlockNotEmpty: aBlockNode)
 		or: [ self keepBlockInMessage ]
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> space [
+EFFormatter >> space [
 	codeStream space
 ]
 
 { #category : #'private-formatting' }
-BIEnlumineurFormatter >> spaceAndFormatComments: aNode [
+EFFormatter >> spaceAndFormatComments: aNode [
 	aNode comments ifNotEmpty: [ self space ].
 	self formatCommentsFor: aNode
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> spacesAfterCaretSymbolInReturn [
+EFFormatter >> spacesAfterCaretSymbolInReturn [
 	^ context spacesAfterCaretSymbolInReturn
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> spacesBeforeDotInDynamicArray [ 
+EFFormatter >> spacesBeforeDotInDynamicArray [ 
 	^ context spacesBeforeDotInDynamicArray
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> spacesInsideArray [
+EFFormatter >> spacesInsideArray [
 	^ context spacesInsideArray
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> spacesInsideBlocks [
+EFFormatter >> spacesInsideBlocks [
 	^ context spacesInsideBlocks
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> spacesInsideParentheses [
+EFFormatter >> spacesInsideParentheses [
 	^ context spacesInsideParentheses
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> useBasicCommentFormat [ 
+EFFormatter >> useBasicCommentFormat [ 
 	^ context useBasicCommentFormat 
 ]
 
 { #category : #accessing }
-BIEnlumineurFormatter >> useBasicCommentFormat: aBoolean [
+EFFormatter >> useBasicCommentFormat: aBoolean [
 	context useBasicCommentFormat: aBoolean
 ]
 
 { #category : #visiting }
-BIEnlumineurFormatter >> visitArrayNode: anArrayNode [
+EFFormatter >> visitArrayNode: anArrayNode [
 	self bracketWith: '{}' around: [ self formatArray: anArrayNode ]
 ]
 
 { #category : #visiting }
-BIEnlumineurFormatter >> visitAssignmentNode: anAssignmentNode [
+EFFormatter >> visitAssignmentNode: anAssignmentNode [
 	self visitNode: anAssignmentNode variable.
 	codeStream space; nextPutAll: anAssignmentNode assignmentOperator; space.
 	self
@@ -2003,7 +2003,7 @@ BIEnlumineurFormatter >> visitAssignmentNode: anAssignmentNode [
 ]
 
 { #category : #visiting }
-BIEnlumineurFormatter >> visitBlockNode: aBlockNode [
+EFFormatter >> visitBlockNode: aBlockNode [
 	self
 		bracketWith: '[]'
 		around: [ self formatBlock: aBlockNode ].
@@ -2011,7 +2011,7 @@ BIEnlumineurFormatter >> visitBlockNode: aBlockNode [
 ]
 
 { #category : #visiting }
-BIEnlumineurFormatter >> visitCascadeNode: aCascadeNode [
+EFFormatter >> visitCascadeNode: aCascadeNode [
 	self isInCascadeNode: true.
 	self visitNode: aCascadeNode receiver.
 	self
@@ -2038,7 +2038,7 @@ BIEnlumineurFormatter >> visitCascadeNode: aCascadeNode [
 ]
 
 { #category : #visiting }
-BIEnlumineurFormatter >> visitLiteralArrayNode: aRBArrayLiteralNode [
+EFFormatter >> visitLiteralArrayNode: aRBArrayLiteralNode [
 	| brackets current |
 	codeStream nextPut: $#.
 	brackets := aRBArrayLiteralNode isForByteArray
@@ -2060,14 +2060,14 @@ BIEnlumineurFormatter >> visitLiteralArrayNode: aRBArrayLiteralNode [
 ]
 
 { #category : #visiting }
-BIEnlumineurFormatter >> visitLiteralNode: aLiteralNode [
+EFFormatter >> visitLiteralNode: aLiteralNode [
 	aLiteralNode value isLiteral
 		ifFalse: [ self writeString: '''<an unprintable nonliteral value>''' ]
 		ifTrue: [ self writeString: aLiteralNode sourceText ]
 ]
 
 { #category : #visiting }
-BIEnlumineurFormatter >> visitLiteralVariableNode: aLiteralVariableNode [
+EFFormatter >> visitLiteralVariableNode: aLiteralVariableNode [
 	| binding |
 	binding := aLiteralVariableNode binding.
 	self writeString: binding key storeString, ' -> '.
@@ -2077,19 +2077,19 @@ BIEnlumineurFormatter >> visitLiteralVariableNode: aLiteralVariableNode [
 ]
 
 { #category : #visiting }
-BIEnlumineurFormatter >> visitMessageNode: aMessageNode [
+EFFormatter >> visitMessageNode: aMessageNode [
 	self visitNode: aMessageNode receiver.
 	self formatSelectorAndArguments: aMessageNode
 ]
 
 { #category : #visiting }
-BIEnlumineurFormatter >> visitMethodNode: aMethodNode [ 
+EFFormatter >> visitMethodNode: aMethodNode [ 
 	self formatMethodPatternFor: aMethodNode.
 	self formatMethodBodyFor: aMethodNode
 ]
 
 { #category : #visiting }
-BIEnlumineurFormatter >> visitNode: aNode [
+EFFormatter >> visitNode: aNode [
 	| needsParenthesis |
 	(lookaheadCode includesKey: aNode)
 		ifTrue: [ ^ self writeString: (lookaheadCode at: aNode) ].
@@ -2111,12 +2111,12 @@ BIEnlumineurFormatter >> visitNode: aNode [
 ]
 
 { #category : #visiting }
-BIEnlumineurFormatter >> visitParseErrorNode: aNode [
+EFFormatter >> visitParseErrorNode: aNode [
 	self writeString: aNode value
 ]
 
 { #category : #visiting }
-BIEnlumineurFormatter >> visitPatternBlockNode: aRBPatternBlockNode [ 
+EFFormatter >> visitPatternBlockNode: aRBPatternBlockNode [ 
 	codeStream nextPut: $`.
 	self 
 		bracketWith: '{}' 
@@ -2124,7 +2124,7 @@ BIEnlumineurFormatter >> visitPatternBlockNode: aRBPatternBlockNode [
 ]
 
 { #category : #visiting }
-BIEnlumineurFormatter >> visitPatternWrapperBlockNode: aRBPatternWrapperBlockNode [
+EFFormatter >> visitPatternWrapperBlockNode: aRBPatternWrapperBlockNode [
 	self visitNode: aRBPatternWrapperBlockNode wrappedNode.
 	codeStream nextPut: $`.
 	self 
@@ -2133,7 +2133,7 @@ BIEnlumineurFormatter >> visitPatternWrapperBlockNode: aRBPatternWrapperBlockNod
 ]
 
 { #category : #visiting }
-BIEnlumineurFormatter >> visitPragmaNode: aPragmaNode [
+EFFormatter >> visitPragmaNode: aPragmaNode [
 	codeStream nextPut: $<.
 	self 
 		formatSelectorAndArguments: aPragmaNode 
@@ -2146,7 +2146,7 @@ BIEnlumineurFormatter >> visitPragmaNode: aPragmaNode [
 ]
 
 { #category : #visiting }
-BIEnlumineurFormatter >> visitReturnNode: aReturnNode [
+EFFormatter >> visitReturnNode: aReturnNode [
 	codeStream
 		nextPut: $^;
 		nextPutAll: self spacesAfterCaretSymbolInReturn.
@@ -2156,7 +2156,7 @@ BIEnlumineurFormatter >> visitReturnNode: aReturnNode [
 ]
 
 { #category : #visiting }
-BIEnlumineurFormatter >> visitSequenceNode: aSequenceNode [
+EFFormatter >> visitSequenceNode: aSequenceNode [
 	self formatTemporariesFor: aSequenceNode.
 	aSequenceNode comments
 		ifNotEmpty: [ self formatCommentsFor: aSequenceNode;
@@ -2165,22 +2165,22 @@ BIEnlumineurFormatter >> visitSequenceNode: aSequenceNode [
 ]
 
 { #category : #visiting }
-BIEnlumineurFormatter >> visitVariableNode: aVariableNode [ 
+EFFormatter >> visitVariableNode: aVariableNode [ 
 	codeStream nextPutAll: aVariableNode name
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> willBeMultiline: aNode [ 
+EFFormatter >> willBeMultiline: aNode [ 
 	^(self formattedSourceFor: aNode withDictionary: lookaheadCode) includes: Character cr
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> willBeMultiline: aNode saveIn: aDictionary [
+EFFormatter >> willBeMultiline: aNode saveIn: aDictionary [
 	^(self formattedSourceFor: aNode withDictionary: aDictionary) includes: Character cr
 ]
 
 { #category : #utilities }
-BIEnlumineurFormatter >> with: firstCollection and: secondCollection do: aBlock separatedBy: separatorBlock [
+EFFormatter >> with: firstCollection and: secondCollection do: aBlock separatedBy: separatorBlock [
 	firstCollection isEmpty
 		ifTrue: [ ^ self ].
 	aBlock value: firstCollection first value: secondCollection first.
@@ -2190,7 +2190,7 @@ BIEnlumineurFormatter >> with: firstCollection and: secondCollection do: aBlock 
 ]
 
 { #category : #private }
-BIEnlumineurFormatter >> writeString: aString [
+EFFormatter >> writeString: aString [
 	| index |
 	index := aString lastIndexOf: Character cr ifAbsent: [ 0 ].
 	 codeStream nextPutAll: aString .
