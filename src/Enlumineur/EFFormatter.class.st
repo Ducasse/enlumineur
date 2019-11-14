@@ -687,7 +687,7 @@ EFFormatter class >> settingsOn: aBuilder [
 	
 	(aBuilder group: self settingGroup)
 		target: self;
-		parent: #codeBrowsing;
+		parent: #codeFormatters;
 		label: 'Enlumineur Pretty Printer';
 		description: 'Settings related to automatic code formatting';
 		with: [ self settingsMaxLineLength: aBuilder.
