@@ -717,9 +717,7 @@ BIEnlumineurFormatter class >> settingsOn: aBuilder [
 			self settingsSpacesInsideBlocks: aBuilder.
 			self settingsSpacesInsideParentheses: aBuilder.
 			self settingsSpacesInsideArray: aBuilder.
-			self settingsTraditionalBinaryPrecedenceArray: aBuilder.
-			self settingsUseBasicCommentFormat: aBuilder.
-			self settingsUseTraditionalBinaryPrecedenceForParentheses: aBuilder ]
+			self settingsUseBasicCommentFormat: aBuilder]
 ]
 
 { #category : #settings }
