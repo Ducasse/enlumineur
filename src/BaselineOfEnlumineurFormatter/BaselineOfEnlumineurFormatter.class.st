@@ -1,5 +1,5 @@
 Class {
-	#name : #BaselineOfEnlumineur,
+	#name : #BaselineOfEnlumineurFormatter,
 	#superclass : #BaselineOf,
 	#category : #BaselineOfEnlumineurFormatter
 }
