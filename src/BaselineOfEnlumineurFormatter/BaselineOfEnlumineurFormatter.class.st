@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #baselines }
-BaselineOfEnlumineur >> baseline: spec [
+BaselineOfEnlumineurFormatter >> baseline: spec [
 	<baseline>
 
 	spec for: #pharo do: [
