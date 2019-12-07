@@ -1,17 +1,10 @@
 language: smalltalk
 sudo: false
 
-# Select operating system(s)
 os:
   - linux
   - osx
 
-# Select compatible Smalltalk image(s)
 smalltalk:
   - Pharo64-8.0
   - Pharo64-7.0
-
-# Uncomment to enable caching (only useful for GemStone builds (3x faster))
-#cache:
-#  directories:
-#    - $SMALLTALK_CI_CACHE
