@@ -1,7 +1,7 @@
 SmalltalkCISpec {
   #loading : [
     SCIMetacelloLoadSpec {
-      #baseline : 'Enlumineur',
+      #baseline : 'EnlumineurFormatter',
       #directory : 'src',
       #platforms : [ #pharo ]
     }
