@@ -15,9 +15,14 @@ BaselineOfEnlumineurFormatter >> baseline: spec [
 	<baseline>
 
 	spec for: #pharo do: [
+		spec
+			baseline: 'ParametrizedTests'
+			with: [
+					spec
+						repository: 'github://tesonep/parametrizedTests/src' ].
 		spec 
 			package: 'EnlumineurFormatter';
-			package: 'EnlumineurFormatter-Tests' with: [ spec requires: #('EnlumineurFormatter') ];
+			package: 'EnlumineurFormatter-Tests' with: [ spec requires: #('EnlumineurFormatter' 'ParametrizedTests') ];
 			package: 'EnlumineurFormatterUI' with: [ spec requires: #('EnlumineurFormatter') ];
 			package: 'EnlumineurFormatterUI-Tests' with: [ spec requires: #('EnlumineurFormatterUI') ]. 
 		
