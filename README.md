@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/Ducasse/enlumineur/master/LICENSE)
 [![Pharo version](https://img.shields.io/badge/Pharo-8.0-%23aac9ff.svg)](https://pharo.org/download)
 
-Enlumineur is a pretty printer for Pharo.
+Enlumineur is a pretty printer for Pharo. Pay attention the newest version in held in Pharo.
 
 ## Installation
 
