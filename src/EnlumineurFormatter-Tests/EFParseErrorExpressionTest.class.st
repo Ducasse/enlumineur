@@ -17,10 +17,8 @@ EFParseErrorExpressionTest >> basicConfiguration [
 
 { #category : #tests }
 EFParseErrorExpressionTest >> testParseError [
-	
+
 	| expr source |
-	self skip. "works differently in P7 :("
-	self flag: #toFix. "when migrating to P8"
 	expr := RBParser parseFaultyExpression: '#(1 3 4'.
 	configurationSelector := #basicConfiguration.
 	source := self formatter format: expr.
