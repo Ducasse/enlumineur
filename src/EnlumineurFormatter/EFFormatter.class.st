@@ -1813,17 +1813,6 @@ EFFormatter >> periodAtEndOfMethod: aBoolean [
 ]
 
 { #category : #accessing }
-EFFormatter >> periodsAsTerminators [
-	^ context periodsAtEndOfBlock and: [ context periodsAtEndOfMethod ]
-]
-
-{ #category : #accessing }
-EFFormatter >> periodsAsTerminators: aBoolean [
-	context periodAtEndOfBlock: aBoolean.
-	context periodAtEndOfMethod: aBoolean
-]
-
-{ #category : #accessing }
 EFFormatter >> periodsAtEndOfBlock [
 	^ context periodsAtEndOfBlock
 ]
