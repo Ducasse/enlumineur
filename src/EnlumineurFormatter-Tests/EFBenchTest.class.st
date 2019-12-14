@@ -1,6 +1,6 @@
 Class {
 	#name : #EFBenchTest,
-	#superclass : #ParametrizedTestCase,
+	#superclass : #TestCase,
 	#category : #'EnlumineurFormatter-Tests'
 }
 

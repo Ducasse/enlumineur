@@ -1,6 +1,6 @@
 "
 Enlumineur is a replacement of BlueInk pretty printer.
-It was developed by Hugo Lasnier during 6 months internship within RMOD and supervised by S. Ducasse and G. Polito during 2019..
+It was developed by Hugo Lasnier during 6 months internship within RMOD and supervised by S. Ducasse and G. Polito during 2019.
 
 Enlumineur enhancements are:
 
@@ -17,6 +17,16 @@ Enlumineur enhancements are:
 
 Now Enlumineur should be improved to be able to reformat the full code of Pharo.
 The tests are a first step to make sure that we understand what is impacted by a change.
+
+- Remarks
+   - willBeMultiline: are two costly because they reformat the code to see if it fits. 
+	We should have another heuristics
+	- format: methods are not sharing the stream (probably because when a sub formatter is formatting a subexpression, you do not want to pollute the main stream )
+	- temporaryLookahead is super strange it is unclear when it is used.
+	- I wonder is currentLineLength is correct because we have the lineStart but what if we have 10 tab. 10 tabs are not 10 character but 10 times the tab size. 
+
+
+
 "
 Class {
 	#name : #EFFormatter,
@@ -946,7 +956,7 @@ EFFormatter >> bracketWith: bracketString around: aBlock indentExtraSpaces: anIn
 	bracketString isEmpty
 		ifTrue: [ ^ aBlock value ].
 	codeStream nextPut: bracketString first.
-	^ [self indentExtraSpaces: anInteger  around:  aBlock]
+	^ [ self indentExtraSpaces: anInteger  around: aBlock ]
 		ensure: [ codeStream nextPut: bracketString last ] 
 ]
 
@@ -1055,7 +1065,7 @@ EFFormatter >> formatBlockArgumentsFor: aBlockNode [
 		ifTrue: [ ^ self ].
 	aBlockNode arguments
 		do: [ :each | 
-			(self isLineTooLongWithNode: each )ifTrue: [self newLine ].
+			(self isLineTooLongWithNode: each) ifTrue: [self newLine ].
 			codeStream nextPut: $:.
 			self visitNode: each.
 			self formatCommentCloseToStatements
@@ -1067,14 +1077,9 @@ EFFormatter >> formatBlockArgumentsFor: aBlockNode [
 
 { #category : #'private-formatting' }
 EFFormatter >> formatBlockCommentFor: aBlockNode [
-	originalSource isNil
-		ifTrue: [  ^ self ].
-	aBlockNode comments
-		do: [ :each | 
-			
-			self basicFormatCommentFor: each.
-			(self isNonEmptySingleLineBlock: aBlockNode)
-				ifTrue: [  self space ]]
+  originalSource ifNil: [ ^ self ].
+  aBlockNode comments do: [:each |  self basicFormatCommentFor: each.
+        (self isNonEmptySingleLineBlock: aBlockNode) ifTrue: [ self space ] ]
 ]
 
 { #category : #accessing }
@@ -1089,13 +1094,8 @@ EFFormatter >> formatCommentCloseToStatements: aBoolean [
 
 { #category : #'private-formatting' }
 EFFormatter >> formatCommentsFor: aNode [
-	originalSource isNil
-		ifTrue: [ ^ self ].
-	aNode comments
-		do:
-			[ :each | 
-			self basicFormatCommentFor: each.
-			]
+  originalSource ifNil: [ ^ self ].
+  aNode comments do: [:each |  self basicFormatCommentFor: each ]
 ]
 
 { #category : #private }
@@ -1127,17 +1127,13 @@ EFFormatter >> formatMethodBodyFor: aMethodNode [
 
 { #category : #'private-formatting' }
 EFFormatter >> formatMethodCommentFor: aMethodNode [
-	originalSource isNil
-		ifTrue: [ ^ self ].
-	aMethodNode comments
-		do:
-			[ :each | 
-			
-			self useBasicCommentFormat 
-			ifTrue: [ self basicFormatCommentFor: each ]
-			ifFalse: [ 
-			self resizeCommentFor: each startingAt: 0].
-			self newLines: self numberOfNewLinesAfterMethodComment ]
+  originalSource ifNil: [ ^ self ].
+  aMethodNode comments 
+		do: [:each |  
+				self useBasicCommentFormat 
+					ifTrue: [ self basicFormatCommentFor: each ] 
+					ifFalse: [ self resizeCommentFor: each startingAt: 0 ].
+        		self newLines: self numberOfNewLinesAfterMethodComment ]
 ]
 
 { #category : #'private-formatting' }
@@ -1242,8 +1238,7 @@ EFFormatter >> formatSingleArrayElement: aRBNode [
 
 { #category : #'private-formatting' }
 EFFormatter >> formatStatementCommentsFor: aStatementNode [
-	originalSource isNil
-		ifTrue: [ ^ self ].
+	originalSource ifNil: [ ^ self ].
 	self formatCommentCloseToStatements
 		ifFalse: [ ^ self ].
 	aStatementNode statementComments
@@ -1406,15 +1401,14 @@ EFFormatter >> indentsForKeywords: anInteger [
 
 { #category : #initialization }
 EFFormatter >> initialize [
-  super initialize.
-  lineStart := 0.
-  self indent: 0.
-  self isInCascadeNode: false.
-  lookaheadCode := temporaryLookAheadCode := self initializeLookAheadCode.
-  
-  "self initializeLookAheadCode."
+	super initialize.
+	lineStart := 0.
+	self indent: 0.
+	self isInCascadeNode: false.
+	lookaheadCode := temporaryLookAheadCode := self initializeLookAheadCode.
+	"self initializeLookAheadCode."
 	self initializeCodeStream.
-  context := DefaultPrettyPrintContext
+	context := DefaultPrettyPrintContext
 ]
 
 { #category : #initialization }
@@ -1447,13 +1441,14 @@ EFFormatter >> isInCascadeNode: aBoolean [
 
 { #category : #private }
 EFFormatter >> isLineTooLongWithNode: aNode [
-	^ self isLineTooLongWithString: (self formattedSourceFor: aNode withDictionary: temporaryLookAheadCode ).
+	^ self isLineTooLongWithString: (self formattedSourceFor: aNode withDictionary: temporaryLookAheadCode)
 ]
 
 { #category : #private }
 EFFormatter >> isLineTooLongWithString: aString [
-	^ self currentLineLength
-		+ (aString indexOf: Character cr ifAbsent: [ aString size ])
+	"Is the length of the current line + the length of the first fragment of code until a new line is >= the max line length"
+	
+	^ self currentLineLength + (aString indexOf: Character cr ifAbsent: [ aString size ])
 		>= self maxLineLength
 ]
 
@@ -1670,15 +1665,13 @@ EFFormatter >> newLineBeforeFirstKeyword: aBoolean [
 
 { #category : #private }
 EFFormatter >> newLines: anInteger [
+	"Add a number of new lines and in addition store the position of the latest new lines in the stream so that latter we can compute the current line length."
+	
 	anInteger + self indentString size = 0
-		ifTrue: 
-			[ codeStream space ].
-	anInteger
-		timesRepeat: 
-			[ codeStream cr ].
+		ifTrue: [ codeStream space ].
+	anInteger timesRepeat: [ codeStream cr ].
 	lineStart := codeStream position.
-	self
-		indentTimesRepeat: self indent
+	self indentTimesRepeat: self indent
 ]
 
 { #category : #private }
@@ -2190,9 +2183,10 @@ EFFormatter >> with: firstCollection and: secondCollection do: aBlock separatedB
 
 { #category : #private }
 EFFormatter >> writeString: aString [
+	"Write the argument in the code stream and in addition maintent the line start position so that we can later compute the current line length."
 	| index |
 	index := aString lastIndexOf: Character cr ifAbsent: [ 0 ].
-	 codeStream nextPutAll: aString .
+	codeStream nextPutAll: aString.
 	index > 0
 		ifTrue: [ lineStart := codeStream position - (aString size - index) ]
 ]
