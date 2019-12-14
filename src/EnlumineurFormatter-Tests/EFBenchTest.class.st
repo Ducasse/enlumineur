@@ -22,8 +22,8 @@ EFBenchTest >> longNestedMethod [
 
 { #category : #resources }
 EFBenchTest >> longNestedMethodShort [
- | b3 |
-self value: [:b4 |  b3 value: [:b5 |  b4 value: [:b6 |  b5 value: [:b7 |  b6 value: [:b8 |  b7 value: [:b9 |  b8 value: [:b10 |  b9 value: 2 ] ] ] ] ] ] ] 
+  | b0 |
+  self value: [:b1 |  b0 value: [:b2 |  b1 value: [:b3 |  b2 value: [:b4 |  b3 value: [:b5 |  b4 value: [:b6 |  b5 value: [:b7 |  b7 value: 2 ] ] ] ] ] ] ]
 ]
 
 { #category : #tests }

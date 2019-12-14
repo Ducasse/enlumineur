@@ -983,10 +983,10 @@ EFFormatter >> firstSeparatorShouldNotPassLine: aMessageNode [
 
 { #category : #'public interface' }
 EFFormatter >> format: aParseTree [
-	codeStream := self initializeCodeStream.
-	originalSource := aParseTree source.
-	self visitNode: aParseTree.
-	^ codeStream contents
+  self initializeCodeStream.
+  originalSource := aParseTree source.
+  self visitNode: aParseTree.
+  ^codeStream contents
 ]
 
 { #category : #'private-formatting' }
@@ -1406,19 +1406,21 @@ EFFormatter >> indentsForKeywords: anInteger [
 
 { #category : #initialization }
 EFFormatter >> initialize [
-	super initialize.
-	lineStart := 0.
-	self indent: 0.
-	self isInCascadeNode: false.
-	lookaheadCode := self initializeLookAheadCode.
-	temporaryLookAheadCode := self initializeLookAheadCode.
-	codeStream := self initializeCodeStream.
-	context := DefaultPrettyPrintContext
+  super initialize.
+  lineStart := 0.
+  self indent: 0.
+  self isInCascadeNode: false.
+  lookaheadCode := temporaryLookAheadCode := self initializeLookAheadCode.
+  
+  "self initializeLookAheadCode."
+	self initializeCodeStream.
+  context := DefaultPrettyPrintContext
 ]
 
 { #category : #initialization }
 EFFormatter >> initializeCodeStream [
-	^ WriteStream on: (String new: 256)
+
+  codeStream := WriteStream on: (String new: 256)
 ]
 
 { #category : #initialization }
