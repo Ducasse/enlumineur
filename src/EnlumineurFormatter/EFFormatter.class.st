@@ -340,7 +340,7 @@ EFFormatter class >> numberOfSpacesInsideParentheses: anInteger [
 
 { #category : #accessing }
 EFFormatter class >> oneLineMessages [
-	^ DefaultPrettyPrintContext oneLineMessages printString
+	^ DefaultPrettyPrintContext oneLineMessages
 ]
 
 { #category : #accessing }
