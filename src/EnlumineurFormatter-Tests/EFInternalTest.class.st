@@ -16,6 +16,16 @@ EFInternalTest >> testCurrentLineLength [
 ]
 
 { #category : #tests }
+EFInternalTest >> testCurrentLineLengthWithStringContainingCR [
+	
+	| formatter |
+	formatter := EFFormatter new.
+	formatter writeString: 'abdef', Character cr asString, 'ef'.
+	self assert: formatter currentLineLength equals: 'ef' size.
+
+]
+
+{ #category : #tests }
 EFInternalTest >> testLineStartIsCorrectAfterIndent [
 	
 	| formatter |
@@ -56,4 +66,14 @@ EFInternalTest >> testLineStartIsOkAfterWriteString [
 	self assert: formatter lineStart equals: 0.
 	formatter writeString: 'abdef'.
 	self assert: formatter lineStart equals: 0.
+]
+
+{ #category : #tests }
+EFInternalTest >> testLineStartStringContainingCR [
+	
+	| formatter |
+	formatter := EFFormatter new.
+	formatter writeString: 'abdef', Character cr asString, 'ef'.
+	self assert: formatter lineStart equals: 'abdef' size + 1.
+
 ]
