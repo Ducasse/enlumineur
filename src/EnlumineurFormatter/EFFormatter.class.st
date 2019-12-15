@@ -23,6 +23,8 @@ The tests are a first step to make sure that we understand what is impacted by a
 	We should have another heuristics
 	- format: methods are not sharing the stream (probably because when a sub formatter is formatting a subexpression, you do not want to pollute the main stream )
 	- temporaryLookahead is super strange it is unclear when it is used.
+	- the method installNewContext: reinitialize because using two dictionaries is messy. 
+		- I tried to remove the temporaryLookahead and I broke all the tests.
 	
 
 "
@@ -935,6 +937,14 @@ EFFormatter >> addSpaceIfNeededForLastArgument: aPragmaNode [
 ]
 
 { #category : #private }
+EFFormatter >> areArgumentsTooLong: anArray [
+
+	| size |
+	size := anArray inject: 0 into: [ :sum :each | sum + each name size ].
+	^ self isLineTooLongWithNewCharacters: size
+]
+
+{ #category : #private }
 EFFormatter >> basicFormatCommentFor: aComment [
 	codeStream nextPutAll: (originalSource copyFrom: aComment start to: aComment stop).
 ]
@@ -990,6 +1000,7 @@ EFFormatter >> firstSeparatorShouldNotPassLine: aMessageNode [
 
 { #category : #'public interface' }
 EFFormatter >> format: aParseTree [
+	Transcript show: '.'.
   self initializeCodeStream.
   originalSource := aParseTree source.
   self visitNode: aParseTree.
@@ -1041,13 +1052,16 @@ EFFormatter >> formatArrayBody: aSequenceNode [
 { #category : #'private-formatting' }
 EFFormatter >> formatBlock: aBlockNode [
 	| isMultiline |
+	self halt.
 	isMultiline := self 
 		willBeMultiline: aBlockNode body 
 		saveIn: lookaheadCode.
+		"we look here in a table"
 	codeStream nextPutAll: self spacesInsideBlocksString.
 	self formatBlockArgumentsFor: aBlockNode.
 	self formatBlockCommentFor: aBlockNode.
 	((isMultiline or: [ self isLineTooLongWithNode: aBlockNode body ]) 
+		"and here in another table for the same so we are formatting twice for nothing."
 		 and: [ self shouldPassNewLineAfterHeadOfBlock: aBlockNode ]) 
 		ifTrue: [ self newLine ].
 	self visitSequenceNode: aBlockNode body.
@@ -1058,13 +1072,17 @@ EFFormatter >> formatBlock: aBlockNode [
 
 { #category : #'private-formatting' }
 EFFormatter >> formatBlockArgumentsFor: aBlockNode [
-	aBlockNode arguments isEmpty
+
+	| onAnotherLine args |
+	args := aBlockNode arguments.
+	args isEmpty
 		ifTrue: [ ^ self ].
-	aBlockNode arguments
+	onAnotherLine := self areArgumentsTooLong: args. 
+	args
 		do: [ :each | 
-			(self isLineTooLongWithNode: each) ifTrue: [self newLine ].
+			onAnotherLine ifTrue: [self newLine ].
 			codeStream nextPut: $:.
-			self visitNode: each.
+			self visitVariableNode: each.
 			self formatCommentCloseToStatements
 				ifTrue:
 					[ self spaceAndFormatComments: each ].
@@ -1097,18 +1115,18 @@ EFFormatter >> formatCommentsFor: aNode [
 
 { #category : #private }
 EFFormatter >> formatMessageNodeInAMessageStreamFor: aMessageNode [
-	| messageStream |
-	messageStream := WriteStream on: (String new: 100).
-	self
-		with: aMessageNode selectorParts
-		and: aMessageNode arguments
-		do: [ :selector :arg | 
-			messageStream
-				nextPutAll: selector;
-				space;
-				nextPutAll: (self formattedSourceFor: arg withDictionary: temporaryLookAheadCode) ]
-		separatedBy: [ messageStream space ].
-		^ messageStream 
+	
+	^ String streamContents: [ :messageStream | 
+		self
+			with: aMessageNode selectorParts
+			and: aMessageNode arguments
+			do: [ :selector :arg | 
+				messageStream
+					nextPutAll: selector;
+					space;
+					nextPutAll: (self formattedSourceFor: arg withDictionary: temporaryLookAheadCode) ]
+			separatedBy: [ messageStream space ]
+		]
 ]
 
 { #category : #'private-formatting' }
@@ -1182,24 +1200,31 @@ EFFormatter >> formatSelectorAndArguments: aMessageNode firstSeparator: firstBlo
 	separatorBlock := firstBlock.
 	aMessageNode isUnary
 		ifTrue: [ 
-				self indentAround: [self handleLineForSelector: aMessageNode selector withSeparatorBlock:
-					separatorBlock.
-				codeStream nextPutAll: aMessageNode selector ]]
+				self indentAround: [
+					self 
+						handleLineForSelector: aMessageNode selector 
+						withSeparatorBlock: separatorBlock.
+					codeStream nextPutAll: aMessageNode selector ]]
 		ifFalse: [
-			aMessageNode selectorParts with: aMessageNode arguments do: [ :selector :argument | 
-				i := i + 1.
-				self
-					handleLineForSelector: selector
-					withSeparatorBlock: separatorBlock.
-				separatorBlock := restBlock.
+			aMessageNode selectorParts 
+				with: aMessageNode arguments 
+				do: [ :selector :argument | 
+					i := i + 1.
+					self
+						handleLineForSelector: selector
+						withSeparatorBlock: separatorBlock.
+					separatorBlock := restBlock.
 				self
 					indent:
-						((((self willBeMultiline: argument saveIn: temporaryLookAheadCode) and: [ i < aMessageNode selectorParts size or: [ self newLineBefore ] ])
-						or:[ self isInCascadeNode ])
+							((((self willBeMultiline: argument saveIn: temporaryLookAheadCode) 
+								and: [ i < aMessageNode selectorParts size or: [ self newLineBefore ] ])
+								or:[ self isInCascadeNode ])
 							ifTrue: [ 1 ] ifFalse: [ 0 ])
 					around: [ codeStream nextPutAll: selector.
 						self handleLineForArgument: argument ].
-				((self willBeMultiline: argument saveIn: lookaheadCode) and:[i < aMessageNode selectorParts size]) ifTrue: [ separatorBlock := self newLine ]
+				((self willBeMultiline: argument saveIn: lookaheadCode) 
+					and:[i < aMessageNode selectorParts size]) 
+					ifTrue: [ separatorBlock := self newLine ]
 			]
 		]
 ]
@@ -1402,9 +1427,10 @@ EFFormatter >> initialize [
 	lineStart := 0.
 	self indent: 0.
 	self isInCascadeNode: false.
-	lookaheadCode := temporaryLookAheadCode := self initializeLookAheadCode.
-	"so normally we share one single dictionary but it is flushed elsewhere :("
-	"self initializeLookAheadCode."
+	
+	lookaheadCode := self initializeLookAheadCode.
+	temporaryLookAheadCode := self initializeLookAheadCode.
+	
 	self initializeCodeStream.
 	context := DefaultPrettyPrintContext
 ]
@@ -1435,6 +1461,13 @@ EFFormatter >> isInCascadeNode [
 { #category : #accessing }
 EFFormatter >> isInCascadeNode: aBoolean [
 	isInCascadeNode := aBoolean
+]
+
+{ #category : #private }
+EFFormatter >> isLineTooLongWithNewCharacters: aNumber [
+	"Is the length of the current line + the length of the first fragment of code until a new line is >= the max line length"
+	
+	^ self currentLineLength + aNumber >= self maxLineLength
 ]
 
 { #category : #private }
@@ -1999,7 +2032,7 @@ EFFormatter >> visitAssignmentNode: anAssignmentNode [
 EFFormatter >> visitBlockNode: aBlockNode [
 	self
 		bracketWith: '[]'
-		around: [ self formatBlock: aBlockNode ].
+		around: [ self formatBlock: aBlockNode ]
 	
 ]
 
