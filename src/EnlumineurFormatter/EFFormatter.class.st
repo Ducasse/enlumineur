@@ -39,7 +39,6 @@ Class {
 		'lineStart',
 		'context',
 		'isInCascadeNode',
-		'isInMethodNode',
 		'temporaryLookAheadCode'
 	],
 	#classVars : [
