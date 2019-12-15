@@ -4,6 +4,12 @@ Class {
 	#category : #'EnlumineurFormatter-Tests'
 }
 
+{ #category : #tests }
+EFBenchTest >> basicMethod [
+	1 to: 10 do: [:i | Transcript show:i ; cr ;cr]
+ 
+]
+
 { #category : #resources }
 EFBenchTest >> longNestedMethod [
 
@@ -24,6 +30,18 @@ EFBenchTest >> longNestedMethod [
 EFBenchTest >> longNestedMethodShort [
   | b0 |
   self value: [:b1 |  b0 value: [:b2 |  b1 value: [:b3 |  b2 value: [:b4 |  b3 value: [:b5 |  b4 value: [:b6 |  b5 value: [:b7 |  b7 value: 2 ] ] ] ] ] ] ]
+]
+
+{ #category : #tests }
+EFBenchTest >> testBasicBlueInk [
+
+	BIConfigurableFormatter format: (EFBenchTest >> #basicMethod) ast 
+]
+
+{ #category : #tests }
+EFBenchTest >> testBasicEF [
+
+	EFFormatter format: (EFBenchTest >> #basicMethod) ast 
 ]
 
 { #category : #tests }

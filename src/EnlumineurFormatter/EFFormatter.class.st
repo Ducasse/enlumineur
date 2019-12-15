@@ -1403,6 +1403,7 @@ EFFormatter >> initialize [
 	self indent: 0.
 	self isInCascadeNode: false.
 	lookaheadCode := temporaryLookAheadCode := self initializeLookAheadCode.
+	"so normally we share one single dictionary but it is flushed elsewhere :("
 	"self initializeLookAheadCode."
 	self initializeCodeStream.
 	context := DefaultPrettyPrintContext
