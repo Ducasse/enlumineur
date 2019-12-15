@@ -889,18 +889,18 @@ EFFormatter class >> settingsUseBasicCommentFormat: aBuilder [
 ]
 
 { #category : #accessing }
-EFFormatter class >> spacesAfterCaretSymbolInReturn [
-	^ DefaultPrettyPrintContext spacesAfterCaretSymbolInReturn
+EFFormatter class >> spacesAfterCaretSymbolInReturnString [
+	^ DefaultPrettyPrintContext spacesAfterCaretSymbolInReturnString
 ]
 
 { #category : #accessing }
-EFFormatter class >> spacesInsideBlocks [
-	^ DefaultPrettyPrintContext spacesInsideBlocks
+EFFormatter class >> spacesInsideBlocksString [
+	^ DefaultPrettyPrintContext spacesInsideBlocksString
 ]
 
 { #category : #accessing }
-EFFormatter class >> spacesInsideParentheses [
-	^ DefaultPrettyPrintContext spacesInsideParentheses
+EFFormatter class >> spacesInsideParenthesesString [
+	^ DefaultPrettyPrintContext spacesInsideParenthesesString
 ]
 
 { #category : #accessing }
@@ -1044,7 +1044,7 @@ EFFormatter >> formatBlock: aBlockNode [
 	isMultiline := self 
 		willBeMultiline: aBlockNode body 
 		saveIn: lookaheadCode.
-	codeStream nextPutAll: self spacesInsideBlocks.
+	codeStream nextPutAll: self spacesInsideBlocksString.
 	self formatBlockArgumentsFor: aBlockNode.
 	self formatBlockCommentFor: aBlockNode.
 	((isMultiline or: [ self isLineTooLongWithNode: aBlockNode body ]) 
@@ -1053,7 +1053,7 @@ EFFormatter >> formatBlock: aBlockNode [
 	self visitSequenceNode: aBlockNode body.
 	(self lineUpBlockBrackets and: [ isMultiline ])
 		ifTrue: [ self newLine ]
-		ifFalse: [ codeStream nextPutAll: self spacesInsideBlocks ]
+		ifFalse: [ codeStream nextPutAll: self spacesInsideBlocksString ]
 ]
 
 { #category : #'private-formatting' }
@@ -1944,8 +1944,8 @@ EFFormatter >> spaceAndFormatComments: aNode [
 ]
 
 { #category : #accessing }
-EFFormatter >> spacesAfterCaretSymbolInReturn [
-	^ context spacesAfterCaretSymbolInReturn
+EFFormatter >> spacesAfterCaretSymbolInReturnString [
+	^ context spacesAfterCaretSymbolInReturnString
 ]
 
 { #category : #accessing }
@@ -1959,13 +1959,14 @@ EFFormatter >> spacesInsideArray [
 ]
 
 { #category : #accessing }
-EFFormatter >> spacesInsideBlocks [
-	^ context spacesInsideBlocks
+EFFormatter >> spacesInsideBlocksString [
+	^ context spacesInsideBlocksString
 ]
 
 { #category : #accessing }
-EFFormatter >> spacesInsideParentheses [
-	^ context spacesInsideParentheses
+EFFormatter >> spacesInsideParenthesesString [
+	"Set via numberOfSpacesInsideParentheses: "
+	^ context spacesInsideParenthesesString
 ]
 
 { #category : #accessing }
@@ -1985,10 +1986,12 @@ EFFormatter >> visitArrayNode: anArrayNode [
 
 { #category : #visiting }
 EFFormatter >> visitAssignmentNode: anAssignmentNode [
-	self visitNode: anAssignmentNode variable.
-	codeStream space; nextPutAll: anAssignmentNode assignmentOperator; space.
+	| var |
+	var := anAssignmentNode variable.
+	self visitVariableNode: var.
+	codeStream nextPutAll: ' := '.
 	self
-		indentExtraSpaces: anAssignmentNode variable name size + ' := ' size
+		indentExtraSpaces: var name size + ' := ' size
 		around: [ self visitNode: anAssignmentNode value ]
 ]
 
@@ -2059,6 +2062,7 @@ EFFormatter >> visitLiteralNode: aLiteralNode [
 { #category : #visiting }
 EFFormatter >> visitLiteralVariableNode: aLiteralVariableNode [
 	| binding |
+	self halt. "looks like it is not used. Ask around RBLiteralVariableNode"
 	binding := aLiteralVariableNode binding.
 	self writeString: binding key storeString, ' -> '.
 	aLiteralVariableNode binding value isLiteral
@@ -2091,12 +2095,12 @@ EFFormatter >> visitNode: aNode [
 				ifFalse: [ '' ])
 		around: [ 
 			needsParenthesis
-				ifTrue: [ codeStream nextPutAll: self spacesInsideParentheses ].
+				ifTrue: [ codeStream nextPutAll: self spacesInsideParenthesesString ].
 			super visitNode: aNode.
 			(self formatCommentCloseToStatements or: [ aNode isMethod or: [ aNode isSequence or: [ aNode isBlock ] ] ])
 				ifFalse: [  self spaceAndFormatComments: aNode. ].
 			needsParenthesis
-				ifTrue: [ codeStream nextPutAll: self spacesInsideParentheses ] ]
+				ifTrue: [ codeStream nextPutAll: self spacesInsideParenthesesString ] ]
 		indentExtraSpaces: (needsParenthesis ifTrue: [ 1 + self numberOfSpacesInsideParentheses ] ifFalse:[ 0 ])
 ]
 
@@ -2105,7 +2109,7 @@ EFFormatter >> visitParseErrorNode: aNode [
 	self writeString: aNode value
 ]
 
-{ #category : #visiting }
+{ #category : #'visiting patterns' }
 EFFormatter >> visitPatternBlockNode: aRBPatternBlockNode [ 
 	codeStream nextPut: $`.
 	self 
@@ -2113,7 +2117,7 @@ EFFormatter >> visitPatternBlockNode: aRBPatternBlockNode [
 		around: [self formatBlock: aRBPatternBlockNode]
 ]
 
-{ #category : #visiting }
+{ #category : #'visiting patterns' }
 EFFormatter >> visitPatternWrapperBlockNode: aRBPatternWrapperBlockNode [
 	self visitNode: aRBPatternWrapperBlockNode wrappedNode.
 	codeStream nextPut: $`.
@@ -2139,7 +2143,7 @@ EFFormatter >> visitPragmaNode: aPragmaNode [
 EFFormatter >> visitReturnNode: aReturnNode [
 	codeStream
 		nextPut: $^;
-		nextPutAll: self spacesAfterCaretSymbolInReturn.
+		nextPutAll: self spacesAfterCaretSymbolInReturnString.
 	self
 		indentExtraSpaces: 1 + self numberOfSpacesAfterCaretSymbolInReturn
 		around: [ self visitNode: aReturnNode value ]

@@ -431,7 +431,7 @@ EFContext >> selectorAndArgumentCombinedMaxSize: anInteger [
 ]
 
 { #category : #accessing }
-EFContext >> spacesAfterCaretSymbolInReturn [
+EFContext >> spacesAfterCaretSymbolInReturnString [
 	^ spacesAfterCaretSymbolInReturn
 ]
 
@@ -446,12 +446,12 @@ EFContext >> spacesInsideArray [
 ]
 
 { #category : #accessing }
-EFContext >> spacesInsideBlocks [
+EFContext >> spacesInsideBlocksString [
 	^ spacesInsideBlocks
 ]
 
 { #category : #accessing }
-EFContext >> spacesInsideParentheses [
+EFContext >> spacesInsideParenthesesString [
 	^ spacesInsideParentheses
 ]
 
