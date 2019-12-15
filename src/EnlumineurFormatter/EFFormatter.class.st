@@ -19,13 +19,11 @@ Now Enlumineur should be improved to be able to reformat the full code of Pharo.
 The tests are a first step to make sure that we understand what is impacted by a change.
 
 - Remarks
-   - willBeMultiline: are two costly because they reformat the code to see if it fits. 
+   - willBeMultiline: too costly because they reformat the code to see if it fits. 
 	We should have another heuristics
 	- format: methods are not sharing the stream (probably because when a sub formatter is formatting a subexpression, you do not want to pollute the main stream )
 	- temporaryLookahead is super strange it is unclear when it is used.
-	- I wonder is currentLineLength is correct because we have the lineStart but what if we have 10 tab. 10 tabs are not 10 character but 10 times the tab size. 
-
-
+	
 
 "
 Class {
@@ -2158,11 +2156,6 @@ EFFormatter >> visitSequenceNode: aSequenceNode [
 { #category : #visiting }
 EFFormatter >> visitVariableNode: aVariableNode [ 
 	codeStream nextPutAll: aVariableNode name
-]
-
-{ #category : #private }
-EFFormatter >> willBeMultiline: aNode [ 
-	^(self formattedSourceFor: aNode withDictionary: lookaheadCode) includes: Character cr
 ]
 
 { #category : #private }
