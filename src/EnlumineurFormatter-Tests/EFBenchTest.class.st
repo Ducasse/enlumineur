@@ -10,6 +10,14 @@ EFBenchTest >> basicMethod [
  
 ]
 
+{ #category : #tests }
+EFBenchTest >> basicMethod2 [
+	<sampleInstance>
+	
+	1 to: 10 do: [:i | Transcript show:i ; cr ;cr]
+ 
+]
+
 { #category : #resources }
 EFBenchTest >> longNestedMethod [
 
@@ -42,6 +50,12 @@ EFBenchTest >> testBasicBlueInk [
 EFBenchTest >> testBasicEF [
 
 	EFFormatter format: (EFBenchTest >> #basicMethod) ast 
+]
+
+{ #category : #tests }
+EFBenchTest >> testBasicEF2 [
+
+	EFFormatter format: (EFBenchTest >> #basicMethod2) ast 
 ]
 
 { #category : #tests }

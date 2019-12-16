@@ -1162,7 +1162,8 @@ EFFormatter >> formatMethodPatternFor: aMethodNode [
 
 { #category : #'private-formatting' }
 EFFormatter >> formatPragmasFor: aMethodNode [
-	aMethodNode pragmas do: [ :each | self visitNode: each; newLine ]
+	
+	aMethodNode pragmas do: [ :each | self visitPragmaNode: each; newLine ]
 ]
 
 { #category : #'private-formatting' }
