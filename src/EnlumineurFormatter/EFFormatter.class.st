@@ -1450,7 +1450,6 @@ EFFormatter >> initializeLookAheadCode [
 { #category : #'public interface' }
 EFFormatter >> installNewContext: aContext [
 	
-	Transcript show: 'c'.
 	context := aContext.
 	lookaheadCode := self initializeLookAheadCode
 ]
