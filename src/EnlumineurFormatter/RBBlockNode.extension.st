@@ -8,3 +8,9 @@ RBBlockNode >> allStatements [
 		yourself
 
 ]
+
+{ #category : #'*EnlumineurFormatter' }
+RBBlockNode >> hasTemporaries [
+
+	^ self temporaries isNotEmpty
+]

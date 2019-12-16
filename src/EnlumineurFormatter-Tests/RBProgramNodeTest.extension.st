@@ -9,6 +9,8 @@ RBProgramNodeTest >> testAllStatementsAssignment [
 				x := 33'.
 	stats := tree allStatements.
 	self assert: stats size equals: 2.
+	self halt.
+	stats collect: [ :each | each name ].
 	self flag: #todo. "why two"
 ]
 

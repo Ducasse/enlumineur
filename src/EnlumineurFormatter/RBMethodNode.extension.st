@@ -8,3 +8,8 @@ RBMethodNode >> allStatements [
 		yourself
 
 ]
+
+{ #category : #'*EnlumineurFormatter' }
+RBMethodNode >> hasTemporaries [
+	^ self temporaries isNotEmpty
+]
