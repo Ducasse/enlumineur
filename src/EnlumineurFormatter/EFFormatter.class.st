@@ -991,11 +991,11 @@ EFFormatter >> currentLineLength [
 
 { #category : #'private-formatting' }
 EFFormatter >> firstSeparatorShouldNotPassLine: aMessageNode [
-"predicat that tell if the keyWord should be forced te be on the sameLine"
+	"predicate that tells if the keyword should be forced to be on the same line."
 
 	^ aMessageNode isKeyword
-				and: [ aMessageNode arguments size <= 1
-						or: [ self newLineBeforeFirstKeyword not ] ]
+		and: [ aMessageNode arguments size <= 1
+				or: [ self newLineBeforeFirstKeyword not ] ]
 ]
 
 { #category : #'public interface' }
@@ -1278,8 +1278,8 @@ EFFormatter >> formatStatementCommentsFor: aStatementNode [
 
 { #category : #private }
 EFFormatter >> formatTemporariesFor: aSequenceNode [
-	aSequenceNode temporaries isEmpty
-		ifTrue: [ ^ self ].
+	aSequenceNode hasTemporaries
+		ifFalse: [ ^ self ].
 	self
 		bracketWith: '|'
 		around:

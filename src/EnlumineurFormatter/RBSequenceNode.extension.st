@@ -7,3 +7,9 @@ RBSequenceNode >> allStatements [
 		yourself
 
 ]
+
+{ #category : #'*EnlumineurFormatter' }
+RBSequenceNode >> hasTemporaries [
+
+	^ temporaries isNotEmpty
+]
