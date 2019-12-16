@@ -10,6 +10,12 @@ RBBlockNode >> allStatements [
 ]
 
 { #category : #'*EnlumineurFormatter' }
+RBBlockNode >> hasArguments [
+
+	^ arguments isNotEmpty
+]
+
+{ #category : #'*EnlumineurFormatter' }
 RBBlockNode >> hasTemporaries [
 
 	^ self temporaries isNotEmpty

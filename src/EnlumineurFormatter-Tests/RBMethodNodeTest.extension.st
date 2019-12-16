@@ -1,6 +1,20 @@
 Extension { #name : #RBMethodNodeTest }
 
 { #category : #'*EnlumineurFormatter-Tests' }
+RBMethodNodeTest >> testBlockHasArguments [
+
+	| tree |
+	tree := self parseMethod: 'foo 
+		[ :arg | 
+		abd + cde 
+		]'.
+
+	self assert: tree body statements first hasArguments
+	
+
+]
+
+{ #category : #'*EnlumineurFormatter-Tests' }
 RBMethodNodeTest >> testBlockHasTemporaries [
 
 	| tree |

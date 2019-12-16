@@ -1424,15 +1424,16 @@ EFFormatter >> indentsForKeywords: anInteger [
 { #category : #initialization }
 EFFormatter >> initialize [
 	super initialize.
+	Transcript show: 'i'.
 	lineStart := 0.
 	self indent: 0.
 	self isInCascadeNode: false.
-	
+	self initializeCodeStream.
+	context := DefaultPrettyPrintContext.
 	lookaheadCode := self initializeLookAheadCode.
 	temporaryLookAheadCode := self initializeLookAheadCode.
 	
-	self initializeCodeStream.
-	context := DefaultPrettyPrintContext
+	
 ]
 
 { #category : #initialization }
@@ -1448,7 +1449,8 @@ EFFormatter >> initializeLookAheadCode [
 
 { #category : #'public interface' }
 EFFormatter >> installNewContext: aContext [
-
+	
+	Transcript show: 'c'.
 	context := aContext.
 	lookaheadCode := self initializeLookAheadCode
 ]
