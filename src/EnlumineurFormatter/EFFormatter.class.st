@@ -1000,11 +1000,10 @@ EFFormatter >> firstSeparatorShouldNotPassLine: aMessageNode [
 
 { #category : #'public interface' }
 EFFormatter >> format: aParseTree [
-	Transcript show: '.'.
-  self initializeCodeStream.
-  originalSource := aParseTree source.
-  self visitNode: aParseTree.
-  ^codeStream contents
+	self initializeCodeStream.
+	originalSource := aParseTree source.
+	self visitNode: aParseTree.
+	^ codeStream contents
 ]
 
 { #category : #'private-formatting' }
@@ -1052,7 +1051,7 @@ EFFormatter >> formatArrayBody: aSequenceNode [
 { #category : #'private-formatting' }
 EFFormatter >> formatBlock: aBlockNode [
 	| isMultiline |
-	self halt.
+	
 	isMultiline := self 
 		willBeMultiline: aBlockNode body 
 		saveIn: lookaheadCode.
@@ -1251,7 +1250,7 @@ EFFormatter >> formatSequenceNodeStatementsFor: aSequenceNode [
 			ifTrue: [ self addNewLinesBeforeStatementStartingAt: (statements at: i + 1) start ] ]
 ]
 
-{ #category : #visiting }
+{ #category : #'private-formatting' }
 EFFormatter >> formatSingleArrayElement: aRBNode [ 
 	"Imagine that you have {1 factorial}, you do not want an ending period. This method is only invoked on the last array element."
 	
@@ -1424,7 +1423,6 @@ EFFormatter >> indentsForKeywords: anInteger [
 { #category : #initialization }
 EFFormatter >> initialize [
 	super initialize.
-	Transcript show: 'i'.
 	lineStart := 0.
 	self indent: 0.
 	self isInCascadeNode: false.
@@ -1452,6 +1450,7 @@ EFFormatter >> installNewContext: aContext [
 	
 	context := aContext.
 	lookaheadCode := self initializeLookAheadCode
+	
 ]
 
 { #category : #accessing }
@@ -1473,6 +1472,7 @@ EFFormatter >> isLineTooLongWithNewCharacters: aNumber [
 
 { #category : #private }
 EFFormatter >> isLineTooLongWithNode: aNode [
+	
 	^ self isLineTooLongWithString: (self formattedSourceFor: aNode withDictionary: temporaryLookAheadCode)
 ]
 
@@ -2199,6 +2199,7 @@ EFFormatter >> visitVariableNode: aVariableNode [
 
 { #category : #private }
 EFFormatter >> willBeMultiline: aNode saveIn: aDictionary [
+
 	^(self formattedSourceFor: aNode withDictionary: aDictionary) includes: Character cr
 ]
 
