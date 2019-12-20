@@ -20,3 +20,10 @@ RBBlockNode >> hasTemporaries [
 
 	^ self temporaries isNotEmpty
 ]
+
+{ #category : #'*EnlumineurFormatter' }
+RBBlockNode >> headIsNotEmpty [
+	"Return true whether the receiver has some arguments or comments"
+	
+	^ arguments isNotEmpty or: [ self comments isNotEmpty ]
+]

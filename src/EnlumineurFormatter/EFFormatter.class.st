@@ -1344,7 +1344,7 @@ EFFormatter >> hasAMultiLineMessageArgument: anArgumentsCollection [
 { #category : #private }
 EFFormatter >> headOfBlockNotEmpty: aBlockNode [
 
-	^ aBlockNode arguments isNotEmpty	or: [aBlockNode comments isNotEmpty]
+	^ aBlockNode arguments isNotEmpty or: [aBlockNode comments isNotEmpty]
 ]
 
 { #category : #accessing }
@@ -1967,8 +1967,7 @@ EFFormatter >> selectorAndArgumentCombinedMaxSize: anInteger [
 
 { #category : #'private-formatting' }
 EFFormatter >> shouldPassNewLineAfterHeadOfBlock: aBlockNode [
-	^ (self headOfBlockNotEmpty: aBlockNode)
-		or: [ self keepBlockInMessage ]
+	^  aBlockNode headIsNotEmpty or: [ self keepBlockInMessage ]
 ]
 
 { #category : #private }

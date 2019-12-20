@@ -31,6 +31,48 @@ RBMethodNodeTest >> testBlockHasTemporaries [
 ]
 
 { #category : #'*EnlumineurFormatter-Tests' }
+RBMethodNodeTest >> testBlockHeadIsNotEmpty [
+
+	| tree |
+	tree := self parseMethod: 'foo 
+		[ :arg | 
+		abd + cde 
+		]'.
+
+	self assert: tree body statements first headIsNotEmpty 
+	
+
+]
+
+{ #category : #'*EnlumineurFormatter-Tests' }
+RBMethodNodeTest >> testBlockHeadIsNotEmpty2 [
+
+	| tree |
+	tree := self parseMethod: 'foo 
+		[ "blbl" 
+		abd + cde 
+		]'.
+
+	self assert: tree body statements first headIsNotEmpty 
+	
+
+]
+
+{ #category : #'*EnlumineurFormatter-Tests' }
+RBMethodNodeTest >> testBlockHeadIsNotEmpty3 [
+
+	| tree |
+	tree := self parseMethod: 'foo 
+		[ 
+		abd + cde 
+		]'.
+
+	self deny: tree body statements first headIsNotEmpty 
+	
+
+]
+
+{ #category : #'*EnlumineurFormatter-Tests' }
 RBMethodNodeTest >> testMethodsHasTemporaries [
 
 	| tree |
