@@ -6,8 +6,10 @@ Class {
 
 { #category : #tests }
 EFBenchTest >> basicMethod [
-	1 to: 10 do: [:i | Transcript show:i ; cr ;cr]
- 
+	[[[[[ [ 
+		[ :y :z |
+		[ :x | 1 to: 10 do: [:i | Transcript show:i ; cr ;cr] ]]]
+ ]]]]]
 ]
 
 { #category : #tests }
@@ -49,7 +51,7 @@ EFBenchTest >> testBasicBlueInk [
 { #category : #tests }
 EFBenchTest >> testBasicEF [
 
-	EFFormatter format: (EFBenchTest >> #basicMethod) ast 
+	[ EFFormatter format: (EFBenchTest >> #basicMethod) ast ] bench
 ]
 
 { #category : #tests }

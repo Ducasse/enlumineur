@@ -939,7 +939,7 @@ EFFormatter >> addSpaceIfNeededForLastArgument: aPragmaNode [
 EFFormatter >> areArgumentsTooLong: anArray [
 
 	| size |
-	size := anArray inject: 0 into: [ :sum :each | sum + each name size ].
+	size := anArray sum: [ :each | each name size ].
 	^ self isLineTooLongWithNewCharacters: size
 ]
 
@@ -999,7 +999,7 @@ EFFormatter >> firstSeparatorShouldNotPassLine: aMessageNode [
 
 { #category : #'public interface' }
 EFFormatter >> format: aParseTree [
-	"Transcript show: '.';cr."
+	
 	self initializeCodeStream.
 	originalSource := aParseTree source.
 	self visitNode: aParseTree.
@@ -1050,16 +1050,23 @@ EFFormatter >> formatArrayBody: aSequenceNode [
 
 { #category : #'private-formatting' }
 EFFormatter >> formatBlock: aBlockNode [
-  | isMultiline |
-  isMultiline := self willBeMultiline: aBlockNode body.
   
-  "we look here in a table"codeStream nextPutAll: self spacesInsideBlocksString.
-  self formatBlockArgumentsFor: aBlockNode.
-  self formatBlockCommentFor: aBlockNode.
-  ((isMultiline or: [ self isLineTooLongWithNode: aBlockNode body ]) and: [ self shouldPassNewLineAfterHeadOfBlock: aBlockNode ]) ifTrue: [ self newLine ].
+	codeStream nextPutAll: self spacesInsideBlocksString.
+	self formatBlockArgumentsFor: aBlockNode.
+	self formatBlockCommentFor: aBlockNode.
+	((self shouldPassNewLineAfterHeadOfBlock: aBlockNode)
+		and: [ (aBlockNode body statements size > 1)
+			or: [ 
+				aBlockNode body statements notEmpty and: [ self isLineTooLongWithNode: aBlockNode body statements first ] ] ])
+				ifTrue: [ self newLine ].
   
-  "and here in another table for the same so we are formatting twice for nothing."self visitSequenceNode: aBlockNode body.
-  (self lineUpBlockBrackets and: [ isMultiline ]) ifTrue: [ self newLine ] ifFalse: [ codeStream nextPutAll: self spacesInsideBlocksString ]
+	self visitSequenceNode: aBlockNode body.
+
+  (self lineUpBlockBrackets and: [ (aBlockNode body statements size > 1)
+			or: [ 
+				aBlockNode body statements notEmpty and: [ self isLineTooLongWithNode: aBlockNode body statements first ] ] ])
+		ifTrue: [ self newLine ]
+		ifFalse: [ codeStream nextPutAll: self spacesInsideBlocksString ]
 ]
 
 { #category : #'private-formatting' }
@@ -1260,10 +1267,12 @@ EFFormatter >> formatTemporariesFor: aSequenceNode [
 
 { #category : #private }
 EFFormatter >> formattedSourceFor: aNode [
+
 	^ lookAheadCode at: aNode ifAbsentPut: [ 
 		  self class new
 			  indent: self indent;
 			  installNewContext: context;
+				lookAheadCode: lookAheadCode;
 			  format: aNode ]
 ]
 
@@ -1387,7 +1396,7 @@ EFFormatter >> initializeCodeStream [
 { #category : #initialization }
 EFFormatter >> initializeTemporaryLookAheadCode [
 
-	lookAheadCode := LRUCache new
+	lookAheadCode := IdentityDictionary new.
 ]
 
 { #category : #'public interface' }
@@ -1486,6 +1495,16 @@ EFFormatter >> lineUpBlockBrackets [
 { #category : #accessing }
 EFFormatter >> lineUpBlockBrackets: aBoolean [
 	context lineUpBlockBrackets: aBoolean
+]
+
+{ #category : #accessing }
+EFFormatter >> lookAheadCode [
+	^ lookAheadCode
+]
+
+{ #category : #accessing }
+EFFormatter >> lookAheadCode: anObject [
+	lookAheadCode := anObject
 ]
 
 { #category : #accessing }

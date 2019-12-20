@@ -2,27 +2,22 @@ Extension { #name : #RBProgramNodeTest }
 
 { #category : #'*EnlumineurFormatter-Tests' }
 RBProgramNodeTest >> testAllStatementsAssignment [
-	| tree stats |
+	| tree  |
 	tree := self parserClass parseMethod: 
 			'methodName
 				
 				x := 33'.
-	stats := tree allStatements.
-	self assert: stats size equals: 2.
-	self halt.
-	stats collect: [ :each | each name ].
-	self flag: #todo. "why two"
+
+	self assert: tree allStatements size equals: 1.
 ]
 
 { #category : #'*EnlumineurFormatter-Tests' }
 RBProgramNodeTest >> testAllStatementsBlockWithReturn [
-	| tree stats |
+	| tree |
 	tree := self parserClass parseMethod: 
 			'methodName
 				^ [ ^ self ] '.
-	stats := tree allStatements.
-	self assert: stats size equals: 6.
-	self flag: #todo. "Why 6"
+	self assert: tree allStatements size equals: 2
  
 ]
 
@@ -32,9 +27,7 @@ RBProgramNodeTest >> testAllStatementsBlockWithTemps [
 	tree := self parserClass parseMethod: 
 			'methodName
 				^ [ | tmp | tmp := 88 ] '.
-	stats := tree allStatements.
-	self assert: stats size equals: 6.
-	self flag: #todo. "Why 6"
+	self assert: tree allStatements size equals: 3.
  
 ]
 
@@ -45,9 +38,8 @@ RBProgramNodeTest >> testAllStatementsDynamicArray [
 			'methodName
 				
 				{ 1 . self send1 . self send2} '.
-	stats := tree allStatements.
-	self assert: stats size equals: 8.
-	self flag: #todo. "why 8"
+
+	self assert: tree allStatements size equals: 4.
 ]
 
 { #category : #'*EnlumineurFormatter-Tests' }
@@ -57,9 +49,7 @@ RBProgramNodeTest >> testAllStatementsReturns [
 			'methodName
 				^ self '.
 	stats := tree allStatements.
-	self assert: stats size equals: 2.
-	self flag: #todo. "Why 2"
- 
+	self assert: stats size equals: 1
 ]
 
 { #category : #'*EnlumineurFormatter-Tests' }
@@ -70,9 +60,7 @@ RBProgramNodeTest >> testAllStatementsReturnsMultiple [
 				1 ifTrue: [ ^ self ].
 				^ self '.
 	stats := tree allStatements.
-	self assert: stats size equals: 8.
-	self flag: #todo. "Why 8?"
-
+	self assert: stats size equals: 3
  
 ]
 
@@ -83,9 +71,7 @@ RBProgramNodeTest >> testAllStatementsSimpleBlock [
 			'methodName
 				^ [ 8 + 4 ] '.
 	stats := tree allStatements.
-	self assert: stats size equals: 6.
-	self flag: #todo. "Why 6"
- 
+	self assert: stats size equals: 2
 ]
 
 { #category : #'*EnlumineurFormatter-Tests' }
@@ -96,8 +82,7 @@ RBProgramNodeTest >> testAllStatementsTemps [
 				| tmp1 tmp2 |
 				tmp1 + tmp2'.
 	stats := tree allStatements.
-	self assert: stats size equals: 2.
-	self flag: #todo. "I would like to get 3"
+	self assert: stats size equals: 3
 ]
 
 { #category : #'*EnlumineurFormatter-Tests' }
@@ -108,7 +93,7 @@ RBProgramNodeTest >> testAllStatementsTwoMessages [
 				
 				1 send1 send2'.
 	stats := tree allStatements.
-	self assert: stats size equals: 2.
+	self assert: stats size equals: 1.
 ]
 
 { #category : #'*EnlumineurFormatter-Tests' }

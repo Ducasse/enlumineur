@@ -2,9 +2,9 @@ Extension { #name : #RBSequenceNode }
 
 { #category : #'*EnlumineurFormatter' }
 RBSequenceNode >> allStatements [
-	^ (statements asOrderedCollection)
-		addAll: super allStatements;
-		yourself
+	^ statements asOrderedCollection copy
+			addAll: super allStatements;
+			yourself
 
 ]
 
