@@ -1429,10 +1429,8 @@ EFFormatter >> initialize [
 	self isInCascadeNode: false.
 	self initializeCodeStream.
 	context := DefaultPrettyPrintContext.
-	lookaheadCode := self initializeLookAheadCode.
-	temporaryLookAheadCode := self initializeLookAheadCode.
-	
-	
+	self initializeLookAheadCode.
+	self initializeTemporaryLookAheadCode
 ]
 
 { #category : #initialization }
@@ -1443,14 +1441,20 @@ EFFormatter >> initializeCodeStream [
 
 { #category : #initialization }
 EFFormatter >> initializeLookAheadCode [
-	^ IdentityDictionary new
+	lookaheadCode := IdentityDictionary new
+]
+
+{ #category : #initialization }
+EFFormatter >> initializeTemporaryLookAheadCode [
+
+	temporaryLookAheadCode := IdentityDictionary new
 ]
 
 { #category : #'public interface' }
 EFFormatter >> installNewContext: aContext [
 	
 	context := aContext.
-	lookaheadCode := self initializeLookAheadCode
+	self initializeLookAheadCode
 	
 ]
 
