@@ -1170,13 +1170,13 @@ EFFormatter >> formatPragmasFor: aMethodNode [
 EFFormatter >> formatSelectorAndArguments: aMessageNode [
 	"We are formatting a message and here we are about to format the message selector and its arguments."
 	
-	| isMultilineMessage hasMutlineArguments multilineArgumentBeforeAnotherArgument |
+	| isMultilineMessage hasMultiLineArguments multilineArgumentBeforeAnotherArgument |
 	multilineArgumentBeforeAnotherArgument := self messageHasMultilineArgumentBeforeAnotherArgument: aMessageNode.
 	isMultilineMessage := (self isMultiLineMessage: aMessageNode) or:[multilineArgumentBeforeAnotherArgument].
-	hasMutlineArguments := self hasAMultiLineMessageArgument: aMessageNode arguments.
+	hasMultiLineArguments := self hasAMultiLineMessageArgument: aMessageNode arguments.
 	self
 		indent:
-			(((isMultilineMessage or:[hasMutlineArguments]) and:[aMessageNode isKeyword])
+			(((isMultilineMessage or:[hasMultiLineArguments]) and:[aMessageNode isKeyword])
 				ifTrue: [ self indentsForKeywords ]
 				ifFalse: [ 0 ])
 		around: [ self
@@ -1273,8 +1273,7 @@ EFFormatter >> formatStatementCommentsFor: aStatementNode [
 				ifFalse: [ self space ].
 			self useBasicCommentFormat
 				ifTrue: [ self basicFormatCommentFor: each ]
-				ifFalse: [ 
-			self resizeCommentFor: each startingAt: self currentLineLength ]]
+				ifFalse: [ self resizeCommentFor: each startingAt: self currentLineLength ]]
 ]
 
 { #category : #private }
