@@ -1452,9 +1452,7 @@ EFFormatter >> initializeTemporaryLookAheadCode [
 { #category : #'public interface' }
 EFFormatter >> installNewContext: aContext [
 	
-	context := aContext.
-	self initializeLookAheadCode
-	
+	context := aContext
 ]
 
 { #category : #accessing }
