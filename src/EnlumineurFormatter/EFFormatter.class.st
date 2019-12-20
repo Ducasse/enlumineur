@@ -34,12 +34,11 @@ Class {
 	#instVars : [
 		'codeStream',
 		'indent',
-		'lookaheadCode',
 		'originalSource',
 		'lineStart',
 		'context',
 		'isInCascadeNode',
-		'temporaryLookAheadCode'
+		'lookAheadCode'
 	],
 	#classVars : [
 		'DefaultPrettyPrintContext',
@@ -1000,6 +999,7 @@ EFFormatter >> firstSeparatorShouldNotPassLine: aMessageNode [
 
 { #category : #'public interface' }
 EFFormatter >> format: aParseTree [
+	"Transcript show: '.';cr."
 	self initializeCodeStream.
 	originalSource := aParseTree source.
 	self visitNode: aParseTree.
@@ -1050,23 +1050,16 @@ EFFormatter >> formatArrayBody: aSequenceNode [
 
 { #category : #'private-formatting' }
 EFFormatter >> formatBlock: aBlockNode [
-	| isMultiline |
-	
-	isMultiline := self 
-		willBeMultiline: aBlockNode body 
-		saveIn: lookaheadCode.
-		"we look here in a table"
-	codeStream nextPutAll: self spacesInsideBlocksString.
-	self formatBlockArgumentsFor: aBlockNode.
-	self formatBlockCommentFor: aBlockNode.
-	((isMultiline or: [ self isLineTooLongWithNode: aBlockNode body ]) 
-		"and here in another table for the same so we are formatting twice for nothing."
-		 and: [ self shouldPassNewLineAfterHeadOfBlock: aBlockNode ]) 
-		ifTrue: [ self newLine ].
-	self visitSequenceNode: aBlockNode body.
-	(self lineUpBlockBrackets and: [ isMultiline ])
-		ifTrue: [ self newLine ]
-		ifFalse: [ codeStream nextPutAll: self spacesInsideBlocksString ]
+  | isMultiline |
+  isMultiline := self willBeMultiline: aBlockNode body.
+  
+  "we look here in a table"codeStream nextPutAll: self spacesInsideBlocksString.
+  self formatBlockArgumentsFor: aBlockNode.
+  self formatBlockCommentFor: aBlockNode.
+  ((isMultiline or: [ self isLineTooLongWithNode: aBlockNode body ]) and: [ self shouldPassNewLineAfterHeadOfBlock: aBlockNode ]) ifTrue: [ self newLine ].
+  
+  "and here in another table for the same so we are formatting twice for nothing."self visitSequenceNode: aBlockNode body.
+  (self lineUpBlockBrackets and: [ isMultiline ]) ifTrue: [ self newLine ] ifFalse: [ codeStream nextPutAll: self spacesInsideBlocksString ]
 ]
 
 { #category : #'private-formatting' }
@@ -1113,19 +1106,11 @@ EFFormatter >> formatCommentsFor: aNode [
 ]
 
 { #category : #private }
-EFFormatter >> formatMessageNodeInAMessageStreamFor: aMessageNode [
-	
-	^ String streamContents: [ :messageStream | 
-		self
-			with: aMessageNode selectorParts
-			and: aMessageNode arguments
-			do: [ :selector :arg | 
-				messageStream
-					nextPutAll: selector;
-					space;
-					nextPutAll: (self formattedSourceFor: arg withDictionary: temporaryLookAheadCode) ]
-			separatedBy: [ messageStream space ]
-		]
+EFFormatter >> formatMessageNode: aMessageNode [
+  ^String streamContents: [:messageStream |  self with: aMessageNode selectorParts and: aMessageNode arguments do: [:selector :arg |  messageStream
+                 nextPutAll: selector;
+                 space;
+                 nextPutAll: (self formattedSourceFor: arg) ] separatedBy: [ messageStream space ] ]
 ]
 
 { #category : #'private-formatting' }
@@ -1195,38 +1180,16 @@ EFFormatter >> formatSelectorAndArguments: aMessageNode [
 
 { #category : #'private-formatting' }
 EFFormatter >> formatSelectorAndArguments: aMessageNode firstSeparator: firstBlock restSeparator: restBlock [
-	| separatorBlock i|
-	i := 0.
-	separatorBlock := firstBlock.
-	aMessageNode isUnary
-		ifTrue: [ 
-				self indentAround: [
-					self 
-						handleLineForSelector: aMessageNode selector 
-						withSeparatorBlock: separatorBlock.
-					codeStream nextPutAll: aMessageNode selector ]]
-		ifFalse: [
-			aMessageNode selectorParts 
-				with: aMessageNode arguments 
-				do: [ :selector :argument | 
-					i := i + 1.
-					self
-						handleLineForSelector: selector
-						withSeparatorBlock: separatorBlock.
-					separatorBlock := restBlock.
-				self
-					indent:
-							((((self willBeMultiline: argument saveIn: temporaryLookAheadCode) 
-								and: [ i < aMessageNode selectorParts size or: [ self newLineBefore ] ])
-								or:[ self isInCascadeNode ])
-							ifTrue: [ 1 ] ifFalse: [ 0 ])
-					around: [ codeStream nextPutAll: selector.
-						self handleLineForArgument: argument ].
-				((self willBeMultiline: argument saveIn: lookaheadCode) 
-					and:[i < aMessageNode selectorParts size]) 
-					ifTrue: [ separatorBlock := self newLine ]
-			]
-		]
+  | separatorBlock i |
+  i := 0.
+  separatorBlock := firstBlock.
+  aMessageNode isUnary ifTrue: [ self indentAround: [ self handleLineForSelector: aMessageNode selector withSeparatorBlock: separatorBlock.
+              codeStream nextPutAll: aMessageNode selector ] ] ifFalse: [ aMessageNode selectorParts with: aMessageNode arguments do: [:selector :argument |  i := i + 1.
+              self handleLineForSelector: selector withSeparatorBlock: separatorBlock.
+              separatorBlock := restBlock.
+              self indent: ((((self willBeMultiline: argument) and: [ i < aMessageNode selectorParts size or: [ self newLineBefore ] ]) or: [ self isInCascadeNode ]) ifTrue: [ 1 ] ifFalse: [ 0 ]) around: [ codeStream nextPutAll: selector.
+                    self handleLineForArgument: argument ].
+              ((self willBeMultiline: argument) and: [ i < aMessageNode selectorParts size ]) ifTrue: [ separatorBlock := self newLine ] ] ]
 ]
 
 { #category : #'private-formatting' }
@@ -1296,8 +1259,8 @@ EFFormatter >> formatTemporariesFor: aSequenceNode [
 ]
 
 { #category : #private }
-EFFormatter >> formattedSourceFor: aNode withDictionary: aDictionary [
-	^ aDictionary at: aNode ifAbsentPut: [ 
+EFFormatter >> formattedSourceFor: aNode [
+	^ lookAheadCode at: aNode ifAbsentPut: [ 
 		  self class new
 			  indent: self indent;
 			  installNewContext: context;
@@ -1306,19 +1269,10 @@ EFFormatter >> formattedSourceFor: aNode withDictionary: aDictionary [
 
 { #category : #private }
 EFFormatter >> handleLineForArgument: anArgument [
-	| isLineTooLong |
-	isLineTooLong := self isLineTooLongWithNode: anArgument.
-	anArgument isBlock
-		ifTrue: [((self willBeMultiline: anArgument saveIn: temporaryLookAheadCode)
-						and: [ self keepBlockInMessage not ])
-				ifTrue: [ self newLine ]
-				ifFalse: [ self space ] ]
-		ifFalse: [ (self isInCascadeNode and: [ isLineTooLong ])
-				ifTrue: [ self newLine ]
-				ifFalse: [ isLineTooLong
-						ifTrue: [ self newLine ]
-						ifFalse: [ self space ] ] ].
-	self visitNode: anArgument
+  | isLineTooLong |
+  isLineTooLong := self isLineTooLongWithNode: anArgument.
+  anArgument isBlock ifTrue: [ ((self willBeMultiline: anArgument) and: [ self keepBlockInMessage not ]) ifTrue: [ self newLine ] ifFalse: [ self space ] ] ifFalse: [ (self isInCascadeNode and: [ isLineTooLong ]) ifTrue: [ self newLine ] ifFalse: [ isLineTooLong ifTrue: [ self newLine ] ifFalse: [ self space ] ] ].
+  self visitNode: anArgument
 ]
 
 { #category : #private }
@@ -1330,14 +1284,7 @@ EFFormatter >> handleLineForSelector: selector withSeparatorBlock: aBlock [
 
 { #category : #private }
 EFFormatter >> hasAMultiLineMessageArgument: anArgumentsCollection [
-	^ anArgumentsCollection
-		anySatisfy: [ :each | 
-			self isInCascadeNode
-				ifTrue: [ self indent: 0 around: [ self willBeMultiline: each  saveIn: temporaryLookAheadCode ] ]
-				ifFalse: [ 
-					self
-						indent: self indentsForKeywords + 1
-						around: [ self willBeMultiline: each  saveIn: temporaryLookAheadCode ] ] ]
+  ^anArgumentsCollection anySatisfy: [:each |  self isInCascadeNode ifTrue: [ self indent: 0 around: [ self willBeMultiline: each ] ] ifFalse: [ self indent: self indentsForKeywords + 1 around: [ self willBeMultiline: each ] ] ]
 ]
 
 { #category : #private }
@@ -1428,7 +1375,6 @@ EFFormatter >> initialize [
 	self isInCascadeNode: false.
 	self initializeCodeStream.
 	context := DefaultPrettyPrintContext.
-	self initializeLookAheadCode.
 	self initializeTemporaryLookAheadCode
 ]
 
@@ -1439,14 +1385,9 @@ EFFormatter >> initializeCodeStream [
 ]
 
 { #category : #initialization }
-EFFormatter >> initializeLookAheadCode [
-	lookaheadCode := IdentityDictionary new
-]
-
-{ #category : #initialization }
 EFFormatter >> initializeTemporaryLookAheadCode [
 
-	temporaryLookAheadCode := IdentityDictionary new
+	lookAheadCode := LRUCache new
 ]
 
 { #category : #'public interface' }
@@ -1474,8 +1415,7 @@ EFFormatter >> isLineTooLongWithNewCharacters: aNumber [
 
 { #category : #private }
 EFFormatter >> isLineTooLongWithNode: aNode [
-	
-	^ self isLineTooLongWithString: (self formattedSourceFor: aNode withDictionary: temporaryLookAheadCode)
+  ^self isLineTooLongWithString: (self formattedSourceFor: aNode)
 ]
 
 { #category : #private }
@@ -1496,12 +1436,12 @@ EFFormatter >> isMultiLineMessage: aMessageNode [
 		ifTrue: [ ^ true ].
 	aMessageNode isUnary
 		ifTrue: [ ^ self isLineTooLongWithString: aMessageNode selector ].
-	^ self isLineTooLongWithString: (self formatMessageNodeInAMessageStreamFor: aMessageNode) contents
+	^ self isLineTooLongWithString: (self formatMessageNode: aMessageNode) contents
 ]
 
 { #category : #private }
 EFFormatter >> isNonEmptySingleLineBlock: aBlockNode [
-	^ ((self willBeMultiline: aBlockNode body saveIn: temporaryLookAheadCode ) or: [ aBlockNode body statements isEmpty ]) not
+  ^((self willBeMultiline: aBlockNode body) or: [ aBlockNode body statements isEmpty ]) not
 ]
 
 { #category : #accessing }
@@ -1559,12 +1499,9 @@ EFFormatter >> maxLineLength: anInteger [
 ]
 
 { #category : #private }
-EFFormatter >> messageHasMultilineArgumentBeforeAnotherArgument: aMessageNode [ 
-
-	aMessageNode arguments doWithIndex: [ :each :i |
-		(self willBeMultiline: each saveIn: temporaryLookAheadCode)
-			ifTrue: [ ^ i < aMessageNode arguments size ]].
-	^ false
+EFFormatter >> messageHasMultilineArgumentBeforeAnotherArgument: aMessageNode [
+  aMessageNode arguments doWithIndex: [:each :i |  (self willBeMultiline: each) ifTrue: [ ^i < aMessageNode arguments size ] ].
+  ^false
 ]
 
 { #category : #accessing }
@@ -2120,8 +2057,6 @@ EFFormatter >> visitMethodNode: aMethodNode [
 { #category : #visiting }
 EFFormatter >> visitNode: aNode [
 	| needsParenthesis |
-	(lookaheadCode includesKey: aNode)
-		ifTrue: [ ^ self writeString: (lookaheadCode at: aNode) ].
 	needsParenthesis := self needsParenthesisFor: aNode.
 	self
 		bracketWith:
@@ -2199,9 +2134,8 @@ EFFormatter >> visitVariableNode: aVariableNode [
 ]
 
 { #category : #private }
-EFFormatter >> willBeMultiline: aNode saveIn: aDictionary [
-
-	^(self formattedSourceFor: aNode withDictionary: aDictionary) includes: Character cr
+EFFormatter >> willBeMultiline: aNode [
+  ^(self formattedSourceFor: aNode) includes: Character cr
 ]
 
 { #category : #utilities }
