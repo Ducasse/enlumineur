@@ -1049,41 +1049,63 @@ EFFormatter >> formatArrayBody: aSequenceNode [
 ]
 
 { #category : #'private-formatting' }
+EFFormatter >> formatBlock2: aBlockNode [
+ 
+	"This is a change to speed up and avoid the use of willBeMultiline: 
+	Now it breaks many tests and we should investigate why
+	For example 
+	
+	we obtain
+		hkjhjkh 
+			ifTrue: [ self foo
+				 ]
+	
+	and not 
+		hkjhjkh 
+			ifTrue: [ self foo ]
+	"
+
+
+	codeStream nextPutAll: self spacesInsideBlocksString.
+	self formatBlockArgumentsFor: aBlockNode.
+	self formatBlockCommentFor: aBlockNode.
+
+	((self shouldPassNewLineAfterHeadOfBlock: aBlockNode)
+		and: [ (aBlockNode body statements size > 1)
+			or: [ 
+				self isLineTooLongWithNode: aBlockNode body statements first ] ])
+				ifTrue: [ self newLine ].
+  
+	self visitSequenceNode: aBlockNode body.
+	
+	(self lineUpBlockBrackets and: [ (aBlockNode body statements size > 1) 
+													or: [ self isLineTooLongWithNode: aBlockNode body statements first ] ])
+		ifTrue: [ self newLine ]
+		ifFalse: [ codeStream nextPutAll: self spacesInsideBlocksString ]
+
+]
+
+{ #category : #'private-formatting' }
 EFFormatter >> formatBlock: aBlockNode [
+ 	" see formatBlock2: for a possible alternate and faster definition."
+	
 	| isMultiline |
 	isMultiline := self willBeMultiline: aBlockNode body.
   
 	codeStream nextPutAll: self spacesInsideBlocksString.
+	
 	self formatBlockArgumentsFor: aBlockNode.
 	self formatBlockCommentFor: aBlockNode.
-	((isMultiline or: [ self isLineTooLongWithNode: aBlockNode body ]) and: [ self shouldPassNewLineAfterHeadOfBlock: aBlockNode ]) ifTrue: [ self newLine ].
-  
-
-	self visitSequenceNode: aBlockNode body.
-	(self lineUpBlockBrackets and: [ isMultiline ]) ifTrue: [ self newLine ] ifFalse: [ codeStream nextPutAll: self spacesInsideBlocksString ]
-
-"
-This is the only change with the master (changes that we did during the sprint and that break many tests)
-
-formatBlock: aBlockNode
-  
-	codeStream nextPutAll: self spacesInsideBlocksString.
-	self formatBlockArgumentsFor: aBlockNode.
-	self formatBlockCommentFor: aBlockNode.
-	((self shouldPassNewLineAfterHeadOfBlock: aBlockNode)
-		and: [ (aBlockNode body statements size > 1)
-			or: [ 
-				aBlockNode body statements notEmpty and: [ self isLineTooLongWithNode: aBlockNode body statements first ] ] ])
-				ifTrue: [ self newLine ].
+	((isMultiline or: [ self isLineTooLongWithNode: aBlockNode body ]) 
+		and: [ self shouldPassNewLineAfterHeadOfBlock: aBlockNode ]) 
+			ifTrue: [ self newLine ].
   
 	self visitSequenceNode: aBlockNode body.
-
-  (self lineUpBlockBrackets and: [ (aBlockNode body statements size > 1)
-			or: [ 
-				aBlockNode body statements notEmpty and: [ self isLineTooLongWithNode: aBlockNode body statements first ] ] ])
-		ifTrue: [ self newLine ]
+	
+	(self lineUpBlockBrackets and: [ isMultiline ]) 
+		ifTrue: [ self newLine ] 
 		ifFalse: [ codeStream nextPutAll: self spacesInsideBlocksString ]
-		"
+
 ]
 
 { #category : #'private-formatting' }
@@ -1104,6 +1126,7 @@ EFFormatter >> formatBlockArgumentsFor: aBlockNode [
 					[ self spaceAndFormatComments: each ].
 			self space ].
 	codeStream nextPutAll: '| '.
+
 ]
 
 { #category : #'private-formatting' }
@@ -1414,6 +1437,9 @@ EFFormatter >> initializeCodeStream [
 EFFormatter >> initializeTemporaryLookAheadCode [
 
 	lookAheadCode := IdentityDictionary new
+	"this is strange because using an identity should normally produce more entries in the cache
+	since each node is a different object. 
+	However on simple methods it is still faster than using a Dictionary."
 ]
 
 { #category : #'public interface' }
