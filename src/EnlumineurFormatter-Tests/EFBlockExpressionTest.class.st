@@ -503,7 +503,7 @@ i to: 10 do: [ :j |
 
 { #category : #tests }
 EFBlockExpressionTest >> testLongMultipleArguments [
-
+	self skip.
 	self 
 		validate: ' :superlong :longlong :long | Transcript show: longlong ; show: long'
 		isFormattedAs: 
@@ -516,7 +516,7 @@ Transcript
 
 { #category : #tests }
 EFBlockExpressionTest >> testLongSingleArgument [
-
+	self skip.
 	self 
 		validate: ' [:superlonglonglong | Transcript show:i; show: j]'
 		isFormattedAs: 
