@@ -1,31 +1,30 @@
 "
 Enlumineur is a replacement of BlueInk pretty printer.
 It was developed by Hugo Lasnier during 6 months internship within RMOD and supervised by S. Ducasse and G. Polito during 2019.
+The code was revisited and cleaned but there are probably more glitches left. 
 
-Enlumineur enhancements are:
+Enlumineur enhancements compared to BlueInk are:
 
 - systematic test coverage with more than 270 tests
-- full revisiting of settings with description and example
+- full revisiting of settings with description and examples
 - no way to break the code by entering a non space character to indent code
 - support for {.....} long list
 - cleaning coupled settings
 - support for to:do: block like statement (multiline arguments)
-- removal of ""traditional parentheses"" what ever it meant.
-- new line and more indentation after the opening bracket
-- A dedicated UI was in preparation but should be validated before introduced in Pharo.
-- See package Enlumineur-UI (https://github.com/Ducasse/enlumineur)
+- removal of ""traditional parentheses"" whatever it meant.
+- new line and more indentations after the opening bracket
+- A dedicated UI was in preparation but should be redone before introduced in Pharo.
+ See package Enlumineur-UI (https://github.com/Ducasse/enlumineur)
 
-Now Enlumineur should be improved to be able to reformat the full code of Pharo.
+Enlumineur should be improved to be able to reformat the full code of Pharo.
 The tests are a first step to make sure that we understand what is impacted by a change.
 
-- Remarks
-   - willBeMultiline: too costly because they reformat the code to see if it fits. 
-	We should have another heuristics
-	- format: methods are not sharing the stream (probably because when a sub formatter is formatting a subexpression, you do not want to pollute the main stream )
-	- temporaryLookahead is super strange it is unclear when it is used.
-	- the method installNewContext: reinitialize because using two dictionaries is messy. 
-		- I tried to remove the temporaryLookahead and I broke all the tests.
-	
+Implementation remarks
+	  - willBeMultiline: too costly because it formats the code to see if it fits.
+	We should have other heuristics.
+	- formatBlock: should be improved and speed up. 
+	formatBlock2: is a first alternative but it broke some tests that should be evaluated. 
+	- Some Node extensions should be pushed to the packages their belong to. 
 
 "
 Class {
@@ -1065,21 +1064,21 @@ EFFormatter >> formatBlock2: aBlockNode [
 			ifTrue: [ self foo ]
 	"
 
-
+	| doesFirstStatementFit |
 	codeStream nextPutAll: self spacesInsideBlocksString.
 	self formatBlockArgumentsFor: aBlockNode.
 	self formatBlockCommentFor: aBlockNode.
-
+	
+	doesFirstStatementFit := self isLineTooLongWithNode: aBlockNode body statements first.
+	
 	((self shouldPassNewLineAfterHeadOfBlock: aBlockNode)
-		and: [ (aBlockNode body statements size > 1)
-			or: [ 
-				self isLineTooLongWithNode: aBlockNode body statements first ] ])
-				ifTrue: [ self newLine ].
+		and: [ (aBlockNode body statements size > 1) or: [ doesFirstStatementFit ] ])
+					ifTrue: [ self newLine ].
   
 	self visitSequenceNode: aBlockNode body.
 	
 	(self lineUpBlockBrackets and: [ (aBlockNode body statements size > 1) 
-													or: [ self isLineTooLongWithNode: aBlockNode body statements first ] ])
+													or: [ doesFirstStatementFit ] ])
 		ifTrue: [ self newLine ]
 		ifFalse: [ codeStream nextPutAll: self spacesInsideBlocksString ]
 
