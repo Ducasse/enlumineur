@@ -1050,16 +1050,17 @@ EFFormatter >> formatArrayBody: aSequenceNode [
 
 { #category : #'private-formatting' }
 EFFormatter >> formatBlock: aBlockNode [
-  | isMultiline |
-  isMultiline := self willBeMultiline: aBlockNode body.
+	| isMultiline |
+	isMultiline := self willBeMultiline: aBlockNode body.
   
-  "we look here in a table"codeStream nextPutAll: self spacesInsideBlocksString.
-  self formatBlockArgumentsFor: aBlockNode.
-  self formatBlockCommentFor: aBlockNode.
-  ((isMultiline or: [ self isLineTooLongWithNode: aBlockNode body ]) and: [ self shouldPassNewLineAfterHeadOfBlock: aBlockNode ]) ifTrue: [ self newLine ].
+	codeStream nextPutAll: self spacesInsideBlocksString.
+	self formatBlockArgumentsFor: aBlockNode.
+	self formatBlockCommentFor: aBlockNode.
+	((isMultiline or: [ self isLineTooLongWithNode: aBlockNode body ]) and: [ self shouldPassNewLineAfterHeadOfBlock: aBlockNode ]) ifTrue: [ self newLine ].
   
-  "and here in another table for the same so we are formatting twice for nothing."self visitSequenceNode: aBlockNode body.
-  (self lineUpBlockBrackets and: [ isMultiline ]) ifTrue: [ self newLine ] ifFalse: [ codeStream nextPutAll: self spacesInsideBlocksString ]
+
+	self visitSequenceNode: aBlockNode body.
+	(self lineUpBlockBrackets and: [ isMultiline ]) ifTrue: [ self newLine ] ifFalse: [ codeStream nextPutAll: self spacesInsideBlocksString ]
 
 "
 This is the only change with the master (changes that we did during the sprint and that break many tests)
