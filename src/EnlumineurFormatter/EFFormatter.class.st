@@ -939,7 +939,7 @@ EFFormatter >> addSpaceIfNeededForLastArgument: aPragmaNode [
 EFFormatter >> areArgumentsTooLong: anArray [
 
 	| size |
-	size := anArray inject: 0 into: [ :sum :each | sum + each name size ].
+	size := anArray sum: [ :each | each name size ].
 	^ self isLineTooLongWithNewCharacters: size
 ]
 
@@ -999,7 +999,7 @@ EFFormatter >> firstSeparatorShouldNotPassLine: aMessageNode [
 
 { #category : #'public interface' }
 EFFormatter >> format: aParseTree [
-	"Transcript show: '.';cr."
+
 	self initializeCodeStream.
 	originalSource := aParseTree source.
 	self visitNode: aParseTree.
@@ -1387,7 +1387,7 @@ EFFormatter >> initializeCodeStream [
 { #category : #initialization }
 EFFormatter >> initializeTemporaryLookAheadCode [
 
-	lookAheadCode := LRUCache new
+	lookAheadCode := IdentityDictionary new
 ]
 
 { #category : #'public interface' }
@@ -1486,6 +1486,16 @@ EFFormatter >> lineUpBlockBrackets [
 { #category : #accessing }
 EFFormatter >> lineUpBlockBrackets: aBoolean [
 	context lineUpBlockBrackets: aBoolean
+]
+
+{ #category : #accessors }
+EFFormatter >> lookAheadCode [
+	^ lookAheadCode
+]
+
+{ #category : #accessors }
+EFFormatter >> lookAheadCode: anObject [
+	lookAheadCode := anObject
 ]
 
 { #category : #accessing }
