@@ -20,6 +20,16 @@ EFBenchTest >> basicMethod2 [
  
 ]
 
+{ #category : #tests }
+EFBenchTest >> basicMethod3 [
+	"a method with many similar expressions."
+	| x y |
+	x to: y do: [:i | Transcript show:i ; cr ;cr].
+	x to: y do: [:i | Transcript show:i ; cr ;cr].
+	x to: y do: [:i | Transcript show:i ; cr: x ; cr: x ].
+ 
+]
+
 { #category : #resources }
 EFBenchTest >> longNestedMethod [
 
@@ -50,7 +60,7 @@ EFBenchTest >> testBasicBlueInk [
 
 { #category : #tests }
 EFBenchTest >> testBasicEF [
-
+	self skip.
 	[ EFFormatter format: (EFBenchTest >> #basicMethod) ast ] bench
 ]
 

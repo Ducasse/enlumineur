@@ -23,7 +23,7 @@ RBProgramNodeTest >> testAllStatementsBlockWithReturn [
 
 { #category : #'*EnlumineurFormatter-Tests' }
 RBProgramNodeTest >> testAllStatementsBlockWithTemps [
-	| tree stats |
+	| tree |
 	tree := self parserClass parseMethod: 
 			'methodName
 				^ [ | tmp | tmp := 88 ] '.
@@ -33,7 +33,7 @@ RBProgramNodeTest >> testAllStatementsBlockWithTemps [
 
 { #category : #'*EnlumineurFormatter-Tests' }
 RBProgramNodeTest >> testAllStatementsDynamicArray [
-	| tree stats |
+	| tree |
 	tree := self parserClass parseMethod: 
 			'methodName
 				
