@@ -1060,6 +1060,29 @@ EFFormatter >> formatBlock: aBlockNode [
   
   "and here in another table for the same so we are formatting twice for nothing."self visitSequenceNode: aBlockNode body.
   (self lineUpBlockBrackets and: [ isMultiline ]) ifTrue: [ self newLine ] ifFalse: [ codeStream nextPutAll: self spacesInsideBlocksString ]
+
+"
+This is the only change with the master (changes that we did during the sprint and that break many tests)
+
+formatBlock: aBlockNode
+  
+	codeStream nextPutAll: self spacesInsideBlocksString.
+	self formatBlockArgumentsFor: aBlockNode.
+	self formatBlockCommentFor: aBlockNode.
+	((self shouldPassNewLineAfterHeadOfBlock: aBlockNode)
+		and: [ (aBlockNode body statements size > 1)
+			or: [ 
+				aBlockNode body statements notEmpty and: [ self isLineTooLongWithNode: aBlockNode body statements first ] ] ])
+				ifTrue: [ self newLine ].
+  
+	self visitSequenceNode: aBlockNode body.
+
+  (self lineUpBlockBrackets and: [ (aBlockNode body statements size > 1)
+			or: [ 
+				aBlockNode body statements notEmpty and: [ self isLineTooLongWithNode: aBlockNode body statements first ] ] ])
+		ifTrue: [ self newLine ]
+		ifFalse: [ codeStream nextPutAll: self spacesInsideBlocksString ]
+		"
 ]
 
 { #category : #'private-formatting' }
