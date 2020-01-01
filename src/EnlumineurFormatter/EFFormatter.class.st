@@ -1260,11 +1260,13 @@ EFFormatter >> formatTemporariesFor: aSequenceNode [
 
 { #category : #private }
 EFFormatter >> formattedSourceFor: aNode [
+
 	^ lookAheadCode at: aNode ifAbsentPut: [ 
 		  self class new
-			  indent: self indent;
-			  installNewContext: context;
-			  format: aNode ]
+			indent: self indent;
+			installNewContext: context;
+			lookAheadCode: lookAheadCode;
+			format: aNode ]
 ]
 
 { #category : #private }
